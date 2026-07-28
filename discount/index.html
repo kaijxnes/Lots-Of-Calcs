@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discount Calculator</title>
+<meta name="description" content="Work out the final price after a discount, including multiple stacked discounts applied in sequence.">
+<link rel="canonical" href="https://lotsofcalcs.com/discount/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Discount Calculator">
+<meta property="og:description" content="Work out the final price after a discount, including multiple stacked discounts applied in sequence.">
+<meta property="og:url" content="https://lotsofcalcs.com/discount/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Discount Calculator">
+<meta name="twitter:description" content="Work out the final price after a discount, including multiple stacked discounts applied in sequence.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Discount Calculator</h1>
+      <p class="page-subtitle">Original price + % off → final price. Add multiple discounts to stack them sequentially.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field">
+        <label for="original-price">Original price</label>
+        <input type="number" id="original-price" placeholder="0.00" step="any">
+      </div>
+
+      <div class="dyn-table-head">
+        <span class="row-index">#</span>
+        <span class="grow">Discount</span>
+        <span class="fixed-sm">% off</span>
+        <span style="width:34px"></span>
+      </div>
+      <div class="dyn-list" id="rows"></div>
+      <button class="btn btn-ghost" id="add-row" type="button">+ Add discount</button>
+
+      <div class="result-box" style="margin-top:18px;">
+        <div class="result-hero">
+          <div class="value" id="final-price">£0.00</div>
+          <div class="label">Final price</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total saved</span><span class="r-value" id="total-saved">£0.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Effective discount</span><span class="r-value" id="effective-discount">0%</span></div>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">A single discount reduces the price by Price &times; (Discount % &divide; 100).</p>
+      <p class="about-text">Stacked discounts are applied sequentially to whatever the price has become after the previous discount, not all at once on the original price &mdash; so two 10% discounts save 19%, not 20%, because the second 10% is taken off an already-reduced price.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/tip/">
+        <span class="icon">🍽️</span>
+        <div class="title">Tip Calculator</div>
+        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
+      </a>
+      <a class="hub-card" href="/split-bill/">
+        <span class="icon">🧑‍🤝‍🧑</span>
+        <div class="title">Split Bill</div>
+        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
+      </a>
+      <a class="hub-card" href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+      <a class="hub-card" href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/discount.js"></script>
+</body>
+</html>

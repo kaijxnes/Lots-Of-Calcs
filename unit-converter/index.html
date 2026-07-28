@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Converter</title>
+<meta name="description" content="Convert between units of length, weight, temperature and volume, including metric and imperial measurements.">
+<link rel="canonical" href="https://lotsofcalcs.com/unit-converter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Unit Converter">
+<meta property="og:description" content="Convert between units of length, weight, temperature and volume, including metric and imperial measurements.">
+<meta property="og:url" content="https://lotsofcalcs.com/unit-converter/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unit Converter">
+<meta name="twitter:description" content="Convert between units of length, weight, temperature and volume, including metric and imperial measurements.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Unit Converter</h1>
+      <p class="page-subtitle">Length, weight, temperature and volume conversions.</p>
+    </header>
+
+    <main class="tool">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="length">Length</button>
+        <button class="tab" data-tab="weight">Weight</button>
+        <button class="tab" data-tab="temp">Temp</button>
+        <button class="tab" data-tab="volume">Volume</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="length">
+        <div class="field-row">
+          <div class="field">
+            <label for="len-value">Value</label>
+            <input type="number" id="len-value" value="1" step="any">
+          </div>
+          <div class="field">
+            <label for="len-from">From</label>
+            <select id="len-from">
+              <option value="mm">Millimeters</option>
+              <option value="cm">Centimeters</option>
+              <option value="m" selected>Meters</option>
+              <option value="km">Kilometers</option>
+              <option value="in">Inches</option>
+              <option value="ft">Feet</option>
+              <option value="yd">Yards</option>
+              <option value="mi">Miles</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="len-to">To</label>
+          <select id="len-to">
+            <option value="mm">Millimeters</option>
+            <option value="cm">Centimeters</option>
+            <option value="m">Meters</option>
+            <option value="km">Kilometers</option>
+            <option value="in">Inches</option>
+            <option value="ft" selected>Feet</option>
+            <option value="yd">Yards</option>
+            <option value="mi">Miles</option>
+          </select>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="len-result">0</div>
+            <div class="label" id="len-result-label">Result</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="weight">
+        <div class="field-row">
+          <div class="field">
+            <label for="wt-value">Value</label>
+            <input type="number" id="wt-value" value="1" step="any">
+          </div>
+          <div class="field">
+            <label for="wt-from">From</label>
+            <select id="wt-from">
+              <option value="mg">Milligrams</option>
+              <option value="g">Grams</option>
+              <option value="kg" selected>Kilograms</option>
+              <option value="t">Metric tons</option>
+              <option value="oz">Ounces</option>
+              <option value="lb">Pounds</option>
+              <option value="st">Stone</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="wt-to">To</label>
+          <select id="wt-to">
+            <option value="mg">Milligrams</option>
+            <option value="g">Grams</option>
+            <option value="kg">Kilograms</option>
+            <option value="t">Metric tons</option>
+            <option value="oz">Ounces</option>
+            <option value="lb" selected>Pounds</option>
+            <option value="st">Stone</option>
+          </select>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="wt-result">0</div>
+            <div class="label" id="wt-result-label">Result</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="temp">
+        <div class="field-row">
+          <div class="field">
+            <label for="temp-value">Value</label>
+            <input type="number" id="temp-value" value="0" step="any">
+          </div>
+          <div class="field">
+            <label for="temp-from">From</label>
+            <select id="temp-from">
+              <option value="C" selected>Celsius</option>
+              <option value="F">Fahrenheit</option>
+              <option value="K">Kelvin</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="temp-to">To</label>
+          <select id="temp-to">
+            <option value="C">Celsius</option>
+            <option value="F" selected>Fahrenheit</option>
+            <option value="K">Kelvin</option>
+          </select>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="temp-result">0</div>
+            <div class="label" id="temp-result-label">Result</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="volume">
+        <div class="field-row">
+          <div class="field">
+            <label for="vol-value">Value</label>
+            <input type="number" id="vol-value" value="1" step="any">
+          </div>
+          <div class="field">
+            <label for="vol-from">From</label>
+            <select id="vol-from">
+              <option value="ml">Milliliters</option>
+              <option value="l" selected>Liters</option>
+              <option value="m3">Cubic meters</option>
+              <option value="gal-us">US gallons</option>
+              <option value="gal-uk">UK gallons</option>
+              <option value="pt-us">US pints</option>
+              <option value="pt-uk">UK pints</option>
+              <option value="cup-us">US cups</option>
+            </select>
+          </div>
+        </div>
+        <div class="field">
+          <label for="vol-to">To</label>
+          <select id="vol-to">
+            <option value="ml">Milliliters</option>
+            <option value="l">Liters</option>
+            <option value="m3">Cubic meters</option>
+            <option value="gal-us" selected>US gallons</option>
+            <option value="gal-uk">UK gallons</option>
+            <option value="pt-us">US pints</option>
+            <option value="pt-uk">UK pints</option>
+            <option value="cup-us">US cups</option>
+          </select>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="vol-result">0</div>
+            <div class="label" id="vol-result-label">Result</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">Length, weight and volume conversions all work the same way: your value is converted to a common base unit (metres, kilograms or litres) using each unit's conversion factor, then converted from that base unit into your target unit.</p>
+      <p class="about-text">Temperature is different &mdash; it needs a formula rather than a simple multiplication, since 0&deg; doesn't mean &ldquo;nothing&rdquo; the way 0kg does, so this calculator converts via Celsius as an intermediate step for Fahrenheit and Kelvin.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/tip/">
+        <span class="icon">🍽️</span>
+        <div class="title">Tip Calculator</div>
+        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
+      </a>
+      <a class="hub-card" href="/discount/">
+        <span class="icon">🏷️</span>
+        <div class="title">Discount Calculator</div>
+        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
+      </a>
+      <a class="hub-card" href="/split-bill/">
+        <span class="icon">🧑‍🤝‍🧑</span>
+        <div class="title">Split Bill</div>
+        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
+      </a>
+      <a class="hub-card" href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/unit-converter.js"></script>
+</body>
+</html>

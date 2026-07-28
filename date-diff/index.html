@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Date Difference Calculator</title>
+<meta name="description" content="Calculate the number of years, months, and days between any two dates.">
+<link rel="canonical" href="https://lotsofcalcs.com/date-diff/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Date Difference Calculator">
+<meta property="og:description" content="Calculate the number of years, months, and days between any two dates.">
+<meta property="og:url" content="https://lotsofcalcs.com/date-diff/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Date Difference Calculator">
+<meta name="twitter:description" content="Calculate the number of years, months, and days between any two dates.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Date Difference</h1>
+      <p class="page-subtitle">How many years, months and days between two dates.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="dd-start">Start date</label>
+          <input type="date" id="dd-start">
+        </div>
+        <div class="field">
+          <label for="dd-end">End date</label>
+          <input type="date" id="dd-end">
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="dd-value">—</div>
+          <div class="label">Difference</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total days</span><span class="r-value" id="dd-days">—</span></div>
+          <div class="result-row"><span class="r-label">Total weeks</span><span class="r-value" id="dd-weeks">—</span></div>
+          <div class="result-row"><span class="r-label">Total months</span><span class="r-value" id="dd-months">—</span></div>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">The year/month/day difference is calculated calendar-style &mdash; counting full years, then full months, then remaining days &mdash; rather than dividing total days evenly, which avoids the rounding errors you'd get from assuming every month is the same length.</p>
+      <p class="about-text">Total days, weeks and months are also shown for a quick at-a-glance comparison.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Other calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/birthday/">
+        <span class="icon">🎂</span>
+        <div class="title">Birthday Calculator</div>
+        <div class="desc">Your exact age, day of the week born, and days until your next birthday.</div>
+      </a>
+      <a class="hub-card" href="/coverage/">
+        <span class="icon">🎨</span>
+        <div class="title">Paint &amp; Flooring Coverage</div>
+        <div class="desc">Room dimensions → how much paint or flooring you'll need.</div>
+      </a>
+      <a class="hub-card" href="/timezone/">
+        <span class="icon">🌍</span>
+        <div class="title">Time Zone Converter</div>
+        <div class="desc">Convert a date and time between two time zones, DST included.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/date-diff.js"></script>
+</body>
+</html>

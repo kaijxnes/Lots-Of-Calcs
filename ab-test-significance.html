@@ -1,125 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5GSHPQLBZW');
-</script>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="refresh" content="0; url=/ab-test-significance/">
+<link rel="canonical" href="https://lotsofcalcs.com/ab-test-significance/">
 <title>A/B Test Significance Calculator</title>
-<meta name="description" content="Check whether an A/B (or A/B/n) test result is statistically significant using a two-proportion z-test — conversion rates, uplift, z-score and p-value for any number of variants.">
-<link rel="canonical" href="https://lotsofcalcs.com/ab-test-significance.html">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="A/B Test Significance Calculator">
-<meta property="og:description" content="Check whether an A/B (or A/B/n) test result is statistically significant using a two-proportion z-test — conversion rates, uplift, z-score and p-value for any number of variants.">
-<meta property="og:url" content="https://lotsofcalcs.com/ab-test-significance.html">
-<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="A/B Test Significance Calculator">
-<meta name="twitter:description" content="Check whether an A/B (or A/B/n) test result is statistically significant using a two-proportion z-test — conversion rates, uplift, z-score and p-value for any number of variants.">
-<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="192x192" href="favicon-192.png">
-<link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="page">
-    <header class="site-header">
-      <a class="back-link" href="index.html">← All calculators</a>
-      <h1 class="page-title">A/B Test Significance Calculator</h1>
-      <p class="page-subtitle">Visitors and conversions for a control plus any number of variants → conversion rates, uplift, and whether each difference is statistically significant.</p>
-    </header>
-
-    <main class="tool">
-      <p class="tool-section-title">Variants</p>
-      <p class="tool-hint">The first row is your control (baseline) — every other variant is compared against it. Add as many as you're testing.</p>
-      <div class="table-scroll">
-        <div style="min-width:480px;">
-          <div class="dyn-table-head">
-            <span class="row-index">#</span>
-            <span class="grow">Name</span>
-            <span class="fixed-sm">Visitors</span>
-            <span class="fixed-sm">Conversions</span>
-            <span style="width:34px"></span>
-          </div>
-          <div class="dyn-list" id="variant-rows"></div>
-        </div>
-      </div>
-      <button class="btn btn-ghost" id="add-variant" type="button">+ Add variant</button>
-
-      <p class="tool-section-title" style="margin-top:20px;">Confidence level</p>
-      <div class="tabs" role="tablist">
-        <button class="tab" data-confidence="90" type="button">90%</button>
-        <button class="tab active" data-confidence="95" type="button">95%</button>
-        <button class="tab" data-confidence="99" type="button">99%</button>
-      </div>
-
-      <p class="tool-hint" id="ab-error" style="color: var(--bad); display: none;"></p>
-
-      <div class="result-box" style="margin-top:16px;">
-        <div class="result-grid">
-          <div class="result-row highlight"><span class="r-label" id="control-name-label">Control conversion rate</span><span class="r-value" id="control-rate">—</span></div>
-        </div>
-      </div>
-
-      <div class="table-scroll" style="margin-top:16px;">
-        <div style="min-width:560px;">
-          <table class="out-table">
-            <thead>
-              <tr>
-                <th>Variant</th>
-                <th>Conv. rate</th>
-                <th>Uplift</th>
-                <th>Z-score</th>
-                <th>P-value</th>
-                <th>Result</th>
-              </tr>
-            </thead>
-            <tbody id="ab-out-body"></tbody>
-          </table>
-        </div>
-      </div>
-    </main>
-    <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">This uses a two-proportion z-test, the standard method for comparing conversion rates between two groups. Each variant is tested individually against the control: pooling the two groups' conversions to estimate a shared standard error, then measuring how many standard errors apart the two observed rates are (the z-score).</p>
-      <p class="about-text">The p-value is the probability of seeing a difference this large (or larger) if there were actually no real difference between that variant and the control. If the p-value is below your chosen significance threshold (5% at 95% confidence, 1% at 99%, and so on), the result is considered statistically significant.</p>
-      <p class="about-text">Testing several variants against the same control at once increases the chance that at least one shows up "significant" purely by chance &mdash; known as the multiple comparisons problem. Treat borderline results across many variants with extra caution, or raise your confidence level accordingly.</p>
-      <p class="about-text">A significant result doesn't guarantee the uplift is real forever &mdash; it means the difference is unlikely to be due to random chance alone, given the sample sizes you tested. Small sample sizes need much larger differences to reach significance than large ones do.</p>
-    </main>
-
-    <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>
-    <div class="hub-grid">
-      <a class="hub-card" href="margin-markup.html">
-        <span class="icon">📊</span>
-        <div class="title">Margin vs Markup</div>
-        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
-      </a>
-      <a class="hub-card" href="growth.html">
-        <span class="icon">📈</span>
-        <div class="title">YoY / MoM Growth</div>
-        <div class="desc">Feed in a monthly series, get month-on-month and year-on-year change.</div>
-      </a>
-      <a class="hub-card" href="vat.html">
-        <span class="icon">🧾</span>
-        <div class="title">Tax / VAT</div>
-        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
-      </a>
-    </div>
-
-    <footer class="site-footer">
-      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
-      <p>Website by Kai Jones</p>
-    </footer>
-  </div>
-  <script src="ab-test-significance.js"></script>
+<p>This page has moved to <a href="/ab-test-significance/">https://lotsofcalcs.com/ab-test-significance/</a>.</p>
 </body>
 </html>
