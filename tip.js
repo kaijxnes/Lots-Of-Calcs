@@ -1,6 +1,9 @@
 function fmtMoney(value) {
-  if (!isFinite(value)) return "£0.00";
-  return "£" + value.toFixed(2);
+  const symbol = document.getElementById("currency").value;
+  if (!isFinite(value)) value = 0;
+  const rounded = Math.round(Math.abs(value) * 100) / 100;
+  const sign = value < 0 && rounded !== 0 ? "-" : "";
+  return sign + symbol + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function num(id) {
@@ -40,5 +43,6 @@ document.getElementById("tip-percent").addEventListener("input", () => {
 
 document.getElementById("bill").addEventListener("input", calculate);
 document.getElementById("people").addEventListener("input", calculate);
+document.getElementById("currency").addEventListener("input", calculate);
 
 calculate();

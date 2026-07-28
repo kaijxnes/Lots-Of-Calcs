@@ -39,9 +39,24 @@
     </header>
 
     <main class="tool">
-      <div class="field">
-        <label for="bill">Bill amount</label>
-        <input type="number" id="bill" placeholder="0.00" step="any">
+      <div class="field-row">
+        <div class="field">
+          <label for="bill">Bill amount</label>
+          <input type="number" id="bill" placeholder="0.00" step="any">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
       </div>
 
       <div class="field">
