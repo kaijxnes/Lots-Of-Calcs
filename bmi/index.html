@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI Calculator</title>
+<meta name="description" content="Calculate your Body Mass Index (BMI) from height and weight, in metric or imperial units, with your BMI category.">
+<link rel="canonical" href="https://lotsofcalcs.com/bmi/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="BMI Calculator">
+<meta property="og:description" content="Calculate your Body Mass Index (BMI) from height and weight, in metric or imperial units, with your BMI category.">
+<meta property="og:url" content="https://lotsofcalcs.com/bmi/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BMI Calculator">
+<meta name="twitter:description" content="Calculate your Body Mass Index (BMI) from height and weight, in metric or imperial units, with your BMI category.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">BMI Calculator</h1>
+      <p class="page-subtitle">Height and weight → Body Mass Index and category.</p>
+    </header>
+
+    <main class="tool">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="metric">Metric</button>
+        <button class="tab" data-tab="imperial">Imperial</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="metric">
+        <div class="field-row">
+          <div class="field">
+            <label for="m-height">Height (cm)</label>
+            <input type="number" id="m-height" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="m-weight">Weight (kg)</label>
+            <input type="number" id="m-weight" placeholder="0" step="any">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="imperial">
+        <div class="field-row">
+          <div class="field">
+            <label for="i-feet">Height (ft)</label>
+            <input type="number" id="i-feet" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="i-inches">Height (in)</label>
+            <input type="number" id="i-inches" placeholder="0" step="any">
+          </div>
+        </div>
+        <div class="field">
+          <label for="i-weight">Weight (lb)</label>
+          <input type="number" id="i-weight" placeholder="0" step="any">
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="bmi-value">—</div>
+          <div class="label" id="bmi-category">Enter your height and weight</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Underweight</span><span class="r-value">below 18.5</span></div>
+          <div class="result-row"><span class="r-label">Normal weight</span><span class="r-value">18.5 – 24.9</span></div>
+          <div class="result-row"><span class="r-label">Overweight</span><span class="r-value">25 – 29.9</span></div>
+          <div class="result-row"><span class="r-label">Obese</span><span class="r-value">30 and above</span></div>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">BMI is calculated as weight (kg) &divide; height (m)&sup2;, or 703 &times; weight (lb) &divide; height (in)&sup2; in imperial units.</p>
+      <p class="about-text">It's a quick screening tool, not a diagnosis &mdash; it doesn't distinguish muscle from fat, so very muscular people can show a higher BMI without carrying excess body fat. The standard categories are under 18.5 (underweight), 18.5&ndash;24.9 (normal), 25&ndash;29.9 (overweight), and 30+ (obese).</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/tip/">
+        <span class="icon">🍽️</span>
+        <div class="title">Tip Calculator</div>
+        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
+      </a>
+      <a class="hub-card" href="/discount/">
+        <span class="icon">🏷️</span>
+        <div class="title">Discount Calculator</div>
+        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
+      </a>
+      <a class="hub-card" href="/split-bill/">
+        <span class="icon">🧑‍🤝‍🧑</span>
+        <div class="title">Split Bill</div>
+        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
+      </a>
+      <a class="hub-card" href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/bmi.js"></script>
+</body>
+</html>

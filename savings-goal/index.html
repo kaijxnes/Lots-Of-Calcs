@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savings Goal Calculator</title>
+<meta name="description" content="Work out the monthly contribution needed to hit a savings goal by a target date, with or without compound interest.">
+<link rel="canonical" href="https://lotsofcalcs.com/savings-goal/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Savings Goal Calculator">
+<meta property="og:description" content="Work out the monthly contribution needed to hit a savings goal by a target date, with or without compound interest.">
+<meta property="og:url" content="https://lotsofcalcs.com/savings-goal/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Savings Goal Calculator">
+<meta name="twitter:description" content="Work out the monthly contribution needed to hit a savings goal by a target date, with or without compound interest.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Savings Goal Calculator</h1>
+      <p class="page-subtitle">Goal amount, current savings and a target date → the monthly contribution you need, with or without compound interest.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="goal-amount">Savings goal</label>
+          <input type="number" id="goal-amount" placeholder="0.00" step="any">
+        </div>
+        <div class="field">
+          <label for="current-savings">Current savings</label>
+          <input type="number" id="current-savings" placeholder="0.00" step="any">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="tf-years">Time frame — years</label>
+          <input type="number" id="tf-years" placeholder="0" step="any">
+        </div>
+        <div class="field">
+          <label for="tf-months">Time frame — months</label>
+          <input type="number" id="tf-months" placeholder="0" step="any">
+        </div>
+      </div>
+
+      <p class="tool-section-title">Interest</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-mode="compound" type="button">Include interest</button>
+        <button class="tab" data-mode="simple" type="button">Simple (no interest)</button>
+      </div>
+
+      <div id="interest-fields" style="margin-top:16px;">
+        <div class="field-row">
+          <div class="field">
+            <label for="annual-rate">Expected annual interest rate (%)</label>
+            <input type="number" id="annual-rate" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="compounding">Compounding frequency</label>
+            <select id="compounding">
+              <option value="monthly" selected>Monthly</option>
+              <option value="annual">Annually</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="goal-error" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" id="goal-note" style="color: var(--good); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="monthly-contribution">£0.00</div>
+          <div class="label">Required monthly contribution</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total contributed</span><span class="r-value" id="total-contributed">£0.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Total interest earned</span><span class="r-value" id="total-interest-earned">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Projected balance at target date</span><span class="r-value" id="projected-balance">£0.00</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Assumes contributions are made at the end of each month, and (when included) interest compounds on both your starting balance and your contributions.</p>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">This works backwards from a standard savings annuity formula. Your current savings grow on their own to a projected value, and the gap between that and your goal is closed by a series of equal monthly contributions &mdash; solved so the total lands exactly on target by your deadline.</p>
+      <p class="about-text">With interest included, both your starting balance and every contribution you make keep earning returns for the time remaining until your goal date, so the required monthly amount is lower than a simple, no-interest split of (goal &minus; current savings) over the number of months. Switch compounding frequency between monthly and annually to see how that affects the numbers &mdash; more frequent compounding grows the same nominal rate slightly faster.</p>
+      <p class="about-text">A few ways to hit a savings goal faster: start as early as possible so compounding has more time to work, automate a fixed transfer right after payday so it isn't optional, and shop around for a better interest rate &mdash; even a percentage point or two makes a meaningful difference over several years.</p>
+      <p class="about-text">This is a projection based on a constant assumed rate of return, not a guarantee &mdash; real interest and investment returns vary over time. Treat the result as a planning estimate rather than financial advice.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Savings &amp; Investing calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/cagr/">
+        <span class="icon">🧮</span>
+        <div class="title">CAGR</div>
+        <div class="desc">Compound annual growth rate between a start and end value.</div>
+      </a>
+      <a class="hub-card" href="/compound-interest/">
+        <span class="icon">🌱</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting amount + annual return + years → what you'd end up with.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/savings-goal.js"></script>
+</body>
+</html>

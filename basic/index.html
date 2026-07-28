@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Basic Calculator</title>
+<meta name="description" content="A simple, fast online calculator for everyday arithmetic, with full keyboard support.">
+<link rel="canonical" href="https://lotsofcalcs.com/basic/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Basic Calculator">
+<meta property="og:description" content="A simple, fast online calculator for everyday arithmetic, with full keyboard support.">
+<meta property="og:url" content="https://lotsofcalcs.com/basic/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Basic Calculator">
+<meta name="twitter:description" content="A simple, fast online calculator for everyday arithmetic, with full keyboard support.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Basic Calculator</h1>
+    </header>
+    <main class="calculator">
+      <div class="display">
+        <div class="display-history" id="history"></div>
+        <div class="display-current" id="current">0</div>
+      </div>
+      <div class="keys">
+        <button class="key key-fn" data-action="clear">AC</button>
+        <button class="key key-fn" data-action="delete">DEL</button>
+        <button class="key key-fn" data-action="percent">%</button>
+        <button class="key key-op" data-action="operator" data-value="÷">÷</button>
+
+        <button class="key key-num" data-action="number" data-value="7">7</button>
+        <button class="key key-num" data-action="number" data-value="8">8</button>
+        <button class="key key-num" data-action="number" data-value="9">9</button>
+        <button class="key key-op" data-action="operator" data-value="×">×</button>
+
+        <button class="key key-num" data-action="number" data-value="4">4</button>
+        <button class="key key-num" data-action="number" data-value="5">5</button>
+        <button class="key key-num" data-action="number" data-value="6">6</button>
+        <button class="key key-op" data-action="operator" data-value="−">−</button>
+
+        <button class="key key-num" data-action="number" data-value="1">1</button>
+        <button class="key key-num" data-action="number" data-value="2">2</button>
+        <button class="key key-num" data-action="number" data-value="3">3</button>
+        <button class="key key-op" data-action="operator" data-value="+">+</button>
+
+        <button class="key key-num key-zero" data-action="number" data-value="0">0</button>
+        <button class="key key-num" data-action="decimal">.</button>
+        <button class="key key-eq" data-action="equals">=</button>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">This calculator handles the four basic operations &mdash; addition, subtraction, multiplication and division &mdash; plus percentages, all with full keyboard support.</p>
+      <p class="about-text">Type numbers and operators directly, or click the on-screen keys; press Enter or = to see the result.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More General calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/scientific/">
+        <span class="icon">🧑‍🔬</span>
+        <div class="title">Scientific Calculator</div>
+        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/basic.js"></script>
+</body>
+</html>

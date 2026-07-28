@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Calculator</title>
+<meta name="description" content="Work out X% of Y, what percent X is of Y, or the percentage change between two values instantly.">
+<link rel="canonical" href="https://lotsofcalcs.com/percent/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Percentage Calculator">
+<meta property="og:description" content="Work out X% of Y, what percent X is of Y, or the percentage change between two values instantly.">
+<meta property="og:url" content="https://lotsofcalcs.com/percent/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Percentage Calculator">
+<meta name="twitter:description" content="Work out X% of Y, what percent X is of Y, or the percentage change between two values instantly.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Percentage Calculator</h1>
+      <p class="page-subtitle">Three common percentage questions, answered directly.</p>
+    </header>
+
+    <main class="tool">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="of">X% of Y</button>
+        <button class="tab" data-tab="is-what">X is what % of Y</button>
+        <button class="tab" data-tab="change">% change</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="of">
+        <p class="tool-hint">What is X% of Y?</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="of-pct">Percentage (X)</label>
+            <input type="number" id="of-pct" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="of-value">Of value (Y)</label>
+            <input type="number" id="of-value" placeholder="0.00" step="any">
+          </div>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="of-result">0</div>
+            <div class="label">Result</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="is-what">
+        <p class="tool-hint">X is what percent of Y?</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="iw-x">X</label>
+            <input type="number" id="iw-x" placeholder="0.00" step="any">
+          </div>
+          <div class="field">
+            <label for="iw-y">Y</label>
+            <input type="number" id="iw-y" placeholder="0.00" step="any">
+          </div>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="iw-result">0%</div>
+            <div class="label">Result</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="change">
+        <p class="tool-hint">Percentage change from one value to another.</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="ch-from">From</label>
+            <input type="number" id="ch-from" placeholder="0.00" step="any">
+          </div>
+          <div class="field">
+            <label for="ch-to">To</label>
+            <input type="number" id="ch-to" placeholder="0.00" step="any">
+          </div>
+        </div>
+        <div class="result-box">
+          <div class="result-hero">
+            <div class="value" id="ch-result">0%</div>
+            <div class="label" id="ch-label">Change</div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">Percentage questions come in three common forms, each handled by its own tab.</p>
+      <p class="about-text">&ldquo;X% of Y&rdquo; multiplies Y by X&divide;100. &ldquo;X is what % of Y&rdquo; divides X by Y and multiplies by 100. &ldquo;% change&rdquo; calculates (New &minus; Old) &divide; Old &times; 100, and shows whether it's an increase or a decrease.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More General calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
+      </a>
+      <a class="hub-card" href="/scientific/">
+        <span class="icon">🧑‍🔬</span>
+        <div class="title">Scientific Calculator</div>
+        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/percent.js"></script>
+</body>
+</html>

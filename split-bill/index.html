@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split Bill Calculator</title>
+<meta name="description" content="Split a restaurant or group bill evenly with tip, or itemize an uneven split so everyone pays their fair share.">
+<link rel="canonical" href="https://lotsofcalcs.com/split-bill/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Split Bill Calculator">
+<meta property="og:description" content="Split a restaurant or group bill evenly with tip, or itemize an uneven split so everyone pays their fair share.">
+<meta property="og:url" content="https://lotsofcalcs.com/split-bill/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Split Bill Calculator">
+<meta name="twitter:description" content="Split a restaurant or group bill evenly with tip, or itemize an uneven split so everyone pays their fair share.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Split Bill</h1>
+      <p class="page-subtitle">Split evenly with tip%, or itemize an uneven split per person.</p>
+    </header>
+
+    <main class="tool">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="equal">Equal split</button>
+        <button class="tab" data-tab="uneven">Itemized split</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="equal">
+        <div class="field-row">
+          <div class="field">
+            <label for="eq-bill">Bill amount</label>
+            <input type="number" id="eq-bill" placeholder="0.00" step="any">
+          </div>
+          <div class="field">
+            <label for="eq-tip">Tip %</label>
+            <input type="number" id="eq-tip" placeholder="0" step="any" value="0">
+          </div>
+        </div>
+        <div class="field">
+          <label for="eq-people">Number of people</label>
+          <input type="number" id="eq-people" placeholder="1" step="1" min="1" value="2">
+        </div>
+        <div class="result-box">
+          <div class="result-grid">
+            <div class="result-row"><span class="r-label">Tip amount</span><span class="r-value" id="eq-tip-amount">£0.00</span></div>
+            <div class="result-row"><span class="r-label">Total (bill + tip)</span><span class="r-value" id="eq-total">£0.00</span></div>
+            <hr class="divider">
+            <div class="result-row highlight"><span class="r-label">Each person pays</span><span class="r-value" id="eq-per-person">£0.00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="uneven">
+        <p class="tool-hint">Enter what each person ordered. Tip% is applied proportionally to each person's share.</p>
+        <div class="field">
+          <label for="un-tip">Tip %</label>
+          <input type="number" id="un-tip" placeholder="0" step="any" value="0">
+        </div>
+        <div class="dyn-table-head">
+          <span class="row-index">#</span>
+          <span class="grow">Name</span>
+          <span class="fixed-sm">Amount</span>
+          <span style="width:34px"></span>
+        </div>
+        <div class="dyn-list" id="un-rows"></div>
+        <button class="btn btn-ghost" id="un-add-row" type="button">+ Add person</button>
+
+        <div class="result-box" style="margin-top:16px;">
+          <div class="result-grid">
+            <div class="result-row"><span class="r-label">Bill subtotal</span><span class="r-value" id="un-subtotal">£0.00</span></div>
+            <div class="result-row"><span class="r-label">Tip amount</span><span class="r-value" id="un-tip-amount">£0.00</span></div>
+            <div class="result-row highlight"><span class="r-label">Total</span><span class="r-value" id="un-total">£0.00</span></div>
+          </div>
+        </div>
+
+        <div class="table-scroll" style="margin-top:16px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Subtotal</th>
+                <th>Tip share</th>
+                <th>Total owed</th>
+              </tr>
+            </thead>
+            <tbody id="un-out-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">The equal split divides the total bill (plus tip) evenly across everyone.</p>
+      <p class="about-text">The itemized split instead works out each person's share of the tip in proportion to what they actually spent &mdash; so someone who ordered a &pound;30 meal pays more of the tip than someone who ordered a &pound;10 side, even though the tip percentage is the same for the whole table.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/tip/">
+        <span class="icon">🍽️</span>
+        <div class="title">Tip Calculator</div>
+        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
+      </a>
+      <a class="hub-card" href="/discount/">
+        <span class="icon">🏷️</span>
+        <div class="title">Discount Calculator</div>
+        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
+      </a>
+      <a class="hub-card" href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+      <a class="hub-card" href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/split-bill.js"></script>
+</body>
+</html>
