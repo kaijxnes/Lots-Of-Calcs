@@ -11,8 +11,11 @@ function initTabs() {
 }
 
 function fmtMoney(value) {
-  if (!isFinite(value)) return "£0.00";
-  return "£" + value.toFixed(2);
+  const symbol = document.getElementById("currency").value;
+  if (!isFinite(value)) value = 0;
+  const rounded = Math.round(Math.abs(value) * 100) / 100;
+  const sign = value < 0 && rounded !== 0 ? "-" : "";
+  return sign + symbol + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtPercent(value) {
@@ -61,6 +64,11 @@ document.addEventListener("input", (event) => {
   if (event.target.closest('[data-panel="cost-sell"]')) calcCostSell();
   if (event.target.closest('[data-panel="cost-margin"]')) calcCostMargin();
   if (event.target.closest('[data-panel="cost-markup"]')) calcCostMarkup();
+});
+document.getElementById("currency").addEventListener("input", () => {
+  calcCostSell();
+  calcCostMargin();
+  calcCostMarkup();
 });
 
 initTabs();

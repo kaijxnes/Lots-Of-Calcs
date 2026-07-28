@@ -2,11 +2,17 @@ const peopleRowsEl = document.getElementById("people-rows");
 const billRowsEl = document.getElementById("bill-rows");
 
 let peopleMode = "pct";
-const CURRENCY_MARK = "£/$/€";
+
+function getCurrency() {
+  return document.getElementById("currency").value;
+}
 
 function fmtMoney(value) {
-  if (!isFinite(value)) return CURRENCY_MARK + "0.00";
-  return CURRENCY_MARK + value.toFixed(2);
+  const symbol = getCurrency();
+  if (!isFinite(value)) value = 0;
+  const rounded = Math.round(Math.abs(value) * 100) / 100;
+  const sign = value < 0 && rounded !== 0 ? "-" : "";
+  return sign + symbol + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtPercent(value) {
@@ -17,7 +23,7 @@ function fmtPercent(value) {
 function updateIncomeColumnLabel() {
   const isIncome = peopleMode === "income";
   document.getElementById("people-col-label").textContent = isIncome
-    ? `Income (${CURRENCY_MARK})`
+    ? `Income (${getCurrency()})`
     : "Share %";
 }
 
@@ -143,6 +149,10 @@ document.getElementById("add-bill").addEventListener("click", () => {
 });
 peopleRowsEl.addEventListener("input", calculate);
 billRowsEl.addEventListener("input", calculate);
+document.getElementById("currency").addEventListener("input", () => {
+  updateIncomeColumnLabel();
+  calculate();
+});
 
 addPersonRow("Person 1", "50");
 addPersonRow("Person 2", "50");

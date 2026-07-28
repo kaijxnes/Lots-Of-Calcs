@@ -1,6 +1,9 @@
 function fmtMoney(value) {
-  if (!isFinite(value)) return "£0.00";
-  return "£" + value.toFixed(2);
+  const symbol = document.getElementById("currency").value;
+  if (!isFinite(value)) value = 0;
+  const rounded = Math.round(Math.abs(value) * 100) / 100;
+  const sign = value < 0 && rounded !== 0 ? "-" : "";
+  return sign + symbol + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function num(id) {
@@ -98,6 +101,10 @@ document.getElementById("un-add-row").addEventListener("click", () => {
 });
 document.getElementById("un-tip").addEventListener("input", calcUneven);
 unRowsEl.addEventListener("input", calcUneven);
+document.getElementById("currency").addEventListener("input", () => {
+  calcEqual();
+  calcUneven();
+});
 
 addUnRow("Person 1", "");
 addUnRow("Person 2", "");

@@ -1,6 +1,9 @@
 function fmtMoney(value) {
-  if (!isFinite(value)) return "£0.00";
-  return "£" + value.toFixed(2);
+  const symbol = document.getElementById("currency").value;
+  if (!isFinite(value)) value = 0;
+  const rounded = Math.round(Math.abs(value) * 100) / 100;
+  const sign = value < 0 && rounded !== 0 ? "-" : "";
+  return sign + symbol + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtPercent(value) {
@@ -97,7 +100,7 @@ function calcIncomeTax() {
 
     const row = document.createElement("div");
     row.className = "result-row";
-    const uptoLabel = band.upto === Infinity ? "no limit" : band.upto.toLocaleString();
+    const uptoLabel = band.upto === Infinity ? "no limit" : band.upto.toLocaleString("en-US");
     row.innerHTML = `<span class="r-label">Up to ${uptoLabel} @ ${band.rate}% (${fmtMoney(taxable)} taxed)</span><span class="r-value">${fmtMoney(tax)}</span>`;
     breakdownEl.appendChild(row);
 
@@ -118,6 +121,10 @@ document.getElementById("add-band").addEventListener("click", () => {
 });
 bandRowsEl.addEventListener("input", calcIncomeTax);
 document.getElementById("income").addEventListener("input", calcIncomeTax);
+document.getElementById("currency").addEventListener("input", () => {
+  calcVat();
+  calcIncomeTax();
+});
 
 addBandRow("12570", "0");
 addBandRow("50270", "20");

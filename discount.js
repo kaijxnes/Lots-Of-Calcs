@@ -1,8 +1,11 @@
 const rowsEl = document.getElementById("rows");
 
 function fmtMoney(value) {
-  if (!isFinite(value)) return "£0.00";
-  return "£" + value.toFixed(2);
+  const symbol = document.getElementById("currency").value;
+  if (!isFinite(value)) value = 0;
+  const rounded = Math.round(Math.abs(value) * 100) / 100;
+  const sign = value < 0 && rounded !== 0 ? "-" : "";
+  return sign + symbol + rounded.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtPercent(value) {
@@ -61,6 +64,7 @@ document.getElementById("add-row").addEventListener("click", () => {
   calculate();
 });
 document.getElementById("original-price").addEventListener("input", calculate);
+document.getElementById("currency").addEventListener("input", calculate);
 rowsEl.addEventListener("input", calculate);
 
 addRow("Discount 1", "");
