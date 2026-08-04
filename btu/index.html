@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BTU Radiator Sizing Calculator</title>
+<meta name="description" content="Estimate the heat output a room needs in BTU per hour and watts, from its dimensions, room type, exterior walls and glazing, to help you size a radiator.">
+<link rel="canonical" href="https://lotsofcalcs.com/btu/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="BTU Radiator Sizing Calculator">
+<meta property="og:description" content="Estimate the heat output a room needs in BTU per hour and watts, from its dimensions, room type, exterior walls and glazing, to help you size a radiator.">
+<meta property="og:url" content="https://lotsofcalcs.com/btu/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BTU Radiator Sizing Calculator">
+<meta name="twitter:description" content="Estimate the heat output a room needs in BTU per hour and watts, from its dimensions, room type, exterior walls and glazing, to help you size a radiator.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "BTU Radiator Sizing Calculator",
+    "description": "Estimate the heat output a room needs in BTU per hour and watts, from its dimensions, room type, exterior walls and glazing, to help you size a radiator.",
+    "url": "https://lotsofcalcs.com/btu/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "BTU Radiator Sizing Calculator",
+        "item": "https://lotsofcalcs.com/btu/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Should I round up or down when choosing a radiator?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Round up. A slightly oversized radiator just reaches temperature sooner and then ticks over, whereas an undersized one runs flat out and still leaves the room cool on the coldest days. Being 10–15% over the calculated figure is a sensible margin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do BTU and watts relate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They measure the same thing in different units: 1 watt equals 3.412142 BTU per hour. UK radiators are listed both ways, so a 2,000 W radiator is about 6,824 BTU/hr."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a kitchen need less heating than a living room?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because appliances contribute their own heat — an oven, hob, fridge and dishwasher all add warmth — and people tend to be moving about rather than sitting still. That is why the kitchen factor is ×3 against ×5 for a living room of the same size."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">BTU Radiator Sizing Calculator</h1>
+      <p class="page-subtitle">Room size, type and construction → roughly how much heat output you need, in BTU/hr and watts.</p>
+    </header>
+
+    <main class="tool">
+      <p class="tool-section-title">Room dimensions</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-unit="m" type="button">Metres</button>
+        <button class="tab" data-unit="ft" type="button">Feet</button>
+      </div>
+      <div class="field-row" style="margin-top:12px;">
+        <div class="field">
+          <label for="length">Length (<span class="unit-label">m</span>)</label>
+          <input type="number" id="length" placeholder="5" step="any" value="5">
+        </div>
+        <div class="field">
+          <label for="width">Width (<span class="unit-label">m</span>)</label>
+          <input type="number" id="width" placeholder="4" step="any" value="4">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="height">Height (<span class="unit-label">m</span>)</label>
+        <input type="number" id="height" placeholder="2.4" step="any" value="2.4">
+      </div>
+
+      <p class="tool-section-title">Room details</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="room-type">Room type</label>
+          <select id="room-type">
+            <option value="5" selected>Living / dining room</option>
+            <option value="4">Bedroom</option>
+            <option value="3">Kitchen</option>
+            <option value="5">Bathroom</option>
+            <option value="4">Hallway / landing</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="walls">Exterior walls</label>
+          <select id="walls">
+            <option value="0">None (internal room)</option>
+            <option value="1" selected>1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="glazing">Glazing</label>
+          <select id="glazing">
+            <option value="1">Single glazed</option>
+            <option value="0.9" selected>Double glazed</option>
+            <option value="0.85">Triple glazed</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="north">Faces north?</label>
+          <select id="north">
+            <option value="1" selected>No</option>
+            <option value="1.15">Yes (+15%)</option>
+          </select>
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="french">French doors / large window?</label>
+        <select id="french">
+          <option value="1" selected>No</option>
+          <option value="1.2">Yes (+20%)</option>
+        </select>
+      </div>
+
+      <p class="tool-hint" id="btu-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="btu-out">8,391 BTU/hr</div>
+          <div class="label">Estimated heat output needed</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">In watts</span><span class="r-value" id="watts-out">2,459 W</span></div>
+          <div class="result-row"><span class="r-label">Room volume</span><span class="r-value" id="volume-out">48.00 m³ · 1,695 ft³</span></div>
+          <div class="result-row"><span class="r-label">Base figure (volume × room factor)</span><span class="r-value" id="base-out">8,476 BTU/hr</span></div>
+          <div class="result-row"><span class="r-label">Adjustments applied</span><span class="r-value" id="adjust-out">×0.99</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" id="btu-advice" style="margin-top:16px;">If you're between two radiator sizes, go for the larger one — an oversized radiator simply runs cooler, while an undersized one can never quite heat the room.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">This uses the standard UK room-volume method that radiator retailers and heating suppliers publish. The room's volume is worked out in cubic feet, multiplied by a factor for the type of room, then adjusted for the things that make a room harder to heat. Metric entries are converted using 1 metre = 3.280839895 feet.</p>
+      <p class="about-text">The room-type factors are: living or dining room &times;5, bathroom &times;5, bedroom &times;4, hallway or landing &times;4, and kitchen &times;3. Kitchens are lowest because ovens, hobs and fridges all give off heat of their own; living rooms are highest because they are the rooms you most want genuinely warm while sitting still.</p>
+      <p class="about-text">The adjustments then applied are: exterior walls, taken as a baseline of one wall with +10% for each additional exterior wall (and &minus;10% for a fully internal room with none); glazing, where single glazing is the baseline, double glazing is &minus;10% and triple glazing is &minus;15%; a north-facing room +15%; and French doors or an unusually large window +20%. Every multiplier is applied to the base figure in sequence, and the combined effect is shown in the results so you can see what the adjustments did.</p>
+      <p class="about-text">Radiators are advertised in both BTU per hour and watts, so both are given &mdash; the conversion is 1 watt = 3.412142 BTU/hr. Note that manufacturers quote outputs at a stated temperature difference (usually delta T 50), and a real system running at a lower flow temperature, as heat pumps do, will deliver noticeably less than the headline figure.</p>
+      <p class="about-text">This is a planning estimate to help you shop for a radiator, not a heating engineer's specification. It takes no account of insulation levels, floor and ceiling construction, draughts, ceiling height beyond the volume itself, or how the rest of your heating system is balanced. For a new system, an extension, or anything you are committing real money to, get a proper room-by-room heat loss survey.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Should I round up or down when choosing a radiator?</p>
+      <p class="about-text">Round up. A slightly oversized radiator just reaches temperature sooner and then ticks over, whereas an undersized one runs flat out and still leaves the room cool on the coldest days. Being 10–15% over the calculated figure is a sensible margin.</p>
+      <p class="faq-q">How do BTU and watts relate?</p>
+      <p class="about-text">They measure the same thing in different units: 1 watt equals 3.412142 BTU per hour. UK radiators are listed both ways, so a 2,000 W radiator is about 6,824 BTU/hr.</p>
+      <p class="faq-q">Why does a kitchen need less heating than a living room?</p>
+      <p class="about-text">Because appliances contribute their own heat — an oven, hob, fridge and dishwasher all add warmth — and people tend to be moving about rather than sitting still. That is why the kitchen factor is ×3 against ×5 for a living room of the same size.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/running-cost/">
+        <span class="icon">💡</span>
+        <div class="title">Electricity Running Cost</div>
+        <div class="desc">Appliance wattage and hours → what it costs to run per day, month and year.</div>
+      </a>
+      <a class="hub-card" href="/coverage/">
+        <span class="icon">🎨</span>
+        <div class="title">Paint &amp; Flooring Coverage</div>
+        <div class="desc">Room dimensions → how much paint or flooring you'll need.</div>
+      </a>
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/btu.js"></script>
+</body>
+</html>
