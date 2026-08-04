@@ -29,12 +29,71 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Margin vs Markup Calculator",
+    "description": "Calculate profit margin and markup from cost and sell price, or solve for sell price from a target margin or markup percentage.",
+    "url": "https://lotsofcalcs.com/margin-markup/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Margin vs Markup Calculator",
+        "item": "https://lotsofcalcs.com/margin-markup/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between margin and markup?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both measure the same profit against different bases. Margin is profit as a percentage of the sell price; markup is profit as a percentage of the cost price. The same sale always shows a lower margin than markup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What markup do I need for a 50% margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "100%. To hit a 50% margin you double the cost — a 20 cost sells for 40, which is 100% markup but 50% margin. In general, markup equals margin divided by (100 minus margin)."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
   <div class="page">
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
-      <h1 class="page-title">Margin vs Markup</h1>
+      <h1 class="page-title">Margin vs Markup Calculator</h1>
       <p class="page-subtitle">Cost price, margin% and markup% — solve for whichever one you don't have.</p>
     </header>
 
@@ -125,6 +184,14 @@
       <p class="tool-section-title">About this calculator</p>
       <p class="about-text">Margin and markup both measure profit but from different bases. Margin is profit as a percentage of the sell price (Profit &divide; Sell Price &times; 100); markup is profit as a percentage of the cost price (Profit &divide; Cost Price &times; 100).</p>
       <p class="about-text">For a &pound;10 profit on a &pound;50 cost with a &pound;60 sell price, that's a 16.7% margin but a 20% markup &mdash; the two numbers are always different, which is why it's worth calculating both.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What is the difference between margin and markup?</p>
+      <p class="about-text">Both measure the same profit against different bases. Margin is profit as a percentage of the sell price; markup is profit as a percentage of the cost price. The same sale always shows a lower margin than markup.</p>
+      <p class="faq-q">What markup do I need for a 50% margin?</p>
+      <p class="about-text">100%. To hit a 50% margin you double the cost — a 20 cost sells for 40, which is 100% markup but 50% margin. In general, markup equals margin divided by (100 minus margin).</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>

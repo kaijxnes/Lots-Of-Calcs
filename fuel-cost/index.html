@@ -29,12 +29,71 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Fuel Cost Calculator",
+    "description": "Work out the fuel cost of a trip from distance, fuel efficiency (MPG or L/100km), and fuel price.",
+    "url": "https://lotsofcalcs.com/fuel-cost/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Fuel Cost Calculator",
+        "item": "https://lotsofcalcs.com/fuel-cost/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I work out the fuel cost of a trip?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the distance by your miles per gallon to get the gallons needed, then multiply by the price per gallon. In metric, multiply distance by the L/100km figure, divide by 100, and multiply by the price per litre."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a higher or lower number better for fuel efficiency?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends which measure you use. Higher MPG is better because you travel further per gallon, but lower L/100km is better because you burn less fuel over the same distance."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
   <div class="page">
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
-      <h1 class="page-title">Fuel Cost / MPG</h1>
+      <h1 class="page-title">Fuel Cost / MPG Calculator</h1>
       <p class="page-subtitle">Distance, fuel price and efficiency → what a trip will cost you.</p>
     </header>
 
@@ -115,6 +174,14 @@
       <p class="tool-section-title">About this calculator</p>
       <p class="about-text">In MPG mode, fuel needed is Distance &divide; MPG, multiplied by the price per gallon for total cost. In L/100km mode, fuel needed is (Distance &divide; 100) &times; the L/100km figure, multiplied by price per litre.</p>
       <p class="about-text">The two efficiency measures work in opposite directions &mdash; a higher MPG means better efficiency, but a lower L/100km does.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I work out the fuel cost of a trip?</p>
+      <p class="about-text">Divide the distance by your miles per gallon to get the gallons needed, then multiply by the price per gallon. In metric, multiply distance by the L/100km figure, divide by 100, and multiply by the price per litre.</p>
+      <p class="faq-q">Is a higher or lower number better for fuel efficiency?</p>
+      <p class="about-text">It depends which measure you use. Higher MPG is better because you travel further per gallon, but lower L/100km is better because you burn less fuel over the same distance.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>

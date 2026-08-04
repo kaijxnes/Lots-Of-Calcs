@@ -29,12 +29,71 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "YoY / MoM Growth Calculator",
+    "description": "Enter a series of monthly figures to calculate month-on-month and year-on-year growth, plus cumulative change over time.",
+    "url": "https://lotsofcalcs.com/growth/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "YoY / MoM Growth Calculator",
+        "item": "https://lotsofcalcs.com/growth/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between MoM and YoY growth?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Month-on-month compares each figure to the previous month, so it reacts quickly but is noisy. Year-on-year compares it to the same month a year earlier, which strips out seasonal patterns and shows the underlying trend."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why can month-on-month growth look terrible when the business is fine?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Seasonality. A quiet January after a busy December shows a steep monthly fall even in a growing business, which is exactly why the year-on-year comparison matters."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
   <div class="page">
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
-      <h1 class="page-title">YoY / MoM Growth</h1>
+      <h1 class="page-title">YoY / MoM Growth Calculator</h1>
       <p class="page-subtitle">Enter a monthly series to get month-on-month change, year-on-year change (once 12+ months are entered), and cumulative growth.</p>
     </header>
 
@@ -72,6 +131,14 @@
       <p class="tool-section-title">About this calculator</p>
       <p class="about-text">Month-on-month (MoM) growth compares each figure to the one immediately before it: (This Month &minus; Last Month) &divide; Last Month &times; 100.</p>
       <p class="about-text">Year-on-year (YoY) growth instead compares a figure to the same point 12 entries earlier, which removes seasonal effects that a MoM comparison can't. Cumulative growth shows the total percentage change from your first entry to your last.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What is the difference between MoM and YoY growth?</p>
+      <p class="about-text">Month-on-month compares each figure to the previous month, so it reacts quickly but is noisy. Year-on-year compares it to the same month a year earlier, which strips out seasonal patterns and shows the underlying trend.</p>
+      <p class="faq-q">Why can month-on-month growth look terrible when the business is fine?</p>
+      <p class="about-text">Seasonality. A quiet January after a busy December shows a steep monthly fall even in a growing business, which is exactly why the year-on-year comparison matters.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>

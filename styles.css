@@ -121,6 +121,22 @@ body:has(> .page) {
   margin-bottom: 0;
 }
 
+.faq-q {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin: 0 0 6px;
+}
+
+.faq-q + .about-text {
+  margin-bottom: 18px;
+}
+
+.about-text:last-child {
+  margin-bottom: 0;
+}
+
 /* ---------- Tabs ---------- */
 
 .tabs {
