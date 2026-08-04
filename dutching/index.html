@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dutching Calculator</title>
+<meta name="description" content="Split a total stake across several selections so the return is identical whichever one wins, with the guaranteed profit shown.">
+<link rel="canonical" href="https://lotsofcalcs.com/dutching/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Dutching Calculator">
+<meta property="og:description" content="Split a total stake across several selections so the return is identical whichever one wins, with the guaranteed profit shown.">
+<meta property="og:url" content="https://lotsofcalcs.com/dutching/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dutching Calculator">
+<meta name="twitter:description" content="Split a total stake across several selections so the return is identical whichever one wins, with the guaranteed profit shown.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dutching Calculator",
+    "description": "Split a total stake across several selections so the return is identical whichever one wins, with the guaranteed profit shown.",
+    "url": "https://lotsofcalcs.com/dutching/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dutching Calculator",
+        "item": "https://lotsofcalcs.com/dutching/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is dutching guaranteed to make a profit?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only when the combined implied probability of your selections is under 100%, which is uncommon at a single bookmaker because of their built-in margin. Otherwise dutching just spreads risk across several outcomes at a small expected cost."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is the stake split across selections decided?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In proportion to each selection's implied probability. Shorter-priced selections get a larger share of the stake, which is exactly what makes every possible return come out the same."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if I round the stakes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The returns stop being perfectly equal. Rounding to the nearest pound is usually fine for small stakes, but the more you round, the more the payouts drift apart between outcomes."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Dutching Calculator</h1>
+      <p class="page-subtitle">Back several selections in the same market and get the same return whichever one of them wins.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="total-stake">Total stake</label>
+          <input type="number" id="total-stake" placeholder="100.00" step="any" value="100">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="tool-section-title">Selections</p>
+      <p class="tool-hint">Odds accept fractional (5/2) or decimal (3.5). Add as many selections as you're backing.</p>
+      <div class="dyn-table-head">
+        <span class="row-index">#</span>
+        <span class="grow">Selection</span>
+        <span class="fixed-sm">Odds</span>
+        <span style="width:34px"></span>
+      </div>
+      <div class="dyn-list" id="selection-rows"></div>
+      <button class="btn btn-ghost" id="add-selection" type="button">+ Add selection</button>
+
+      <p class="tool-hint" id="dutch-error" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" id="dutch-note" style="color: var(--good); display: none;"></p>
+
+      <div class="result-box" style="margin-top:16px;">
+        <div class="result-hero">
+          <div class="value" id="profit">£20.00</div>
+          <div class="label">Profit whichever wins</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total staked</span><span class="r-value" id="staked">£100.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Return whichever wins</span><span class="r-value" id="return">£120.00</span></div>
+          <div class="result-row"><span class="r-label">Combined implied probability</span><span class="r-value" id="book-pct">83.33%</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Stake on each selection</p>
+      <div class="table-scroll">
+        <div style="min-width:520px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th>Selection</th>
+                <th>Odds (decimal)</th>
+                <th>Stake</th>
+                <th>Returns</th>
+              </tr>
+            </thead>
+            <tbody id="dutch-out-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Stakes are shown to the penny — rounding to whole units at the bookmaker will shift each return very slightly.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">Dutching means backing more than one selection in the same market, splitting your stake so that the payout is identical no matter which of them comes in. The stake on each selection is proportional to its implied probability: total stake &times; (1 &divide; that selection's decimal odds) &divide; the sum of 1 &divide; odds across every selection.</p>
+      <p class="about-text">The return is simply the total stake divided by that same sum. If the combined implied probability of your selections comes to less than 100%, the return beats your outlay and the profit is guaranteed &mdash; provided one of them wins. If it comes to more than 100%, which is usual once the bookmaker's margin is included, every outcome loses money and the calculator says so.</p>
+      <p class="about-text">The combined implied probability figure is the key number to watch: it is the sum of 1 &divide; odds across your selections, expressed as a percentage. Below 100% is an arbitrage; above it, you are paying the bookmaker's overround.</p>
+      <p class="about-text">Assumptions: exactly one selection can win, all bets are with the same bookmaker at the prices entered, and no commission is deducted. If you are dutching across an exchange, subtract commission from the returns yourself, and note that a dead heat will reduce the payout on the affected selection.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Is dutching guaranteed to make a profit?</p>
+      <p class="about-text">Only when the combined implied probability of your selections is under 100%, which is uncommon at a single bookmaker because of their built-in margin. Otherwise dutching just spreads risk across several outcomes at a small expected cost.</p>
+      <p class="faq-q">How is the stake split across selections decided?</p>
+      <p class="about-text">In proportion to each selection's implied probability. Shorter-priced selections get a larger share of the stake, which is exactly what makes every possible return come out the same.</p>
+      <p class="faq-q">What happens if I round the stakes?</p>
+      <p class="about-text">The returns stop being perfectly equal. Rounding to the nearest pound is usually fine for small stakes, but the more you round, the more the payouts drift apart between outcomes.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Betting &amp; Odds calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/odds-converter/">
+        <span class="icon">🎲</span>
+        <div class="title">Odds Converter</div>
+        <div class="desc">Fractional, decimal and American odds → implied probability and payout.</div>
+      </a>
+      <a class="hub-card" href="/each-way/">
+        <span class="icon">🐎</span>
+        <div class="title">Each-Way Bet</div>
+        <div class="desc">Win and place parts of an each-way bet → total return and profit.</div>
+      </a>
+      <a class="hub-card" href="/lay/">
+        <span class="icon">🔁</span>
+        <div class="title">Matched Betting / Lay</div>
+        <div class="desc">Back and lay odds → lay stake, liability and the profit locked in.</div>
+      </a>
+      <a class="hub-card" href="/accumulator/">
+        <span class="icon">🎰</span>
+        <div class="title">Accumulator</div>
+        <div class="desc">Multiple legs → combined odds, return and profit, with acca bonus.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/dutching.js"></script>
+</body>
+</html>

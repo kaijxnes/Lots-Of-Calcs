@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accumulator Calculator</title>
+<meta name="description" content="Work out the combined odds, return and profit on an accumulator, handling won, void and losing legs plus an optional acca bonus.">
+<link rel="canonical" href="https://lotsofcalcs.com/accumulator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Accumulator Calculator">
+<meta property="og:description" content="Work out the combined odds, return and profit on an accumulator, handling won, void and losing legs plus an optional acca bonus.">
+<meta property="og:url" content="https://lotsofcalcs.com/accumulator/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Accumulator Calculator">
+<meta name="twitter:description" content="Work out the combined odds, return and profit on an accumulator, handling won, void and losing legs plus an optional acca bonus.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Accumulator Calculator",
+    "description": "Work out the combined odds, return and profit on an accumulator, handling won, void and losing legs plus an optional acca bonus.",
+    "url": "https://lotsofcalcs.com/accumulator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Accumulator Calculator",
+        "item": "https://lotsofcalcs.com/accumulator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What happens to my accumulator if one leg is void?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The bet stays alive. The void leg is settled at odds of 1.00 and drops out of the calculation, so a five-fold with one void leg is paid as a four-fold on the remaining selections."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are accumulator odds calculated?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the decimal odds of every leg together. Legs at 2.00, 3.00 and 1.50 give combined odds of 9.00, so a £10 stake returns £90 including the stake."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the acca bonus applied to my stake or my winnings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Almost always to the winnings. A 10% bonus on £80 profit adds £8, not 10% of the full £90 return. Most bookmakers also set a minimum number of legs and a minimum price per leg before the bonus is paid."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Accumulator Calculator</h1>
+      <p class="page-subtitle">Add your legs, mark each one won, void or lost, and see the combined odds, return and profit.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="stake">Stake</label>
+          <input type="number" id="stake" placeholder="10.00" step="any" value="10">
+        </div>
+        <div class="field">
+          <label for="bonus">Acca bonus (%)</label>
+          <input type="number" id="bonus" placeholder="0" step="any">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
+      <p class="tool-section-title">Legs</p>
+      <p class="tool-hint">Odds accept fractional (5/2) or decimal (3.5). A void leg is settled at odds of 1.00; any losing leg loses the whole accumulator.</p>
+      <div class="table-scroll">
+        <div style="min-width:460px;">
+          <div class="dyn-table-head">
+            <span class="row-index">#</span>
+            <span class="grow">Leg</span>
+            <span class="fixed-sm">Odds</span>
+            <span class="fixed-sm">Result</span>
+            <span style="width:34px"></span>
+          </div>
+          <div class="dyn-list" id="leg-rows"></div>
+        </div>
+      </div>
+      <button class="btn btn-ghost" id="add-leg" type="button">+ Add leg</button>
+
+      <p class="tool-hint" id="acca-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" style="margin-top:16px;">
+        <div class="result-hero">
+          <div class="value" id="profit">£80.00</div>
+          <div class="label">Profit</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Combined odds</span><span class="r-value" id="combined-odds">9.00</span></div>
+          <div class="result-row"><span class="r-label">Stake</span><span class="r-value" id="stake-out">£10.00</span></div>
+          <div class="result-row"><span class="r-label">Acca bonus</span><span class="r-value" id="bonus-out">£0.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Total return</span><span class="r-value" id="total-return">£90.00</span></div>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">An accumulator rolls the return from each leg onto the next, so the combined odds are every leg's decimal odds multiplied together. Four legs at 2.00 give combined odds of 16.00, not 8.00 &mdash; which is why an acca pays so much more than the same selections backed separately, and why it is so much harder to land.</p>
+      <p class="about-text">Every leg has to come in. A single losing leg loses the entire bet regardless of how the others went, so the calculator returns zero the moment any leg is marked lost.</p>
+      <p class="about-text">A void leg &mdash; a postponed match, a non-runner, or a market settled as void &mdash; does not lose the bet. It is settled at odds of 1.00, which removes it from the multiplication and leaves the accumulator running on the remaining legs. A five-fold with one void leg simply pays out as a four-fold.</p>
+      <p class="about-text">The acca bonus is applied to your winnings rather than the total return, which is the usual UK bookmaker convention: bonus = profit &times; the bonus percentage. Bookmakers normally require a minimum number of legs and a minimum price per leg before a bonus applies, and void legs often reduce the bonus tier &mdash; check the specific offer, as those rules are not modelled here.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What happens to my accumulator if one leg is void?</p>
+      <p class="about-text">The bet stays alive. The void leg is settled at odds of 1.00 and drops out of the calculation, so a five-fold with one void leg is paid as a four-fold on the remaining selections.</p>
+      <p class="faq-q">How are accumulator odds calculated?</p>
+      <p class="about-text">Multiply the decimal odds of every leg together. Legs at 2.00, 3.00 and 1.50 give combined odds of 9.00, so a £10 stake returns £90 including the stake.</p>
+      <p class="faq-q">Is the acca bonus applied to my stake or my winnings?</p>
+      <p class="about-text">Almost always to the winnings. A 10% bonus on £80 profit adds £8, not 10% of the full £90 return. Most bookmakers also set a minimum number of legs and a minimum price per leg before the bonus is paid.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Betting &amp; Odds calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/odds-converter/">
+        <span class="icon">🎲</span>
+        <div class="title">Odds Converter</div>
+        <div class="desc">Fractional, decimal and American odds → implied probability and payout.</div>
+      </a>
+      <a class="hub-card" href="/each-way/">
+        <span class="icon">🐎</span>
+        <div class="title">Each-Way Bet</div>
+        <div class="desc">Win and place parts of an each-way bet → total return and profit.</div>
+      </a>
+      <a class="hub-card" href="/lay/">
+        <span class="icon">🔁</span>
+        <div class="title">Matched Betting / Lay</div>
+        <div class="desc">Back and lay odds → lay stake, liability and the profit locked in.</div>
+      </a>
+      <a class="hub-card" href="/dutching/">
+        <span class="icon">🔀</span>
+        <div class="title">Dutching</div>
+        <div class="desc">Split a stake across selections so the return is the same whichever wins.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/accumulator.js"></script>
+</body>
+</html>
