@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Running Pace Calculator</title>
+<meta name="description" content="Work out running pace, finish time or distance from any two of the three, in min/km and min/mile, with splits and average speed.">
+<link rel="canonical" href="https://lotsofcalcs.com/pace/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Running Pace Calculator">
+<meta property="og:description" content="Work out running pace, finish time or distance from any two of the three, in min/km and min/mile, with splits and average speed.">
+<meta property="og:url" content="https://lotsofcalcs.com/pace/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Running Pace Calculator">
+<meta name="twitter:description" content="Work out running pace, finish time or distance from any two of the three, in min/km and min/mile, with splits and average speed.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Running Pace Calculator",
+    "description": "Work out running pace, finish time or distance from any two of the three, in min/km and min/mile, with splits and average speed.",
+    "url": "https://lotsofcalcs.com/pace/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Running Pace Calculator",
+        "item": "https://lotsofcalcs.com/pace/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What pace do I need for a sub-4-hour marathon?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "About 5:41 per kilometre, or 9:09 per mile. Set the solver to Pace, pick the Marathon preset and enter 3 hours 59 minutes to see the exact figure — and aim slightly quicker to leave yourself a margin."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between pace and speed?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They are inverses of each other. Pace is how long it takes to cover a set distance (minutes per km), while speed is how far you travel in a set time (km per hour). A faster run means a lower pace number but a higher speed number."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is a half marathon 21.0975 km rather than 21?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because it is defined as exactly half the marathon distance of 42.195 km, which itself comes from the 26 miles 385 yards used at the 1908 London Olympics. Converted to metric it simply does not land on a round number."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Running Pace Calculator</h1>
+      <p class="page-subtitle">Give any two of distance, time and pace — this works out the third, plus speed and splits.</p>
+    </header>
+
+    <main class="tool">
+      <p class="tool-section-title">What do you want to work out?</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-solve="pace" type="button">Pace</button>
+        <button class="tab" data-solve="time" type="button">Finish time</button>
+        <button class="tab" data-solve="distance" type="button">Distance</button>
+      </div>
+      <p class="tool-hint" id="solve-hint">Enter your distance and finish time to get the pace you ran.</p>
+
+      <div id="distance-block">
+        <p class="tool-section-title">Distance</p>
+        <div class="tabs" id="preset-tabs" role="tablist">
+          <button class="tab" data-preset="5" type="button">5K</button>
+          <button class="tab" data-preset="10" type="button">10K</button>
+          <button class="tab" data-preset="21.0975" type="button">Half</button>
+          <button class="tab" data-preset="42.195" type="button">Marathon</button>
+        </div>
+        <div class="field-row" style="margin-top:12px;">
+          <div class="field">
+            <label for="distance">Distance</label>
+            <input type="number" id="distance" placeholder="10" step="any" value="10">
+          </div>
+          <div class="field">
+            <label for="dist-unit">Distance unit</label>
+            <select id="dist-unit">
+              <option value="km" selected>Kilometres</option>
+              <option value="mi">Miles</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div id="time-block">
+        <p class="tool-section-title">Time</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="t-h">Hours</label>
+            <input type="number" id="t-h" placeholder="0" step="1" min="0" value="0">
+          </div>
+          <div class="field">
+            <label for="t-m">Minutes</label>
+            <input type="number" id="t-m" placeholder="50" step="1" min="0" value="50">
+          </div>
+        </div>
+        <div class="field" style="max-width:280px;">
+          <label for="t-s">Seconds</label>
+          <input type="number" id="t-s" placeholder="0" step="1" min="0" value="0">
+        </div>
+      </div>
+
+      <div id="pace-block">
+        <p class="tool-section-title">Pace</p>
+        <div class="field-row">
+          <div class="field">
+            <label for="p-m">Minutes</label>
+            <input type="number" id="p-m" placeholder="5" step="1" min="0" value="5">
+          </div>
+          <div class="field">
+            <label for="p-s">Seconds</label>
+            <input type="number" id="p-s" placeholder="0" step="1" min="0" value="0">
+          </div>
+        </div>
+        <div class="field" style="max-width:280px;">
+          <label for="pace-unit">Pace unit</label>
+          <select id="pace-unit">
+            <option value="km" selected>Per kilometre</option>
+            <option value="mi">Per mile</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="pace-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="hero-value">5:00 /km</div>
+          <div class="label" id="hero-label">Pace</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Pace per km</span><span class="r-value" id="pace-km">5:00</span></div>
+          <div class="result-row"><span class="r-label">Pace per mile</span><span class="r-value" id="pace-mi">8:03</span></div>
+          <div class="result-row highlight"><span class="r-label">Finish time</span><span class="r-value" id="finish-time">50:00</span></div>
+          <div class="result-row"><span class="r-label">Distance</span><span class="r-value" id="dist-out">10.00 km</span></div>
+          <div class="result-row"><span class="r-label">Average speed</span><span class="r-value" id="speed">12.00 km/h · 7.46 mph</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Splits</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th id="split-head">Km</th>
+                <th>Elapsed time</th>
+              </tr>
+            </thead>
+            <tbody id="splits-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Splits assume an even pace throughout, and the final row is the full distance.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">Distance, time and pace are locked together by one relationship: time = distance &times; pace. Give any two and the third follows, which is why this calculator lets you pick which one to solve for rather than fixing the inputs.</p>
+      <p class="about-text">Pace is time per unit of distance &mdash; minutes and seconds per kilometre or per mile &mdash; while speed is the inverse, distance covered per hour. Runners generally think in pace and cyclists in speed, so both are shown. Converting between them uses 1 mile = 1.609344 km exactly.</p>
+      <p class="about-text">The preset buttons use official race distances: 5K is 5 km, 10K is 10 km, a half marathon is 21.0975 km and a marathon is 42.195 km. Those last two are the exact metric definitions, which is why they are not round numbers in miles.</p>
+      <p class="about-text">Splits are calculated at an even pace for the whole distance, showing the elapsed time you would pass each kilometre or mile marker. Real races are rarely run at perfectly even pace &mdash; hills, wind and fading all shift things &mdash; so treat them as a target rather than a prediction.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What pace do I need for a sub-4-hour marathon?</p>
+      <p class="about-text">About 5:41 per kilometre, or 9:09 per mile. Set the solver to Pace, pick the Marathon preset and enter 3 hours 59 minutes to see the exact figure — and aim slightly quicker to leave yourself a margin.</p>
+      <p class="faq-q">What is the difference between pace and speed?</p>
+      <p class="about-text">They are inverses of each other. Pace is how long it takes to cover a set distance (minutes per km), while speed is how far you travel in a set time (km per hour). A faster run means a lower pace number but a higher speed number.</p>
+      <p class="faq-q">Why is a half marathon 21.0975 km rather than 21?</p>
+      <p class="about-text">Because it is defined as exactly half the marathon distance of 42.195 km, which itself comes from the 26 miles 385 yards used at the 1908 London Olympics. Converted to metric it simply does not land on a round number.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+      <a class="hub-card" href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" href="/date-diff/">
+        <span class="icon">📅</span>
+        <div class="title">Date Difference</div>
+        <div class="desc">Years, months and days between two dates.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/pace.js"></script>
+</body>
+</html>

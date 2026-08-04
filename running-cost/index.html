@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Electricity Running Cost Calculator</title>
+<meta name="description" content="Work out what an appliance costs to run — energy used in kWh and the cost per use, day, week, month and year from its wattage and your unit price.">
+<link rel="canonical" href="https://lotsofcalcs.com/running-cost/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Electricity Running Cost Calculator">
+<meta property="og:description" content="Work out what an appliance costs to run — energy used in kWh and the cost per use, day, week, month and year from its wattage and your unit price.">
+<meta property="og:url" content="https://lotsofcalcs.com/running-cost/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Electricity Running Cost Calculator">
+<meta name="twitter:description" content="Work out what an appliance costs to run — energy used in kWh and the cost per use, day, week, month and year from its wattage and your unit price.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Electricity Running Cost Calculator",
+    "description": "Work out what an appliance costs to run — energy used in kWh and the cost per use, day, week, month and year from its wattage and your unit price.",
+    "url": "https://lotsofcalcs.com/running-cost/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Electricity Running Cost Calculator",
+        "item": "https://lotsofcalcs.com/running-cost/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I work out an appliance's wattage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is usually printed on a label on the back or base of the appliance, or in the manual, given in watts (W) or kilowatts (kW). A typical kettle is around 3,000 W, a washing machine 2,000 W and a fridge 100–200 W while the compressor is running."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my actual bill higher than this?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because a bill also includes a daily standing charge you pay whatever you use, and in the UK 5% VAT on top. This calculator covers only the unit cost of the electricity that appliance consumes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a thermostat-controlled appliance really run for all those hours?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Fridges, freezers and heaters cycle on and off to hold a temperature, so they draw full power for only part of the time they are switched on. Estimate actual running time rather than plugged-in time, or the yearly figure will be well over the truth."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Electricity Running Cost Calculator</h1>
+      <p class="page-subtitle">Appliance wattage, how long it runs and your unit price → what it actually costs you per day, month and year.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="power">Appliance power</label>
+          <input type="number" id="power" placeholder="2000" step="any" value="2000">
+        </div>
+        <div class="field">
+          <label for="power-unit">Power unit</label>
+          <select id="power-unit">
+            <option value="w" selected>Watts (W)</option>
+            <option value="kw">Kilowatts (kW)</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="hours">Hours used</label>
+          <input type="number" id="hours" placeholder="1" step="any" value="1">
+        </div>
+        <div class="field">
+          <label for="period">Usage period</label>
+          <select id="period">
+            <option value="day" selected>Per day</option>
+            <option value="week">Per week</option>
+            <option value="month">Per month</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="unit-price">Unit price (<span id="minor-label">p</span>/kWh)</label>
+          <input type="number" id="unit-price" placeholder="25" step="any" value="25">
+        </div>
+      </div>
+
+      <p class="tool-hint" id="rc-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="cost-year">£182.50</div>
+          <div class="label">Cost per year</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Energy per use</span><span class="r-value" id="kwh-use">2.000 kWh</span></div>
+          <div class="result-row"><span class="r-label">Cost per use</span><span class="r-value" id="cost-use">£0.50</span></div>
+          <div class="result-row"><span class="r-label">Cost per day</span><span class="r-value" id="cost-day">£0.50</span></div>
+          <div class="result-row"><span class="r-label">Cost per week</span><span class="r-value" id="cost-week">£3.50</span></div>
+          <div class="result-row highlight"><span class="r-label">Cost per month</span><span class="r-value" id="cost-month">£15.21</span></div>
+          <div class="result-row"><span class="r-label">Energy per year</span><span class="r-value" id="kwh-year">730.0 kWh</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">This is unit cost only — it does not include your daily standing charge.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">The calculation is simply cost = power (kW) &times; hours &times; unit price. Wattage is converted to kilowatts by dividing by 1,000, so a 2,000 W appliance is 2 kW; run for one hour it uses 2 kWh, and at 25p per kWh that costs 50p.</p>
+      <p class="about-text">Your usage period sets how often that run happens. The figures are put on a common basis of 365 days in a year, with a week as exactly 7 days and a month as one twelfth of the year, so the daily, weekly, monthly and yearly costs are all consistent with each other rather than drifting apart.</p>
+      <p class="about-text">The unit price is entered in the minor unit &mdash; pence per kWh in the UK, and the equivalent hundredth of the main unit for other currencies. That matches how electricity tariffs are normally advertised.</p>
+      <p class="about-text">Real bills are higher than this figure, for two reasons. There is a daily standing charge that you pay regardless of how much you use, which this calculator deliberately excludes, and in the UK domestic energy also carries 5% VAT, which may or may not already be included in the rate you enter. Appliances with a thermostat &mdash; fridges, freezers, heaters, kettles &mdash; also cycle on and off rather than drawing full power continuously, so use realistic running hours rather than the time they are switched on.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I work out an appliance's wattage?</p>
+      <p class="about-text">It is usually printed on a label on the back or base of the appliance, or in the manual, given in watts (W) or kilowatts (kW). A typical kettle is around 3,000 W, a washing machine 2,000 W and a fridge 100–200 W while the compressor is running.</p>
+      <p class="faq-q">Why is my actual bill higher than this?</p>
+      <p class="about-text">Because a bill also includes a daily standing charge you pay whatever you use, and in the UK 5% VAT on top. This calculator covers only the unit cost of the electricity that appliance consumes.</p>
+      <p class="faq-q">Does a thermostat-controlled appliance really run for all those hours?</p>
+      <p class="about-text">No. Fridges, freezers and heaters cycle on and off to hold a temperature, so they draw full power for only part of the time they are switched on. Estimate actual running time rather than plugged-in time, or the yearly figure will be well over the truth.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+      <a class="hub-card" href="/btu/">
+        <span class="icon">🌡️</span>
+        <div class="title">BTU / Radiator Sizing</div>
+        <div class="desc">Room dimensions → the heat output you need, in BTU and watts.</div>
+      </a>
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/running-cost.js"></script>
+</body>
+</html>
