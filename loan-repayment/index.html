@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan / APR Repayment Calculator</title>
+<meta name="description" content="Work out the monthly payment, total interest and total repaid on a loan from the amount, APR and term, with a year-by-year amortisation summary.">
+<link rel="canonical" href="https://lotsofcalcs.com/loan-repayment/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Loan / APR Repayment Calculator">
+<meta property="og:description" content="Work out the monthly payment, total interest and total repaid on a loan from the amount, APR and term, with a year-by-year amortisation summary.">
+<meta property="og:url" content="https://lotsofcalcs.com/loan-repayment/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Loan / APR Repayment Calculator">
+<meta name="twitter:description" content="Work out the monthly payment, total interest and total repaid on a loan from the amount, APR and term, with a year-by-year amortisation summary.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Loan / APR Repayment Calculator",
+    "description": "Work out the monthly payment, total interest and total repaid on a loan from the amount, APR and term, with a year-by-year amortisation summary.",
+    "url": "https://lotsofcalcs.com/loan-repayment/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Loan / APR Repayment Calculator",
+        "item": "https://lotsofcalcs.com/loan-repayment/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the difference between APR and the interest rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The interest rate covers only the cost of borrowing, while APR is meant to include compulsory fees as well, giving a fuller cost of the loan. This calculator applies the figure you enter as the annual rate spread across monthly payments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does so little of my early payments come off the balance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Interest is charged on whatever you still owe, and early on that balance is at its largest. Your payment is fixed, so most of it goes on interest at first and the principal share grows steadily as the balance falls."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a longer loan term cost more overall?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually yes. Spreading the same loan over more months lowers each payment but leaves the balance outstanding for longer, so you pay interest for more months and the total repaid rises."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Loan / APR Repayment Calculator</h1>
+      <p class="page-subtitle">Loan amount, APR and term → your monthly payment, total interest, and how the balance falls each year.</p>
+    </header>
+
+    <main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="amount">Loan amount</label>
+          <input type="number" id="amount" placeholder="0.00" step="any">
+        </div>
+        <div class="field">
+          <label for="apr">APR (%)</label>
+          <input type="number" id="apr" placeholder="0" step="any">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="term-years">Term — years</label>
+          <input type="number" id="term-years" placeholder="0" step="any">
+        </div>
+        <div class="field">
+          <label for="term-months">Term — months</label>
+          <input type="number" id="term-months" placeholder="0" step="any">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
+      <p class="tool-hint" id="loan-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="monthly-payment">£0.00</div>
+          <div class="label">Monthly payment</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Total interest</span><span class="r-value" id="total-interest">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Total repaid</span><span class="r-value" id="total-repaid">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Interest as % of loan</span><span class="r-value" id="interest-pct">0%</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Amortisation summary</p>
+      <div class="table-scroll">
+        <div style="min-width:560px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th>Interest paid</th>
+                <th>Principal paid</th>
+                <th>Balance left</th>
+              </tr>
+            </thead>
+            <tbody id="amort-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Assumes a fixed rate for the whole term, equal monthly payments, and interest charged monthly on the outstanding balance.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">This uses the standard amortising loan formula: your monthly payment is fixed for the whole term, and each payment covers the interest charged that month first, with whatever's left reducing the balance. Because the balance falls over time, the interest portion shrinks each month and the principal portion grows &mdash; which is why the early payments on a loan barely dent the amount you owe.</p>
+      <p class="about-text">The amortisation summary shows that split year by year: how much of the year's payments went on interest, how much came off the balance, and what's still outstanding at the end of each year.</p>
+      <p class="about-text">APR is treated here as a nominal annual rate divided into twelve monthly periods, which is how most loan repayment schedules are built. A lender's advertised APR may also fold in compulsory fees, so a quote based on the same headline rate can differ slightly from this estimate.</p>
+      <p class="about-text">This is a planning estimate rather than a formal quote or financial advice &mdash; always check the actual figures in a lender's illustration before committing.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What is the difference between APR and the interest rate?</p>
+      <p class="about-text">The interest rate covers only the cost of borrowing, while APR is meant to include compulsory fees as well, giving a fuller cost of the loan. This calculator applies the figure you enter as the annual rate spread across monthly payments.</p>
+      <p class="faq-q">Why does so little of my early payments come off the balance?</p>
+      <p class="about-text">Interest is charged on whatever you still owe, and early on that balance is at its largest. Your payment is fixed, so most of it goes on interest at first and the principal share grows steadily as the balance falls.</p>
+      <p class="faq-q">Does a longer loan term cost more overall?</p>
+      <p class="about-text">Usually yes. Spreading the same loan over more months lowers each payment but leaves the balance outstanding for longer, so you pay interest for more months and the total repaid rises.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Savings &amp; Investing calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/mortgage-overpayment/">
+        <span class="icon">🏡</span>
+        <div class="title">Mortgage Overpayment</div>
+        <div class="desc">See the interest and years you'd save by overpaying your mortgage.</div>
+      </a>
+      <a class="hub-card" href="/compound-interest/">
+        <span class="icon">🌱</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting amount + annual return + years → what you'd end up with.</div>
+      </a>
+      <a class="hub-card" href="/savings-goal/">
+        <span class="icon">🎯</span>
+        <div class="title">Savings Goal</div>
+        <div class="desc">Goal + current savings + time frame → the monthly contribution you need.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/loan-repayment.js"></script>
+</body>
+</html>

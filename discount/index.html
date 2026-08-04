@@ -29,6 +29,65 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Discount Calculator",
+    "description": "Work out the final price after a discount, including multiple stacked discounts applied in sequence.",
+    "url": "https://lotsofcalcs.com/discount/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Discount Calculator",
+        "item": "https://lotsofcalcs.com/discount/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do two 10% discounts add up to 20% off?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — they come to 19%. The second discount applies to the already-reduced price, so stacked discounts always save slightly less than adding the percentages together."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out the original price from a sale price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the sale price by 1 minus the discount as a decimal. An item reduced 25% to 60 was originally 60 divided by 0.75, which is 80."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
   <div class="page">
@@ -84,6 +143,14 @@
       <p class="tool-section-title">About this calculator</p>
       <p class="about-text">A single discount reduces the price by Price &times; (Discount % &divide; 100).</p>
       <p class="about-text">Stacked discounts are applied sequentially to whatever the price has become after the previous discount, not all at once on the original price &mdash; so two 10% discounts save 19%, not 20%, because the second 10% is taken off an already-reduced price.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Do two 10% discounts add up to 20% off?</p>
+      <p class="about-text">No — they come to 19%. The second discount applies to the already-reduced price, so stacked discounts always save slightly less than adding the percentages together.</p>
+      <p class="faq-q">How do I work out the original price from a sale price?</p>
+      <p class="about-text">Divide the sale price by 1 minus the discount as a decimal. An item reduced 25% to 60 was originally 60 divided by 0.75, which is 80.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>

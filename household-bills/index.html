@@ -29,6 +29,65 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Household Bill Splitter",
+    "description": "Split household bills fairly between housemates or partners, by percentage share or by income.",
+    "url": "https://lotsofcalcs.com/household-bills/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Household Bill Splitter",
+        "item": "https://lotsofcalcs.com/household-bills/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the fairest way to split household bills?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Splitting in proportion to income is the usual answer when housemates or partners earn very differently, since it keeps the burden even relative to what each person can afford. An even split is simpler when incomes are similar."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do the percentages have to add up to 100?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Shares are normalised automatically, so entering 60 and 30 splits the bills two-thirds and one-third just as 66.7 and 33.3 would."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
   <div class="page">
@@ -113,6 +172,14 @@
       <p class="tool-section-title">About this calculator</p>
       <p class="about-text">Each person's share of the total bills is their contribution value divided by everyone's contribution added together &mdash; which is why percentages don't need to add up to exactly 100%, they're normalized automatically.</p>
       <p class="about-text">In income mode, the same maths applies to income figures instead, so someone earning twice as much as their housemate pays twice as much toward shared bills.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What is the fairest way to split household bills?</p>
+      <p class="about-text">Splitting in proportion to income is the usual answer when housemates or partners earn very differently, since it keeps the burden even relative to what each person can afford. An even split is simpler when incomes are similar.</p>
+      <p class="faq-q">Do the percentages have to add up to 100?</p>
+      <p class="about-text">No. Shares are normalised automatically, so entering 60 and 30 splits the bills two-thirds and one-third just as 66.7 and 33.3 would.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>

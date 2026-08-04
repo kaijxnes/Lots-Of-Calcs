@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odds Converter</title>
+<meta name="description" content="Convert between fractional, decimal and American (moneyline) odds and implied probability, with the payout on any stake.">
+<link rel="canonical" href="https://lotsofcalcs.com/odds-converter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Odds Converter">
+<meta property="og:description" content="Convert between fractional, decimal and American (moneyline) odds and implied probability, with the payout on any stake.">
+<meta property="og:url" content="https://lotsofcalcs.com/odds-converter/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Odds Converter">
+<meta name="twitter:description" content="Convert between fractional, decimal and American (moneyline) odds and implied probability, with the payout on any stake.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Odds Converter",
+    "description": "Convert between fractional, decimal and American (moneyline) odds and implied probability, with the payout on any stake.",
+    "url": "https://lotsofcalcs.com/odds-converter/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Odds Converter",
+        "item": "https://lotsofcalcs.com/odds-converter/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert odds to a probability?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide 1 by the decimal odds and multiply by 100. Decimal odds of 2.50 give 1 divided by 2.5, which is 40% implied probability."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What do American odds like +150 and -200 mean?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A positive line is the profit on a 100 stake, so +150 returns 150 profit for 100 staked. A negative line is the stake needed to profit 100, so -200 means risking 200 to make 100."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do the probabilities in a market add up to more than 100%?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "That excess is the bookmaker's margin, often called the overround or the vig. It means the prices offered are slightly shorter than the true chances, which is where the bookmaker's edge comes from."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Odds Converter</h1>
+      <p class="page-subtitle">Convert between fractional, decimal and American odds — edit any format and the rest update instantly.</p>
+    </header>
+
+    <main class="tool">
+      <p class="tool-section-title">Odds</p>
+      <p class="tool-hint">Type into whichever format you have — the others convert automatically.</p>
+
+      <div class="field">
+        <label for="frac-num">Fractional</label>
+        <div class="field-row">
+          <input type="number" id="frac-num" placeholder="3" step="any" min="0" aria-label="Fractional odds numerator">
+          <input type="number" id="frac-den" placeholder="2" step="any" min="0" aria-label="Fractional odds denominator">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="decimal-odds">Decimal</label>
+          <input type="number" id="decimal-odds" placeholder="2.50" step="any">
+        </div>
+        <div class="field">
+          <label for="american-odds">American (moneyline)</label>
+          <input type="number" id="american-odds" placeholder="+150" step="any">
+        </div>
+      </div>
+
+      <div class="field" style="max-width:280px;">
+        <label for="implied-prob">Implied probability (%)</label>
+        <input type="number" id="implied-prob" placeholder="40" step="any">
+      </div>
+
+      <p class="tool-hint" id="odds-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="prob-hero">40.00%</div>
+          <div class="label">Implied probability</div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Payout</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="stake">Stake</label>
+          <input type="number" id="stake" placeholder="10.00" step="any" value="10">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Profit if it wins</span><span class="r-value" id="profit">£15.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Total return (stake + profit)</span><span class="r-value" id="total-return">£25.00</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Fractional odds are shown as the closest standard betting fraction, so they can round very slightly against an exact decimal.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">The three formats all describe the same thing in different ways. Decimal odds show your total return per unit staked, so 2.50 means a &pound;1 bet returns &pound;2.50 in total. Fractional odds show profit against stake, so 3/2 means &pound;3 profit for every &pound;2 staked. American odds show how much profit a 100 stake makes on a positive line (+150), or how much you must stake to profit 100 on a negative line (&minus;200).</p>
+      <p class="about-text">Implied probability is simply 1 &divide; decimal odds, expressed as a percentage &mdash; it's the chance of winning that the price corresponds to. Converting to implied probability is the quickest way to compare prices across bookmakers, because it puts every format on the same scale.</p>
+      <p class="about-text">Add up the implied probabilities of every outcome in a market and you'll usually get more than 100%. That excess is the bookmaker's margin (the overround or vig) &mdash; the built-in edge that means the odds offered are shorter than the true chances.</p>
+      <p class="about-text">This is a maths tool for converting prices, not betting advice. Odds reflect a bookmaker's pricing, including their margin, rather than a true probability of any outcome.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I convert odds to a probability?</p>
+      <p class="about-text">Divide 1 by the decimal odds and multiply by 100. Decimal odds of 2.50 give 1 divided by 2.5, which is 40% implied probability.</p>
+      <p class="faq-q">What do American odds like +150 and -200 mean?</p>
+      <p class="about-text">A positive line is the profit on a 100 stake, so +150 returns 150 profit for 100 staked. A negative line is the stake needed to profit 100, so -200 means risking 200 to make 100.</p>
+      <p class="faq-q">Why do the probabilities in a market add up to more than 100%?</p>
+      <p class="about-text">That excess is the bookmaker's margin, often called the overround or the vig. It means the prices offered are slightly shorter than the true chances, which is where the bookmaker's edge comes from.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+      <a class="hub-card" href="/ab-test-significance/">
+        <span class="icon">🧪</span>
+        <div class="title">A/B Test Significance</div>
+        <div class="desc">Control plus any number of variants → uplift, z-score and p-value for each.</div>
+      </a>
+      <a class="hub-card" href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/odds-converter.js"></script>
+</body>
+</html>

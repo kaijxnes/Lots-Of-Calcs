@@ -29,12 +29,71 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Split Bill Calculator",
+    "description": "Split a restaurant or group bill evenly with tip, or itemize an uneven split so everyone pays their fair share.",
+    "url": "https://lotsofcalcs.com/split-bill/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Split Bill Calculator",
+        "item": "https://lotsofcalcs.com/split-bill/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How should we split a bill when people ordered very different amounts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the itemised split: enter what each person actually ordered and the tip is shared in proportion to their spend, so nobody subsidises a much larger order."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should the tip be split evenly or by what each person spent?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Splitting the tip in proportion to spend is the fairer default, since the tip is a percentage of the bill. Splitting it evenly is simpler and fine when everyone ordered roughly the same."
+        }
+      }
+    ]
+  }
+]
+</script>
 </head>
 <body>
   <div class="page">
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
-      <h1 class="page-title">Split Bill</h1>
+      <h1 class="page-title">Split Bill Calculator</h1>
       <p class="page-subtitle">Split evenly with tip%, or itemize an uneven split per person.</p>
     </header>
 
@@ -124,6 +183,14 @@
       <p class="tool-section-title">About this calculator</p>
       <p class="about-text">The equal split divides the total bill (plus tip) evenly across everyone.</p>
       <p class="about-text">The itemized split instead works out each person's share of the tip in proportion to what they actually spent &mdash; so someone who ordered a &pound;30 meal pays more of the tip than someone who ordered a &pound;10 side, even though the tip percentage is the same for the whole table.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How should we split a bill when people ordered very different amounts?</p>
+      <p class="about-text">Use the itemised split: enter what each person actually ordered and the tip is shared in proportion to their spend, so nobody subsidises a much larger order.</p>
+      <p class="faq-q">Should the tip be split evenly or by what each person spent?</p>
+      <p class="about-text">Splitting the tip in proportion to spend is the fairer default, since the tip is a percentage of the bill. Splitting it evenly is simpler and fine when everyone ordered roughly the same.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
