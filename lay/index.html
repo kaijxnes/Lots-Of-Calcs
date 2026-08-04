@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matched Betting Lay Calculator</title>
+<meta name="description" content="Work out the lay stake, liability and locked-in profit or qualifying loss for a matched bet, for both qualifying bets and stake-not-returned free bets.">
+<link rel="canonical" href="https://lotsofcalcs.com/lay/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Matched Betting Lay Calculator">
+<meta property="og:description" content="Work out the lay stake, liability and locked-in profit or qualifying loss for a matched bet, for both qualifying bets and stake-not-returned free bets.">
+<meta property="og:url" content="https://lotsofcalcs.com/lay/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Matched Betting Lay Calculator">
+<meta name="twitter:description" content="Work out the lay stake, liability and locked-in profit or qualifying loss for a matched bet, for both qualifying bets and stake-not-returned free bets.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Matched Betting Lay Calculator",
+    "description": "Work out the lay stake, liability and locked-in profit or qualifying loss for a matched bet, for both qualifying bets and stake-not-returned free bets.",
+    "url": "https://lotsofcalcs.com/lay/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Matched Betting Lay Calculator",
+        "item": "https://lotsofcalcs.com/lay/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why do I lose a small amount on a qualifying bet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the lay price at the exchange is almost always a little higher than the back price at the bookmaker, and commission is charged on top. That gap is the qualifying loss — usually a small, predictable cost that you accept in order to unlock a free bet worth much more."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much of a free bet can I actually keep?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Typically around 70–80% of its face value. The closer the back and lay odds are, the more you retain, which is why free bets are usually placed at higher odds where the proportional gap between the two prices is smaller."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is liability and why is it bigger than my lay stake?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Liability is what you would pay out if the selection wins, calculated as lay stake × (lay odds − 1). You need that amount available in your exchange account for the bet to be matched, so it is the real cash requirement rather than the lay stake itself."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Matched Betting Lay Calculator</h1>
+      <p class="page-subtitle">Back and lay odds → the lay stake that levels both outcomes, your liability, and what you're left with either way.</p>
+    </header>
+
+    <main class="tool">
+      <p class="tool-section-title">Bet type</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-mode="qualifying" type="button">Qualifying bet</button>
+        <button class="tab" data-mode="freebet" type="button">Free bet (SNR)</button>
+      </div>
+      <p class="tool-hint" id="mode-hint">Your back stake is returned if the bet wins, so the aim is to make the loss either way as small as possible.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="back-stake">Back stake</label>
+          <input type="number" id="back-stake" placeholder="10.00" step="any" value="10">
+        </div>
+        <div class="field">
+          <label for="back-odds">Back odds (decimal)</label>
+          <input type="number" id="back-odds" placeholder="3.00" step="any" value="3">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="lay-odds">Lay odds (decimal)</label>
+          <input type="number" id="lay-odds" placeholder="3.20" step="any" value="3.2">
+        </div>
+        <div class="field">
+          <label for="commission">Exchange commission (%)</label>
+          <input type="number" id="commission" placeholder="5" step="any" value="5">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
+      <p class="tool-hint" id="lay-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="lay-stake">£9.52</div>
+          <div class="label">Lay stake</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Liability at the exchange</span><span class="r-value" id="liability">£20.95</span></div>
+          <div class="result-row"><span class="r-label">If the bookmaker bet wins</span><span class="r-value" id="profit-bookie">-£0.95</span></div>
+          <div class="result-row"><span class="r-label">If the lay wins (exchange)</span><span class="r-value" id="profit-exchange">-£0.95</span></div>
+          <div class="result-row highlight"><span class="r-label" id="outcome-label">Qualifying loss</span><span class="r-value" id="locked-result">-£0.95</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">The two outcomes are levelled deliberately, so whichever side wins you end up in the same place.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">Matched betting works by backing a selection with a bookmaker and laying the same selection on an exchange, so that one bet covers the other. The lay stake is chosen so your net position is identical whichever way the event goes &mdash; that is what &quot;locking in&quot; means.</p>
+      <p class="about-text">For a qualifying bet, where the bookmaker returns your stake if it wins, the lay stake is (back odds &times; back stake) &divide; (lay odds &minus; commission). The small difference between the back and lay prices means you normally end up slightly down &mdash; that shortfall is the qualifying loss, and it is the cost of unlocking a free bet.</p>
+      <p class="about-text">For a stake-not-returned free bet, the bookmaker pays only the winnings, so the lay stake is (back odds &minus; 1) &times; back stake, divided by (lay odds &minus; commission). Because you are not risking your own money on the back side, the levelled figure is a genuine profit &mdash; typically around 70&ndash;80% of the free bet's face value, depending on how close the two prices are.</p>
+      <p class="about-text">Liability is what the exchange holds from your balance while the lay bet is open: lay stake &times; (lay odds &minus; 1). Commission is applied to net winnings on the exchange side only, which is the standard model at UK exchanges. This tool assumes a stake-not-returned free bet in free bet mode, no partial matching, and that both bets are placed at the prices you enter.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Why do I lose a small amount on a qualifying bet?</p>
+      <p class="about-text">Because the lay price at the exchange is almost always a little higher than the back price at the bookmaker, and commission is charged on top. That gap is the qualifying loss — usually a small, predictable cost that you accept in order to unlock a free bet worth much more.</p>
+      <p class="faq-q">How much of a free bet can I actually keep?</p>
+      <p class="about-text">Typically around 70–80% of its face value. The closer the back and lay odds are, the more you retain, which is why free bets are usually placed at higher odds where the proportional gap between the two prices is smaller.</p>
+      <p class="faq-q">What is liability and why is it bigger than my lay stake?</p>
+      <p class="about-text">Liability is what you would pay out if the selection wins, calculated as lay stake × (lay odds − 1). You need that amount available in your exchange account for the bet to be matched, so it is the real cash requirement rather than the lay stake itself.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Betting &amp; Odds calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/odds-converter/">
+        <span class="icon">🎲</span>
+        <div class="title">Odds Converter</div>
+        <div class="desc">Fractional, decimal and American odds → implied probability and payout.</div>
+      </a>
+      <a class="hub-card" href="/each-way/">
+        <span class="icon">🐎</span>
+        <div class="title">Each-Way Bet</div>
+        <div class="desc">Win and place parts of an each-way bet → total return and profit.</div>
+      </a>
+      <a class="hub-card" href="/dutching/">
+        <span class="icon">🔀</span>
+        <div class="title">Dutching</div>
+        <div class="desc">Split a stake across selections so the return is the same whichever wins.</div>
+      </a>
+      <a class="hub-card" href="/accumulator/">
+        <span class="icon">🎰</span>
+        <div class="title">Accumulator</div>
+        <div class="desc">Multiple legs → combined odds, return and profit, with acca bonus.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/lay.js"></script>
+</body>
+</html>

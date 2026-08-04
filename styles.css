@@ -365,7 +365,8 @@ hr.divider {
   gap: 8px;
 }
 
-.dyn-row input {
+.dyn-row input,
+.dyn-row select {
   background: var(--input-bg);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -376,7 +377,8 @@ hr.divider {
   min-width: 0;
 }
 
-.dyn-row input:focus {
+.dyn-row input:focus,
+.dyn-row select:focus {
   outline: none;
   border-color: var(--accent);
 }
