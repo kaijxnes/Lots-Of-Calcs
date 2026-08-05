@@ -12,7 +12,7 @@ const BODIES = [
   { name: "Venus", g: 0.907, fact: "Near enough Earth's twin for size and gravity. The 460°C surface and pressure like a kilometre under the sea are the problem." },
   { name: "Saturn", g: 0.916, fact: "The surprise. Ninety-five times Earth's mass, yet so spread out that you would weigh slightly less at its cloud tops than you do at home." },
   { name: "Earth", g: 1, fact: "Home, and the baseline every other figure on this page is measured against.", home: true },
-  { name: "Neptune", g: 1.12, fact: "The other ice giant, and the windiest place we know of — gusts have been clocked past 1,300 mph." },
+  { name: "Neptune", g: 1.12, fact: "The other ice giant, and the windiest place we know of — winds reach around 1,200 mph, roughly five times the strongest ever recorded on Earth." },
   { name: "Jupiter", g: 2.36, fact: "A gas giant with no surface at all. At the cloud tops you would weigh well over twice what you do here, and the pressure would finish you long before the weight did." },
   { name: "The Sun", g: 27.9, fact: "Not somewhere you could stand, land or survive — the visible surface is 5,500°C plasma. The number is here purely for scale." }
 ];
