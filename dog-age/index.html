@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Age Calculator</title>
+<meta name="description" content="Convert your dog's age into human years using the size-adjusted lifestage method, with the epigenetic formula alongside it — and why multiplying by seven is wrong.">
+<link rel="canonical" href="https://lotsofcalcs.com/dog-age/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Dog Age Calculator">
+<meta property="og:description" content="Convert your dog's age into human years using the size-adjusted lifestage method, with the epigenetic formula alongside it — and why multiplying by seven is wrong.">
+<meta property="og:url" content="https://lotsofcalcs.com/dog-age/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dog Age Calculator">
+<meta name="twitter:description" content="Convert your dog's age into human years using the size-adjusted lifestage method, with the epigenetic formula alongside it — and why multiplying by seven is wrong.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Dog Age Calculator",
+    "description": "Convert your dog's age into human years using the size-adjusted lifestage method, with the epigenetic formula alongside it — and why multiplying by seven is wrong.",
+    "url": "https://lotsofcalcs.com/dog-age/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Dog Age Calculator",
+        "item": "https://lotsofcalcs.com/dog-age/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is one dog year really seven human years?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It is a myth with no scientific basis. Dogs mature very fast early on — a one-year-old is roughly equivalent to a fifteen-year-old human — and then age more slowly, at a rate that depends on their size. The seven-year rule gets both parts wrong."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does size change the answer so much?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because larger dogs age faster after maturity. Every year past two adds about 4 human years for a small dog but 7 for a giant breed. Over a decade that compounds into a huge gap, which is why giant breeds are considered senior at six or seven while small dogs are not."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the epigenetic dog age formula?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It is 16 × ln(dog age) + 31, from 2020 research comparing DNA methylation patterns in dogs and humans. It tracks the underlying biology of ageing rather than lifestage milestones, and gives noticeably higher numbers for young dogs. It was derived from Labradors, so it is best read as a second opinion."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When is my dog a senior?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on size rather than a fixed age. This calculator marks a dog senior once it passes roughly 60 human-equivalent years, which for a giant breed is about eight years old but for a small dog is closer to twelve."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out my puppy's age in human years?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter a decimal — 0.5 for six months, 0.25 for three months. The first year is scaled at about 15 human years, so a six-month-old puppy comes out around 7 to 8, which fits with a young child rather than a baby."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Dog Age Calculator</h1>
+      <p class="page-subtitle">Your dog's age in human years — adjusted for size, because a Great Dane ages very differently from a Jack Russell.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Dogs do not age at a steady seven years to our one. They race through childhood in the first two years, then settle into a slower rate that depends heavily on their size. Enter your dog's age and weight class below.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="age">Dog's age (years)</label>
+          <input type="number" id="age" step="any" min="0" value="5">
+        </div>
+        <div class="field">
+          <label for="size">Size category</label>
+          <select id="size">
+            <option value="4">Small — under 9 kg</option>
+            <option value="5" selected>Medium — 9 to 22 kg</option>
+            <option value="6">Large — 22 to 45 kg</option>
+            <option value="7">Giant — over 45 kg</option>
+          </select>
+        </div>
+      </div>
+      <p class="tool-hint">Decimals are fine for puppies — enter 0.5 for a six-month-old.</p>
+
+      <p class="tool-hint" id="pet-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" id="pet-results" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="human-age">39</div>
+          <div class="label">Human years (lifestage method)</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Lifestage</span><span class="r-value" id="lifestage">Adult</span></div>
+          <div class="result-row"><span class="r-label">Epigenetic formula</span><span class="r-value" id="epigenetic">57</span></div>
+          <div class="result-row"><span class="r-label">The old "×7" rule would say</span><span class="r-value" id="rule-seven">35</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Ages around yours</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th>Dog age</th>
+                <th>Human years</th>
+                <th>Lifestage</th>
+              </tr>
+            </thead>
+            <tbody id="pet-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">The main figure uses the size-adjusted lifestage method, which reflects how dogs actually mature:</p>
+      <p class="about-text">
+        <strong>First year</strong> ≈ 15 human years<br>
+        <strong>Second year</strong> adds ≈ 9 more, so a two-year-old is about 24<br>
+        <strong>Every year after that</strong> adds 4 for a small dog, 5 for a medium, 6 for a large and 7 for a giant
+      </p>
+      <p class="about-text">So a five-year-old medium dog is 24 + (5 &minus; 2) &times; 5 = <strong>39 human years</strong>. The same dog as a giant breed would be 24 + 3 &times; 7 = 45. That size difference is the whole reason a single multiplier cannot work.</p>
+      <p class="about-text">The second figure comes from a different approach entirely. A 2020 study at the University of California San Diego compared DNA methylation &mdash; chemical marks that accumulate on DNA as an animal ages &mdash; in Labrador Retrievers and humans, and fitted the relationship <strong>16 &times; ln(dog age) + 31</strong>. It matches the biology of ageing rather than lifestage milestones, which is why it diverges sharply for young dogs: it puts a one-year-old at 31 rather than 15. The research was based on a single breed, so treat it as an interesting second opinion rather than a replacement.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">A seven-year-old Labrador weighs about 30 kg, so it is a large dog. First year 15, second year takes it to 24, then five more years at 6 each: 24 + 30 = <strong>54 human years</strong>, which puts it firmly in the mature bracket and is why vets start suggesting senior check-ups around now. The epigenetic formula gives 16 &times; ln(7) + 31 = 62. The old &times;7 rule would have said 49, understating things considerably.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Why "multiply by seven" is wrong</p>
+      <p class="about-text">The seven-year rule appears to have been invented as marketing shorthand, not science, and it fails at both ends of a dog's life. A one-year-old dog is not a seven-year-old child: it is sexually mature, has a full set of adult teeth and is close to its final size. Fifteen is far nearer the mark.</p>
+      <p class="about-text">It then fails again in the other direction, because it ignores size completely. Large and giant breeds age markedly faster than small ones &mdash; a Great Dane is doing well to reach eight, while a small terrier can comfortably pass fifteen. Multiplying both by seven says a five-year-old of either is 35, when in reality one is approaching old age and the other is barely middle-aged. Any conversion that does not ask how big your dog is cannot be right.</p>
+      <p class="about-text">These are population averages. Individual dogs vary a lot with breed, genetics, weight and general health, so treat the number as a rough guide and let your vet make the actual calls.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Is one dog year really seven human years?</p>
+      <p class="about-text">No. It is a myth with no scientific basis. Dogs mature very fast early on — a one-year-old is roughly equivalent to a fifteen-year-old human — and then age more slowly, at a rate that depends on their size. The seven-year rule gets both parts wrong.</p>
+      <p class="faq-q">Why does size change the answer so much?</p>
+      <p class="about-text">Because larger dogs age faster after maturity. Every year past two adds about 4 human years for a small dog but 7 for a giant breed. Over a decade that compounds into a huge gap, which is why giant breeds are considered senior at six or seven while small dogs are not.</p>
+      <p class="faq-q">What is the epigenetic dog age formula?</p>
+      <p class="about-text">It is 16 × ln(dog age) + 31, from 2020 research comparing DNA methylation patterns in dogs and humans. It tracks the underlying biology of ageing rather than lifestage milestones, and gives noticeably higher numbers for young dogs. It was derived from Labradors, so it is best read as a second opinion.</p>
+      <p class="faq-q">When is my dog a senior?</p>
+      <p class="about-text">It depends on size rather than a fixed age. This calculator marks a dog senior once it passes roughly 60 human-equivalent years, which for a giant breed is about eight years old but for a small dog is closer to twelve.</p>
+      <p class="faq-q">How do I work out my puppy's age in human years?</p>
+      <p class="about-text">Enter a decimal — 0.5 for six months, 0.25 for three months. The first year is scaled at about 15 human years, so a six-month-old puppy comes out around 7 to 8, which fits with a young child rather than a baby.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/cat-age/">
+        <span class="icon">🐈</span>
+        <div class="title">Cat Age</div>
+        <div class="desc">Your cat's age in human years, with lifestage and the ×7 myth debunked.</div>
+      </a>
+      <a class="hub-card" href="/birthday/">
+        <span class="icon">🎂</span>
+        <div class="title">Birthday Calculator</div>
+        <div class="desc">Your exact age, day of the week born, and days until your next birthday.</div>
+      </a>
+      <a class="hub-card" href="/date-diff/">
+        <span class="icon">📅</span>
+        <div class="title">Date Difference</div>
+        <div class="desc">Years, months and days between two dates.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/dog-age.js"></script>
+</body>
+</html>

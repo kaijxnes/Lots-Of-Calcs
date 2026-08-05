@@ -464,6 +464,47 @@ hr.divider {
   overflow-x: auto;
 }
 
+/* ---------- Roman numerals ---------- */
+
+.rn-hero {
+  letter-spacing: 0.05em;
+  word-break: break-word;
+}
+
+.rn-breakdown {
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  word-break: break-word;
+}
+
+.rn-note {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+/* ---------- Number to words ---------- */
+
+.ntw-hero {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.ntw-vs {
+  color: var(--text-muted);
+}
+
+/* Long digit strings have no natural break points, so let them wrap anywhere */
+.ntw-figures {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
 /* ---------- Home hub ---------- */
 
 .hub {
