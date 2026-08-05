@@ -408,6 +408,21 @@ hr.divider {
   letter-spacing: 0.03em;
 }
 
+/* Match the column widths used inside .dyn-row so each heading sits directly
+   above the field it labels, rather than bunching up on the left */
+.dyn-table-head .grow {
+  flex: 1 1 auto;
+}
+
+.dyn-table-head .fixed-sm {
+  flex: 0 0 90px;
+}
+
+.dyn-table-head .row-index {
+  flex: 0 0 22px;
+  text-align: center;
+}
+
 /* ---------- Simple output table (growth results) ---------- */
 
 .out-table {
