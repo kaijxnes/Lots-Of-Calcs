@@ -20,13 +20,29 @@ const CAR_MODELS = [
 /* Indicative UK charging prices in p/kWh, set August 2026.
    These are NOT live — energy tariffs and network rates change often.
    Each preset also carries a typical charger speed and charging efficiency.
-   Users can overwrite the price; the edit is stored against the active preset. */
+   Anything the user types is stored back against the active preset, so
+   switching between presets doesn't lose their figures.
+   "custom" starts empty and adopts whatever is on screen the first time it's
+   picked, so it never overwrites the user's own numbers. */
 const PRICE_PRESETS = {
   offpeak: { price: 7.5, kw: 7.4, efficiency: 90 },
   standard: { price: 25, kw: 7.4, efficiency: 90 },
   workplace: { price: 15, kw: 7.4, efficiency: 90 },
   fast: { price: 45, kw: 22, efficiency: 90 },
   rapid: { price: 79, kw: 50, efficiency: 95 },
+  custom: { price: null, kw: null, efficiency: null },
+};
+
+/* Minor unit (one hundredth of the main unit) per currency */
+const MINOR_UNITS = {
+  "£": "p",
+  "$": "¢",
+  "€": "c",
+  "¥": "sen",
+  "₹": "p",
+  "A$": "¢",
+  "C$": "¢",
+  "Fr": "c",
 };
 
 const LITRES_PER_GALLON = 4.54609; /* imperial gallon */
@@ -38,11 +54,19 @@ function num(id) {
   return isFinite(v) ? v : NaN;
 }
 
+function currencySymbol() {
+  return document.getElementById("currency").value;
+}
+
+function minorUnit() {
+  return MINOR_UNITS[currencySymbol()] || "c";
+}
+
 function fmtMoney(value) {
   if (!isFinite(value)) value = 0;
   const rounded = Math.round(Math.abs(value) * 100) / 100;
   const sign = value < 0 && rounded !== 0 ? "-" : "";
-  return sign + "£" + rounded.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return sign + currencySymbol() + rounded.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }
 
 function fmtKwh(value) {
@@ -52,7 +76,7 @@ function fmtKwh(value) {
 
 function fmtPence(value) {
   if (!isFinite(value)) return "—";
-  return value.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + "p";
+  return value.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + minorUnit();
 }
 
 function fmtMiles(value) {
@@ -105,7 +129,16 @@ document.querySelectorAll("#price-presets .tab").forEach((tab) => {
   tab.addEventListener("click", () => {
     activePreset = tab.dataset.preset;
     document.querySelectorAll("#price-presets .tab").forEach((t) => t.classList.toggle("active", t === tab));
+
     const preset = PRICE_PRESETS[activePreset];
+    /* Custom adopts whatever is on screen the first time it's chosen, rather
+       than clobbering the user's own figures with a default */
+    if (preset.price === null) {
+      preset.price = parseFloat(document.getElementById("price").value);
+      preset.kw = parseFloat(document.getElementById("charger-kw").value);
+      preset.efficiency = parseFloat(document.getElementById("efficiency").value);
+    }
+
     document.getElementById("price").value = preset.price;
     document.getElementById("charger-kw").value = preset.kw;
     document.getElementById("efficiency").value = preset.efficiency;
@@ -113,10 +146,19 @@ document.querySelectorAll("#price-presets .tab").forEach((tab) => {
   });
 });
 
-/* Editing the price rewrites the stored preset, so switching away and back keeps it */
-document.getElementById("price").addEventListener("input", () => {
-  const v = parseFloat(document.getElementById("price").value);
-  if (isFinite(v)) PRICE_PRESETS[activePreset].price = v;
+/* Typing over a value rewrites the stored preset, so switching away and back keeps it */
+[["price", "price"], ["charger-kw", "kw"], ["efficiency", "efficiency"]].forEach(([id, key]) => {
+  document.getElementById(id).addEventListener("input", () => {
+    const v = parseFloat(document.getElementById(id).value);
+    if (isFinite(v)) PRICE_PRESETS[activePreset][key] = v;
+  });
+});
+
+/* Currency only relabels — it never converts, so just refresh the labels and re-render */
+document.getElementById("currency").addEventListener("input", () => {
+  document.querySelectorAll(".minor-label").forEach((el) => { el.textContent = minorUnit(); });
+  document.querySelectorAll(".currency-label").forEach((el) => { el.textContent = currencySymbol(); });
+  calculate();
 });
 
 /* ---------- Calculation ---------- */
@@ -260,4 +302,6 @@ function calcPetrol(evPencePerMile) {
 
 document.querySelectorAll("input, select").forEach((el) => el.addEventListener("input", calculate));
 
+document.querySelectorAll(".minor-label").forEach((el) => { el.textContent = minorUnit(); });
+document.querySelectorAll(".currency-label").forEach((el) => { el.textContent = currencySymbol(); });
 calculate();

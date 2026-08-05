@@ -113,7 +113,15 @@
         "name": "Are the preset prices kept up to date?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Editing the price stores it against whichever preset is selected."
+          "text": "No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Anything you type is stored against whichever preset is selected, and the Custom preset leaves your own figures alone entirely."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this outside the UK?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Pick your currency and enter the price in that currency's minor unit per kWh. The selector only changes the symbol — it does not convert between currencies, so keep every figure in the one you have chosen. One caveat: fuel economy is miles per imperial gallon (4.54609 litres), so a US mpg figure needs converting first."
         }
       }
     ]
@@ -156,6 +164,20 @@
         </div>
       </div>
 
+      <div class="field" style="max-width:280px; margin-top:20px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
       <p class="tool-section-title" style="margin-top:20px;">Electricity price</p>
       <div class="tabs" role="tablist" id="price-presets">
         <button class="tab active" data-preset="offpeak" type="button">Home off-peak</button>
@@ -163,15 +185,16 @@
         <button class="tab" data-preset="workplace" type="button">Workplace</button>
         <button class="tab" data-preset="fast" type="button">Public fast</button>
         <button class="tab" data-preset="rapid" type="button">Public rapid</button>
+        <button class="tab" data-preset="custom" type="button">Custom</button>
       </div>
-      <p class="tool-hint" style="margin-top:10px;">Preset prices are indicative UK defaults set in <strong>August 2026</strong> — electricity prices move, so check yours and type over the value. Editing the price saves it against the selected preset. Presets also set a typical charger speed and efficiency; change those if yours differ.</p>
+      <p class="tool-hint" style="margin-top:10px;">Preset prices are indicative UK defaults set in <strong>August 2026</strong> — electricity prices move, so check yours and type over the value. Anything you type is saved against the selected preset, so you can switch between them without losing your figures. Pick <strong>Custom</strong> to keep your own price, charger speed and efficiency untouched by the presets.</p>
       <div class="field-row">
         <div class="field">
-          <label for="price">Price (p/kWh)</label>
+          <label for="price">Price (<span class="minor-label">p</span>/kWh)</label>
           <input type="number" id="price" step="any" min="0" value="7.5">
         </div>
         <div class="field">
-          <label for="fee">Connection / session fee (£)</label>
+          <label for="fee">Connection / session fee (<span class="currency-label">£</span>)</label>
           <input type="number" id="fee" step="any" min="0" value="0">
         </div>
       </div>
@@ -224,7 +247,7 @@
       <p class="tool-section-title">Compared with petrol or diesel</p>
       <div class="field-row">
         <div class="field">
-          <label for="fuel-price">Fuel price (p/litre)</label>
+          <label for="fuel-price">Fuel price (<span class="minor-label">p</span>/litre)</label>
           <input type="number" id="fuel-price" step="any" min="0" value="145">
         </div>
         <div class="field">
@@ -279,7 +302,11 @@
 
       <p class="tool-section-title" style="margin-top:22px;">Why the tariff matters more than the car</p>
       <p class="about-text">The spread between the cheapest and dearest way to buy the same kWh is enormous. A dedicated off-peak EV tariff overnight can be under 10p per kWh; a public rapid can be eight to ten times that. Nothing else in the calculation moves the answer as much — not the car, not its efficiency, not the weather. If you can charge at home overnight, that single fact does more for your running costs than any other choice you make.</p>
-      <p class="about-text">Electricity prices change often. The preset prices here are indicative defaults set in August 2026 and are not a live feed, so check your own tariff and your charging network's current rates and type them in.</p>
+      <p class="about-text">Electricity prices change often. The preset prices here are indicative defaults set in August 2026 and are not a live feed, so check your own tariff and your charging network's current rates and type them in. The <strong>Custom</strong> preset exists for exactly that: it never overwrites your price, charger speed or efficiency.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">A note on currency and units</p>
+      <p class="about-text">The currency selector changes the symbol shown against your results only &mdash; it does not convert between currencies, so enter every figure in the currency you have picked. Prices for electricity and fuel are entered in the minor unit, which is pence per kWh and pence per litre in the UK, and the equivalent hundredth of the main unit elsewhere.</p>
+      <p class="about-text">Fuel economy stays in miles per gallon using the <strong>imperial</strong> gallon of 4.54609 litres, which is the UK convention. If you are working in US mpg, note that a US gallon is 3.785 litres, so a US mpg figure needs converting before it will give the right answer here.</p>
     </main>
 
     <main class="tool">
@@ -295,7 +322,9 @@
       <p class="faq-q">What efficiency figure should I use?</p>
       <p class="about-text">Around 90% for AC home or workplace charging and about 95% for DC rapid, which is what the presets set. Drop it a few points in cold weather or when charging at very low power, since the fixed overhead is then spread across fewer kWh.</p>
       <p class="faq-q">Are the preset prices kept up to date?</p>
-      <p class="about-text">No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Editing the price stores it against whichever preset is selected.</p>
+      <p class="about-text">No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Anything you type is stored against whichever preset is selected, and the Custom preset leaves your own figures alone entirely.</p>
+      <p class="faq-q">Can I use this outside the UK?</p>
+      <p class="about-text">Yes. Pick your currency and enter the price in that currency's minor unit per kWh. The selector only changes the symbol — it does not convert between currencies, so keep every figure in the one you have chosen. One caveat: fuel economy is miles per imperial gallon (4.54609 litres), so a US mpg figure needs converting first.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
