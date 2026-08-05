@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EV Charging Cost Calculator</title>
+<meta name="description" content="Work out what it costs to charge an electric car — energy delivered, charging losses, total cost, cost per mile, and how much you'd save against petrol over a year.">
+<link rel="canonical" href="https://lotsofcalcs.com/ev-charging-cost/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="EV Charging Cost Calculator">
+<meta property="og:description" content="Work out what it costs to charge an electric car — energy delivered, charging losses, total cost, cost per mile, and how much you'd save against petrol over a year.">
+<meta property="og:url" content="https://lotsofcalcs.com/ev-charging-cost/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EV Charging Cost Calculator">
+<meta name="twitter:description" content="Work out what it costs to charge an electric car — energy delivered, charging losses, total cost, cost per mile, and how much you'd save against petrol over a year.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "EV Charging Cost Calculator",
+    "description": "Work out what it costs to charge an electric car — energy delivered, charging losses, total cost, cost per mile, and how much you'd save against petrol over a year.",
+    "url": "https://lotsofcalcs.com/ev-charging-cost/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "EV Charging Cost Calculator",
+        "item": "https://lotsofcalcs.com/ev-charging-cost/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does it cost to fully charge an electric car in the UK?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends almost entirely on where you charge. A 60 kWh car needs about 67 kWh from the grid for a full charge at 90% efficiency. On a 7.5p off-peak home tariff that is about £5; on a public rapid at 79p per kWh it is closer to £53. Same car, same electricity, ten times the price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the electricity drawn more than the battery receives?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because charging is not perfectly efficient. Energy is lost as heat in the onboard charger, the cable and the battery, plus whatever the car spends warming or cooling the pack. Your meter bills the larger figure, so a 90% efficient charge of 36 kWh actually costs you 40 kWh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is charging at home really that much cheaper than public charging?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and the gap is the single biggest factor in EV running costs. An off-peak home tariff is typically well under a third of a public fast charger and around a tenth of a rapid. If you have off-street parking and a home charger, using it overnight is worth more than any efficiency gain from the car itself."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does rapid charging slow down after 80%?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To protect the battery. As cells fill, the car reduces the current it will accept to limit heat and degradation — this is called tapering. The practical effect is that going from 20% to 80% is often quicker than 80% to 100%, which is why rapid stops are usually planned around the 20–80% window."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What efficiency figure should I use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Around 90% for AC home or workplace charging and about 95% for DC rapid, which is what the presets set. Drop it a few points in cold weather or when charging at very low power, since the fixed overhead is then spread across fewer kWh."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the preset prices kept up to date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Anything you type is stored against whichever preset is selected, and the Custom preset leaves your own figures alone entirely."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this outside the UK?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Pick your currency and enter the price in that currency's minor unit per kWh. The selector only changes the symbol — it does not convert between currencies, so keep every figure in the one you have chosen. One caveat: fuel economy is miles per imperial gallon (4.54609 litres), so a US mpg figure needs converting first."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">EV Charging Cost Calculator</h1>
+      <p class="page-subtitle">What a charge actually costs — including the energy lost on the way into the battery.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Enter your car, the charge you want and the price you pay, and this works out what the session costs, how long it takes, and what that comes to per mile. Unlike most charging calculators it also shows <strong>charging losses</strong> — the electricity your meter records but the battery never receives.</p>
+
+      <p class="tool-section-title">Car and charge</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="model">Car model</label>
+          <select id="model">
+            <option value="custom" selected>Custom / other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="battery">Usable battery (kWh)</label>
+          <input type="number" id="battery" step="any" min="0" value="60">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="current-pct">Current charge (%)</label>
+          <input type="number" id="current-pct" step="any" min="0" max="100" value="20">
+        </div>
+        <div class="field">
+          <label for="target-pct">Target charge (%)</label>
+          <input type="number" id="target-pct" step="any" min="0" max="100" value="80">
+        </div>
+      </div>
+
+      <div class="field" style="max-width:280px; margin-top:20px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Electricity price</p>
+      <div class="tabs" role="tablist" id="price-presets">
+        <button class="tab active" data-preset="offpeak" type="button">Home off-peak</button>
+        <button class="tab" data-preset="standard" type="button">Home standard</button>
+        <button class="tab" data-preset="workplace" type="button">Workplace</button>
+        <button class="tab" data-preset="fast" type="button">Public fast</button>
+        <button class="tab" data-preset="rapid" type="button">Public rapid</button>
+        <button class="tab" data-preset="custom" type="button">Custom</button>
+      </div>
+      <p class="tool-hint" style="margin-top:10px;">Preset prices are indicative UK defaults set in <strong>August 2026</strong> — electricity prices move, so check yours and type over the value. Anything you type is saved against the selected preset, so you can switch between them without losing your figures. Pick <strong>Custom</strong> to keep your own price, charger speed and efficiency untouched by the presets.</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="price">Price (<span class="minor-label">p</span>/kWh)</label>
+          <input type="number" id="price" step="any" min="0" value="7.5">
+        </div>
+        <div class="field">
+          <label for="fee">Connection / session fee (<span class="currency-label">£</span>)</label>
+          <input type="number" id="fee" step="any" min="0" value="0">
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Charging setup</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="efficiency">Charging efficiency (%)</label>
+          <input type="number" id="efficiency" step="any" min="1" max="100" value="90">
+        </div>
+        <div class="field">
+          <label for="charger-kw">Charger power (kW)</label>
+          <input type="number" id="charger-kw" step="any" min="0" value="7.4">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="mi-per-kwh">Your car's efficiency (mi/kWh)</label>
+        <input type="number" id="mi-per-kwh" step="any" min="0" value="3.5">
+      </div>
+
+      <p class="tool-hint" id="ev-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" id="ev-results" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="total-cost">£3.00</div>
+          <div class="label">Cost for this charge</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Energy into the battery</span><span class="r-value" id="kwh-delivered">36.00 kWh</span></div>
+          <div class="result-row"><span class="r-label">Energy drawn from the grid</span><span class="r-value" id="kwh-drawn">40.00 kWh</span></div>
+          <div class="result-row highlight"><span class="r-label">Charging loss</span><span class="r-value" id="kwh-loss">4.00 kWh</span></div>
+          <div class="result-row"><span class="r-label">Cost per percentage point</span><span class="r-value" id="cost-per-pct">£0.05</span></div>
+          <div class="result-row"><span class="r-label">Charging time</span><span class="r-value" id="charge-time">4h 52m</span></div>
+          <div class="result-row"><span class="r-label">Range added</span><span class="r-value" id="range-added">126 miles</span></div>
+          <div class="result-row highlight"><span class="r-label">Cost per mile</span><span class="r-value" id="cost-per-mile">2.38p</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" id="taper-note" style="margin-top:16px;">Time is a flat estimate. On a rapid charger the car slows itself sharply above roughly 80% to protect the battery, so a 20–80% session is far quicker than the last 20% alone.</p>
+
+      <div class="result-box" style="margin-top:16px;">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Full charge (0–100%) cost</span><span class="r-value" id="full-cost">£5.00</span></div>
+          <div class="result-row"><span class="r-label">Full charge range</span><span class="r-value" id="full-range">210 miles</span></div>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Compared with petrol or diesel</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="fuel-price">Fuel price (<span class="minor-label">p</span>/litre)</label>
+          <input type="number" id="fuel-price" step="any" min="0" value="145">
+        </div>
+        <div class="field">
+          <label for="mpg">Fuel economy (mpg)</label>
+          <input type="number" id="mpg" step="any" min="0" value="45">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="annual-miles">Annual mileage</label>
+        <input type="number" id="annual-miles" step="any" min="0" value="10000">
+      </div>
+
+      <p class="tool-hint" id="petrol-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" id="petrol-results" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="annual-saving">£1,226.76</div>
+          <div class="label">Saved per year against petrol</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Petrol cost per mile</span><span class="r-value" id="petrol-per-mile">14.65p</span></div>
+          <div class="result-row"><span class="r-label">EV cost per mile</span><span class="r-value" id="ev-per-mile">2.38p</span></div>
+          <div class="result-row highlight"><span class="r-label">Saving per mile</span><span class="r-value" id="saving-per-mile">12.27p</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Fuel and energy only — it excludes tax, insurance, servicing and depreciation, which differ between the two.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Four formulas do all the work:</p>
+      <p class="about-text">
+        <strong>Energy into the battery</strong> = battery kWh &times; (target% &minus; current%) &divide; 100<br>
+        <strong>Energy drawn from the grid</strong> = energy into the battery &divide; (efficiency &divide; 100)<br>
+        <strong>Cost</strong> = energy drawn &times; price per kWh + session fee<br>
+        <strong>Charging time</strong> = energy into the battery &divide; charger kW
+      </p>
+      <p class="about-text">The second line is the one most calculators skip. You are billed for what passes through your meter, not what reaches the battery, so the grid figure is always the larger of the two and it is the one that determines the cost.</p>
+      <p class="about-text">For the petrol comparison, an imperial gallon is 4.54609 litres, so <strong>petrol cost per mile = (price in p/litre &times; 4.54609) &divide; mpg</strong>. At 145p a litre a gallon costs &pound;6.59, and at 45 mpg that is 14.65p per mile.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">A 60 kWh car charged from 20% to 80% at home on an off-peak EV rate of 7.5p per kWh, at 90% efficiency on a 7.4 kW home charger.</p>
+      <p class="about-text">The battery receives 60 &times; (80 &minus; 20) &divide; 100 = <strong>36 kWh</strong>. At 90% efficiency the meter records 36 &divide; 0.9 = <strong>40 kWh</strong>, so <strong>4 kWh is lost</strong> as heat in the charger, cabling and battery. The cost is 40 &times; 7.5p = <strong>&pound;3.00</strong>, which is 5p per percentage point. It takes 36 &divide; 7.4 = <strong>4 hours 52 minutes</strong>. At 3.5 miles per kWh those 36 kWh are worth 126 miles, so the drive costs <strong>2.38p a mile</strong>.</p>
+      <p class="about-text">The same charge on a public rapid at 79p per kWh costs <strong>&pound;29.94</strong> — ten times as much, for exactly the same miles.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Why you rarely charge 0–100%</p>
+      <p class="about-text">Almost nobody runs an EV from empty to full. Most manufacturers suggest keeping a lithium-ion battery roughly between 20% and 80% for daily use, because sitting at a very high or very low state of charge accelerates degradation. Rapid chargers also slow dramatically above about 80%, so the last fifth of a charge can take as long as the first three-fifths. That is why the calculator defaults to a 20–80% session rather than a full charge, though the full-charge figure is shown separately for reference.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">What causes charging losses</p>
+      <p class="about-text">Energy is lost converting AC from the grid into DC for the battery, as resistance in the cable, and as heat in the battery itself. Thermal management adds more: in cold weather the car may heat the pack before and during charging, which draws power that never gets stored. Slow AC charging typically runs around 85–92% efficient, while DC rapid charging bypasses the car's onboard converter and is usually a little better, around 94–96%. Charging in the cold at low power is the worst case, because a fixed overhead is spread over fewer kWh.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Why the tariff matters more than the car</p>
+      <p class="about-text">The spread between the cheapest and dearest way to buy the same kWh is enormous. A dedicated off-peak EV tariff overnight can be under 10p per kWh; a public rapid can be eight to ten times that. Nothing else in the calculation moves the answer as much — not the car, not its efficiency, not the weather. If you can charge at home overnight, that single fact does more for your running costs than any other choice you make.</p>
+      <p class="about-text">Electricity prices change often. The preset prices here are indicative defaults set in August 2026 and are not a live feed, so check your own tariff and your charging network's current rates and type them in. The <strong>Custom</strong> preset exists for exactly that: it never overwrites your price, charger speed or efficiency.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">A note on currency and units</p>
+      <p class="about-text">The currency selector changes the symbol shown against your results only &mdash; it does not convert between currencies, so enter every figure in the currency you have picked. Prices for electricity and fuel are entered in the minor unit, which is pence per kWh and pence per litre in the UK, and the equivalent hundredth of the main unit elsewhere.</p>
+      <p class="about-text">Fuel economy stays in miles per gallon using the <strong>imperial</strong> gallon of 4.54609 litres, which is the UK convention. If you are working in US mpg, note that a US gallon is 3.785 litres, so a US mpg figure needs converting before it will give the right answer here.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How much does it cost to fully charge an electric car in the UK?</p>
+      <p class="about-text">It depends almost entirely on where you charge. A 60 kWh car needs about 67 kWh from the grid for a full charge at 90% efficiency. On a 7.5p off-peak home tariff that is about £5; on a public rapid at 79p per kWh it is closer to £53. Same car, same electricity, ten times the price.</p>
+      <p class="faq-q">Why is the electricity drawn more than the battery receives?</p>
+      <p class="about-text">Because charging is not perfectly efficient. Energy is lost as heat in the onboard charger, the cable and the battery, plus whatever the car spends warming or cooling the pack. Your meter bills the larger figure, so a 90% efficient charge of 36 kWh actually costs you 40 kWh.</p>
+      <p class="faq-q">Is charging at home really that much cheaper than public charging?</p>
+      <p class="about-text">Yes, and the gap is the single biggest factor in EV running costs. An off-peak home tariff is typically well under a third of a public fast charger and around a tenth of a rapid. If you have off-street parking and a home charger, using it overnight is worth more than any efficiency gain from the car itself.</p>
+      <p class="faq-q">Why does rapid charging slow down after 80%?</p>
+      <p class="about-text">To protect the battery. As cells fill, the car reduces the current it will accept to limit heat and degradation — this is called tapering. The practical effect is that going from 20% to 80% is often quicker than 80% to 100%, which is why rapid stops are usually planned around the 20–80% window.</p>
+      <p class="faq-q">What efficiency figure should I use?</p>
+      <p class="about-text">Around 90% for AC home or workplace charging and about 95% for DC rapid, which is what the presets set. Drop it a few points in cold weather or when charging at very low power, since the fixed overhead is then spread across fewer kWh.</p>
+      <p class="faq-q">Are the preset prices kept up to date?</p>
+      <p class="about-text">No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Anything you type is stored against whichever preset is selected, and the Custom preset leaves your own figures alone entirely.</p>
+      <p class="faq-q">Can I use this outside the UK?</p>
+      <p class="about-text">Yes. Pick your currency and enter the price in that currency's minor unit per kWh. The selector only changes the symbol — it does not convert between currencies, so keep every figure in the one you have chosen. One caveat: fuel economy is miles per imperial gallon (4.54609 litres), so a US mpg figure needs converting first.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" href="/running-cost/">
+        <span class="icon">💡</span>
+        <div class="title">Electricity Running Cost</div>
+        <div class="desc">Appliance wattage and hours → what it costs to run per day, month and year.</div>
+      </a>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/ev-charging-cost.js"></script>
+</body>
+</html>

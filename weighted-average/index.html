@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weighted Average Calculator</title>
+<meta name="description" content="Work out a weighted average from any number of values and weights. Paste straight from Excel or Sheets, see each row's contribution, and compare it against the plain mean.">
+<link rel="canonical" href="https://lotsofcalcs.com/weighted-average/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Weighted Average Calculator">
+<meta property="og:description" content="Work out a weighted average from any number of values and weights. Paste straight from Excel or Sheets, see each row's contribution, and compare it against the plain mean.">
+<meta property="og:url" content="https://lotsofcalcs.com/weighted-average/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Weighted Average Calculator">
+<meta name="twitter:description" content="Work out a weighted average from any number of values and weights. Paste straight from Excel or Sheets, see each row's contribution, and compare it against the plain mean.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Weighted Average Calculator",
+    "description": "Work out a weighted average from any number of values and weights. Paste straight from Excel or Sheets, see each row's contribution, and compare it against the plain mean.",
+    "url": "https://lotsofcalcs.com/weighted-average/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Weighted Average Calculator",
+        "item": "https://lotsofcalcs.com/weighted-average/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do my weights have to add up to 100?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. With normalising on, the calculator divides by the total weight for you, so 3, 1, 1 gives the same answer as 60%, 20%, 20%. The only time it matters is in percentage mode, where a total well away from 100% usually means a row is missing or mistyped — so the tool flags it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I paste data in from a spreadsheet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and it is the fastest way to use this page. Copy a two-column block of values and weights from Excel, Google Sheets or a CSV, click into any Value box and paste. Tab, comma and newline separated data all work, header rows are skipped automatically, and a third column is read as a label. Rows are created as needed."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a weighted average and a plain average?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A plain average treats every value as equally important. A weighted average lets each value carry an amount of influence you choose, which is what you want whenever the underlying quantities differ in size. The calculator shows both, plus the gap between them, so you can see how much the weighting is actually doing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use negative weights?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator allows them, because they are occasionally legitimate — a short position in a portfolio, for instance. It flags them though, since a negative weight is far more often a typo, and mixing signs can push the total weight near zero and produce a wildly unstable result."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What happens if my weights add up to zero?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You get a clear message rather than a broken result. Dividing by a zero total weight is undefined, so the calculator stops and tells you instead of showing NaN or infinity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which weighted standard deviation does this use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The reliability-weight version: the square root of Σw(value − mean)² ÷ Σw. It describes the spread of the values you entered around their weighted mean. It is not the frequency-weight form, which would assume each weight is a repeat count and apply a Bessel-style correction."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Weighted Average Calculator</h1>
+      <p class="page-subtitle">Values and weights → the weighted average, with each row's contribution shown.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">A weighted average lets some values count for more than others. Enter your values and weights below, or <strong>paste a two-column block straight from Excel, Google Sheets or a CSV</strong> into any Value box and the rows will fill themselves in.</p>
+
+      <p class="tool-section-title">Weights are</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-wmode="raw" type="button">Raw numbers</button>
+        <button class="tab" data-wmode="pct" type="button">Percentages</button>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Normalise weights to sum to 1</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-norm="on" type="button">On (weighted average)</button>
+        <button class="tab" data-norm="off" type="button">Off (weighted total)</button>
+      </div>
+      <p class="tool-hint" id="norm-hint" style="margin-top:10px;">Weights are scaled so they add up to 1, which is what almost everyone means by a weighted average.</p>
+
+      <p class="tool-section-title" style="margin-top:20px;">Values and weights</p>
+      <div class="table-scroll">
+        <div style="min-width:460px;">
+          <div class="dyn-table-head">
+            <span class="row-index">#</span>
+            <span class="grow">Label (optional)</span>
+            <span class="fixed-sm">Value</span>
+            <span class="fixed-sm">Weight</span>
+            <span style="width:34px"></span>
+          </div>
+          <div class="dyn-list" id="wa-rows"></div>
+        </div>
+      </div>
+      <button class="btn btn-ghost" id="add-row" type="button">+ Add row</button>
+
+      <p class="tool-hint" id="wa-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" id="wa-warn" style="color: var(--accent); display: none;"></p>
+
+      <div class="result-box" id="wa-results" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="weighted-avg">—</div>
+          <div class="label" id="weighted-avg-label">Weighted average</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Unweighted mean</span><span class="r-value" id="plain-mean">—</span></div>
+          <div class="result-row highlight"><span class="r-label">Difference (weighted &minus; plain)</span><span class="r-value" id="gap">—</span></div>
+          <div class="result-row"><span class="r-label">Sum of weights</span><span class="r-value" id="weight-sum">—</span></div>
+          <div class="result-row"><span class="r-label">Rows counted</span><span class="r-value" id="row-count">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Per-row breakdown</p>
+      <div class="table-scroll">
+        <div style="min-width:520px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th>Label</th>
+                <th>Value</th>
+                <th>Weight</th>
+                <th>Normalised</th>
+                <th>Contribution</th>
+              </tr>
+            </thead>
+            <tbody id="wa-out-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn btn-ghost" id="toggle-more" type="button" aria-expanded="false">Show more statistics</button>
+        <button class="btn btn-ghost" id="copy-results" type="button">Copy results</button>
+      </div>
+      <p class="tool-hint" id="copy-status" role="status" aria-live="polite" style="margin-top:10px; display:none;"></p>
+
+      <div class="result-box" id="more-stats" style="margin-top:14px; display:none;">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Weighted standard deviation</span><span class="r-value" id="w-sd">—</span></div>
+          <div class="result-row"><span class="r-label">Weighted variance</span><span class="r-value" id="w-var">—</span></div>
+          <div class="result-row"><span class="r-label">Smallest / largest value</span><span class="r-value" id="minmax">—</span></div>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">The weighted average multiplies each value by its weight, adds those products up, then divides by the total weight:</p>
+      <p class="about-text"><strong>Weighted average = &Sigma;(value &times; weight) &divide; &Sigma;(weight)</strong></p>
+      <p class="about-text">Dividing by the total weight is what normalising does, so the weights you type never have to add up to anything in particular &mdash; 3, 1, 1 gives exactly the same answer as 60%, 20%, 20%. If you switch normalising off, the tool skips that division and returns &Sigma;(value &times; weight) instead, which is a weighted total rather than an average.</p>
+      <p class="about-text">Each row's <em>contribution</em> is its normalised weight multiplied by its value. The contributions always add up to the weighted average, which makes it easy to see which rows are actually moving the number.</p>
+      <p class="about-text">The weighted standard deviation uses &radic;(&Sigma;w(value &minus; mean)&sup2; &divide; &Sigma;w), treating the weights as reliability weights rather than frequency counts.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example: a course grade</p>
+      <p class="about-text">Coursework 72% weighted 30%, exam 65% weighted 70%. The weighted average is (72 &times; 0.3) + (65 &times; 0.7) = 21.6 + 45.5 = <strong>67.1%</strong>. The plain mean of 72 and 65 is 68.5%, so ignoring the weights would flatter the result by 1.4 percentage points &mdash; the exam simply counts for more.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example: a blended portfolio return</p>
+      <p class="about-text">&pound;60,000 in equities returning 9%, &pound;30,000 in bonds returning 4%, &pound;10,000 in cash returning 1%. Weighting each return by the amount invested gives (9 &times; 0.6) + (4 &times; 0.3) + (1 &times; 0.1) = 5.4 + 1.2 + 0.1 = <strong>6.7%</strong>. Averaging the three headline returns instead gives 4.67%, which badly understates the portfolio because most of the money is in the best-performing asset.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example: blended cost per acquisition</p>
+      <p class="about-text">Search delivers 500 customers at &pound;20 CPA, social delivers 100 at &pound;45, and affiliates deliver 400 at &pound;12. Weighting by customer volume gives (500 &times; 20 + 100 &times; 45 + 400 &times; 12) &divide; 1,000 = a blended CPA of &pound;<strong>19.30</strong>. The plain average of &pound;20, &pound;45 and &pound;12 is &pound;25.67 &mdash; wildly wrong, because it lets the small, expensive social channel count as much as the two big cheap ones.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">When averaging the averages misleads you</p>
+      <p class="about-text">Use a weighted average whenever the things you are averaging represent different amounts of something &mdash; different numbers of people, pounds, hours or units. The classic mistake is taking a plain mean of figures that are themselves averages: average the conversion rates of two campaigns and you treat a campaign with 50 visitors as equal to one with 50,000. Weight by the underlying volume and you get the real combined figure.</p>
+      <p class="about-text">A plain mean is the right tool only when every item genuinely counts the same &mdash; and in that case the weighted average returns exactly the same answer anyway.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Do my weights have to add up to 100?</p>
+      <p class="about-text">No. With normalising on, the calculator divides by the total weight for you, so 3, 1, 1 gives the same answer as 60%, 20%, 20%. The only time it matters is in percentage mode, where a total well away from 100% usually means a row is missing or mistyped — so the tool flags it.</p>
+      <p class="faq-q">Can I paste data in from a spreadsheet?</p>
+      <p class="about-text">Yes, and it is the fastest way to use this page. Copy a two-column block of values and weights from Excel, Google Sheets or a CSV, click into any Value box and paste. Tab, comma and newline separated data all work, header rows are skipped automatically, and a third column is read as a label. Rows are created as needed.</p>
+      <p class="faq-q">What is the difference between a weighted average and a plain average?</p>
+      <p class="about-text">A plain average treats every value as equally important. A weighted average lets each value carry an amount of influence you choose, which is what you want whenever the underlying quantities differ in size. The calculator shows both, plus the gap between them, so you can see how much the weighting is actually doing.</p>
+      <p class="faq-q">Can I use negative weights?</p>
+      <p class="about-text">The calculator allows them, because they are occasionally legitimate — a short position in a portfolio, for instance. It flags them though, since a negative weight is far more often a typo, and mixing signs can push the total weight near zero and produce a wildly unstable result.</p>
+      <p class="faq-q">What happens if my weights add up to zero?</p>
+      <p class="about-text">You get a clear message rather than a broken result. Dividing by a zero total weight is undefined, so the calculator stops and tells you instead of showing NaN or infinity.</p>
+      <p class="faq-q">Which weighted standard deviation does this use?</p>
+      <p class="about-text">The reliability-weight version: the square root of Σw(value − mean)² ÷ Σw. It describes the spread of the values you entered around their weighted mean. It is not the frequency-weight form, which would assume each weight is a repeat count and apply a Bessel-style correction.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+      <a class="hub-card" href="/cagr/">
+        <span class="icon">🧮</span>
+        <div class="title">CAGR</div>
+        <div class="desc">Compound annual growth rate between a start and end value.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/weighted-average.js"></script>
+</body>
+</html>
