@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Number to Words Converter</title>
+<meta name="description" content="Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.">
+<link rel="canonical" href="https://lotsofcalcs.com/number-to-words/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Number to Words Converter">
+<meta property="og:description" content="Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.">
+<meta property="og:url" content="https://lotsofcalcs.com/number-to-words/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Number to Words Converter">
+<meta name="twitter:description" content="Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Number to Words Converter",
+    "description": "Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.",
+    "url": "https://lotsofcalcs.com/number-to-words/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Number to Words Converter",
+        "item": "https://lotsofcalcs.com/number-to-words/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is it \"one hundred and twenty-three\" or \"one hundred twenty-three\"?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both are correct, in different places. British English uses the \"and\" and always has; American English drops it. This converter follows the British convention throughout, which is also what you want on a UK cheque or in a formal UK document."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I write an amount in words on a cheque?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Capitalise the first letter, write the pounds out in full, add the pence, and finish with \"only\" — for example \"One thousand two hundred and thirty-four pounds and fifty pence only\". Rule a line through any leftover space so nothing can be added. If the words and the figures disagree, the written amount is normally the one the bank honours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How are decimals read out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Digit by digit after the point, which is how they are spoken: 1.25 is \"one point two five\", not \"one point twenty-five\". The exception is money, where the decimal is a number of pence rather than separate digits — that is what the cheque tab does."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the short scale, and is a billion a thousand million?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. On the short scale, used in the UK and US today, a billion is a thousand million (10⁹) and a trillion is a thousand billion (10¹²). Britain used the long scale until the 1970s, where a billion meant a million million, so older British sources can mean something different by the same word."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I turn a number into an ordinal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Change only the last word: twenty-four becomes twenty-fourth, forty becomes fortieth, three hundred becomes three hundredth. A few are irregular — one, two, three, five, eight, nine and twelve give first, second, third, fifth, eighth, ninth and twelfth. The Ordinal tab does this for you and shows the short form too."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How large a number can it handle?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Up to 36 digits, which is the end of the short-scale names at decillions. Digits are handled as text rather than as ordinary numbers, so nothing is lost to rounding no matter how long the number is."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Number to Words Converter</h1>
+      <p class="page-subtitle">Any number written out in British English — plain, ordinal or cheque wording.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Type a number and get it written out properly, with the &ldquo;and&rdquo; where British English puts it: <strong>one hundred and twenty-three</strong>, not <em>one hundred twenty-three</em>. Negatives, decimals and numbers far beyond the trillions all work.</p>
+
+      <div class="field" style="max-width:320px;">
+        <label for="number-in">Number</label>
+        <input type="text" id="number-in" value="1234.5" inputmode="decimal" autocomplete="off" spellcheck="false">
+      </div>
+      <p class="tool-hint">Commas and spaces are ignored, so 1,234.5 and 1234.5 are the same.</p>
+
+      <p class="tool-hint" id="num-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="words" role="tab" aria-selected="true">Words</button>
+        <button type="button" class="tab" data-tab="ordinal" role="tab" aria-selected="false">Ordinal</button>
+        <button type="button" class="tab" data-tab="cheque" role="tab" aria-selected="false">Cheque</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="words">
+        <div class="result-box" aria-live="polite">
+          <div class="result-hero">
+            <div class="value ntw-hero" id="out-words">one thousand two hundred and thirty-four point five</div>
+            <div class="label">In words</div>
+          </div>
+        </div>
+        <p class="tool-hint" style="margin-top:12px;">Anything after the decimal point is read digit by digit, which is how numbers are spoken aloud — 1.25 is &ldquo;one point two five&rdquo;, not &ldquo;one point twenty-five&rdquo;.</p>
+      </div>
+
+      <div class="tab-panel" data-panel="ordinal">
+        <div class="result-box" aria-live="polite">
+          <div class="result-hero">
+            <div class="value ntw-hero" id="out-ordinal">one thousand two hundred and thirty-fourth</div>
+            <div class="label">As an ordinal</div>
+          </div>
+          <hr class="divider">
+          <div class="result-grid">
+            <div class="result-row highlight"><span class="r-label">Short form</span><span class="r-value ntw-figures" id="out-ordinal-short">1,234th</span></div>
+          </div>
+        </div>
+        <p class="tool-hint" id="ordinal-note" style="margin-top:12px;"></p>
+        <p class="tool-hint">Only the last word changes: twenty-four becomes twenty-<strong>fourth</strong>, and three hundred becomes three <strong>hundredth</strong>.</p>
+      </div>
+
+      <div class="tab-panel" data-panel="cheque">
+        <div class="field" style="max-width:220px;">
+          <label for="cheque-currency">Currency</label>
+          <select id="cheque-currency">
+            <option value="GBP" selected>Pounds and pence</option>
+            <option value="USD">Dollars and cents</option>
+            <option value="EUR">Euros and cents</option>
+          </select>
+        </div>
+        <div class="result-box" aria-live="polite">
+          <div class="result-hero">
+            <div class="value ntw-hero" id="out-cheque">One thousand two hundred and thirty-four pounds and fifty pence only</div>
+            <div class="label">Cheque wording</div>
+          </div>
+        </div>
+        <p class="tool-hint" id="cheque-note" style="margin-top:12px;"></p>
+        <p class="tool-hint">Capitalised at the start, whole units then the minor units, and &ldquo;only&rdquo; at the end to close the line off.</p>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Words back to digits</p>
+      <p class="about-text">Type a number in words and get the figure back. Hyphens, commas and &ldquo;and&rdquo; are all ignored, and &ldquo;minus&rdquo; or &ldquo;negative&rdquo; at the front works as you would expect.</p>
+
+      <div class="field">
+        <label for="words-in">Number in words</label>
+        <input type="text" id="words-in" value="two thousand and twenty-six" autocomplete="off" spellcheck="false">
+      </div>
+
+      <p class="tool-hint" id="words-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value ntw-figures" id="out-grouped">2,026</div>
+          <div class="label">In figures</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Without separators</span><span class="r-value ntw-figures" id="out-digits">2026</span></div>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Numbers are split into groups of three digits from the right, and each group is named after its position on the <strong>short scale</strong> — the one used throughout the UK and US today, where each step is a thousand times the last:</p>
+      <p class="about-text"><strong>thousand</strong> 10<sup>3</sup> &nbsp;&middot;&nbsp; <strong>million</strong> 10<sup>6</sup> &nbsp;&middot;&nbsp; <strong>billion</strong> 10<sup>9</sup> &nbsp;&middot;&nbsp; <strong>trillion</strong> 10<sup>12</sup> &nbsp;&middot;&nbsp; <strong>quadrillion</strong> 10<sup>15</sup></p>
+      <p class="about-text">Each group of three is then written as <em>hundreds</em> plus the remainder, and the remainder is either a word from one to nineteen or a tens word with an optional hyphenated unit: <strong>734 → seven hundred and thirty-four</strong>.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">The "and" rule</p>
+      <p class="about-text">This is the part that separates British from American English, and it is where most converters get it wrong. British English inserts <strong>and</strong> before the final part of a number whenever that part is under a hundred:</p>
+      <p class="about-text">
+        123 → one hundred <strong>and</strong> twenty-three <span class="ntw-vs">(US: one hundred twenty-three)</span><br>
+        1,005 → one thousand <strong>and</strong> five <span class="ntw-vs">(US: one thousand five)</span><br>
+        1,000,015 → one million <strong>and</strong> fifteen
+      </p>
+      <p class="about-text">It does <em>not</em> appear when the final group has its own hundreds, because the &ldquo;and&rdquo; has already been used inside that group: <strong>1,105 → one thousand one hundred and five</strong>, with a single &ldquo;and&rdquo;, never two.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">Take <strong>1,234.5</strong>. The integer part splits into groups of three: <strong>1</strong> and <strong>234</strong>. The higher group is one, in the thousands position, giving &ldquo;one thousand&rdquo;. The final group is 234 — two hundreds with 34 left over, so &ldquo;two hundred and thirty-four&rdquo;. That group is not under a hundred, so no extra &ldquo;and&rdquo; is added between them.</p>
+      <p class="about-text">The decimal is read digit by digit, so .5 becomes &ldquo;point five&rdquo;. The result is <strong>one thousand two hundred and thirty-four point five</strong>.</p>
+      <p class="about-text">As an ordinal, only the last word changes: <strong>one thousand two hundred and thirty-fourth</strong>, or 1,234th in figures. On a cheque the decimal becomes minor units instead of spoken digits, and the whole line is capitalised and closed with &ldquo;only&rdquo;: <strong>One thousand two hundred and thirty-four pounds and fifty pence only</strong>.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Writing a cheque</p>
+      <p class="about-text">Banks care about the words, not the figures. If the two disagree, UK practice is that the written amount is the one that stands, which is exactly why it is worth getting right.</p>
+      <p class="about-text">Start with a capital letter and write the pounds in full, then the pence. Pence are usually given as a number of pence rather than a fraction, so 50p is &ldquo;fifty pence&rdquo;. Finish with the word <strong>only</strong>, and rule a line through any space left over. Both of these mean the same thing and both are accepted:</p>
+      <p class="about-text"><strong>One thousand two hundred and thirty-four pounds and fifty pence only</strong><br>
+      <strong>One thousand two hundred and thirty-four pounds and no pence only</strong> (when the amount is a round number)</p>
+      <p class="about-text">The point of &ldquo;only&rdquo; and the ruled line is to stop anyone adding words after yours. For the same reason, write the amount close to the left of the line and leave no gaps.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Is it "one hundred and twenty-three" or "one hundred twenty-three"?</p>
+      <p class="about-text">Both are correct, in different places. British English uses the "and" and always has; American English drops it. This converter follows the British convention throughout, which is also what you want on a UK cheque or in a formal UK document.</p>
+      <p class="faq-q">How do I write an amount in words on a cheque?</p>
+      <p class="about-text">Capitalise the first letter, write the pounds out in full, add the pence, and finish with "only" — for example "One thousand two hundred and thirty-four pounds and fifty pence only". Rule a line through any leftover space so nothing can be added. If the words and the figures disagree, the written amount is normally the one the bank honours.</p>
+      <p class="faq-q">How are decimals read out?</p>
+      <p class="about-text">Digit by digit after the point, which is how they are spoken: 1.25 is "one point two five", not "one point twenty-five". The exception is money, where the decimal is a number of pence rather than separate digits — that is what the cheque tab does.</p>
+      <p class="faq-q">What is the short scale, and is a billion a thousand million?</p>
+      <p class="about-text">Yes. On the short scale, used in the UK and US today, a billion is a thousand million (10⁹) and a trillion is a thousand billion (10¹²). Britain used the long scale until the 1970s, where a billion meant a million million, so older British sources can mean something different by the same word.</p>
+      <p class="faq-q">How do I turn a number into an ordinal?</p>
+      <p class="about-text">Change only the last word: twenty-four becomes twenty-fourth, forty becomes fortieth, three hundred becomes three hundredth. A few are irregular — one, two, three, five, eight, nine and twelve give first, second, third, fifth, eighth, ninth and twelfth. The Ordinal tab does this for you and shows the short form too.</p>
+      <p class="faq-q">How large a number can it handle?</p>
+      <p class="about-text">Up to 36 digits, which is the end of the short-scale names at decillions. Digits are handled as text rather than as ordinary numbers, so nothing is lost to rounding no matter how long the number is.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More General calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/roman-numerals/">
+        <span class="icon">🏛️</span>
+        <div class="title">Roman Numeral Converter</div>
+        <div class="desc">Numbers to Roman numerals and back, with a breakdown and reference table.</div>
+      </a>
+      <a class="hub-card" href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/number-to-words.js"></script>
+</body>
+</html>

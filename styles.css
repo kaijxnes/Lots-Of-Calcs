@@ -486,6 +486,25 @@ hr.divider {
   font-weight: 400;
 }
 
+/* ---------- Number to words ---------- */
+
+.ntw-hero {
+  font-size: 1.3rem;
+  line-height: 1.45;
+  word-break: break-word;
+}
+
+.ntw-vs {
+  color: var(--text-muted);
+}
+
+/* Long digit strings have no natural break points, so let them wrap anywhere */
+.ntw-figures {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+
 /* ---------- Home hub ---------- */
 
 .hub {
