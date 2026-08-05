@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roman Numeral Converter</title>
+<meta name="description" content="Convert Roman numerals to numbers and numbers to Roman numerals, live as you type. Covers 1 to 3999, with a full breakdown, proper validation and a reference table.">
+<link rel="canonical" href="https://lotsofcalcs.com/roman-numerals/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Roman Numeral Converter">
+<meta property="og:description" content="Convert Roman numerals to numbers and numbers to Roman numerals, live as you type. Covers 1 to 3999, with a full breakdown, proper validation and a reference table.">
+<meta property="og:url" content="https://lotsofcalcs.com/roman-numerals/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Roman Numeral Converter">
+<meta name="twitter:description" content="Convert Roman numerals to numbers and numbers to Roman numerals, live as you type. Covers 1 to 3999, with a full breakdown, proper validation and a reference table.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Roman Numeral Converter",
+    "description": "Convert Roman numerals to numbers and numbers to Roman numerals, live as you type. Covers 1 to 3999, with a full breakdown, proper validation and a reference table.",
+    "url": "https://lotsofcalcs.com/roman-numerals/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Roman Numeral Converter",
+        "item": "https://lotsofcalcs.com/roman-numerals/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Why is 4 written IV and not IIII?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because subtractive notation is the standard form: a smaller symbol before a larger one is subtracted, so IV is 5 − 1. IIII is the older additive spelling and turns up on clock faces to this day, largely for visual balance against the VIII opposite it, but it is not the conventional written form and this converter flags it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is there a Roman numeral for zero?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The system has no symbol for zero and no concept of it as a number — it was built for counting and tallying, where nothing simply meant nothing to write down. Medieval scholars occasionally used the letter N for nulla, but that was never part of standard notation, and negative numbers and fractions have no representation either."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the largest number you can write in Roman numerals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "3,999, written MMMCMXCIX. Since M can only be repeated three times, 4,000 has no standard spelling. Larger values used a vinculum — an overbar over a numeral to multiply it by 1,000, so V with a bar meant 5,000. That notation is not part of the standard set and is not supported here."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are IIII, VV and IC all invalid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Three separate rules. I, X, C and M can be repeated at most three times, so IIII should be IV. V, L and D are never repeated at all, because two of them always add up to the next symbol — VV is simply X. And subtraction is limited to six pairs, so IC is not 99; that is XCIX. The converter names whichever rule you have broken rather than just refusing the input."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I write the current year in Roman numerals?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2026 is MMXXVI — two thousands, two tens, a five and a one. Use the current year button above to fill it in automatically, or type any year into the number box. Years are the most common real-world use, appearing on film credits, foundation stones and monarch regnal numbers."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are lowercase Roman numerals valid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, and they are conventional in some places — book prefaces are numbered i, ii, iii, and legal documents often use lowercase for sub-clauses. The values are identical. This converter uppercases whatever you type, so mcmxciv and MCMXCIV give the same answer."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Roman Numeral Converter</h1>
+      <p class="page-subtitle">Numbers to numerals and numerals to numbers, converting live as you type.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Type a number in one box or numerals in the other &mdash; whichever you touch last drives the other. The converter covers 1 to 3999, the full range of standard Roman notation, and checks numerals properly rather than just adding up whatever symbols it finds.</p>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="arabic">Number (1–3999)</label>
+          <input type="number" id="arabic" step="1" min="1" max="3999" value="1994" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="roman">Roman numerals</label>
+          <input type="text" id="roman" value="MCMXCIV" autocomplete="off" autocapitalize="characters" spellcheck="false">
+        </div>
+      </div>
+      <p class="tool-hint">Lowercase and spaces are fine — mcm xciv is read the same as MCMXCIV.</p>
+
+      <button type="button" class="btn btn-ghost" id="year-btn">Use the current year</button>
+
+      <p class="tool-hint" id="rn-error" role="alert" style="color: var(--bad); display: none; margin-top:14px;"></p>
+
+      <div class="result-box" id="rn-results" aria-live="polite" style="margin-top:16px;">
+        <div class="result-hero">
+          <div class="value rn-hero" id="hero-value">MCMXCIV</div>
+          <div class="label" id="hero-label">In Roman numerals</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Number</span><span class="r-value" id="out-number">1,994</span></div>
+          <div class="result-row"><span class="r-label">Roman numerals</span><span class="r-value" id="out-roman">MCMXCIV</span></div>
+          <div class="result-row"><span class="r-label">Symbols used</span><span class="r-value" id="out-symbols">7</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">How it breaks down</p>
+      <p class="rn-breakdown" id="breakdown-line">MCMXCIV = M + CM + XC + IV</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead>
+              <tr>
+                <th>Part</th>
+                <th>Value</th>
+                <th>Running total</th>
+              </tr>
+            </thead>
+            <tbody id="breakdown-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Roman numerals are built from seven symbols, and every number is written by taking the largest value that still fits and repeating until nothing is left:</p>
+      <p class="about-text"><strong>M</strong> 1000 &nbsp;&middot;&nbsp; <strong>D</strong> 500 &nbsp;&middot;&nbsp; <strong>C</strong> 100 &nbsp;&middot;&nbsp; <strong>L</strong> 50 &nbsp;&middot;&nbsp; <strong>X</strong> 10 &nbsp;&middot;&nbsp; <strong>V</strong> 5 &nbsp;&middot;&nbsp; <strong>I</strong> 1</p>
+      <p class="about-text">On its own that would give IIII for 4 and LXXXX for 90. Subtractive notation fixes it: a smaller symbol placed <em>before</em> a larger one is taken away from it. There are exactly six legal pairs, and no others:</p>
+      <p class="about-text"><strong>IV</strong> 4 &nbsp;&middot;&nbsp; <strong>IX</strong> 9 &nbsp;&middot;&nbsp; <strong>XL</strong> 40 &nbsp;&middot;&nbsp; <strong>XC</strong> 90 &nbsp;&middot;&nbsp; <strong>CD</strong> 400 &nbsp;&middot;&nbsp; <strong>CM</strong> 900</p>
+      <p class="about-text">Adding those six to the seven symbols gives a thirteen-entry table. Converting a number is then a single pass down it, subtracting each value as many times as it fits: <strong>1994 → 1000 (M), 900 (CM), 90 (XC), 4 (IV)</strong>. Because every awkward gap has its own entry, this always produces the correct, conventional spelling.</p>
+      <p class="about-text">Reading numerals goes the other way. Walk left to right and add each symbol's value, except where a symbol is smaller than the one after it &mdash; then subtract it instead. In MCMXCIV that is 1000 &minus; 100 + 1000 &minus; 10 + 100 &minus; 1 + 5 = 1994.</p>
+      <p class="about-text">That reading rule is too generous by itself: it would happily accept IIII, VV and IC. So the numerals you type are checked against the rules as well &mdash; I, X, C and M may repeat at most three times, V, L and D never repeat and are never subtracted, and only the six pairs above are valid subtractions. Anything else gets told exactly what is wrong with it.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">Take <strong>1994</strong>. Start at the top of the table. 1000 fits once, leaving 994, and writes <strong>M</strong>. 900 fits once, leaving 94, and writes <strong>CM</strong>. 500, 400 and 100 are all too big. 90 fits once, leaving 4, and writes <strong>XC</strong>. 50, 40, 10, 9 and 5 are too big. 4 fits exactly and writes <strong>IV</strong>.</p>
+      <p class="about-text">Reading down the parts gives <strong>M + CM + XC + IV = MCMXCIV</strong>, seven symbols. Reading it back: 1000 &minus; 100 + 1000 = 1900, &minus;10 + 100 = 1990, &minus;1 + 5 = 1994. The two directions agree, which is what the converter checks on every keystroke.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Reference tables</p>
+      <p class="about-text">The seven symbols and the six subtractive pairs:</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Numeral</th><th>Value</th><th>Numeral</th><th>Value</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>I</td><td>1</td><td>IV</td><td>4</td></tr>
+              <tr><td>V</td><td>5</td><td>IX</td><td>9</td></tr>
+              <tr><td>X</td><td>10</td><td>XL</td><td>40</td></tr>
+              <tr><td>L</td><td>50</td><td>XC</td><td>90</td></tr>
+              <tr><td>C</td><td>100</td><td>CD</td><td>400</td></tr>
+              <tr><td>D</td><td>500</td><td>CM</td><td>900</td></tr>
+              <tr><td>M</td><td>1000</td><td>—</td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="about-text" style="margin-top:16px;">Numbers and years people look up most often:</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Number</th><th>Numerals</th><th>Year</th><th>Numerals</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>4</td><td>IV</td><td>1900</td><td>MCM</td></tr>
+              <tr><td>9</td><td>IX</td><td>1969</td><td>MCMLXIX</td></tr>
+              <tr><td>12</td><td>XII</td><td>1984</td><td>MCMLXXXIV</td></tr>
+              <tr><td>14</td><td>XIV</td><td>1994</td><td>MCMXCIV</td></tr>
+              <tr><td>40</td><td>XL</td><td>2000</td><td>MM</td></tr>
+              <tr><td>49</td><td>XLIX</td><td>2012</td><td>MMXII</td></tr>
+              <tr><td>99</td><td>XCIX</td><td>2026</td><td>MMXXVI</td></tr>
+              <tr><td>500</td><td>D</td><td>3999</td><td>MMMCMXCIX</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Why is 4 written IV and not IIII?</p>
+      <p class="about-text">Because subtractive notation is the standard form: a smaller symbol before a larger one is subtracted, so IV is 5 − 1. IIII is the older additive spelling and turns up on clock faces to this day, largely for visual balance against the VIII opposite it, but it is not the conventional written form and this converter flags it.</p>
+      <p class="faq-q">Is there a Roman numeral for zero?</p>
+      <p class="about-text">No. The system has no symbol for zero and no concept of it as a number — it was built for counting and tallying, where nothing simply meant nothing to write down. Medieval scholars occasionally used the letter N for nulla, but that was never part of standard notation, and negative numbers and fractions have no representation either.</p>
+      <p class="faq-q">What is the largest number you can write in Roman numerals?</p>
+      <p class="about-text">3,999, written MMMCMXCIX. Since M can only be repeated three times, 4,000 has no standard spelling. Larger values used a vinculum — an overbar over a numeral to multiply it by 1,000, so V with a bar meant 5,000. That notation is not part of the standard set and is not supported here.</p>
+      <p class="faq-q">Why are IIII, VV and IC all invalid?</p>
+      <p class="about-text">Three separate rules. I, X, C and M can be repeated at most three times, so IIII should be IV. V, L and D are never repeated at all, because two of them always add up to the next symbol — VV is simply X. And subtraction is limited to six pairs, so IC is not 99; that is XCIX. The converter names whichever rule you have broken rather than just refusing the input.</p>
+      <p class="faq-q">How do I write the current year in Roman numerals?</p>
+      <p class="about-text">2026 is MMXXVI — two thousands, two tens, a five and a one. Use the current year button above to fill it in automatically, or type any year into the number box. Years are the most common real-world use, appearing on film credits, foundation stones and monarch regnal numbers.</p>
+      <p class="faq-q">Are lowercase Roman numerals valid?</p>
+      <p class="about-text">Yes, and they are conventional in some places — book prefaces are numbered i, ii, iii, and legal documents often use lowercase for sub-clauses. The values are identical. This converter uppercases whatever you type, so mcmxciv and MCMXCIV give the same answer.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More General calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
+      </a>
+      <a class="hub-card" href="/scientific/">
+        <span class="icon">🧑‍🔬</span>
+        <div class="title">Scientific Calculator</div>
+        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/roman-numerals.js"></script>
+</body>
+</html>

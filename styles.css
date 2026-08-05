@@ -464,6 +464,28 @@ hr.divider {
   overflow-x: auto;
 }
 
+/* ---------- Roman numerals ---------- */
+
+.rn-hero {
+  letter-spacing: 0.05em;
+  word-break: break-word;
+}
+
+.rn-breakdown {
+  color: var(--text-main);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  margin: 0 0 12px;
+  word-break: break-word;
+}
+
+.rn-note {
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
 /* ---------- Home hub ---------- */
 
 .hub {
