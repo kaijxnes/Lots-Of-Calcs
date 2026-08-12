@@ -26,19 +26,19 @@
   </url>
   <url>
     <loc>https://lotsofcalcs.com/margin-markup/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotsofcalcs.com/growth/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotsofcalcs.com/vat/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -200,7 +200,7 @@
   </url>
   <url>
     <loc>https://lotsofcalcs.com/weighted-average/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -237,6 +237,12 @@
   <url>
     <loc>https://lotsofcalcs.com/weight-on-other-planets/</loc>
     <lastmod>2026-08-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/sales-tax/</loc>
+    <lastmod>2026-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

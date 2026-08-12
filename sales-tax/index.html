@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Tax &amp; VAT Calculator</title>
+<meta name="description" content="Add tax to a price or strip it back out, at any rate you like — with ready-made VAT, GST and sales tax presets for the UK, Europe, the US, Canada and beyond.">
+<link rel="canonical" href="https://lotsofcalcs.com/sales-tax/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Sales Tax &amp; VAT Calculator">
+<meta property="og:description" content="Add tax to a price or strip it back out, at any rate you like — with ready-made VAT, GST and sales tax presets for the UK, Europe, the US, Canada and beyond.">
+<meta property="og:url" content="https://lotsofcalcs.com/sales-tax/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sales Tax &amp; VAT Calculator">
+<meta name="twitter:description" content="Add tax to a price or strip it back out, at any rate you like — with ready-made VAT, GST and sales tax presets for the UK, Europe, the US, Canada and beyond.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sales Tax & VAT Calculator",
+    "description": "Add tax to a price or strip it back out, at any rate you like — with ready-made VAT, GST and sales tax presets for the UK, Europe, the US, Canada and beyond.",
+    "url": "https://lotsofcalcs.com/sales-tax/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sales Tax & VAT Calculator",
+        "item": "https://lotsofcalcs.com/sales-tax/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I remove VAT from a price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide by 1 plus the rate as a decimal — for 20% VAT, divide the gross price by 1.2. Do not subtract 20%, which gives a different and wrong answer: £300 minus 20% is £240, but the correct figure before VAT is £250. Quicker still at 20%, divide the total by 6 to get the VAT itself."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the VAT fraction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The proportion of a VAT-inclusive price that is VAT, worked out as rate ÷ (100 + rate). At the UK standard rate of 20% that is 20/120, which simplifies to 1/6. At the 5% reduced rate it is 5/105, or 1/21. It is a handy shortcut for pulling the tax straight out of a gross figure without dividing first."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is US sales tax not a single national rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the United States has no federal sales tax. Each state sets its own, and local jurisdictions add theirs on top, so the rate depends on the exact address of the sale rather than the state alone. Five states — Alaska, Delaware, Montana, New Hampshire and Oregon — charge no state sales tax at all, though some Alaskan towns levy their own."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is VAT the same as GST?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In substance, mostly yes. Both are charged at each stage of the supply chain with businesses reclaiming what they paid on their inputs, so the end consumer carries the cost. The name varies by country — VAT in the UK and EU, GST in Australia, New Zealand, Singapore, India and Canada, and consumption tax in Japan. US sales tax is the genuine odd one out, being charged only once at the final sale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are these rates kept up to date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They were checked in August 2026, and the notable recent changes are reflected — India's move to 5%, 18% and 40% slabs in 2025, Nova Scotia's cut to 14%, Finland at 25.5% and Switzerland at 8.1%. Rates still change with budgets, and which one applies depends on precisely what you are selling, so treat these as a starting point rather than tax advice."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between zero-rated and exempt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Zero-rated sales are taxable, just at 0%, so the business can still reclaim the VAT on its own costs. Exempt sales are outside the system, and VAT on related costs generally cannot be reclaimed. Most food, children's clothes and books are zero-rated in the UK; insurance, postage and most financial services are exempt. The distinction changes nothing for the customer but a great deal for the seller."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Sales Tax &amp; VAT Calculator</h1>
+      <p class="page-subtitle">Add tax to a price or take it back off, at any rate — with presets for wherever you are.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Two jobs, one page. <strong>Add tax</strong> takes a price before tax and tells you what to charge. <strong>Remove tax</strong> takes a price with tax already in it and works back to what it was before &mdash; which is not the same as knocking the percentage off, and is where most people go wrong.</p>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="add" role="tab" aria-selected="true">Add tax</button>
+        <button type="button" class="tab" data-tab="remove" role="tab" aria-selected="false">Remove tax</button>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="amount" id="amount-label">Price before tax</label>
+          <input type="text" id="amount" value="250" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="NZ$">NZ$ New Zealand Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+            <option value="R">R South African Rand</option>
+            <option value="S$">S$ Singapore Dollar</option>
+            <option value="kr">kr Nordic Krona / Krone</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="preset">Location preset</label>
+          <select id="preset">
+            <option value="">Custom rate</option>
+            <optgroup label="United Kingdom &amp; Ireland">
+              <option value="20" selected>UK — VAT standard (20%)</option>
+              <option value="5" data-note="The UK reduced rate covers domestic energy, children's car seats and some home-energy-saving work.">UK — VAT reduced (5%)</option>
+              <option value="0" data-note="Zero-rated is not the same as exempt: zero-rated sales still count as taxable, so input VAT can be reclaimed.">UK — VAT zero-rated (0%)</option>
+              <option value="23">Ireland — VAT standard (23%)</option>
+              <option value="13.5">Ireland — VAT reduced (13.5%)</option>
+              <option value="9">Ireland — VAT second reduced (9%)</option>
+            </optgroup>
+            <optgroup label="Europe">
+              <option value="20">Austria — VAT (20%)</option>
+              <option value="21">Belgium — VAT (21%)</option>
+              <option value="25">Denmark — VAT (25%)</option>
+              <option value="25.5">Finland — VAT (25.5%)</option>
+              <option value="20">France — TVA standard (20%)</option>
+              <option value="10">France — TVA reduced (10%)</option>
+              <option value="5.5">France — TVA reduced (5.5%)</option>
+              <option value="19">Germany — MwSt standard (19%)</option>
+              <option value="7">Germany — MwSt reduced (7%)</option>
+              <option value="24">Greece — VAT (24%)</option>
+              <option value="22">Italy — IVA (22%)</option>
+              <option value="21">Netherlands — BTW (21%)</option>
+              <option value="25">Norway — MVA (25%)</option>
+              <option value="23">Poland — VAT (23%)</option>
+              <option value="23">Portugal — IVA (23%)</option>
+              <option value="21">Spain — IVA (21%)</option>
+              <option value="25">Sweden — Moms (25%)</option>
+              <option value="8.1">Switzerland — MWST (8.1%)</option>
+            </optgroup>
+            <optgroup label="United States — state base rate">
+              <option value="7.25" data-note="US figures are the state base rate only. Cities, counties and special districts add their own tax on top, so the rate you actually pay is usually higher — Chicago is 10.25% against an Illinois base of 6.25%.">California (7.25%)</option>
+              <option value="7" data-note="State base rate only — local tax is added on top.">Tennessee (7%)</option>
+              <option value="6.625" data-note="State base rate only — local tax is added on top.">New Jersey (6.625%)</option>
+              <option value="6.5" data-note="State base rate only — local tax is added on top. Seattle is around 10.35%.">Washington (6.5%)</option>
+              <option value="6.25" data-note="State base rate only — local tax is added on top. Chicago is 10.25%.">Illinois (6.25%)</option>
+              <option value="6.25" data-note="State base rate only — local tax is added on top.">Massachusetts (6.25%)</option>
+              <option value="6.25" data-note="State base rate only — local tax is added on top.">Texas (6.25%)</option>
+              <option value="6" data-note="State base rate only — local tax is added on top.">Florida (6%)</option>
+              <option value="6" data-note="State base rate only — local tax is added on top.">Michigan (6%)</option>
+              <option value="6" data-note="State base rate only — local tax is added on top.">Pennsylvania (6%)</option>
+              <option value="5.75" data-note="State base rate only — local tax is added on top.">Ohio (5.75%)</option>
+              <option value="5.6" data-note="State base rate only — local tax is added on top.">Arizona (5.6%)</option>
+              <option value="4.75" data-note="State base rate only — local tax is added on top.">North Carolina (4.75%)</option>
+              <option value="4" data-note="State base rate only — local tax is added on top. New York City comes to 8.875%.">New York (4%)</option>
+              <option value="4" data-note="State base rate only — local tax is added on top.">Georgia (4%)</option>
+              <option value="2.9" data-note="State base rate only — Colorado has some of the highest local add-ons in the country.">Colorado (2.9%)</option>
+              <option value="0" data-note="Alaska, Delaware, Montana, New Hampshire and Oregon have no state sales tax. Some Alaskan localities still charge their own.">No state sales tax (0%)</option>
+            </optgroup>
+            <optgroup label="Canada">
+              <option value="5" data-note="GST only — Alberta, Northwest Territories, Nunavut and Yukon charge no provincial sales tax.">Alberta &amp; territories — GST (5%)</option>
+              <option value="12" data-note="5% GST plus 7% provincial sales tax.">British Columbia — GST + PST (12%)</option>
+              <option value="12" data-note="5% GST plus 7% provincial sales tax.">Manitoba — GST + PST (12%)</option>
+              <option value="11" data-note="5% GST plus 6% provincial sales tax.">Saskatchewan — GST + PST (11%)</option>
+              <option value="13">Ontario — HST (13%)</option>
+              <option value="14" data-note="Nova Scotia cut its HST from 15% to 14% in April 2025.">Nova Scotia — HST (14%)</option>
+              <option value="15">New Brunswick, Newfoundland &amp; PEI — HST (15%)</option>
+              <option value="14.975" data-note="5% GST plus 9.975% Quebec sales tax, applied to the same base.">Quebec — GST + QST (14.975%)</option>
+            </optgroup>
+            <optgroup label="Rest of the world">
+              <option value="10">Australia — GST (10%)</option>
+              <option value="13">China — VAT standard (13%)</option>
+              <option value="18" data-note="India's 2025 reform cut the slabs to 5% and 18%, with 40% kept for luxury and sin goods. The old 12% and 28% bands are gone.">India — GST standard (18%)</option>
+              <option value="5" data-note="The merit rate, covering most essentials since the 2025 reform.">India — GST merit rate (5%)</option>
+              <option value="40" data-note="Applied to luxury and sin goods since the 2025 reform.">India — GST luxury rate (40%)</option>
+              <option value="10">Japan — consumption tax (10%)</option>
+              <option value="8" data-note="Japan's reduced rate covers food and non-alcoholic drink bought to take away.">Japan — reduced rate (8%)</option>
+              <option value="16">Mexico — IVA (16%)</option>
+              <option value="15">New Zealand — GST (15%)</option>
+              <option value="9">Singapore — GST (9%)</option>
+              <option value="15">South Africa — VAT (15%)</option>
+              <option value="5">United Arab Emirates — VAT (5%)</option>
+            </optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <label for="rate">Tax rate (%)</label>
+          <input type="number" id="rate" value="20" step="any" min="0" max="100" inputmode="decimal">
+        </div>
+      </div>
+      <p class="tool-hint">Pick a preset or type your own rate — typing switches the preset to Custom.</p>
+      <p class="tool-hint" id="preset-note" style="display:none;"></p>
+
+      <p class="tool-hint" id="tax-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">£300.00</div>
+          <div class="label" id="hero-label">Total including tax</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Price before tax</span><span class="r-value" id="out-net">£250.00</span></div>
+          <div class="result-row highlight"><span class="r-label" id="tax-label">Tax at 20%</span><span class="r-value" id="out-tax">£50.00</span></div>
+          <div class="result-row"><span class="r-label">Total including tax</span><span class="r-value" id="out-gross">£300.00</span></div>
+          <div class="result-row" id="fraction-row" style="display:none;"><span class="r-label">Tax as a fraction of the total</span><span class="r-value" id="out-fraction">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-hint" style="margin-top:14px;">Rates were checked in August 2026. They do change, and reduced rates depend on exactly what you are selling — check with the tax authority before you file anything.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Adding tax is the easy direction. Multiply the price before tax by the rate and add it on:</p>
+      <p class="about-text"><strong>tax = net × rate ÷ 100</strong><br><strong>gross = net + tax</strong></p>
+      <p class="about-text">Taking tax back off is where it goes wrong. The tax was worked out on the <em>smaller</em> number, so you cannot just subtract the same percentage from the bigger one. You have to divide:</p>
+      <p class="about-text"><strong>net = gross ÷ (1 + rate ÷ 100)</strong><br><strong>tax = gross − net</strong></p>
+      <p class="about-text">Take £300 including 20% VAT. Knocking 20% off gives £240, and that is wrong &mdash; £240 plus 20% is £288, not £300. Dividing by 1.2 gives the right answer, £250, and £250 plus 20% is exactly £300.</p>
+      <p class="about-text">There is a shortcut that UK accountants use constantly. The share of a tax-inclusive price that is tax comes to <strong>rate ÷ (100 + rate)</strong>, which at 20% is 20/120, or <strong>one sixth</strong>. So the VAT in any 20% gross figure is just the total divided by six: £300 ÷ 6 = £50. The calculator shows this fraction whenever you are removing tax.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">You are quoting for a job at <strong>£250</strong> before VAT, standard UK rate.</p>
+      <p class="about-text"><strong>Adding:</strong> 250 × 0.20 = £50 tax, so you invoice <strong>£300</strong>.</p>
+      <p class="about-text"><strong>Removing:</strong> a supplier sends you a receipt for £300 with no VAT breakdown. 300 ÷ 1.2 = £250 net, so the VAT was <strong>£50</strong> &mdash; or straight to it, 300 ÷ 6 = £50.</p>
+      <p class="about-text">The two directions are mirror images, which is a useful check: whatever you get one way should come back the other.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Sales tax, VAT and GST</p>
+      <p class="about-text">Different names, meaningfully different systems, and the difference matters if you are trading across borders.</p>
+      <p class="about-text"><strong>VAT</strong> (used across the UK, EU and much of the world) is charged at every stage of the supply chain, but businesses reclaim the VAT they paid on their own purchases. Only the end consumer really bears it. Advertised prices to consumers normally already include it.</p>
+      <p class="about-text"><strong>GST</strong> &mdash; in Australia, New Zealand, Singapore, India and Canada &mdash; works the same way as VAT. It is essentially a naming difference, though the details vary.</p>
+      <p class="about-text"><strong>US sales tax</strong> is a genuinely different animal. It is charged once, at the final retail sale, and there is no federal rate at all. States set their own, and cities, counties and transit districts stack more on top, which is why a single state can contain dozens of effective rates. American prices on the shelf are also normally quoted <em>before</em> tax, so the total at the till is higher than the label &mdash; the opposite of the UK convention.</p>
+      <p class="about-text">That last point is why the US presets here are state base rates only. To get an exact figure for a specific address you need the state rate plus every local rate that applies to it.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I remove VAT from a price?</p>
+      <p class="about-text">Divide by 1 plus the rate as a decimal — for 20% VAT, divide the gross price by 1.2. Do not subtract 20%, which gives a different and wrong answer: £300 minus 20% is £240, but the correct figure before VAT is £250. Quicker still at 20%, divide the total by 6 to get the VAT itself.</p>
+      <p class="faq-q">What is the VAT fraction?</p>
+      <p class="about-text">The proportion of a VAT-inclusive price that is VAT, worked out as rate ÷ (100 + rate). At the UK standard rate of 20% that is 20/120, which simplifies to 1/6. At the 5% reduced rate it is 5/105, or 1/21. It is a handy shortcut for pulling the tax straight out of a gross figure without dividing first.</p>
+      <p class="faq-q">Why is US sales tax not a single national rate?</p>
+      <p class="about-text">Because the United States has no federal sales tax. Each state sets its own, and local jurisdictions add theirs on top, so the rate depends on the exact address of the sale rather than the state alone. Five states — Alaska, Delaware, Montana, New Hampshire and Oregon — charge no state sales tax at all, though some Alaskan towns levy their own.</p>
+      <p class="faq-q">Is VAT the same as GST?</p>
+      <p class="about-text">In substance, mostly yes. Both are charged at each stage of the supply chain with businesses reclaiming what they paid on their inputs, so the end consumer carries the cost. The name varies by country — VAT in the UK and EU, GST in Australia, New Zealand, Singapore, India and Canada, and consumption tax in Japan. US sales tax is the genuine odd one out, being charged only once at the final sale.</p>
+      <p class="faq-q">Are these rates kept up to date?</p>
+      <p class="about-text">They were checked in August 2026, and the notable recent changes are reflected — India's move to 5%, 18% and 40% slabs in 2025, Nova Scotia's cut to 14%, Finland at 25.5% and Switzerland at 8.1%. Rates still change with budgets, and which one applies depends on precisely what you are selling, so treat these as a starting point rather than tax advice.</p>
+      <p class="faq-q">What is the difference between zero-rated and exempt?</p>
+      <p class="about-text">Zero-rated sales are taxable, just at 0%, so the business can still reclaim the VAT on its own costs. Exempt sales are outside the system, and VAT on related costs generally cannot be reclaimed. Most food, children's clothes and books are zero-rated in the UK; insurance, postage and most financial services are exempt. The distinction changes nothing for the customer but a great deal for the seller.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/vat/">
+        <span class="icon">🧾</span>
+        <div class="title">Tax / VAT</div>
+        <div class="desc">Add or remove VAT, plus progressive income tax bands.</div>
+      </a>
+      <a class="hub-card" href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+      <a class="hub-card" href="/growth/">
+        <span class="icon">📈</span>
+        <div class="title">YoY / MoM Growth</div>
+        <div class="desc">Feed in a monthly series, get month-on-month and year-on-year change.</div>
+      </a>
+      <a class="hub-card" href="/weighted-average/">
+        <span class="icon">⚖️</span>
+        <div class="title">Weighted Average</div>
+        <div class="desc">Values with weights → weighted mean, with a paste-in option.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p>Website by Kai Jones</p>
+    </footer>
+  </div>
+  <script src="/sales-tax.js"></script>
+</body>
+</html>
