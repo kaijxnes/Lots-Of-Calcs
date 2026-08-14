@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Cost Calculator</title>
+<meta name="description" content="Work out what an LLM API really costs — input and output tokens, prompt caching and batch discounts, priced side by side across Claude, GPT and Gemini.">
+<link rel="canonical" href="https://lotsofcalcs.com/ai-cost/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="AI Cost Calculator">
+<meta property="og:description" content="Work out what an LLM API really costs — input and output tokens, prompt caching and batch discounts, priced side by side across Claude, GPT and Gemini.">
+<meta property="og:url" content="https://lotsofcalcs.com/ai-cost/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Cost Calculator">
+<meta name="twitter:description" content="Work out what an LLM API really costs — input and output tokens, prompt caching and batch discounts, priced side by side across Claude, GPT and Gemini.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "AI Cost Calculator",
+    "description": "Work out what an LLM API really costs — input and output tokens, prompt caching and batch discounts, priced side by side across Claude, GPT and Gemini.",
+    "url": "https://lotsofcalcs.com/ai-cost/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "AI Cost Calculator",
+        "item": "https://lotsofcalcs.com/ai-cost/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a token?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The unit a model reads and writes in. A token is roughly three-quarters of an English word, or about four characters — common words are usually a single token, while rarer ones, names and code get split into several. Providers bill per million tokens, counting both what you send and what comes back. It matters that a token is not a word: a 750 word prompt is about 1,000 tokens, so estimating in words will understate your bill by about a third."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why are output tokens more expensive than input tokens?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because they are generated one at a time. The model reads your whole prompt in a single parallel pass, but it has to produce each output token in sequence, each one requiring another pass through the model. Output typically costs four to six times input across every provider. In practice that means the length of the answer drives the bill far more than the length of the question — capping the maximum output is usually the fastest saving available."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much does prompt caching actually save?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Cache reads cost about a tenth of a normal input token, so the saving is roughly 90% of whatever share of your prompt is cacheable. On a workload with a 1,200 token fixed system prompt and a 300 token variable part, caching cuts the total bill by around 27% — the saving is capped by the fact that output tokens are untouched by it. The catch is that writing to the cache costs more than a normal token, 1.25× to 2× depending on how long you want it to live, so it only pays from the second or third use of the same prefix onwards."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use tiktoken to estimate Claude token counts?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — it will undercount by roughly 15 to 20%. tiktoken implements OpenAI's tokenisers, and Claude uses a different one, so the numbers are not interchangeable. Anthropic publishes a token counting endpoint that returns the exact figure for a given request, and Google does the same for Gemini. If the number is going into a budget rather than a rough estimate, use the provider's own counter for the provider's own model."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the prices in this calculator up to date?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "They were checked on 14 August 2026 and are the standard first-party list prices for each provider. Model pricing moves frequently — there were several cuts across the industry in the first half of 2026 alone — and two entries in the list are introductory rates with published end dates. Always confirm against the provider's own pricing page before committing to a figure. Every price field on this page is editable, so you can put current numbers in without waiting for this page to catch up."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is my real bill higher than this calculator says?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually one of four things. Thinking or reasoning tokens are billed as output but never appear in the reply, so the visible answer understates what you were charged. Retries cost full price, and a request that fails validation and gets resent has been paid for twice. Long-context tiers charge a higher rate above a token threshold on several models. And real traffic is spikier than an average — the mean request is rarely the one that costs the most. Budget with a margin on top of the figure here."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">AI Cost Calculator</h1>
+      <p class="page-subtitle">What an LLM API actually costs — per request, per month and per model.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Token pricing looks cheap until you multiply it by your traffic. Put in the size of a typical request and how often you make it, and this works out the real bill &mdash; then prices the same workload across every model in the list so you can see what switching would save.</p>
+
+      <div class="field" style="max-width:420px;">
+        <label for="model">Model</label>
+        <select id="model">
+          <optgroup label="Anthropic">
+            <option value="opus-5" selected>Claude Opus 5</option>
+            <option value="opus-4-8">Claude Opus 4.8</option>
+            <option value="sonnet-5">Claude Sonnet 5</option>
+            <option value="sonnet-4-6">Claude Sonnet 4.6</option>
+            <option value="haiku-4-5">Claude Haiku 4.5</option>
+            <option value="fable-5">Claude Fable 5</option>
+          </optgroup>
+          <optgroup label="OpenAI">
+            <option value="gpt-5-6-sol">GPT-5.6 Sol</option>
+            <option value="gpt-5-6-terra">GPT-5.6 Terra</option>
+            <option value="gpt-5-6-luna">GPT-5.6 Luna</option>
+            <option value="gpt-5-5">GPT-5.5</option>
+            <option value="gpt-5-4">GPT-5.4</option>
+          </optgroup>
+          <optgroup label="Google">
+            <option value="gemini-3-1-pro">Gemini 3.1 Pro</option>
+            <option value="gemini-3-6-flash">Gemini 3.6 Flash</option>
+            <option value="gemini-3-1-flash-lite">Gemini 3.1 Flash-Lite</option>
+          </optgroup>
+          <optgroup label="Other">
+            <option value="custom">Custom prices</option>
+          </optgroup>
+        </select>
+      </div>
+      <p class="tool-hint" id="model-note" style="display:none;"></p>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="price-in">Input $ per 1M tokens</label>
+          <input type="text" id="price-in" value="5" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="price-out">Output $ per 1M tokens</label>
+          <input type="text" id="price-out" value="25" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="price-cache">Cached input $ per 1M</label>
+          <input type="text" id="price-cache" value="0.5" inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+      <p class="tool-hint">List prices checked 14 August 2026 and editable &mdash; providers change them without much notice, so check the provider's own pricing page before you rely on a figure. Editing any price switches the model to &ldquo;Custom&rdquo;.</p>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="in-tokens">Input tokens per request</label>
+          <input type="text" id="in-tokens" value="1500" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="out-tokens">Output tokens per request</label>
+          <input type="text" id="out-tokens" value="500" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="cache-pct">Input served from cache (%)</label>
+          <input type="text" id="cache-pct" value="0" inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="requests">Requests</label>
+          <input type="text" id="requests" value="1000" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="period">Per</label>
+          <select id="period">
+            <option value="day" selected>Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="tier">Pricing tier</label>
+          <select id="tier">
+            <option value="standard" selected>Standard</option>
+            <option value="batch">Batch API (50% off)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="currency">Show results in</label>
+          <select id="currency">
+            <option value="USD" selected>$ US Dollar</option>
+            <option value="GBP">£ Pound</option>
+            <option value="EUR">€ Euro</option>
+          </select>
+        </div>
+        <div class="field" id="fx-field" style="display:none;">
+          <label for="fx-rate">Dollars to your currency</label>
+          <input type="text" id="fx-rate" value="0.79" inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+      <p class="tool-hint">All three providers bill in US dollars. Converting is optional, and the rate is yours to set &mdash; nothing here fetches a live rate.</p>
+
+      <p class="tool-hint" id="ai-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">$608.33</div>
+          <div class="label">Cost per month</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Per request</span><span class="r-value" id="out-per-request">—</span></div>
+          <div class="result-row"><span class="r-label">Per 1,000 requests</span><span class="r-value" id="out-per-1k">—</span></div>
+          <div class="result-row"><span class="r-label">Per day</span><span class="r-value" id="out-day">—</span></div>
+          <div class="result-row highlight"><span class="r-label">Per month</span><span class="r-value" id="out-month">—</span></div>
+          <div class="result-row"><span class="r-label">Per year</span><span class="r-value" id="out-year">—</span></div>
+          <div class="result-row"><span class="r-label">Input tokens, per month</span><span class="r-value" id="out-input-cost">—</span></div>
+          <div class="result-row"><span class="r-label">Output tokens, per month</span><span class="r-value" id="out-output-cost">—</span></div>
+          <div class="result-row" id="cache-row" style="display:none;"><span class="r-label">Saved by caching, per month</span><span class="r-value" id="out-cache-saving">—</span></div>
+          <div class="result-row" id="tier-row" style="display:none;"><span class="r-label">Saved by batching, per month</span><span class="r-value" id="out-tier-saving">—</span></div>
+          <div class="result-row"><span class="r-label">Tokens per month</span><span class="r-value" id="out-tokens-month">—</span></div>
+          <div class="result-row"><span class="r-label">Blended cost per 1M tokens</span><span class="r-value" id="out-blended">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="verdict" style="margin-top:12px; display:none;"></p>
+
+      <p class="tool-section-title" style="margin-top:22px;">The same workload on every model</p>
+      <div class="table-scroll">
+        <div style="min-width:520px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Model</th><th>In $/1M</th><th>Out $/1M</th><th>Per month</th><th>vs yours</th></tr>
+            </thead>
+            <tbody id="compare-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:10px;">Every row uses your token counts, request volume, cached share and pricing tier &mdash; only the price per token changes. Cheaper is not automatically better: a weaker model that needs two attempts, or a longer prompt to get the same answer, can cost more than the one above it.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Words to tokens</p>
+      <p class="about-text">If you know roughly how long your prompt is but not how many tokens that is, start here.</p>
+      <div class="field-row">
+        <div class="field">
+          <label for="words">Words</label>
+          <input type="text" id="words" value="750" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label>Roughly</label>
+          <p class="about-text" style="margin:0;"><strong id="out-word-tokens">—</strong><br><span class="tool-hint" style="margin:0;" id="out-word-chars">—</span></p>
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:4px;">
+        <button type="button" class="btn btn-ghost" id="use-as-input">Use as input tokens</button>
+        <button type="button" class="btn btn-ghost" id="use-as-output">Use as output tokens</button>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">About 1.33 tokens per word, or four characters per token, for ordinary English prose. Treat it as a sighting shot. Code, JSON and tables run far higher &mdash; often closer to two tokens a word &mdash; and languages that do not use the Latin alphabet higher again. Every model tokenises differently, so if the number matters, count it properly: Anthropic, OpenAI and Google all publish a token-counting endpoint or library for their own models. Do not use OpenAI's <strong>tiktoken</strong> to estimate Claude usage &mdash; it undercounts by roughly 15&ndash;20%, which is enough to blow a budget.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Every provider on this page charges the same way: so much per million tokens going in, more per million coming out. So one request costs</p>
+      <p class="about-text"><strong>cost = (input tokens × input price + output tokens × output price) ÷ 1,000,000</strong></p>
+      <p class="about-text">Prompt caching adds a third rate. Tokens the provider already has cached are charged at roughly a tenth of the normal input price, so the input side splits in two:</p>
+      <p class="about-text"><strong>input cost = (fresh tokens × input price + cached tokens × cached price) ÷ 1,000,000</strong></p>
+      <p class="about-text">Everything after that is multiplication. The monthly figure is the per-request cost times your request volume, with a day taken as 1&frasl;365 of a year and a month as 1&frasl;12, so the day, month and year lines always agree with each other. Choosing the Batch API halves the lot.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">A support-triage tool on <strong>Claude Opus 5</strong>: a <strong>1,500 token</strong> prompt, a <strong>500 token</strong> reply, <strong>1,000 requests a day</strong>.</p>
+      <p class="about-text">Input is 1,500 × $5 ÷ 1,000,000 = <strong>$0.0075</strong>. Output is 500 × $25 ÷ 1,000,000 = <strong>$0.0125</strong>. That is <strong>$0.02 a request</strong> &mdash; $20 a day, or <strong>$608.33 a month</strong>. Note that <strong>62%</strong> of it is the reply, even though the prompt is three times longer.</p>
+      <p class="about-text">Now suppose 1,200 of those input tokens are a fixed system prompt you can cache. The cached portion drops to $0.50 per million, so a request costs (300 × $5 + 1,200 × $0.50 + 500 × $25) ÷ 1,000,000 = <strong>$0.0146</strong>, and the month falls to <strong>$444.08</strong>. That is <strong>$164.25 a month</strong> saved for a change that touches one field in your request.</p>
+      <p class="about-text">Send the same work through the Batch API overnight instead of live, and it halves again to <strong>$222.04</strong>.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Why output costs more than input</p>
+      <p class="about-text">Input tokens are processed in parallel &mdash; the model reads the whole prompt in one pass. Output tokens have to be generated one at a time, each one needing a full pass through the model, so they are far more expensive to produce. Every provider prices output at somewhere between four and six times input, which has a practical consequence: a verbose prompt is cheap, a verbose answer is not.</p>
+      <p class="about-text">If a bill is coming in higher than expected, look at the reply length first. Capping the maximum output, or asking for a structured answer rather than an explained one, usually moves the number more than anything you can do to the prompt.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Caching, batching and the two things this misses</p>
+      <p class="about-text"><strong>Prompt caching</strong> is the biggest lever for anything with a long fixed prefix &mdash; a system prompt, a document, a code base. Reads come in at about a tenth of the input price. There is a catch this calculator does not model: <em>writing</em> to the cache costs more than a normal input token, typically 1.25× for a short-lived cache and up to 2× for a long-lived one. That means caching only pays once the same prefix is reused, from the second or third request onwards. For a fixed system prompt hit thousands of times a day it is a rounding error; for a prefix used once it is a loss.</p>
+      <p class="about-text"><strong>The Batch API</strong> is half price at every provider, in exchange for results arriving within a processing window rather than immediately. Anything that is not a user waiting on a screen &mdash; overnight classification, backfills, evaluation runs &mdash; is a candidate.</p>
+      <p class="about-text">Two other things the figures here leave out. <strong>Thinking or reasoning tokens</strong> are billed as output on models that produce them, and they do not appear in the visible reply, so a 500 token answer can carry several thousand tokens of billing behind it. And <strong>retries and failures</strong> cost full price: a request that comes back malformed and gets sent again has been paid for twice. If you are budgeting rather than estimating, add a margin for both.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">About the prices</p>
+      <p class="about-text">The presets are list prices for the standard first-party API of each provider, in US dollars, checked on <strong>14 August 2026</strong>. They move often, and two in the list are introductory rates with published end dates, so treat them as a starting point rather than a quote &mdash; the price fields are editable for exactly that reason.</p>
+      <p class="about-text">They also do not cover every route to a model. Buying through a cloud marketplace such as Amazon Bedrock or Google Vertex AI is priced by that provider and can differ. Enterprise agreements, committed-spend discounts and free tiers are all outside this. And long-context tiers, where several models charge a higher rate above a token threshold, are not modelled here at all &mdash; if your prompts run to hundreds of thousands of tokens, check whether a second rate card applies to you.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What is a token?</p>
+      <p class="about-text">The unit a model reads and writes in. A token is roughly three-quarters of an English word, or about four characters — common words are usually a single token, while rarer ones, names and code get split into several. Providers bill per million tokens, counting both what you send and what comes back. It matters that a token is not a word: a 750 word prompt is about 1,000 tokens, so estimating in words will understate your bill by about a third.</p>
+      <p class="faq-q">Why are output tokens more expensive than input tokens?</p>
+      <p class="about-text">Because they are generated one at a time. The model reads your whole prompt in a single parallel pass, but it has to produce each output token in sequence, each one requiring another pass through the model. Output typically costs four to six times input across every provider. In practice that means the length of the answer drives the bill far more than the length of the question — capping the maximum output is usually the fastest saving available.</p>
+      <p class="faq-q">How much does prompt caching actually save?</p>
+      <p class="about-text">Cache reads cost about a tenth of a normal input token, so the saving is roughly 90% of whatever share of your prompt is cacheable. On a workload with a 1,200 token fixed system prompt and a 300 token variable part, caching cuts the total bill by around 27% — the saving is capped by the fact that output tokens are untouched by it. The catch is that writing to the cache costs more than a normal token, 1.25× to 2× depending on how long you want it to live, so it only pays from the second or third use of the same prefix onwards.</p>
+      <p class="faq-q">Can I use tiktoken to estimate Claude token counts?</p>
+      <p class="about-text">No — it will undercount by roughly 15 to 20%. tiktoken implements OpenAI's tokenisers, and Claude uses a different one, so the numbers are not interchangeable. Anthropic publishes a token counting endpoint that returns the exact figure for a given request, and Google does the same for Gemini. If the number is going into a budget rather than a rough estimate, use the provider's own counter for the provider's own model.</p>
+      <p class="faq-q">Are the prices in this calculator up to date?</p>
+      <p class="about-text">They were checked on 14 August 2026 and are the standard first-party list prices for each provider. Model pricing moves frequently — there were several cuts across the industry in the first half of 2026 alone — and two entries in the list are introductory rates with published end dates. Always confirm against the provider's own pricing page before committing to a figure. Every price field on this page is editable, so you can put current numbers in without waiting for this page to catch up.</p>
+      <p class="faq-q">Why is my real bill higher than this calculator says?</p>
+      <p class="about-text">Usually one of four things. Thinking or reasoning tokens are billed as output but never appear in the reply, so the visible answer understates what you were charged. Retries cost full price, and a request that fails validation and gets resent has been paid for twice. Long-context tiers charge a higher rate above a token threshold on several models. And real traffic is spikier than an average — the mean request is rarely the one that costs the most. Budget with a margin on top of the figure here.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+      <a class="hub-card" href="/growth/">
+        <span class="icon">📈</span>
+        <div class="title">YoY / MoM Growth</div>
+        <div class="desc">Feed in a monthly series, get month-on-month and year-on-year change.</div>
+      </a>
+      <a class="hub-card" href="/vat/">
+        <span class="icon">🧾</span>
+        <div class="title">Tax / VAT</div>
+        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
+      </a>
+      <a class="hub-card" href="/ab-test-significance/">
+        <span class="icon">🧪</span>
+        <div class="title">A/B Test Significance</div>
+        <div class="desc">Control plus any number of variants → uplift, z-score and p-value for each.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/ai-cost.js"></script>
+</body>
+</html>
