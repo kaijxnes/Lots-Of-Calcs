@@ -468,6 +468,14 @@ hr.divider {
   color: var(--bad);
 }
 
+/* The row matching whatever the user has selected, so it can be picked out of
+   a long comparison table at a glance */
+.out-table tr.current td {
+  background: rgba(255, 159, 67, 0.12);
+  color: var(--text-main);
+  font-weight: 600;
+}
+
 .table-scroll {
   overflow-x: auto;
 }
