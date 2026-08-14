@@ -513,6 +513,18 @@ hr.divider {
   text-align: right;
 }
 
+/* Field that is showing a computed result rather than taking input */
+.field-output input {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+  cursor: default;
+}
+
+.field-output label {
+  color: var(--accent);
+}
+
 /* ---------- Weight on other planets ---------- */
 
 .grav-summary {
