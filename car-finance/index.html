@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Car Finance Calculator</title>
+<meta name="description" content="Work out monthly payments, total interest and the real cost of a car on HP or PCP — including the optional final balloon payment.">
+<link rel="canonical" href="https://lotsofcalcs.com/car-finance/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Car Finance Calculator">
+<meta property="og:description" content="Work out monthly payments, total interest and the real cost of a car on HP or PCP — including the optional final balloon payment.">
+<meta property="og:url" content="https://lotsofcalcs.com/car-finance/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Car Finance Calculator">
+<meta name="twitter:description" content="Work out monthly payments, total interest and the real cost of a car on HP or PCP — including the optional final balloon payment.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Car Finance Calculator",
+    "description": "Work out monthly payments, total interest and the real cost of a car on HP or PCP — including the optional final balloon payment.",
+    "url": "https://lotsofcalcs.com/car-finance/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Car Finance Calculator",
+        "item": "https://lotsofcalcs.com/car-finance/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is a balloon payment on car finance?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A large final payment deferred to the end of a PCP agreement, set by the lender at the start as the car's Guaranteed Future Value. Because that slice is not spread across the monthly payments, the monthly figure is much lower — but interest still accrues on it throughout, so the total cost is higher. At the end you pay it to keep the car, hand the car back, or trade in against a new deal."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is HP or PCP cheaper?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "HP is almost always cheaper overall at the same APR, because you are clearing the debt faster and paying interest on a smaller balance. PCP is cheaper month to month. On a £18,000 balance over 48 months at 7.9%, HP costs about £2,942 in interest against roughly £4,075 with an £8,000 balloon. The right answer depends on whether you want the car at the end or intend to change it every few years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is the monthly payment worked out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With the standard annuity formula, adjusted so the balloon is discounted back to present value and taken off the amount the monthly payments need to clear. The monthly interest rate is the twelfth root of one plus the APR, not the APR divided by twelve, because a UK APR is an effective annual rate. That distinction is worth a few pounds a month on a typical agreement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I hand the car back at the end of a PCP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Provided you are within the agreed mileage and the car is in reasonable condition, you can hand it back and owe nothing further — that is what the guarantee in Guaranteed Future Value means. Go over the mileage limit and you will be charged per excess mile, and damage beyond fair wear and tear is chargeable too."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a bigger deposit reduce the interest?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, because you borrow less. Every pound of deposit is a pound not being charged interest for the whole term. It also often unlocks a better APR, since lenders price partly on how much of the car's value they are exposed to. Try changing the deposit above and watch the total interest move."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is 0% car finance actually costing me?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Genuine 0% deals do exist, usually on specific models a manufacturer wants to shift, and this calculator handles them — enter 0 for the APR and the total payable equals the cash price. The catch is that a 0% deal often comes with a smaller discount than you would negotiate paying cash, so compare the total payable against the best cash price you can get, not against the list price."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Car Finance Calculator</h1>
+      <p class="page-subtitle">Monthly payments, total interest and what the car really costs — HP or PCP.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">The monthly payment is the number dealers lead with, and it is the least useful one. This works out the whole picture: what you pay in total, how much of that is interest, and &mdash; if there is a balloon at the end &mdash; exactly what that lower monthly figure is costing you.</p>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="hp" role="tab" aria-selected="true">Hire purchase (HP)</button>
+        <button type="button" class="tab" data-tab="pcp" role="tab" aria-selected="false">PCP (balloon payment)</button>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="price">Cash price of the car</label>
+          <input type="text" id="price" value="20000" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="deposit">Deposit</label>
+          <input type="text" id="deposit" value="2000" inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+      <p class="tool-hint">Include any part exchange and dealer contribution in the deposit.</p>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="term">Term (months)</label>
+          <input type="text" id="term" value="48" inputmode="numeric" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="apr">APR (%)</label>
+          <input type="text" id="apr" value="7.9" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ Pound</option>
+            <option value="$">$ Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="A$">A$ Aus Dollar</option>
+            <option value="C$">C$ Can Dollar</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field" id="balloon-field" style="display:none; max-width:320px;">
+        <label for="balloon">Final payment / balloon (GFV)</label>
+        <input type="text" id="balloon" value="8000" inputmode="decimal" autocomplete="off">
+      </div>
+
+      <p class="tool-hint" id="cf-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">£436.29</div>
+          <div class="label">Monthly payment</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Amount financed</span><span class="r-value" id="out-financed">£18,000.00</span></div>
+          <div class="result-row"><span class="r-label">Monthly payment</span><span class="r-value" id="out-monthly">£436.29</span></div>
+          <div class="result-row"><span class="r-label">Total of payments</span><span class="r-value" id="out-payments">—</span></div>
+          <div class="result-row" id="balloon-row" style="display:none;"><span class="r-label">Final balloon payment</span><span class="r-value" id="out-balloon">—</span></div>
+          <div class="result-row"><span class="r-label">Total amount payable</span><span class="r-value" id="out-total">—</span></div>
+          <div class="result-row highlight"><span class="r-label">Total interest</span><span class="r-value" id="out-interest">—</span></div>
+          <div class="result-row" id="compare-row" style="display:none;"><span class="r-label">Same deal without a balloon</span><span class="r-value" id="out-compare">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="compare-note" style="margin-top:12px; display:none;"></p>
+
+      <div id="schedule-wrap" style="display:none;">
+        <p class="tool-section-title" style="margin-top:20px;">Year by year</p>
+        <div class="table-scroll">
+          <div style="min-width:420px;">
+            <table class="out-table">
+              <thead>
+                <tr><th>Year</th><th>Paid</th><th>Interest</th><th>Balance left</th></tr>
+              </thead>
+              <tbody id="schedule-body"></tbody>
+            </table>
+          </div>
+        </div>
+        <p class="tool-hint" style="margin-top:10px;">On a PCP the closing balance is the balloon — the amount still outstanding if you want to keep the car. Totals are worked out from the exact payment, so a lender's final instalment may differ by a few pence where the monthly figure rounds.</p>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">The amount you actually borrow is the cash price less anything you put down:</p>
+      <p class="about-text"><strong>amount financed = cash price − deposit</strong></p>
+      <p class="about-text">On hire purchase that balance is cleared entirely by the monthly payments, using the standard annuity formula. On a PCP a chunk is parked at the end as the balloon, so the monthly payments only have to clear what is left once the balloon has been discounted back to today's money:</p>
+      <p class="about-text"><strong>monthly = (financed − balloon ÷ (1 + i)<sup>n</sup>) × i ÷ (1 − (1 + i)<sup>−n</sup>)</strong></p>
+      <p class="about-text">Here <strong>n</strong> is the number of months and <strong>i</strong> is the monthly interest rate. That second part is worth a note, because most calculators get it wrong. A UK APR is an <em>effective annual rate</em>, so the monthly equivalent is the twelfth root, not a twelfth:</p>
+      <p class="about-text"><strong>i = (1 + APR)<sup>1/12</sup> − 1</strong></p>
+      <p class="about-text">On a £18,000 balance over 48 months at 7.9% APR, dividing by twelve instead gives £296.33 a month against a correct £293.24 &mdash; about £3 a month, or £148 across the agreement.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">A <strong>£20,000</strong> car with a <strong>£2,000</strong> deposit over <strong>48 months</strong> at <strong>7.9% APR</strong>, with an <strong>£8,000</strong> balloon.</p>
+      <p class="about-text">£18,000 is financed. The monthly payment comes to <strong>£293.24</strong>. Across 48 months that is £14,075, plus the £8,000 balloon and the £2,000 deposit gives <strong>£24,075 total payable</strong> &mdash; so the car has cost <strong>£4,075 in interest</strong>.</p>
+      <p class="about-text">The same deal on hire purchase, with no balloon, is <strong>£436.29</strong> a month and <strong>£2,942</strong> of interest. So the balloon saves £143 a month and costs an extra £1,133 in interest. That is the trade, and it is the thing the monthly figure alone hides.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">HP and PCP are not the same deal</p>
+      <p class="about-text"><strong>Hire purchase</strong> spreads the whole price over the term. Pay the last instalment and the car is yours, with nothing else to find.</p>
+      <p class="about-text"><strong>PCP</strong> defers a large slice &mdash; the balloon, or Guaranteed Future Value &mdash; to the end. Lower monthly payments, but when you get there you choose between paying the balloon to keep the car, handing it back, or trading in against a new agreement. Take the third option each time and you are effectively renting indefinitely, never owning anything.</p>
+      <p class="about-text">Two things on PCP that the monthly figure never shows. There is usually an <strong>annual mileage limit</strong>, with excess mileage charged by the mile at the end. And the car must come back in reasonable condition, or you pay for the damage. Neither is captured by any calculator, this one included.</p>
+      <p class="about-text">If the car is worth more than the balloon at the end, that difference is equity you can put towards the next deal. If it is worth less, handing it back is the sensible move &mdash; the guarantee in Guaranteed Future Value protects you there, and it is the one genuinely good feature of a PCP.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">What this doesn't include</p>
+      <p class="about-text">Dealers add fees that rarely appear in the headline figure: arrangement or documentation fees at the start, and an option-to-purchase fee of typically £10 to £200 at the end of a PCP if you keep the car. Add those to the deposit and balloon respectively to see the true total. The figures here also exclude insurance, road tax, servicing and any add-ons such as GAP cover or paint protection.</p>
+      <p class="about-text">Use this to compare deals and understand what you are signing. The lender's own illustration is the binding document.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What is a balloon payment on car finance?</p>
+      <p class="about-text">A large final payment deferred to the end of a PCP agreement, set by the lender at the start as the car's Guaranteed Future Value. Because that slice is not spread across the monthly payments, the monthly figure is much lower — but interest still accrues on it throughout, so the total cost is higher. At the end you pay it to keep the car, hand the car back, or trade in against a new deal.</p>
+      <p class="faq-q">Is HP or PCP cheaper?</p>
+      <p class="about-text">HP is almost always cheaper overall at the same APR, because you are clearing the debt faster and paying interest on a smaller balance. PCP is cheaper month to month. On a £18,000 balance over 48 months at 7.9%, HP costs about £2,942 in interest against roughly £4,075 with an £8,000 balloon. The right answer depends on whether you want the car at the end or intend to change it every few years.</p>
+      <p class="faq-q">How is the monthly payment worked out?</p>
+      <p class="about-text">With the standard annuity formula, adjusted so the balloon is discounted back to present value and taken off the amount the monthly payments need to clear. The monthly interest rate is the twelfth root of one plus the APR, not the APR divided by twelve, because a UK APR is an effective annual rate. That distinction is worth a few pounds a month on a typical agreement.</p>
+      <p class="faq-q">Can I hand the car back at the end of a PCP?</p>
+      <p class="about-text">Yes. Provided you are within the agreed mileage and the car is in reasonable condition, you can hand it back and owe nothing further — that is what the guarantee in Guaranteed Future Value means. Go over the mileage limit and you will be charged per excess mile, and damage beyond fair wear and tear is chargeable too.</p>
+      <p class="faq-q">Does a bigger deposit reduce the interest?</p>
+      <p class="about-text">Yes, because you borrow less. Every pound of deposit is a pound not being charged interest for the whole term. It also often unlocks a better APR, since lenders price partly on how much of the car's value they are exposed to. Try changing the deposit above and watch the total interest move.</p>
+      <p class="faq-q">What is 0% car finance actually costing me?</p>
+      <p class="about-text">Genuine 0% deals do exist, usually on specific models a manufacturer wants to shift, and this calculator handles them — enter 0 for the APR and the total payable equals the cash price. The catch is that a 0% deal often comes with a smaller discount than you would negotiate paying cash, so compare the total payable against the best cash price you can get, not against the list price.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Savings &amp; Investing calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/cashback/">
+        <span class="icon">💳</span>
+        <div class="title">Cashback</div>
+        <div class="desc">Multiple spending categories at different rates → what a card really pays.</div>
+      </a>
+      <a class="hub-card" href="/loan-repayment/">
+        <span class="icon">🏦</span>
+        <div class="title">Loan / APR Repayment</div>
+        <div class="desc">Loan amount, APR and term → monthly payment and total interest.</div>
+      </a>
+      <a class="hub-card" href="/mortgage-overpayment/">
+        <span class="icon">🏡</span>
+        <div class="title">Mortgage Overpayment</div>
+        <div class="desc">See how regular overpayments cut years and interest off a mortgage.</div>
+      </a>
+      <a class="hub-card" href="/compound-interest/">
+        <span class="icon">💰</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting balance, contributions and rate → year-by-year growth.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/car-finance.js"></script>
+</body>
+</html>
