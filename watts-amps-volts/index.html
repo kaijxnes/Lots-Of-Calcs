@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Watts, Amps &amp; Volts Calculator</title>
+<meta name="description" content="Convert watts to amps, amps to watts and volts in between — for DC, AC single phase and three phase, with power factor handled properly.">
+<link rel="canonical" href="https://lotsofcalcs.com/watts-amps-volts/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Watts, Amps &amp; Volts Calculator">
+<meta property="og:description" content="Convert watts to amps, amps to watts and volts in between — for DC, AC single phase and three phase, with power factor handled properly.">
+<meta property="og:url" content="https://lotsofcalcs.com/watts-amps-volts/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Watts, Amps &amp; Volts Calculator">
+<meta name="twitter:description" content="Convert watts to amps, amps to watts and volts in between — for DC, AC single phase and three phase, with power factor handled properly.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Watts, Amps & Volts Calculator",
+    "description": "Convert watts to amps, amps to watts and volts in between — for DC, AC single phase and three phase, with power factor handled properly.",
+    "url": "https://lotsofcalcs.com/watts-amps-volts/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Watts, Amps & Volts Calculator",
+        "item": "https://lotsofcalcs.com/watts-amps-volts/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert watts to amps?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the watts by the volts. On a UK 230 V supply, a 3,000 W kettle draws 3000 ÷ 230 = 13.04 A. On AC with a motor or similar inductive load, divide by the power factor as well: at 0.85, that same 3,000 W would draw 15.3 A rather than 13.04 A."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many watts can a 13 amp plug take?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "At 230 V, 13 A works out at 230 × 13 = 2,990 W, so just under 3 kW. That is precisely why kettles, toasters and heaters are rated at 3 kW and no higher — it is the practical ceiling for anything with a standard UK plug on it. Larger loads such as showers and cookers are wired directly to their own circuit."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is power factor and do I need to worry about it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It measures how well voltage and current stay in step on an AC supply, from 0 to 1. Purely resistive loads — heaters, kettles, ovens, most lighting — sit at 1, and you can ignore it. Motors, pumps, compressors and transformers typically run between 0.8 and 0.9, drawing noticeably more current than their wattage alone suggests. If your load has a motor in it, use the figure from the rating plate."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between kW and kVA?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Kilowatts are the real power doing useful work. Kilovolt-amperes are the apparent power the supply has to deliver, which is volts times amps before any power-factor correction. They are equal only when the power factor is 1; otherwise kVA is always the larger. Generators and UPS units are rated in kVA because the cabling and switchgear have to carry the full current regardless of how much of it does work."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is there a √3 in the three-phase formula?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the three phases are 120° apart rather than aligned, so their contributions add vectorially rather than arithmetically, and the factor that falls out is the square root of three, about 1.732. Use the line-to-line voltage with it — 400 V on a UK three-phase supply, not the 230 V you would measure from a single line to neutral."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out what an appliance costs to run?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Convert to kilowatts, multiply by the hours used, then by your unit rate in pence per kWh. A 3 kW kettle for six minutes is 0.3 kWh, which at 25p a unit is about 7.5p. The electricity running cost calculator does the whole sum including daily standing charges."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Watts, Amps &amp; Volts Calculator</h1>
+      <p class="page-subtitle">Convert between power, current and voltage — for DC, single phase and three phase.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">Pick what you want to work out, fill in the other two, and it does the rest. Most converters quietly assume a perfect power factor, which is fine for a kettle and wrong for a motor &mdash; this one asks.</p>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="dc" role="tab" aria-selected="true">DC</button>
+        <button type="button" class="tab" data-tab="ac1" role="tab" aria-selected="false">AC single phase</button>
+        <button type="button" class="tab" data-tab="ac3" role="tab" aria-selected="false">AC three phase</button>
+      </div>
+
+      <div class="field" style="max-width:260px;">
+        <label for="solve-for">Work out</label>
+        <select id="solve-for">
+          <option value="current" selected>Current (amps)</option>
+          <option value="power">Power (watts)</option>
+          <option value="voltage">Voltage (volts)</option>
+        </select>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="power">Power (W)</label>
+          <input type="text" id="power" value="3000" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="voltage">Voltage (V)</label>
+          <input type="text" id="voltage" value="230" inputmode="decimal" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="current">Current (A)</label>
+          <input type="text" id="current" value="" inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="volt-preset">Common voltages</label>
+          <select id="volt-preset">
+            <option value="">Choose a supply…</option>
+            <option value="230">230 V — UK &amp; EU mains</option>
+            <option value="120">120 V — US &amp; Canada mains</option>
+            <option value="240">240 V — US large appliance</option>
+            <option value="400">400 V — UK three phase</option>
+            <option value="208">208 V — US three phase</option>
+            <option value="12">12 V — car, caravan, leisure battery</option>
+            <option value="24">24 V — HGV, industrial control</option>
+            <option value="48">48 V — solar, telecoms, e-bike</option>
+            <option value="5">5 V — USB</option>
+          </select>
+        </div>
+        <div class="field" id="pf-field" style="display:none;">
+          <label for="pf">Power factor</label>
+          <input type="text" id="pf" value="1" inputmode="decimal" autocomplete="off">
+        </div>
+      </div>
+      <p class="tool-hint">Power factor is 1 for anything purely resistive — heaters, kettles, filament and most LED lighting. Motors, pumps and compressors typically run 0.8 to 0.9; check the nameplate.</p>
+
+      <p class="tool-hint" id="elec-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">13.04 A</div>
+          <div class="label" id="hero-label">Current</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Power</span><span class="r-value" id="out-power">3,000 W</span></div>
+          <div class="result-row"><span class="r-label">Power in kilowatts</span><span class="r-value" id="out-kw">3 kW</span></div>
+          <div class="result-row"><span class="r-label">Voltage</span><span class="r-value" id="out-voltage">230 V</span></div>
+          <div class="result-row highlight"><span class="r-label">Current</span><span class="r-value" id="out-current">13.04 A</span></div>
+          <div class="result-row" id="kva-row" style="display:none;"><span class="r-label">Apparent power</span><span class="r-value" id="out-kva">—</span></div>
+          <div class="result-row"><span class="r-label" id="impedance-label">Resistance</span><span class="r-value" id="out-impedance">17.63 Ω</span></div>
+        </div>
+      </div>
+
+      <p class="tool-hint" style="margin-top:12px;">Using <strong id="formula">I = P ÷ V</strong></p>
+      <p class="tool-hint" id="fuse-note" style="display:none; color: var(--accent);"></p>
+
+      <p class="tool-section-title" style="margin-top:20px;">What common appliances draw at <span id="table-volts">230 V</span></p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Appliance</th><th>Typical power</th><th>Current</th></tr>
+            </thead>
+            <tbody id="appliance-body"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:10px;">Typical figures for illustration — check the rating plate on your own appliance.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Three quantities, one relationship. Power is what the appliance consumes, voltage is the push behind the supply, and current is the flow it draws:</p>
+      <p class="about-text"><strong>P = V × I</strong> &nbsp;&middot;&nbsp; <strong>I = P ÷ V</strong> &nbsp;&middot;&nbsp; <strong>V = P ÷ I</strong></p>
+      <p class="about-text">Watts, volts and amps. Know any two and the third follows. Ohm's law sits alongside it, linking voltage and current through resistance &mdash; <strong>V = I × R</strong> &mdash; which is where the resistance figure in the results comes from.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Where AC complicates things</p>
+      <p class="about-text">On direct current, P = V × I is the whole story. On alternating current it is only true when voltage and current rise and fall in step with each other. With motors, transformers, compressors and fluorescent gear they drift out of step, and the appliance draws more current than the wattage alone suggests. That mismatch is the <strong>power factor</strong>:</p>
+      <p class="about-text"><strong>AC single phase:</strong> P = V × I × pf<br><strong>AC three phase:</strong> P = √3 × V × I × pf</p>
+      <p class="about-text">A power factor of 1 means perfectly in step, which is the case for anything purely resistive &mdash; heaters, kettles, immersion elements, ovens. A motor at 0.85 draws about 18% more current than its wattage implies, and the cable and fuse have to carry that extra current even though it does no useful work. Converters that skip power factor silently assume 1, and undersize the answer for exactly the loads where it matters most.</p>
+      <p class="about-text">That is also what the <strong>apparent power</strong> figure in kVA means: volts times amps with no power-factor correction. Real power in kW is the useful work; apparent power in kVA is what the supply actually has to deliver. Generators and UPS units are rated in kVA for that reason.</p>
+      <p class="about-text">The √3 in the three-phase formula comes from the 120° spacing between phases. Note that the voltage there is the <strong>line-to-line</strong> figure &mdash; 400 V on a UK three-phase supply, not the 230 V measured from one line to neutral.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <p class="about-text">A <strong>3,000 W kettle</strong> on a UK 230 V supply. A kettle is a resistive element, so the power factor is 1 and the AC case collapses back to the simple form:</p>
+      <p class="about-text">I = 3000 ÷ 230 = <strong>13.04 A</strong></p>
+      <p class="about-text">That number is not a coincidence. A UK plug top is fused at 13 A, which is why domestic kettles cluster at 3 kW and stop there &mdash; go much above it and the appliance can no longer be plugged into a standard socket. An 8.5 kW electric shower works out at roughly 37 A, which is why showers are wired to their own dedicated circuit rather than plugged in anywhere.</p>
+      <p class="about-text">Now a <strong>2.2 kW workshop motor</strong> at 230 V with a power factor of 0.85: I = 2200 ÷ (230 × 0.85) = <strong>11.3 A</strong>. Assume a power factor of 1 and you would have got 9.6 A &mdash; nearly two amps short, which is the difference between the right protective device and the wrong one.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">A word of caution</p>
+      <p class="about-text">These are the standard formulas and they are exact, but a calculation is not a design. Cable sizing, protective devices and circuit design depend on installation method, grouping, ambient temperature, cable run length, earthing arrangement and diversity &mdash; none of which a converter knows about. In the UK, most fixed electrical work is notifiable under Part P of the Building Regulations. Use these figures to understand a load; use a qualified electrician to install one.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I convert watts to amps?</p>
+      <p class="about-text">Divide the watts by the volts. On a UK 230 V supply, a 3,000 W kettle draws 3000 ÷ 230 = 13.04 A. On AC with a motor or similar inductive load, divide by the power factor as well: at 0.85, that same 3,000 W would draw 15.3 A rather than 13.04 A.</p>
+      <p class="faq-q">How many watts can a 13 amp plug take?</p>
+      <p class="about-text">At 230 V, 13 A works out at 230 × 13 = 2,990 W, so just under 3 kW. That is precisely why kettles, toasters and heaters are rated at 3 kW and no higher — it is the practical ceiling for anything with a standard UK plug on it. Larger loads such as showers and cookers are wired directly to their own circuit.</p>
+      <p class="faq-q">What is power factor and do I need to worry about it?</p>
+      <p class="about-text">It measures how well voltage and current stay in step on an AC supply, from 0 to 1. Purely resistive loads — heaters, kettles, ovens, most lighting — sit at 1, and you can ignore it. Motors, pumps, compressors and transformers typically run between 0.8 and 0.9, drawing noticeably more current than their wattage alone suggests. If your load has a motor in it, use the figure from the rating plate.</p>
+      <p class="faq-q">What is the difference between kW and kVA?</p>
+      <p class="about-text">Kilowatts are the real power doing useful work. Kilovolt-amperes are the apparent power the supply has to deliver, which is volts times amps before any power-factor correction. They are equal only when the power factor is 1; otherwise kVA is always the larger. Generators and UPS units are rated in kVA because the cabling and switchgear have to carry the full current regardless of how much of it does work.</p>
+      <p class="faq-q">Why is there a √3 in the three-phase formula?</p>
+      <p class="about-text">Because the three phases are 120° apart rather than aligned, so their contributions add vectorially rather than arithmetically, and the factor that falls out is the square root of three, about 1.732. Use the line-to-line voltage with it — 400 V on a UK three-phase supply, not the 230 V you would measure from a single line to neutral.</p>
+      <p class="faq-q">How do I work out what an appliance costs to run?</p>
+      <p class="about-text">Convert to kilowatts, multiply by the hours used, then by your unit rate in pence per kWh. A 3 kW kettle for six minutes is 0.3 kWh, which at 25p a unit is about 7.5p. The <a href="/running-cost/">electricity running cost calculator</a> does the whole sum including daily standing charges.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Home &amp; DIY calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/running-cost/">
+        <span class="icon">🔌</span>
+        <div class="title">Electricity Running Cost</div>
+        <div class="desc">Appliance wattage and usage → cost per day, month and year.</div>
+      </a>
+      <a class="hub-card" href="/btu/">
+        <span class="icon">🌡️</span>
+        <div class="title">BTU / Radiator Sizing</div>
+        <div class="desc">Room dimensions and type → the heat output you need.</div>
+      </a>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+      <a class="hub-card" href="/coverage/">
+        <span class="icon">🎨</span>
+        <div class="title">Paint &amp; Flooring Coverage</div>
+        <div class="desc">Room size → litres of paint or packs of flooring needed.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/watts-amps-volts.js"></script>
+</body>
+</html>
