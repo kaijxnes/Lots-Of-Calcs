@@ -431,6 +431,28 @@ hr.divider {
   text-align: center;
 }
 
+/* A four-field row (name + three numbers) is one column wider than the rows
+   elsewhere on the site and will not fit a narrow phone. Below 480px it folds:
+   the name takes its own line, the three numbers share the next one. */
+@media (max-width: 480px) {
+  .dyn-row-4 {
+    flex-wrap: wrap;
+  }
+
+  .dyn-row-4 .grow {
+    flex: 1 1 calc(100% - 30px);
+  }
+
+  .dyn-row-4 .fixed-sm {
+    flex: 1 1 0;
+  }
+
+  /* The column headings no longer sit above their fields once the row folds */
+  .dyn-table-head-4 {
+    display: none;
+  }
+}
+
 /* ---------- Simple output table (growth results) ---------- */
 
 .out-table {

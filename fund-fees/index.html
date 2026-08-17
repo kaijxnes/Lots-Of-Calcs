@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fund Fee Drag Calculator</title>
+<meta name="description" content="What fund and platform charges really cost over decades — including the growth those fees never earn. Handles both percentage and flat platform fees.">
+<link rel="canonical" href="https://lotsofcalcs.com/fund-fees/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Fund Fee Drag Calculator">
+<meta property="og:description" content="What fund and platform charges really cost over decades — including the growth those fees never earn. Handles both percentage and flat platform fees.">
+<meta property="og:url" content="https://lotsofcalcs.com/fund-fees/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Fund Fee Drag Calculator">
+<meta name="twitter:description" content="What fund and platform charges really cost over decades — including the growth those fees never earn. Handles both percentage and flat platform fees.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Fund Fee Drag Calculator",
+    "description": "What fund and platform charges really cost over decades — including the growth those fees never earn. Handles both percentage and flat platform fees.",
+    "url": "https://lotsofcalcs.com/fund-fees/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Fund Fee Drag Calculator",
+        "item": "https://lotsofcalcs.com/fund-fees/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much difference does a 1% fund fee actually make?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Far more than 1%. On a typical thirty-year horizon at a 7% gross return, a 1% annual charge takes roughly a quarter of the pot you would otherwise have finished with. That is because the fee is charged every year, and each year's fee also stops compounding for all the years that remain. Add up the fees you hand over and you get roughly half the damage; the rest is growth those fees never earned. Put your own figures in above — the gap is usually bigger than people expect."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between an OCF, a platform fee and transaction costs?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The OCF is the fund's own running cost, taken from inside the fund, so it never appears on your statement — the unit price is just lower. The platform fee is what your provider charges for holding the account, and you see that one. Transaction costs are what the fund pays to trade its underlying holdings, disclosed separately from the OCF and often overlooked. All three reduce what you end up with, so what matters is the total, not any single figure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a flat platform fee better than a percentage one?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends entirely on the pot. Divide the flat fee by the percentage rate to find your crossover: a £120 flat fee against a 0.25% percentage fee breaks even at £48,000, so below that the percentage is cheaper and above it the flat fee is. On a small pot a flat fee is brutal — £120 on £10,000 is 1.2% a year — and on a large one it becomes trivial. This is the main reason people move platform, and doing it at the right moment is worth real money."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I always pick the cheapest fund?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, though cost should be high on the list. What the fund actually holds matters more than its fee: a cheap tracker following an index you do not want is worse than a slightly dearer one following the right one. Check that the account types, transfer terms and drawdown options suit you too, since a cheap platform that charges heavily to leave is not cheap. Fees are the most reliable thing you can control, but they are not the only thing that matters."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does the calculator show a bigger loss than the fees I pay?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the fees themselves are only part of the cost. Every pound taken in charges is also a pound that stops earning returns for the rest of the period, and on a long horizon that forgone growth typically exceeds the fees paid. The results split the two so you can see it: the \"fees handed over\" line is what left your pot, and the \"growth never earned\" line is what those pounds would have become. Adding them gives the real cost of the charge."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this account for inflation or tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Every figure is in today's cash terms before inflation, so a pot shown in thirty years' time will buy considerably less than the same number today. There is no tax modelled either, which is roughly right inside an ISA or pension and wrong in a general investment account. The contribution can be set to rise each year, which partly offsets inflation on the paying-in side, but the final pot is still a nominal figure."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Fund Fee Drag Calculator</h1>
+      <p class="page-subtitle">What charges really cost over a long horizon — including the compounding that never happens.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">A 1% charge does not cost you 1%. It costs you 1% every year, plus everything that money would have earned for the rest of your investing life. Over thirty years that compounds into a figure most people find hard to believe, so this works it out from your own numbers &mdash; and separates what you actually hand over from the growth it never gets to make.</p>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="initial">Starting lump sum</label>
+          <input type="number" id="initial" value="10000" step="any" min="0" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label for="monthly">Monthly contribution</label>
+          <input type="number" id="monthly" value="300" step="any" min="0" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label for="years">Years invested</label>
+          <input type="number" id="years" value="30" step="any" min="0" placeholder="0">
+        </div>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="rise">Contribution rises with inflation</label>
+          <select id="rise">
+            <option value="no" selected>No — stays the same</option>
+            <option value="yes">Yes — increases yearly</option>
+          </select>
+        </div>
+        <div class="field" id="inflation-field" style="display:none;">
+          <label for="inflation">Yearly increase (%)</label>
+          <input type="number" id="inflation" value="2.5" step="any" min="0" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="gross-return">Gross annual return (%)</label>
+          <input type="number" id="gross-return" value="7" step="any" placeholder="0">
+        </div>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="ocf">Fund OCF / ongoing charge (%)</label>
+          <input type="number" id="ocf" value="0.75" step="any" min="0" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="platform-type">Platform fee type</label>
+          <select id="platform-type">
+            <option value="pct" selected>Percentage of pot</option>
+            <option value="flat">Flat annual amount</option>
+          </select>
+        </div>
+        <div class="field" id="platform-pct-field">
+          <label for="platform-pct">Platform fee (%)</label>
+          <input type="number" id="platform-pct" value="0.25" step="any" min="0" placeholder="0">
+        </div>
+        <div class="field" id="platform-flat-field" style="display:none;">
+          <label for="platform-flat">Platform fee per year</label>
+          <input type="number" id="platform-flat" value="120" step="any" min="0" placeholder="0.00">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="transaction">Transaction costs (%)</label>
+          <input type="number" id="transaction" value="0" step="any" min="0" placeholder="0">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+      <p class="tool-hint">A flat platform fee is charged in pounds no matter what the pot is worth — the option that matters most on a small portfolio, and the one most fee calculators ignore.</p>
+
+      <p class="tool-hint" id="fee-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">£0.00</div>
+          <div class="label">Total cost of charges</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Final pot, with charges</span><span class="r-value" id="out-with-fees">—</span></div>
+          <div class="result-row"><span class="r-label">Final pot, if charges were zero</span><span class="r-value" id="out-no-fees">—</span></div>
+          <div class="result-row highlight"><span class="r-label">What the charges cost you</span><span class="r-value" id="out-fee-cost">—</span></div>
+          <div class="result-row"><span class="r-label">— of which, fees handed over</span><span class="r-value" id="out-fees-paid">—</span></div>
+          <div class="result-row"><span class="r-label">— of which, growth never earned</span><span class="r-value" id="out-growth-lost">—</span></div>
+          <div class="result-row"><span class="r-label">Charges as a share of the fee-free pot</span><span class="r-value" id="out-fee-pct">—</span></div>
+          <div class="result-row"><span class="r-label">Total you paid in</span><span class="r-value" id="out-contributed">—</span></div>
+          <div class="result-row" id="cheap-row"><span class="r-label">Same, with a 0.1% index fund</span><span class="r-value" id="out-cheap">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="verdict" style="margin-top:12px; display:none;"></p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Every five years</p>
+      <div class="table-scroll">
+        <div style="min-width:520px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Year</th><th>With charges</th><th>Without</th><th>Gap</th><th>Gap %</th></tr>
+            </thead>
+            <tbody id="breakdown-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="tool-hint" style="margin-top:16px;">Assumes a constant annual return, which real markets never deliver — actual returns are volatile and the order they arrive in changes the outcome, particularly near the end. Charges are deducted monthly, contributions are made monthly and stepped up once a year where that option is on. No tax, no rebalancing costs, no trading commissions. This is an illustration of fee drag, not financial advice or a projection of what you will have.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">The reason a 1% fee costs far more than 1% is that you do not pay it once. You pay it every year, and each payment also removes that money from the pot for every year that follows &mdash; so it stops earning too. On a portfolio returning 7% gross, a 1% charge does not reduce your final pot by 1%, or even by the 30% you might get by adding up thirty years of charges. It reduces it by roughly a quarter of everything you would have had, because you lose the fees <em>and</em> three decades of compounding on them. The split shown above makes this concrete: the fees actually handed over are usually the smaller half of the damage.</p>
+      <p class="about-text">The drag also accelerates. A percentage fee is charged on the pot, and the pot is at its largest at the end, so the cash amount you pay in the final year dwarfs what you paid in the first. Someone thirty years into investing is often paying more in annual charges than they contribute. That is the opposite of the intuition most people have, which is that fees matter most when you are starting out and have little money &mdash; in percentage-fee terms it is exactly the other way round.</p>
+      <p class="about-text">A flat platform fee behaves in the reverse way, and this is where the choice of platform actually gets decided. A fixed &pound;120 a year is 1.2% of a &pound;10,000 pot, which is punishing, and 0.06% of a &pound;200,000 pot, which is nothing. A percentage platform fee of 0.25% is the other shape: &pound;25 on the small pot, &pound;500 on the large one. The crossover is simply where the flat fee equals the percentage &mdash; at 0.25%, a &pound;120 flat fee is worth switching to once the pot passes &pound;48,000, and the advantage widens fast after that. Work out your own crossover by dividing the flat fee by the percentage rate. This is why percentage platforms suit beginners and flat-fee platforms suit large portfolios, and why moving at the wrong time costs real money.</p>
+      <p class="about-text">The three charges here are genuinely different things and it is worth not conflating them. The <strong>OCF</strong> is the fund's own annual charge, taken inside the fund from its assets, so you never see it leave your account &mdash; the unit price is simply lower than it would have been. <strong>Platform fees</strong> are what the provider charges for holding the account, billed visibly to you. <strong>Transaction costs</strong> are what the fund incurs buying and selling its underlying holdings, disclosed separately from the OCF and easy to miss; they are usually small on an index tracker and can be meaningful on an actively traded fund. All three come out of your return, which is why they are added together here.</p>
+      <p class="about-text">Fees are the only variable in this calculation you control. You cannot choose the return the market delivers, you cannot reliably pick which fund will outperform, and you cannot control inflation. You can choose to pay 0.15% instead of 1.2%, and that decision is made once and compounds for decades. It is the highest-certainty improvement available to an ordinary investor.</p>
+      <p class="about-text">That said, cheapest is not automatically right. A fund tracking the wrong index cheaply is worse than one tracking the right index at a fair price, and the difference between global and domestic exposure will swamp a few basis points of fee. A platform that is cheap but does not offer the account type you need, or that charges heavily for the transfers or drawdown you will eventually want, is a false economy. And a fee difference of a few hundredths of a percent between two sensible trackers is not worth agonising over. Use this to spot the big gaps &mdash; the 1%+ that should be 0.2% &mdash; rather than to shave the last basis point.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How much difference does a 1% fund fee actually make?</p>
+      <p class="about-text">Far more than 1%. On a typical thirty-year horizon at a 7% gross return, a 1% annual charge takes roughly a quarter of the pot you would otherwise have finished with. That is because the fee is charged every year, and each year's fee also stops compounding for all the years that remain. Add up the fees you hand over and you get roughly half the damage; the rest is growth those fees never earned. Put your own figures in above — the gap is usually bigger than people expect.</p>
+      <p class="faq-q">What is the difference between an OCF, a platform fee and transaction costs?</p>
+      <p class="about-text">The OCF is the fund's own running cost, taken from inside the fund, so it never appears on your statement — the unit price is just lower. The platform fee is what your provider charges for holding the account, and you see that one. Transaction costs are what the fund pays to trade its underlying holdings, disclosed separately from the OCF and often overlooked. All three reduce what you end up with, so what matters is the total, not any single figure.</p>
+      <p class="faq-q">Is a flat platform fee better than a percentage one?</p>
+      <p class="about-text">It depends entirely on the pot. Divide the flat fee by the percentage rate to find your crossover: a £120 flat fee against a 0.25% percentage fee breaks even at £48,000, so below that the percentage is cheaper and above it the flat fee is. On a small pot a flat fee is brutal — £120 on £10,000 is 1.2% a year — and on a large one it becomes trivial. This is the main reason people move platform, and doing it at the right moment is worth real money.</p>
+      <p class="faq-q">Should I always pick the cheapest fund?</p>
+      <p class="about-text">No, though cost should be high on the list. What the fund actually holds matters more than its fee: a cheap tracker following an index you do not want is worse than a slightly dearer one following the right one. Check that the account types, transfer terms and drawdown options suit you too, since a cheap platform that charges heavily to leave is not cheap. Fees are the most reliable thing you can control, but they are not the only thing that matters.</p>
+      <p class="faq-q">Why does the calculator show a bigger loss than the fees I pay?</p>
+      <p class="about-text">Because the fees themselves are only part of the cost. Every pound taken in charges is also a pound that stops earning returns for the rest of the period, and on a long horizon that forgone growth typically exceeds the fees paid. The results split the two so you can see it: the "fees handed over" line is what left your pot, and the "growth never earned" line is what those pounds would have become. Adding them gives the real cost of the charge.</p>
+      <p class="faq-q">Does this account for inflation or tax?</p>
+      <p class="about-text">No. Every figure is in today's cash terms before inflation, so a pot shown in thirty years' time will buy considerably less than the same number today. There is no tax modelled either, which is roughly right inside an ISA or pension and wrong in a general investment account. The contribution can be set to rise each year, which partly offsets inflation on the paying-in side, but the final pot is still a nominal figure.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Savings &amp; Investing calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/compound-interest/">
+        <span class="icon">🌱</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting amount + annual return + years → what you'd end up with.</div>
+      </a>
+      <a class="hub-card" href="/debt-snowball-vs-avalanche/">
+        <span class="icon">❄️</span>
+        <div class="title">Debt Snowball vs Avalanche</div>
+        <div class="desc">Both strategies on your debts — interest, months and payoff order.</div>
+      </a>
+      <a class="hub-card" href="/savings-goal/">
+        <span class="icon">🎯</span>
+        <div class="title">Savings Goal</div>
+        <div class="desc">Goal + current savings + time frame → the monthly contribution you need.</div>
+      </a>
+      <a class="hub-card" href="/cagr/">
+        <span class="icon">🧮</span>
+        <div class="title">CAGR</div>
+        <div class="desc">Compound annual growth rate between a start and end value.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/finance-sim.js"></script>
+  <script src="/fund-fees.js"></script>
+</body>
+</html>
