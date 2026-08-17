@@ -502,6 +502,53 @@ hr.divider {
   overflow-x: auto;
 }
 
+/* ---------- Collapsible groups ---------- */
+
+/* A Goliath has 247 constituent bets, which is unreadable as one list, so each
+   fold size collapses into its own group with a subtotal on the summary line. */
+.fold-group {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 0 14px;
+}
+
+.fold-group summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 0.9rem;
+}
+
+.fold-group summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.fold-name {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.fold-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.fold-group[open] summary {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.fold-group .out-table {
+  margin-bottom: 12px;
+}
+
 /* ---------- Worked steps ---------- */
 
 .steps {
