@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Decimal to Fraction Converter</title>
+<meta name="description" content="Convert decimals to fractions and back, exactly — including recurring decimals, so 0.1(6) gives 1/6 rather than a rounded approximation.">
+<link rel="canonical" href="https://lotsofcalcs.com/decimal-to-fraction/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Decimal to Fraction Converter">
+<meta property="og:description" content="Convert decimals to fractions and back, exactly — including recurring decimals, so 0.1(6) gives 1/6 rather than a rounded approximation.">
+<meta property="og:url" content="https://lotsofcalcs.com/decimal-to-fraction/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Decimal to Fraction Converter">
+<meta name="twitter:description" content="Convert decimals to fractions and back, exactly — including recurring decimals, so 0.1(6) gives 1/6 rather than a rounded approximation.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Decimal to Fraction Converter",
+    "description": "Convert decimals to fractions and back, exactly — including recurring decimals, so 0.1(6) gives 1/6 rather than a rounded approximation.",
+    "url": "https://lotsofcalcs.com/decimal-to-fraction/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Decimal to Fraction Converter",
+        "item": "https://lotsofcalcs.com/decimal-to-fraction/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do you convert a recurring decimal to a fraction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply by the power of ten that shifts the decimal point exactly one repeat to the right, then subtract the original number. The infinite tails are the same on both lines, so they cancel and you are left with an ordinary equation to solve. For 0.(3): 10x = 3.(3), minus x = 0.(3), gives 9x = 3 and x = 1/3. The shortcut version is to put the repeating digits over that many nines — 0.(27) is 27/99, which simplifies to 3/11."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does 1/3 recur but 1/8 does not?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because 8 is 2 × 2 × 2 and 3 is just 3. Our decimals are built on powers of ten, and ten is 2 × 5, so a denominator made only of 2s and 5s will divide exactly into some power of ten — 8 divides into 1000, giving 0.125. Three divides into no power of ten at all, so the division never terminates. Check the simplified denominator: if its prime factors are only 2s and 5s the decimal stops, and otherwise it recurs forever."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does 0.999… really equal 1?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, exactly — not nearly, not for practical purposes. Run the standard conversion: if x = 0.999… then 10x = 9.999…, and subtracting gives 9x = 9, so x = 1. Another way to see it: 1/3 is 0.333… and multiplying both sides by three gives 1 = 0.999… They are two ways of writing one number, and there is no number you could name that sits between them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between the exact fraction and the closest simple fraction?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The exact one is what your decimal literally equals: type 0.3333 and it is genuinely 3333/10000. The closest simple fraction is the neatest fraction within the denominator limit you pick, which for 0.3333 at a limit of 16 is 1/3. Use the exact one when the decimal is precise, and the simple one when it has clearly been rounded off somewhere before it reached you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I write a recurring decimal in the box?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Put the repeating digits in brackets at the end. 0.(3) means the 3 repeats forever; 0.1(6) means the 1 happens once and the 6 repeats; 1.(09) means 09 repeats as a pair, giving 1.090909… Anything outside the brackets is taken as occurring only once. Without brackets the number is read literally, as a terminating decimal."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Decimal ↔ Fraction Converter</h1>
+      <p class="page-subtitle">Convert either way, exactly — recurring decimals included, so 0.1(6) gives 1/6 and not 1667/10000.</p>
+    </header>
+
+    <main class="tool">
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="d2f" role="tab" aria-selected="true">Decimal → fraction</button>
+        <button type="button" class="tab" data-tab="f2d" role="tab" aria-selected="false">Fraction → decimal</button>
+      </div>
+
+      <div class="tab-panel active" id="panel-decimal">
+        <div class="field-row">
+          <div class="field">
+            <label for="decimal-in">Decimal</label>
+            <input type="text" id="decimal-in" value="0.1(6)" autocomplete="off" spellcheck="false">
+          </div>
+          <div class="field">
+            <label for="max-den">Simplest fraction — denominator up to</label>
+            <select id="max-den">
+              <option value="8">8 (eighths)</option>
+              <option value="16" selected>16 (sixteenths)</option>
+              <option value="64">64 (sixty-fourths)</option>
+              <option value="100">100</option>
+              <option value="1000">1000</option>
+            </select>
+          </div>
+        </div>
+        <p class="tool-hint">Put any digits that repeat forever in brackets: <strong>0.(3)</strong> is 0.333…, <strong>0.1(6)</strong> is 0.1666…, <strong>1.(09)</strong> is 1.090909… Without brackets the decimal is taken literally.</p>
+        <p class="tool-hint">Try: <button type="button" class="btn btn-ghost btn-example" data-example="0.75">0.75</button>
+          <button type="button" class="btn btn-ghost btn-example" data-example="0.(3)">0.(3)</button>
+          <button type="button" class="btn btn-ghost btn-example" data-example="0.1(6)">0.1(6)</button>
+          <button type="button" class="btn btn-ghost btn-example" data-example="0.(142857)">0.(142857)</button>
+          <button type="button" class="btn btn-ghost btn-example" data-example="0.(9)">0.(9)</button>
+          <button type="button" class="btn btn-ghost btn-example" data-example="0.3333">0.3333</button>
+        </p>
+      </div>
+
+      <div class="tab-panel" id="panel-fraction">
+        <div class="field" style="max-width:320px;">
+          <label for="fraction-in">Fraction</label>
+          <input type="text" id="fraction-in" value="3/8" autocomplete="off" spellcheck="false">
+        </div>
+        <p class="tool-hint">A fraction (<strong>3/8</strong>), a mixed number (<strong>1 1/2</strong>) or a negative (<strong>-5/8</strong>).</p>
+      </div>
+
+      <p class="tool-hint" id="dtf-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">1/6</div>
+          <div class="label" id="hero-label">Exact fraction</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid" id="grid-decimal">
+          <div class="result-row"><span class="r-label">Before simplifying</span><span class="r-value" id="out-exact">—</span></div>
+          <div class="result-row highlight"><span class="r-label">Exact fraction</span><span class="r-value" id="out-simplified">—</span></div>
+          <div class="result-row" id="mixed-row"><span class="r-label">As a mixed number</span><span class="r-value" id="out-mixed">—</span></div>
+          <div class="result-row" id="approx-row"><span class="r-label">Closest simple fraction</span><span class="r-value" id="out-approx">—</span></div>
+          <div class="result-row" id="approx-err-row"><span class="r-label">Approximation error</span><span class="r-value" id="out-approx-err">—</span></div>
+        </div>
+        <div class="result-grid" id="grid-fraction">
+          <div class="result-row highlight"><span class="r-label">Exact decimal</span><span class="r-value" id="out-decimal">—</span></div>
+          <div class="result-row"><span class="r-label">Rounded decimal</span><span class="r-value" id="out-rounded-dec">—</span></div>
+          <div class="result-row"><span class="r-label">Terminating or recurring</span><span class="r-value" id="out-kind">—</span></div>
+          <div class="result-row" id="cycle-row"><span class="r-label">Repeating block</span><span class="r-value" id="out-cycle">—</span></div>
+          <div class="result-row"><span class="r-label">Fraction in lowest terms</span><span class="r-value" id="out-frac-simplified">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">How it was worked out</p>
+      <div class="steps" id="working-decimal"></div>
+      <div class="steps" id="working-fraction"></div>
+
+      <p class="tool-hint" style="margin-top:16px;">Conversions are done in exact whole-number arithmetic, so a recurring decimal returns the fraction it genuinely equals rather than a rounded one. An unbracketed decimal is taken at face value: 0.3333 converts to 3333/10000, with 1/3 offered alongside it as the fraction you probably meant.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Common conversions</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Fraction</th><th>Decimal</th><th>Percentage</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1/2</td><td>0.5</td><td>50%</td><td>terminates</td></tr>
+              <tr><td>1/3</td><td>0.(3)</td><td>33.33%</td><td>recurs</td></tr>
+              <tr><td>2/3</td><td>0.(6)</td><td>66.67%</td><td>recurs</td></tr>
+              <tr><td>1/4</td><td>0.25</td><td>25%</td><td>terminates</td></tr>
+              <tr><td>3/4</td><td>0.75</td><td>75%</td><td>terminates</td></tr>
+              <tr><td>1/5</td><td>0.2</td><td>20%</td><td>terminates</td></tr>
+              <tr><td>2/5</td><td>0.4</td><td>40%</td><td>terminates</td></tr>
+              <tr><td>3/5</td><td>0.6</td><td>60%</td><td>terminates</td></tr>
+              <tr><td>4/5</td><td>0.8</td><td>80%</td><td>terminates</td></tr>
+              <tr><td>1/6</td><td>0.1(6)</td><td>16.67%</td><td>recurs</td></tr>
+              <tr><td>5/6</td><td>0.8(3)</td><td>83.33%</td><td>recurs</td></tr>
+              <tr><td>1/7</td><td>0.(142857)</td><td>14.29%</td><td>recurs</td></tr>
+              <tr><td>1/8</td><td>0.125</td><td>12.5%</td><td>terminates</td></tr>
+              <tr><td>3/8</td><td>0.375</td><td>37.5%</td><td>terminates</td></tr>
+              <tr><td>5/8</td><td>0.625</td><td>62.5%</td><td>terminates</td></tr>
+              <tr><td>7/8</td><td>0.875</td><td>87.5%</td><td>terminates</td></tr>
+              <tr><td>1/9</td><td>0.(1)</td><td>11.11%</td><td>recurs</td></tr>
+              <tr><td>1/10</td><td>0.1</td><td>10%</td><td>terminates</td></tr>
+              <tr><td>3/10</td><td>0.3</td><td>30%</td><td>terminates</td></tr>
+              <tr><td>7/10</td><td>0.7</td><td>70%</td><td>terminates</td></tr>
+              <tr><td>1/16</td><td>0.0625</td><td>6.25%</td><td>terminates</td></tr>
+              <tr><td>3/16</td><td>0.1875</td><td>18.75%</td><td>terminates</td></tr>
+              <tr><td>5/16</td><td>0.3125</td><td>31.25%</td><td>terminates</td></tr>
+              <tr><td>11/16</td><td>0.6875</td><td>68.75%</td><td>terminates</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:10px;">Percentages are rounded to two decimal places; the decimals are exact, with brackets marking the recurring digits.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">A fraction turns into a terminating decimal only when its simplified denominator is built entirely from 2s and 5s. The reason is that our decimal notation is built on powers of ten, and ten factorises into 2 × 5. A denominator made only of those primes divides into some power of ten exactly &mdash; eighths work because 8 divides 1000, giving 0.125 &mdash; and dividing by a power of ten is nothing more than sliding the decimal point. Bring in any other prime, a 3 or a 7 or an 11, and no power of ten will ever be divisible by it, so the long division can never reach a remainder of zero. That is the whole rule, and it is why 1/3 recurs while 1/8 does not.</p>
+      <p class="about-text">Simplifying first is essential to that test. 6/12 looks like it has a denominator containing a 3, but it reduces to 1/2 and terminates perfectly well. It is always the denominator in lowest terms that decides.</p>
+      <p class="about-text">Going the other way &mdash; recurring decimal back to fraction &mdash; uses a piece of algebra that feels like sleight of hand the first time you see it. Call the number x. Multiply by whatever power of ten shifts the decimal point exactly one full repeat to the right, so 0.(3) becomes 10x = 3.(3). Now subtract the original from that: the infinite tails are identical, so they cancel completely, leaving 9x = 3 and therefore x = 1/3. The infinite part disappears because you have arranged for it to be subtracted from itself. Where the recurring part does not start immediately, as in 0.1(6), you shift twice &mdash; once to clear the non-repeating digits, once for the repeat &mdash; which is where the pattern of nines followed by zeros in the denominator comes from.</p>
+      <p class="about-text">That same algebra settles the argument about 0.999… Apply the method: 10x = 9.999…, subtract x = 0.999…, and you get 9x = 9, so x = 1. Not approximately one, not one for practical purposes &mdash; exactly one. 0.999… and 1 are two notations for a single number, in the same way that 1/2 and 2/4 are. If they were different numbers there would have to be some number between them, and there is not one. Enter 0.(9) above and the working shows this happening line by line.</p>
+      <p class="about-text">One practical caution. A decimal you have read off a screen is usually already rounded, so converting it literally gives you something like 3333/10000 rather than the 1/3 it came from. That is not the converter being unhelpful &mdash; 0.3333 genuinely is 3333/10000. When you want the fraction someone started with, use the closest simple fraction shown alongside, which finds the neatest fraction within the denominator limit you choose. Sixteenths are the useful setting for anything measured in inches; 1000 is better if you are chasing a recurring decimal that got truncated.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do you convert a recurring decimal to a fraction?</p>
+      <p class="about-text">Multiply by the power of ten that shifts the decimal point exactly one repeat to the right, then subtract the original number. The infinite tails are the same on both lines, so they cancel and you are left with an ordinary equation to solve. For 0.(3): 10x = 3.(3), minus x = 0.(3), gives 9x = 3 and x = 1/3. The shortcut version is to put the repeating digits over that many nines — 0.(27) is 27/99, which simplifies to 3/11.</p>
+      <p class="faq-q">Why does 1/3 recur but 1/8 does not?</p>
+      <p class="about-text">Because 8 is 2 × 2 × 2 and 3 is just 3. Our decimals are built on powers of ten, and ten is 2 × 5, so a denominator made only of 2s and 5s will divide exactly into some power of ten — 8 divides into 1000, giving 0.125. Three divides into no power of ten at all, so the division never terminates. Check the simplified denominator: if its prime factors are only 2s and 5s the decimal stops, and otherwise it recurs forever.</p>
+      <p class="faq-q">Does 0.999… really equal 1?</p>
+      <p class="about-text">Yes, exactly — not nearly, not for practical purposes. Run the standard conversion: if x = 0.999… then 10x = 9.999…, and subtracting gives 9x = 9, so x = 1. Another way to see it: 1/3 is 0.333… and multiplying both sides by three gives 1 = 0.999… They are two ways of writing one number, and there is no number you could name that sits between them.</p>
+      <p class="faq-q">What is the difference between the exact fraction and the closest simple fraction?</p>
+      <p class="about-text">The exact one is what your decimal literally equals: type 0.3333 and it is genuinely 3333/10000. The closest simple fraction is the neatest fraction within the denominator limit you pick, which for 0.3333 at a limit of 16 is 1/3. Use the exact one when the decimal is precise, and the simple one when it has clearly been rounded off somewhere before it reached you.</p>
+      <p class="faq-q">How do I write a recurring decimal in the box?</p>
+      <p class="about-text">Put the repeating digits in brackets at the end. 0.(3) means the 3 repeats forever; 0.1(6) means the 1 happens once and the 6 repeats; 1.(09) means 09 repeats as a pair, giving 1.090909… Anything outside the brackets is taken as occurring only once. Without brackets the number is read literally, as a terminating decimal.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More General calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/fractions/">
+        <span class="icon">➗</span>
+        <div class="title">Fraction Calculator</div>
+        <div class="desc">Add, subtract, multiply and divide fractions, with the working shown.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+      <a class="hub-card" href="/scientific/">
+        <span class="icon">🔬</span>
+        <div class="title">Scientific Calculator</div>
+        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      </a>
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, volume, temperature, area and speed.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/fraction-utils.js"></script>
+  <script src="/decimal-to-fraction.js"></script>
+</body>
+</html>

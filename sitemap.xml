@@ -8,19 +8,19 @@
   </url>
   <url>
     <loc>https://lotsofcalcs.com/basic/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotsofcalcs.com/scientific/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://lotsofcalcs.com/percent/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -98,7 +98,7 @@
   </url>
   <url>
     <loc>https://lotsofcalcs.com/unit-converter/</loc>
-    <lastmod>2026-08-04</lastmod>
+    <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -266,6 +266,18 @@
   </url>
   <url>
     <loc>https://lotsofcalcs.com/ai-cost/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/fractions/</loc>
+    <lastmod>2026-08-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/decimal-to-fraction/</loc>
     <lastmod>2026-08-14</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
