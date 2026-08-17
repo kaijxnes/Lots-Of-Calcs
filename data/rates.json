@@ -1,0 +1,199 @@
+{
+  "_meta": {
+    "description": "Time-sensitive figures used by lotsofcalcs.com. Nothing here is hardcoded into a page — every calculator that needs a rate reads it from this file and displays the date it applies from.",
+    "updated": "2026-08-14",
+    "conventions": {
+      "effectiveFrom": "ISO date the figure came into force, per the source.",
+      "lastVerified": "ISO date this figure was last checked against the primary source. null means it is a best estimate that has NOT been verified and must not be relied on.",
+      "source": "URL of the primary source — the platform or authority's own published schedule, never a third-party summary."
+    },
+    "warning": "Entries with lastVerified: null were compiled from secondary sources because the primary source was unreachable. Check each one before treating the output as accurate."
+  },
+
+  "marketplaceFees": {
+    "ebay-uk": {
+      "name": "eBay UK",
+      "currency": "GBP",
+      "source": "https://www.ebay.co.uk/help/selling/fees-credits-invoices/selling-fees",
+      "effectiveFrom": "2026-02-01",
+      "lastVerified": null,
+      "notes": "Business seller fees are quoted excluding VAT and 20% VAT is added. Private sellers have paid no final value fee, per-order fee or regulatory fee on domestic listings since October 2024 — the buyer pays a Buyer Protection Fee instead, which does not come out of the seller's payout.",
+      "vatOnFeesPct": 20,
+      "feeBaseIncludesPostage": true,
+      "sellerTypes": {
+        "private": {
+          "label": "Private seller",
+          "finalValueFee": false,
+          "perOrderFee": false,
+          "regulatoryFee": false,
+          "effectiveFrom": "2024-10-01",
+          "lastVerified": null,
+          "note": "No seller fees on domestic listings. Vehicles are the exception and are not modelled here."
+        },
+        "business": {
+          "label": "Business seller",
+          "finalValueFee": true,
+          "perOrderFee": true,
+          "regulatoryFee": true,
+          "effectiveFrom": "2026-02-01",
+          "lastVerified": null
+        }
+      },
+      "perOrderFee": {
+        "tiers": [
+          { "upTo": 10, "amount": 0.30 },
+          { "upTo": null, "amount": 0.40 }
+        ],
+        "effectiveFrom": "2026-02-01",
+        "lastVerified": null,
+        "note": "Rose to 40p for orders over £10 in February 2026."
+      },
+      "regulatoryOperatingFeePct": {
+        "value": 0.35,
+        "effectiveFrom": "2024-04-01",
+        "lastVerified": null
+      },
+      "categories": [
+        { "id": "most", "label": "Most categories", "ratePct": 12.8, "lastVerified": null },
+        { "id": "tech", "label": "Computers, phones, cameras", "ratePct": 8.7, "lastVerified": null },
+        { "id": "business-industrial", "label": "Business & industrial", "ratePct": 10.4, "lastVerified": null },
+        { "id": "media", "label": "Books, films, music, games", "ratePct": 12.8, "lastVerified": null }
+      ],
+      "categoryRangeNote": "Published category rates run from about 6.9% to 14.9%. Only a few are listed here — use the custom rate box for anything else.",
+      "promotedListings": {
+        "defaultRatePct": 2.0,
+        "note": "Promoted Listings Standard is charged on the total order value when the sale is attributed to the ad. The rate is set by the seller.",
+        "lastVerified": null
+      }
+    },
+
+    "etsy": {
+      "name": "Etsy",
+      "currency": "GBP",
+      "source": "https://www.etsy.com/uk/legal/fees",
+      "effectiveFrom": "2026-01-01",
+      "lastVerified": null,
+      "notes": "UK sellers are charged 20% VAT on Etsy's fees. The transaction fee applies to the full order value including the shipping the buyer paid.",
+      "vatOnFeesPct": 20,
+      "feeBaseIncludesPostage": true,
+      "listingFee": {
+        "amount": 0.20,
+        "lastVerified": null,
+        "note": "Charged per listing, and again every four months or when the listing sells and is renewed."
+      },
+      "transactionFeePct": {
+        "value": 6.5,
+        "lastVerified": null
+      },
+      "paymentProcessing": {
+        "percent": 4.0,
+        "fixed": 0.20,
+        "lastVerified": null,
+        "note": "UK rate. Etsy Payments processing varies by country."
+      },
+      "offsiteAds": {
+        "tiers": [
+          {
+            "id": "under-threshold",
+            "label": "Under £8,000 turnover — optional, 15%",
+            "ratePct": 15,
+            "mandatory": false,
+            "lastVerified": null
+          },
+          {
+            "id": "over-threshold",
+            "label": "Over £8,000 turnover — mandatory, 12%",
+            "ratePct": 12,
+            "mandatory": true,
+            "lastVerified": null
+          }
+        ],
+        "capPerOrder": 100,
+        "lastVerified": null,
+        "note": "Charged only when a sale is attributed to an Etsy offsite advert. The cap is per order."
+      },
+      "currencyConversionPct": {
+        "value": 2.5,
+        "lastVerified": null,
+        "note": "Applies when the listing currency differs from the shop's bank currency."
+      }
+    },
+
+    "amazon-uk": {
+      "name": "Amazon UK (FBA)",
+      "currency": "GBP",
+      "source": "https://sell.amazon.co.uk/pricing",
+      "effectiveFrom": "2026-04-01",
+      "lastVerified": null,
+      "notes": "Referral fees are charged on the total sale price including any shipping the buyer paid. A fuel and logistics surcharge applies to fulfilment fees from April 2026. Fees shown exclude VAT.",
+      "vatOnFeesPct": 20,
+      "feeBaseIncludesPostage": true,
+      "minimumReferralFee": {
+        "amount": 0.25,
+        "lastVerified": null
+      },
+      "categories": [
+        { "id": "default", "label": "Most categories", "ratePct": 15.0, "lastVerified": null },
+        { "id": "clothing", "label": "Clothing & accessories", "ratePct": 15.0, "lastVerified": null,
+          "lowPriceTiers": [
+            { "upTo": 15, "ratePct": 5.0 },
+            { "upTo": 20, "ratePct": 10.0 }
+          ],
+          "tierNote": "Reduced rates for lower-priced items introduced in 2026." },
+        { "id": "home", "label": "Home products", "ratePct": 15.0, "lastVerified": null,
+          "lowPriceTiers": [ { "upTo": 20, "ratePct": 8.0 } ] },
+        { "id": "grocery", "label": "Grocery & gourmet", "ratePct": 15.0, "lastVerified": null,
+          "lowPriceTiers": [ { "upTo": 10, "ratePct": 5.0 } ] },
+        { "id": "supplements", "label": "Vitamins, minerals & supplements", "ratePct": 15.0, "lastVerified": null,
+          "lowPriceTiers": [ { "upTo": 10, "ratePct": 5.0 } ] },
+        { "id": "electronics", "label": "Consumer electronics", "ratePct": 7.0, "lastVerified": null },
+        { "id": "computers", "label": "Computers", "ratePct": 7.0, "lastVerified": null },
+        { "id": "books", "label": "Books", "ratePct": 15.0, "lastVerified": null }
+      ],
+      "fulfilment": {
+        "effectiveFrom": "2026-04-01",
+        "lastVerified": null,
+        "surchargePct": {
+          "value": 1.5,
+          "effectiveFrom": "2026-04-01",
+          "lastVerified": null,
+          "note": "Fuel and logistics surcharge applied to UK FBA fulfilment fees."
+        },
+        "lowPriceThreshold": {
+          "amount": 20,
+          "reductionPerUnit": 0.40,
+          "effectiveFrom": "2026-01-01",
+          "lastVerified": null,
+          "note": "Low-Price FBA was expanded from £10 to £20 in January 2026."
+        },
+        "tiers": [
+          { "id": "light-envelope", "label": "Light envelope — up to 100g", "amount": 1.70, "lastVerified": null },
+          { "id": "standard-envelope", "label": "Standard envelope — up to 460g", "amount": 1.90, "lastVerified": null },
+          { "id": "large-envelope", "label": "Large envelope — up to 960g", "amount": 2.30, "lastVerified": null },
+          { "id": "small-parcel", "label": "Small parcel — up to 1.4kg", "amount": 2.90, "lastVerified": null },
+          { "id": "standard-parcel", "label": "Standard parcel — up to 9kg", "amount": 3.40, "lastVerified": null },
+          { "id": "small-oversize", "label": "Small oversize", "amount": 5.50, "lastVerified": null },
+          { "id": "large-oversize", "label": "Large oversize", "amount": 8.50, "lastVerified": null }
+        ]
+      },
+      "professionalPlan": {
+        "monthlyAmount": 25.00,
+        "lastVerified": null,
+        "note": "Flat monthly subscription, excluding VAT. Spread across the units sold in the month to get a per-unit cost."
+      },
+      "storage": {
+        "defaultMonthlyPerUnit": 0.00,
+        "lastVerified": null,
+        "note": "Monthly storage is charged per cubic metre and varies sharply between the January to September and October to December periods. Enter your own figure."
+      }
+    }
+  },
+
+  "taxBands": {
+    "_note": "Reserved for income tax, National Insurance and VAT bands. Nothing here yet — /vat/ still carries its own figures."
+  },
+
+  "energyCaps": {
+    "_note": "Reserved for Ofgem price cap unit rates and standing charges. Nothing here yet — /running-cost/ and /ev-charging-cost/ take rates from the user."
+  }
+}

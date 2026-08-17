@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-5GSHPQLBZW');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marketplace Fee Calculator — eBay, Etsy &amp; Amazon</title>
+<meta name="description" content="What you actually keep selling on eBay UK, Etsy or Amazon FBA — every fee itemised, plus a reverse mode that gives the price to list at for a target margin.">
+<link rel="canonical" href="https://lotsofcalcs.com/marketplace-fees/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Marketplace Fee Calculator — eBay, Etsy &amp; Amazon">
+<meta property="og:description" content="What you actually keep selling on eBay UK, Etsy or Amazon FBA — every fee itemised, plus a reverse mode that gives the price to list at for a target margin.">
+<meta property="og:url" content="https://lotsofcalcs.com/marketplace-fees/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Marketplace Fee Calculator — eBay, Etsy &amp; Amazon">
+<meta name="twitter:description" content="What you actually keep selling on eBay UK, Etsy or Amazon FBA — every fee itemised, plus a reverse mode that gives the price to list at for a target margin.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Marketplace Fee Calculator — eBay, Etsy & Amazon",
+    "description": "What you actually keep selling on eBay UK, Etsy or Amazon FBA — every fee itemised, plus a reverse mode that gives the price to list at for a target margin.",
+    "url": "https://lotsofcalcs.com/marketplace-fees/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "browserRequirements": "Requires JavaScript",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Marketplace Fee Calculator — eBay, Etsy & Amazon",
+        "item": "https://lotsofcalcs.com/marketplace-fees/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does eBay actually take from a sale?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a business seller in most categories it is the final value fee of around 12.8% on the total order, plus a per-order fee, plus a 0.35% regulatory operating fee, plus VAT on all of those — so meaningfully more than the headline percentage. Private sellers have paid no selling fees on domestic listings since October 2024; the buyer pays a Buyer Protection Fee instead, which does not reduce your payout. Promoted Listings, if you use them, add your chosen ad rate on top."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the fee charged on the postage the buyer paid?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the fee is calculated on the total order value, and postage is part of that. Every major marketplace does it this way, and the reason is to stop sellers listing a £10 item at a penny with £9.99 postage to dodge the fee. The practical effect is that you pay a cut on money that goes straight to the courier. Charging free postage and building the cost into the price gives an identical result, so there is nothing to optimise here — just remember to include postage when working out what a sale earns."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I opt out of Etsy Offsite Ads?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Only below the turnover threshold. Shops under roughly £8,000 in the past year can opt out and pay 15% on attributed orders if they stay in. Above that the 12% rate becomes mandatory and cannot be switched off. It applies only to orders that came through an off-Etsy advert, and it is capped at £100 per order. Since you do not control which orders qualify, the sensible approach is to price assuming a share of your sales will carry it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What price should I list at to make a specific margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Switch the calculator to \"the price to hit a target\" and give it a margin percentage or a cash profit. It solves for the price that produces that result once every fee is accounted for, including the ones that step up at certain price points. Working backwards matters because the fees are a moving target: raising your price raises the percentage fees too, so you cannot just add your desired profit to your costs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does being VAT registered make selling on marketplaces worse?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "On consumer sales, usually yes. You gain the ability to reclaim the VAT charged on platform fees, which is worth a sixth of those fees. But you owe output VAT on every sale — one sixth of what the buyer paid — and that is far larger. Registration is a legal obligation above the threshold rather than a choice to optimise. Toggle it above to see both effects on the same sale."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do cheap items barely make any money?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fixed fees. A 30p per-order charge is 0.6% of a £50 sale and 10% of a £3 one, and it sits on top of every percentage fee, the payment processing and the postage. Add Etsy's listing fee and the fixed part of processing and a £5 item can lose over 20% before you have paid for the item itself. Enter a low price above and the line-by-line breakdown makes it obvious. Bundling several cheap items into one listing is the usual answer."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Marketplace Fee Calculator</h1>
+      <p class="page-subtitle">What you actually keep on eBay, Etsy and Amazon — and what to list at to hit a target margin.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" style="margin-bottom:18px;">The headline percentage is never the whole fee. Add the per-order charges, the payment processing, the cut taken on the postage the buyer paid, and the ads you may not have opted into, and the real take is usually several points higher than the number on the pricing page. This itemises every line.</p>
+
+      <p class="tool-hint" id="load-note" style="color: var(--bad); display: none;"></p>
+
+      <div class="tabs" role="tablist">
+        <button type="button" class="tab active" data-tab="ebay-uk" role="tab" aria-selected="true">eBay UK</button>
+        <button type="button" class="tab" data-tab="etsy" role="tab" aria-selected="false">Etsy</button>
+        <button type="button" class="tab" data-tab="amazon-uk" role="tab" aria-selected="false">Amazon UK FBA</button>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="mode">Work out</label>
+          <select id="mode">
+            <option value="keep" selected>What I keep from a sale</option>
+            <option value="target">The price to hit a target</option>
+          </select>
+        </div>
+        <div class="field" id="price-field">
+          <label for="price">Sale price</label>
+          <input type="number" id="price" value="24.99" step="any" min="0" placeholder="0.00">
+        </div>
+        <div class="field" id="target-field" style="display:none;">
+          <label for="target-value">Target</label>
+          <input type="number" id="target-value" value="30" step="any" placeholder="0">
+        </div>
+        <div class="field" id="target-type-field">
+          <label for="target-type">Target is a</label>
+          <select id="target-type">
+            <option value="margin" selected>Margin %</option>
+            <option value="profit">Profit amount</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="item-cost">Item cost to you</label>
+          <input type="number" id="item-cost" value="8" step="any" min="0" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label for="ship-charged">Shipping charged to buyer</label>
+          <input type="number" id="ship-charged" value="3.95" step="any" min="0" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label for="ship-cost">Shipping cost to you</label>
+          <input type="number" id="ship-cost" value="3.29" step="any" min="0" placeholder="0.00">
+        </div>
+      </div>
+
+      <div class="field-row field-row-3">
+        <div class="field">
+          <label for="packaging">Packaging cost</label>
+          <input type="number" id="packaging" value="0.40" step="any" min="0" placeholder="0.00">
+        </div>
+        <div class="field">
+          <label for="vat-reg">VAT registered?</label>
+          <select id="vat-reg">
+            <option value="no" selected>No</option>
+            <option value="yes">Yes</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- eBay -->
+      <div data-panel="ebay-uk">
+        <div class="field-row field-row-3">
+          <div class="field">
+            <label for="ebay-seller-type">Seller type</label>
+            <select id="ebay-seller-type">
+              <option value="business" selected>Business seller</option>
+              <option value="private">Private seller</option>
+            </select>
+          </div>
+          <div class="field" data-ebay-business>
+            <label for="ebay-category">Category</label>
+            <select id="ebay-category"></select>
+          </div>
+          <div class="field" id="ebay-custom-field" style="display:none;">
+            <label for="ebay-custom-rate">Final value fee (%)</label>
+            <input type="number" id="ebay-custom-rate" value="12.8" step="any" min="0" placeholder="0">
+          </div>
+        </div>
+        <div class="field-row" data-ebay-business>
+          <div class="field">
+            <label for="ebay-ad-rate">Promoted listings rate (%)</label>
+            <input type="number" id="ebay-ad-rate" value="0" step="any" min="0" placeholder="0">
+          </div>
+          <div class="field">
+            <label for="ebay-ship-in-base">Fee charged on postage too?</label>
+            <select id="ebay-ship-in-base">
+              <option value="yes" selected>Yes — on the full order</option>
+              <option value="no">No — item price only</option>
+            </select>
+          </div>
+        </div>
+        <p class="tool-hint" id="ebay-private-note" style="display:none;">Private sellers have paid no final value fee, per-order fee or regulatory fee on domestic listings since October 2024. The buyer pays a Buyer Protection Fee on top of your price instead, which does not come out of your payout. Vehicles are the exception and are not modelled here.</p>
+      </div>
+
+      <!-- Etsy -->
+      <div data-panel="etsy" style="display:none;">
+        <div class="field-row field-row-3">
+          <div class="field">
+            <label for="etsy-listing-fee">Listing fee</label>
+            <input type="number" id="etsy-listing-fee" value="0.20" step="any" min="0" placeholder="0.00">
+          </div>
+          <div class="field">
+            <label for="etsy-offsite">Offsite Ads</label>
+            <select id="etsy-offsite"></select>
+          </div>
+          <div class="field">
+            <label for="etsy-conversion">Listing currency differs from bank?</label>
+            <select id="etsy-conversion">
+              <option value="no" selected>No</option>
+              <option value="yes">Yes — add conversion fee</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amazon -->
+      <div data-panel="amazon-uk" style="display:none;">
+        <div class="field-row">
+          <div class="field">
+            <label for="amz-category">Category</label>
+            <select id="amz-category"></select>
+          </div>
+          <div class="field">
+            <label for="amz-tier">FBA size tier</label>
+            <select id="amz-tier"></select>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="amz-units">Units sold per month</label>
+            <input type="number" id="amz-units" value="100" step="1" min="0" placeholder="0">
+          </div>
+          <div class="field">
+            <label for="amz-storage">Monthly storage, per unit</label>
+            <input type="number" id="amz-storage" value="0" step="any" min="0" placeholder="0.00">
+          </div>
+        </div>
+        <p class="tool-hint">The Professional plan is a flat monthly subscription, so its cost per sale depends entirely on how much you sell. At 10 units a month it is a significant charge per unit; at 1,000 it disappears.</p>
+      </div>
+
+      <p class="tool-hint" id="mp-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="hero-value">£0.00</div>
+          <div class="label" id="hero-label">Profit</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row" id="price-row" style="display:none;"><span class="r-label">List price needed</span><span class="r-value" id="out-price">—</span></div>
+          <div class="result-row"><span class="r-label">Buyer pays, in total</span><span class="r-value" id="out-gross">—</span></div>
+          <div class="result-row"><span class="r-label">Total fees</span><span class="r-value" id="out-fees">—</span></div>
+          <div class="result-row"><span class="r-label">Fees as % of the order</span><span class="r-value" id="out-fee-pct">—</span></div>
+          <div class="result-row"><span class="r-label">Net payout to you</span><span class="r-value" id="out-payout">—</span></div>
+          <div class="result-row"><span class="r-label">Your costs (item, postage, packaging)</span><span class="r-value" id="out-costs">—</span></div>
+          <div class="result-row" id="vat-row" style="display:none;"><span class="r-label">VAT owed to HMRC</span><span class="r-value" id="out-vat">—</span></div>
+          <div class="result-row highlight"><span class="r-label">Profit</span><span class="r-value" id="out-profit">—</span></div>
+          <div class="result-row"><span class="r-label">Margin</span><span class="r-value" id="out-margin">—</span></div>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="verdict" style="margin-top:12px; display:none;"></p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Every fee, line by line</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead>
+              <tr><th>Fee</th><th>Amount</th></tr>
+            </thead>
+            <tbody id="fee-body"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="tool-hint" style="margin-top:14px;" id="rates-as-at"></p>
+
+      <p class="tool-hint" style="margin-top:10px;">Assumes a single domestic sale with no returns, refunds, discounts or postage labels bought through the platform. Fee rates vary by category and by account, and promotional rates are not modelled. Margin is profit as a share of what the buyer paid in total, including postage.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">About this calculator</p>
+      <p class="about-text">Every marketplace leads with one number &mdash; a referral fee, a transaction fee, a final value fee &mdash; and that number is never what you actually pay. The gap comes from three places. There are <strong>fixed charges per order</strong>: eBay's per-order fee, Etsy's listing fee, the fixed part of payment processing. There is <strong>payment processing</strong> itself, which on Etsy is a separate 4% plus 20p on top of the 6.5% transaction fee. And there are <strong>advertising fees</strong> that stack on top of everything else. A seller reading "6.5%" on Etsy's pricing page is typically paying something closer to 11% before ads, and over 20% with them.</p>
+      <p class="about-text">The single most misunderstood point is that these percentages are charged on the <em>total order value</em>, not the item price. If you sell a &pound;10 item and charge &pound;4 postage, the fee is calculated on &pound;14. This is deliberate on the platforms' part and it closes an obvious loophole &mdash; without it, everyone would list items at a penny with &pound;20 postage. But it has a consequence sellers routinely miss: <strong>you pay a fee on money that is not yours</strong>. That &pound;4 goes straight to Royal Mail, and you have paid the platform a cut of it. Free postage with the cost built into the price works out identically, so there is no way to game it; the point is simply to include postage when you work out what a sale is worth.</p>
+      <p class="about-text">Advertising compounds on top rather than replacing anything. eBay's Promoted Listings adds your chosen ad rate to the full order value on any sale attributed to the ad, so a 2% ad rate on a 12.8% final value fee means 14.8% plus the fixed charges. Etsy's Offsite Ads are worse in one specific way: once your shop passes the turnover threshold you <strong>cannot opt out</strong>, and a 12% charge lands on any order that came through an off-Etsy advert. It is capped at &pound;100 per order, which matters only if you sell expensive things. Turn the Offsite Ads option on above and watch what a single attributed sale does to the margin &mdash; that is the number to plan around, because you do not get to choose which orders it applies to.</p>
+      <p class="about-text">Fixed fees are what make low-value selling quietly unviable. A 30p per-order fee on a &pound;50 sale is 0.6% and invisible; on a &pound;3 sale it is 10%, and it sits on top of every percentage charge. Add Etsy's 20p listing fee and 20p processing charge and a &pound;5 item can lose a fifth of its value to charges that would be a rounding error on a &pound;100 item. This is the arithmetic behind the common advice not to bother listing cheap items individually &mdash; bundle them, or raise the price. Put a low price into the calculator above and the breakdown will show you exactly where the money goes.</p>
+      <p class="about-text">VAT registration changes the picture in two directions at once, which is why it gets its own toggle. If you are registered, the VAT the platform charges on its fees becomes reclaimable, so those fees effectively cost you a sixth less. But you also owe output VAT on the sale itself &mdash; one sixth of what the buyer paid, since your price already includes it &mdash; and that is a far bigger number. Registration almost always reduces net profit on consumer sales; it is a threshold obligation rather than an optimisation. The calculator shows the VAT line separately so you can see both effects.</p>
+      <p class="about-text">On Amazon, the Professional plan behaves like the flat platform fee in investing: it is a fixed monthly cost, so its impact per unit depends entirely on volume. At 10 units a month it adds &pound;2.50 to each sale, which will destroy the margin on a cheap product; at 500 units it is 5p and irrelevant. Change the units figure above and watch the per-unit line move. This is the calculation that decides whether the Individual plan or the Professional plan is right for you.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How much does eBay actually take from a sale?</p>
+      <p class="about-text">For a business seller in most categories it is the final value fee of around 12.8% on the total order, plus a per-order fee, plus a 0.35% regulatory operating fee, plus VAT on all of those — so meaningfully more than the headline percentage. Private sellers have paid no selling fees on domestic listings since October 2024; the buyer pays a Buyer Protection Fee instead, which does not reduce your payout. Promoted Listings, if you use them, add your chosen ad rate on top.</p>
+      <p class="faq-q">Why is the fee charged on the postage the buyer paid?</p>
+      <p class="about-text">Because the fee is calculated on the total order value, and postage is part of that. Every major marketplace does it this way, and the reason is to stop sellers listing a £10 item at a penny with £9.99 postage to dodge the fee. The practical effect is that you pay a cut on money that goes straight to the courier. Charging free postage and building the cost into the price gives an identical result, so there is nothing to optimise here — just remember to include postage when working out what a sale earns.</p>
+      <p class="faq-q">Can I opt out of Etsy Offsite Ads?</p>
+      <p class="about-text">Only below the turnover threshold. Shops under roughly £8,000 in the past year can opt out and pay 15% on attributed orders if they stay in. Above that the 12% rate becomes mandatory and cannot be switched off. It applies only to orders that came through an off-Etsy advert, and it is capped at £100 per order. Since you do not control which orders qualify, the sensible approach is to price assuming a share of your sales will carry it.</p>
+      <p class="faq-q">What price should I list at to make a specific margin?</p>
+      <p class="about-text">Switch the calculator to "the price to hit a target" and give it a margin percentage or a cash profit. It solves for the price that produces that result once every fee is accounted for, including the ones that step up at certain price points. Working backwards matters because the fees are a moving target: raising your price raises the percentage fees too, so you cannot just add your desired profit to your costs.</p>
+      <p class="faq-q">Does being VAT registered make selling on marketplaces worse?</p>
+      <p class="about-text">On consumer sales, usually yes. You gain the ability to reclaim the VAT charged on platform fees, which is worth a sixth of those fees. But you owe output VAT on every sale — one sixth of what the buyer paid — and that is far larger. Registration is a legal obligation above the threshold rather than a choice to optimise. Toggle it above to see both effects on the same sale.</p>
+      <p class="faq-q">Why do cheap items barely make any money?</p>
+      <p class="about-text">Fixed fees. A 30p per-order charge is 0.6% of a £50 sale and 10% of a £3 one, and it sits on top of every percentage fee, the payment processing and the postage. Add Etsy's listing fee and the fixed part of processing and a £5 item can lose over 20% before you have paid for the item itself. Enter a low price above and the line-by-line breakdown makes it obvious. Bundling several cheap items into one listing is the usual answer.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+      <a class="hub-card" href="/vat/">
+        <span class="icon">🧾</span>
+        <div class="title">Tax / VAT</div>
+        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
+      </a>
+      <a class="hub-card" href="/ai-cost/">
+        <span class="icon">🤖</span>
+        <div class="title">AI Cost</div>
+        <div class="desc">Token prices, caching and batch discounts → what an LLM API really costs.</div>
+      </a>
+      <a class="hub-card" href="/growth/">
+        <span class="icon">📈</span>
+        <div class="title">YoY / MoM Growth</div>
+        <div class="desc">Feed in a monthly series, get month-on-month and year-on-year change.</div>
+      </a>
+    </div>
+
+    <footer class="site-footer">
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/marketplace-fees.js"></script>
+</body>
+</html>
