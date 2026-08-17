@@ -431,6 +431,28 @@ hr.divider {
   text-align: center;
 }
 
+/* A four-field row (name + three numbers) is one column wider than the rows
+   elsewhere on the site and will not fit a narrow phone. Below 480px it folds:
+   the name takes its own line, the three numbers share the next one. */
+@media (max-width: 480px) {
+  .dyn-row-4 {
+    flex-wrap: wrap;
+  }
+
+  .dyn-row-4 .grow {
+    flex: 1 1 calc(100% - 30px);
+  }
+
+  .dyn-row-4 .fixed-sm {
+    flex: 1 1 0;
+  }
+
+  /* The column headings no longer sit above their fields once the row folds */
+  .dyn-table-head-4 {
+    display: none;
+  }
+}
+
 /* ---------- Simple output table (growth results) ---------- */
 
 .out-table {
@@ -478,6 +500,128 @@ hr.divider {
 
 .table-scroll {
   overflow-x: auto;
+}
+
+/* ---------- Collapsible groups ---------- */
+
+/* A Goliath has 247 constituent bets, which is unreadable as one list, so each
+   fold size collapses into its own group with a subtotal on the summary line. */
+.fold-group {
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-bottom: 8px;
+  padding: 0 14px;
+}
+
+.fold-group summary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: space-between;
+  padding: 12px 0;
+  font-size: 0.9rem;
+}
+
+.fold-group summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.fold-name {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
+.fold-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.fold-group[open] summary {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 8px;
+}
+
+.fold-group .out-table {
+  margin-bottom: 12px;
+}
+
+/* ---------- Worked steps ---------- */
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.step {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: var(--input-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.step-n {
+  flex: 0 0 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--bg-2);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Without this the flex child refuses to shrink and long lines overflow */
+.step-body {
+  min-width: 0;
+}
+
+.step-title {
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.step-detail {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.step-detail strong {
+  color: var(--text-main);
+}
+
+/* Inline "try one of these" chips — a button, but sized to sit in a hint line */
+.btn-example {
+  padding: 5px 11px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+/* The whole calculation restated on one line, for copying out */
+.frac-sum {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin: 12px 0 0;
+  overflow-wrap: anywhere;
+  text-align: center;
+}
+
+.frac-sum strong {
+  color: var(--accent);
 }
 
 /* ---------- Roman numerals ---------- */

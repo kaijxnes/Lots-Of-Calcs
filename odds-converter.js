@@ -15,43 +15,8 @@ function showError(message) {
   errorEl.style.display = message ? "block" : "none";
 }
 
-/* Closest standard betting fraction via continued-fraction approximation */
-function toFraction(value) {
-  if (!isFinite(value) || value <= 0) return { num: 0, den: 1 };
-
-  const maxDen = 100;
-  let bestNum = 1;
-  let bestDen = 1;
-  let bestErr = Infinity;
-
-  for (let den = 1; den <= maxDen; den++) {
-    const num = Math.round(value * den);
-    if (num < 1) continue;
-    const err = Math.abs(value - num / den);
-    if (err < bestErr - 1e-12) {
-      bestErr = err;
-      bestNum = num;
-      bestDen = den;
-      if (err < 1e-9) break;
-    }
-  }
-
-  const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b));
-  const g = gcd(bestNum, bestDen);
-  return { num: bestNum / g, den: bestDen / g };
-}
-
-function decimalToAmerican(decimal) {
-  if (decimal >= 2) return (decimal - 1) * 100;
-  return -100 / (decimal - 1);
-}
-
-function americanToDecimal(american) {
-  if (american > 0) return american / 100 + 1;
-  return 100 / Math.abs(american) + 1;
-}
-
-/* Everything is derived from decimal odds */
+/* Conversions and fraction-matching live in /odds-utils.js, shared with
+   /full-cover-bets/. Everything here is derived from decimal odds. */
 function update(decimal, source) {
   const decimalEl = document.getElementById("decimal-odds");
   const americanEl = document.getElementById("american-odds");
@@ -73,7 +38,7 @@ function update(decimal, source) {
   if (source !== "decimal") decimalEl.value = (Math.round(decimal * 1000) / 1000).toString();
 
   if (source !== "american") {
-    const american = decimalToAmerican(decimal);
+    const american = Odds.decimalToAmerican(decimal);
     americanEl.value = (Math.round(american * 100) / 100).toString();
   }
 
@@ -83,7 +48,7 @@ function update(decimal, source) {
   }
 
   if (source !== "fraction") {
-    const frac = toFraction(decimal - 1);
+    const frac = Odds.toFraction(decimal - 1);
     fracNumEl.value = frac.num;
     fracDenEl.value = frac.den;
   }
@@ -107,7 +72,7 @@ function fromAmerican() {
   if (syncing) return;
   const american = parseFloat(document.getElementById("american-odds").value);
   if (!isFinite(american) || american === 0) return update(NaN, "american");
-  update(americanToDecimal(american), "american");
+  update(Odds.americanToDecimal(american), "american");
 }
 
 function fromProb() {
