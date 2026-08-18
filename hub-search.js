@@ -11,6 +11,7 @@ function filterCards() {
 
   groups.forEach(({ title, grid }) => {
     let groupHasVisible = false;
+    grid.classList.toggle("collapsed", query === "");
     grid.querySelectorAll(".hub-card").forEach((card) => {
       const text = card.textContent.toLowerCase();
       const matches = query === "" || text.includes(query);
