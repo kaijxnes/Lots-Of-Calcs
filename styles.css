@@ -20,10 +20,20 @@
   --accent-hover: #ffb267;
   --good: #4ade80;
   --bad: #ff5e62;
+  --link: #8fb4ee;
+  --link-hover: #b7d0f5;
 }
 
 * {
   box-sizing: border-box;
+}
+
+a {
+  color: var(--link);
+}
+
+a:hover {
+  color: var(--link-hover);
 }
 
 body {
