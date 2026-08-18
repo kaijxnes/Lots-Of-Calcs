@@ -938,6 +938,15 @@ hr.divider {
 
 /* ---------- Category nav & pills ---------- */
 
+.category-nav-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 10px;
+}
+
 .category-nav {
   position: sticky;
   top: 0;
