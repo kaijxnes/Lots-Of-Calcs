@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-5GSHPQLBZW"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-5GSHPQLBZW');
-</script>
+<script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>About Lots Of Calcs</title>
@@ -94,7 +88,7 @@
 
     <main class="tool">
       <p class="tool-section-title">Analytics and cookies</p>
-      <p class="about-text">The calculators send nothing anywhere, but the site as a whole is not invisible, and it would be misleading to imply otherwise. <strong>Lots Of Calcs uses Google Analytics 4</strong> to count visits and see which calculators people actually use. That information is what decides which new ones get built.</p>
+      <p class="about-text">The calculators send nothing anywhere, but the site as a whole is not invisible, and it would be misleading to imply otherwise. <strong>Lots Of Calcs uses Google Analytics 4 &mdash; but only if you allow it.</strong> Nothing analytics-related loads until you choose. Decline, or simply ignore the banner, and no analytics script is ever fetched, no request reaches Google, and no cookie is set. Accept, and it counts visits and records which calculators get used, which is what decides what gets built next.</p>
       <p class="about-text">What Google Analytics records:</p>
       <p class="about-text">
         Which pages are viewed, and in what order<br>
@@ -105,8 +99,11 @@
       </p>
       <p class="about-text">What it does <strong>not</strong> record: anything you type into a calculator. No figures, no dates, no salaries, no prices. Those values never reach the analytics script because they never leave your browser at all.</p>
       <p class="about-text">Google Analytics 4 does not store full IP addresses, and there is no advertising, remarketing, profiling or selling of data attached to any of this. Nothing here is used to identify you personally.</p>
-      <p class="about-text">To do the counting, Google Analytics sets two cookies in your browser &mdash; <strong>_ga</strong>, and a second one beginning <strong>_ga_</strong> &mdash; which last about two years and hold a randomly generated identifier used to recognise a returning browser. They are not essential to the calculators, which work perfectly well without them.</p>
-      <p class="about-text">If you would rather not be counted, any of these will stop it: Google's official <em>Analytics Opt-out Browser Add-on</em>, blocking cookies for this site in your browser settings, using private browsing, or running more or less any ad blocker or tracker blocker. None of it affects how the calculators behave.</p>
+      <p class="about-text">If you accept, Google Analytics sets two cookies in your browser &mdash; <strong>_ga</strong>, and a second one beginning <strong>_ga_</strong> &mdash; which last about two years and hold a randomly generated identifier used to recognise a returning browser. Neither is set before you accept, and neither is essential to the calculators, which work perfectly well without them.</p>
+      <p class="about-text">You can change your mind at any point, in either direction. Every page carries an <strong>Analytics on / off</strong> line in the footer with a <em>Change</em> button next to it, or use the button below. Switching it off also deletes the analytics cookies already in your browser rather than merely stopping new ones.</p>
+      <p class="about-text"><button type="button" class="btn btn-ghost" id="about-consent-open">Change analytics preference</button> <span class="consent-state" id="about-consent-state"></span></p>
+      <p class="about-text">Independently of anything on this site, these will also stop it: Google's official <em>Analytics Opt-out Browser Add-on</em>, blocking cookies for this site in your browser settings, using private browsing, or running more or less any ad blocker or tracker blocker. None of it affects how the calculators behave.</p>
+      <p class="about-text">One caveat worth stating, since this page is meant to be straight with you. Google Analytics is a Google product, and Google may use data passing through it for its own purposes as well as reporting it back to me. That is why consent is asked for here rather than relying on the exemption UK rules now allow for simple first-party visitor counting.</p>
     </main>
 
     <main class="tool">
