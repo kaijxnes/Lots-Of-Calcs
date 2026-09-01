@@ -512,6 +512,99 @@ hr.divider {
   overflow-x: auto;
 }
 
+/* ---------- Analytics consent ---------- */
+
+.consent-banner {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: var(--calc-bg);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -8px 24px var(--shadow);
+  padding: 16px;
+}
+
+.consent-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.consent-copy {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
+.consent-title {
+  color: var(--text-main);
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+}
+
+.consent-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.consent-text a {
+  color: var(--accent);
+}
+
+/* Refusing has to be no harder than accepting, which is the part of the rules
+   most banners quietly break. Both buttons therefore share one style, one size
+   and one row — the wording carries the difference, not the visual weight. */
+/* A two-column grid rather than a flex row, so both buttons take the width of
+   the wider label and come out identical rather than sized to their own text */
+.consent-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.consent-actions .btn {
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .consent-actions {
+    width: 100%;
+  }
+}
+
+.consent-settings {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  margin-top: 6px;
+}
+
+.consent-state {
+  opacity: 0.8;
+}
+
+/* A button that reads as a link, so the footer keeps its shape */
+.consent-link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.consent-link:hover {
+  color: var(--accent-hover);
+}
+
 /* ---------- Collapsible groups ---------- */
 
 /* A Goliath has 247 constituent bets, which is unreadable as one list, so each
