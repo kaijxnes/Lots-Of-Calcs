@@ -1040,16 +1040,20 @@ hr.divider {
   margin: 0 0 10px;
 }
 
+/* Sits in the flow and scrolls away with the rest of the page. It was sticky,
+   which meant it followed you down and kept a bar of chrome over the grid the
+   whole way. The categories are a jumping-off point at the top, not something
+   you need within reach while browsing — and the footer carries the same links
+   for anyone who wants them at the bottom.
+
+   With nothing overlapping content there is no longer any reason for the
+   translucent fill or the blur behind it, so both go: a solid panel reads
+   better against the pills and costs nothing to paint. */
 .category-nav {
-  position: sticky;
-  top: 0;
-  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  background: rgba(18, 20, 31, 0.92);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: var(--display-bg);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 12px 14px;
