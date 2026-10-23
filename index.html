@@ -352,18 +352,49 @@
     </div>
     <p class="hub-no-results" id="hub-no-results" hidden>No calculators match your search.</p>
 
-    <p class="category-nav-label">Calculator Categories</p>
-    <nav class="category-nav" aria-label="Categories">
-      <a class="category-pill" href="/general/">🔢 General</a>
-      <a class="category-pill" href="/business-analysis/">📊 Business &amp; Analysis</a>
-      <a class="category-pill" href="/savings-investing/">🌱 Savings &amp; Investing</a>
-      <a class="category-pill" href="/everyday/">🍽️ Everyday</a>
-      <a class="category-pill" href="/home-diy/">🏠 Home &amp; DIY</a>
-      <a class="category-pill" href="/betting-odds/">🎲 Betting &amp; Odds</a>
-      <a class="category-pill" href="/other/">🎂 Other</a>
-    </nav>
+    <section class="cat-browse" id="cat-browse" aria-labelledby="cat-browse-label">
+      <p class="cat-browse-label" id="cat-browse-label">Browse by category</p>
+      <nav class="cat-tiles" aria-label="Calculator categories">
+        <a class="cat-tile" href="/general/">
+          <span class="cat-tile-icon" aria-hidden="true">🔢</span>
+          <span class="cat-tile-name">General</span>
+          <span class="cat-tile-count">6 calculators</span>
+        </a>
+        <a class="cat-tile" href="/business-analysis/">
+          <span class="cat-tile-icon" aria-hidden="true">📊</span>
+          <span class="cat-tile-name">Business &amp; Analysis</span>
+          <span class="cat-tile-count">7 calculators</span>
+        </a>
+        <a class="cat-tile" href="/savings-investing/">
+          <span class="cat-tile-icon" aria-hidden="true">🌱</span>
+          <span class="cat-tile-name">Savings &amp; Investing</span>
+          <span class="cat-tile-count">9 calculators</span>
+        </a>
+        <a class="cat-tile" href="/everyday/">
+          <span class="cat-tile-icon" aria-hidden="true">🍽️</span>
+          <span class="cat-tile-name">Everyday</span>
+          <span class="cat-tile-count">9 calculators</span>
+        </a>
+        <a class="cat-tile" href="/home-diy/">
+          <span class="cat-tile-icon" aria-hidden="true">🏠</span>
+          <span class="cat-tile-name">Home &amp; DIY</span>
+          <span class="cat-tile-count">5 calculators</span>
+        </a>
+        <a class="cat-tile" href="/betting-odds/">
+          <span class="cat-tile-icon" aria-hidden="true">🎲</span>
+          <span class="cat-tile-name">Betting &amp; Odds</span>
+          <span class="cat-tile-count">6 calculators</span>
+        </a>
+        <a class="cat-tile" href="/other/">
+          <span class="cat-tile-icon" aria-hidden="true">🎂</span>
+          <span class="cat-tile-name">Other</span>
+          <span class="cat-tile-count">7 calculators</span>
+        </a>
+      </nav>
+    </section>
 
-    <div class="hub-group-title" data-group><span>General</span> <a class="hub-group-link" href="/general/">All 6 →</a></div>
+
+    <div class="hub-group-title" data-group><span>General</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/basic/">
         <span class="icon">🔢</span>
@@ -395,9 +426,14 @@
         <div class="title">Number to Words</div>
         <div class="desc">Numbers written out in British English, plus ordinal and cheque wording.</div>
       </a>
+      <a class="hub-card hub-more" href="/general/">
+        <span class="hub-more-plus">+1</span>
+        <span class="hub-more-title">See all 6</span>
+        <span class="hub-more-desc">General calculators →</span>
+      </a>
     </div>
 
-    <div class="hub-group-title" data-group><span>Business &amp; Analysis</span> <a class="hub-group-link" href="/business-analysis/">All 7 →</a></div>
+    <div class="hub-group-title" data-group><span>Business &amp; Analysis</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/margin-markup/">
         <span class="icon">📊</span>
@@ -434,9 +470,14 @@
         <div class="title">Marketplace Fees</div>
         <div class="desc">eBay, Etsy and Amazon fees itemised → what you keep, and what to list at.</div>
       </a>
+      <a class="hub-card hub-more" href="/business-analysis/">
+        <span class="hub-more-plus">+2</span>
+        <span class="hub-more-title">See all 7</span>
+        <span class="hub-more-desc">Business &amp; Analysis calculators →</span>
+      </a>
     </div>
 
-    <div class="hub-group-title" data-group><span>Savings &amp; Investing</span> <a class="hub-group-link" href="/savings-investing/">All 9 →</a></div>
+    <div class="hub-group-title" data-group><span>Savings &amp; Investing</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/cagr/">
         <span class="icon">🧮</span>
@@ -483,9 +524,14 @@
         <div class="title">Cashback</div>
         <div class="desc">Multiple spending categories at different rates → what a card really pays.</div>
       </a>
+      <a class="hub-card hub-more" href="/savings-investing/">
+        <span class="hub-more-plus">+4</span>
+        <span class="hub-more-title">See all 9</span>
+        <span class="hub-more-desc">Savings &amp; Investing calculators →</span>
+      </a>
     </div>
 
-    <div class="hub-group-title" data-group><span>Everyday</span> <a class="hub-group-link" href="/everyday/">All 9 →</a></div>
+    <div class="hub-group-title" data-group><span>Everyday</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/tip/">
         <span class="icon">🍽️</span>
@@ -532,9 +578,14 @@
         <div class="title">Running Pace</div>
         <div class="desc">Any two of distance, time and pace → the third, plus speed and splits.</div>
       </a>
+      <a class="hub-card hub-more" href="/everyday/">
+        <span class="hub-more-plus">+4</span>
+        <span class="hub-more-title">See all 9</span>
+        <span class="hub-more-desc">Everyday calculators →</span>
+      </a>
     </div>
 
-    <div class="hub-group-title" data-group><span>Home &amp; DIY</span> <a class="hub-group-link" href="/home-diy/">All 5 →</a></div>
+    <div class="hub-group-title" data-group><span>Home &amp; DIY</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/household-bills/">
         <span class="icon">🏠</span>
@@ -561,9 +612,13 @@
         <div class="title">Watts, Amps &amp; Volts</div>
         <div class="desc">Convert power, current and voltage — DC, single phase and three phase.</div>
       </a>
+      <a class="hub-card hub-more" href="/home-diy/">
+        <span class="hub-more-title">See all 5</span>
+        <span class="hub-more-desc">Home &amp; DIY calculators →</span>
+      </a>
     </div>
 
-    <div class="hub-group-title" data-group><span>Betting &amp; Odds</span> <a class="hub-group-link" href="/betting-odds/">All 6 →</a></div>
+    <div class="hub-group-title" data-group><span>Betting &amp; Odds</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/odds-converter/">
         <span class="icon">🎲</span>
@@ -595,9 +650,14 @@
         <div class="title">Full Cover Bets</div>
         <div class="desc">Trixie, Yankee, Lucky 15, Heinz and Goliath — with non-runners handled properly.</div>
       </a>
+      <a class="hub-card hub-more" href="/betting-odds/">
+        <span class="hub-more-plus">+1</span>
+        <span class="hub-more-title">See all 6</span>
+        <span class="hub-more-desc">Betting &amp; Odds calculators →</span>
+      </a>
     </div>
 
-    <div class="hub-group-title" data-group><span>Other</span> <a class="hub-group-link" href="/other/">All 7 →</a></div>
+    <div class="hub-group-title" data-group><span>Other</span></div>
     <div class="hub-grid collapsed" data-group-grid>
       <a class="hub-card" href="/birthday/">
         <span class="icon">🎂</span>
@@ -633,6 +693,11 @@
         <span class="icon">🪐</span>
         <div class="title">Weight on Other Planets</div>
         <div class="desc">What you'd weigh on the Moon, Mars, Jupiter, Saturn and the Sun.</div>
+      </a>
+      <a class="hub-card hub-more" href="/other/">
+        <span class="hub-more-plus">+2</span>
+        <span class="hub-more-title">See all 7</span>
+        <span class="hub-more-desc">Other calculators →</span>
       </a>
     </div>
 
