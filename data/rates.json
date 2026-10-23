@@ -9,7 +9,6 @@
     },
     "warning": "Entries with lastVerified: null were compiled from secondary sources because the primary source was unreachable. Check each one before treating the output as accurate."
   },
-
   "marketplaceFees": {
     "ebay-uk": {
       "name": "eBay UK",
@@ -41,8 +40,14 @@
       },
       "perOrderFee": {
         "tiers": [
-          { "upTo": 10, "amount": 0.30 },
-          { "upTo": null, "amount": 0.40 }
+          {
+            "upTo": 10,
+            "amount": 0.3
+          },
+          {
+            "upTo": null,
+            "amount": 0.4
+          }
         ],
         "effectiveFrom": "2026-02-01",
         "lastVerified": null,
@@ -54,10 +59,30 @@
         "lastVerified": null
       },
       "categories": [
-        { "id": "most", "label": "Most categories", "ratePct": 12.8, "lastVerified": null },
-        { "id": "tech", "label": "Computers, phones, cameras", "ratePct": 8.7, "lastVerified": null },
-        { "id": "business-industrial", "label": "Business & industrial", "ratePct": 10.4, "lastVerified": null },
-        { "id": "media", "label": "Books, films, music, games", "ratePct": 12.8, "lastVerified": null }
+        {
+          "id": "most",
+          "label": "Most categories",
+          "ratePct": 12.8,
+          "lastVerified": null
+        },
+        {
+          "id": "tech",
+          "label": "Computers, phones, cameras",
+          "ratePct": 8.7,
+          "lastVerified": null
+        },
+        {
+          "id": "business-industrial",
+          "label": "Business & industrial",
+          "ratePct": 10.4,
+          "lastVerified": null
+        },
+        {
+          "id": "media",
+          "label": "Books, films, music, games",
+          "ratePct": 12.8,
+          "lastVerified": null
+        }
       ],
       "categoryRangeNote": "Published category rates run from about 6.9% to 14.9%. Only a few are listed here — use the custom rate box for anything else.",
       "promotedListings": {
@@ -66,7 +91,6 @@
         "lastVerified": null
       }
     },
-
     "etsy": {
       "name": "Etsy",
       "currency": "GBP",
@@ -77,7 +101,7 @@
       "vatOnFeesPct": 20,
       "feeBaseIncludesPostage": true,
       "listingFee": {
-        "amount": 0.20,
+        "amount": 0.2,
         "lastVerified": null,
         "note": "Charged per listing, and again every four months or when the listing sells and is renewed."
       },
@@ -87,7 +111,7 @@
       },
       "paymentProcessing": {
         "percent": 4.0,
-        "fixed": 0.20,
+        "fixed": 0.2,
         "lastVerified": null,
         "note": "UK rate. Etsy Payments processing varies by country."
       },
@@ -118,7 +142,6 @@
         "note": "Applies when the listing currency differs from the shop's bank currency."
       }
     },
-
     "amazon-uk": {
       "name": "Amazon UK (FBA)",
       "currency": "GBP",
@@ -133,22 +156,83 @@
         "lastVerified": null
       },
       "categories": [
-        { "id": "default", "label": "Most categories", "ratePct": 15.0, "lastVerified": null },
-        { "id": "clothing", "label": "Clothing & accessories", "ratePct": 15.0, "lastVerified": null,
+        {
+          "id": "default",
+          "label": "Most categories",
+          "ratePct": 15.0,
+          "lastVerified": null
+        },
+        {
+          "id": "clothing",
+          "label": "Clothing & accessories",
+          "ratePct": 15.0,
+          "lastVerified": null,
           "lowPriceTiers": [
-            { "upTo": 15, "ratePct": 5.0 },
-            { "upTo": 20, "ratePct": 10.0 }
+            {
+              "upTo": 15,
+              "ratePct": 5.0
+            },
+            {
+              "upTo": 20,
+              "ratePct": 10.0
+            }
           ],
-          "tierNote": "Reduced rates for lower-priced items introduced in 2026." },
-        { "id": "home", "label": "Home products", "ratePct": 15.0, "lastVerified": null,
-          "lowPriceTiers": [ { "upTo": 20, "ratePct": 8.0 } ] },
-        { "id": "grocery", "label": "Grocery & gourmet", "ratePct": 15.0, "lastVerified": null,
-          "lowPriceTiers": [ { "upTo": 10, "ratePct": 5.0 } ] },
-        { "id": "supplements", "label": "Vitamins, minerals & supplements", "ratePct": 15.0, "lastVerified": null,
-          "lowPriceTiers": [ { "upTo": 10, "ratePct": 5.0 } ] },
-        { "id": "electronics", "label": "Consumer electronics", "ratePct": 7.0, "lastVerified": null },
-        { "id": "computers", "label": "Computers", "ratePct": 7.0, "lastVerified": null },
-        { "id": "books", "label": "Books", "ratePct": 15.0, "lastVerified": null }
+          "tierNote": "Reduced rates for lower-priced items introduced in 2026."
+        },
+        {
+          "id": "home",
+          "label": "Home products",
+          "ratePct": 15.0,
+          "lastVerified": null,
+          "lowPriceTiers": [
+            {
+              "upTo": 20,
+              "ratePct": 8.0
+            }
+          ]
+        },
+        {
+          "id": "grocery",
+          "label": "Grocery & gourmet",
+          "ratePct": 15.0,
+          "lastVerified": null,
+          "lowPriceTiers": [
+            {
+              "upTo": 10,
+              "ratePct": 5.0
+            }
+          ]
+        },
+        {
+          "id": "supplements",
+          "label": "Vitamins, minerals & supplements",
+          "ratePct": 15.0,
+          "lastVerified": null,
+          "lowPriceTiers": [
+            {
+              "upTo": 10,
+              "ratePct": 5.0
+            }
+          ]
+        },
+        {
+          "id": "electronics",
+          "label": "Consumer electronics",
+          "ratePct": 7.0,
+          "lastVerified": null
+        },
+        {
+          "id": "computers",
+          "label": "Computers",
+          "ratePct": 7.0,
+          "lastVerified": null
+        },
+        {
+          "id": "books",
+          "label": "Books",
+          "ratePct": 15.0,
+          "lastVerified": null
+        }
       ],
       "fulfilment": {
         "effectiveFrom": "2026-04-01",
@@ -161,38 +245,142 @@
         },
         "lowPriceThreshold": {
           "amount": 20,
-          "reductionPerUnit": 0.40,
+          "reductionPerUnit": 0.4,
           "effectiveFrom": "2026-01-01",
           "lastVerified": null,
           "note": "Low-Price FBA was expanded from £10 to £20 in January 2026."
         },
         "tiers": [
-          { "id": "light-envelope", "label": "Light envelope — up to 100g", "amount": 1.70, "lastVerified": null },
-          { "id": "standard-envelope", "label": "Standard envelope — up to 460g", "amount": 1.90, "lastVerified": null },
-          { "id": "large-envelope", "label": "Large envelope — up to 960g", "amount": 2.30, "lastVerified": null },
-          { "id": "small-parcel", "label": "Small parcel — up to 1.4kg", "amount": 2.90, "lastVerified": null },
-          { "id": "standard-parcel", "label": "Standard parcel — up to 9kg", "amount": 3.40, "lastVerified": null },
-          { "id": "small-oversize", "label": "Small oversize", "amount": 5.50, "lastVerified": null },
-          { "id": "large-oversize", "label": "Large oversize", "amount": 8.50, "lastVerified": null }
+          {
+            "id": "light-envelope",
+            "label": "Light envelope — up to 100g",
+            "amount": 1.7,
+            "lastVerified": null
+          },
+          {
+            "id": "standard-envelope",
+            "label": "Standard envelope — up to 460g",
+            "amount": 1.9,
+            "lastVerified": null
+          },
+          {
+            "id": "large-envelope",
+            "label": "Large envelope — up to 960g",
+            "amount": 2.3,
+            "lastVerified": null
+          },
+          {
+            "id": "small-parcel",
+            "label": "Small parcel — up to 1.4kg",
+            "amount": 2.9,
+            "lastVerified": null
+          },
+          {
+            "id": "standard-parcel",
+            "label": "Standard parcel — up to 9kg",
+            "amount": 3.4,
+            "lastVerified": null
+          },
+          {
+            "id": "small-oversize",
+            "label": "Small oversize",
+            "amount": 5.5,
+            "lastVerified": null
+          },
+          {
+            "id": "large-oversize",
+            "label": "Large oversize",
+            "amount": 8.5,
+            "lastVerified": null
+          }
         ]
       },
       "professionalPlan": {
-        "monthlyAmount": 25.00,
+        "monthlyAmount": 25.0,
         "lastVerified": null,
         "note": "Flat monthly subscription, excluding VAT. Spread across the units sold in the month to get a per-unit cost."
       },
       "storage": {
-        "defaultMonthlyPerUnit": 0.00,
+        "defaultMonthlyPerUnit": 0.0,
         "lastVerified": null,
         "note": "Monthly storage is charged per cubic metre and varies sharply between the January to September and October to December periods. Enter your own figure."
       }
     }
   },
-
   "taxBands": {
-    "_note": "Reserved for income tax, National Insurance and VAT bands. Nothing here yet — /vat/ still carries its own figures."
+    "_note": "Income tax and National Insurance by jurisdiction and tax year. Keyed so a new tax year is added alongside the old one rather than overwriting it, since pages may need to cite a past year.",
+    "uk-2026-27": {
+      "name": "United Kingdom",
+      "appliesTo": "England, Wales and Northern Ireland",
+      "taxYear": "2026/27",
+      "taxYearStart": "2026-04-06",
+      "taxYearEnd": "2027-04-05",
+      "currency": "GBP",
+      "symbol": "£",
+      "effectiveFrom": "2026-04-06",
+      "lastVerified": null,
+      "source": "https://www.gov.uk/income-tax-rates",
+      "sourceNote": "gov.uk is unreachable from the build environment, so these came from secondary sources. They were consistent across several independent ones including the House of Commons Library briefing CBP-10618, and these thresholds have been frozen since 2021/22 — but they have not been checked against HMRC directly. Confidence is high; verification is still outstanding.",
+      "scotland": {
+        "differs": true,
+        "modelled": false,
+        "note": "Scotland sets its own income tax bands and rates. Sources disagreed on the Scottish starter-rate threshold for 2026/27, so Scotland is deliberately not modelled rather than modelled wrongly. National Insurance is the same UK-wide.",
+        "source": "https://www.gov.scot/policies/taxes/income-tax/"
+      },
+      "personalAllowance": 12570,
+      "allowanceTaperFrom": 100000,
+      "allowanceTaperPerPound": 0.5,
+      "allowanceGoneAt": 125140,
+      "_bandsNote": "Thresholds are on TAXABLE income, i.e. after the personal allowance.",
+      "incomeTaxBands": [
+        {
+          "label": "Basic rate",
+          "upTo": 37700,
+          "rate": 20
+        },
+        {
+          "label": "Higher rate",
+          "upTo": 125140,
+          "rate": 40
+        },
+        {
+          "label": "Additional rate",
+          "upTo": null,
+          "rate": 45
+        }
+      ],
+      "_niNote": "Class 1 employee contributions, charged on GROSS pay, not taxable income.",
+      "nationalInsurance": {
+        "source": "https://www.gov.uk/national-insurance-rates-letters",
+        "lastVerified": null,
+        "bands": [
+          {
+            "label": "Below the primary threshold",
+            "upTo": 12570,
+            "rate": 0
+          },
+          {
+            "label": "Primary threshold to upper earnings limit",
+            "upTo": 50270,
+            "rate": 8
+          },
+          {
+            "label": "Above the upper earnings limit",
+            "upTo": null,
+            "rate": 2
+          }
+        ]
+      },
+      "notModelled": [
+        "Pension contributions (workplace or salary sacrifice)",
+        "Student loan and postgraduate loan repayments",
+        "Scottish income tax bands",
+        "Tax codes other than the standard personal allowance",
+        "Benefits in kind, salary sacrifice, and taxable expenses",
+        "Blind person's allowance, marriage allowance and other reliefs"
+      ]
+    }
   },
-
   "energyCaps": {
     "_note": "Reserved for Ofgem price cap unit rates and standing charges. Nothing here yet — /running-cost/ and /ev-charging-cost/ take rates from the user."
   }
