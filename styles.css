@@ -965,27 +965,23 @@ hr.divider {
   margin-top: 0;
 }
 
-.hub-group-link {
-  color: var(--accent);
-  font-size: 0.78rem;
-  font-weight: 700;
-  text-transform: none;
-  letter-spacing: normal;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.hub-group-link:hover {
-  text-decoration: underline;
-}
-
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 14px;
 }
 
-.hub-grid.collapsed .hub-card:nth-child(n + 4) {
+/* Five calculators per category, then the "see all" card in the sixth slot.
+   Six divides evenly into the one, two and three columns the grid settles
+   on, so every category ends on a full row. The card is excluded from the
+   count by :not() rather than by position, so it is never the one hidden. */
+.hub-grid.collapsed .hub-card:not(.hub-more):nth-child(n + 6) {
+  display: none;
+}
+
+/* While searching, every match is shown and the card would point at a
+   category the results may not even be in */
+.hub-grid:not(.collapsed) .hub-more {
   display: none;
 }
 
@@ -1025,40 +1021,12 @@ hr.divider {
 
 .hub-card[hidden],
 .hub-grid[hidden],
-.hub-group-title[hidden] {
-  display: none;
+.hub-group-title[hidden],
+.cat-browse[hidden] {
+  display: none !important;
 }
 
 /* ---------- Category nav & pills ---------- */
-
-.category-nav-label {
-  color: var(--text-muted);
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin: 0 0 10px;
-}
-
-/* Sits in the flow and scrolls away with the rest of the page. It was sticky,
-   which meant it followed you down and kept a bar of chrome over the grid the
-   whole way. The categories are a jumping-off point at the top, not something
-   you need within reach while browsing — and the footer carries the same links
-   for anyone who wants them at the bottom.
-
-   With nothing overlapping content there is no longer any reason for the
-   translucent fill or the blur behind it, so both go: a solid panel reads
-   better against the pills and costs nothing to paint. */
-.category-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  background: var(--display-bg);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px 14px;
-  margin: 0 0 32px;
-}
 
 .category-pill {
   display: inline-flex;
@@ -1084,6 +1052,191 @@ hr.divider {
   color: #1a1d2b;
   border-color: var(--accent);
   font-weight: 700;
+}
+
+/* ---------- Homepage: browse by category ---------- */
+
+/* Replaces a bordered box of wrapping pills, which left "Other" stranded on
+   a line of its own and looked like a form field rather than navigation.
+   Seven equal tiles on one row, each carrying how many calculators are in
+   it — the count is the useful part, because it tells you whether a
+   category is worth opening before you open it. */
+.cat-browse {
+  margin: 0 0 40px;
+}
+
+.cat-browse-label {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 12px;
+}
+
+.cat-tiles {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.cat-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 8px 14px;
+  background: var(--calc-bg);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: 0 10px 24px var(--shadow);
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.cat-tile:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+  background: #2d3149;
+}
+
+.cat-tile:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.cat-tile-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+/* Two lines reserved for every name, so a one-word category and a
+   three-word one still put their counts on the same baseline */
+.cat-tile-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5em;
+  color: var(--text-main);
+  font-size: 0.82rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.cat-tile-count {
+  color: var(--text-muted);
+  font-size: 0.72rem;
+}
+
+/* Seven tiles stop fitting comfortably below about 760px. Rather than wrap
+   into an uneven 4 + 3 or 2 + 2 + 2 + 1, they become a single scrolling row
+   that bleeds to the screen edge — the half-visible tile at the end is what
+   tells you there is more to swipe to. */
+@media (max-width: 760px) {
+  .cat-tiles {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    margin: 0 -16px;
+    padding: 4px 16px 12px;
+    scroll-padding: 0 16px;
+  }
+
+  /* Sized off the viewport so roughly three and a half tiles show on a
+     phone. A fixed width left only a few pixels of the fourth visible at
+     390px, which is too thin to read as "there is more this way". */
+  .cat-tile {
+    flex: 0 0 clamp(96px, 26vw, 120px);
+    scroll-snap-align: start;
+    box-shadow: 0 6px 14px var(--shadow);
+  }
+}
+
+/* ---------- Homepage: "see all" card ---------- */
+
+.hub .hub-more {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  text-align: center;
+  background: transparent;
+  border: 1.5px dashed var(--border);
+  box-shadow: none;
+}
+
+.hub .hub-more:hover {
+  border-color: var(--accent);
+  background: rgba(255, 159, 67, 0.06);
+}
+
+.hub-more-plus {
+  color: var(--accent);
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.hub-more-title {
+  color: var(--text-main);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.hub-more-desc {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+/* ---------- Homepage: compact cards on phones ---------- */
+
+/* Showing five per category instead of three would make the phone layout
+   very long with full-height stacked cards. Below 560px each card becomes a
+   single row — icon on the left, title and description beside it — which
+   roughly halves its height. Scoped to the homepage; the "related" cards on
+   calculator pages are untouched. */
+@media (max-width: 560px) {
+  .hub .hub-grid {
+    gap: 10px;
+  }
+
+  .hub .hub-card:not(.hub-more) {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    column-gap: 14px;
+    align-items: center;
+    padding: 14px 16px;
+  }
+
+  .hub .hub-card:not(.hub-more) .icon {
+    grid-row: 1 / span 2;
+    margin: 0;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .hub .hub-card:not(.hub-more) .title {
+    margin: 0;
+    align-self: end;
+  }
+
+  .hub .hub-card:not(.hub-more) .desc {
+    align-self: start;
+  }
+
+  .hub .hub-more {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    padding: 14px 16px;
+  }
+
+  .hub-more-plus {
+    font-size: 1.2rem;
+  }
 }
 
 /* ---------- Category page chrome ---------- */
