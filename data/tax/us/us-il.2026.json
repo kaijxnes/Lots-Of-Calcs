@@ -1,0 +1,105 @@
+{
+  "id": "us-il",
+  "name": "Illinois",
+  "appliesTo": "Residents of Illinois",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "il-exemption",
+      "label": "Illinois personal exemption",
+      "show": true,
+      "note": "$2,850 per person, lost entirely above $250,000 of income ($500,000 married).",
+      "value": {
+        "if": {
+          "lte": [
+            "gross",
+            {
+              "status": {"single": 250000, "married": 500000}
+            }
+          ]
+        },
+        "then": {
+          "mul": [
+            2850,
+            {
+              "status": {"single": 1, "married": 2}
+            }
+          ]
+        },
+        "else": 0
+      }
+    },
+    {
+      "id": "il-income-tax",
+      "label": "Illinois income tax",
+      "group": "tax",
+      "charge": {
+        "pct": 4.95,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": ["gross", "il-exemption"]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": ["Use tax that some filers pay on the income tax return"],
+  "provisional": ["Personal exemption of $2,850 is the 2025 amount"],
+  "sources": [
+    {
+      "title": "Illinois Department of Revenue 2025 Form IL-1040 Instructions",
+      "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf#page=1"
+    },
+    {
+      "title": "Illinois Department of Revenue 2025 Schedule ICR; Illinois Credits",
+      "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-icr.pdf#page=1"
+    },
+    {
+      "title": "Illinois Department of Revenue 2025 Form IL-1040 Individual Income Tax Return",
+      "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040.pdf#page=1"
+    },
+    {
+      "title": "2025 Schedule IL-E/EIC - Illinois Exemption and Earned Income Credit",
+      "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf#page=1"
+    },
+    {
+      "title": "Illinois Department of Revenue 2025 Form IL-1040 Instructions; Step 4 - Exemptions",
+      "url": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf#page=8"
+    },
+    {"title": "Income Tax Rates", "url": "https://tax.illinois.gov/research/taxrates/income.html"}
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/il",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf#page=1",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Illinois personal exemption $2,850. Illinois income tax $1,838.93. PolicyEngine US 2.62.5 differs by $3.72 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"il-exemption": 2850, "il-income-tax": 1838.93, "net": 32481.08}
+    },
+    {
+      "gross": 85000,
+      "note": "Illinois personal exemption $2,850. Illinois income tax $4,066.43. PolicyEngine US 2.62.5 differs by $3.72 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"il-exemption": 2850, "il-income-tax": 4066.43, "net": 64561.08}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Illinois personal exemption $5,700. Illinois income tax $7,142.85. PolicyEngine US 2.62.5 differs by $7.43 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"il-exemption": 5700, "il-income-tax": 7142.85, "net": 116042.15}
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+{
+  "id": "us-nd",
+  "name": "North Dakota",
+  "appliesTo": "Residents of North Dakota",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "nd-income-tax",
+      "label": "North Dakota income tax",
+      "group": "tax",
+      "note": "Starts from federal taxable income; nothing on the first $49,575 ($82,800 married).",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 0], [49575, 1.95], [250400, 2.5]],
+            "married": [[0, 0], [82800, 1.95], [304850, 2.5]]
+          }
+        },
+        "of": "us-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2026 North Dakota Form ND-1ES tax rate schedules",
+      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf#page=2"
+    },
+    {
+      "title": "2025 North Dakota income tax instructions",
+      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/2025-individual-income-tax-booklet.pdf#page=29"
+    },
+    {
+      "title": "2021 North Dakota income tax instructions",
+      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2021-iit/individual-income-tax-booklet-2021.pdf#page=34"
+    },
+    {
+      "title": "2022 North Dakota income tax instructions",
+      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2022-iit/2022-individual-income-tax-booklet.pdf#page=34"
+    },
+    {
+      "title": "2023 North Dakota income tax instructions",
+      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2023-iit/2023-individual-income-tax-booklet.pdf#page=30"
+    },
+    {
+      "title": "2024 North Dakota income tax instructions",
+      "url": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2024-iit/2024-individual-income-tax-booklet.pdf#page=29"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nd",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf#page=2",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "North Dakota income tax $0. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nd-income-tax": 0, "net": 34320}
+    },
+    {
+      "gross": 85000,
+      "note": "North Dakota income tax $376.84. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nd-income-tax": 376.84, "net": 68250.66}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "North Dakota income tax $682.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nd-income-tax": 682.5, "net": 122502.5}
+    }
+  ]
+}

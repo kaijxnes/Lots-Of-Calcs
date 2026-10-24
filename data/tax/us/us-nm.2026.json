@@ -1,0 +1,146 @@
+{
+  "id": "us-nm",
+  "name": "New Mexico",
+  "appliesTo": "Residents of New Mexico",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "nm-taxable",
+      "label": "New Mexico taxable income",
+      "show": true,
+      "note": "Federal standard deduction, and a low- and middle-income exemption of up to $2,500 each below $36,667 ($55,000 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              "us-standard-deduction",
+              {
+                "if": {
+                  "lte": [
+                    "gross",
+                    {
+                      "status": {"single": 36667, "married": 55000}
+                    }
+                  ]
+                },
+                "then": {
+                  "mul": [
+                    {
+                      "max": [
+                        0,
+                        {
+                          "sub": [
+                            2500,
+                            {
+                              "mul": [
+                                {
+                                  "status": {"single": 0.15, "married": 0.1}
+                                },
+                                {
+                                  "max": [
+                                    0,
+                                    {
+                                      "sub": [
+                                        "gross",
+                                        {
+                                          "status": {"single": 20000, "married": 30000}
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "status": {"single": 1, "married": 2}
+                    }
+                  ]
+                },
+                "else": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nm-income-tax",
+      "label": "New Mexico income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 1.5], [5500, 3.2], [16500, 4.3], [33500, 4.7], [66500, 4.9], [210000, 5.9]],
+            "married": [[0, 1.5], [8000, 3.2], [25000, 4.3], [50000, 4.7], [100000, 4.9], [315000, 5.9]]
+          }
+        },
+        "of": "nm-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 PIT-ADJ SCHEDULE OF ADDITIONS, DEDUCTIONS, AND EXEMPTIONS",
+      "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=49"
+    },
+    {
+      "title": "2025 Personal Income Tax Form Packet ADJ-5. LINE 13 EXEMPTION--INCOME OF PERSONS SIXTY-FIVE AND OLDER OR BLIND",
+      "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=50"
+    },
+    {
+      "title": "2025 Tax Form Instructions PIT-ADJ Page ADJ-3",
+      "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=48"
+    },
+    {
+      "title": "2025 New Mexico personal income tax form packet Page PIT-1-26",
+      "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=32"
+    },
+    {
+      "title": "2025 New Mexico personal income tax form packet Page ADJ-7 LINE 25 Exemption for social security income",
+      "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=52"
+    },
+    {
+      "title": "2025 Tax Form Instructions Page ADJ-5 LINE 18. Medical care expense exemption for persons age 65 years or older",
+      "url": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=51"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nm",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=49",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "New mexico taxable income $23,900. New Mexico income tax $752.7. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nm-taxable": 23900, "nm-income-tax": 752.7, "net": 33567.3}
+    },
+    {
+      "gross": 85000,
+      "note": "New mexico taxable income $68,900. New Mexico income tax $2,834.1. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nm-taxable": 68900, "nm-income-tax": 2834.1, "net": 65793.4}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "New mexico taxable income $117,800. New Mexico income tax $4,961.2. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nm-taxable": 117800, "nm-income-tax": 4961.2, "net": 118223.8}
+    }
+  ]
+}

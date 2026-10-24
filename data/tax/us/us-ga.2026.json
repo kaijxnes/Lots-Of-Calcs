@@ -1,0 +1,91 @@
+{
+  "id": "us-ga",
+  "name": "Georgia",
+  "appliesTo": "Residents of Georgia",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ga-taxable",
+      "label": "Georgia taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 15000, "married": 30000}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ga-income-tax",
+      "label": "Georgia income tax",
+      "group": "tax",
+      "charge": {"pct": 4.99, "of": "ga-taxable"}
+    }
+  ],
+  "notModelled": ["Low-income credit (incomes under $20,000)"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Georgia HB463 (2025-2026), Section 2-3 amending O.C.G.A. § 48-7-27(a)(1)(B)",
+      "url": "https://www.legis.ga.gov/api/legislation/document/20252026/249080#page=3"
+    },
+    {
+      "title": "Georgia HB463 (2025-2026), Section 2-1 amending O.C.G.A. § 48-7-20(a.1)",
+      "url": "https://www.legis.ga.gov/api/legislation/document/20252026/249080#page=2"
+    },
+    {
+      "title": "2025 IT-511 Individual Income Tax Booklet - page 16 - FORM 500, LINE 11",
+      "url": "https://dor.georgia.gov/document/document/2025-it-511-individual-income-tax-booklet/download#page=16"
+    },
+    {
+      "title": "2025 IT-511 Individual Income Tax Booklet - page 17 - FORM 500, LINE 14",
+      "url": "https://dor.georgia.gov/document/document/2025-it-511-individual-income-tax-booklet/download#page=17"
+    },
+    {
+      "title": "2025 IT-511 Individual Income Tax Booklet, Page 9",
+      "url": "https://dor.georgia.gov/document/document/2025-it-511-individual-income-tax-booklet/download#page=9"
+    },
+    {
+      "title": "2021 IT-511 Individual Income Tax Booklet - page 12 - FORM 500, LINE 11a",
+      "url": "https://dor.georgia.gov/document/booklet/2021-it-511-individual-income-tax-booklet/download"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ga",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.legis.ga.gov/api/legislation/document/20252026/249080#page=3",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Georgia taxable income $25,000. Georgia income tax $1,247.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ga-taxable": 25000, "ga-income-tax": 1247.5, "net": 33072.5}
+    },
+    {
+      "gross": 85000,
+      "note": "Georgia taxable income $70,000. Georgia income tax $3,493. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ga-taxable": 70000, "ga-income-tax": 3493, "net": 65134.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Georgia taxable income $120,000. Georgia income tax $5,988. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ga-taxable": 120000, "ga-income-tax": 5988, "net": 117197}
+    }
+  ]
+}

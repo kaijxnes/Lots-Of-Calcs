@@ -1,0 +1,94 @@
+{
+  "id": "us-dc",
+  "name": "District of Columbia",
+  "appliesTo": "Residents of District of Columbia",
+  "kind": "region",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "dc-taxable",
+      "label": "DC taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 15000, "married": 30000}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "dc-income-tax",
+      "label": "DC income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": [[0, 4], [10000, 6], [40000, 6.5], [60000, 8.5], [250000, 9.25], [500000, 9.75], [1000000, 10.75]],
+        "of": "dc-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": ["Standard deduction of $15,000 ($30,000 married) is the 2025 amount; DC had not set its 2026 figure"],
+  "sources": [
+    {
+      "title": "2025 DC Form D-40 Booklet, Tax Rate Schedule",
+      "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=20"
+    },
+    {
+      "title": "2025 DC D-40 Booklet, Standard Deduction (p.13)",
+      "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=13"
+    },
+    {
+      "title": "2021 Form D-40 Booklet",
+      "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/52926_D-40_12.21.21_Final_Rev011122.pdf#page=19"
+    },
+    {
+      "title": "2022 Form D-40 Booklet",
+      "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2022_D-40_Booklet_Final_blk_01_23_23_Ordc.pdf#page=18"
+    },
+    {
+      "title": "2023 Form D-40 Booklet",
+      "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2023_D40_Book_Final_012324.pdf#page=17"
+    },
+    {
+      "title": "2024 DC Form D-40 Booklet, Tax Rate Schedule",
+      "url": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2024_D40_Booklet_011525.pdf#page=17"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/dc",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=20",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Dc taxable income $25,000. DC income tax $1,300. PolicyEngine US 2.62.5 differs by $18 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"dc-taxable": 25000, "dc-income-tax": 1300, "net": 33020}
+    },
+    {
+      "gross": 85000,
+      "note": "Dc taxable income $70,000. DC income tax $4,350. PolicyEngine US 2.62.5 differs by $25.5 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"dc-taxable": 70000, "dc-income-tax": 4350, "net": 64277.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Dc taxable income $120,000. DC income tax $8,600. PolicyEngine US 2.62.5 differs by $55.25 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"dc-taxable": 120000, "dc-income-tax": 8600, "net": 114585}
+    }
+  ]
+}

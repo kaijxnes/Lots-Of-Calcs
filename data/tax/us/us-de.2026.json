@@ -1,0 +1,124 @@
+{
+  "id": "us-de",
+  "name": "Delaware",
+  "appliesTo": "Residents of Delaware",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "de-taxable",
+      "label": "Delaware taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 3250, "married": 6500}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-income-tax",
+      "label": "Delaware income tax",
+      "group": "tax",
+      "note": "Less the $110 personal credit per person.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [[0, 0], [2000, 2.2], [5000, 3.9], [10000, 4.8], [20000, 5.2], [25000, 5.55], [60000, 6.6]],
+                "of": "de-taxable"
+              },
+              {
+                "mul": [
+                  110,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-pfml",
+      "label": "Paid Leave",
+      "group": "social",
+      "note": "Half of the 0.8% premium (medical, parental and caregiver leave), assuming an employer with 25 or more staff.",
+      "charge": {
+        "pct": 0.4,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    }
+  ],
+  "notModelled": ["Wilmington's 1.25% earned income tax"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Delaware Individual Income Tax Return Instructions",
+      "url": "https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=8"
+    },
+    {
+      "title": "2025 Delaware Individual Income Tax Return Instructions",
+      "url": "https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=3"
+    },
+    {
+      "title": "Government of Delaware - Tax Rate Changes",
+      "url": "https://revenue.delaware.gov/software-developer/tax-rate-changes/"
+    },
+    {
+      "title": "The Delaware Code - Title 30, Chapter 11, Subch. 1, § 1102, a, 14",
+      "url": "https://delcode.delaware.gov/title30/c011/sc01/index.html"
+    },
+    {
+      "title": "Delaware individual income tax instructions for 2022",
+      "url": "https://revenuefiles.delaware.gov/2022/PIT-RES_TY22_2022-02_Instructions.pdf#page=7"
+    },
+    {
+      "title": "The Delaware Code - Title 30 - Chapter 11 - Subchapter II - § 1108",
+      "url": "https://delcode.delaware.gov/title30/c011/sc02/index.html#1108"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/de",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=8",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Delaware taxable income $36,750. Delaware income tax $1,543.13; Paid Leave $160. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"de-taxable": 36750, "de-income-tax": 1543.13, "de-pfml": 160, "net": 32616.88}
+    },
+    {
+      "gross": 85000,
+      "note": "Delaware taxable income $81,750. Delaware income tax $4,269; Paid Leave $340. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"de-taxable": 81750, "de-income-tax": 4269, "de-pfml": 340, "net": 64018.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Delaware taxable income $143,500. Delaware income tax $8,234.5; Paid Leave $600. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"de-taxable": 143500, "de-income-tax": 8234.5, "de-pfml": 600, "net": 114350.5}
+    }
+  ]
+}

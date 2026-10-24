@@ -1,0 +1,82 @@
+{
+  "id": "us-mt",
+  "name": "Montana",
+  "appliesTo": "Residents of Montana",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "mt-income-tax",
+      "label": "Montana income tax",
+      "group": "tax",
+      "note": "Starts from federal taxable income.",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 4.7], [47500, 5.65]],
+            "married": [[0, 4.7], [95000, 5.65]]
+          }
+        },
+        "of": "us-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Montana Tax Tables and Deductions",
+      "url": "https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025"
+    },
+    {
+      "title": "Montana Code Annotated 2023, TITLE 15, CHAPTER 30, Part 23, 15-30-2337 (11)",
+      "url": "https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html"
+    },
+    {
+      "title": "2021 Montana Code Annotated, Title 15, Chapter 30, Part 23, 15-30-2337 (11)",
+      "url": "https://law.justia.com/codes/montana/2021/title-15/chapter-30/part-23/section-15-30-2337/"
+    },
+    {
+      "title": "2022 Form of Montana Individual Income Tax Return, Page 10, Line 17",
+      "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2022_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10"
+    },
+    {
+      "title": "2021 Form of Montana Individual Income Tax Return, Page 10, Line 17",
+      "url": "https://revenue.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2021_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10"
+    },
+    {
+      "title": "2023 Form of Montana Individual Income Tax Return, Page 10, Line 17",
+      "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2023_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mt",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Montana income tax $1,123.3. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mt-income-tax": 1123.3, "net": 33196.7}
+    },
+    {
+      "gross": 85000,
+      "note": "Montana income tax $3,441.6. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mt-income-tax": 3441.6, "net": 65185.9}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Montana income tax $5,753.2. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mt-income-tax": 5753.2, "net": 117431.8}
+    }
+  ]
+}

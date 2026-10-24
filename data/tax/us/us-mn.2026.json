@@ -1,0 +1,183 @@
+{
+  "id": "us-mn",
+  "name": "Minnesota",
+  "appliesTo": "Residents of Minnesota",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "mn-standard-deduction",
+      "label": "Minnesota standard deduction",
+      "show": true,
+      "note": "Reduced by 3% of income over $244,400 and 10% over $337,800, never by more than 80%.",
+      "value": {
+        "sub": [
+          {
+            "status": {"single": 15300, "married": 30600}
+          },
+          {
+            "if": {
+              "gt": ["gross", 1107750]
+            },
+            "then": {
+              "pct": 80,
+              "of": {
+                "status": {"single": 15300, "married": 30600}
+              }
+            },
+            "else": {
+              "min": [
+                {
+                  "pct": 80,
+                  "of": {
+                    "status": {"single": 15300, "married": 30600}
+                  }
+                },
+                {
+                  "sum": [
+                    {
+                      "pct": 3,
+                      "of": {
+                        "min": [
+                          {
+                            "max": [
+                              0,
+                              {
+                                "sub": ["gross", 244400]
+                              }
+                            ]
+                          },
+                          93400
+                        ]
+                      }
+                    },
+                    {
+                      "pct": 10,
+                      "of": {
+                        "max": [
+                          0,
+                          {
+                            "sub": ["gross", 337800]
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "mn-taxable",
+      "label": "Minnesota taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "mn-standard-deduction"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "mn-income-tax",
+      "label": "Minnesota income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 5.35], [33310, 6.8], [109430, 7.85], [203150, 9.85]],
+            "married": [[0, 5.35], [48700, 6.8], [193480, 7.85], [337930, 9.85]]
+          }
+        },
+        "of": "mn-taxable"
+      }
+    },
+    {
+      "id": "mn-pfml",
+      "label": "Paid Leave",
+      "group": "social",
+      "note": "Half of the 0.88% premium, from January 2026, on wages up to $185,000.",
+      "charge": {
+        "pct": 0.44,
+        "of": {
+          "min": ["gross", 185000]
+        }
+      }
+    }
+  ],
+  "notModelled": ["Minnesota alternative minimum tax, which can add around 0.3% for married couples on high incomes"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Minnesota Schedule M1MT form, Line 22",
+      "url": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1"
+    },
+    {
+      "title": "2025 Schedule M1CWFC, Minnesota Child and Working Family Credits",
+      "url": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cwfc-25.pdf#page=1"
+    },
+    {
+      "title": "2025 Schedule M1ED, Line 11",
+      "url": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ed-25.pdf"
+    },
+    {
+      "title": "2025 Minnesota Schedule M1MA, Marriage Credit, Line 10",
+      "url": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ma-25.pdf#page=1"
+    },
+    {
+      "title": "2025 Minnesota M1 form instructions",
+      "url": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1-inst-25.pdf#page=4"
+    },
+    {
+      "title": "Minnesota Department of Revenue, Tax Year 2026 Inflation-Adjusted Amounts, 290.0123 Subd. 1 Standard Deduction",
+      "url": "https://www.revenue.state.mn.us/sites/default/files/2025-12/inflation-adjusted-amounts-2026.pdf#page=1"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mn",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Minnesota standard deduction $15,300, minnesota taxable income $24,700. Minnesota income tax $1,321.45; Paid Leave $176. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {
+        "mn-standard-deduction": 15300,
+        "mn-taxable": 24700,
+        "mn-income-tax": 1321.45,
+        "mn-pfml": 176,
+        "net": 32822.55
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Minnesota standard deduction $15,300, minnesota taxable income $69,700. Minnesota income tax $4,256.6; Paid Leave $374. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mn-standard-deduction": 15300, "mn-taxable": 69700, "mn-income-tax": 4256.6, "mn-pfml": 374, "net": 63996.9}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Minnesota standard deduction $30,600, minnesota taxable income $119,400. Minnesota income tax $7,413.05; Paid Leave $660. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {
+        "mn-standard-deduction": 30600,
+        "mn-taxable": 119400,
+        "mn-income-tax": 7413.05,
+        "mn-pfml": 660,
+        "net": 115111.95
+      }
+    }
+  ]
+}

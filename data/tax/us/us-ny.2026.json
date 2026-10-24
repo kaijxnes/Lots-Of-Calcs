@@ -1,0 +1,251 @@
+{
+  "id": "us-ny",
+  "name": "New York",
+  "appliesTo": "Residents of New York",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ny-taxable",
+      "label": "New York taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 8000, "married": 16050}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ny-main-tax",
+      "label": "New York tax at bracket rates",
+      "value": {
+        "brackets": {
+          "status": {
+            "single": [
+              [0, 3.9],
+              [8500, 4.4],
+              [11700, 5.15],
+              [13900, 5.4],
+              [80650, 5.9],
+              [215400, 6.85],
+              [1077550, 9.65],
+              [5000000, 10.3],
+              [25000000, 10.9]
+            ],
+            "married": [
+              [0, 3.9],
+              [17150, 4.4],
+              [23600, 5.15],
+              [27900, 5.4],
+              [161550, 5.9],
+              [323200, 6.85],
+              [2155350, 9.65],
+              [5000000, 10.3],
+              [25000000, 10.9]
+            ]
+          }
+        },
+        "of": "ny-taxable"
+      }
+    },
+    {
+      "id": "ny-supplemental-tax",
+      "label": "Supplemental tax",
+      "note": "Above $107,650 of income New York claws back the benefit of the lower brackets, phased in over $50,000; above $25 million all income is taxed at the top rate.",
+      "value": {
+        "if": {
+          "gt": ["gross", 25000000]
+        },
+        "then": {
+          "sub": [
+            {"pct": 10.9, "of": "ny-taxable"},
+            "ny-main-tax"
+          ]
+        },
+        "else": {
+          "sum": [
+            {
+              "lookup": {
+                "status": {
+                  "single": [[0, 0], [215400, 567], [1077550, 2614], [5000000, 32786]],
+                  "married": [[0, 0], [161550, 333], [323200, 1140], [2155350, 4211], [5000000, 64561]]
+                }
+              },
+              "of": "ny-taxable"
+            },
+            {
+              "mul": [
+                {
+                  "min": [
+                    1,
+                    {
+                      "div": [
+                        {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                "gross",
+                                {
+                                  "max": [
+                                    {
+                                      "lookup": {
+                                        "status": {
+                                          "single": [
+                                            [0, 0],
+                                            [8500, 8500],
+                                            [11700, 11700],
+                                            [13900, 13900],
+                                            [80650, 80650],
+                                            [215400, 215400],
+                                            [1077550, 1077550],
+                                            [5000000, 5000000],
+                                            [25000000, 25000000]
+                                          ],
+                                          "married": [
+                                            [0, 0],
+                                            [17150, 17150],
+                                            [23600, 23600],
+                                            [27900, 27900],
+                                            [161550, 161550],
+                                            [323200, 323200],
+                                            [2155350, 2155350],
+                                            [5000000, 5000000],
+                                            [25000000, 25000000]
+                                          ]
+                                        }
+                                      },
+                                      "of": "ny-taxable"
+                                    },
+                                    107650
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        50000
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "lookup": {
+                    "status": {
+                      "single": [[0, 567], [215400, 2047], [1077550, 30172], [5000000, 32500]],
+                      "married": [[0, 333], [161550, 807], [323200, 3071], [2155350, 60350], [5000000, 32500]]
+                    }
+                  },
+                  "of": "ny-taxable"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ny-income-tax",
+      "label": "New York State income tax",
+      "group": "tax",
+      "note": "2026 rates, after the cuts to the five lowest brackets. Includes the supplemental tax (benefit recapture).",
+      "charge": {
+        "sum": ["ny-main-tax", "ny-supplemental-tax"]
+      }
+    },
+    {
+      "id": "ny-sdi",
+      "label": "Disability insurance",
+      "group": "social",
+      "note": "0.5% of wages, capped at $0.60 a week.",
+      "charge": {
+        "min": [
+          {"pct": 0.5, "of": "gross"},
+          31.2
+        ]
+      }
+    },
+    {
+      "id": "ny-pfl",
+      "label": "Paid Family Leave",
+      "group": "social",
+      "note": "0.432% of wages, capped at $411.91 for 2026.",
+      "charge": {
+        "min": [
+          {"pct": 0.432, "of": "gross"},
+          411.91
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Household credit (incomes under $32,000)",
+    "Yonkers income tax surcharge",
+    "MCTD mobility tax (self-employment only)"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 NYS inflation refund checks (eligibility based on 2023 returns)",
+      "url": "https://web.archive.org/web/20260617073750/https://www.tax.ny.gov/pit/inflation-refund-checks.htm"
+    },
+    {
+      "title": "New York FY2026 Budget Agreement (Senate Bill S3009C)",
+      "url": "https://legislation.nysenate.gov/pdf/bills/2025/S3009C#page=12"
+    },
+    {
+      "title": "2025 Form IT-201-I Instructions",
+      "url": "https://www.tax.ny.gov/pdf/current_forms/it/it201i.pdf#page=27"
+    },
+    {
+      "title": "2025 NY Form IT-196 Instructions, Line 40 Total itemized deductions worksheet (line 8, multiply by 3%)",
+      "url": "https://www.tax.ny.gov/pdf/current_forms/it/it196i.pdf#page=19"
+    },
+    {
+      "title": "2025 Form IT-201-I Instructions",
+      "url": "https://www.tax.ny.gov/pdf/current_forms/it/it201i.pdf#page=15"
+    },
+    {
+      "title": "2025 Form IT-201-I Instructions",
+      "url": "https://www.tax.ny.gov/pdf/current_forms/it/it201i.pdf#page=11"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ny",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://web.archive.org/web/20260617073750/https://www.tax.ny.gov/pit/inflation-refund-checks.htm",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "New york taxable income $32,000. New York State income tax $1,563; Disability insurance $31.2; Paid Family Leave $172.8. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ny-taxable": 32000, "ny-income-tax": 1563, "ny-sdi": 31.2, "ny-pfl": 172.8, "net": 32553}
+    },
+    {
+      "gross": 85000,
+      "note": "New york taxable income $77,000. New York State income tax $3,993; Disability insurance $31.2; Paid Family Leave $367.2. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ny-taxable": 77000, "ny-income-tax": 3993, "ny-sdi": 31.2, "ny-pfl": 367.2, "net": 64236.1}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "New york taxable income $133,950. New York State income tax $7,182.85; Disability insurance $31.2; Paid Family Leave $411.91. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ny-taxable": 133950, "ny-income-tax": 7182.85, "ny-sdi": 31.2, "ny-pfl": 411.91, "net": 115559.04}
+    }
+  ]
+}

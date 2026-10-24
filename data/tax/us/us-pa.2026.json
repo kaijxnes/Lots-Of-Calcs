@@ -1,0 +1,84 @@
+{
+  "id": "us-pa",
+  "name": "Pennsylvania",
+  "appliesTo": "Residents of Pennsylvania",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "pa-income-tax",
+      "label": "Pennsylvania income tax",
+      "group": "tax",
+      "note": "A flat 3.07% of wages with no standard deduction.",
+      "charge": {"pct": 3.07, "of": "gross"}
+    },
+    {
+      "id": "pa-ui",
+      "label": "Unemployment insurance",
+      "group": "social",
+      "charge": {"pct": 0.07, "of": "gross"}
+    }
+  ],
+  "notModelled": [
+    "Local earned income taxes (usually about 1%; Philadelphia 3.74%)",
+    "Local services tax (up to $52 a year)",
+    "Tax forgiveness for low incomes"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN)",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2025/2025_pa-40in.pdf#page=1"
+    },
+    {
+      "title": "2025 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN), PA Schedule SP Eligibility Income Tables",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2025/2025_pa-40in.pdf#page=39"
+    },
+    {
+      "title": "Tax Reform Code of 1971, Article III, Section 302",
+      "url": "https://www.legis.state.pa.us/WU01/LI/LI/US/PDF/1971/0/0002..PDF#page=118"
+    },
+    {
+      "title": "The General Assembly of Pennsylvania House Bill No. 200, Section 302 (3), page 50, line 27",
+      "url": "https://www.legis.state.pa.us/CFDOCS/Legis/PN/Public/btCheck.cfm?txtType=PDF&sessYr=2003&sessInd=0&billBody=H&billTyp=B&billNbr=0200&pn=3160#page=50"
+    },
+    {
+      "title": "PA Form PA-40 Instructions, page 1",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2021/2021_pa-40in.pdf#page=1"
+    },
+    {
+      "title": "2024 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN)",
+      "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2024/2024_pa-40in.pdf#page=1"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/pa",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2025/2025_pa-40in.pdf#page=1",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Pennsylvania income tax $1,228; Unemployment insurance $28. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"pa-income-tax": 1228, "pa-ui": 28, "net": 33064}
+    },
+    {
+      "gross": 85000,
+      "note": "Pennsylvania income tax $2,609.5; Unemployment insurance $59.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"pa-income-tax": 2609.5, "pa-ui": 59.5, "net": 65958.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Pennsylvania income tax $4,605; Unemployment insurance $105. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"pa-income-tax": 4605, "pa-ui": 105, "net": 118475}
+    }
+  ]
+}

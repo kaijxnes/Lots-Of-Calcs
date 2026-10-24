@@ -1,0 +1,86 @@
+{
+  "id": "us-la",
+  "name": "Louisiana",
+  "appliesTo": "Residents of Louisiana",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "la-income-tax",
+      "label": "Louisiana income tax",
+      "group": "tax",
+      "note": "Flat 3% since 2025, after a standard deduction of $12,838 ($25,676 married).",
+      "charge": {
+        "pct": 3,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "gross",
+                {
+                  "status": {"single": 12838, "married": 25676}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Consumer Price Index News Release - 2025 M12 Results",
+      "url": "https://www.bls.gov/news.release/archives/cpi_01132026.htm"
+    },
+    {
+      "title": "Louisiana Department of Revenue, Revenue Information Bulletin 26-019 (September 28, 2026), Inflation Adjustment to Standard Deduction and Retirement Income Exemption",
+      "url": "https://dam.ldr.la.gov/lawspolicies/RIB%2026-019.pdf#page=1"
+    },
+    {
+      "title": "2025 Louisiana Resident Income Tax Return Instructions, School Readiness Credit",
+      "url": "https://dam.ldr.la.gov/taxforms/IT540i%20WEB(2025)D11.pdf#page=16"
+    },
+    {
+      "title": "2025 Louisiana Resident Income Tax Return Instructions, Line 8",
+      "url": "https://dam.ldr.la.gov/taxforms/IT540i%20WEB(2025)D11.pdf#page=3"
+    },
+    {
+      "title": "2025 Louisiana Resident Income Tax Return Instructions, What's New - Line 8",
+      "url": "https://dam.ldr.la.gov/taxforms/IT540i%20WEB(2025)D11.pdf#page=1"
+    },
+    {"title": "R.S. 47:6104 (A)", "url": "https://legis.la.gov/Legis/Law.aspx?d=453233"}
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/la",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.bls.gov/news.release/archives/cpi_01132026.htm",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Louisiana income tax $814.86. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"la-income-tax": 814.86, "net": 33505.14}
+    },
+    {
+      "gross": 85000,
+      "note": "Louisiana income tax $2,164.86. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"la-income-tax": 2164.86, "net": 66462.64}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Louisiana income tax $3,729.72. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"la-income-tax": 3729.72, "net": 119455.28}
+    }
+  ]
+}

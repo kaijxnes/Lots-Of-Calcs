@@ -1,0 +1,100 @@
+{
+  "id": "us-wv",
+  "name": "West Virginia",
+  "appliesTo": "Residents of West Virginia",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "wv-taxable",
+      "label": "West Virginia taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "mul": [
+                  2000,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "wv-income-tax",
+      "label": "West Virginia income tax",
+      "group": "tax",
+      "note": "2026 rates.",
+      "charge": {
+        "brackets": [[0, 2.11], [10000, 2.81], [25000, 3.16], [40000, 4.22], [60000, 4.58]],
+        "of": "wv-taxable"
+      }
+    }
+  ],
+  "notModelled": ["Low-income family tax credit"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "West Virginia Senate Bill 392 (2026), §11-21-4j(a)",
+      "url": "https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Family Tax Credit Tables",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=14"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=26"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Senior Citizens Tax Credit Worksheet",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=36"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Tax Rate Schedules",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=37"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Schedule M Instructions LINE 34",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=28"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/wv",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "West virginia taxable income $38,000. West Virginia income tax $1,043.3. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wv-taxable": 38000, "wv-income-tax": 1043.3, "net": 33276.7}
+    },
+    {
+      "gross": 85000,
+      "note": "West virginia taxable income $83,000. West Virginia income tax $3,003.9. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wv-taxable": 83000, "wv-income-tax": 3003.9, "net": 65623.6}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "West virginia taxable income $146,000. West Virginia income tax $5,889.3. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wv-taxable": 146000, "wv-income-tax": 5889.3, "net": 117295.7}
+    }
+  ]
+}

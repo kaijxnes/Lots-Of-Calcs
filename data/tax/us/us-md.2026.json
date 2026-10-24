@@ -1,0 +1,242 @@
+{
+  "id": "us-md",
+  "name": "Maryland",
+  "appliesTo": "Residents of Maryland",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "county": {
+      "label": "County",
+      "default": "montgomery-county",
+      "choices": {
+        "allegany-county": "Allegany County",
+        "anne-arundel-county": "Anne Arundel County",
+        "baltimore-city": "Baltimore City",
+        "baltimore-county": "Baltimore County",
+        "calvert-county": "Calvert County",
+        "caroline-county": "Caroline County",
+        "carroll-county": "Carroll County",
+        "cecil-county": "Cecil County",
+        "charles-county": "Charles County",
+        "dorchester-county": "Dorchester County",
+        "frederick-county": "Frederick County",
+        "garrett-county": "Garrett County",
+        "harford-county": "Harford County",
+        "howard-county": "Howard County",
+        "kent-county": "Kent County",
+        "montgomery-county": "Montgomery County",
+        "prince-georges-county": "Prince George's County",
+        "queen-annes-county": "Queen Anne's County",
+        "somerset-county": "Somerset County",
+        "st-marys-county": "St Mary's County",
+        "talbot-county": "Talbot County",
+        "washington-county": "Washington County",
+        "wicomico-county": "Wicomico County",
+        "worcester-county": "Worcester County"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "md-taxable",
+      "label": "Maryland taxable income",
+      "show": true,
+      "note": "Standard deduction of $3,350 ($6,700 married) and a $3,200 exemption each, which shrinks above $100,000 of income ($150,000 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 3350, "married": 6700}
+              },
+              {
+                "mul": [
+                  {
+                    "status": {"single": 1, "married": 2}
+                  },
+                  {
+                    "lookup": {
+                      "status": {
+                        "single": [[0, 3200], [100000, 1600], [125000, 800], [150000, 0]],
+                        "married": [[0, 3200], [150000, 1600], [175000, 800], [200000, 0]]
+                      }
+                    },
+                    "of": "gross",
+                    "strict": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "md-income-tax",
+      "label": "Maryland income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [
+              [0, 2],
+              [1000, 3],
+              [2000, 4],
+              [3000, 4.75],
+              [100000, 5],
+              [125000, 5.25],
+              [150000, 5.5],
+              [250000, 5.75],
+              [500000, 6.25],
+              [1000000, 6.5]
+            ],
+            "married": [
+              [0, 2],
+              [1000, 3],
+              [2000, 4],
+              [3000, 4.75],
+              [150000, 5],
+              [175000, 5.25],
+              [225000, 5.5],
+              [300000, 5.75],
+              [600000, 6.25],
+              [1200000, 6.5]
+            ]
+          }
+        },
+        "of": "md-taxable"
+      }
+    },
+    {
+      "id": "md-county-tax",
+      "label": "County income tax",
+      "group": "tax",
+      "note": "Every Maryland county (and Baltimore City) levies its own tax on Maryland taxable income, from 2.25% to 3.3%.",
+      "charge": {
+        "option": "county",
+        "cases": {
+          "allegany-county": {"pct": 3.03, "of": "md-taxable"},
+          "baltimore-city": {"pct": 3.2, "of": "md-taxable"},
+          "baltimore-county": {"pct": 3.2, "of": "md-taxable"},
+          "calvert-county": {"pct": 3.2, "of": "md-taxable"},
+          "caroline-county": {"pct": 3.2, "of": "md-taxable"},
+          "carroll-county": {"pct": 3.03, "of": "md-taxable"},
+          "cecil-county": {"pct": 2.74, "of": "md-taxable"},
+          "charles-county": {"pct": 3.03, "of": "md-taxable"},
+          "dorchester-county": {"pct": 3.3, "of": "md-taxable"},
+          "garrett-county": {"pct": 2.65, "of": "md-taxable"},
+          "harford-county": {"pct": 3.06, "of": "md-taxable"},
+          "howard-county": {"pct": 3.2, "of": "md-taxable"},
+          "kent-county": {"pct": 3.2, "of": "md-taxable"},
+          "montgomery-county": {"pct": 3.2, "of": "md-taxable"},
+          "prince-georges-county": {"pct": 3.2, "of": "md-taxable"},
+          "queen-annes-county": {"pct": 3.2, "of": "md-taxable"},
+          "somerset-county": {"pct": 3.2, "of": "md-taxable"},
+          "st-marys-county": {"pct": 3.2, "of": "md-taxable"},
+          "talbot-county": {"pct": 2.4, "of": "md-taxable"},
+          "washington-county": {"pct": 2.95, "of": "md-taxable"},
+          "wicomico-county": {"pct": 3.2, "of": "md-taxable"},
+          "worcester-county": {"pct": 2.25, "of": "md-taxable"},
+          "anne-arundel-county": {
+            "brackets": {
+              "status": {
+                "single": [[0, 2.7], [50000, 2.94], [400000, 3.2]],
+                "married": [[0, 2.7], [75000, 2.94], [480000, 3.2]]
+              }
+            },
+            "of": "md-taxable"
+          },
+          "frederick-county": {
+            "mul": [
+              {
+                "lookup": {
+                  "status": {
+                    "single": [[0, 0.0225], [25000, 0.0275], [50000, 0.0296], [150000, 0.032]],
+                    "married": [[0, 0.0225], [25000, 0.0275], [100000, 0.0296], [250000, 0.032]]
+                  }
+                },
+                "of": "md-taxable"
+              },
+              "md-taxable"
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [
+    "Standard deduction of $3,350 / $6,700 is the 2025 amount",
+    "County rates are the latest PolicyEngine holds; counties can change them each year"
+  ],
+  "sources": [
+    {
+      "title": "Maryland 2025 Resident Tax Forms and Instructions - Capital Gains Surtax",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22"
+    },
+    {
+      "title": "Maryland House Bill 352 - Budget Reconciliation and Financing Act of 2025",
+      "url": "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf#page=163"
+    },
+    {
+      "title": "Maryland 2025 Resident Tax Forms and Instructions - Senior Tax Credit",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=24"
+    },
+    {
+      "title": "Maryland 2025 Resident Tax Forms and Instructions - Itemized Deductions",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=20"
+    },
+    {
+      "title": "Maryland House Bill 352 - Budget Reconciliation and Financing Act of 2025",
+      "url": "https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf#page=167"
+    },
+    {
+      "title": "Maryland 2025 Resident Tax Forms and Instructions - Standard Deduction",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=21"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/md",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Maryland taxable income $33,450. Maryland income tax $1,536.38; County income tax $1,070.4. PolicyEngine US 2.62.5 differs by $2.38 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"md-taxable": 33450, "md-income-tax": 1536.38, "md-county-tax": 1070.4, "net": 31713.23}
+    },
+    {
+      "gross": 85000,
+      "note": "Maryland taxable income $78,450. Maryland income tax $3,673.88; County income tax $2,510.4. PolicyEngine US 2.62.5 differs by $2.38 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"md-taxable": 78450, "md-income-tax": 3673.88, "md-county-tax": 2510.4, "net": 62443.23}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Maryland taxable income $136,900. Maryland income tax $6,450.25; County income tax $4,380.8. PolicyEngine US 2.62.5 differs by $7.13 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"md-taxable": 136900, "md-income-tax": 6450.25, "md-county-tax": 4380.8, "net": 112353.95}
+    },
+    {
+      "gross": 85000,
+      "options": {"status": "single", "county": "frederick-county"},
+      "note": "Maryland taxable income $78,450. Maryland income tax $3,673.88; County income tax $2,322.12. PolicyEngine US 2.62.5 differs by $2.38 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"md-taxable": 78450, "md-income-tax": 3673.88, "md-county-tax": 2322.12, "net": 62631.51}
+    },
+    {
+      "gross": 85000,
+      "options": {"status": "single", "county": "anne-arundel-county"},
+      "note": "Maryland taxable income $78,450. Maryland income tax $3,673.88; County income tax $2,186.43. PolicyEngine US 2.62.5 differs by $2.38 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"md-taxable": 78450, "md-income-tax": 3673.88, "md-county-tax": 2186.43, "net": 62767.2}
+    }
+  ]
+}

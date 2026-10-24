@@ -1,0 +1,366 @@
+{
+  "id": "us-ct",
+  "name": "Connecticut",
+  "appliesTo": "Residents of Connecticut",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ct-exemption",
+      "label": "Connecticut personal exemption",
+      "show": true,
+      "note": "Reduced by $1,000 for each $1,000 (or part) of income above $30,000 ($48,000 married).",
+      "value": {
+        "taper": {
+          "status": {"single": 15000, "married": 24000}
+        },
+        "of": "gross",
+        "from": {
+          "status": {"single": 30000, "married": 48000}
+        },
+        "step": 1000,
+        "perStep": 1000
+      }
+    },
+    {
+      "id": "ct-taxable",
+      "label": "Connecticut taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "ct-exemption"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ct-tax-before-credit",
+      "label": "Connecticut tax before personal credit",
+      "note": "Bracket tax plus the 2% phase-out add-back and the three benefit recaptures, which together withdraw the lower brackets as income rises.",
+      "value": {
+        "sum": [
+          {
+            "brackets": {
+              "status": {
+                "single": [[0, 2], [10000, 4.5], [50000, 5.5], [100000, 6], [200000, 6.5], [250000, 6.9], [500000, 6.99]],
+                "married": [[0, 2], [20000, 4.5], [100000, 5.5], [200000, 6], [400000, 6.5], [500000, 6.9], [1000000, 6.99]]
+              }
+            },
+            "of": "ct-taxable"
+          },
+          {
+            "min": [
+              {
+                "status": {"single": 250, "married": 500}
+              },
+              {
+                "mul": [
+                  {
+                    "status": {"single": 25, "married": 50}
+                  },
+                  {
+                    "round": {
+                      "div": [
+                        {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                "gross",
+                                {
+                                  "status": {"single": 56500, "married": 100500}
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        5000
+                      ]
+                    },
+                    "to": 1,
+                    "mode": "up"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min": [
+              {
+                "status": {"single": 250, "married": 500}
+              },
+              {
+                "mul": [
+                  {
+                    "status": {"single": 25, "married": 50}
+                  },
+                  {
+                    "round": {
+                      "div": [
+                        {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                "gross",
+                                {
+                                  "status": {"single": 105000, "married": 210000}
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "status": {"single": 5000, "married": 10000}
+                        }
+                      ]
+                    },
+                    "to": 1,
+                    "mode": "up"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min": [
+              {
+                "status": {"single": 2700, "married": 5400}
+              },
+              {
+                "mul": [
+                  {
+                    "status": {"single": 90, "married": 180}
+                  },
+                  {
+                    "round": {
+                      "div": [
+                        {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                "gross",
+                                {
+                                  "status": {"single": 200000, "married": 400000}
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "status": {"single": 5000, "married": 10000}
+                        }
+                      ]
+                    },
+                    "to": 1,
+                    "mode": "up"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "min": [
+              {
+                "status": {"single": 450, "married": 900}
+              },
+              {
+                "mul": [
+                  {
+                    "status": {"single": 50, "married": 100}
+                  },
+                  {
+                    "round": {
+                      "div": [
+                        {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                "gross",
+                                {
+                                  "status": {"single": 500000, "married": 1000000}
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "status": {"single": 5000, "married": 10000}
+                        }
+                      ]
+                    },
+                    "to": 1,
+                    "mode": "up"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ct-income-tax",
+      "label": "Connecticut income tax",
+      "group": "tax",
+      "note": "Less the personal tax credit, a percentage of the tax that falls from 75% to nothing as income rises.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "mul": [
+              "ct-tax-before-credit",
+              {
+                "sub": [
+                  1,
+                  {
+                    "lookup": {
+                      "status": {
+                        "single": [
+                          [15000, 0.75],
+                          [18800, 0.7],
+                          [19300, 0.65],
+                          [19800, 0.6],
+                          [20300, 0.55],
+                          [20800, 0.5],
+                          [21300, 0.45],
+                          [21800, 0.4],
+                          [22300, 0.35],
+                          [25000, 0.3],
+                          [25500, 0.25],
+                          [26000, 0.2],
+                          [26500, 0.15],
+                          [31300, 0.14],
+                          [31800, 0.13],
+                          [32300, 0.12],
+                          [32800, 0.11],
+                          [33300, 0.1],
+                          [60000, 0.09],
+                          [60500, 0.08],
+                          [61000, 0.07],
+                          [61500, 0.06],
+                          [62000, 0.05],
+                          [62500, 0.04],
+                          [63000, 0.03],
+                          [63500, 0.02],
+                          [64000, 0.01],
+                          [64500, 0]
+                        ],
+                        "married": [
+                          [24000, 0.75],
+                          [30000, 0.7],
+                          [30500, 0.65],
+                          [31000, 0.6],
+                          [31500, 0.55],
+                          [32000, 0.5],
+                          [32500, 0.45],
+                          [33000, 0.4],
+                          [33500, 0.35],
+                          [40000, 0.3],
+                          [40500, 0.25],
+                          [41000, 0.2],
+                          [41500, 0.15],
+                          [50000, 0.14],
+                          [50500, 0.13],
+                          [51000, 0.12],
+                          [51500, 0.11],
+                          [52000, 0.1],
+                          [96000, 0.09],
+                          [96500, 0.08],
+                          [97000, 0.07],
+                          [97500, 0.06],
+                          [98000, 0.05],
+                          [98500, 0.04],
+                          [99000, 0.03],
+                          [99500, 0.02],
+                          [100000, 0.01],
+                          [100500, 0]
+                        ]
+                      }
+                    },
+                    "of": "gross",
+                    "strict": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ct-pfml",
+      "label": "Paid Leave",
+      "group": "social",
+      "note": "0.5% of wages up to the Social Security wage base.",
+      "charge": {
+        "pct": 0.5,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    }
+  ],
+  "notModelled": ["Property tax credit"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
+      "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23"
+    },
+    {
+      "title": "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
+      "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=26"
+    },
+    {
+      "title": "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
+      "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=19"
+    },
+    {
+      "title": "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
+      "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=20"
+    },
+    {
+      "title": "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
+      "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=24"
+    },
+    {
+      "title": "Connecticut General Statutes, Chapter 229, Sec. 12-703, (1), (I)",
+      "url": "https://www.cga.ct.gov/current/pub/chap_229.htm#sec_12-703"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ct",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Connecticut personal exemption $5,000, connecticut taxable income $35,000. Connecticut income tax $1,192.5; Paid Leave $200. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ct-exemption": 5000, "ct-taxable": 35000, "ct-income-tax": 1192.5, "ct-pfml": 200, "net": 32927.5}
+    },
+    {
+      "gross": 85000,
+      "note": "Connecticut personal exemption $0, connecticut taxable income $85,000. Connecticut income tax $4,075; Paid Leave $425. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ct-exemption": 0, "ct-taxable": 85000, "ct-income-tax": 4075, "ct-pfml": 425, "net": 64127.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Connecticut personal exemption $0, connecticut taxable income $150,000. Connecticut income tax $7,250; Paid Leave $750. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ct-exemption": 0, "ct-taxable": 150000, "ct-income-tax": 7250, "ct-pfml": 750, "net": 115185}
+    }
+  ]
+}
