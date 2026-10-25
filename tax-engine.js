@@ -331,11 +331,44 @@ const TaxEngine = (function () {
     });
   }
 
+  /* ---- formatting ----
+
+     English pages throughout, but each currency written its own way: lakh
+     grouping for rupees, no decimals for yen. Shared by the page generator and
+     the live calculators so the baked and recalculated figures look the same. */
+
+  const MONEY = {
+    GBP: { locale: "en-GB", display: "symbol", decimals: 2 },
+    USD: { locale: "en-US", display: "symbol", decimals: 2 },
+    EUR: { locale: "en-IE", display: "symbol", decimals: 2 },
+    NOK: { locale: "en-GB", display: "narrowSymbol", decimals: 2 },
+    SEK: { locale: "en-GB", display: "narrowSymbol", decimals: 2 },
+    DKK: { locale: "en-GB", display: "narrowSymbol", decimals: 2 },
+    JPY: { locale: "en-US", display: "symbol", decimals: 0 },
+    INR: { locale: "en-IN", display: "symbol", decimals: 2 },
+    AUD: { locale: "en-AU", display: "symbol", decimals: 2 },
+    NZD: { locale: "en-NZ", display: "symbol", decimals: 2 }
+  };
+
+  /* whole: drop the pence/cents, for headline salary figures */
+  function money(v, currency, whole) {
+    if (typeof v !== "number" || !isFinite(v)) return "—";
+    const m = MONEY[currency] || { locale: "en-GB", display: "symbol", decimals: 2 };
+    const dp = whole ? 0 : m.decimals;
+    const rounded = Math.round(Math.abs(v) * Math.pow(10, dp)) / Math.pow(10, dp);
+    const text = new Intl.NumberFormat(m.locale, {
+      style: "currency", currency: currency, currencyDisplay: m.display,
+      minimumFractionDigits: dp, maximumFractionDigits: dp
+    }).format(rounded);
+    return (v < 0 && rounded !== 0 ? "−" : "") + text;
+  }
+
   return {
     compute: compute,
     evaluate: evaluate,
     merge: merge,
     load: load,
+    money: money,
     OPS: OPS
   };
 })();

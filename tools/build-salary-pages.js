@@ -8,20 +8,22 @@
    file the page's live calculator runs, so the baked figures and the live ones
    cannot drift apart.
 
-       node tools/build-salary-pages.js                 # rebuild every page
+       node tools/build-salary-pages.js                 # rebuild every UK page
        node tools/build-salary-pages.js 25000 30000     # rebuild some
 
-   Re-run it after any change to the UK tax data. */
+   tools/build-tax-pages.js runs this along with every other country, and
+   writes the sitemap; use that after any change to the tax data. */
 const fs = require("fs");
 const path = require("path");
 const TaxEngine = require("../tax-engine.js");
 const registry = require("./tax/registry.js");
+const config = require("./salary-pages-config.js");
 
 const ROOT = registry.ROOT;
 
-// The salaries with pages. Add to this list and re-run to create more; the
-// cross-links between pages are generated from it, so they stay consistent.
-const SALARIES = [25000, 30000, 40000];
+// The salaries with pages are listed in tools/salary-pages-config.js; the
+// cross-links between pages are generated from that list.
+const SALARIES = config.SALARIES.GBP;
 
 const JURISDICTION = "gb";
 
@@ -307,7 +309,12 @@ ${faqHtml}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
     <div class="hub-grid">
-${sib}      <a class="hub-card" href="/vat/">
+${sib}      <a class="hub-card" href="/salary/scotland/${gross}-after-tax/">
+        <span class="icon">🏴󠁧󠁢󠁳󠁣󠁴󠁿</span>
+        <div class="title">${money0(gross)} after tax in Scotland</div>
+        <div class="desc">Scotland's own income tax bands, same National Insurance.</div>
+      </a>
+      <a class="hub-card" href="/vat/">
         <span class="icon">🧾</span>
         <div class="title">Tax / VAT Calculator</div>
         <div class="desc">Add or remove VAT, plus a custom income tax band split.</div>
@@ -352,4 +359,6 @@ function main() {
   });
 }
 
-main();
+module.exports = { main, SALARIES };
+
+if (require.main === module) main();

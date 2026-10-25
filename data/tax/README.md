@@ -39,8 +39,11 @@ to keep it out of the index until you are ready. Old years stay in the folder.
 primary source (the links in `sources` / `verifyAt`), set `lastVerified` to
 that date. Pages say "not verified" while it is `null`.
 
-**Rebuild the UK salary pages** after changing UK figures:
-`node tools/build-salary-pages.js`.
+**Rebuild the salary pages** after any change here:
+`node tools/build-tax-pages.js`. It regenerates every `/salary/` page and hub
+(the UK pages via `tools/build-salary-pages.js`) and the salary block of
+`sitemap.xml`. Which salaries get pages is set in
+`tools/salary-pages-config.js`.
 
 ## File format
 
