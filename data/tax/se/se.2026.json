@@ -1,0 +1,266 @@
+{
+  "id": "se",
+  "name": "Sweden",
+  "kind": "country",
+  "country": "SE",
+  "parent": null,
+  "standalone": true,
+  "currency": "SEK",
+  "locale": "sv-SE",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {},
+  "items": [
+    {
+      "id": "se-basic-allowance",
+      "label": "Basic allowance (grundavdrag)",
+      "show": true,
+      "note": "Depends on income: up to 0.77 × the price base amount (SEK 59,200 in 2026), falling to 0.293 × at high incomes.",
+      "value": {
+        "min": [
+          {
+            "round": {
+              "if": {
+                "lte": ["gross", 58608.0]
+              },
+              "then": 25041.6,
+              "else": {
+                "if": {
+                  "lte": ["gross", 161024.0]
+                },
+                "then": {
+                  "sum": [
+                    25041.6,
+                    {
+                      "pct": 20,
+                      "of": {
+                        "sub": ["gross", 58608.0]
+                      }
+                    }
+                  ]
+                },
+                "else": {
+                  "if": {
+                    "lte": ["gross", 184112.0]
+                  },
+                  "then": 45584.0,
+                  "else": {
+                    "if": {
+                      "lte": ["gross", 466496.0]
+                    },
+                    "then": {
+                      "sub": [
+                        45584.0,
+                        {
+                          "pct": 10,
+                          "of": {
+                            "sub": ["gross", 184112.0]
+                          }
+                        }
+                      ]
+                    },
+                    "else": 17345.6
+                  }
+                }
+              }
+            },
+            "to": 100,
+            "mode": "up"
+          },
+          "gross"
+        ]
+      }
+    },
+    {
+      "id": "se-taxable",
+      "label": "Taxable earned income",
+      "show": true,
+      "value": {
+        "round": {
+          "max": [
+            0,
+            {
+              "sub": ["gross", "se-basic-allowance"]
+            }
+          ]
+        },
+        "to": 100,
+        "mode": "down"
+      }
+    },
+    {
+      "id": "se-municipal-tax",
+      "label": "Municipal and regional tax",
+      "note": "The 2026 national average of 32.38%; it ranges from 28.93% to 35.65%.",
+      "value": {"pct": 32.38, "of": "se-taxable"}
+    },
+    {
+      "id": "se-state-tax",
+      "label": "State income tax",
+      "note": "20% of taxable income above SEK 643,000.",
+      "value": {
+        "pct": 20,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": ["se-taxable", 643000]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "se-pension-fee",
+      "label": "General pension contribution (allmän pensionsavgift)",
+      "group": "social",
+      "note": "7% of income up to 8.07 × the income base amount (SEK 673,038). It is credited back against tax, so on its own it costs nothing.",
+      "charge": {
+        "round": {
+          "pct": 7,
+          "of": {
+            "min": ["gross", 673038]
+          }
+        },
+        "to": 100
+      }
+    },
+    {
+      "id": "se-work-credit",
+      "label": "Earned income tax credit (jobbskatteavdrag)",
+      "note": "Rises with pay to a maximum of SEK 52,390 at the average municipal rate, from 8.08 × the price base amount. It no longer phases out at high incomes.",
+      "value": {
+        "min": [
+          "se-municipal-tax",
+          {
+            "max": [
+              0,
+              {
+                "mul": [
+                  {
+                    "sub": [
+                      {
+                        "if": {
+                          "lte": ["gross", 53872.0]
+                        },
+                        "then": "gross",
+                        "else": {
+                          "if": {
+                            "lte": ["gross", 191808.0]
+                          },
+                          "then": {
+                            "sum": [
+                              53872.0,
+                              {
+                                "pct": 38.74,
+                                "of": {
+                                  "sub": ["gross", 53872.0]
+                                }
+                              }
+                            ]
+                          },
+                          "else": {
+                            "if": {
+                              "lte": ["gross", 478336.0]
+                            },
+                            "then": {
+                              "sum": [
+                                107329.6,
+                                {
+                                  "pct": 25.1,
+                                  "of": {
+                                    "sub": ["gross", 191808.0]
+                                  }
+                                }
+                              ]
+                            },
+                            "else": 179198.4
+                          }
+                        }
+                      },
+                      "se-basic-allowance"
+                    ]
+                  },
+                  0.32380000000000003
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "se-income-tax",
+      "label": "Income tax",
+      "group": "tax",
+      "note": "Municipal and state tax, less the pension contribution credit and the earned income tax credit.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "sum": ["se-municipal-tax", "se-state-tax"]
+              },
+              "se-pension-fee",
+              "se-work-credit"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Under 66 at the start of the year",
+    "Lives in a municipality at the national average rate",
+    "Employment income only; each person is taxed individually"
+  ],
+  "notModelled": [
+    "Individual municipal rates",
+    "Burial fee (about 0.3%) and church fee for Church of Sweden members",
+    "Public service fee (1% of income, capped at about SEK 1,250)",
+    "Deductions for travel and other work expenses"
+  ],
+  "provisional": [
+    "The earned income tax credit uses the formula from Skatteverket's 2025 technical description; it reproduces the SEK 52,390 2026 maximum quoted by a secondary source, but the 2026 edition was not read directly"
+  ],
+  "sources": [
+    {
+      "title": "Skatteverket — Belopp och procent, inkomstår 2026",
+      "url": "https://www.skatteverket.se/privat/skatter/beloppochprocent/2026"
+    },
+    {
+      "title": "Skatteverket — Teknisk beskrivning SKV 433, 2026 (utgåva 36)",
+      "url": "https://www.skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf"
+    },
+    {
+      "title": "SCB — Kommunalskatterna 2026",
+      "url": "https://www.scb.se/hitta-statistik/statistik-efter-amne/offentlig-ekonomi/finanser-for-den-kommunala-sektorn/kommunalskatterna/pong/statistiknyhet/kommunalskatterna-2026/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Skiktgräns SEK 643,000, price base amount SEK 59,200, income base amount SEK 83,400 (Skatteverket 2026 PDF excerpts); average municipal rate 32.38% (SCB); basic allowance and earned income credit structure (SKV 433 excerpts; credit maximum SEK 52,390 per astrid.so)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://app.skatteverket.se/rakna-skatt-client-skut-skatteutrakning/",
+  "tests": [
+    {
+      "gross": 300000,
+      "note": "Basic allowance 0.77 × 59,200 − 10% × (300,000 − 184,112) = 34,000 (rounded up). Taxable 266,000; municipal 86,130.80. Credit (1.813 × 59,200 + 25.1% × 108,192 − 34,000) × 32.38% = 32,537.30. Pension fee 21,000, credited back. Tax 86,130.80 − 21,000 − 32,537.30 = 32,593.50.",
+      "expect": {
+        "se-basic-allowance": 34000,
+        "se-taxable": 266000,
+        "se-work-credit": 32537.3,
+        "se-income-tax": 32593.5,
+        "net": 246406.5
+      }
+    },
+    {
+      "gross": 700000,
+      "note": "Basic allowance 0.293 × 59,200 → 17,400. Taxable 682,600: municipal 221,025.88, state 20% × 39,600 = 7,920. Credit at its maximum (3.027 × 59,200 − 17,400) × 32.38% = 52,390.32. Pension fee capped: 7% × 673,038 = 47,112.66 → 47,100.",
+      "expect": {"se-state-tax": 7920, "se-work-credit": 52390.32, "se-pension-fee": 47100}
+    }
+  ]
+}

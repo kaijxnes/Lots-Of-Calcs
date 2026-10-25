@@ -11,6 +11,16 @@
       "taxYear": "2026",
       "lastVerified": null
     },
+    "au": {
+      "file": "au/au.2026-27.json",
+      "name": "Australia",
+      "kind": "country",
+      "country": "AU",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026-27",
+      "lastVerified": null
+    },
     "de": {
       "file": "de/de.2026.json",
       "name": "Germany",
@@ -81,11 +91,31 @@
       "taxYear": "2026",
       "lastVerified": null
     },
+    "in": {
+      "file": "in/in.2026-27.json",
+      "name": "India",
+      "kind": "country",
+      "country": "IN",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026-27",
+      "lastVerified": null
+    },
     "it": {
       "file": "it/it.2026.json",
       "name": "Italy",
       "kind": "country",
       "country": "IT",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null
+    },
+    "jp": {
+      "file": "jp/jp.2026.json",
+      "name": "Japan",
+      "kind": "country",
+      "country": "JP",
       "parent": null,
       "standalone": true,
       "taxYear": "2026",
@@ -111,11 +141,31 @@
       "taxYear": "2026",
       "lastVerified": null
     },
+    "nz": {
+      "file": "nz/nz.2026-27.json",
+      "name": "New Zealand",
+      "kind": "country",
+      "country": "NZ",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026-27",
+      "lastVerified": null
+    },
     "pt": {
       "file": "pt/pt.2026.json",
       "name": "Portugal",
       "kind": "country",
       "country": "PT",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null
+    },
+    "se": {
+      "file": "se/se.2026.json",
+      "name": "Sweden",
+      "kind": "country",
+      "country": "SE",
       "parent": null,
       "standalone": true,
       "taxYear": "2026",

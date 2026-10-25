@@ -1,0 +1,194 @@
+{
+  "id": "au",
+  "name": "Australia",
+  "kind": "country",
+  "country": "AU",
+  "parent": null,
+  "standalone": true,
+  "currency": "AUD",
+  "locale": "en-AU",
+  "taxYear": {"label": "2026-27", "start": "2026-07-01", "end": "2027-06-30"},
+  "options": {
+    "cover": {
+      "label": "Private hospital cover",
+      "default": "yes",
+      "choices": {"yes": "Yes", "no": "No"}
+    }
+  },
+  "items": [
+    {
+      "id": "au-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "note": "After the new $1,000 standard deduction for work-related expenses, which applies from 2026–27 unless you claim more in actual expenses.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", 1000]
+          }
+        ]
+      }
+    },
+    {
+      "id": "au-income-tax",
+      "label": "Income tax",
+      "group": "tax",
+      "note": "Nothing to $18,200, 15% to $45,000 (cut from 16% on 1 July 2026), 30% to $135,000, 37% to $190,000, 45% above. Less the low income tax offset of up to $700.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [[0, 0], [18200, 15], [45000, 30], [135000, 37], [190000, 45]],
+                "of": "au-taxable"
+              },
+              {
+                "if": {
+                  "lte": ["au-taxable", 37500]
+                },
+                "then": 700,
+                "else": {
+                  "if": {
+                    "lte": ["au-taxable", 45000]
+                  },
+                  "then": {
+                    "sub": [
+                      700,
+                      {
+                        "pct": 5,
+                        "of": {
+                          "sub": ["au-taxable", 37500]
+                        }
+                      }
+                    ]
+                  },
+                  "else": {
+                    "max": [
+                      0,
+                      {
+                        "sub": [
+                          325,
+                          {
+                            "pct": 1.5,
+                            "of": {
+                              "sub": ["au-taxable", 45000]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "au-medicare",
+      "label": "Medicare levy",
+      "group": "social",
+      "note": "2% of taxable income, phased in from $28,011 at 10 cents per dollar.",
+      "charge": {
+        "min": [
+          {"pct": 2, "of": "au-taxable"},
+          {
+            "if": {
+              "lte": ["au-taxable", 28011]
+            },
+            "then": 0,
+            "else": {
+              "pct": 10,
+              "of": {
+                "sub": ["au-taxable", 28011]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "au-mls",
+      "label": "Medicare levy surcharge",
+      "group": "social",
+      "note": "Only without private hospital cover: 1% above $101,000, 1.25% above $118,000, 1.5% above $158,000.",
+      "charge": {
+        "option": "cover",
+        "cases": {
+          "yes": 0,
+          "no": {
+            "pct": {
+              "lookup": [[0, 0], [101000, 1], [118000, 1.25], [158000, 1.5]],
+              "of": "au-taxable",
+              "strict": true
+            },
+            "of": "au-taxable"
+          }
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "Australian resident for tax purposes, under pension age",
+    "Employer superannuation is paid on top of the salary, not out of it",
+    "Single, no dependants"
+  ],
+  "notModelled": [
+    "HECS-HELP and other study loan repayments",
+    "Salary sacrifice and concessional super contributions",
+    "Family Medicare thresholds and the senior and pensioner offset",
+    "Actual work-related expenses above $1,000"
+  ],
+  "provisional": [
+    "Medicare levy thresholds are the 2025–26 ones ($28,011 / $35,013); the 2026–27 thresholds are usually announced in the following May budget",
+    "The $1,000 standard deduction is described by the ATO as starting in 2026–27, but no source confirmed the bill had passed",
+    "Medicare levy surcharge thresholds are the 2025–26 ones"
+  ],
+  "sources": [
+    {
+      "title": "ATO — Tax rates: Australian residents",
+      "url": "https://www.ato.gov.au/tax-rates-and-codes/tax-rates-australian-residents"
+    },
+    {
+      "title": "ATO — Standard deduction for work-related expenses",
+      "url": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/deductions-you-can-claim/work-related-deductions/standard-deduction-for-work-related-expenses"
+    },
+    {
+      "title": "ATO — Medicare levy reduction for low-income earners",
+      "url": "https://www.ato.gov.au/individuals-and-families/medicare-and-private-health-insurance/medicare-levy/medicare-levy-reduction/medicare-levy-reduction-for-low-income-earners"
+    },
+    {
+      "title": "ATO — Low income tax offset",
+      "url": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-and-middle-income-earner-tax-offsets"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "2026–27 rates with the 15% second rate (SuperGuide, Etax, taxbne agree); Medicare levy thresholds $28,011 / $35,013 for 2025–26 (Munros, Kalkine, paygcalculator); LITO $700 / $37,500 / $66,667 (Trinity Group); ATO pages on the $1,000 deduction (28 May and 8 July 2026)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.ato.gov.au/calculators-and-tools/tax-withheld-calculator",
+  "tests": [
+    {
+      "gross": 60000,
+      "note": "Taxable 59,000. Tax 26,800 × 15% = 4,020 + 14,000 × 30% = 4,200 → 8,220, less offset 325 − 1.5% × 14,000 = 115 → 8,105. Medicare 2% = 1,180.",
+      "expect": {"au-taxable": 59000, "au-income-tax": 8105, "au-medicare": 1180, "net": 50715}
+    },
+    {
+      "gross": 30000,
+      "note": "Taxable 29,000. Tax 15% × 10,800 = 1,620, less the full 700 offset = 920. Medicare phasing in: 10% × 989 = 98.90.",
+      "expect": {"au-income-tax": 920, "au-medicare": 98.9}
+    },
+    {
+      "gross": 130000,
+      "options": {"cover": "no"},
+      "note": "Taxable 129,000: surcharge 1.25% = 1,612.50.",
+      "expect": {"au-mls": 1612.5, "net": 96587.5}
+    }
+  ]
+}

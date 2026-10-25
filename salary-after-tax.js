@@ -6,7 +6,7 @@
    running scripts, and the live recalculation is an addition on top rather
    than the only way to see a result. */
 (function () {
-  var JURISDICTION = "uk-2026-27";
+  var JURISDICTION = "gb";
 
   var els = {
     salary: document.getElementById("salary"),
@@ -34,7 +34,7 @@
   });
   var bakedSalary = els.salary.value;
 
-  var cfg = null;
+  var chain = null;
 
   function money(v) {
     if (!isFinite(v)) return "—";
@@ -62,15 +62,15 @@
     els.week.textContent = money(r.perWeek);
     els.day.textContent = money(r.perDay);
     els.gross.textContent = money(r.gross);
-    els.allowance.textContent = money(r.allowance);
-    els.taxable.textContent = money(r.taxable);
-    els.tax.textContent = money(r.incomeTax);
-    els.ni.textContent = money(r.nationalInsurance);
+    els.allowance.textContent = money(r.values["gb-personal-allowance"]);
+    els.taxable.textContent = money(r.values["gb-taxable"]);
+    els.tax.textContent = money(r.values["gb-income-tax"]);
+    els.ni.textContent = money(r.values["gb-ni"]);
     els.net.textContent = money(r.net);
   }
 
   function calculate() {
-    if (!cfg) return;
+    if (!chain) return;
 
     var raw = String(els.salary.value).trim().replace(/[\s,£]/g, "");
 
@@ -87,7 +87,7 @@
     if (gross > 100000000) return fail("That is beyond what this is useful for — try something under £100m.");
 
     setError("");
-    render(Salary.compute(gross, cfg));
+    render(TaxEngine.compute(chain, gross));
 
     /* Say plainly when the figures on screen no longer match the page's own
        subject, so nobody screenshots the wrong number */
@@ -106,17 +106,13 @@
 
   els.salary.addEventListener("input", calculate);
 
-  /* Rates come from the same file the page was generated from, so a corrected
-     rate reaches both without touching either. If it cannot be loaded the baked
-     figures simply stay as they are — the page is still complete and correct. */
-  fetch("/data/rates.json", { cache: "no-cache" })
-    .then(function (res) {
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      return res.json();
-    })
-    .then(function (data) {
-      cfg = data && data.taxBands && data.taxBands[JURISDICTION];
-      if (!cfg) throw new Error("no rates for " + JURISDICTION);
+  /* Rates come from the tax registry the page was generated from, so a
+     corrected rate reaches both without touching either. If it cannot be loaded
+     the baked figures simply stay as they are — the page is still complete and
+     correct. */
+  TaxEngine.load(JURISDICTION)
+    .then(function (loaded) {
+      chain = loaded;
       els.salary.disabled = false;
     })
     .catch(function () {

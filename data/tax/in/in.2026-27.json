@@ -1,0 +1,193 @@
+{
+  "id": "in",
+  "name": "India",
+  "kind": "country",
+  "country": "IN",
+  "parent": null,
+  "standalone": true,
+  "currency": "INR",
+  "locale": "en-IN",
+  "taxYear": {"label": "2026-27", "start": "2026-04-01", "end": "2027-03-31"},
+  "options": {},
+  "items": [
+    {
+      "id": "in-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "note": "After the ₹75,000 standard deduction for salaried employees.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", 75000]
+          }
+        ]
+      }
+    },
+    {
+      "id": "in-slab-tax",
+      "label": "Tax at slab rates",
+      "note": "New regime slabs. The section 87A rebate removes the tax entirely up to ₹12 lakh of taxable income, and marginal relief caps it at the income above ₹12 lakh just beyond that.",
+      "value": {
+        "if": {
+          "lte": ["in-taxable", 1200000]
+        },
+        "then": 0,
+        "else": {
+          "min": [
+            {
+              "brackets": [[0, 0], [400000, 5], [800000, 10], [1200000, 15], [1600000, 20], [2000000, 25], [2400000, 30]],
+              "of": "in-taxable"
+            },
+            {
+              "sub": ["in-taxable", 1200000]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "in-surcharge",
+      "label": "Surcharge",
+      "note": "10% of tax above ₹50 lakh, 15% above ₹1 crore and 25% above ₹2 crore, with marginal relief at each step.",
+      "value": {
+        "if": {
+          "gt": ["in-taxable", 20000000]
+        },
+        "then": {
+          "min": [
+            {"pct": 25, "of": "in-slab-tax"},
+            {
+              "sub": [
+                {
+                  "sum": [
+                    6417000.0,
+                    {
+                      "sub": ["in-taxable", 20000000]
+                    }
+                  ]
+                },
+                "in-slab-tax"
+              ]
+            }
+          ]
+        },
+        "else": {
+          "if": {
+            "gt": ["in-taxable", 10000000]
+          },
+          "then": {
+            "min": [
+              {"pct": 15, "of": "in-slab-tax"},
+              {
+                "sub": [
+                  {
+                    "sum": [
+                      2838000.0,
+                      {
+                        "sub": ["in-taxable", 10000000]
+                      }
+                    ]
+                  },
+                  "in-slab-tax"
+                ]
+              }
+            ]
+          },
+          "else": {
+            "if": {
+              "gt": ["in-taxable", 5000000]
+            },
+            "then": {
+              "min": [
+                {"pct": 10, "of": "in-slab-tax"},
+                {
+                  "sub": [
+                    {
+                      "sum": [
+                        1080000.0,
+                        {
+                          "sub": ["in-taxable", 5000000]
+                        }
+                      ]
+                    },
+                    "in-slab-tax"
+                  ]
+                }
+              ]
+            },
+            "else": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "in-income-tax",
+      "label": "Income tax and surcharge",
+      "group": "tax",
+      "note": "New tax regime (the default): nothing to ₹4 lakh, then 5%, 10%, 15%, 20%, 25% in steps of ₹4 lakh, and 30% above ₹24 lakh.",
+      "charge": {
+        "sum": ["in-slab-tax", "in-surcharge"]
+      }
+    },
+    {
+      "id": "in-cess",
+      "label": "Health and education cess",
+      "group": "tax",
+      "note": "4% of income tax plus surcharge.",
+      "charge": {
+        "pct": 4,
+        "of": {
+          "sum": ["in-slab-tax", "in-surcharge"]
+        }
+      }
+    }
+  ],
+  "assumptions": ["Resident individual under 60 on the new tax regime", "Salary is the only income"],
+  "notModelled": [
+    "The old tax regime and its deductions (80C, HRA, home loan interest)",
+    "Employee Provident Fund contributions (12% of basic pay, which depends on how the salary is structured)",
+    "State professional tax (up to ₹2,500 a year)",
+    "Employer NPS contributions"
+  ],
+  "provisional": [
+    "Rates come from secondary sources that agree the 2026 Budget left the new-regime slabs unchanged under the Income Tax Act 2025"
+  ],
+  "sources": [
+    {
+      "title": "Income Tax Department — tax rates for individuals",
+      "url": "https://incometaxindia.gov.in/Pages/i-am/individual.aspx"
+    },
+    {"title": "Income Tax Act, 2025", "url": "https://incometaxindia.gov.in/"}
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Slabs, ₹75,000 standard deduction and ₹60,000 rebate up to ₹12 lakh (BankBazaar, Tata Capital, 5paisa agree); 25% maximum surcharge. The 4% cess and surcharge bands are long-standing Finance Act rules."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://incometaxindia.gov.in/Pages/tools/income-tax-calculator.aspx",
+  "tests": [
+    {
+      "gross": 1000000,
+      "note": "Taxable 9.25 lakh, under ₹12 lakh: no tax after the rebate.",
+      "expect": {"in-income-tax": 0, "net": 1000000}
+    },
+    {
+      "gross": 1300000,
+      "note": "Taxable 12.25 lakh. Slab tax 63,750, capped by marginal relief at the ₹25,000 above ₹12 lakh. Cess 1,000.",
+      "expect": {"in-income-tax": 25000, "in-cess": 1000, "net": 1274000}
+    },
+    {
+      "gross": 2500000,
+      "note": "Taxable 24.25 lakh: 20,000 + 40,000 + 60,000 + 80,000 + 100,000 + 7,500 = 3,07,500. Cess 12,300.",
+      "expect": {"in-income-tax": 307500, "in-cess": 12300}
+    },
+    {
+      "gross": 6000000,
+      "note": "Taxable 59.25 lakh: 3,00,000 + 30% × 35.25 lakh = 13,57,500; surcharge 10% = 1,35,750 (marginal relief does not bite); cess 59,730.",
+      "expect": {"in-income-tax": 1493250, "in-cess": 59730}
+    }
+  ]
+}
