@@ -1,0 +1,81 @@
+{
+  "id": "us-ky",
+  "name": "Kentucky",
+  "appliesTo": "Residents of Kentucky",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ky-income-tax",
+      "label": "Kentucky income tax",
+      "group": "tax",
+      "note": "3.5% after the $3,360 standard deduction.",
+      "charge": {
+        "pct": 3.5,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": ["gross", 3360]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": ["Local occupational license taxes (Louisville about 2.2%, Lexington 2.25%, others 1–2.5%)"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Kentucky DOR Announces 2026 Standard Deduction (September 4, 2025)",
+      "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx"
+    },
+    {
+      "title": "2025 Kentucky Individual Income Tax Return - Form 740 - Line 12",
+      "url": "https://revenue.ky.gov/Forms/740%20(2025).pdf#page=1"
+    },
+    {
+      "title": "2024 Kentucky individual tax credit schedule, ITC",
+      "url": "https://revenue.ky.gov/Forms/Schedule%20ITC%20(2025).pdf#page=2"
+    },
+    {"title": "2025 Kentucky Form 8863-K", "url": "https://revenue.ky.gov/Forms/8863-K%20(2025).pdf#page=1"},
+    {
+      "title": "2025 KENTUCKY Standard Deduction Press Release",
+      "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2025-Standard-Deduction.aspx"
+    },
+    {
+      "title": "2021 Kentucky Individual Income Tax Return Residents Only - Form 740 - Line 12",
+      "url": "https://revenue.ky.gov/Forms/Form%20740-2021.pdf#page=1"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ky",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Kentucky income tax $1,282.4. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ky-income-tax": 1282.4, "net": 33037.6}
+    },
+    {
+      "gross": 85000,
+      "note": "Kentucky income tax $2,857.4. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ky-income-tax": 2857.4, "net": 65770.1}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Kentucky income tax $5,132.4. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ky-income-tax": 5132.4, "net": 118052.6}
+    }
+  ]
+}

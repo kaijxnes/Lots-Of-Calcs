@@ -1,0 +1,128 @@
+{
+  "id": "us-ma",
+  "name": "Massachusetts",
+  "appliesTo": "Residents of Massachusetts",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ma-taxable",
+      "label": "Massachusetts taxable income",
+      "show": true,
+      "note": "After the $4,400 exemption ($8,800 married) and the deduction for up to $2,000 of Social Security and Medicare contributions.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 4400, "married": 8800}
+              },
+              {
+                "min": [
+                  2000,
+                  {
+                    "sum": ["us-social-security", "us-medicare"]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ma-income-tax",
+      "label": "Massachusetts income tax",
+      "group": "tax",
+      "note": "5%, plus the 4% surtax on income over $1,083,150.",
+      "charge": {
+        "sum": [
+          {"pct": 5, "of": "ma-taxable"},
+          {
+            "pct": 4,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["ma-taxable", 1083150]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ma-pfml",
+      "label": "Paid Family and Medical Leave",
+      "group": "social",
+      "note": "The employee share: all of the 0.18% family leave premium and 40% of the 0.70% medical leave premium.",
+      "charge": {
+        "pct": 0.46,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    }
+  ],
+  "notModelled": ["No-tax status and limited income credit for very low incomes"],
+  "provisional": ["Surtax threshold of $1,083,150 is the 2025 amount"],
+  "sources": [
+    {
+      "title": "Form 1 2025 Massachusetts Resident Income Tax - 4% Surtax",
+      "url": "https://www.mass.gov/doc/2025-form-1-instructions/download#page=3"
+    },
+    {
+      "title": "Massachusetts Chapter 62F Taxpayer Refunds",
+      "url": "https://www.mass.gov/audit/audit-of-the-determination-of-whether-net-state-tax-revenues-exceeded-allowable-state-tax-revenues-0"
+    },
+    {
+      "title": "§ 5 Exempt income of individuals; exemption of stock bonus, pension or profit-sharing trust",
+      "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter62/Section5"
+    },
+    {
+      "title": "Form 1 2023 Massachusetts Resident Income Tax (No Tax Status and Limited Income Credit worksheets)",
+      "url": "https://www.mass.gov/doc/2023-form-1-instructions/download#page=12"
+    },
+    {
+      "title": "Form 1 2024 Massachusetts Resident Income Tax (No Tax Status and Limited Income Credit worksheets)",
+      "url": "https://www.mass.gov/doc/2024-form-1-instructions/download#page=12"
+    },
+    {
+      "title": "Filing Status on Massachusetts Personal Income Tax",
+      "url": "https://www.mass.gov/info-details/filing-status-on-massachusetts-personal-income-tax"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ma",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.mass.gov/doc/2025-form-1-instructions/download#page=3",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Massachusetts taxable income $33,600. Massachusetts income tax $1,680; Paid Family and Medical Leave $184. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ma-taxable": 33600, "ma-income-tax": 1680, "ma-pfml": 184, "net": 32456}
+    },
+    {
+      "gross": 85000,
+      "note": "Massachusetts taxable income $78,600. Massachusetts income tax $3,930; Paid Family and Medical Leave $391. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ma-taxable": 78600, "ma-income-tax": 3930, "ma-pfml": 391, "net": 64306.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Massachusetts taxable income $139,200. Massachusetts income tax $6,960; Paid Family and Medical Leave $690. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ma-taxable": 139200, "ma-income-tax": 6960, "ma-pfml": 690, "net": 115535}
+    }
+  ]
+}

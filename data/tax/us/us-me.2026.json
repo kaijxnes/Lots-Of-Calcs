@@ -1,0 +1,175 @@
+{
+  "id": "us-me",
+  "name": "Maine",
+  "appliesTo": "Residents of Maine",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "me-taxable",
+      "label": "Maine taxable income",
+      "show": true,
+      "note": "The standard deduction phases out above $102,250 ($204,550 married) and the $5,150 personal exemption above $341,000.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "taper": {
+                  "status": {"single": 15700, "married": 31400}
+                },
+                "of": "gross",
+                "from": {
+                  "status": {"single": 102250, "married": 204550}
+                },
+                "per": {
+                  "div": [
+                    {
+                      "status": {"single": 15700, "married": 31400}
+                    },
+                    {
+                      "status": {"single": 75000, "married": 150000}
+                    }
+                  ]
+                }
+              },
+              {
+                "taper": {
+                  "mul": [
+                    5150,
+                    {
+                      "status": {"single": 1, "married": 2}
+                    }
+                  ]
+                },
+                "of": "gross",
+                "from": {
+                  "status": {"single": 341000, "married": 409150}
+                },
+                "per": {
+                  "div": [
+                    {
+                      "mul": [
+                        5150,
+                        {
+                          "status": {"single": 1, "married": 2}
+                        }
+                      ]
+                    },
+                    125000
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "me-income-tax",
+      "label": "Maine income tax",
+      "group": "tax",
+      "note": "Includes the 2% surcharge on taxable income over $1 million ($1.5 million married) that starts in 2026.",
+      "charge": {
+        "sum": [
+          {
+            "brackets": {
+              "status": {
+                "single": [[0, 5.8], [27400, 6.75], [64850, 7.15]],
+                "married": [[0, 5.8], [54850, 6.75], [129750, 7.15]]
+              }
+            },
+            "of": "me-taxable"
+          },
+          {
+            "pct": 2,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "me-taxable",
+                    {
+                      "status": {"single": 1000000, "married": 1500000}
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "me-pfml",
+      "label": "Paid Family and Medical Leave",
+      "group": "social",
+      "charge": {
+        "pct": 0.5,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": ["Personal exemption of $5,150 is the 2025 amount"],
+  "sources": [
+    {
+      "title": "IRS Rev. Proc. 2025-32, Section 4.14(3) (2026 federal additional standard deduction for the aged or the blind)",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=18"
+    },
+    {
+      "title": "P.L. 2025, c. 650, Pt. K, § 14 (LD 2212) / 36 M.R.S. § 5124-C(1-C) (Standard deduction amounts for tax year 2026)",
+      "url": "https://legislature.maine.gov/legis/bills/getPDF.asp?paper=HP1491&item=37&snum=132#page=138"
+    },
+    {
+      "title": "2026 Maine Estimated Tax Worksheet, Line 6b - Phaseout of Personal Exemption Deduction Amount Worksheet",
+      "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/26_1040es_pers_exempt_phaseout_wksht.pdf"
+    },
+    {
+      "title": "Maine Revenue Services 2026 Legislative Changes Summary, conformity (page 2) and 2026 standard deduction (page 6)",
+      "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/legischange26.pdf#page=6"
+    },
+    {
+      "title": "Maine Revenue Services 2026 Individual Income Tax Rate Schedule (revised May 20, 2026)",
+      "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/2026-05/ind_tax_rate_sched_2026_rev.pdf"
+    },
+    {
+      "title": "Maine Revenue Services 2026 Legislative Changes Summary, standard deduction for tax years beginning on or after January 1, 2027 (page 9)",
+      "url": "https://www.maine.gov/revenue/sites/maine.gov.revenue/files/inline-files/legischange26.pdf#page=9"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/me",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=18",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Maine taxable income $19,150. Maine income tax $1,110.7; Paid Family and Medical Leave $200. PolicyEngine US 2.62.5 differs by $5.8 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"me-taxable": 19150, "me-income-tax": 1110.7, "me-pfml": 200, "net": 33009.3}
+    },
+    {
+      "gross": 85000,
+      "note": "Maine taxable income $64,150. Maine income tax $4,069.83; Paid Family and Medical Leave $425. PolicyEngine US 2.62.5 differs by $6.75 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"me-taxable": 64150, "me-income-tax": 4069.83, "me-pfml": 425, "net": 64132.68}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Maine taxable income $108,300. Maine income tax $6,789.18; Paid Family and Medical Leave $750. PolicyEngine US 2.62.5 differs by $13.51 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"me-taxable": 108300, "me-income-tax": 6789.18, "me-pfml": 750, "net": 115645.83}
+    }
+  ]
+}

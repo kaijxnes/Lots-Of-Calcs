@@ -1,0 +1,312 @@
+{
+  "id": "de",
+  "name": "Germany",
+  "kind": "country",
+  "country": "DE",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "de-DE",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "status": {
+      "label": "Filing status",
+      "default": "single",
+      "choices": {"single": "Single (tax class I)", "married": "Married, one earner (joint assessment)"}
+    },
+    "church": {
+      "label": "Church tax",
+      "default": "none",
+      "choices": {"none": "None", "8": "8% (Bavaria, Baden-Württemberg)", "9": "9% (other states)"}
+    }
+  },
+  "items": [
+    {
+      "id": "de-pension",
+      "label": "Pension insurance (Rentenversicherung)",
+      "group": "social",
+      "note": "Half of 18.6%, on earnings up to €101,400.",
+      "charge": {
+        "pct": 9.3,
+        "of": {
+          "min": ["gross", 101400]
+        }
+      }
+    },
+    {
+      "id": "de-unemployment",
+      "label": "Unemployment insurance (Arbeitslosenversicherung)",
+      "group": "social",
+      "note": "Half of 2.6%, on earnings up to €101,400.",
+      "charge": {
+        "pct": 1.3,
+        "of": {
+          "min": ["gross", 101400]
+        }
+      }
+    },
+    {
+      "id": "de-health",
+      "label": "Health insurance (Krankenversicherung)",
+      "group": "social",
+      "note": "Half of the 14.6% general rate plus half of the 2.9% average additional contribution, on earnings up to €69,750. Each fund sets its own additional contribution.",
+      "charge": {
+        "pct": 8.75,
+        "of": {
+          "min": ["gross", 69750]
+        }
+      }
+    },
+    {
+      "id": "de-care",
+      "label": "Long-term care insurance (Pflegeversicherung)",
+      "group": "social",
+      "note": "1.8% (half of 3.6%) plus the 0.6% surcharge for childless employees aged 23 or over, on earnings up to €69,750.",
+      "charge": {
+        "pct": 2.4,
+        "of": {
+          "min": ["gross", 69750]
+        }
+      }
+    },
+    {
+      "id": "de-insurance-deduction",
+      "label": "Deductible insurance contributions",
+      "note": "Pension contributions in full, plus basic health (96%, excluding the share for sick pay) and care contributions — or up to €1,900 of all three if that is more.",
+      "value": {
+        "sum": [
+          "de-pension",
+          {
+            "max": [
+              {
+                "sum": [
+                  {"pct": 96, "of": "de-health"},
+                  "de-care"
+                ]
+              },
+              {
+                "min": [
+                  {
+                    "sum": ["de-health", "de-care", "de-unemployment"]
+                  },
+                  1900
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-taxable",
+      "label": "Taxable income (zu versteuerndes Einkommen)",
+      "show": true,
+      "note": "After the €1,230 employee allowance for work expenses, the €36 (€72 married) special expenses allowance, and insurance contributions.",
+      "value": {
+        "round": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "gross",
+                1230,
+                {
+                  "status": {"single": 36, "married": 72}
+                },
+                "de-insurance-deduction"
+              ]
+            }
+          ]
+        },
+        "to": 1,
+        "mode": "down"
+      }
+    },
+    {
+      "id": "de-taxable-split",
+      "label": "Income for the tariff",
+      "note": "Married couples are taxed under income splitting: the tariff is applied to half the joint income and the result doubled.",
+      "value": {
+        "status": {
+          "single": "de-taxable",
+          "married": {
+            "round": {
+              "div": ["de-taxable", 2]
+            },
+            "to": 1,
+            "mode": "down"
+          }
+        }
+      }
+    },
+    {
+      "id": "de-income-tax",
+      "label": "Income tax (Einkommensteuer)",
+      "group": "tax",
+      "note": "§ 32a EStG 2026: nothing up to €12,348, rising through two progressive zones to 42% from €69,879 and 45% from €277,826.",
+      "charge": {
+        "mul": [
+          {
+            "status": {"single": 1, "married": 2}
+          },
+          {
+            "round": {
+              "if": {
+                "lte": ["de-taxable-split", 12348]
+              },
+              "then": 0,
+              "else": {
+                "if": {
+                  "lte": ["de-taxable-split", 17799]
+                },
+                "then": {
+                  "quadratic": {"of": "de-taxable-split", "offset": 12348, "scale": 10000, "a": 914.51, "b": 1400}
+                },
+                "else": {
+                  "if": {
+                    "lte": ["de-taxable-split", 69878]
+                  },
+                  "then": {
+                    "quadratic": {"of": "de-taxable-split", "offset": 17799, "scale": 10000, "a": 173.1, "b": 2397, "c": 1034.87}
+                  },
+                  "else": {
+                    "if": {
+                      "lte": ["de-taxable-split", 277825]
+                    },
+                    "then": {
+                      "sub": [
+                        {"pct": 42, "of": "de-taxable-split"},
+                        11135.63
+                      ]
+                    },
+                    "else": {
+                      "sub": [
+                        {"pct": 45, "of": "de-taxable-split"},
+                        19470.38
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "to": 1,
+            "mode": "down"
+          }
+        ]
+      }
+    },
+    {
+      "id": "de-solidarity",
+      "label": "Solidarity surcharge",
+      "group": "tax",
+      "note": "5.5% of income tax, but only once the tax exceeds €20,350 (€40,700 married), phased in at 11.9% of the excess.",
+      "charge": {
+        "round": {
+          "if": {
+            "lte": [
+              "de-income-tax",
+              {
+                "status": {"single": 20350, "married": 40700}
+              }
+            ]
+          },
+          "then": 0,
+          "else": {
+            "min": [
+              {"pct": 5.5, "of": "de-income-tax"},
+              {
+                "pct": 11.9,
+                "of": {
+                  "sub": [
+                    "de-income-tax",
+                    {
+                      "status": {"single": 20350, "married": 40700}
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "to": 0.01,
+        "mode": "down"
+      }
+    },
+    {
+      "id": "de-church",
+      "label": "Church tax (Kirchensteuer)",
+      "group": "tax",
+      "note": "Only for members of a church that levies it: 8% of income tax in Bavaria and Baden-Württemberg, 9% elsewhere.",
+      "charge": {
+        "pct": {
+          "option": "church",
+          "cases": {"none": 0, "8": 8, "9": 9}
+        },
+        "of": "de-income-tax"
+      }
+    }
+  ],
+  "assumptions": [
+    "Statutory health insurance at the average additional contribution of 2.9%",
+    "No children, aged 23 or over (so the childless care surcharge applies)",
+    "Calculated as the annual income tax assessment; monthly payroll withholding approximates it and the difference is settled by the annual return",
+    "Married means one spouse earns the whole salary and the couple is jointly assessed"
+  ],
+  "notModelled": [
+    "Children: child allowances, child benefit (Kindergeld) and the lower care rate for parents",
+    "Private health insurance (an option above the €77,400 compulsory insurance threshold)",
+    "Saxony's different split of care insurance between employer and employee",
+    "Work expenses above the €1,230 allowance (commuting, home office) and other deductions",
+    "The church tax deduction and church tax caps",
+    "Company pension contributions and capital gains"
+  ],
+  "provisional": [],
+  "sources": [
+    {"title": "§ 32a EStG — Einkommensteuertarif", "url": "https://www.gesetze-im-internet.de/estg/__32a.html"},
+    {
+      "title": "§ 9a EStG — Pauschbeträge für Werbungskosten",
+      "url": "https://www.gesetze-im-internet.de/estg/__9a.html"
+    },
+    {"title": "Solidaritätszuschlaggesetz 1995 § 3, § 4", "url": "https://www.gesetze-im-internet.de/solzg_1995/"},
+    {
+      "title": "Deutsche Rentenversicherung — Sozialversicherungs-Rechengrößen 2026",
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2025/250910-sv-rechengroessen-vo-2026.html"
+    },
+    {
+      "title": "vdek — Neuerungen im Gesundheitswesen 2026 (contribution rates)",
+      "url": "https://www.vdek.com/politik/was-aendert-sich/gesundheitswesen-2026.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Tariff zones and formulas (deubner-steuern.de reproduction of § 32a, steuerschroeder.de, finanz-tools.de agree); contribution ceilings and rates (TK, Deutsche Rentenversicherung, vdek, Haufe, hkk agree); solidarity surcharge exemption limits (TK); unemployment rate 2.6% (Haufe, citing BMAS 22 Dec 2025); € 1,230 allowance (§ 9a text via lxgesetze and buzer)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.bmf-steuerrechner.de/",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Contributions: pension 2,790, unemployment 390, health 2,625, care 720. Deductible: 2,790 + 0.96 × 2,625 + 720 = 6,030. Taxable 30,000 − 1,230 − 36 − 6,030 = 22,704; z = 0.4905 → (173.10z + 2,397)z + 1,034.87 = 2,252 (rounded down).",
+      "expect": {"de-taxable": 22704, "de-income-tax": 2252, "de-solidarity": 0, "net": 21223}
+    },
+    {
+      "gross": 100000,
+      "note": "Pension 9,300, unemployment 1,300, health 8.75% of 69,750 = 6,103.13, care 1,674. Taxable 81,901 → 0.42 × 81,901 − 11,135.63 = 23,262. Soli: min(5.5% = 1,279.41, 11.9% × 2,912 = 346.53) → 346.52 after rounding down.",
+      "expect": {"de-taxable": 81901, "de-income-tax": 23262, "de-solidarity": 346.52}
+    },
+    {
+      "gross": 100000,
+      "options": {"status": "married"},
+      "note": "Taxable 81,865 (the special expenses allowance doubles). Split: tariff on 40,932 = 7,506, doubled = 15,012. Below the €40,700 surcharge limit.",
+      "expect": {"de-income-tax": 15012, "de-solidarity": 0, "net": 66610.88}
+    },
+    {
+      "gross": 60000,
+      "options": {"church": "9"},
+      "note": "Taxable 46,674, income tax 9,399; church tax 9% = 845.91.",
+      "expect": {"de-income-tax": 9399, "de-church": 845.91, "net": 36705.09}
+    }
+  ]
+}

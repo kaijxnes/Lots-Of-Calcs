@@ -1,0 +1,108 @@
+{
+  "id": "us-ok",
+  "name": "Oklahoma",
+  "appliesTo": "Residents of Oklahoma",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ok-taxable",
+      "label": "Oklahoma taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 6350, "married": 12700}
+              },
+              {
+                "mul": [
+                  1000,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ok-income-tax",
+      "label": "Oklahoma income tax",
+      "group": "tax",
+      "note": "2026 rates, with the top rate cut to 4.5%.",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 0], [3750, 2.5], [4900, 3.5], [7200, 4.5]],
+            "married": [[0, 0], [7500, 2.5], [9800, 3.5], [14400, 4.5]]
+          }
+        },
+        "of": "ok-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Form 511 instructions",
+      "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf#page=10"
+    },
+    {
+      "title": "2025 Form 511 instructions",
+      "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf#page=9"
+    },
+    {
+      "title": "2025 Form 511 instructions",
+      "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf#page=27"
+    },
+    {
+      "title": "Oklahoma House Bill 2764",
+      "url": "https://www.oklegislature.gov/cf_pdf/2025-26%20ENR/hB/HB2764%20ENR.PDF#page=11"
+    },
+    {
+      "title": "2021 Form 511 instructions",
+      "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2021/511-Pkt-2021.pdf"
+    },
+    {
+      "title": "2022 Form 511 instructions",
+      "url": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/past-year/2022/511-Pkt-2022.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ok",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf#page=10",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Oklahoma taxable income $32,650. Oklahoma income tax $1,254.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ok-taxable": 32650, "ok-income-tax": 1254.5, "net": 33065.5}
+    },
+    {
+      "gross": 85000,
+      "note": "Oklahoma taxable income $77,650. Oklahoma income tax $3,279.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ok-taxable": 77650, "ok-income-tax": 3279.5, "net": 65348}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Oklahoma taxable income $135,300. Oklahoma income tax $5,659. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ok-taxable": 135300, "ok-income-tax": 5659, "net": 117526}
+    }
+  ]
+}

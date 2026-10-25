@@ -1,0 +1,143 @@
+{
+  "id": "us-wi",
+  "name": "Wisconsin",
+  "appliesTo": "Residents of Wisconsin",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "wi-standard-deduction",
+      "label": "Wisconsin standard deduction",
+      "show": true,
+      "note": "A sliding deduction that shrinks by 12% of income over $20,120 (19.778% over $29,040 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "status": {"single": 13960, "married": 25840}
+              },
+              {
+                "mul": [
+                  {
+                    "status": {"single": 0.12, "married": 0.19778}
+                  },
+                  {
+                    "max": [
+                      0,
+                      {
+                        "sub": [
+                          "gross",
+                          {
+                            "status": {"single": 20120, "married": 29040}
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "wi-taxable",
+      "label": "Wisconsin taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              "wi-standard-deduction",
+              {
+                "mul": [
+                  700,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "wi-income-tax",
+      "label": "Wisconsin income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 3.5], [15110, 4.4], [51950, 5.3], [332720, 7.65]],
+            "married": [[0, 3.5], [20150, 4.4], [69260, 5.3], [443630, 7.65]]
+          }
+        },
+        "of": "wi-taxable"
+      }
+    }
+  ],
+  "notModelled": ["Married couple credit (needs both spouses to have earnings)"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2026 Form 1-ES instructions, 2026 Standard Deduction schedules",
+      "url": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf#page=2"
+    },
+    {
+      "title": "2026 Form 1-ES instructions",
+      "url": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf#page=3"
+    },
+    {
+      "title": "2025 Wisconsin Schedule H instructions, Table B",
+      "url": "https://www.revenue.wi.gov/TaxForms2025/2025-ScheduleH-inst.pdf#page=26"
+    },
+    {
+      "title": "2025 Wisconsin Schedule H, Line 12b",
+      "url": "https://www.revenue.wi.gov/TaxForms2025/2025-ScheduleH.pdf#page=2"
+    },
+    {
+      "title": "2025 Wisconsin Form 1, Schedule 1",
+      "url": "https://www.revenue.wi.gov/TaxForms2025/2025-Form1.pdf#page=4"
+    },
+    {
+      "title": "2025 Form 1 instructions - Homeowner's School Property Tax Credit Table",
+      "url": "https://www.revenue.wi.gov/TaxForms2025/2025-Form1-inst.pdf#page=20"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/wi",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf#page=2",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Wisconsin standard deduction $11,574.4, wisconsin taxable income $27,725.6. Wisconsin income tax $1,083.94. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wi-standard-deduction": 11574.4, "wi-taxable": 27725.6, "wi-income-tax": 1083.94, "net": 33236.06}
+    },
+    {
+      "gross": 85000,
+      "note": "Wisconsin standard deduction $6,174.4, wisconsin taxable income $78,125.6. Wisconsin income tax $3,537.12. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wi-standard-deduction": 6174.4, "wi-taxable": 78125.6, "wi-income-tax": 3537.12, "net": 65090.38}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Wisconsin standard deduction $1,916.53, wisconsin taxable income $146,683.47. Wisconsin income tax $6,969.53. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wi-standard-deduction": 1916.53, "wi-taxable": 146683.47, "wi-income-tax": 6969.53, "net": 116215.47}
+    }
+  ]
+}

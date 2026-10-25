@@ -1,0 +1,106 @@
+{
+  "id": "us-id",
+  "name": "Idaho",
+  "appliesTo": "Residents of Idaho",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "id-taxable",
+      "label": "Idaho taxable income",
+      "show": true,
+      "note": "Idaho uses the federal standard deduction.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "us-standard-deduction"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "id-income-tax",
+      "label": "Idaho income tax",
+      "group": "tax",
+      "note": "5.3% above the first $4,811 ($9,622 married), less the $155 grocery credit per person, which is refundable.",
+      "mayBeNegative": true,
+      "charge": {
+        "sub": [
+          {
+            "brackets": {
+              "status": {
+                "single": [[0, 0], [4811, 5.3]],
+                "married": [[0, 0], [9622, 5.3]]
+              }
+            },
+            "of": "id-taxable"
+          },
+          {
+            "mul": [
+              155,
+              {
+                "status": {"single": 1, "married": 2}
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": ["Permanent building fund tax ($10)"],
+  "provisional": ["The $4,811 / $9,622 zero-rate band is the 2025 amount"],
+  "sources": [
+    {
+      "title": "Idaho Individual Income Tax Instructions Packet 2025",
+      "url": "https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf#page=4"
+    },
+    {"title": "House Bill 40 (2025)", "url": "https://legislature.idaho.gov/sessioninfo/2025/legislation/H0040/"},
+    {
+      "title": "House Bill 40 (2025) Bill Text",
+      "url": "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2025/legislation/H0040.pdf#page=6"
+    },
+    {
+      "title": "Idaho Statutes 63-3024B (3)",
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3024b/"
+    },
+    {
+      "title": "Idaho State Tax Comission - Individual Income Tax Rate Schedule",
+      "url": "https://tax.idaho.gov/taxes/income-tax/individual-income/individual-income-tax-rate-schedule/"
+    },
+    {
+      "title": "IDAPA 35.01.01.075 - Tax on individuals, estates, and trusts",
+      "url": "https://adminrules.idaho.gov/rules/current/35/350101.pdf#page=17"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/id",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf#page=4",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Idaho taxable income $23,900. Idaho income tax $856.72. PolicyEngine US 2.62.5 differs by $-4.22 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"id-taxable": 23900, "id-income-tax": 856.72, "net": 33463.28}
+    },
+    {
+      "gross": 85000,
+      "note": "Idaho taxable income $68,900. Idaho income tax $3,241.72. PolicyEngine US 2.62.5 differs by $-4.22 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"id-taxable": 68900, "id-income-tax": 3241.72, "net": 65385.78}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Idaho taxable income $117,800. Idaho income tax $5,423.43. PolicyEngine US 2.62.5 differs by $1.55 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"id-taxable": 117800, "id-income-tax": 5423.43, "net": 117761.57}
+    }
+  ]
+}

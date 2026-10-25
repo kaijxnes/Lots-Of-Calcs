@@ -1,0 +1,110 @@
+{
+  "id": "us-mo",
+  "name": "Missouri",
+  "appliesTo": "Residents of Missouri",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "mo-federal-tax-deduction",
+      "label": "Federal tax deduction",
+      "show": true,
+      "note": "A share of federal income tax is deductible: 35% at incomes up to $25,000, falling to nothing above $125,000, capped at $10,000.",
+      "value": {
+        "min": [
+          10000,
+          {
+            "mul": [
+              {
+                "lookup": [[0, 0.35], [25000, 0.25], [50000, 0.15], [100000, 0.05], [125000, 0]],
+                "of": "gross",
+                "strict": true
+              },
+              "us-income-tax"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "mo-taxable",
+      "label": "Missouri taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "us-standard-deduction", "mo-federal-tax-deduction"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "mo-income-tax",
+      "label": "Missouri income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": [[0, 0], [1348, 2], [2696, 2.5], [4044, 3], [5392, 3.5], [6740, 4], [8088, 4.5], [9436, 4.7]],
+        "of": "mo-taxable"
+      }
+    }
+  ],
+  "notModelled": ["Kansas City and St. Louis 1% earnings taxes"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2026 Form MO-1040ES, Declaration of Estimated Tax for Individuals, Tax Rate Chart",
+      "url": "https://dor.mo.gov/forms/MO-1040ES_2026.pdf#page=2"
+    },
+    {
+      "title": "2026 Missouri Withholding Tax Formula",
+      "url": "https://dor.mo.gov/forms/Withholding%20Formula_2026.pdf#page=2"
+    },
+    {
+      "title": "MO Rev Stat § 135.030.3(1), effective 2026-01-01",
+      "url": "https://revisor.mo.gov/main/OneSection.aspx?section=135.030&bid=57542"
+    },
+    {
+      "title": "2025 MO-1040 Book - Individual Income Tax Long Form",
+      "url": "https://dor.mo.gov/forms/MO-1040%20Instructions_2025.pdf#page=26"
+    },
+    {
+      "title": "2025 Missouri Withholding Tax Formula",
+      "url": "https://dor.mo.gov/forms/Withholding%20Table%20-%20Weekly_2025.pdf#page=2"
+    },
+    {
+      "title": "Missouri Department of Revenue 2025 Individual Income Tax Year Changes (This reference should be updated once the 2025 tax form comes out)",
+      "url": "https://dor.mo.gov/taxation/individual/tax-types/income/year-changes/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mo",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://dor.mo.gov/forms/MO-1040ES_2026.pdf#page=2",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Federal tax deduction $655, missouri taxable income $23,245. Missouri income tax $911.88. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mo-federal-tax-deduction": 655, "mo-taxable": 23245, "mo-income-tax": 911.88, "net": 33408.12}
+    },
+    {
+      "gross": 85000,
+      "note": "Federal tax deduction $1,480.5, missouri taxable income $67,419.5. Missouri income tax $2,988.08. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mo-federal-tax-deduction": 1480.5, "mo-taxable": 67419.5, "mo-income-tax": 2988.08, "net": 65639.42}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Federal tax deduction $0, missouri taxable income $117,800. Missouri income tax $5,355.97. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mo-federal-tax-deduction": 0, "mo-taxable": 117800, "mo-income-tax": 5355.97, "net": 117829.03}
+    }
+  ]
+}

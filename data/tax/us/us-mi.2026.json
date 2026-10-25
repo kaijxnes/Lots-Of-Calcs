@@ -1,0 +1,94 @@
+{
+  "id": "us-mi",
+  "name": "Michigan",
+  "appliesTo": "Residents of Michigan",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "mi-income-tax",
+      "label": "Michigan income tax",
+      "group": "tax",
+      "note": "4.25% after a $5,900 personal exemption each.",
+      "charge": {
+        "pct": 4.25,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "gross",
+                {
+                  "mul": [
+                    5900,
+                    {
+                      "status": {"single": 1, "married": 2}
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": ["City income taxes (Detroit 2.4%, Grand Rapids 1.5%, and 22 other cities)"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "4.25% Income Tax Rate for Individuals and Fiduciaries in 2026 Tax Year",
+      "url": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2026/04/15/425-income-tax-rate-for-individuals-and-fiduciaries-in-2026-tax-year"
+    },
+    {
+      "title": "Revenue Administrative Bulletin 2026-1",
+      "url": "https://www.michigan.gov/taxes/rep-legal/rab/2026-revenue-administrative-bulletins/revenue-administrative-bulletin-2026-1"
+    },
+    {
+      "title": "Michigan 2026 Income Tax Withholding Guide (Form 446), Personal Exemption Amount",
+      "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/SUW/TY2026/446_Withholding-Guide_2026.pdf#page=1"
+    },
+    {
+      "title": "Michigan Treasury, Withholding Tax Information by Calendar Year (2026 personal exemption)",
+      "url": "https://www.michigan.gov/taxes/business-taxes/withholding/calendar-year-tax-information"
+    },
+    {
+      "title": "2025 Tax Year Income Tax Rate for Individuals and Fiduciaries",
+      "url": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2025/05/01/2025-tax-year-income-tax-rate-for-individuals-and-fiduciaries"
+    },
+    {
+      "title": "Michigan 2024 Book MI-1040CR7 Home Heating Instructions, Table A",
+      "url": "https://web.archive.org/web/20250202150154/https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/BOOK_MI-1040CR-7.pdf#page=11"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mi",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2026/04/15/425-income-tax-rate-for-individuals-and-fiduciaries-in-2026-tax-year",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Michigan income tax $1,449.25. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mi-income-tax": 1449.25, "net": 32870.75}
+    },
+    {
+      "gross": 85000,
+      "note": "Michigan income tax $3,361.75. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mi-income-tax": 3361.75, "net": 65265.75}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Michigan income tax $5,873.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"mi-income-tax": 5873.5, "net": 117311.5}
+    }
+  ]
+}

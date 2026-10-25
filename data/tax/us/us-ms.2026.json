@@ -1,0 +1,98 @@
+{
+  "id": "us-ms",
+  "name": "Mississippi",
+  "appliesTo": "Residents of Mississippi",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ms-taxable",
+      "label": "Mississippi taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 2300, "married": 4600}
+              },
+              {
+                "status": {"single": 6000, "married": 12000}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ms-income-tax",
+      "label": "Mississippi income tax",
+      "group": "tax",
+      "note": "4% on taxable income above $10,000 in 2026.",
+      "charge": {
+        "brackets": [[0, 0], [10000, 4]],
+        "of": "ms-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Mississippi Income Tax Instructions 2025",
+      "url": "https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf#page=3"
+    },
+    {
+      "title": "Mississippi Income Tax Instructions 2025, Line 61",
+      "url": "https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf#page=13"
+    },
+    {
+      "title": "Mississippi Income Tax Instructions 2025",
+      "url": "https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf#page=5"
+    },
+    {
+      "title": "Mississippi Income Tax Instructions 2025",
+      "url": "https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf#page=6"
+    },
+    {
+      "title": "Miss. Code Ann. § 27-7-5",
+      "url": "https://law.justia.com/codes/mississippi/title-27/chapter-7/article-1/section-27-7-5/"
+    },
+    {
+      "title": "Mississippi Income Tax Instructions 2022",
+      "url": "https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100221.pdf#page=20"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ms",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.dor.ms.gov/sites/default/files/tax-forms/individual/80100251%202.pdf#page=3",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Mississippi taxable income $31,700. Mississippi income tax $868. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ms-taxable": 31700, "ms-income-tax": 868, "net": 33452}
+    },
+    {
+      "gross": 85000,
+      "note": "Mississippi taxable income $76,700. Mississippi income tax $2,668. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ms-taxable": 76700, "ms-income-tax": 2668, "net": 65959.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Mississippi taxable income $133,400. Mississippi income tax $4,936. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ms-taxable": 133400, "ms-income-tax": 4936, "net": 118249}
+    }
+  ]
+}

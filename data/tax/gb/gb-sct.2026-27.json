@@ -1,0 +1,65 @@
+{
+  "id": "gb-sct",
+  "name": "Scotland",
+  "appliesTo": "Scottish taxpayers",
+  "kind": "region",
+  "country": "GB",
+  "parent": "gb",
+  "standalone": true,
+  "taxYear": { "label": "2026/27", "start": "2026-04-06", "end": "2027-04-05" },
+  "items": [
+    {
+      "id": "gb-income-tax",
+      "replaces": true,
+      "label": "Scottish income tax",
+      "group": "tax",
+      "note": "Replaces the rest-of-UK bands. Thresholds are on taxable income: with the full £12,570 allowance the bands start at £12,571, £16,538, £29,527, £43,663, £75,001 and £125,141 of gross pay. The personal allowance and National Insurance are set UK-wide and are unchanged.",
+      "charge": {
+        "brackets": [
+          [0, 19, "Starter rate"],
+          [3967, 20, "Basic rate"],
+          [16956, 21, "Intermediate rate"],
+          [31092, 42, "Higher rate"],
+          [62430, 45, "Advanced rate"],
+          [125140, 48, "Top rate"]
+        ],
+        "of": "gb-taxable"
+      }
+    }
+  ],
+  "notModelled": [
+    "Pension contributions (workplace or salary sacrifice)",
+    "Student loan and postgraduate loan repayments",
+    "Tax codes other than the standard personal allowance",
+    "Benefits in kind, salary sacrifice and taxable expenses"
+  ],
+  "provisional": [],
+  "sources": [
+    { "title": "Scottish Income Tax 2026 to 2027 — rates and bands (gov.scot)", "url": "https://www.gov.scot/publications/scottish-income-tax-rates-and-bands/pages/2026-to-2027/" },
+    { "title": "Scottish Rate Resolution 2026-27 (S6M-20844)", "url": "https://www.parliament.scot/chamber-and-committees/votes-and-motions/S6M-20844" },
+    { "title": "Income Tax in Scotland (GOV.UK)", "url": "https://www.gov.uk/scottish-income-tax" }
+  ],
+  "obtainedFrom": [
+    { "title": "PolicyEngine UK parameters — Scottish rates", "url": "https://github.com/PolicyEngine/policyengine-uk/blob/442fe5943d4676fddb07cfcc363cd2702796b4f2/policyengine_uk/parameters/gov/hmrc/income_tax/rates/scotland/rates.yaml", "note": "Cites the Scottish Rate Resolution 2026-27." },
+    { "title": "Web search of gov.scot, 24 Oct 2026", "note": "Search excerpts of the gov.scot 2026-27 rates page give the same bands in gross terms (£16,537 / £29,526 / £43,662 / £75,000 / £125,140)." }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.gov.scot/publications/scottish-income-tax-rates-and-bands/pages/2026-to-2027/",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Taxable 17,430: 3,967 × 19% = 753.73; 12,989 × 20% = 2,597.80; 474 × 21% = 99.54 → 3,451.07. NI as rest of UK.",
+      "expect": { "gb-income-tax": 3451.07, "gb-ni": 1394.4 }
+    },
+    {
+      "gross": 80000,
+      "note": "Taxable 67,430: 753.73 + 2,597.80 + 14,136 × 21% = 2,968.56; 31,338 × 42% = 13,161.96; 5,000 × 45% = 2,250 → 21,732.05.",
+      "expect": { "gb-income-tax": 21732.05 }
+    },
+    {
+      "gross": 150000,
+      "note": "No allowance; taxable 150,000: 753.73 + 2,597.80 + 2,968.56 + 13,161.96 + 62,710 × 45% = 28,219.50 + 24,860 × 48% = 11,932.80 → 59,634.35.",
+      "expect": { "gb-personal-allowance": 0, "gb-income-tax": 59634.35 }
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "id": "us-az",
+  "name": "Arizona",
+  "appliesTo": "Residents of Arizona",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "az-taxable",
+      "label": "Arizona taxable income",
+      "show": true,
+      "note": "Arizona's standard deduction matches the federal one.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 16100, "married": 32200}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "az-income-tax",
+      "label": "Arizona income tax",
+      "group": "tax",
+      "charge": {"pct": 2.5, "of": "az-taxable"}
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Rev. Proc. 2025-32, sec. 4.14(1) (2026 federal standard deduction)",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=18"
+    },
+    {
+      "title": "Laws 2026, ch. 140 (HB 4168), secs. 16 and 35(A)",
+      "url": "https://www.azleg.gov/legtext/57leg/2R/laws/0140.htm"
+    },
+    {
+      "title": "Arizona HB 4168 (2026), Sec. 16 amending 43-1041(I)(2)(a)-(b)",
+      "url": "https://www.azleg.gov/legtext/57leg/2R/bills/HB4168H.pdf#page=30"
+    },
+    {
+      "title": "2025 Arizona Form 140 Resident Personal Income Tax Instructions",
+      "url": "https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140i.pdf#page=23"
+    },
+    {
+      "title": "2025 Arizona Form 140 Resident Personal Income Tax Instructions",
+      "url": "https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140i.pdf#page=21"
+    },
+    {
+      "title": "2025 Arizona Form 140 Resident Personal Income Tax Instructions",
+      "url": "https://azdor.gov/sites/default/files/document/FORMS_INDIVIDUAL_2025_140i.pdf#page=20"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/az",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=18",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Arizona taxable income $23,900. Arizona income tax $597.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"az-taxable": 23900, "az-income-tax": 597.5, "net": 33722.5}
+    },
+    {
+      "gross": 85000,
+      "note": "Arizona taxable income $68,900. Arizona income tax $1,722.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"az-taxable": 68900, "az-income-tax": 1722.5, "net": 66905}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Arizona taxable income $117,800. Arizona income tax $2,945. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"az-taxable": 117800, "az-income-tax": 2945, "net": 120240}
+    }
+  ]
+}

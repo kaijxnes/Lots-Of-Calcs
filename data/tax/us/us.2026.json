@@ -1,0 +1,159 @@
+{
+  "id": "us",
+  "name": "United States (federal)",
+  "appliesTo": "Federal income tax and FICA, before any state tax",
+  "kind": "country",
+  "country": "US",
+  "parent": null,
+  "standalone": false,
+  "currency": "USD",
+  "locale": "en-US",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "status": {
+      "label": "Filing status",
+      "default": "single",
+      "choices": {"single": "Single", "married": "Married filing jointly"}
+    }
+  },
+  "items": [
+    {
+      "id": "us-standard-deduction",
+      "label": "Federal standard deduction",
+      "show": true,
+      "value": {
+        "status": {"single": 16100, "married": 32200}
+      }
+    },
+    {
+      "id": "us-taxable",
+      "label": "Federal taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "us-standard-deduction"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "us-income-tax",
+      "label": "Federal income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 10], [12400, 12], [50400, 22], [105700, 24], [201775, 32], [256225, 35], [640600, 37]],
+            "married": [[0, 10], [24800, 12], [100800, 22], [211400, 24], [403550, 32], [512450, 35], [768700, 37]]
+          }
+        },
+        "of": "us-taxable"
+      }
+    },
+    {
+      "id": "us-social-security",
+      "label": "Social Security",
+      "group": "social",
+      "note": "6.2% of wages up to the 2026 wage base of $184,500.",
+      "charge": {
+        "pct": 6.2,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    },
+    {
+      "id": "us-medicare",
+      "label": "Medicare",
+      "group": "social",
+      "charge": {"pct": 1.45, "of": "gross"}
+    },
+    {
+      "id": "us-additional-medicare",
+      "label": "Additional Medicare tax",
+      "group": "social",
+      "note": "0.9% on wages above $200,000 ($250,000 married filing jointly). Employers withhold it from $200,000 whatever the status; the threshold here is the liability.",
+      "charge": {
+        "pct": 0.9,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "gross",
+                {
+                  "status": {"single": 200000, "married": 250000}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "Wages are the only income",
+    "Married filing jointly means one spouse earns the whole salary and the other has no income",
+    "Standard deduction, no itemizing",
+    "No dependants, and under 65"
+  ],
+  "notModelled": [
+    "Pre-tax 401(k), HSA and health insurance contributions",
+    "Tax credits, including the child tax credit and earned income credit",
+    "Itemized deductions, including state and local taxes (SALT) — high earners in high-tax states may pay less federal tax by itemizing",
+    "The deductions for tips, overtime, car loan interest and seniors introduced for 2025–2028",
+    "Alternative minimum tax",
+    "Head of household, married filing separately and qualifying surviving spouse"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "IRS Rev. Proc. 2025-32 — 2026 inflation adjustments (brackets, standard deduction)",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
+    },
+    {"title": "SSA — Contribution and benefit base", "url": "https://www.ssa.gov/oact/cola/cbb.html"},
+    {
+      "title": "26 U.S.C. § 3101 — FICA rates, including the additional Medicare tax",
+      "url": "https://www.law.cornell.edu/uscode/text/26/3101"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/irs",
+      "note": "Values for 2026 explicitly set and cited to Rev. Proc. 2025-32 and SSA."
+    },
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Journal of Accountancy, Accounting Today and The Tax Adviser summaries of Rev. Proc. 2025-32 agree on the standard deductions and the 10%, 32%, 35% and 37% thresholds."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf",
+  "tests": [
+    {
+      "gross": 75000,
+      "note": "Taxable 58,900: 12,400 × 10% + 38,000 × 12% + 8,500 × 22% = 1,240 + 4,560 + 1,870 = 7,670. SS 4,650. Medicare 1,087.50.",
+      "expect": {
+        "us-taxable": 58900,
+        "us-income-tax": 7670,
+        "us-social-security": 4650,
+        "us-medicare": 1087.5,
+        "us-additional-medicare": 0
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Taxable 117,800: 24,800 × 10% = 2,480 + 76,000 × 12% = 9,120 + 17,000 × 22% = 3,740 → 15,340.",
+      "expect": {"us-income-tax": 15340, "us-social-security": 9300}
+    },
+    {
+      "gross": 300000,
+      "note": "Taxable 283,900: 1,240 + 4,560 + 55,300 × 22% = 12,166 + 96,075 × 24% = 23,058 + 54,450 × 32% = 17,424 + 27,675 × 35% = 9,686.25 → 68,134.25. SS capped at 184,500 × 6.2% = 11,439. Additional Medicare 100,000 × 0.9% = 900.",
+      "expect": {"us-income-tax": 68134.25, "us-social-security": 11439, "us-medicare": 4350, "us-additional-medicare": 900}
+    }
+  ]
+}

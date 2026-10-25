@@ -1,0 +1,253 @@
+{
+  "id": "dk",
+  "name": "Denmark",
+  "kind": "country",
+  "country": "DK",
+  "parent": null,
+  "standalone": true,
+  "currency": "DKK",
+  "locale": "da-DK",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "municipality": {
+      "label": "Municipality",
+      "default": "average",
+      "choices": {"average": "National average"}
+    },
+    "church": {
+      "label": "Church member",
+      "default": "no",
+      "choices": {"no": "No", "yes": "Yes"}
+    }
+  },
+  "items": [
+    {
+      "id": "dk-atp",
+      "label": "ATP pension contribution",
+      "group": "social",
+      "note": "DKK 99.48 a month for full-time employees.",
+      "charge": {
+        "min": [1193.76, "gross"]
+      }
+    },
+    {
+      "id": "dk-am",
+      "label": "Labour market contribution (AM-bidrag)",
+      "group": "social",
+      "note": "8% of pay after ATP.",
+      "charge": {
+        "pct": 8,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": ["gross", "dk-atp"]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dk-personal-income",
+      "label": "Personal income",
+      "show": true,
+      "value": {
+        "sub": ["gross", "dk-atp", "dk-am"]
+      }
+    },
+    {
+      "id": "dk-employment-deduction",
+      "label": "Employment deduction (beskæftigelsesfradrag)",
+      "note": "12.75% of pay, at most DKK 63,300.",
+      "value": {
+        "min": [
+          63300,
+          {
+            "pct": 12.75,
+            "of": {
+              "sub": ["gross", "dk-atp"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "dk-job-deduction",
+      "label": "Job deduction (jobfradrag)",
+      "note": "4.5% of income above DKK 235,200, at most DKK 3,100.",
+      "value": {
+        "min": [
+          3100,
+          {
+            "pct": 4.5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["dk-personal-income", 235200]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "dk-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "value": {
+        "sub": ["dk-personal-income", "dk-employment-deduction", "dk-job-deduction"]
+      }
+    },
+    {
+      "id": "dk-municipal",
+      "label": "Municipal tax (kommuneskat)",
+      "group": "tax",
+      "note": "The national average rate, on taxable income above the DKK 54,100 personal allowance. Rates range from about 23.4% to 26.3%.",
+      "charge": {
+        "pct": {
+          "option": "municipality",
+          "cases": {"average": 25.05}
+        },
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": ["dk-taxable", 54100]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dk-church",
+      "label": "Church tax (kirkeskat)",
+      "group": "tax",
+      "note": "Members of the Church of Denmark only; about 0.87% on average.",
+      "charge": {
+        "pct": {
+          "option": "church",
+          "cases": {"no": 0, "yes": 0.87}
+        },
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": ["dk-taxable", 54100]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dk-state",
+      "label": "State tax (bundskat, mellemskat, topskat)",
+      "group": "tax",
+      "note": "Bottom tax 12.01% above the allowance; middle tax 7.5% above DKK 641,200; top tax 7.5% above DKK 777,900; top-top tax 5% above DKK 2,592,700 (the new 2026 structure).",
+      "charge": {
+        "sum": [
+          {
+            "pct": 12.01,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["dk-personal-income", 54100]
+                }
+              ]
+            }
+          },
+          {
+            "pct": 7.5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["dk-personal-income", 641200]
+                }
+              ]
+            }
+          },
+          {
+            "pct": 7.5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["dk-personal-income", 777900]
+                }
+              ]
+            }
+          },
+          {
+            "pct": 5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["dk-personal-income", 2592700]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Full-time employee aged 18 or over",
+    "No pension contributions through pay; each person is taxed individually"
+  ],
+  "notModelled": [
+    "Individual municipal tax rates",
+    "Labour-market and private pension contributions",
+    "Senior and single-parent employment deductions",
+    "Interest, union dues, commuting and other deductions"
+  ],
+  "provisional": [
+    "The national average municipal rate is given as 24.94%–25.43% by different sources; 25.05% is used",
+    "ATP amount is from a single secondary source"
+  ],
+  "sources": [
+    {
+      "title": "Skatteministeriet — satser og beløbsgrænser",
+      "url": "https://skm.dk/tal-og-metode/satser/tidsserier/centrale-skattesatser-i-skattelovgivningen-2026"
+    },
+    {
+      "title": "Den juridiske vejledning C.A.4.3.7 — beskæftigelsesfradrag",
+      "url": "https://tax.dk/jv/ca/C_A_4_3_7.htm"
+    },
+    {"title": "skat.dk — AM-bidrag", "url": "https://skat.dk/borger/am-bidrag"},
+    {
+      "title": "RSM — Satser og beløbsgrænser 2025/2026",
+      "url": "https://www.rsm.global/denmark/sites/default/files/media/ePublikationer/Satser%20og%20bel%C3%B8bsgr%C3%A6nser%2020252026%20-%20RSM%20-%20NET_0.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Personal allowance DKK 54,100 (Dinero, Legal Desk); employment deduction 12.75% up to DKK 63,300 on the AM-bidrag base (Den juridiske vejledning 2026-1); job deduction; 2026 bottom/middle/top/top-top thresholds (tax.dk, loen.dk); average municipal and church rates (calculator sites, disagreeing); ATP (ansogningshjaelpen.dk)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://skat.dk/borger/skatteberegning",
+  "tests": [
+    {
+      "gross": 600000,
+      "note": "AM 8% × 598,806.24 = 47,904.50; personal income 550,901.74. Employment deduction capped at 63,300; job deduction capped at 3,100; taxable 484,501.74. Municipal 25.05% × 430,401.74 = 107,815.64. Bottom tax 12.01% × 496,801.74 = 59,665.89.",
+      "expect": {"dk-am": 47904.5, "dk-taxable": 484501.74, "dk-municipal": 107815.64, "dk-state": 59665.89, "net": 383420.22}
+    },
+    {
+      "gross": 900000,
+      "note": "Personal income 826,901.74: middle tax 7.5% × 185,701.74 = 13,927.63 and top tax 7.5% × 49,001.74 = 3,675.13, on top of bottom tax 92,813.49.",
+      "expect": {"dk-state": 110416.25, "net": 539531.85}
+    },
+    {
+      "gross": 600000,
+      "options": {"church": "yes"},
+      "note": "Church tax 0.87% × 430,401.74 = 3,744.50.",
+      "expect": {"dk-church": 3744.5}
+    }
+  ]
+}

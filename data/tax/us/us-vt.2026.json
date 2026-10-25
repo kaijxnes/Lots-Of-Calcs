@@ -1,0 +1,114 @@
+{
+  "id": "us-vt",
+  "name": "Vermont",
+  "appliesTo": "Residents of Vermont",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "vt-taxable",
+      "label": "Vermont taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 7650, "married": 15300}
+              },
+              {
+                "mul": [
+                  5300,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "vt-income-tax",
+      "label": "Vermont income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [[0, 3.35], [49400, 6.6], [119700, 7.6], [249700, 8.75]],
+            "married": [[0, 3.35], [82500, 6.6], [199450, 7.6], [304000, 8.75]]
+          }
+        },
+        "of": "vt-taxable"
+      }
+    },
+    {
+      "id": "vt-child-care",
+      "label": "Child care contribution",
+      "group": "social",
+      "note": "Employers may withhold up to 0.11% of wages.",
+      "charge": {"pct": 0.11, "of": "gross"}
+    }
+  ],
+  "notModelled": [],
+  "provisional": ["Brackets, standard deduction ($7,650 / $15,300) and exemption ($5,300) are the 2025 amounts"],
+  "sources": [
+    {
+      "title": "2026 Vt. Acts No. 169 (H.949), Sec. 8 (claim year 2027 renter credit expansion to 12.5%)",
+      "url": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT169/ACT169%20As%20Enacted.pdf#page=9"
+    },
+    {
+      "title": "2026 Vt. Acts No. 169 (H.949), Sec. 10 (claim year 2028 reversion to 10%)",
+      "url": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT169/ACT169%20As%20Enacted.pdf#page=13"
+    },
+    {
+      "title": "2025 VERMONT Income Tax Return Form Instructions-Taxable Income Line 4",
+      "url": "https://tax.vermont.gov/sites/tax/files/documents/Income-Booklet-2025.pdf#page=11"
+    },
+    {
+      "title": "2025 Vermont Income Tax Return Form Line 5",
+      "url": "https://tax.vermont.gov/sites/tax/files/documents/IN-111-2025.pdf"
+    },
+    {
+      "title": "Vermont 2025 Income Tax Rate Schedules",
+      "url": "https://tax.vermont.gov/sites/tax/files/documents/RateSched-2025.pdf#page=1"
+    },
+    {
+      "title": "2022 Schedule IN-153 Vermont Capital Gains Exclusion Calculation",
+      "url": "https://tax.vermont.gov/sites/tax/files/documents/IN-153-2022.pdf#page=2"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/vt",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT169/ACT169%20As%20Enacted.pdf#page=9",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Vermont taxable income $27,050. Vermont income tax $906.18; Child care contribution $44. PolicyEngine US 2.62.5 differs by $8.38 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"vt-taxable": 27050, "vt-income-tax": 906.18, "vt-child-care": 44, "net": 33369.82}
+    },
+    {
+      "gross": 85000,
+      "note": "Vermont taxable income $72,050. Vermont income tax $3,149.8; Child care contribution $93.5. PolicyEngine US 2.62.5 differs by $52.25 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"vt-taxable": 72050, "vt-income-tax": 3149.8, "vt-child-care": 93.5, "net": 65384.2}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Vermont taxable income $124,100. Vermont income tax $5,509.35; Child care contribution $165. PolicyEngine US 2.62.5 differs by $93.12 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"vt-taxable": 124100, "vt-income-tax": 5509.35, "vt-child-care": 165, "net": 117510.65}
+    }
+  ]
+}

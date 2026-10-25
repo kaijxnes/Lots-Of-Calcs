@@ -1,0 +1,166 @@
+{
+  "id": "us-ar",
+  "name": "Arkansas",
+  "appliesTo": "Residents of Arkansas",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ar-taxable",
+      "label": "Arkansas net taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 2470, "married": 4940}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ar-income-tax",
+      "label": "Arkansas income tax",
+      "group": "tax",
+      "note": "Above $94,700 of net income a separate high-income table applies to all income, less a bracket adjustment that runs out by $97,600. The $29 personal credit ($58 married) is taken off.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "if": {
+                  "lte": ["ar-taxable", 94700]
+                },
+                "then": {
+                  "brackets": [[0, 0], [5600, 2], [11200, 3], [16000, 3.4], [26400, 3.7]],
+                  "of": "ar-taxable"
+                },
+                "else": {
+                  "sub": [
+                    {
+                      "brackets": [[0, 2], [4700, 3.7]],
+                      "of": "ar-taxable"
+                    },
+                    {
+                      "lookup": [
+                        [94700, 290],
+                        [94800, 280],
+                        [94900, 270],
+                        [95000, 260],
+                        [95100, 250],
+                        [95200, 240],
+                        [95300, 230],
+                        [95400, 220],
+                        [95500, 210],
+                        [95600, 200],
+                        [95700, 190],
+                        [95800, 180],
+                        [95900, 170],
+                        [96000, 160],
+                        [96100, 150],
+                        [96200, 140],
+                        [96300, 130],
+                        [96400, 120],
+                        [96500, 110],
+                        [96600, 100],
+                        [96700, 90],
+                        [96800, 80],
+                        [96900, 70],
+                        [97000, 60],
+                        [97100, 50],
+                        [97200, 40],
+                        [97300, 30],
+                        [97400, 20],
+                        [97500, 10],
+                        [97600, 0]
+                      ],
+                      "of": "ar-taxable",
+                      "strict": true
+                    }
+                  ]
+                }
+              },
+              {
+                "mul": [
+                  29,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Arkansas's low-income tax tables, which lower tax below about $17,500 of income ($29,000 married)",
+    "Rounding to the Regular Income Tax Table's $100 rows (a dollar or two either way)"
+  ],
+  "provisional": [
+    "Standard deduction of $2,470 ($4,940 married) is the 2025 amount; the 2026 inflation-adjusted figure was not yet published"
+  ],
+  "sources": [
+    {
+      "title": "Arkansas Legislature HB1001 status page (enacted as Act 1, 2026 1st Extraordinary Session)",
+      "url": "https://arkleg.state.ar.us/Bills/Detail?id=hb1001&ddBienniumSession=2025%2F2026S1"
+    },
+    {
+      "title": "Arkansas Act 1 of 2026 (HB1001, 1st Extraordinary Session), Section 1 amending A.C.A. § 26-51-201(a)(4)",
+      "url": "https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FBills%2F2026S1%2FPublic%2FHB1001.pdf#page=2"
+    },
+    {
+      "title": "A.C.A. § 26-51-201(a)(5), added by Act 1 of 2026 (1st Extraordinary Session), § 1 (the (a)(1)-(4) tables are indexed under (d))",
+      "url": "https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2026S1%2FPublic%2FACT1.pdf#page=3"
+    },
+    {
+      "title": "Arkansas Act 1 of 2026 (1st Extraordinary Session), § 1, amending A.C.A. § 26-51-201(a)(4) and adding (a)(5)",
+      "url": "https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2026S1%2FPublic%2FACT1.pdf#page=1"
+    },
+    {
+      "title": "A.C.A. § 26-51-201(a)(4)(C), as amended by Act 1 of 2026 (1st Extraordinary Session), § 1",
+      "url": "https://www.arkleg.state.ar.us/Home/FTPDocument?path=%2FACTS%2F2026S1%2FPublic%2FACT1.pdf#page=2"
+    },
+    {
+      "title": "Arkansas 2025 Individual Income Tax Forms and Instructions",
+      "url": "https://www.dfa.arkansas.gov/wp-content/uploads/2025_AR1000F_and_AR1000NR_Instructions.pdf#page=14"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ar",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://arkleg.state.ar.us/Bills/Detail?id=hb1001&ddBienniumSession=2025%2F2026S1",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Arkansas net taxable income $37,530. Arkansas income tax $992.41. PolicyEngine US 2.62.5 differs by $3.41 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"ar-taxable": 37530, "ar-income-tax": 992.41, "net": 33327.59}
+    },
+    {
+      "gross": 85000,
+      "note": "Arkansas net taxable income $82,530. Arkansas income tax $2,657.41. PolicyEngine US 2.62.5 differs by $3.41 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"ar-taxable": 82530, "ar-income-tax": 2657.41, "net": 65970.09}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Arkansas net taxable income $145,060. Arkansas income tax $5,229.32. PolicyEngine US 2.62.5 differs by $4.07 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"ar-taxable": 145060, "ar-income-tax": 5229.32, "net": 117955.68}
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+  "id": "us-ut",
+  "name": "Utah",
+  "appliesTo": "Residents of Utah",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ut-income-tax",
+      "label": "Utah income tax",
+      "group": "tax",
+      "note": "4.45% of income, less the taxpayer credit (6% of the federal standard deduction, reduced by 1.3% of income over $18,213, or $36,426 married).",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {"pct": 4.45, "of": "gross"},
+              {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      {"pct": 6, "of": "us-standard-deduction"},
+                      {
+                        "pct": 1.3,
+                        "of": {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                "gross",
+                                {
+                                  "status": {"single": 18213, "married": 36426}
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": ["Taxpayer credit phase-out threshold ($18,213 / $36,426) is the 2025 amount"],
+  "sources": [
+    {
+      "title": "Utah SB60 (2026) - Income Tax Rate Amendments",
+      "url": "https://le.utah.gov/~2026/bills/static/SB0060.html"
+    },
+    {
+      "title": "Utah SB60 (2026) Enrolled Bill - Section 59-10-104",
+      "url": "https://le.utah.gov/Session/2026/bills/enrolled/SB0060.pdf#page=2"
+    },
+    {"title": "House Bill 106", "url": "https://le.utah.gov/~2025/bills/static/HB0106.html"},
+    {
+      "title": "House Bill 106 (Bill Text)",
+      "url": "https://le.utah.gov/Session/2025/bills/enrolled/HB0106.pdf#page=4"
+    },
+    {
+      "title": "2025 Utah TC-40 Instructions",
+      "url": "https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf#page=10"
+    },
+    {
+      "title": "2025 Utah TC-40 Instructions, Earned Income Tax Credit Worksheet",
+      "url": "https://files.tax.utah.gov/tax/forms/2025/tc-40inst.pdf#page=24"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ut",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://le.utah.gov/~2026/bills/static/SB0060.html",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Utah income tax $1,097.23. PolicyEngine US 2.62.5 differs by $5.36 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"ut-income-tax": 1097.23, "net": 33222.77}
+    },
+    {
+      "gross": 85000,
+      "note": "Utah income tax $3,684.73. PolicyEngine US 2.62.5 differs by $5.36 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"ut-income-tax": 3684.73, "net": 64942.77}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Utah income tax $6,219.46. PolicyEngine US 2.62.5 differs by $10.73 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {"ut-income-tax": 6219.46, "net": 116965.54}
+    }
+  ]
+}

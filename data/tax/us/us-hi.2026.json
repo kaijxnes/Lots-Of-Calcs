@@ -1,0 +1,165 @@
+{
+  "id": "us-hi",
+  "name": "Hawaii",
+  "appliesTo": "Residents of Hawaii",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "hi-taxable",
+      "label": "Hawaii taxable income",
+      "show": true,
+      "note": "Standard deduction of $8,000 ($16,000 married) under Act 46 (2024), and a $1,144 personal exemption each.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 8000, "married": 16000}
+              },
+              {
+                "mul": [
+                  1144,
+                  {
+                    "status": {"single": 1, "married": 2}
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "hi-income-tax",
+      "label": "Hawaii income tax",
+      "group": "tax",
+      "note": "Less the refundable food/excise tax credit of up to $220 per person, which runs out at $40,000 of income ($60,000 married).",
+      "mayBeNegative": true,
+      "charge": {
+        "sub": [
+          {
+            "brackets": {
+              "status": {
+                "single": [
+                  [0, 1.4],
+                  [9600, 3.2],
+                  [14400, 5.5],
+                  [19200, 6.4],
+                  [24000, 6.8],
+                  [36000, 7.2],
+                  [48000, 7.6],
+                  [125000, 7.9],
+                  [175000, 8.25],
+                  [225000, 9],
+                  [275000, 10],
+                  [325000, 11]
+                ],
+                "married": [
+                  [0, 1.4],
+                  [19200, 3.2],
+                  [28800, 5.5],
+                  [38400, 6.4],
+                  [48000, 6.8],
+                  [72000, 7.2],
+                  [96000, 7.6],
+                  [250000, 7.9],
+                  [350000, 8.25],
+                  [450000, 9],
+                  [550000, 10],
+                  [650000, 11]
+                ]
+              }
+            },
+            "of": "hi-taxable"
+          },
+          {
+            "mul": [
+              {
+                "lookup": {
+                  "status": {
+                    "single": [[0, 220], [15000, 200], [20000, 170], [25000, 140], [30000, 110], [40000, 0]],
+                    "married": [
+                      [0, 220],
+                      [15000, 200],
+                      [20000, 170],
+                      [25000, 140],
+                      [30000, 110],
+                      [40000, 90],
+                      [50000, 70],
+                      [60000, 0]
+                    ]
+                  }
+                },
+                "of": "gross"
+              },
+              {
+                "status": {"single": 1, "married": 2}
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": ["Temporary Disability Insurance (up to 0.5% of wages, capped weekly — employers may pay it all)"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "S.B. 3125 C.D. 1 (Act 24, SLH 2026) Section 2, amending HRS Section 235-51 (b) - restructured rate schedule with a 13% top bracket for taxable years beginning after December 31, 2026 (effective date in Section 9)",
+      "url": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3125_CD1_.HTM"
+    },
+    {
+      "title": "S.B. 3125 measure status (Act 24, SLH 2026)",
+      "url": "https://www.capitol.hawaii.gov/session/measure_indiv.aspx?billtype=SB&billnumber=3125"
+    },
+    {
+      "title": "2025 Hawaii N-11 Instructions Alternative Tax",
+      "url": "https://files.hawaii.gov/tax/forms/current/n11ins.pdf#page=33"
+    },
+    {
+      "title": "2025 Hawaii Form N-311 Instructions",
+      "url": "https://files.hawaii.gov/tax/forms/current/n311_i.pdf#page=1"
+    },
+    {
+      "title": "2025 Hawaii Tax Form Instruction Booklet line 23",
+      "url": "https://files.hawaii.gov/tax/forms/current/n11ins.pdf#page=20"
+    },
+    {
+      "title": "2025 Hawaii Tax Rate Schedules for Taxable Years Beginning After December 31, 2024",
+      "url": "https://dev1-tax.hawaii.gov/forms/d_25table-on/d_25table-on_p13/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/hi",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3125_CD1_.HTM",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Hawaii taxable income $30,856. Hawaii income tax $1,325.41. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"hi-taxable": 30856, "hi-income-tax": 1325.41, "net": 32994.59}
+    },
+    {
+      "gross": 85000,
+      "note": "Hawaii taxable income $75,856. Hawaii income tax $4,656.26. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"hi-taxable": 75856, "hi-income-tax": 4656.26, "net": 63971.24}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Hawaii taxable income $131,712. Hawaii income tax $7,792.51. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"hi-taxable": 131712, "hi-income-tax": 7792.51, "net": 115392.49}
+    }
+  ]
+}

@@ -1,0 +1,363 @@
+{
+  "id": "jp",
+  "name": "Japan",
+  "kind": "country",
+  "country": "JP",
+  "parent": null,
+  "standalone": true,
+  "currency": "JPY",
+  "locale": "ja-JP",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "age": {
+      "label": "Age",
+      "default": "under40",
+      "choices": {"under40": "Under 40", "40to64": "40 to 64"}
+    }
+  },
+  "items": [
+    {
+      "id": "jp-health",
+      "label": "Health insurance",
+      "group": "social",
+      "note": "Half of Kyōkai Kenpo's Tokyo rate (9.85%), plus half of the 1.62% long-term care rate for those aged 40 to 64.",
+      "charge": {
+        "mul": [
+          {
+            "sum": [
+              4.925,
+              {
+                "option": "age",
+                "cases": {"under40": 0, "40to64": 0.81}
+              }
+            ]
+          },
+          0.12,
+          {
+            "min": [
+              {
+                "div": ["gross", 12]
+              },
+              1390000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "jp-child-levy",
+      "label": "Child and childcare support levy",
+      "group": "social",
+      "note": "Half of 0.23%, from April 2026 (nine months of the year).",
+      "charge": {
+        "mul": [
+          0.08625,
+          0.12,
+          {
+            "min": [
+              {
+                "div": ["gross", 12]
+              },
+              1390000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "jp-pension",
+      "label": "Employees' pension insurance",
+      "group": "social",
+      "note": "Half of 18.3%, on monthly pay up to ¥650,000.",
+      "charge": {
+        "mul": [
+          9.15,
+          0.12,
+          {
+            "min": [
+              {
+                "div": ["gross", 12]
+              },
+              650000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "jp-employment",
+      "label": "Employment insurance",
+      "group": "social",
+      "note": "0.5% for general businesses in FY2026.",
+      "charge": {"pct": 0.5, "of": "gross"}
+    },
+    {
+      "id": "jp-insurance",
+      "label": "Social insurance total",
+      "value": {
+        "sum": ["jp-health", "jp-child-levy", "jp-pension", "jp-employment"]
+      }
+    },
+    {
+      "id": "jp-employment-income",
+      "label": "Employment income (after the employment income deduction)",
+      "show": true,
+      "note": "The employment income deduction has a minimum of ¥740,000 for 2026 and 2027.",
+      "value": {
+        "sub": [
+          "gross",
+          {
+            "min": [
+              "gross",
+              {
+                "if": {
+                  "lte": ["gross", 3600000]
+                },
+                "then": {
+                  "max": [
+                    740000,
+                    {
+                      "sum": [
+                        {"pct": 30, "of": "gross"},
+                        80000
+                      ]
+                    }
+                  ]
+                },
+                "else": {
+                  "if": {
+                    "lte": ["gross", 6600000]
+                  },
+                  "then": {
+                    "sum": [
+                      {"pct": 20, "of": "gross"},
+                      440000
+                    ]
+                  },
+                  "else": {
+                    "if": {
+                      "lte": ["gross", 8500000]
+                    },
+                    "then": {
+                      "sum": [
+                        {"pct": 10, "of": "gross"},
+                        1100000
+                      ]
+                    },
+                    "else": 1950000
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "jp-basic-deduction",
+      "label": "Basic deduction",
+      "show": true,
+      "note": "¥1,040,000 for total income up to ¥4.89 million, ¥670,000 up to ¥6.55 million, ¥620,000 up to ¥23.5 million, then tapering away.",
+      "value": {
+        "lookup": [
+          [0, 1040000],
+          [4890000, 670000],
+          [6550000, 620000],
+          [23500000, 480000],
+          [24000000, 320000],
+          [24500000, 160000],
+          [25000000, 0]
+        ],
+        "of": "jp-employment-income",
+        "strict": true
+      }
+    },
+    {
+      "id": "jp-taxable",
+      "label": "Taxable income (national)",
+      "show": true,
+      "value": {
+        "round": {
+          "max": [
+            0,
+            {
+              "sub": ["jp-employment-income", "jp-basic-deduction", "jp-insurance"]
+            }
+          ]
+        },
+        "to": 1000,
+        "mode": "down"
+      }
+    },
+    {
+      "id": "jp-income-tax",
+      "label": "Income tax (including reconstruction tax)",
+      "group": "tax",
+      "note": "5% to ¥1.95 million, then 10%, 20%, 23%, 33%, 40% and 45% above ¥40 million, plus the 2.1% special reconstruction income tax.",
+      "charge": {
+        "round": {
+          "mul": [
+            1.021,
+            {
+              "brackets": [[0, 5], [1950000, 10], [3300000, 20], [6950000, 23], [9000000, 33], [18000000, 40], [40000000, 45]],
+              "of": "jp-taxable"
+            }
+          ]
+        },
+        "to": 1,
+        "mode": "down"
+      }
+    },
+    {
+      "id": "jp-resident-taxable",
+      "label": "Taxable income (resident tax)",
+      "note": "Resident tax has its own basic deduction (¥430,000) and no temporary increase to the employment income deduction.",
+      "value": {
+        "round": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "gross",
+                {
+                  "min": [
+                    "gross",
+                    {
+                      "if": {
+                        "lte": ["gross", 3600000]
+                      },
+                      "then": {
+                        "max": [
+                          650000,
+                          {
+                            "sum": [
+                              {"pct": 30, "of": "gross"},
+                              80000
+                            ]
+                          }
+                        ]
+                      },
+                      "else": {
+                        "if": {
+                          "lte": ["gross", 6600000]
+                        },
+                        "then": {
+                          "sum": [
+                            {"pct": 20, "of": "gross"},
+                            440000
+                          ]
+                        },
+                        "else": {
+                          "if": {
+                            "lte": ["gross", 8500000]
+                          },
+                          "then": {
+                            "sum": [
+                              {"pct": 10, "of": "gross"},
+                              1100000
+                            ]
+                          },
+                          "else": 1950000
+                        }
+                      }
+                    }
+                  ]
+                },
+                430000,
+                "jp-insurance"
+              ]
+            }
+          ]
+        },
+        "to": 1000,
+        "mode": "down"
+      }
+    },
+    {
+      "id": "jp-resident-tax",
+      "label": "Resident tax (jūminzei)",
+      "group": "tax",
+      "note": "10% of taxable income less the ¥2,500 adjustment credit, plus the ¥5,000 per-capita levy (including the forest environment tax). It is charged in the following year; shown here as if the salary were the same both years.",
+      "charge": {
+        "sum": [
+          {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {"pct": 10, "of": "jp-resident-taxable"},
+                  2500
+                ]
+              }
+            ]
+          },
+          5000
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Salaried employee in Tokyo enrolled in Kyōkai Kenpo",
+    "Paid in 12 equal monthly amounts with no bonus",
+    "Single, no dependants"
+  ],
+  "notModelled": [
+    "Bonuses (social insurance and withholding work differently on them)",
+    "Spouse and dependant deductions",
+    "Furusato nōzei and other deductions",
+    "Corporate health insurance societies, whose rates differ"
+  ],
+  "provisional": [
+    "Tokyo's 2026 health insurance rate of 9.85% comes from a third-party summary; Kyōkai Kenpo's own table confirms only that it fell from 9.91%"
+  ],
+  "sources": [
+    {
+      "title": "National Tax Agency — income tax rates",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm"
+    },
+    {
+      "title": "National Tax Agency — 2025 reform of the basic and employment income deductions",
+      "url": "https://www.nta.go.jp/users/gensen/2025kiso/index.htm"
+    },
+    {
+      "title": "Kyōkai Kenpo — 2026 contribution rates by prefecture",
+      "url": "https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08"
+    },
+    {
+      "title": "MHLW — employment insurance rates FY2026",
+      "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000108634.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "2026 basic deduction tiers and ¥740,000 minimum employment income deduction (several tax advisers and JILI agree); care rate 1.62% and child levy 0.23% (Kyōkai Kenpo); employment insurance 0.5% (SmartHR and others); Tokyo health rate 9.85% (third party). Pension rate 18.3% and the ¥650,000 cap, resident tax structure and the income tax bands are long-standing."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm",
+  "tests": [
+    {
+      "gross": 5000000,
+      "note": "Health 246,250, child levy 4,312.50, pension 457,500, employment 25,000 → 733,062.50. Employment income 5,000,000 − 1,440,000 = 3,560,000; basic deduction 1,040,000; taxable 1,786,000. Tax 5% = 89,300 × 1.021 = 91,175. Resident: 2,396,000 × 10% − 2,500 + 5,000 = 242,100.",
+      "expect": {
+        "jp-employment-income": 3560000,
+        "jp-taxable": 1786000,
+        "jp-income-tax": 91175,
+        "jp-resident-tax": 242100,
+        "net": 3933662.5
+      }
+    },
+    {
+      "gross": 15000000,
+      "note": "Pension capped at 9.15% × 650,000 × 12 = 713,700. Employment income 13,050,000; basic deduction 620,000.",
+      "expect": {"jp-pension": 713700, "jp-basic-deduction": 620000, "jp-income-tax": 2100574}
+    },
+    {
+      "gross": 5000000,
+      "options": {"age": "40to64"},
+      "note": "Adds the long-term care contribution, 0.81% = 40,500.",
+      "expect": {"jp-income-tax": 89133, "net": 3899204.5}
+    }
+  ]
+}

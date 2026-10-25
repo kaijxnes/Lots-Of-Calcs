@@ -1,0 +1,245 @@
+{
+  "id": "at",
+  "name": "Austria",
+  "kind": "country",
+  "country": "AT",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "de-AT",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {},
+  "items": [
+    {
+      "id": "at-social-regular",
+      "label": "Social insurance on monthly pay",
+      "group": "social",
+      "note": "18.07% (health 3.87%, pension 10.25%, unemployment 2.95%, chamber 0.5%, housing 0.5%) of each of the 12 monthly payments up to €6,930. Unemployment insurance is lower on monthly pay up to €2,630.",
+      "charge": {
+        "mul": [
+          {
+            "div": [
+              {
+                "lookup": [[0, 15.12], [2225, 16.12], [2427, 17.12], [2630, 18.07]],
+                "of": {
+                  "div": ["gross", 14]
+                },
+                "strict": true
+              },
+              100
+            ]
+          },
+          {
+            "min": [
+              {
+                "div": ["gross", 14]
+              },
+              6930
+            ]
+          },
+          12
+        ]
+      }
+    },
+    {
+      "id": "at-social-special",
+      "label": "Social insurance on the 13th and 14th salaries",
+      "group": "social",
+      "note": "The same rates less the chamber and housing contributions, on up to €13,860.",
+      "charge": {
+        "mul": [
+          {
+            "div": [
+              {
+                "sub": [
+                  {
+                    "lookup": [[0, 15.12], [2225, 16.12], [2427, 17.12], [2630, 18.07]],
+                    "of": {
+                      "div": ["gross", 14]
+                    },
+                    "strict": true
+                  },
+                  1
+                ]
+              },
+              100
+            ]
+          },
+          {
+            "min": [
+              {
+                "mul": [
+                  {
+                    "div": ["gross", 14]
+                  },
+                  2
+                ]
+              },
+              13860
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "at-taxable",
+      "label": "Taxable regular pay",
+      "show": true,
+      "note": "Twelve monthly payments less social insurance and the €132 allowance for work expenses.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "mul": [
+                  {
+                    "div": ["gross", 14]
+                  },
+                  12
+                ]
+              },
+              "at-social-regular",
+              132
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "at-income-tax",
+      "label": "Income tax on monthly pay (Lohnsteuer)",
+      "group": "tax",
+      "note": "2026 tariff: nothing to €13,539, then 20%, 30%, 40%, 48% and 50%, and 55% above €1 million. Less the €496 commuter tax credit (Verkehrsabsetzbetrag) and its €804 supplement for lower incomes.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [[0, 0], [13539, 20], [21992, 30], [36458, 40], [70365, 48], [104859, 50], [1000000, 55]],
+                "of": "at-taxable"
+              },
+              {
+                "sum": [
+                  496,
+                  {
+                    "if": {
+                      "lte": ["at-taxable", 19761]
+                    },
+                    "then": 804,
+                    "else": {
+                      "max": [
+                        0,
+                        {
+                          "mul": [
+                            804,
+                            {
+                              "div": [
+                                {
+                                  "sub": [30259, "at-taxable"]
+                                },
+                                10498
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "at-income-tax-special",
+      "label": "Income tax on the 13th and 14th salaries",
+      "group": "tax",
+      "note": "Taxed separately: the first €620 free, then 6% up to €25,000, 27% to €50,000, 35.75% to €83,333.",
+      "charge": {
+        "brackets": [[0, 0], [620, 6], [25000, 27], [50000, 35.75], [83333, 50]],
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                {
+                  "mul": [
+                    {
+                      "div": ["gross", 14]
+                    },
+                    2
+                  ]
+                },
+                "at-social-special"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "Salaried employee (Angestellter) paid in 14 equal instalments, the usual Austrian pattern",
+    "No children; each person is taxed individually",
+    "No commuter allowance (Pendlerpauschale)"
+  ],
+  "notModelled": [
+    "Family bonus (Familienbonus Plus) and other credits for children or sole earners",
+    "Commuter allowance and the higher commuter credit",
+    "Refund of social insurance for very low incomes (negative tax)",
+    "The €2,100 exemption limit for small special payments"
+  ],
+  "provisional": [
+    "The unemployment insurance reduction thresholds (€2,225 / €2,427 / €2,630 a month) come from a single secondary source",
+    "Special-payment tax bands (§ 67 EStG) were not re-checked for 2026"
+  ],
+  "sources": [
+    {
+      "title": "BMF — Übersicht Steuerabsetzbeträge 2026",
+      "url": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerveranlagung/steuertarif-steuerabsetzbetraege/uebersicht-steuerabsetzbetraege.html"
+    },
+    {
+      "title": "WKO — Einkommensteuer 2026, aktuelle Werte",
+      "url": "https://www.wko.at/steuern/einkommen-koerperschaftsteuer-2026"
+    },
+    {
+      "title": "USP — Höchstbeitragsgrundlage",
+      "url": "https://www.usp.gv.at/services/suchen-und-finden/lexikon/hoechstbeitragsgrundlage.html"
+    },
+    {
+      "title": "§ 67 EStG 1988 — sonstige Bezüge",
+      "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570&Paragraf=67"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "2026 tariff bands (1.73% indexation; several sources agree); €6,930 monthly contribution ceiling (oesterreich.gv.at, usp.gv.at); €496 commuter credit and €804 supplement phasing out from €19,761 to €30,259 (BMF Steuerbuch 2026, finanz.at); 18.07% employee rate (calculators)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/",
+  "tests": [
+    {
+      "gross": 50000,
+      "note": "Monthly 3,571.43. Social insurance 18.07% × 3,571.43 × 12 = 7,744.29; on the special payments 17.07% × 7,142.86 = 1,219.29. Taxable 42,857.14 − 7,744.29 − 132 = 34,980.86. Tariff 8,453 × 20% = 1,690.60 + 12,988.86 × 30% = 3,896.66 → 5,587.26, less the 496 credit (no supplement above €30,259) = 5,091.26. Special payments: 7,142.86 − 1,219.29 = 5,923.57; 6% × 5,303.57 = 318.21.",
+      "expect": {
+        "at-social-regular": 7744.29,
+        "at-social-special": 1219.29,
+        "at-taxable": 34980.86,
+        "at-income-tax": 5091.26,
+        "at-income-tax-special": 318.21,
+        "net": 35626.96
+      }
+    },
+    {
+      "gross": 30000,
+      "note": "Monthly 2,142.86 is under €2,225, so no unemployment insurance: 15.12% × 12 months = 3,888; special 14.12% × 4,285.71 = 605.14. Taxable 21,694.29 → 20% × 8,155.29 = 1,631.06, less 496 and a supplement of 804 × 8,564.71/10,498 = 655.94 → 479.12. Special payments 6% × 3,060.57 = 183.63.",
+      "expect": {"at-social-regular": 3888, "at-income-tax": 479.12, "at-income-tax-special": 183.63, "net": 24844.1}
+    }
+  ]
+}

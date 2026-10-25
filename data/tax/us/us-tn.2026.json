@@ -1,0 +1,48 @@
+{
+  "id": "us-tn",
+  "name": "Tennessee",
+  "appliesTo": "Residents of Tennessee",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "noIncomeTax": true,
+  "note": "Tennessee has no state income tax on wages; take-home pay is federal income tax and FICA.",
+  "items": [],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Tax Foundation — State income tax rates",
+      "url": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/tn",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://taxfoundation.org/data/all/state/state-income-tax-rates/",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"net": 34320}
+    },
+    {
+      "gross": 85000,
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"net": 68627.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"net": 123185}
+    }
+  ]
+}

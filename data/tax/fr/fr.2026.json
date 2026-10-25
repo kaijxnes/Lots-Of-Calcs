@@ -1,0 +1,307 @@
+{
+  "id": "fr",
+  "name": "France",
+  "kind": "country",
+  "country": "FR",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "fr-FR",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "status": {
+      "label": "Household",
+      "default": "single",
+      "choices": {"single": "Single (1 share)", "married": "Married or PACS, one earner (2 shares)"}
+    }
+  },
+  "items": [
+    {
+      "id": "fr-pension-basic",
+      "label": "Basic state pension (assurance vieillesse)",
+      "group": "social",
+      "note": "6.9% of pay up to the social security ceiling (PASS, €48,060 in 2026) plus 0.4% of all pay.",
+      "charge": {
+        "sum": [
+          {
+            "pct": 6.9,
+            "of": {
+              "min": ["gross", 48060]
+            }
+          },
+          {"pct": 0.4, "of": "gross"}
+        ]
+      }
+    },
+    {
+      "id": "fr-pension-complementary",
+      "label": "Complementary pension (Agirc-Arrco)",
+      "group": "social",
+      "note": "Agirc-Arrco 3.15% plus the 0.86% general balancing contribution up to the PASS, then 8.64% plus 1.08% up to 8 × PASS; and 0.14% (CET) on all pay up to 8 × PASS once pay exceeds the PASS.",
+      "charge": {
+        "sum": [
+          {
+            "brackets": [[0, 4.01], [48060, 9.72]],
+            "of": {
+              "min": ["gross", 384480]
+            }
+          },
+          {
+            "if": {
+              "gt": ["gross", 48060]
+            },
+            "then": {
+              "pct": 0.14,
+              "of": {
+                "min": ["gross", 384480]
+              }
+            },
+            "else": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-csg-base",
+      "label": "CSG base",
+      "note": "98.25% of pay up to 4 × PASS (a 1.75% allowance for work expenses), and all pay above.",
+      "value": {
+        "sum": [
+          {
+            "pct": 98.25,
+            "of": {
+              "min": ["gross", 192240]
+            }
+          },
+          {
+            "max": [
+              0,
+              {
+                "sub": ["gross", 192240]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-csg-crds",
+      "label": "CSG and CRDS",
+      "group": "social",
+      "note": "CSG 9.2% (6.8% of it deductible from taxable income) and CRDS 0.5%.",
+      "charge": {"pct": 9.7, "of": "fr-csg-base"}
+    },
+    {
+      "id": "fr-net-taxable-pay",
+      "label": "Net taxable pay (net imposable)",
+      "show": true,
+      "value": {
+        "sub": [
+          "gross",
+          "fr-pension-basic",
+          "fr-pension-complementary",
+          {"pct": 6.8, "of": "fr-csg-base"}
+        ]
+      }
+    },
+    {
+      "id": "fr-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "note": "After the automatic 10% deduction for work expenses (at least €509, at most €14,555).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "fr-net-taxable-pay",
+              {
+                "min": [
+                  {
+                    "clamp": {"pct": 10, "of": "fr-net-taxable-pay"},
+                    "min": 509,
+                    "max": 14555
+                  },
+                  "fr-net-taxable-pay"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-tax-before-decote",
+      "label": "Income tax before the décote",
+      "note": "The scale is applied to income per household share (quotient familial): one share for a single person, two for a married couple.",
+      "value": {
+        "mul": [
+          {
+            "status": {"single": 1, "married": 2}
+          },
+          {
+            "brackets": [[0, 0, "Up to €11,600"], [11600, 11], [29579, 30], [84577, 41], [181917, 45]],
+            "of": {
+              "div": [
+                "fr-taxable",
+                {
+                  "status": {"single": 1, "married": 2}
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-income-tax",
+      "label": "Income tax (impôt sur le revenu)",
+      "group": "tax",
+      "note": "Less the décote, which reduces small tax bills: €897 (€1,483 for a couple) minus 45.25% of the tax.",
+      "charge": {
+        "round": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "fr-tax-before-decote",
+                {
+                  "max": [
+                    0,
+                    {
+                      "sub": [
+                        {
+                          "status": {"single": 897, "married": 1483}
+                        },
+                        {"pct": 45.25, "of": "fr-tax-before-decote"}
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "to": 1
+      }
+    },
+    {
+      "id": "fr-high-income",
+      "label": "High income contribution (CEHR)",
+      "group": "tax",
+      "note": "3% of income between €250,000 and €500,000 and 4% above (thresholds doubled for couples).",
+      "charge": {
+        "sum": [
+          {
+            "pct": 3,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    {
+                      "min": [
+                        "fr-taxable",
+                        {
+                          "status": {"single": 500000, "married": 1000000}
+                        }
+                      ]
+                    },
+                    {
+                      "status": {"single": 250000, "married": 500000}
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "pct": 4,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "fr-taxable",
+                    {
+                      "status": {"single": 500000, "married": 1000000}
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "A private-sector employee who is not a cadre, outside Alsace-Moselle",
+    "No children; married means one spouse earns the whole salary",
+    "Employment income only"
+  ],
+  "notModelled": [
+    "Employer-arranged health (mutuelle) and provident contributions, which typically add 1–2% to employee deductions",
+    "Children and additional household shares",
+    "The 2025–2026 minimum 20% tax on incomes over €250,000 (contribution différentielle)",
+    "Tax credits and reductions (home help, donations) and actual work expenses instead of the 10% deduction",
+    "Overtime exemptions and the Alsace-Moselle health contribution"
+  ],
+  "provisional": [
+    "France taxes each year's income the following spring with that year's finance law. This uses the latest scale (indexed 0.9% by the 2026 finance law, applied to 2025 income), which is also the basis for withholding through 2026; the scale for 2026 income will be set by the 2027 finance law."
+  ],
+  "sources": [
+    {
+      "title": "Article 197 CGI — barème de l'impôt sur le revenu",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048862617"
+    },
+    {
+      "title": "Impots.gouv — barème et décote",
+      "url": "https://www.impots.gouv.fr/particulier/questions/comment-calculer-mon-taux-dimposition-dapres-le-bareme-progressif"
+    },
+    {
+      "title": "URSSAF — taux de cotisations salariales",
+      "url": "https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-secteur-prive.html"
+    },
+    {
+      "title": "Agirc-Arrco — taux de cotisation",
+      "url": "https://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/"
+    },
+    {
+      "title": "Article 223 sexies CGI — contribution exceptionnelle sur les hauts revenus",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025049019"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "OpenFisca-France parameters (maintained with French public administrations)",
+      "url": "https://github.com/openfisca/openfisca-france/tree/5cc6563749b88254b479ef89c98099cb9513d6cb/openfisca_france/parameters",
+      "note": "Scale, décote, 10% deduction limits, PASS 2026 (€48,060), CNAV, Agirc-Arrco, CEG, CET, CSG and CRDS rates, commit of 23 Oct 2026."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/",
+  "tests": [
+    {
+      "gross": 25000,
+      "note": "Pension 1,725 + 100 = 1,825; Agirc-Arrco + CEG 4.01% = 1,002.50; CSG base 24,562.50; CSG deductible 1,670.25. Net taxable 20,502.25, less 10% → 18,452.03. Tax 11% × 6,852.03 = 753.72; décote 897 − 341.06 = 555.94 → 198.",
+      "expect": {"fr-net-taxable-pay": 20502.25, "fr-taxable": 18452.03, "fr-income-tax": 198, "net": 19591.94}
+    },
+    {
+      "gross": 70000,
+      "note": "Above the PASS: complementary 4.01% × 48,060 + 9.72% × 21,940 + 0.14% × 70,000 = 4,157.77. Taxable 51,812.45 → 1,977.69 + 6,670.04 = 8,647.73 → 8,648.",
+      "expect": {"fr-pension-complementary": 4157.77, "fr-taxable": 51812.45, "fr-income-tax": 8648}
+    },
+    {
+      "gross": 60000,
+      "options": {"status": "married"},
+      "note": "Two shares: taxable 44,337.14 → 22,168.57 per share, tax per share 1,384.81 + ... = 947.13 → × 2 = 1,894 after rounding; no décote.",
+      "expect": {"fr-income-tax": 1894, "net": 45659.94}
+    },
+    {
+      "gross": 400000,
+      "note": "Taxable 318,392.12; high income contribution 3% × 68,392.12 = 2,051.76.",
+      "expect": {"fr-income-tax": 119800, "fr-high-income": 2051.76}
+    }
+  ]
+}

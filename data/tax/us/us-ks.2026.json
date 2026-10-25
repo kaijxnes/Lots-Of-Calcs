@@ -1,0 +1,102 @@
+{
+  "id": "us-ks",
+  "name": "Kansas",
+  "appliesTo": "Residents of Kansas",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ks-taxable",
+      "label": "Kansas taxable income",
+      "show": true,
+      "note": "Standard deduction of $3,605 ($8,240 married) and exemption of $9,160 ($18,320 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 3605, "married": 8240}
+              },
+              {
+                "status": {"single": 9160, "married": 18320}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks-income-tax",
+      "label": "Kansas income tax",
+      "group": "tax",
+      "charge": {
+        "if": {
+          "lte": [
+            "gross",
+            {
+              "status": {"single": 12765, "married": 26560}
+            }
+          ]
+        },
+        "then": 0,
+        "else": {
+          "brackets": {
+            "status": {
+              "single": [[0, 5.2], [23000, 5.58]],
+              "married": [[0, 5.2], [46000, 5.58]]
+            }
+          },
+          "of": "ks-taxable"
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {"title": "2025 Form K-40 instructions", "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=2"},
+    {
+      "title": "2025 Form K-40 instructions - Line 4, Worksheet",
+      "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=6"
+    },
+    {
+      "title": "K.S.A. 2024 HB 2231 79-32,121 (b)(1)",
+      "url": "https://kslegislature.gov/li/b2025_26/measures/documents/hb2231_01_0000.pdf?#page=1"
+    },
+    {"title": "2025 Form K-40 instructions", "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=3"},
+    {"title": "2025 Form K-40 instructions", "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=34"},
+    {"title": "2022 Form K-40 instructions", "url": "https://www.ksrevenue.gov/pdf/ip22.pdf#page=6"}
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ks",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=2",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Kansas taxable income $27,235. Kansas income tax $1,432.31. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ks-taxable": 27235, "ks-income-tax": 1432.31, "net": 32887.69}
+    },
+    {
+      "gross": 85000,
+      "note": "Kansas taxable income $72,235. Kansas income tax $3,943.31. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ks-taxable": 72235, "ks-income-tax": 3943.31, "net": 64684.19}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Kansas taxable income $123,440. Kansas income tax $6,713.15. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ks-taxable": 123440, "ks-income-tax": 6713.15, "net": 116471.85}
+    }
+  ]
+}

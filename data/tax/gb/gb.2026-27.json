@@ -1,0 +1,103 @@
+{
+  "id": "gb",
+  "name": "United Kingdom",
+  "appliesTo": "England, Wales and Northern Ireland",
+  "kind": "country",
+  "country": "GB",
+  "parent": null,
+  "standalone": true,
+  "currency": "GBP",
+  "locale": "en-GB",
+  "taxYear": { "label": "2026/27", "start": "2026-04-06", "end": "2027-04-05" },
+  "options": {},
+  "items": [
+    {
+      "id": "gb-personal-allowance",
+      "label": "Personal allowance",
+      "show": true,
+      "note": "Withdrawn by £1 for every £2 of income over £100,000, which is what creates the 60% effective band up to £125,140.",
+      "value": { "taper": 12570, "of": "gross", "from": 100000, "per": 0.5 }
+    },
+    {
+      "id": "gb-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "value": { "max": [0, { "sub": ["gross", "gb-personal-allowance"] }] }
+    },
+    {
+      "id": "gb-income-tax",
+      "label": "Income tax",
+      "group": "tax",
+      "note": "Thresholds are on taxable income, i.e. after the personal allowance.",
+      "charge": {
+        "brackets": [
+          [0, 20, "Basic rate"],
+          [37700, 40, "Higher rate"],
+          [125140, 45, "Additional rate"]
+        ],
+        "of": "gb-taxable"
+      }
+    },
+    {
+      "id": "gb-ni",
+      "label": "National Insurance",
+      "group": "social",
+      "note": "Class 1 employee contributions, charged on gross pay rather than taxable income. Weekly thresholds of £241.73 and £966.73 are £12,570 and £50,270 a year.",
+      "charge": {
+        "brackets": [
+          [0, 0, "Below the primary threshold"],
+          [12570, 8, "Primary threshold to upper earnings limit"],
+          [50270, 2, "Above the upper earnings limit"]
+        ],
+        "of": "gross"
+      }
+    }
+  ],
+  "assumptions": [
+    "Standard tax code (1257L) and personal allowance",
+    "Employment income only, paid evenly through the year",
+    "National Insurance category A"
+  ],
+  "notModelled": [
+    "Pension contributions (workplace or salary sacrifice)",
+    "Student loan and postgraduate loan repayments",
+    "Tax codes other than the standard personal allowance",
+    "Benefits in kind, salary sacrifice and taxable expenses",
+    "Blind person's allowance, marriage allowance and other reliefs"
+  ],
+  "provisional": [],
+  "sources": [
+    { "title": "Income Tax rates and Personal Allowances (GOV.UK)", "url": "https://www.gov.uk/income-tax-rates" },
+    { "title": "National Insurance rates and categories (GOV.UK)", "url": "https://www.gov.uk/national-insurance-rates-letters" },
+    { "title": "SI 2026/231 reg 5 — 2026-27 NI thresholds", "url": "https://www.legislation.gov.uk/uksi/2026/231/regulation/5/made" },
+    { "title": "Income Tax (Indexation) Order 2021 — allowance and basic rate limit frozen", "url": "https://www.legislation.gov.uk/uksi/2021/111/article/3/made" }
+  ],
+  "obtainedFrom": [
+    { "title": "House of Commons Library briefing CBP-10618 and other secondary sources", "note": "Consistent across several independent sources; thresholds frozen since 2021/22." },
+    { "title": "PolicyEngine UK parameters", "url": "https://github.com/PolicyEngine/policyengine-uk/tree/442fe5943d4676fddb07cfcc363cd2702796b4f2/policyengine_uk/parameters/gov/hmrc", "note": "Cross-check, 24 Oct 2026: allowance, bands, NI thresholds and rates all agree." }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.gov.uk/income-tax-rates",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Tax (30,000 − 12,570) × 20% = 3,486. NI (30,000 − 12,570) × 8% = 1,394.40.",
+      "expect": { "gb-personal-allowance": 12570, "gb-income-tax": 3486, "gb-ni": 1394.4, "net": 25119.6 }
+    },
+    {
+      "gross": 60000,
+      "note": "Taxable 47,430: 37,700 × 20% + 9,730 × 40% = 11,432. NI 37,700 × 8% + 9,730 × 2% = 3,210.60.",
+      "expect": { "gb-income-tax": 11432, "gb-ni": 3210.6 }
+    },
+    {
+      "gross": 110000,
+      "note": "Allowance 12,570 − 5,000 = 7,570; taxable 102,430: 7,540 + 64,730 × 40% = 33,432. NI 3,016 + 59,730 × 2% = 4,210.60.",
+      "expect": { "gb-personal-allowance": 7570, "gb-income-tax": 33432, "gb-ni": 4210.6 }
+    },
+    {
+      "gross": 150000,
+      "note": "No allowance; taxable 150,000: 7,540 + 87,440 × 40% + 24,860 × 45% = 53,703. NI 3,016 + 99,730 × 2% = 5,010.60.",
+      "expect": { "gb-personal-allowance": 0, "gb-income-tax": 53703, "gb-ni": 5010.6 }
+    }
+  ]
+}

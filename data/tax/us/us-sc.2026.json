@@ -1,0 +1,144 @@
+{
+  "id": "us-sc",
+  "name": "South Carolina",
+  "appliesTo": "Residents of South Carolina",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "sc-deduction",
+      "label": "South Carolina income adjusted deduction",
+      "show": true,
+      "note": "New for 2026: $15,000 ($30,000 married), phased out between $40,000 and $95,000 of income ($80,000–$190,000 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "status": {"single": 15000, "married": 30000}
+              },
+              {
+                "round": {
+                  "mul": [
+                    {
+                      "status": {"single": 15000, "married": 30000}
+                    },
+                    {
+                      "min": [
+                        1,
+                        {
+                          "div": [
+                            {
+                              "max": [
+                                0,
+                                {
+                                  "sub": [
+                                    "gross",
+                                    {
+                                      "status": {"single": 40000, "married": 80000}
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "status": {"single": 55000, "married": 110000}
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "to": 10,
+                "mode": "down"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "sc-taxable",
+      "label": "South Carolina taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "sc-deduction"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "sc-income-tax",
+      "label": "South Carolina income tax",
+      "group": "tax",
+      "note": "1.99% on the first $30,000 and 5.21% above it from 2026.",
+      "charge": {
+        "brackets": [[0, 1.99], [30000, 5.21]],
+        "of": "sc-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "SC H.4216 Section 1 - Section 12-6-510(C) (2026+)",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm"
+    },
+    {
+      "title": "SC 1040 Instructions 2025",
+      "url": "https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=1"
+    },
+    {
+      "title": "IRS Rev. Proc. 2024-40 § 3.15 (2025 inflation-adjusted values under pre-OBBBA rule)",
+      "url": "https://www.irs.gov/pub/irs-drop/rp-24-40.pdf#page=12"
+    },
+    {
+      "title": "SC 1040 tax form instructions (2025)",
+      "url": "https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=17"
+    },
+    {
+      "title": "SC 1040 tax form instructions (2025)",
+      "url": "https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=6"
+    },
+    {
+      "title": "SC 1040 tax form instructions (2025)",
+      "url": "https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=12"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/sc",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "South carolina income adjusted deduction $15,000, south carolina taxable income $25,000. South Carolina income tax $497.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"sc-deduction": 15000, "sc-taxable": 25000, "sc-income-tax": 497.5, "net": 33822.5}
+    },
+    {
+      "gross": 85000,
+      "note": "South carolina income adjusted deduction $2,730, south carolina taxable income $82,270. South Carolina income tax $3,320.27. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"sc-deduction": 2730, "sc-taxable": 82270, "sc-income-tax": 3320.27, "net": 65307.23}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "South carolina income adjusted deduction $10,910, south carolina taxable income $139,090. South Carolina income tax $6,280.59. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"sc-deduction": 10910, "sc-taxable": 139090, "sc-income-tax": 6280.59, "net": 116904.41}
+    }
+  ]
+}

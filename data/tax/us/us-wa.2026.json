@@ -1,0 +1,85 @@
+{
+  "id": "us-wa",
+  "name": "Washington",
+  "appliesTo": "Residents of Washington",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "noIncomeTax": true,
+  "note": "Washington has no state income tax on wages; take-home pay is federal income tax and FICA plus the state payroll programs below.",
+  "items": [
+    {
+      "id": "wa-pfml",
+      "label": "Paid Family and Medical Leave",
+      "group": "social",
+      "note": "Total premium 1.13% of wages up to the Social Security wage base; employees pay 71.43% of it (the employer pays 28.57%).",
+      "charge": {
+        "pct": 0.807159,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    },
+    {
+      "id": "wa-cares",
+      "label": "WA Cares long-term care",
+      "group": "social",
+      "note": "0.58% of all wages. Employees with approved exemptions do not pay it.",
+      "charge": {"pct": 0.58, "of": "gross"}
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "ESSB 6346, Sec. 901(2)(e) - Maximum qualifying income",
+      "url": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=60"
+    },
+    {
+      "title": "WAC 388-478-0015 - Need standards for cash assistance",
+      "url": "https://lawfilesext.leg.wa.gov/law/WACArchive/2025/pdf/WAC%20388%20-478%20%20CHAPTER/WAC%20388%20-478%20-0015.pdf"
+    },
+    {
+      "title": "WSR 25-10-017 - WAC 388-478-0015 update effective July 1, 2025",
+      "url": "https://lawfilesext.leg.wa.gov/law/wsrpdf/2025/10/25-10-017.pdf"
+    },
+    {
+      "title": "ESSB 6346, Sec. 201(1) - Tax Imposed",
+      "url": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=7"
+    },
+    {
+      "title": "ESSB 6346, Sec. 314 - One million dollar standard deduction",
+      "url": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=14"
+    },
+    {"title": "RCW 82.87.060(1) Deductions", "url": "https://app.leg.wa.gov/RCW/default.aspx?cite=82.87.060"}
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/wa",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=60",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Paid Family and Medical Leave $322.86; WA Cares long-term care $232. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wa-pfml": 322.86, "wa-cares": 232, "net": 33765.14}
+    },
+    {
+      "gross": 85000,
+      "note": "Paid Family and Medical Leave $686.09; WA Cares long-term care $493. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wa-pfml": 686.09, "wa-cares": 493, "net": 67448.41}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Paid Family and Medical Leave $1,210.74; WA Cares long-term care $870. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"wa-pfml": 1210.74, "wa-cares": 870, "net": 121104.26}
+    }
+  ]
+}

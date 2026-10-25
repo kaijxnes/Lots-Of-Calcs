@@ -1,0 +1,118 @@
+{
+  "id": "us-co",
+  "name": "Colorado",
+  "appliesTo": "Residents of Colorado",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "co-taxable",
+      "label": "Colorado taxable income",
+      "show": true,
+      "note": "Starts from federal taxable income. Above $300,000 of income, all but $1,000 ($2,000 married) of the federal standard deduction is added back.",
+      "value": {
+        "sum": [
+          "us-taxable",
+          {
+            "if": {
+              "gte": ["gross", 300000]
+            },
+            "then": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "us-standard-deduction",
+                    {
+                      "status": {"single": 1000, "married": 2000}
+                    }
+                  ]
+                }
+              ]
+            },
+            "else": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "co-income-tax",
+      "label": "Colorado income tax",
+      "group": "tax",
+      "charge": {"pct": 4.4, "of": "co-taxable"}
+    },
+    {
+      "id": "co-famli",
+      "label": "FAMLI paid leave",
+      "group": "social",
+      "note": "Half of the 0.88% premium, on wages up to the Social Security wage base.",
+      "charge": {
+        "pct": 0.44,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "Local occupational privilege taxes (Denver, Aurora, Glendale, Greenwood Village, Sheridan) of a few dollars a month",
+    "TABOR refunds"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Colorado Individual Tax Filing Guide 104 Book, Line 12",
+      "url": "https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=11"
+    },
+    {
+      "title": "HB25-1274 SECTION 18 (Session Laws of Colorado 2025, Chapter 402)",
+      "url": "https://leg.colorado.gov/bills/hb25-1274"
+    },
+    {
+      "title": "2025 Colorado Individual Tax Filing Guide 104 Book, Additions Line 4",
+      "url": "https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=9"
+    },
+    {
+      "title": "2025 Colorado Individual Tax Filing Guide 104 Book, Section C",
+      "url": "https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=27"
+    },
+    {
+      "title": "Colorado Legislation, C.R.S. 39-22-104 (1.5), (1.7) (a), (b)",
+      "url": "https://law.justia.com/codes/colorado/2022/title-39/article-22/part-1/section-39-22-104/"
+    },
+    {
+      "title": "Colorado Constitution, Article 10, Taxpayer's Bill of Rights (TABOR)",
+      "url": "https://law.justia.com/constitution/colorado/cnart10.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/co",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=11",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Colorado taxable income $23,900. Colorado income tax $1,051.6; FAMLI paid leave $176. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"co-taxable": 23900, "co-income-tax": 1051.6, "co-famli": 176, "net": 33092.4}
+    },
+    {
+      "gross": 85000,
+      "note": "Colorado taxable income $68,900. Colorado income tax $3,031.6; FAMLI paid leave $374. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"co-taxable": 68900, "co-income-tax": 3031.6, "co-famli": 374, "net": 65221.9}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Colorado taxable income $117,800. Colorado income tax $5,183.2; FAMLI paid leave $660. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"co-taxable": 117800, "co-income-tax": 5183.2, "co-famli": 660, "net": 117341.8}
+    }
+  ]
+}

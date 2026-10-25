@@ -1,0 +1,189 @@
+{
+  "id": "pt",
+  "name": "Portugal",
+  "kind": "country",
+  "country": "PT",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "pt-PT",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "status": {
+      "label": "Filing",
+      "default": "single",
+      "choices": {"single": "Single", "married": "Married, joint return, one earner"}
+    }
+  },
+  "items": [
+    {
+      "id": "pt-social-security",
+      "label": "Social security (Segurança Social)",
+      "group": "social",
+      "note": "11% of pay, with no ceiling.",
+      "charge": {"pct": 11, "of": "gross"}
+    },
+    {
+      "id": "pt-taxable",
+      "label": "Taxable income (rendimento coletável)",
+      "show": true,
+      "note": "Pay less the specific deduction: €4,587.09 (8.54 × the 2026 social support index), or social security paid if more.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "max": [4587.09, "pt-social-security"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pt-tax-before-minimum",
+      "label": "Tax at IRS rates",
+      "note": "Married couples filing jointly apply the rates to half their joint income and double the result.",
+      "value": {
+        "mul": [
+          {
+            "status": {"single": 1, "married": 2}
+          },
+          {
+            "brackets": [
+              [0, 12.2],
+              [8342, 15.2],
+              [12587, 20.7],
+              [17838, 23.6],
+              [23089, 30.6],
+              [29397, 34.6],
+              [43090, 43.1],
+              [46566, 44.6],
+              [86634, 48]
+            ],
+            "of": {
+              "div": [
+                "pt-taxable",
+                {
+                  "status": {"single": 1, "married": 2}
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "pt-irs",
+      "label": "Income tax (IRS)",
+      "group": "tax",
+      "note": "2026 rates after the October 2026 cut (backdated to January) to the first six bands. Tax may not leave less than the €12,880 subsistence minimum.",
+      "charge": {
+        "min": [
+          "pt-tax-before-minimum",
+          {
+            "max": [
+              0,
+              {
+                "sub": ["gross", 12880]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "pt-solidarity",
+      "label": "Additional solidarity rate",
+      "group": "tax",
+      "note": "2.5% of taxable income between €80,000 and €250,000, 5% above.",
+      "charge": {
+        "sum": [
+          {
+            "pct": 2.5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    {
+                      "min": ["pt-taxable", 250000]
+                    },
+                    80000
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "pct": 5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["pt-taxable", 250000]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Mainland Portugal (the Azores and Madeira have lower rates)",
+    "Employment (Category A) income only; the annual gross includes the 13th and 14th month payments",
+    "No dependants"
+  ],
+  "notModelled": [
+    "IRS Jovem (partial exemption for workers under 35)",
+    "Non-habitual resident and IFICI regimes",
+    "Personal deductions (general family expenses, health, education, housing)",
+    "The Azores and Madeira regional rates"
+  ],
+  "provisional": ["Monthly withholding in 2026 used the earlier rates; the annual return settles the difference"],
+  "sources": [
+    {
+      "title": "Código do IRS, art. 68.º (taxas) and art. 25.º (dedução específica)",
+      "url": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs68.aspx"
+    },
+    {"title": "Lei 73-A/2025 — Orçamento do Estado para 2026", "url": "https://diariodarepublica.pt/"},
+    {
+      "title": "Jornal de Negócios — Redução intercalar das taxas do IRS em 2026 aprovada no Parlamento (9 Oct 2026)",
+      "url": "https://www.jornaldenegocios.pt/economia/detalhe/reducao-intercalar-das-taxas-do-irs-em-2026-aprovada-no-parlamento"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "2026 thresholds (especialistadoirs, idealista, Cofidis agree); rate cut approved 9 Oct 2026 with effect from 1 Jan 2026 (Contas Poupança, Jornal de Negócios, ECO, HR Portugal agree); specific deduction €4,587.09 and subsistence minimum €12,880 (fedfinance quoting the AT)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs68.aspx",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Social security 4,400; taxable 35,412.91. Tax: 1,017.72 + 645.24 + 1,086.96 + 1,239.24 + 1,930.25 + 2,081.50 = 8,000.91.",
+      "expect": {"pt-taxable": 35412.91, "pt-irs": 8000.91, "net": 27599.09}
+    },
+    {
+      "gross": 15000,
+      "note": "Social security 1,650 is less than €4,587.09, so the fixed deduction applies: taxable 10,412.91. Tax 1,017.72 + 2,070.91 × 15.2% = 314.78 → 1,332.50.",
+      "expect": {"pt-taxable": 10412.91, "pt-irs": 1332.5}
+    },
+    {
+      "gross": 100000,
+      "note": "Taxable 89,000 → 31,161.35; solidarity 2.5% × 9,000 = 225.",
+      "expect": {"pt-irs": 31161.35, "pt-solidarity": 225}
+    },
+    {
+      "gross": 40000,
+      "options": {"status": "married"},
+      "note": "Joint: tax on 17,706.46, doubled = 5,445.38.",
+      "expect": {"pt-irs": 5445.38}
+    }
+  ]
+}

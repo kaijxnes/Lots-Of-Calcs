@@ -1,0 +1,172 @@
+{
+  "id": "ie",
+  "name": "Ireland",
+  "kind": "country",
+  "country": "IE",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "en-IE",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "status": {
+      "label": "Status",
+      "default": "single",
+      "choices": {"single": "Single", "married": "Married or civil partners, one income"}
+    }
+  },
+  "items": [
+    {
+      "id": "ie-tax-credits",
+      "label": "Tax credits",
+      "show": true,
+      "note": "Personal credit €2,000 (€4,000 married) and employee (PAYE) credit €2,000.",
+      "value": {
+        "sum": [
+          {
+            "status": {"single": 2000, "married": 4000}
+          },
+          {
+            "min": [
+              2000,
+              {"pct": 20, "of": "gross"}
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ie-income-tax",
+      "label": "Income tax",
+      "group": "tax",
+      "note": "20% up to €44,000 (€53,000 for a married couple with one income), 40% above, less tax credits.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": {
+                  "status": {
+                    "single": [[0, 20], [44000, 40]],
+                    "married": [[0, 20], [53000, 40]]
+                  }
+                },
+                "of": "gross"
+              },
+              "ie-tax-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ie-usc",
+      "label": "Universal Social Charge",
+      "group": "social",
+      "note": "0.5% to €12,012, 2% to €28,700, 3% to €70,044, 8% above. Nothing is due on incomes of €13,000 or less.",
+      "charge": {
+        "if": {
+          "lte": ["gross", 13000]
+        },
+        "then": 0,
+        "else": {
+          "brackets": [[0, 0.5], [12012, 2], [28700, 3], [70044, 8]],
+          "of": "gross"
+        }
+      }
+    },
+    {
+      "id": "ie-prsi",
+      "label": "PRSI",
+      "group": "social",
+      "note": "Class A: 4.2% until September and 4.35% from 1 October 2026, 4.2375% over the year. Nothing below €352 a week, and a tapering PRSI credit up to €424 a week.",
+      "charge": {
+        "if": {
+          "lte": ["gross", 18304]
+        },
+        "then": 0,
+        "else": {
+          "max": [
+            0,
+            {
+              "sub": [
+                {"pct": 4.2375, "of": "gross"},
+                {
+                  "max": [
+                    0,
+                    {
+                      "sub": [
+                        624,
+                        {
+                          "div": [
+                            {
+                              "sub": ["gross", 18304]
+                            },
+                            6
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "PAYE employee paying Class A PRSI",
+    "No children; married means one spouse earns the whole salary and the couple is jointly assessed",
+    "Paid evenly through the year"
+  ],
+  "notModelled": [
+    "Pension contributions (tax relief at the marginal rate)",
+    "Other tax credits (rent, home carer, single person child carer)",
+    "Benefit-in-kind",
+    "Reduced USC rates for medical card holders and over-70s"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Revenue — tax rates, bands and reliefs",
+      "url": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx"
+    },
+    {
+      "title": "Revenue — Universal Social Charge rates",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds-usc.aspx"
+    },
+    {
+      "title": "gov.ie — PRSI rates",
+      "url": "https://www.gov.ie/en/department-of-social-protection/publications/prsi-contribution-rates-and-user-guide-for-the-year-2026/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Bands, credits, USC and PRSI rates (Zellis Tax Facts Ireland Jan 2026, SD Worx, FSSU budget summary, KPMG agree)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx",
+  "tests": [
+    {
+      "gross": 50000,
+      "note": "Tax 44,000 × 20% = 8,800 + 6,000 × 40% = 2,400 → 11,200, less 4,000 credits = 7,200. USC 60.06 + 16,688 × 2% = 333.76 + 21,300 × 3% = 639.00 → 1,032.82. PRSI 4.2375% = 2,118.75.",
+      "expect": {"ie-income-tax": 7200, "ie-usc": 1032.82, "ie-prsi": 2118.75, "net": 39648.43}
+    },
+    {
+      "gross": 20000,
+      "note": "Tax 4,000 less 4,000 credits = 0. USC 60.06 + 159.76 = 219.82. PRSI 847.50 less a credit of 624 − 1,696/6 = 341.33 → 506.17.",
+      "expect": {"ie-income-tax": 0, "ie-usc": 219.82, "ie-prsi": 506.17}
+    },
+    {
+      "gross": 60000,
+      "options": {"status": "married"},
+      "note": "Tax 10,600 + 7,000 × 40% = 13,400 less 6,000 credits = 7,400.",
+      "expect": {"ie-income-tax": 7400, "net": 48724.68}
+    }
+  ]
+}

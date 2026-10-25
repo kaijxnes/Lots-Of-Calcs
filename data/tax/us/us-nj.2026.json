@@ -1,0 +1,151 @@
+{
+  "id": "us-nj",
+  "name": "New Jersey",
+  "appliesTo": "Residents of New Jersey",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "nj-taxable",
+      "label": "New Jersey taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "status": {"single": 1000, "married": 2000}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nj-income-tax",
+      "label": "New Jersey income tax",
+      "group": "tax",
+      "charge": {
+        "if": {
+          "lte": [
+            "gross",
+            {
+              "status": {"single": 10000, "married": 20000}
+            }
+          ]
+        },
+        "then": 0,
+        "else": {
+          "brackets": {
+            "status": {
+              "single": [
+                [0, 1.4],
+                [20000, 1.75],
+                [35000, 3.5],
+                [40000, 5.525],
+                [75000, 6.37],
+                [500000, 8.97],
+                [1000000, 10.75]
+              ],
+              "married": [
+                [0, 1.4],
+                [20000, 1.75],
+                [50000, 2.45],
+                [70000, 3.5],
+                [80000, 5.525],
+                [150000, 6.37],
+                [500000, 8.97],
+                [1000000, 10.75]
+              ]
+            }
+          },
+          "of": "nj-taxable"
+        }
+      }
+    },
+    {
+      "id": "nj-ui-wf",
+      "label": "Unemployment and workforce",
+      "group": "social",
+      "note": "0.3825% unemployment plus 0.0425% workforce development, on wages up to $44,800.",
+      "charge": {
+        "pct": 0.425,
+        "of": {
+          "min": ["gross", 44800]
+        }
+      }
+    },
+    {
+      "id": "nj-tdi-fli",
+      "label": "Disability and family leave",
+      "group": "social",
+      "note": "0.19% temporary disability plus 0.23% family leave insurance, on wages up to $171,100.",
+      "charge": {
+        "pct": 0.42,
+        "of": {
+          "min": ["gross", 171100]
+        }
+      }
+    }
+  ],
+  "notModelled": ["Property tax deduction or credit"],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 NJ-1040 Instructions (Line 8)",
+      "url": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=8"
+    },
+    {
+      "title": "2025 NJ-1040 Instructions - Tax Rate Schedules",
+      "url": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=65"
+    },
+    {
+      "title": "P.L. 2023, c.75, Section 3(c) - Stay NJ Act",
+      "url": "https://pub.njleg.state.nj.us/Bills/2022/PL23/75_.PDF#page=3"
+    },
+    {
+      "title": "P.L. 2024, c.88 - Stay NJ Amendment",
+      "url": "https://pub.njleg.state.nj.us/Bills/2024/PL24/88_.PDF"
+    },
+    {
+      "title": "NJ Division of Taxation - Stay NJ Program",
+      "url": "https://www.nj.gov/treasury/taxation/staynj/index.shtml"
+    },
+    {
+      "title": "New Jersey Administrative Code 18:35-2.9 (a)",
+      "url": "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-18-35-2-9"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nj",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=8",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "New jersey taxable income $39,000. New Jersey income tax $682.5; Unemployment and workforce $170; Disability and family leave $168. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nj-taxable": 39000, "nj-income-tax": 682.5, "nj-ui-wf": 170, "nj-tdi-fli": 168, "net": 33299.5}
+    },
+    {
+      "gross": 85000,
+      "note": "New jersey taxable income $84,000. New Jersey income tax $3,224.55; Unemployment and workforce $190.4; Disability and family leave $357. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nj-taxable": 84000, "nj-income-tax": 3224.55, "nj-ui-wf": 190.4, "nj-tdi-fli": 357, "net": 64855.55}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "New jersey taxable income $148,000. New Jersey income tax $5,402; Unemployment and workforce $190.4; Disability and family leave $630. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nj-taxable": 148000, "nj-income-tax": 5402, "nj-ui-wf": 190.4, "nj-tdi-fli": 630, "net": 116962.6}
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "us-nh",
+  "name": "New Hampshire",
+  "appliesTo": "Residents of New Hampshire",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "noIncomeTax": true,
+  "note": "New Hampshire has no state income tax on wages; take-home pay is federal income tax and FICA.",
+  "items": [],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "TECHNICAL INFORMATION RELEASE TIR 2025-001 I&D Tax Repealed Effective January 1, 2025",
+      "url": "https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/2025-001-technical-information-release-repeal.pdf"
+    },
+    {
+      "title": "New Hampshire Statutes - TITLE V - CHAPTER 77 - Section 77:1",
+      "url": "https://gc.nh.gov/rsa/html/V/77/77-mrg.htm"
+    },
+    {
+      "title": "2020 New Hampshire DP-10 Form",
+      "url": "https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/dp-10-2020-print.pdf#page=4"
+    },
+    {
+      "title": "2021 New Hampshire DP-10 Form",
+      "url": "https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/dp-10-2021-print.pdf#page=4"
+    },
+    {
+      "title": "2022 New Hampshire DP-10 Form Instructions Line 10",
+      "url": "https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/dp-10-instructions-2022.pdf#page=4"
+    },
+    {
+      "title": "2023 New Hampshire DP-10 Form Instructions Line 10",
+      "url": "https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/dp-10-instructions-2023.pdf#page=7"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nh",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.revenue.nh.gov/sites/g/files/ehbemt736/files/documents/2025-001-technical-information-release-repeal.pdf",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"net": 34320}
+    },
+    {
+      "gross": 85000,
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"net": 68627.5}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"net": 123185}
+    }
+  ]
+}

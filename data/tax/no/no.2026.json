@@ -1,0 +1,103 @@
+{
+  "id": "no",
+  "name": "Norway",
+  "kind": "country",
+  "country": "NO",
+  "parent": null,
+  "standalone": true,
+  "currency": "NOK",
+  "locale": "nb-NO",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {},
+  "items": [
+    {
+      "id": "no-national-insurance",
+      "label": "National insurance (trygdeavgift)",
+      "group": "social",
+      "note": "7.6% of pay.",
+      "charge": {"pct": 7.6, "of": "gross"}
+    },
+    {
+      "id": "no-ordinary-income",
+      "label": "Ordinary income (alminnelig inntekt) after allowances",
+      "show": true,
+      "note": "Pay less the minimum deduction (46%, at most NOK 95,700) and the NOK 114,540 personal allowance.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "min": [
+                  95700,
+                  {"pct": 46, "of": "gross"}
+                ]
+              },
+              114540
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "no-income-tax",
+      "label": "Tax on ordinary income",
+      "group": "tax",
+      "note": "22%.",
+      "charge": {"pct": 22, "of": "no-ordinary-income"}
+    },
+    {
+      "id": "no-bracket-tax",
+      "label": "Bracket tax (trinnskatt)",
+      "group": "tax",
+      "note": "On gross pay: 1.7% from NOK 226,100, 4.0% from 318,300, 13.7% from 725,050, 16.8% from 980,100 and 17.8% from 1,467,200.",
+      "charge": {
+        "brackets": [[0, 0], [226100, 1.7], [318300, 4.0], [725050, 13.7], [980100, 16.8], [1467200, 17.8]],
+        "of": "gross"
+      }
+    }
+  ],
+  "assumptions": ["Resident employee in mainland Norway", "Employment income only; each person is taxed individually"],
+  "notModelled": [
+    "The Finnmark and Nord-Troms action zone, which has lower rates",
+    "The low-income limit and phase-in for national insurance (only affects very small incomes)",
+    "Interest deductions, union dues, pension savings and other deductions",
+    "Wealth tax"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Regjeringen — Skattesatser 2026",
+      "url": "https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skatte-og-avgiftssatser/skattesatser-2026/id3121978/"
+    },
+    {
+      "title": "Skatteetaten — Forskuddsutskrivingen 2026",
+      "url": "https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/"
+    },
+    {
+      "title": "Regjeringen — Endringer i lover og forskrifter fra 1. januar 2026",
+      "url": "https://www.regjeringen.no/no/aktuelt/endringer-i-lover-og-forskrifter-fra-1.-januar-2026-fra-finansdepartementet/id3144251/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Adopted 2026 figures: personal allowance NOK 114,540 and steps 4–5 at 16.8% / 17.8% (Finance Ministry list of 1 January 2026 changes, Skatteetaten 2026 forecast); thresholds and minimum deduction (Prop. 1 LS, Storting committee report, snl.no); 22% and 7.6% (several sources). The October 2025 proposal had NOK 114,210 and 16.7% / 17.7%."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.skatteetaten.no/en/calculator/",
+  "tests": [
+    {
+      "gross": 600000,
+      "note": "National insurance 45,600. Ordinary income 600,000 − 95,700 − 114,540 = 389,760 × 22% = 85,747.20. Bracket tax 92,200 × 1.7% = 1,567.40 + 281,700 × 4% = 11,268 → 12,835.40.",
+      "expect": {"no-ordinary-income": 389760, "no-income-tax": 85747.2, "no-bracket-tax": 12835.4, "net": 455817.4}
+    },
+    {
+      "gross": 1000000,
+      "note": "Bracket tax 1,567.40 + 406,750 × 4% = 16,270 + 255,050 × 13.7% = 34,941.85 + 19,900 × 16.8% = 3,343.20 → 56,122.45.",
+      "expect": {"no-bracket-tax": 56122.45, "net": 694130.35}
+    }
+  ]
+}

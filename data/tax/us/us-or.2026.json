@@ -1,0 +1,192 @@
+{
+  "id": "us-or",
+  "name": "Oregon",
+  "appliesTo": "Residents of Oregon",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "or-federal-tax-subtraction",
+      "label": "Federal tax subtraction",
+      "show": true,
+      "note": "Federal income tax paid is deductible up to $8,750, phasing out from $125,000 ($250,000 married).",
+      "value": {
+        "min": [
+          "us-income-tax",
+          {
+            "lookup": {
+              "status": {
+                "single": [[0, 8750], [125000, 7000], [130000, 5250], [135000, 3500], [140000, 1750], [145000, 0]],
+                "married": [[0, 8750], [250000, 7000], [260000, 5250], [270000, 3500], [280000, 1750], [290000, 0]]
+              }
+            },
+            "of": "gross"
+          }
+        ]
+      }
+    },
+    {
+      "id": "or-taxable",
+      "label": "Oregon taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              "or-federal-tax-subtraction",
+              {
+                "status": {"single": 2835, "married": 5670}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "or-income-tax",
+      "label": "Oregon income tax",
+      "group": "tax",
+      "note": "Less the $256 exemption credit each, for incomes up to $100,000 ($200,000 married).",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": {
+                  "status": {
+                    "single": [[0, 4.75], [4550, 6.75], [11400, 8.75], [125000, 9.9]],
+                    "married": [[0, 4.75], [9100, 6.75], [22800, 8.75], [250000, 9.9]]
+                  }
+                },
+                "of": "or-taxable"
+              },
+              {
+                "if": {
+                  "lte": [
+                    "gross",
+                    {
+                      "status": {"single": 100000, "married": 200000}
+                    }
+                  ]
+                },
+                "then": {
+                  "mul": [
+                    256,
+                    {
+                      "status": {"single": 1, "married": 2}
+                    }
+                  ]
+                },
+                "else": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "or-transit",
+      "label": "Statewide transit tax",
+      "group": "social",
+      "charge": {"pct": 0.1, "of": "gross"}
+    },
+    {
+      "id": "or-pfml",
+      "label": "Paid Leave Oregon",
+      "group": "social",
+      "note": "60% of the 1% contribution, on wages up to the Social Security wage base.",
+      "charge": {
+        "pct": 0.6,
+        "of": {
+          "min": ["gross", 184500]
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "Portland-area taxes: Metro Supportive Housing Services (1% over $125,000) and Multnomah County Preschool for All (1.5–3% over $125,000)",
+    "TriMet and Lane transit taxes (employer-paid)",
+    "Kicker credit"
+  ],
+  "provisional": ["Standard deduction ($2,835 / $5,670) and exemption credit ($256) are the 2025 amounts"],
+  "sources": [
+    {
+      "title": "2026 Publication OR-ESTIMATE, Oregon Estimated Income Tax Instructions, rate charts for 2026 (Charts S and J)",
+      "url": "https://www.oregon.gov/dor/forms/FormsPubs/publication-or-estimate_101-026_2026.pdf#page=3"
+    },
+    {
+      "title": "2026 Oregon Withholding Tax Formulas (150-206-436), annual wages formula",
+      "url": "https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-formulas_206-436_2026.pdf#page=6"
+    },
+    {
+      "title": "2026 Oregon Withholding Tax Formulas (150-206-436), federal tax withheld phase-out",
+      "url": "https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-formulas_206-436_2026.pdf#page=7"
+    },
+    {
+      "title": "2025 Oregon Income Tax Form OR-40 Instructions",
+      "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf#page=18"
+    },
+    {
+      "title": "2025 Oregon Income Tax Form OR-40 Instructions",
+      "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf#page=16"
+    },
+    {
+      "title": "2025 Oregon Income Tax Form OR-40 Instructions",
+      "url": "https://www.oregon.gov/dor/forms/FormsPubs/form-or-40-inst_101-040-1_2025.pdf#page=17"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/or",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.oregon.gov/dor/forms/FormsPubs/publication-or-estimate_101-026_2026.pdf#page=3",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Federal tax subtraction $2,620, oregon taxable income $34,545. Oregon income tax $2,447.69; Statewide transit tax $40; Paid Leave Oregon $240. PolicyEngine US 2.62.5 differs by $11.05 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {
+        "or-federal-tax-subtraction": 2620,
+        "or-taxable": 34545,
+        "or-income-tax": 2447.69,
+        "or-transit": 40,
+        "or-pfml": 240,
+        "net": 31592.31
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Federal tax subtraction $8,750, oregon taxable income $73,415. Oregon income tax $5,848.81; Statewide transit tax $85; Paid Leave Oregon $510. PolicyEngine US 2.62.5 differs by $11.05 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {
+        "or-federal-tax-subtraction": 8750,
+        "or-taxable": 73415,
+        "or-income-tax": 5848.81,
+        "or-transit": 85,
+        "or-pfml": 510,
+        "net": 62183.69
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Federal tax subtraction $8,750, oregon taxable income $135,580. Oregon income tax $10,713.25; Statewide transit tax $150; Paid Leave Oregon $900. PolicyEngine US 2.62.5 differs by $22.54 on income tax — it projects 2026 values where this file uses the published 2025 ones.",
+      "expect": {
+        "or-federal-tax-subtraction": 8750,
+        "or-taxable": 135580,
+        "or-income-tax": 10713.25,
+        "or-transit": 150,
+        "or-pfml": 900,
+        "net": 111421.75
+      }
+    }
+  ]
+}

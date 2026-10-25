@@ -1,0 +1,126 @@
+{
+  "id": "us-ri",
+  "name": "Rhode Island",
+  "appliesTo": "Residents of Rhode Island",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "ri-taxable",
+      "label": "Rhode Island taxable income",
+      "show": true,
+      "note": "Standard deduction and $5,250 exemption each, both reduced by 20% for each $7,450 of income over $261,000.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "taper": {
+                  "status": {"single": 11200, "married": 22400}
+                },
+                "of": "gross",
+                "from": 261000,
+                "step": 7450,
+                "pctPerStep": 20
+              },
+              {
+                "taper": {
+                  "mul": [
+                    5250,
+                    {
+                      "status": {"single": 1, "married": 2}
+                    }
+                  ]
+                },
+                "of": "gross",
+                "from": 261000,
+                "step": 7450,
+                "pctPerStep": 20
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ri-income-tax",
+      "label": "Rhode Island income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": [[0, 3.75], [82050, 4.75], [186450, 5.99]],
+        "of": "ri-taxable"
+      }
+    },
+    {
+      "id": "ri-tdi",
+      "label": "Temporary Disability Insurance",
+      "group": "social",
+      "charge": {
+        "pct": 1.1,
+        "of": {
+          "min": ["gross", 100000]
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Rhode Island Division of Taxation, ADV 2025-22 - Inflation-adjusted amounts set for Tax Year 2026",
+      "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-11/ADV_2025_22_Inflation_Adjustments.pdf#page=1"
+    },
+    {
+      "title": "2026 R.I. H 7127 Substitute A as amended, Article 6, Section 5, § 44-30-2.6(c)(3)(A)(I)(2)",
+      "url": "https://webserver.rilegislature.gov/BillText/BillText26/HouseText26/H7127Aaa.html#:~:text=High-income%20surtax"
+    },
+    {
+      "title": "Rhode Island Division of Taxation Advisory ADV 2025-22",
+      "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-11/ADV_2025_22_Inflation_Adjustments.pdf#page=2"
+    },
+    {
+      "title": "Rhode Island Tax Rate Schedule - 2025",
+      "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-12/2025%201040R%20Instructions%20122025.pdf#page=13"
+    },
+    {
+      "title": "Rhode Island RI-1040 Instructions 2025",
+      "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-12/2025%201040R%20Instructions%20122025.pdf#page=4"
+    },
+    {
+      "title": "Rhode Island Tax Rate Schedule and Worksheets 2025 (Standard Deduction Worksheet)",
+      "url": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-10/2025%20Tax%20Rate%20and%20Worksheets_d.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ri",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://tax.ri.gov/sites/g/files/xkgbur541/files/2025-11/ADV_2025_22_Inflation_Adjustments.pdf#page=1",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Rhode island taxable income $23,550. Rhode Island income tax $883.13; Temporary Disability Insurance $440. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ri-taxable": 23550, "ri-income-tax": 883.13, "ri-tdi": 440, "net": 32996.88}
+    },
+    {
+      "gross": 85000,
+      "note": "Rhode island taxable income $68,550. Rhode Island income tax $2,570.63; Temporary Disability Insurance $935. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ri-taxable": 68550, "ri-income-tax": 2570.63, "ri-tdi": 935, "net": 65121.88}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "Rhode island taxable income $117,100. Rhode Island income tax $4,741.75; Temporary Disability Insurance $1,100. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"ri-taxable": 117100, "ri-income-tax": 4741.75, "ri-tdi": 1100, "net": 117343.25}
+    }
+  ]
+}

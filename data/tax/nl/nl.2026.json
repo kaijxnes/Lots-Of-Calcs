@@ -1,0 +1,130 @@
+{
+  "id": "nl",
+  "name": "Netherlands",
+  "kind": "country",
+  "country": "NL",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "nl-NL",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {},
+  "items": [
+    {
+      "id": "nl-box1-tax",
+      "label": "Tax at Box 1 rates",
+      "note": "35.75% up to €38,883 and 37.56% up to €78,426 — both including national insurance contributions — then 49.50%.",
+      "value": {
+        "brackets": [[0, 35.75], [38883, 37.56], [78426, 49.5]],
+        "of": "gross"
+      }
+    },
+    {
+      "id": "nl-general-credit",
+      "label": "General tax credit (algemene heffingskorting)",
+      "show": true,
+      "note": "€3,115, reduced by 6.398% of income above €29,736.",
+      "value": {"taper": 3115, "of": "gross", "from": 29736, "per": 0.06398}
+    },
+    {
+      "id": "nl-labour-credit",
+      "label": "Labour tax credit (arbeidskorting)",
+      "show": true,
+      "note": "Builds up to €5,685 at €45,592 of pay, then falls by 6.51% of pay above that, reaching nothing at €132,920.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "min": [
+                  5685,
+                  {
+                    "brackets": [[0, 8.324], [11965, 31.009], [25845, 1.95], [45592, 0]],
+                    "of": "gross"
+                  }
+                ]
+              },
+              {
+                "pct": 6.51,
+                "of": {
+                  "max": [
+                    0,
+                    {
+                      "sub": ["gross", 45592]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nl-income-tax",
+      "label": "Income tax and national insurance (loonheffing)",
+      "group": "tax",
+      "note": "The tax credits can only reduce the tax to zero.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": ["nl-box1-tax", "nl-general-credit", "nl-labour-credit"]
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Below state pension (AOW) age",
+    "The gross includes the 8% holiday allowance",
+    "Employment income only; each person is taxed individually"
+  ],
+  "notModelled": [
+    "Employee pension contributions, which depend on the pension fund (often 4–9% of pay above a franchise)",
+    "The 30% ruling for incoming employees",
+    "Other credits (income-dependent combination credit for parents) and benefits (toeslagen)",
+    "Box 2 and Box 3 income"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Belastingdienst — tarieven en heffingskortingen 2026",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen"
+    },
+    {
+      "title": "Belastingdienst — tabel arbeidskorting 2026",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/arbeidskorting/tabel-arbeidskorting-2026"
+    },
+    {
+      "title": "Deloitte — Pakket Belastingplan 2026, tarieven en heffingskortingen",
+      "url": "https://www.deloitte.com/nl/nl/services/tax/blogs/pakket-belastingplan-2026-tarieven-heffingskortingen.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Box 1 bands (Belastingdienst page excerpt, onderneming.nl and mkbservicedesk agree); general credit €3,115 / 6.398% from €29,736 (Deloitte); labour credit build-up and phase-out (Belastingdienst 2026 table excerpt, Grant Thornton)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen",
+  "tests": [
+    {
+      "gross": 50000,
+      "note": "Box 1: 38,883 × 35.75% = 13,900.67 + 11,117 × 37.56% = 4,175.55 → 18,076.22. General credit 3,115 − 6.398% × 20,264 = 1,818.51. Labour credit 5,685 − 6.51% × 4,408 = 5,398.04. Tax 10,859.67.",
+      "expect": {"nl-general-credit": 1818.51, "nl-labour-credit": 5398.04, "nl-income-tax": 10859.67, "net": 39140.33}
+    },
+    {
+      "gross": 20000,
+      "note": "Box 1 7,150. General credit in full, 3,115. Labour credit 11,965 × 8.324% = 995.97 + 31.009% × 8,035 = 2,491.57 → 3,487.54. Tax 547.46.",
+      "expect": {"nl-income-tax": 547.46}
+    },
+    {
+      "gross": 90000,
+      "note": "Box 1: 13,900.67 + 39,543 × 37.56% = 14,852.35 + 11,574 × 49.5% = 5,729.13 → 34,482.15. No general credit; labour credit 5,685 − 6.51% × 44,408 = 2,794.04.",
+      "expect": {"nl-labour-credit": 2794.04, "nl-income-tax": 31688.11}
+    }
+  ]
+}

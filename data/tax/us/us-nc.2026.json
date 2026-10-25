@@ -1,0 +1,89 @@
+{
+  "id": "us-nc",
+  "name": "North Carolina",
+  "appliesTo": "Residents of North Carolina",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "items": [
+    {
+      "id": "nc-income-tax",
+      "label": "North Carolina income tax",
+      "group": "tax",
+      "note": "3.99% in 2026, after a standard deduction of $12,750 ($25,500 married).",
+      "charge": {
+        "pct": 3.99,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "gross",
+                {
+                  "status": {"single": 12750, "married": 25500}
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 North Carolina Individual Income Tax Instructions",
+      "url": "https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8"
+    },
+    {
+      "title": "2025 North Carolina Tax Rate Schedule",
+      "url": "https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules"
+    },
+    {
+      "title": "2025 North Carolina Standard Deduction",
+      "url": "https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-standard-deduction-or-north-carolina-itemized-deductions"
+    },
+    {
+      "title": "North Carolina Department of Revenue - Tax Rate Schedules",
+      "url": "https://www.ncdor.gov/taxes-forms/tax-rate-schedules"
+    },
+    {
+      "title": "2022 North Carolina Form D-400, Line 15",
+      "url": "https://www.ncdor.gov/2022-d-400-handwritten-version/open#page=2"
+    },
+    {
+      "title": "2023 North Carolina Form D-400, Line 15",
+      "url": "https://www.ncdor.gov/2023-d-400-handwritten-version/open#page=2"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nc",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "North Carolina income tax $1,087.28. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nc-income-tax": 1087.28, "net": 33232.73}
+    },
+    {
+      "gross": 85000,
+      "note": "North Carolina income tax $2,882.78. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nc-income-tax": 2882.78, "net": 65744.73}
+    },
+    {
+      "gross": 150000,
+      "options": {"status": "married"},
+      "note": "North Carolina income tax $4,967.55. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
+      "expect": {"nc-income-tax": 4967.55, "net": 118217.45}
+    }
+  ]
+}
