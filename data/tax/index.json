@@ -11,6 +11,16 @@
       "taxYear": "2026",
       "lastVerified": null
     },
+    "es": {
+      "file": "es/es.2026.json",
+      "name": "Spain",
+      "kind": "country",
+      "country": "ES",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null
+    },
     "fr": {
       "file": "fr/fr.2026.json",
       "name": "France",
@@ -39,6 +49,36 @@
       "parent": "gb",
       "standalone": true,
       "taxYear": "2026/27",
+      "lastVerified": null
+    },
+    "ie": {
+      "file": "ie/ie.2026.json",
+      "name": "Ireland",
+      "kind": "country",
+      "country": "IE",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null
+    },
+    "it": {
+      "file": "it/it.2026.json",
+      "name": "Italy",
+      "kind": "country",
+      "country": "IT",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null
+    },
+    "nl": {
+      "file": "nl/nl.2026.json",
+      "name": "Netherlands",
+      "kind": "country",
+      "country": "NL",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
       "lastVerified": null
     },
     "us": {

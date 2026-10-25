@@ -1,0 +1,319 @@
+{
+  "id": "it",
+  "name": "Italy",
+  "kind": "country",
+  "country": "IT",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "it-IT",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "surcharges": {
+      "label": "Regional and municipal surcharges",
+      "default": "milan",
+      "choices": {"milan": "Milan (Lombardy)", "none": "National taxes only"}
+    }
+  },
+  "items": [
+    {
+      "id": "it-inps",
+      "label": "Social security (INPS)",
+      "group": "social",
+      "note": "9.19%, plus 1% on pay above €56,224, on pay up to €122,295 (the ceiling for anyone who started contributing after 1995).",
+      "charge": {
+        "sum": [
+          {
+            "pct": 9.19,
+            "of": {
+              "min": ["gross", 122295]
+            }
+          },
+          {
+            "pct": 1,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    {
+                      "min": ["gross", 122295]
+                    },
+                    56224
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-taxable",
+      "label": "Taxable income (reddito imponibile)",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "it-inps"]
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-employee-credit",
+      "label": "Employee tax credit (detrazione lavoro dipendente)",
+      "note": "€1,955 up to €15,000, tapering to nothing at €50,000; €65 more between €25,000 and €35,000.",
+      "value": {
+        "sum": [
+          {
+            "if": {
+              "lte": ["it-taxable", 15000]
+            },
+            "then": 1955,
+            "else": {
+              "if": {
+                "lte": ["it-taxable", 28000]
+              },
+              "then": {
+                "sum": [
+                  1910,
+                  {
+                    "mul": [
+                      1190,
+                      {
+                        "div": [
+                          {
+                            "sub": [28000, "it-taxable"]
+                          },
+                          13000
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "else": {
+                "if": {
+                  "lte": ["it-taxable", 50000]
+                },
+                "then": {
+                  "mul": [
+                    1910,
+                    {
+                      "div": [
+                        {
+                          "sub": [50000, "it-taxable"]
+                        },
+                        22000
+                      ]
+                    }
+                  ]
+                },
+                "else": 0
+              }
+            }
+          },
+          {
+            "if": {
+              "gt": ["it-taxable", 25000]
+            },
+            "then": {
+              "if": {
+                "lte": ["it-taxable", 35000]
+              },
+              "then": 65,
+              "else": 0
+            },
+            "else": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-cuneo-credit",
+      "label": "Wage-cost relief credit",
+      "note": "An extra €1,000 deduction between €20,000 and €32,000, tapering to nothing at €40,000.",
+      "value": {
+        "if": {
+          "lte": ["it-taxable", 20000]
+        },
+        "then": 0,
+        "else": {
+          "if": {
+            "lte": ["it-taxable", 32000]
+          },
+          "then": 1000,
+          "else": {
+            "if": {
+              "lte": ["it-taxable", 40000]
+            },
+            "then": {
+              "mul": [
+                1000,
+                {
+                  "div": [
+                    {
+                      "sub": [40000, "it-taxable"]
+                    },
+                    8000
+                  ]
+                }
+              ]
+            },
+            "else": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "it-irpef",
+      "label": "Income tax (IRPEF)",
+      "group": "tax",
+      "note": "23% up to €28,000, 33% to €50,000 (cut from 35% in 2026) and 43% above, less the tax credits.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [[0, 23], [28000, 33], [50000, 43]],
+                "of": "it-taxable"
+              },
+              "it-employee-credit",
+              "it-cuneo-credit"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-cuneo-payment",
+      "label": "Wage-cost relief payment",
+      "group": "tax",
+      "note": "Below €20,000 the relief is paid as a tax-free sum: 7.1% of income up to €8,500, 5.3% up to €15,000 and 4.8% up to €20,000.",
+      "mayBeNegative": true,
+      "charge": {
+        "sub": [
+          0,
+          {
+            "if": {
+              "lte": ["it-taxable", 20000]
+            },
+            "then": {
+              "mul": [
+                "it-taxable",
+                {
+                  "lookup": [[0, 0.071], [8500, 0.053], [15000, 0.048]],
+                  "of": "it-taxable",
+                  "strict": true
+                }
+              ]
+            },
+            "else": 0
+          }
+        ]
+      }
+    },
+    {
+      "id": "it-regional",
+      "label": "Regional surcharge (addizionale regionale)",
+      "group": "tax",
+      "note": "Lombardy: 1.23% to €15,000, 1.58% to €28,000, 1.72% to €50,000, 1.73% above.",
+      "charge": {
+        "option": "surcharges",
+        "cases": {
+          "milan": {
+            "brackets": [[0, 1.23], [15000, 1.58], [28000, 1.72], [50000, 1.73]],
+            "of": "it-taxable"
+          },
+          "none": 0
+        }
+      }
+    },
+    {
+      "id": "it-municipal",
+      "label": "Municipal surcharge (addizionale comunale)",
+      "group": "tax",
+      "note": "Milan: 0.8% of all taxable income, with incomes up to €23,000 exempt.",
+      "charge": {
+        "option": "surcharges",
+        "cases": {
+          "milan": {
+            "if": {
+              "gt": ["it-taxable", 23000]
+            },
+            "then": {"pct": 0.8, "of": "it-taxable"},
+            "else": 0
+          },
+          "none": 0
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "A private-sector employee in the main pension fund (FPLD) who started contributing after 1995",
+    "No dependants",
+    "Employment income only"
+  ],
+  "notModelled": [
+    "Surcharges for regions and cities other than Milan, which typically add 1.5–4% of taxable income (Rome's 2026 regional table could not be confirmed)",
+    "Dependant tax credits and the single allowance for children (assegno unico)",
+    "The supplementary payment (trattamento integrativo) of up to €1,200 for incomes up to €15,000",
+    "Severance pay accrual (TFR), which is not deducted from pay",
+    "Joint filing — Italy taxes each person separately"
+  ],
+  "provisional": [
+    "Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%"
+  ],
+  "sources": [
+    {
+      "title": "TUIR art. 11 (aliquote) and art. 13 (detrazioni), as amended by Legge 199/2025",
+      "url": "https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917"
+    },
+    {
+      "title": "Legge 30 dicembre 2025 n. 199 (Legge di Bilancio 2026)",
+      "url": "https://www.gazzettaufficiale.it/"
+    },
+    {
+      "title": "INPS circolare n. 6 del 30 gennaio 2026 — minimali, massimali, prima fascia",
+      "url": "https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf"
+    },
+    {
+      "title": "MEF — addizionali regionali e comunali",
+      "url": "https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "2026 bands and the 33% cut (Fiscomania, Fiscozen, diritto.it agree, citing L. 199/2025); €1,955 credit; cuneo fiscale structure (QuiFinanza, informazionefiscale); INPS circolare 6/2026 values (INPS, fiscoetasse, Il Sole 24 Ore agree); Lombardy bands (comparison tables) and Milan 0.8% with €23,000 exemption (CISL note). The €1,910/€1,190 credit formula is the long-standing art. 13 TUIR text."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/agevolazioni/detrazioni-per-lavoro-dipendente",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "INPS 9.19% = 2,757. Taxable 27,243. Gross tax 23% = 6,265.89. Credit 1,910 + 1,190 × 757/13,000 = 1,979.29, plus 65 = 2,044.29; wage-cost credit 1,000. IRPEF 3,221.60. Lombardy 184.50 + 193.44 = 377.94; Milan 0.8% = 217.94.",
+      "expect": {"it-taxable": 27243, "it-irpef": 3221.6, "it-regional": 377.94, "it-municipal": 217.94, "net": 23425.52}
+    },
+    {
+      "gross": 18000,
+      "note": "Taxable 16,345.80; gross tax 3,759.53; credit 1,910 + 1,190 × 11,654.20/13,000 = 2,976.81; IRPEF 782.73. Tax-free relief 4.8% × 16,345.80 = 784.60. Below Milan's exemption.",
+      "expect": {"it-irpef": 782.73, "it-cuneo-payment": -784.6, "it-municipal": 0, "net": 16141.91}
+    },
+    {
+      "gross": 80000,
+      "note": "INPS 7,352 + 1% × 23,776 = 7,589.76. Taxable 72,410.24 → 6,440 + 7,260 + 9,636.40 = 23,336.40, no credits.",
+      "expect": {"it-inps": 7589.76, "it-irpef": 23336.4}
+    },
+    {
+      "gross": 30000,
+      "options": {"surcharges": "none"},
+      "note": "As the first case without surcharges.",
+      "expect": {"net": 24021.4}
+    }
+  ]
+}

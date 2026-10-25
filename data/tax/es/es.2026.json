@@ -1,0 +1,278 @@
+{
+  "id": "es",
+  "name": "Spain",
+  "kind": "country",
+  "country": "ES",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "es-ES",
+  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "options": {
+    "status": {
+      "label": "Filing",
+      "default": "single",
+      "choices": {"single": "Individual", "married": "Joint return, one earner"}
+    },
+    "region": {
+      "label": "Region",
+      "default": "madrid",
+      "choices": {"madrid": "Comunidad de Madrid", "catalonia": "Catalonia"}
+    }
+  },
+  "items": [
+    {
+      "id": "es-social-security",
+      "label": "Social security (Seguridad Social)",
+      "group": "social",
+      "note": "4.70% common contingencies, 1.55% unemployment, 0.10% training and 0.15% intergenerational equity (MEI), on pay up to the maximum base of €5,101.20 a month.",
+      "charge": {
+        "pct": 6.5,
+        "of": {
+          "min": ["gross", 61214.4]
+        }
+      }
+    },
+    {
+      "id": "es-net-earnings",
+      "label": "Net earnings (rendimiento neto)",
+      "note": "Pay less social security and the general €2,000 allowance for other expenses.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "es-social-security", 2000]
+          }
+        ]
+      }
+    },
+    {
+      "id": "es-earnings-reduction",
+      "label": "Reduction for employment income",
+      "note": "€7,302 for net earnings up to €14,852, tapering to nothing at €19,747.50.",
+      "value": {
+        "if": {
+          "lte": ["es-net-earnings", 14852]
+        },
+        "then": 7302,
+        "else": {
+          "if": {
+            "lte": ["es-net-earnings", 17673.52]
+          },
+          "then": {
+            "sub": [
+              7302,
+              {
+                "mul": [
+                  1.75,
+                  {
+                    "sub": ["es-net-earnings", 14852]
+                  }
+                ]
+              }
+            ]
+          },
+          "else": {
+            "if": {
+              "lt": ["es-net-earnings", 19747.5]
+            },
+            "then": {
+              "sub": [
+                2364.34,
+                {
+                  "mul": [
+                    1.14,
+                    {
+                      "sub": ["es-net-earnings", 17673.52]
+                    }
+                  ]
+                }
+              ]
+            },
+            "else": 0
+          }
+        }
+      }
+    },
+    {
+      "id": "es-base",
+      "label": "Taxable base (base liquidable)",
+      "show": true,
+      "note": "Married couples filing jointly take a further €3,400 off.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "es-net-earnings",
+              "es-earnings-reduction",
+              {
+                "status": {"single": 0, "married": 3400}
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "es-state-tax",
+      "label": "Income tax — state share (IRPF estatal)",
+      "group": "tax",
+      "note": "The state scale, less the same scale applied to the €5,550 personal minimum.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [[0, 9.5], [12450, 12], [20200, 15], [35200, 18.5], [60000, 22.5], [300000, 24.5]],
+                "of": "es-base"
+              },
+              {
+                "brackets": [[0, 9.5], [12450, 12], [20200, 15], [35200, 18.5], [60000, 22.5], [300000, 24.5]],
+                "of": {
+                  "min": [5550, "es-base"]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "es-regional-tax",
+      "label": "Income tax — regional share (IRPF autonómico)",
+      "group": "tax",
+      "note": "Each autonomous community sets its own scale for its half of IRPF.",
+      "charge": {
+        "option": "region",
+        "cases": {
+          "madrid": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "brackets": [[0, 8.5], [13362.22, 10.7], [19004.63, 12.8], [35425.68, 17.4], [57320.4, 20.5]],
+                    "of": "es-base"
+                  },
+                  {
+                    "brackets": [[0, 8.5], [13362.22, 10.7], [19004.63, 12.8], [35425.68, 17.4], [57320.4, 20.5]],
+                    "of": {
+                      "min": [5550, "es-base"]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "catalonia": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "brackets": [
+                      [0, 9.5],
+                      [12500, 12.5],
+                      [22000, 16],
+                      [33000, 19],
+                      [53000, 21.5],
+                      [90000, 23.5],
+                      [120000, 24.5],
+                      [175000, 25.5]
+                    ],
+                    "of": "es-base"
+                  },
+                  {
+                    "brackets": [
+                      [0, 9.5],
+                      [12500, 12.5],
+                      [22000, 16],
+                      [33000, 19],
+                      [53000, 21.5],
+                      [90000, 23.5],
+                      [120000, 24.5],
+                      [175000, 25.5]
+                    ],
+                    "of": {
+                      "min": [5550, "es-base"]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "assumptions": [
+    "A permanent (indefinite) contract under the general social security scheme",
+    "No children, under 65",
+    "Employment income only"
+  ],
+  "notModelled": [
+    "Regions other than Madrid and Catalonia — including Andalusia and Valencia, whose 2026 scales could not be confirmed — and the separate Basque and Navarre systems",
+    "Regional and state deductions (rent, family, donations) and higher regional personal minimums",
+    "The solidarity contribution on pay above the maximum base (a fraction of 1% for the employee)",
+    "Pension plan contributions"
+  ],
+  "provisional": [
+    "The Catalan scale (eight bands from 9.5% to 25.5%, Decree-law 5/2025) comes from secondary sources that agree with each other; older tables starting at 10.5% are still in circulation"
+  ],
+  "sources": [
+    {
+      "title": "Ley 35/2006 del IRPF — art. 20 (reducción rendimientos del trabajo), art. 57 (mínimo personal), art. 63 (escala estatal)",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"
+    },
+    {
+      "title": "AEAT — Manual IRPF 2025, reducción por obtención de rendimientos del trabajo",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-ayuda-presentacion/irpf-2025/7-cumplimentacion-irpf/7_1-rendimientos-trabajo-personal/7_1_6-reduccion-obtencion-rendimientos-trabajo.html"
+    },
+    {
+      "title": "Seguridad Social — bases y tipos de cotización 2026 (Orden PJC/297/2026)",
+      "url": "https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/36537"
+    },
+    {
+      "title": "Comunidad de Madrid — escala autonómica IRPF",
+      "url": "https://www.comunidad.madrid/servicios/impuestos-tributos/irpf"
+    },
+    {
+      "title": "Agència Tributària de Catalunya — escala autonòmica IRPF",
+      "url": "https://atc.gencat.cat/es/tributs/irpf/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "State scale and €5,550 minimum (OIE, Calcuris and others agree); employment-income reduction (AEAT 2025 manual excerpt); 2026 social security rates and €5,101.20 maximum base (Ibermutua and Unión de Mutuas tables citing Orden PJC/297/2026); Madrid scale (Taxdown, Guía Fiscal agree); Catalan scale (Guía Fiscal, Idealista, Bankinter agree)."
+    }
+  ],
+  "lastVerified": null,
+  "verifyAt": "https://sede.agenciatributaria.gob.es/Sede/irpf.html",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Social security 6.5% = 1,950. Net earnings 30,000 − 1,950 − 2,000 = 26,050 (no reduction above €19,747.50). State: 1,182.75 + 930 + 877.50 = 2,990.25 on the base, less 527.25 on the €5,550 minimum = 2,463. Madrid: 1,135.79 + 603.74 + 901.81 = 2,641.33, less 471.75 = 2,169.58.",
+      "expect": {"es-base": 26050, "es-state-tax": 2463, "es-regional-tax": 2169.58, "net": 23417.42}
+    },
+    {
+      "gross": 18000,
+      "note": "Net earnings 14,830 → full €7,302 reduction; base 7,528. State 9.5% × (7,528 − 5,550) = 187.91; Madrid 8.5% × 1,978 = 168.13.",
+      "expect": {"es-earnings-reduction": 7302, "es-base": 7528, "es-state-tax": 187.91, "es-regional-tax": 168.13}
+    },
+    {
+      "gross": 60000,
+      "options": {"region": "catalonia"},
+      "note": "Base 54,100. State 7,332. Catalonia: 1,187.50 + 1,187.50 + 1,760 + 3,800 + 236.50 = 8,171.50, less 527.25 on the minimum = 7,644.25.",
+      "expect": {"es-state-tax": 7332, "es-regional-tax": 7644.25, "net": 41123.75}
+    },
+    {
+      "gross": 40000,
+      "options": {"status": "married"},
+      "note": "Joint return: base 35,400 − 3,400 = 32,000. State 3,355.50; Madrid 2,931.18.",
+      "expect": {"es-base": 32000, "es-state-tax": 3355.5, "es-regional-tax": 2931.18}
+    }
+  ]
+}
