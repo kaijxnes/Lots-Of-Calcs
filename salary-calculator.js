@@ -20,7 +20,8 @@
     net: document.getElementById("out-net"),
     month: document.getElementById("out-month"),
     week: document.getElementById("out-week"),
-    day: document.getElementById("out-day")
+    day: document.getElementById("out-day"),
+    rate: document.getElementById("out-rate")
   };
 
   var STORE = "salary-location";
@@ -67,6 +68,7 @@
     out.month.textContent = money(r.perMonth);
     out.week.textContent = money(r.perWeek);
     out.day.textContent = money(r.perDay);
+    out.rate.textContent = pct(r.deductionRate);
 
     breakdownEl.textContent = "";
     breakdownEl.appendChild(row("Gross salary", money(r.gross, true)));

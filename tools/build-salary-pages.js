@@ -249,6 +249,7 @@ ${ldJson}
           <div class="result-row highlight"><span class="r-label">A month</span><span class="r-value" id="out-month">${money(r.per_month)}</span></div>
           <div class="result-row"><span class="r-label">A week</span><span class="r-value" id="out-week">${money(r.per_week)}</span></div>
           <div class="result-row"><span class="r-label">A working day</span><span class="r-value" id="out-day">${money(r.per_day)}</span></div>
+          <div class="result-row"><span class="r-label">Effective tax rate</span><span class="r-value" id="out-rate">${oneDp(r.deduction_rate)}%</span></div>
         </div>
       </div>
 

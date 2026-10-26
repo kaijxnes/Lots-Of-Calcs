@@ -217,6 +217,7 @@ function toolBlock(p, gross, r, heading) {
           <div class="result-row highlight"><span class="r-label">A month</span><span class="r-value" data-out="month">${p.money(r.perMonth)}</span></div>
           <div class="result-row"><span class="r-label">A week</span><span class="r-value" data-out="week">${p.money(r.perWeek)}</span></div>
           <div class="result-row"><span class="r-label">A working day</span><span class="r-value" data-out="day">${p.money(r.perDay)}</span></div>
+          <div class="result-row"><span class="r-label">Effective tax rate</span><span class="r-value" data-out="rate">${pct1(r.deductionRate)}</span></div>
         </div>
       </div>
 
@@ -643,6 +644,7 @@ ${select}
           <div class="result-row highlight"><span class="r-label">A month</span><span class="r-value" id="out-month">${m(r.perMonth)}</span></div>
           <div class="result-row"><span class="r-label">A week</span><span class="r-value" id="out-week">${m(r.perWeek)}</span></div>
           <div class="result-row"><span class="r-label">A working day</span><span class="r-value" id="out-day">${m(r.perDay)}</span></div>
+          <div class="result-row"><span class="r-label">Effective tax rate</span><span class="r-value" id="out-rate">${pct1(r.deductionRate)}</span></div>
         </div>
       </div>
 
