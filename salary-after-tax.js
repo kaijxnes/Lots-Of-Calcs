@@ -16,6 +16,7 @@
     month: document.getElementById("out-month"),
     week: document.getElementById("out-week"),
     day: document.getElementById("out-day"),
+    rate: document.getElementById("out-rate"),
     gross: document.getElementById("out-gross"),
     allowance: document.getElementById("out-allowance"),
     taxable: document.getElementById("out-taxable"),
@@ -61,6 +62,7 @@
     els.month.textContent = money(r.perMonth);
     els.week.textContent = money(r.perWeek);
     els.day.textContent = money(r.perDay);
+    els.rate.textContent = (Math.round(r.deductionRate * 10) / 10).toFixed(1) + "%";
     els.gross.textContent = money(r.gross);
     els.allowance.textContent = money(r.values["gb-personal-allowance"]);
     els.taxable.textContent = money(r.values["gb-taxable"]);

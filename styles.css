@@ -1478,3 +1478,26 @@ hr.divider {
     font-size: 1.05rem;
   }
 }
+
+/* ---------- Salary tables list (/salary/) ---------- */
+
+.salary-tables {
+  margin-top: 28px;
+}
+
+.salary-links-title {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  margin: 12px 0 6px;
+}
+
+.salary-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 0.9rem;
+  margin: 0 0 8px;
+}
