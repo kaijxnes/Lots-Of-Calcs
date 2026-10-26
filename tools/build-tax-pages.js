@@ -548,56 +548,128 @@ ${FOOTER}
 `;
 }
 
-// ---------------------------------------------------------------- salary index
+// ---------------------------------------------------------------- salary calculator (/salary/)
+
+/* /salary/ is the calculator people reach from the homepage: pick where you're
+   paid, type a salary, see the take-home. The per-salary pages exist for
+   search engines and people arriving from them; here they sit in a folded
+   list at the bottom rather than being the page. */
+
+const REGIONS = {
+  Europe: ["DE", "FR", "ES", "IT", "NL", "IE", "PT", "AT", "NO", "DK", "SE"],
+  "Asia-Pacific": ["AU", "NZ", "IN", "JP"]
+};
+
+function locationList() {
+  const ukChain = registry.loadChain("gb");
+  const entry = (id, name, currency, hub) => ({ id, name, currency, hub, gross: config.HEADLINE[currency] });
+  const groups = [["United Kingdom", [entry("gb", "England, Wales & Northern Ireland", ukChain[0].currency, "")]]];
+  if (byId["gb-sct"]) groups[0][1].push(entry("gb-sct", "Scotland", "GBP", hubUrl(byId["gb-sct"])));
+  const named = (ps) => ps.map((p) => entry(p.id, p.place.shortName, p.currency, hubUrl(p))).sort((a, b) => a.name.localeCompare(b.name));
+  groups.push(["United States", named(places.filter((p) => p.root.country === "US"))]);
+  Object.keys(REGIONS).forEach((region) => groups.push([region, named(places.filter((p) => REGIONS[region].includes(p.root.country)))]));
+  return groups;
+}
 
 function salaryIndex() {
   const url = SITE + "/salary/";
-  const title = "Salary After Tax Calculators — UK, US States, Europe, Australia, India & Japan";
-  const desc = "Take-home pay calculators and salary tables for the UK, all 50 US states, Western Europe, Australia, New Zealand, India and Japan, for the current tax year.";
-  const ukChain = registry.loadChain("gb");
-  const ukLine = (s) => {
-    const r = TaxEngine.compute(ukChain, s);
-    return `${TaxEngine.money(r.net, "GBP", true)} a year, ${TaxEngine.money(r.perMonth, "GBP", true)} a month.`;
-  };
-  const ukCards = uk.SALARIES.map((s) => card(`/salary/${s}-after-tax/`, "🇬🇧", `${TaxEngine.money(s, "GBP", true)} after tax`, ukLine(s))).join("");
-  const headline = (p) => {
-    const g = config.HEADLINE[p.currency];
-    const r = TaxEngine.compute(p.chain, g, p.defaults);
-    return `${p.money0(g)} leaves ${p.money0(r.net)} a year.`;
-  };
-  const group = (filter) => places.filter(filter).map((p) => card(hubUrl(p), iconFor(p), `Salary after tax in ${p.place.shortName}`, headline(p))).join("");
-  const europe = group((p) => ["DE", "FR", "ES", "IT", "NL", "IE", "PT", "AT", "NO", "DK", "SE"].includes(p.root.country));
-  const apac = group((p) => ["AU", "NZ", "IN", "JP"].includes(p.root.country));
-  const scot = byId["gb-sct"];
-  const ld = [webPage(title, desc, url), breadcrumb([["Home", SITE + "/"], ["Salary after tax", url]])];
+  const title = "Salary After Tax Calculator — Take-Home Pay in the UK, US, Europe & More";
+  const desc = "Work out your take-home pay after income tax and social contributions for the UK, every US state, Western Europe, Australia, New Zealand, India and Japan, for the current tax year.";
+  const groups = locationList();
+
+  /* Baked for the default location so the page shows a real answer before,
+     or without, its script */
+  const chain = registry.loadChain("gb");
+  const gross = config.HEADLINE.GBP;
+  const r = TaxEngine.compute(chain, gross);
+  const m = (v) => TaxEngine.money(v, "GBP");
+  const row = (label, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${esc(label)}</span><span class="r-value">${value}</span></div>`;
+  const breakdown = [row("Gross salary", TaxEngine.money(gross, "GBP", true))]
+    .concat(r.shown.map((s) => row(s.label, m(s.amount))))
+    .concat(r.charges.map((c) => row(c.label, m(c.amount))))
+    .concat([row("Total deductions", m(r.totalDeductions)), row("Effective rate", pct1(r.deductionRate)),
+      row("Marginal rate", Math.round(r.marginalRate) + "%"), row("Take-home pay", m(r.net), "highlight")]).join("\n");
+
+  const select = groups.map(([label, xs]) => `          <optgroup label="${esc(label)}">${xs.map((x) =>
+    `<option value="${esc(x.id)}" data-currency="${x.currency}" data-gross="${x.gross}" data-hub="${esc(x.hub)}"${x.id === "gb" ? " selected" : ""}>${esc(x.name)}</option>`).join("")}</optgroup>`).join("\n");
+
+  const tables = groups.map(([label, xs]) => {
+    const links = label === "United Kingdom"
+      ? uk.SALARIES.map((s) => `<a href="/salary/${s}-after-tax/">${TaxEngine.money(s, "GBP", true)}</a>`).concat(xs.filter((x) => x.hub).map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`))
+      : (label === "United States" ? [`<a href="/salary/us/">All states compared</a>`] : []).concat(xs.map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`));
+    return `        <p class="salary-links-title">${esc(label)}</p>
+        <p class="salary-links">${links.join(" ")}</p>`;
+  }).join("\n");
+
+  const ld = [
+    webPage(title, desc, url),
+    breadcrumb([["Home", SITE + "/"], ["Salary after tax", url]]),
+    {
+      "@context": "https://schema.org", "@type": "WebApplication", name: "Salary After Tax Calculator", url: url,
+      applicationCategory: "FinanceApplication", operatingSystem: "Any",
+      offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" }
+    }
+  ];
+
   return head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">Salary after tax</h1>
-      <p class="page-subtitle">What a salary actually leaves you, in the country, state or region you're paid in.</p>
+      <p class="page-subtitle">What your salary leaves you after tax, wherever you're paid.</p>
     </header>
 
-    <div class="hub-group-title">United Kingdom</div>
-    <div class="hub-grid">
-${ukCards}${scot ? card(hubUrl(scot), iconFor(scot), "Salary after tax in Scotland", headline(scot)) : ""}    </div>
+    <main class="tool" id="salary-calc">
+      <div class="field-row">
+        <div class="field">
+          <label for="location">Where you're paid</label>
+          <select id="location">
+${select}
+          </select>
+        </div>
+        <div class="field">
+          <label for="salary">Gross annual salary (<span id="salary-currency">GBP</span>)</label>
+          <input type="number" id="salary" value="${gross}" step="any" min="0" inputmode="decimal" placeholder="0">
+        </div>
+      </div>
+      <div class="field-row" id="salary-options"></div>
+      <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
 
-    <div class="hub-group-title" style="margin-top:28px;">United States</div>
-    <div class="hub-grid">
-${card("/salary/us/", "🇺🇸", "All 50 states compared", "Take-home pay in every state at $50k, $75k and $100k.")}${["us-ca", "us-tx", "us-ny", "us-ny-nyc", "us-fl"].filter((id) => byId[id]).map((id) => card(hubUrl(byId[id]), "🇺🇸", `Salary after tax in ${byId[id].place.shortName}`, headline(byId[id]))).join("")}    </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="out-net">${m(r.net)}</div>
+          <div class="label">Take-home pay, a year</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">A month</span><span class="r-value" id="out-month">${m(r.perMonth)}</span></div>
+          <div class="result-row"><span class="r-label">A week</span><span class="r-value" id="out-week">${m(r.perWeek)}</span></div>
+          <div class="result-row"><span class="r-label">A working day</span><span class="r-value" id="out-day">${m(r.perDay)}</span></div>
+        </div>
+      </div>
 
-    <div class="hub-group-title" style="margin-top:28px;">Europe</div>
-    <div class="hub-grid">
-${europe}    </div>
-
-    <div class="hub-group-title" style="margin-top:28px;">Asia-Pacific</div>
-    <div class="hub-grid">
-${apac}    </div>
-
-    <main class="tool" style="margin-top:28px;">
-      <p class="about-text">Each page applies that place's current tax year to a salary &mdash; income tax, social contributions and the local taxes that apply to most employees &mdash; and says plainly what it assumes and leaves out. The rates come from published sources listed on every page; none has yet been checked by a person against the official tax authority, so treat the figures as estimates and confirm before relying on them.</p>
+      <p class="tool-section-title" style="margin-top:22px;">Where it goes</p>
+      <div class="result-box">
+        <div class="result-grid" id="breakdown">
+${breakdown}
+        </div>
+      </div>
+      <p class="tool-hint" id="salary-note" style="margin-top:12px;">${esc(chain[0].taxYear.label)} tax year. An estimate, not a payslip: it assumes one job and no other income, pension or student loan.</p>
     </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">Pick where you're paid and type your salary before any deductions. The calculator applies that place's current tax year &mdash; income tax, social contributions and the local taxes most employees pay &mdash; and shows each one. Some places have options, such as filing status in the US or region in Spain; they appear under the salary when they apply.</p>
+      <p class="about-text">The rates come from published sources listed on each location's own page. They have not yet been checked by a person against the official tax authority, so treat the figures as estimates and confirm them before relying on them.</p>
+    </main>
+
+    <details class="fold-group salary-tables">
+      <summary><span class="fold-name">Salary tables by location</span></summary>
+${tables}
+    </details>
 
 ${FOOTER}
   </div>
+  <script src="/tax-engine.js"></script>
+  <script src="/salary-calculator.js"></script>
 </body>
 </html>
 `;
