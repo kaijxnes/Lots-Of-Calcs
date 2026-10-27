@@ -77,6 +77,38 @@
           "@type": "Answer",
           "text": "Splitting the tip in proportion to spend is the fairer default, since the tip is a percentage of the bill. Splitting it evenly is simpler and fine when everyone ordered roughly the same."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I split a bill with a service charge already added?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter the bill total including the service charge and set the tip to 0%. For an itemised split, enter each person's menu prices and set the tip percentage to the service charge rate, often 12.5%, so it is shared the same way."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if the split doesn't divide exactly?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Amounts are shown to the penny, so a bill that doesn't divide evenly can leave a penny or two unaccounted for when everyone pays the rounded figure. Have one person round up to cover it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I split shared starters or a bottle of wine?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the shared item's price by the number of people who had some and add that to each of their amounts before entering them in the itemised split."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this for bills other than restaurants?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — a takeaway, a group gift or a holiday cost all split the same way; leave the tip at 0%. For recurring household bills shared by income or agreed percentages, the household bill splitter is built for that."
+        }
       }
     ]
   }
@@ -174,9 +206,35 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">The equal split divides the total bill (plus tip) evenly across everyone.</p>
-      <p class="about-text">The itemized split instead works out each person's share of the tip in proportion to what they actually spent &mdash; so someone who ordered a &pound;30 meal pays more of the tip than someone who ordered a &pound;10 side, even though the tip percentage is the same for the whole table.</p>
+      <p class="tool-section-title">Equal or itemised?</p>
+      <p class="about-text">The <strong>equal split</strong> adds the tip to the bill and divides the total by the number of people. It's quickest and fair when everyone ordered roughly the same.</p>
+      <p class="about-text">The <strong>itemised split</strong> starts from what each person actually ordered. Everyone pays their own subtotal plus the same percentage of it as tip, so the tip is shared in proportion to spend and the shares always add up to the full bill.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Worked example</p>
+      <p class="about-text">Three friends, a &pound;96 bill and a 10% tip. Split equally, the total is &pound;105.60 and each pays <strong>&pound;35.20</strong>.</p>
+      <p class="about-text">But suppose Sam's share of the order was &pound;48, Priya's &pound;30 and Alex's &pound;18. Itemised, each pays their order plus 10%:</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Name</th><th>Ordered</th><th>Tip share</th><th>Pays</th><th>Equal split</th></tr></thead>
+            <tbody>
+<tr><td>Sam</td><td>48.00</td><td>4.80</td><td>52.80</td><td>35.20</td></tr>
+<tr><td>Priya</td><td>30.00</td><td>3.00</td><td>33.00</td><td>35.20</td></tr>
+<tr><td>Alex</td><td>18.00</td><td>1.80</td><td>19.80</td><td>35.20</td></tr>
+<tr><td><strong>Total</strong></td><td>96.00</td><td>9.60</td><td>105.60</td><td>105.60</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Split equally, Alex would pay &pound;15.40 more than their own meal and tip came to.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Shared dishes and drinks</p>
+      <p class="about-text">For starters, sides or a bottle of wine everyone shared, divide that item's price by the number of people who had some and add the result to each of their amounts before entering them. Anything one person had on their own goes only on their line.</p>
+      <p class="about-text">If the bill already includes a service charge, either enter each person's amounts with the charge included and leave the tip at 0%, or enter the menu prices and set the tip to the service charge percentage. Both come to the same totals.</p>
     </main>
 
     <main class="tool">
@@ -185,6 +243,14 @@
       <p class="about-text">Use the itemised split: enter what each person actually ordered and the tip is shared in proportion to their spend, so nobody subsidises a much larger order.</p>
       <p class="faq-q">Should the tip be split evenly or by what each person spent?</p>
       <p class="about-text">Splitting the tip in proportion to spend is the fairer default, since the tip is a percentage of the bill. Splitting it evenly is simpler and fine when everyone ordered roughly the same.</p>
+      <p class="faq-q">How do I split a bill with a service charge already added?</p>
+      <p class="about-text">Enter the bill total including the service charge and set the tip to 0%. For an itemised split, enter each person's menu prices and set the tip percentage to the service charge rate, often 12.5%, so it is shared the same way.</p>
+      <p class="faq-q">What if the split doesn't divide exactly?</p>
+      <p class="about-text">Amounts are shown to the penny, so a bill that doesn't divide evenly can leave a penny or two unaccounted for when everyone pays the rounded figure. Have one person round up to cover it.</p>
+      <p class="faq-q">How do I split shared starters or a bottle of wine?</p>
+      <p class="about-text">Divide the shared item's price by the number of people who had some and add that to each of their amounts before entering them in the itemised split.</p>
+      <p class="faq-q">Can I use this for bills other than restaurants?</p>
+      <p class="about-text">Yes &mdash; a takeaway, a group gift or a holiday cost all split the same way; leave the tip at 0%. For recurring household bills shared by income or agreed percentages, the <a href="/household-bills/">household bill splitter</a> is built for that.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->

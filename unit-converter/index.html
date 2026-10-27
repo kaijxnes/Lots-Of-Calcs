@@ -77,6 +77,38 @@
           "@type": "Answer",
           "text": "One mile is about 1.609 kilometres, so a kilometre is roughly 0.621 miles. A quick mental estimate is to multiply miles by 1.6."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "How many pounds are in a stone?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fourteen. A stone is 14 pounds, or 6.35 kg, so 11st 7lb is 161 lb or 73.0 kg. Choose Stone in the weight tab to convert directly."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a UK pint the same as a US pint?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. A UK (imperial) pint is 568 ml, about 20% more than a US pint of 473 ml. Gallons differ in the same way: 4.546 litres in the UK against 3.785 litres in the US."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How tall is 5 foot 10 in centimetres?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "177.8 cm. Multiply the feet by 12 and add the inches to get inches (70), then multiply by 2.54."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert cups to millilitres?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A US cup, as used in most recipes online, is about 237 ml. Australian and some UK recipes use a 250 ml metric cup. For baking, weighing in grams is more reliable than cups, since a cup of flour can vary by 20 grams or more depending on how it's packed."
+        }
       }
     ]
   }
@@ -108,10 +140,10 @@
           <div class="field">
             <label for="len-from">From</label>
             <select id="len-from">
-              <option value="mm">Millimeters</option>
-              <option value="cm">Centimeters</option>
-              <option value="m" selected>Meters</option>
-              <option value="km">Kilometers</option>
+              <option value="mm">Millimetres</option>
+              <option value="cm">Centimetres</option>
+              <option value="m" selected>Metres</option>
+              <option value="km">Kilometres</option>
               <option value="in">Inches</option>
               <option value="ft">Feet</option>
               <option value="yd">Yards</option>
@@ -122,10 +154,10 @@
         <div class="field">
           <label for="len-to">To</label>
           <select id="len-to">
-            <option value="mm">Millimeters</option>
-            <option value="cm">Centimeters</option>
-            <option value="m">Meters</option>
-            <option value="km">Kilometers</option>
+            <option value="mm">Millimetres</option>
+            <option value="cm">Centimetres</option>
+            <option value="m">Metres</option>
+            <option value="km">Kilometres</option>
             <option value="in">Inches</option>
             <option value="ft" selected>Feet</option>
             <option value="yd">Yards</option>
@@ -152,7 +184,7 @@
               <option value="mg">Milligrams</option>
               <option value="g">Grams</option>
               <option value="kg" selected>Kilograms</option>
-              <option value="t">Metric tons</option>
+              <option value="t">Tonnes</option>
               <option value="oz">Ounces</option>
               <option value="lb">Pounds</option>
               <option value="st">Stone</option>
@@ -165,7 +197,7 @@
             <option value="mg">Milligrams</option>
             <option value="g">Grams</option>
             <option value="kg">Kilograms</option>
-            <option value="t">Metric tons</option>
+            <option value="t">Tonnes</option>
             <option value="oz">Ounces</option>
             <option value="lb" selected>Pounds</option>
             <option value="st">Stone</option>
@@ -219,9 +251,9 @@
           <div class="field">
             <label for="vol-from">From</label>
             <select id="vol-from">
-              <option value="ml">Milliliters</option>
-              <option value="l" selected>Liters</option>
-              <option value="m3">Cubic meters</option>
+              <option value="ml">Millilitres</option>
+              <option value="l" selected>Litres</option>
+              <option value="m3">Cubic metres</option>
               <option value="gal-us">US gallons</option>
               <option value="gal-uk">UK gallons</option>
               <option value="pt-us">US pints</option>
@@ -233,9 +265,9 @@
         <div class="field">
           <label for="vol-to">To</label>
           <select id="vol-to">
-            <option value="ml">Milliliters</option>
-            <option value="l">Liters</option>
-            <option value="m3">Cubic meters</option>
+            <option value="ml">Millilitres</option>
+            <option value="l">Litres</option>
+            <option value="m3">Cubic metres</option>
             <option value="gal-us" selected>US gallons</option>
             <option value="gal-uk">UK gallons</option>
             <option value="pt-us">US pints</option>
@@ -252,9 +284,52 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">Length, weight and volume conversions all work the same way: your value is converted to a common base unit (metres, kilograms or litres) using each unit's conversion factor, then converted from that base unit into your target unit.</p>
-      <p class="about-text">Temperature is different &mdash; it needs a formula rather than a simple multiplication, since 0&deg; doesn't mean &ldquo;nothing&rdquo; the way 0kg does, so this calculator converts via Celsius as an intermediate step for Fahrenheit and Kelvin.</p>
+      <p class="tool-section-title">How the conversions work</p>
+      <p class="about-text">Length, weight and volume are converted through a common base unit &mdash; metres, kilograms or litres. Your value is multiplied into the base unit and then divided into the unit you want, using the exact international definitions: an inch is exactly 2.54 cm, a pound exactly 0.45359237 kg, and a UK gallon exactly 4.54609 litres.</p>
+      <p class="about-text">Temperature needs a formula rather than a multiplication, because the scales start from different zeros. To go from Celsius to Fahrenheit, multiply by 9, divide by 5 and add 32; to go back, take away 32, multiply by 5 and divide by 9. Kelvin is Celsius plus 273.15.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Common conversions</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>From</th><th>To</th><th>Multiply by</th><th>Example</th></tr></thead>
+            <tbody>
+<tr><td>Inches</td><td>Centimetres</td><td>2.54</td><td>12 in = 30.48 cm</td></tr>
+<tr><td>Feet</td><td>Metres</td><td>0.3048</td><td>6 ft = 1.83 m</td></tr>
+<tr><td>Miles</td><td>Kilometres</td><td>1.609</td><td>26.2 miles = 42.2 km</td></tr>
+<tr><td>Kilometres</td><td>Miles</td><td>0.6214</td><td>10 km = 6.21 miles</td></tr>
+<tr><td>Kilograms</td><td>Pounds</td><td>2.2046</td><td>70 kg = 154.3 lb</td></tr>
+<tr><td>Stone</td><td>Kilograms</td><td>6.350</td><td>11 st = 69.9 kg</td></tr>
+<tr><td>Ounces</td><td>Grams</td><td>28.35</td><td>8 oz = 226.8 g</td></tr>
+<tr><td>UK pints</td><td>Millilitres</td><td>568.3</td><td>1 pint = 568 ml</td></tr>
+<tr><td>UK gallons</td><td>Litres</td><td>4.546</td><td>10 gal = 45.5 L</td></tr>
+<tr><td>US gallons</td><td>Litres</td><td>3.785</td><td>10 gal = 37.9 L</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Temperatures worth knowing</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead><tr><th>Celsius</th><th>Fahrenheit</th><th></th></tr></thead>
+            <tbody>
+<tr><td>&minus;40&deg;C</td><td>&minus;40&deg;F</td><td>The one point where the scales meet</td></tr>
+<tr><td>0&deg;C</td><td>32&deg;F</td><td>Water freezes</td></tr>
+<tr><td>20&deg;C</td><td>68&deg;F</td><td>Room temperature</td></tr>
+<tr><td>37&deg;C</td><td>98.6&deg;F</td><td>Normal body temperature</td></tr>
+<tr><td>100&deg;C</td><td>212&deg;F</td><td>Water boils at sea level</td></tr>
+<tr><td>180&deg;C</td><td>356&deg;F</td><td>Moderate oven (often rounded to 350&deg;F)</td></tr>
+<tr><td>200&deg;C</td><td>392&deg;F</td><td>Hot oven (often rounded to 400&deg;F)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </main>
 
     <main class="tool">
@@ -263,6 +338,14 @@
       <p class="about-text">Multiply by 9, divide by 5, then add 32. So 20C is 68F. Going the other way, subtract 32 first, then multiply by 5 and divide by 9.</p>
       <p class="faq-q">How many kilometres is a mile?</p>
       <p class="about-text">One mile is about 1.609 kilometres, so a kilometre is roughly 0.621 miles. A quick mental estimate is to multiply miles by 1.6.</p>
+      <p class="faq-q">How many pounds are in a stone?</p>
+      <p class="about-text">Fourteen. A stone is 14 pounds, or 6.35 kg, so 11st 7lb is 161 lb or 73.0 kg. Choose Stone in the weight tab to convert directly.</p>
+      <p class="faq-q">Is a UK pint the same as a US pint?</p>
+      <p class="about-text">No. A UK (imperial) pint is 568 ml, about 20% more than a US pint of 473 ml. Gallons differ in the same way: 4.546 litres in the UK against 3.785 litres in the US.</p>
+      <p class="faq-q">How tall is 5 foot 10 in centimetres?</p>
+      <p class="about-text">177.8 cm. Multiply the feet by 12 and add the inches to get inches (70), then multiply by 2.54.</p>
+      <p class="faq-q">How do I convert cups to millilitres?</p>
+      <p class="about-text">A US cup, as used in most recipes online, is about 237 ml. Australian and some UK recipes use a 250 ml metric cup. For baking, weighing in grams is more reliable than cups, since a cup of flour can vary by 20 grams or more depending on how it's packed.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->

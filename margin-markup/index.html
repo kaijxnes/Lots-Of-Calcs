@@ -77,6 +77,38 @@
           "@type": "Answer",
           "text": "100%. To hit a 50% margin you double the cost — a 20 cost sells for 40, which is 100% markup but 50% margin. In general, markup equals margin divided by (100 minus margin)."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate a selling price from a margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the cost by 1 minus the margin as a decimal. For a 35% margin on an item costing £13, 13 ÷ 0.65 = £20."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can margin be more than 100%?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Margin is profit as a share of the selling price, and profit can never be more than the whole price, so margin approaches 100% but never reaches it. Markup has no ceiling: selling a £5 item for £20 is a 300% markup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I include VAT when working out margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — if you are VAT-registered, use prices without VAT for both cost and sale, since the VAT isn't yours to keep. The VAT calculator strips it out of a VAT-inclusive price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between gross margin and net margin?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Gross margin only takes off the direct cost of what you sold, which is what this calculator does. Net margin also takes off overheads such as rent, wages, marketing and fees. For selling online, the marketplace fee calculator shows what eBay, Etsy or Amazon take before you see your margin."
+        }
       }
     ]
   }
@@ -175,9 +207,38 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">Margin and markup both measure profit but from different bases. Margin is profit as a percentage of the sell price (Profit &divide; Sell Price &times; 100); markup is profit as a percentage of the cost price (Profit &divide; Cost Price &times; 100).</p>
-      <p class="about-text">For a &pound;10 profit on a &pound;50 cost with a &pound;60 sell price, that's a 16.7% margin but a 20% markup &mdash; the two numbers are always different, which is why it's worth calculating both.</p>
+      <p class="tool-section-title">Margin and markup, side by side</p>
+      <p class="about-text">Both measure the same profit, against different bases. <strong>Margin</strong> is profit as a percentage of the selling price: profit &divide; sell price &times; 100. <strong>Markup</strong> is profit as a percentage of the cost: profit &divide; cost &times; 100.</p>
+      <p class="about-text"><strong>Worked example:</strong> you buy a lamp for &pound;24 and sell it for &pound;40. The profit is &pound;16. The margin is 16 &divide; 40 = <strong>40%</strong>; the markup is 16 &divide; 24 = <strong>66.7%</strong>. Same lamp, same &pound;16 &mdash; but quote the wrong one and a price looks a lot more, or less, generous than it is.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Setting a price from a target</p>
+      <p class="about-text"><strong>From a target margin:</strong> sell price = cost &divide; (1 &minus; margin). To make a 40% margin on a &pound;24 cost, 24 &divide; 0.6 = <strong>&pound;40</strong>.</p>
+      <p class="about-text"><strong>From a target markup:</strong> sell price = cost &times; (1 + markup). A 40% markup on &pound;24 is 24 &times; 1.4 = <strong>&pound;33.60</strong> &mdash; which is only a 28.6% margin.</p>
+      <p class="about-text">A common mistake is to add the target margin to the cost as if it were a markup: &pound;24 plus 40% gives &pound;33.60, not the &pound;40 a 40% margin needs.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Margin to markup conversion</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead><tr><th>Margin</th><th>Equivalent markup</th><th>Sell price on a &pound;100 cost</th></tr></thead>
+            <tbody>
+<tr><td>10%</td><td>11.1%</td><td>&pound;111.11</td></tr>
+<tr><td>20%</td><td>25%</td><td>&pound;125.00</td></tr>
+<tr><td>25%</td><td>33.3%</td><td>&pound;133.33</td></tr>
+<tr><td>30%</td><td>42.9%</td><td>&pound;142.86</td></tr>
+<tr><td>40%</td><td>66.7%</td><td>&pound;166.67</td></tr>
+<tr><td>50%</td><td>100%</td><td>&pound;200.00</td></tr>
+<tr><td>60%</td><td>150%</td><td>&pound;250.00</td></tr>
+<tr><td>75%</td><td>300%</td><td>&pound;400.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Markup = margin &divide; (100 &minus; margin) &times; 100. Margin = markup &divide; (100 + markup) &times; 100.</p>
     </main>
 
     <main class="tool">
@@ -186,6 +247,14 @@
       <p class="about-text">Both measure the same profit against different bases. Margin is profit as a percentage of the sell price; markup is profit as a percentage of the cost price. The same sale always shows a lower margin than markup.</p>
       <p class="faq-q">What markup do I need for a 50% margin?</p>
       <p class="about-text">100%. To hit a 50% margin you double the cost — a 20 cost sells for 40, which is 100% markup but 50% margin. In general, markup equals margin divided by (100 minus margin).</p>
+      <p class="faq-q">How do I calculate a selling price from a margin?</p>
+      <p class="about-text">Divide the cost by 1 minus the margin as a decimal. For a 35% margin on an item costing &pound;13, 13 &divide; 0.65 = &pound;20.</p>
+      <p class="faq-q">Can margin be more than 100%?</p>
+      <p class="about-text">No. Margin is profit as a share of the selling price, and profit can never be more than the whole price, so margin approaches 100% but never reaches it. Markup has no ceiling: selling a &pound;5 item for &pound;20 is a 300% markup.</p>
+      <p class="faq-q">Should I include VAT when working out margin?</p>
+      <p class="about-text">No &mdash; if you are VAT-registered, use prices without VAT for both cost and sale, since the VAT isn't yours to keep. The <a href="/vat/">VAT calculator</a> strips it out of a VAT-inclusive price.</p>
+      <p class="faq-q">What is the difference between gross margin and net margin?</p>
+      <p class="about-text">Gross margin only takes off the direct cost of what you sold, which is what this calculator does. Net margin also takes off overheads such as rent, wages, marketing and fees. For selling online, the <a href="/marketplace-fees/">marketplace fee calculator</a> shows what eBay, Etsy or Amazon take before you see your margin.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->

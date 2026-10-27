@@ -116,30 +116,34 @@ function evaluate(tokens) {
   }
 
   function parseTerm() {
-    let value = parsePower();
+    let value = parseUnary();
     while (peek() && peek().type === "op" && (peek().value === "×" || peek().value === "÷")) {
       const op = next().value;
-      const rhs = parsePower();
+      const rhs = parseUnary();
       value = op === "×" ? value * rhs : value / rhs;
     }
     return value;
   }
 
-  function parsePower() {
-    const base = parseUnary();
-    if (peek() && peek().type === "op" && peek().value === "^") {
-      next();
-      return Math.pow(base, parsePower());
-    }
-    return base;
-  }
-
+  /* A leading minus binds more loosely than a power, as on paper and on
+     scientific calculators: −2^2 is −(2^2) = −4, not (−2)^2 */
   function parseUnary() {
     if (peek() && peek().type === "op" && peek().value === "−") {
       next();
       return -parseUnary();
     }
-    return parsePostfix();
+    return parsePower();
+  }
+
+  /* Right-associative, and the exponent may carry its own sign: 2^3^2 is
+     2^9, and 2^−1 is 0.5 */
+  function parsePower() {
+    const base = parsePostfix();
+    if (peek() && peek().type === "op" && peek().value === "^") {
+      next();
+      return Math.pow(base, parseUnary());
+    }
+    return base;
   }
 
   function parsePostfix() {

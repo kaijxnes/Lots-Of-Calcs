@@ -64,6 +64,14 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "How do I calculate 20% off a price?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the price by 0.8. 20% off £45 is 45 × 0.8 = £36, a saving of £9. For any discount, multiply by 1 minus the percentage as a decimal: 0.85 for 15% off, 0.7 for 30% off."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Do two 10% discounts add up to 20% off?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -76,6 +84,30 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Divide the sale price by 1 minus the discount as a decimal. An item reduced 25% to 60 was originally 60 divided by 0.75, which is 80."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out what percentage off something is?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the saving by the original price and multiply by 100. A £50 item selling for £35 is £15 off, and 15 ÷ 50 × 100 = 30% off. The percentage calculator does this on its “% change” tab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a percentage off better than money off?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on the price. 10% off beats £10 off only when the item costs more than £100. Work out the percentage version as money for your basket and compare the two."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does the discount come off before or after VAT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Shop prices in the UK include VAT, so a discount on the shelf price reduces the VAT you pay in proportion. For business invoices quoted before VAT, apply the discount to the net price, then add VAT to what is left."
         }
       }
     ]
@@ -134,17 +166,51 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">A single discount reduces the price by Price &times; (Discount % &divide; 100).</p>
-      <p class="about-text">Stacked discounts are applied sequentially to whatever the price has become after the previous discount, not all at once on the original price &mdash; so two 10% discounts save 19%, not 20%, because the second 10% is taken off an already-reduced price.</p>
+      <p class="tool-section-title">How to work out a discount</p>
+      <p class="about-text">Multiply the price by the percentage off and divide by 100 to get the saving, then take that from the price. Or go straight to the sale price by multiplying by 1 minus the discount as a decimal.</p>
+      <p class="about-text"><strong>Example:</strong> 30% off a &pound;85 jacket. The saving is 85 &times; 30 &divide; 100 = &pound;25.50, so you pay <strong>&pound;59.50</strong> &mdash; the same as 85 &times; 0.7.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Stacked discounts</p>
+      <p class="about-text">When a shop offers &ldquo;an extra 10% off sale prices&rdquo;, or a voucher on top of a reduction, each discount comes off the price left by the one before. Add each discount as its own row above and the calculator applies them in order.</p>
+      <p class="about-text"><strong>Example:</strong> &pound;120 trainers reduced by 25%, with a further 10% code. 120 &times; 0.75 = &pound;90, then 90 &times; 0.9 = <strong>&pound;81</strong>. That is &pound;39 off, an effective discount of 32.5% &mdash; not 35%. The order doesn't matter: 10% then 25% also ends at &pound;81.</p>
+      <p class="about-text">The effective discount of several stacked discounts is 1 minus the product of what each one leaves: (1 &minus; 0.25) &times; (1 &minus; 0.10) = 0.675, so 32.5% off overall.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Multibuy offers as a percentage</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Offer</th><th>What you pay for</th><th>Discount per item</th></tr></thead>
+            <tbody>
+<tr><td>Buy one, get one free</td><td>1 of 2</td><td>50%</td></tr>
+<tr><td>Buy one, get one half price</td><td>1.5 of 2</td><td>25%</td></tr>
+<tr><td>3 for 2</td><td>2 of 3</td><td>33.3%</td></tr>
+<tr><td>4 for 3</td><td>3 of 4</td><td>25%</td></tr>
+<tr><td>Buy 2, get the 3rd half price</td><td>2.5 of 3</td><td>16.7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Assumes the items cost the same. Where they don't, the cheapest is usually the free one, so the real discount is smaller.</p>
     </main>
 
     <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I calculate 20% off a price?</p>
+      <p class="about-text">Multiply the price by 0.8. 20% off &pound;45 is 45 &times; 0.8 = &pound;36, a saving of &pound;9. For any discount, multiply by 1 minus the percentage as a decimal: 0.85 for 15% off, 0.7 for 30% off.</p>
       <p class="faq-q">Do two 10% discounts add up to 20% off?</p>
       <p class="about-text">No — they come to 19%. The second discount applies to the already-reduced price, so stacked discounts always save slightly less than adding the percentages together.</p>
       <p class="faq-q">How do I work out the original price from a sale price?</p>
       <p class="about-text">Divide the sale price by 1 minus the discount as a decimal. An item reduced 25% to 60 was originally 60 divided by 0.75, which is 80.</p>
+      <p class="faq-q">How do I work out what percentage off something is?</p>
+      <p class="about-text">Divide the saving by the original price and multiply by 100. A &pound;50 item selling for &pound;35 is &pound;15 off, and 15 &divide; 50 &times; 100 = 30% off. The <a href="/percent/">percentage calculator</a> does this on its &ldquo;% change&rdquo; tab.</p>
+      <p class="faq-q">Is a percentage off better than money off?</p>
+      <p class="about-text">It depends on the price. 10% off beats &pound;10 off only when the item costs more than &pound;100. Work out the percentage version as money for your basket and compare the two.</p>
+      <p class="faq-q">Does the discount come off before or after VAT?</p>
+      <p class="about-text">Shop prices in the UK include VAT, so a discount on the shelf price reduces the VAT you pay in proportion. For business invoices quoted before VAT, apply the discount to the net price, then add VAT to what is left.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->

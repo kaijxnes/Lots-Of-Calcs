@@ -77,6 +77,38 @@
           "@type": "Answer",
           "text": "Because countries start and end daylight saving on different dates. For a few weeks each spring and autumn the usual gap between two zones shifts by an hour."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "What time is it in New York when it's 9am in London?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Usually 4am — New York is five hours behind London for most of the year. For a few weeks in March and late October to early November, when only one of the two has changed its clocks, it is four hours behind, so 5am."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is the UK on GMT or BST now?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The UK is on BST (UTC+1) from the last Sunday in March to the last Sunday in October, and on GMT (UTC+0) the rest of the year. Press “Use current time” and the calculator converts from the time on your device."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the best time for a meeting across time zones?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Convert a few candidate times and look for one inside working hours in both places. London and New York overlap best between about 13:00 and 17:00 UK time; London and Sydney have almost no overlap, so one side usually takes an early morning or evening call."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does a time zone show something like GMT+5:30?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Not every zone is a whole number of hours from UTC. India is 5 hours 30 minutes ahead, Nepal 5 hours 45 minutes, and parts of Australia half an hour off their neighbours. The calculator handles these offsets exactly."
+        }
       }
     ]
   }
@@ -120,9 +152,33 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">Time zone offsets aren't fixed &mdash; many places move their clocks forward or back for daylight saving at different times of year, so a simple fixed offset would be wrong for half the year.</p>
-      <p class="about-text">This calculator works out each time zone's actual offset for the specific date and time you enter, so daylight saving is handled automatically rather than needing a manual adjustment.</p>
+      <p class="tool-section-title">How the conversion works</p>
+      <p class="about-text">Pick a date and time, the zone it's in and the zone you want. The calculator looks up each zone's offset from UTC for that exact moment &mdash; including whether daylight saving is in force there &mdash; and converts. It uses the time zone database built into your browser, the same one your phone and computer use to set their clocks.</p>
+      <p class="about-text"><strong>Worked example:</strong> a call at 14:00 in London on 20 March 2026 is <strong>10:00 in New York</strong>. On 20 January it would be 09:00 in New York. The gap is usually five hours, but the US moves its clocks forward on 8 March 2026 and the UK not until 29 March, so for three weeks it is only four.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">When the clocks change</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Where</th><th>Clocks go forward</th><th>Clocks go back</th></tr></thead>
+            <tbody>
+<tr><td>UK and EU</td><td>Last Sunday in March</td><td>Last Sunday in October</td></tr>
+<tr><td>US and Canada (most areas)</td><td>Second Sunday in March</td><td>First Sunday in November</td></tr>
+<tr><td>Australia (south-east)</td><td>First Sunday in October</td><td>First Sunday in April</td></tr>
+<tr><td>New Zealand</td><td>Last Sunday in September</td><td>First Sunday in April</td></tr>
+<tr><td>Japan, China, India</td><td colspan="2">No daylight saving</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Because the southern hemisphere's summer is the northern winter, London is 11 hours behind Sydney in January but 9 hours behind in July. Some places, including Arizona and Queensland, don't use daylight saving at all.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">GMT, BST, UTC &mdash; what's the difference?</p>
+      <p class="about-text"><strong>UTC</strong> (Coordinated Universal Time) is the reference every time zone is measured from, and never changes for daylight saving. <strong>GMT</strong> is the UK's winter time and is the same as UTC. <strong>BST</strong>, British Summer Time, is the UK's summer time, one hour ahead (UTC+1), from the last Sunday in March to the last Sunday in October.</p>
     </main>
 
     <main class="tool">
@@ -131,6 +187,14 @@
       <p class="about-text">Yes. The conversion uses your browser's time zone data, so daylight saving is applied automatically for the specific date you enter — which matters, since the offset between two zones changes across the year.</p>
       <p class="faq-q">Why is the time difference between two cities not always the same?</p>
       <p class="about-text">Because countries start and end daylight saving on different dates. For a few weeks each spring and autumn the usual gap between two zones shifts by an hour.</p>
+      <p class="faq-q">What time is it in New York when it's 9am in London?</p>
+      <p class="about-text">Usually 4am &mdash; New York is five hours behind London for most of the year. For a few weeks in March and late October to early November, when only one of the two has changed its clocks, it is four hours behind, so 5am.</p>
+      <p class="faq-q">Is the UK on GMT or BST now?</p>
+      <p class="about-text">The UK is on BST (UTC+1) from the last Sunday in March to the last Sunday in October, and on GMT (UTC+0) the rest of the year. Press &ldquo;Use current time&rdquo; and the calculator converts from the time on your device.</p>
+      <p class="faq-q">What is the best time for a meeting across time zones?</p>
+      <p class="about-text">Convert a few candidate times and look for one inside working hours in both places. London and New York overlap best between about 13:00 and 17:00 UK time; London and Sydney have almost no overlap, so one side usually takes an early morning or evening call.</p>
+      <p class="faq-q">Why does a time zone show something like GMT+5:30?</p>
+      <p class="about-text">Not every zone is a whole number of hours from UTC. India is 5 hours 30 minutes ahead, Nepal 5 hours 45 minutes, and parts of Australia half an hour off their neighbours. The calculator handles these offsets exactly.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->

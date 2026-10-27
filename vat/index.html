@@ -72,6 +72,38 @@
       },
       {
         "@type": "Question",
+        "name": "How much VAT is in £100?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "If £100 is the price before VAT, 20% VAT adds £20, making £120. If £100 already includes 20% VAT, the VAT within it is £16.67 (one sixth) and the price before VAT is £83.33."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between zero-rated and exempt?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Both mean no VAT is charged to the customer, but a business selling zero-rated goods is still in the VAT system and can reclaim the VAT on its own costs. A business making only exempt supplies cannot register for VAT or reclaim the VAT it pays."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "When does a business have to register for VAT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In the UK, when its VAT-taxable turnover goes over £90,000 in any rolling 12 months, or is expected to within the next 30 days. Businesses below the threshold can register voluntarily. Check the current threshold on GOV.UK before relying on it."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this work for VAT rates in other countries?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Change the rate to the one you need and pick your currency; the add and remove formulas are the same everywhere. Sales tax in the US is usually quoted before tax, so use the net price box."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Does a higher tax band apply to my whole income?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -125,7 +157,7 @@
             <input type="number" id="vat-gross" placeholder="0.00" step="any">
           </div>
         </div>
-        <p class="tool-hint">Enter either the net or the gross price — the other field and the VAT amount update automatically.</p>
+        <p class="tool-hint">Enter either the net or the gross price — the other field and the VAT amount update automatically. UK rates: 20% standard, 5% reduced, 0% zero-rated.</p>
         <div class="result-box">
           <div class="result-grid">
             <div class="result-row highlight"><span class="r-label">VAT amount</span><span class="r-value" id="vat-amount">£0.00</span></div>
@@ -134,7 +166,7 @@
       </div>
 
       <div class="tab-panel" data-panel="income-tax">
-        <p class="tool-hint">Default bands mirror UK 2024/25 income tax. Edit thresholds and rates to model any scheme.</p>
+        <p class="tool-hint">Default bands are the UK's 2026/27 income tax bands (England, Wales and Northern Ireland). Edit thresholds and rates to model any scheme.</p>
         <div class="dyn-table-head">
           <span class="grow">Band up to</span>
           <span class="fixed-sm">Rate %</span>
@@ -158,15 +190,53 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">VAT is added to a net price using Net &times; (1 + VAT Rate), or removed from a gross price using Gross &divide; (1 + VAT Rate).</p>
-      <p class="about-text">The income tax calculator applies each band's rate only to the portion of income that falls within it &mdash; a progressive system where earning more never reduces your take-home pay, since higher rates only apply to the slice above each threshold.</p>
+      <p class="tool-section-title">How to add VAT</p>
+      <p class="about-text">Multiply the net price by 1 plus the VAT rate as a decimal: <strong>gross = net &times; (1 + rate)</strong>. At the UK standard rate of 20% that means multiplying by 1.2.</p>
+      <p class="about-text"><strong>Example:</strong> a &pound;150 invoice before VAT. 150 &times; 1.2 = <strong>&pound;180</strong> including VAT, of which &pound;30 is VAT. At the 5% reduced rate it would be 150 &times; 1.05 = &pound;157.50.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How to remove VAT</p>
+      <p class="about-text">Divide the gross price by 1 plus the VAT rate: <strong>net = gross &divide; (1 + rate)</strong>. At 20%, divide by 1.2.</p>
+      <p class="about-text"><strong>Example:</strong> a &pound;180 receipt that includes 20% VAT. 180 &divide; 1.2 = <strong>&pound;150</strong> before VAT, so the VAT is &pound;30.</p>
+      <p class="about-text">Taking 20% off &pound;180 gives &pound;144, which is wrong: the VAT was 20% of the smaller net price, not of the total. At 20%, the VAT inside any VAT-inclusive price is exactly <strong>one sixth</strong> of it (&pound;180 &divide; 6 = &pound;30). At 5% it is one twenty-first. HMRC calls this the VAT fraction.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">UK VAT rates</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Rate</th><th>Applies to (examples)</th><th>Add to net</th><th>VAT in a gross price</th></tr></thead>
+            <tbody>
+<tr><td>Standard 20%</td><td>Most goods and services</td><td>&times; 1.2</td><td>1/6</td></tr>
+<tr><td>Reduced 5%</td><td>Home energy, children's car seats, some energy-saving installations</td><td>&times; 1.05</td><td>1/21</td></tr>
+<tr><td>Zero 0%</td><td>Most food, children's clothes, books and newspapers, public transport</td><td>&times; 1</td><td>none</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Some things are exempt from VAT altogether, such as most insurance, financial services, education and healthcare. HMRC's <a href="https://www.gov.uk/guidance/rates-of-vat-on-different-goods-and-services" rel="nofollow noopener" target="_blank">rates of VAT on different goods and services</a> lists every case.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">The income tax bands tab</p>
+      <p class="about-text">The second tab applies a set of progressive bands to an income: each rate charges only the slice of income inside its band. It starts with the UK's 2026/27 bands for England, Wales and Northern Ireland, and you can edit the thresholds and rates to model any scheme.</p>
+      <p class="about-text">It is a band splitter, not a payslip: it doesn't taper the personal allowance above &pound;100,000 or add National Insurance. For your actual take-home pay, use the <a href="/salary/">salary after tax calculator</a>.</p>
     </main>
 
     <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
       <p class="faq-q">How do I remove VAT from a gross price?</p>
       <p class="about-text">Divide by 1 plus the VAT rate. At 20% VAT you divide the gross price by 1.2 to get the net price — subtracting 20% does not work, because the VAT was added to the smaller net figure.</p>
+      <p class="faq-q">How much VAT is in &pound;100?</p>
+      <p class="about-text">If &pound;100 is the price before VAT, 20% VAT adds &pound;20, making &pound;120. If &pound;100 already includes 20% VAT, the VAT within it is &pound;16.67 (one sixth) and the price before VAT is &pound;83.33.</p>
+      <p class="faq-q">What is the difference between zero-rated and exempt?</p>
+      <p class="about-text">Both mean no VAT is charged to the customer, but a business selling zero-rated goods is still in the VAT system and can reclaim the VAT on its own costs. A business making only exempt supplies cannot register for VAT or reclaim the VAT it pays.</p>
+      <p class="faq-q">When does a business have to register for VAT?</p>
+      <p class="about-text">In the UK, when its VAT-taxable turnover goes over &pound;90,000 in any rolling 12 months, or is expected to within the next 30 days. Businesses below the threshold can register voluntarily. Check the current threshold on <a href="https://www.gov.uk/vat-registration" rel="nofollow noopener" target="_blank">GOV.UK</a> before relying on it.</p>
+      <p class="faq-q">Does this work for VAT rates in other countries?</p>
+      <p class="about-text">Yes. Change the rate to the one you need and pick your currency; the add and remove formulas are the same everywhere. Sales tax in the US is usually quoted before tax, so use the net price box.</p>
       <p class="faq-q">Does a higher tax band apply to my whole income?</p>
       <p class="about-text">No. In a progressive system each rate applies only to the slice of income inside that band, so moving into a higher band never reduces your take-home pay — only the income above the threshold is taxed at the higher rate.</p>
     </main>

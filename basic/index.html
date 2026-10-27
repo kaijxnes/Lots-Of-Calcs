@@ -77,6 +77,38 @@
           "@type": "Answer",
           "text": "Press Backspace to remove the last digit you typed. Escape (or the clear button) resets the whole calculation."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "Why does 2 + 3 × 4 give 20 instead of 14?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "This is a step-by-step calculator, like most pocket calculators: each operation is completed when you press the next operator, so 2 + 3 is worked out before the × 4. For the order of operations taught in school (BODMAS), use the scientific calculator, which gives 14."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out a percentage of a number?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Type the number, press ×, type the percentage, then press % and =. 80 × 25 % = gives 20: the % key turns 25 into 0.25 before the multiplication."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I chain calculations together?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Keep pressing operators and numbers and the running total updates at each step: 12 + 8 × 3 − 10 = gives 50. After pressing =, type an operator to carry on from the answer, or press Escape to start a new sum."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is anything I type sent anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The calculator runs entirely in your browser; nothing you type leaves your device."
+        }
       }
     ]
   }
@@ -121,9 +153,35 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
+      <p class="tool-section-title">How to use it</p>
       <p class="about-text">This calculator handles the four basic operations &mdash; addition, subtraction, multiplication and division &mdash; plus percentages, all with full keyboard support.</p>
       <p class="about-text">Type numbers and operators directly, or click the on-screen keys; press Enter or = to see the result.</p>
+      <p class="about-text">Like a pocket calculator, it works out each step as you go: press an operator and the sum so far is calculated straight away. That means <strong>2 + 3 &times; 4 gives 20</strong> &mdash; it adds 2 and 3, then multiplies by 4. If you want multiplication done before addition, the way it's written on paper (2 + 3 &times; 4 = 14), use the <a href="/scientific/">scientific calculator</a>, which follows the order of operations.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Keyboard shortcuts</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead><tr><th>Key</th><th>Does</th></tr></thead>
+            <tbody>
+<tr><td>0&ndash;9 and .</td><td>Type a number</td></tr>
+<tr><td>+ &minus; * /</td><td>Add, subtract, multiply, divide</td></tr>
+<tr><td>Enter or =</td><td>Equals</td></tr>
+<tr><td>%</td><td>Turn the number on screen into a percentage (divide by 100)</td></tr>
+<tr><td>Backspace</td><td>Delete the last digit</td></tr>
+<tr><td>Escape</td><td>Clear everything</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Using the % key</p>
+      <p class="about-text">The % key divides the number on screen by 100. Use it to take a percentage of something: <strong>240 &times; 15 % =</strong> gives 36, which is 15% of 240.</p>
+      <p class="about-text">To add a percentage, multiply by 1 plus the percentage: 240 plus 15% is 240 &times; 1.15 = 276. To take one off, multiply by 1 minus it: 240 less 15% is 240 &times; 0.85 = 204. For percentage change, &ldquo;what percent of&rdquo; and reverse percentages, the <a href="/percent/">percentage calculator</a> does each in one step.</p>
     </main>
 
     <main class="tool">
@@ -132,6 +190,14 @@
       <p class="about-text">Yes. Number keys and the operator keys work as you would expect, Enter acts as equals, Backspace deletes the last digit, and Escape clears the calculator.</p>
       <p class="faq-q">How do I clear just the last digit instead of everything?</p>
       <p class="about-text">Press Backspace to remove the last digit you typed. Escape (or the clear button) resets the whole calculation.</p>
+      <p class="faq-q">Why does 2 + 3 &times; 4 give 20 instead of 14?</p>
+      <p class="about-text">This is a step-by-step calculator, like most pocket calculators: each operation is completed when you press the next operator, so 2 + 3 is worked out before the &times; 4. For the order of operations taught in school (BODMAS), use the scientific calculator, which gives 14.</p>
+      <p class="faq-q">How do I work out a percentage of a number?</p>
+      <p class="about-text">Type the number, press &times;, type the percentage, then press % and =. 80 &times; 25 % = gives 20: the % key turns 25 into 0.25 before the multiplication.</p>
+      <p class="faq-q">Can I chain calculations together?</p>
+      <p class="about-text">Yes. Keep pressing operators and numbers and the running total updates at each step: 12 + 8 &times; 3 &minus; 10 = gives 50. After pressing =, type an operator to carry on from the answer, or press Escape to start a new sum.</p>
+      <p class="faq-q">Is anything I type sent anywhere?</p>
+      <p class="about-text">No. The calculator runs entirely in your browser; nothing you type leaves your device.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->
