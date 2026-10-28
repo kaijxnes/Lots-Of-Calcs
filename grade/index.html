@@ -4,18 +4,18 @@
 <script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grade / Score Calculator</title>
-<meta name="description" content="Turn a score into a percentage and letter grade, or calculate a weighted average across multiple assignments.">
+<title>Grade Calculator — Score to %, Letter Grade &amp; Weighted Grade</title>
+<meta name="description" content="Turn a test score into a percentage and letter grade using your own grade boundaries, or work out a weighted average grade across assignments and exams.">
 <link rel="canonical" href="https://lotsofcalcs.com/grade/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="Grade / Score Calculator">
-<meta property="og:description" content="Turn a score into a percentage and letter grade, or calculate a weighted average across multiple assignments.">
+<meta property="og:title" content="Grade Calculator — Score to %, Letter Grade &amp; Weighted Grade">
+<meta property="og:description" content="Turn a test score into a percentage and letter grade using your own grade boundaries, or work out a weighted average grade across assignments and exams.">
 <meta property="og:url" content="https://lotsofcalcs.com/grade/">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Grade / Score Calculator">
-<meta name="twitter:description" content="Turn a score into a percentage and letter grade, or calculate a weighted average across multiple assignments.">
+<meta name="twitter:title" content="Grade Calculator — Score to %, Letter Grade &amp; Weighted Grade">
+<meta name="twitter:description" content="Turn a test score into a percentage and letter grade using your own grade boundaries, or work out a weighted average grade across assignments and exams.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -75,7 +75,39 @@
         "name": "What score do I need on the final to reach a target grade?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Work out how many weighted points you already have, subtract that from your target, and divide by the final's weight. Entering your marks so far in the weighted tab makes the gap easy to see."
+          "text": "Work out how many weighted points you already have, subtract that from your target, and divide by the final's weight. With 68% on coursework worth 20% and 74% on a mid-term worth 30%, you have 35.8 points; to reach 70% overall you need (70 − 35.8) ÷ 0.5 = 68.4% on a final worth 50%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I turn a score into a percentage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the marks you got by the marks available and multiply by 100. 38 out of 45 is 38 ÷ 45 × 100 = 84.4%."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if my weights don't add up to 100%?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The calculator divides by the total weight you have entered, so you can work out your average so far before every mark is in. Three assessments worth 20%, 30% and 10% give your average across that 60% of the module."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What percentage is a first-class degree?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An average of 70% or more at most UK universities. 60–69% is a 2:1, 50–59% a 2:2 and 40–49% a third."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use letter grades like A* or 9–1?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Grade names are free text, so add a row for each grade with the minimum percentage for it — A* at 90, 9 at 85, or whatever your boundaries are — and the calculator matches your score against them."
         }
       }
     ]
@@ -151,9 +183,47 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">A single score is converted to a percentage (Score &divide; Total &times; 100) and matched against editable grade boundaries.</p>
-      <p class="about-text">The weighted average multiplies each assignment's percentage by its weight, sums those, and divides by the total weight used &mdash; so a 90% test worth 50% of your grade counts twice as much as a 90% homework worth 25%.</p>
+      <p class="tool-section-title">From a score to a grade</p>
+      <p class="about-text">A score becomes a percentage by dividing the marks you got by the marks available and multiplying by 100: 47 out of 60 is 47 &divide; 60 &times; 100 = <strong>78.3%</strong>. That percentage is then matched against the grade boundaries &mdash; the highest boundary it reaches is your grade.</p>
+      <p class="about-text">The boundaries start as a common US-style scale (A from 90%, B from 80%, C from 70%, D from 60%). Edit, add or remove them to match your school, exam board or university.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Weighted grades, worked through</p>
+      <p class="about-text">When pieces of work count for different shares of the final mark, each score is multiplied by its weight before adding up. Suppose coursework is worth 20%, a mid-term 30% and the final exam 50%:</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Assessment</th><th>Score</th><th>Weight</th><th>Counts for</th></tr></thead>
+            <tbody>
+<tr><td>Coursework</td><td>68%</td><td>20%</td><td>13.6</td></tr>
+<tr><td>Mid-term</td><td>74%</td><td>30%</td><td>22.2</td></tr>
+<tr><td>Final exam</td><td>81%</td><td>50%</td><td>40.5</td></tr>
+<tr><td><strong>Overall</strong></td><td></td><td>100%</td><td><strong>76.3%</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="about-text" style="margin-top:12px;">A plain average of the three scores would be 74.3%. The weighted figure is higher because the strongest score, the final, counts for half the grade.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">UK degree classifications</p>
+      <p class="about-text">UK universities usually class an honours degree by its weighted average mark:</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead><tr><th>Classification</th><th>Average mark</th></tr></thead>
+            <tbody>
+<tr><td>First (1st)</td><td>70% and above</td></tr>
+<tr><td>Upper second (2:1)</td><td>60&ndash;69%</td></tr>
+<tr><td>Lower second (2:2)</td><td>50&ndash;59%</td></tr>
+<tr><td>Third (3rd)</td><td>40&ndash;49%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">To use these, set the boundaries to 1st 70, 2:1 60, 2:2 50, 3rd 40 and Fail 0. Universities differ in which years count and how borderline marks are treated, so check your own regulations. GCSE and A-level grade boundaries change with every exam series and are published by each exam board.</p>
     </main>
 
     <main class="tool">
@@ -161,42 +231,52 @@
       <p class="faq-q">How do I calculate a weighted average grade?</p>
       <p class="about-text">Multiply each score by its weight, add those together, then divide by the total of the weights. A piece worth 60% of the module counts three times as heavily as one worth 20%.</p>
       <p class="faq-q">What score do I need on the final to reach a target grade?</p>
-      <p class="about-text">Work out how many weighted points you already have, subtract that from your target, and divide by the final's weight. Entering your marks so far in the weighted tab makes the gap easy to see.</p>
+      <p class="about-text">Work out how many weighted points you already have, subtract that from your target, and divide by the final's weight. With 68% on coursework worth 20% and 74% on a mid-term worth 30%, you have 35.8 points; to reach 70% overall you need (70 &minus; 35.8) &divide; 0.5 = 68.4% on a final worth 50%.</p>
+      <p class="faq-q">How do I turn a score into a percentage?</p>
+      <p class="about-text">Divide the marks you got by the marks available and multiply by 100. 38 out of 45 is 38 &divide; 45 &times; 100 = 84.4%.</p>
+      <p class="faq-q">What if my weights don't add up to 100%?</p>
+      <p class="about-text">The calculator divides by the total weight you have entered, so you can work out your average so far before every mark is in. Three assessments worth 20%, 30% and 10% give your average across that 60% of the module.</p>
+      <p class="faq-q">What percentage is a first-class degree?</p>
+      <p class="about-text">An average of 70% or more at most UK universities. 60&ndash;69% is a 2:1, 50&ndash;59% a 2:2 and 40&ndash;49% a third.</p>
+      <p class="faq-q">Can I use letter grades like A* or 9&ndash;1?</p>
+      <p class="about-text">Yes. Grade names are free text, so add a row for each grade with the minimum percentage for it &mdash; A* at 90, 9 at 85, or whatever your boundaries are &mdash; and the calculator matches your score against them.</p>
     </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
     <div class="hub-grid">
-      <a class="hub-card" href="/tip/">
-        <span class="icon">🍽️</span>
-        <div class="title">Tip Calculator</div>
-        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
+      <a class="hub-card" href="/weighted-average/">
+        <span class="icon">🎚️</span>
+        <div class="title">Weighted Average</div>
+        <div class="desc">Values and weights → the weighted average, with each row's contribution.</div>
       </a>
-      <a class="hub-card" href="/discount/">
-        <span class="icon">🏷️</span>
-        <div class="title">Discount Calculator</div>
-        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
       </a>
-      <a class="hub-card" href="/split-bill/">
-        <span class="icon">🧑‍🤝‍🧑</span>
-        <div class="title">Split Bill</div>
-        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
+      <a class="hub-card" href="/fractions/">
+        <span class="icon">➗</span>
+        <div class="title">Fraction Calculator</div>
+        <div class="desc">Add, subtract, multiply and divide fractions, with the working shown.</div>
       </a>
-      <a class="hub-card" href="/unit-converter/">
-        <span class="icon">📐</span>
-        <div class="title">Unit Converter</div>
-        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      <a class="hub-card" href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
       </a>
-      <a class="hub-card" href="/bmi/">
-        <span class="icon">⚖️</span>
-        <div class="title">BMI Calculator</div>
-        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      <a class="hub-card" href="/date-diff/">
+        <span class="icon">📅</span>
+        <div class="title">Date Difference</div>
+        <div class="desc">Years, months and days between two dates.</div>
       </a>
-      <a class="hub-card" href="/fuel-cost/">
-        <span class="icon">⛽</span>
-        <div class="title">Fuel Cost / MPG</div>
-        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      <a class="hub-card" href="/everyday/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Everyday calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
       </a>
     </div>
+    <!-- end related calculators -->
 
     <footer class="site-footer">
       <p class="footer-categories">

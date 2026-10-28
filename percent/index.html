@@ -4,18 +4,18 @@
 <script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Percentage Calculator</title>
-<meta name="description" content="Work out X% of Y, what percent X is of Y, or the percentage change between two values instantly.">
+<title>Percentage Calculator — % of a Number, % Change &amp; More</title>
+<meta name="description" content="Work out X% of a number, what percentage one number is of another, or the percentage increase or decrease between two values — with the formula and worked examples.">
 <link rel="canonical" href="https://lotsofcalcs.com/percent/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="Percentage Calculator">
-<meta property="og:description" content="Work out X% of Y, what percent X is of Y, or the percentage change between two values instantly.">
+<meta property="og:title" content="Percentage Calculator — % of a Number, % Change &amp; More">
+<meta property="og:description" content="Work out X% of a number, what percentage one number is of another, or the percentage increase or decrease between two values — with the formula and worked examples.">
 <meta property="og:url" content="https://lotsofcalcs.com/percent/">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Percentage Calculator">
-<meta name="twitter:description" content="Work out X% of Y, what percent X is of Y, or the percentage change between two values instantly.">
+<meta name="twitter:title" content="Percentage Calculator — % of a Number, % Change &amp; More">
+<meta name="twitter:description" content="Work out X% of a number, what percentage one number is of another, or the percentage increase or decrease between two values — with the formula and worked examples.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -72,10 +72,42 @@
       },
       {
         "@type": "Question",
+        "name": "How do I calculate a percentage increase?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Subtract the old value from the new one, divide by the old value and multiply by 100. Rent going from £900 to £990 a month is a 90 ÷ 900 × 100 = 10% increase. A negative answer means a decrease."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I find the original number before a percentage was added?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide by 1 plus the percentage as a decimal. If a price of £84 includes a 5% rise, the original was 84 ÷ 1.05 = £80. Taking 5% off £84 gives £79.80, which is wrong, because the 5% was worked out on the smaller original figure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between a percentage and a percentage point?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A percentage point is the plain difference between two percentages; a percentage change is that difference relative to where it started. An interest rate rising from 4% to 5% has gone up by one percentage point, but by 25% in relative terms."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Why is a 50% rise followed by a 50% fall not back where it started?",
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Because each percentage applies to a different base. 100 rising 50% is 150, and 50% of 150 is 75 — so you end at 75, not 100. Percentage falls are always taken from the larger, already-increased figure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is X% of Y the same as Y% of X?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, always. 8% of 50 and 50% of 8 are both 4, because both are 8 × 50 ÷ 100. It is a handy shortcut when one way round is easier to do in your head."
         }
       }
     ]
@@ -159,52 +191,93 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">Percentage questions come in three common forms, each handled by its own tab.</p>
-      <p class="about-text">&ldquo;X% of Y&rdquo; multiplies Y by X&divide;100. &ldquo;X is what % of Y&rdquo; divides X by Y and multiplies by 100. &ldquo;% change&rdquo; calculates (New &minus; Old) &divide; Old &times; 100, and shows whether it's an increase or a decrease.</p>
+      <p class="tool-section-title">The three percentage formulas</p>
+      <p class="about-text">Each tab answers one of the three questions people most often ask about percentages.</p>
+      <p class="about-text"><strong>X% of Y</strong> &mdash; multiply Y by X and divide by 100. 15% of 80 is 80 &times; 15 &divide; 100 = <strong>12</strong>.</p>
+      <p class="about-text"><strong>X is what % of Y</strong> &mdash; divide X by Y and multiply by 100. 18 out of 24 is 18 &divide; 24 &times; 100 = <strong>75%</strong>.</p>
+      <p class="about-text"><strong>Percentage change</strong> &mdash; take the old value from the new one, divide by the old value and multiply by 100. A price going from &pound;40 to &pound;50 is (50 &minus; 40) &divide; 40 &times; 100 = a <strong>25% increase</strong>. Going back from &pound;50 to &pound;40 is (40 &minus; 50) &divide; 50 &times; 100 = a <strong>20% decrease</strong> &mdash; the same &pound;10, but measured against a bigger starting figure.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Adding or taking off a percentage</p>
+      <p class="about-text">To increase a number by a percentage, multiply it by 1 plus the percentage as a decimal: &pound;60 plus 20% is 60 &times; 1.2 = <strong>&pound;72</strong>. To decrease it, multiply by 1 minus the percentage: &pound;60 less 15% is 60 &times; 0.85 = <strong>&pound;51</strong>.</p>
+      <p class="about-text">Working backwards is where people go wrong. If &pound;72 already <em>includes</em> a 20% increase, the original is 72 &divide; 1.2 = &pound;60 &mdash; not 72 less 20%, which gives &pound;57.60. The same applies to removing VAT from a price; the <a href="/vat/">VAT calculator</a> does it for you.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Common percentages at a glance</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Percentage</th><th>As a fraction</th><th>As a decimal</th><th>Of 250</th></tr></thead>
+            <tbody>
+<tr><td>1%</td><td>1/100</td><td>0.01</td><td>2.5</td></tr>
+<tr><td>5%</td><td>1/20</td><td>0.05</td><td>12.5</td></tr>
+<tr><td>10%</td><td>1/10</td><td>0.1</td><td>25</td></tr>
+<tr><td>12.5%</td><td>1/8</td><td>0.125</td><td>31.25</td></tr>
+<tr><td>20%</td><td>1/5</td><td>0.2</td><td>50</td></tr>
+<tr><td>25%</td><td>1/4</td><td>0.25</td><td>62.5</td></tr>
+<tr><td>33&#8531;%</td><td>1/3</td><td>0.333…</td><td>83.33</td></tr>
+<tr><td>50%</td><td>1/2</td><td>0.5</td><td>125</td></tr>
+<tr><td>75%</td><td>3/4</td><td>0.75</td><td>187.5</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">A quick mental trick: 10% is the number with the decimal point moved one place left, so 10% of 250 is 25. Halve it for 5%, double it for 20%.</p>
     </main>
 
     <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
       <p class="faq-q">How do I work out what percentage one number is of another?</p>
       <p class="about-text">Divide the part by the whole and multiply by 100. For example 30 out of 120 is 30 divided by 120, times 100 — which is 25%.</p>
+      <p class="faq-q">How do I calculate a percentage increase?</p>
+      <p class="about-text">Subtract the old value from the new one, divide by the old value and multiply by 100. Rent going from &pound;900 to &pound;990 a month is a 90 &divide; 900 &times; 100 = 10% increase. A negative answer means a decrease.</p>
+      <p class="faq-q">How do I find the original number before a percentage was added?</p>
+      <p class="about-text">Divide by 1 plus the percentage as a decimal. If a price of &pound;84 includes a 5% rise, the original was 84 &divide; 1.05 = &pound;80. Taking 5% off &pound;84 gives &pound;79.80, which is wrong, because the 5% was worked out on the smaller original figure.</p>
+      <p class="faq-q">What is the difference between a percentage and a percentage point?</p>
+      <p class="about-text">A percentage point is the plain difference between two percentages; a percentage change is that difference relative to where it started. An interest rate rising from 4% to 5% has gone up by one percentage point, but by 25% in relative terms.</p>
       <p class="faq-q">Why is a 50% rise followed by a 50% fall not back where it started?</p>
       <p class="about-text">Because each percentage applies to a different base. 100 rising 50% is 150, and 50% of 150 is 75 — so you end at 75, not 100. Percentage falls are always taken from the larger, already-increased figure.</p>
+      <p class="faq-q">Is X% of Y the same as Y% of X?</p>
+      <p class="about-text">Yes, always. 8% of 50 and 50% of 8 are both 4, because both are 8 &times; 50 &divide; 100. It is a handy shortcut when one way round is easier to do in your head.</p>
     </main>
 
+    <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
     <div class="hub-grid">
+      <a class="hub-card" href="/discount/">
+        <span class="icon">🏷️</span>
+        <div class="title">Discount Calculator</div>
+        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
+      </a>
+      <a class="hub-card" href="/vat/">
+        <span class="icon">🧾</span>
+        <div class="title">Tax / VAT</div>
+        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
+      </a>
+      <a class="hub-card" href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+      <a class="hub-card" href="/growth/">
+        <span class="icon">📈</span>
+        <div class="title">YoY / MoM Growth</div>
+        <div class="desc">Feed in a monthly series, get month-on-month and year-on-year change.</div>
+      </a>
       <a class="hub-card" href="/fractions/">
         <span class="icon">➗</span>
         <div class="title">Fraction Calculator</div>
         <div class="desc">Add, subtract, multiply and divide fractions, with the working shown.</div>
       </a>
-      <a class="hub-card" href="/decimal-to-fraction/">
-        <span class="icon">🔁</span>
-        <div class="title">Decimal ↔ Fraction</div>
-        <div class="desc">Convert either way, including recurring decimals done exactly.</div>
-      </a>
-      <a class="hub-card" href="/number-to-words/">
-        <span class="icon">🔤</span>
-        <div class="title">Number to Words</div>
-        <div class="desc">Numbers written out in British English, plus ordinal and cheque wording.</div>
-      </a>
-      <a class="hub-card" href="/weighted-average/">
-        <span class="icon">🎚️</span>
-        <div class="title">Weighted Average</div>
-        <div class="desc">Values and weights → the weighted average, with each row's contribution.</div>
-      </a>
-      <a class="hub-card" href="/basic/">
-        <span class="icon">🔢</span>
-        <div class="title">Basic Calculator</div>
-        <div class="desc">Standard arithmetic with keyboard support.</div>
-      </a>
-      <a class="hub-card" href="/scientific/">
-        <span class="icon">🧑‍🔬</span>
-        <div class="title">Scientific Calculator</div>
-        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      <a class="hub-card" href="/general/">
+        <span class="icon">🗂️</span>
+        <div class="title">All General calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
       </a>
     </div>
+    <!-- end related calculators -->
 
     <footer class="site-footer">
       <p class="footer-categories">

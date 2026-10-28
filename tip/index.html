@@ -4,18 +4,18 @@
 <script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tip Calculator</title>
-<meta name="description" content="Quickly work out how much to tip and split the bill per person, with common tip percentage presets.">
+<title>Tip Calculator — Work Out the Tip and Split It Per Person</title>
+<meta name="description" content="Work out how much to tip and what each person pays, with common tip percentages, rounding and a per-person split.">
 <link rel="canonical" href="https://lotsofcalcs.com/tip/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="Tip Calculator">
-<meta property="og:description" content="Quickly work out how much to tip and split the bill per person, with common tip percentage presets.">
+<meta property="og:title" content="Tip Calculator — Work Out the Tip and Split It Per Person">
+<meta property="og:description" content="Work out how much to tip and what each person pays, with common tip percentages, rounding and a per-person split.">
 <meta property="og:url" content="https://lotsofcalcs.com/tip/">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Tip Calculator">
-<meta name="twitter:description" content="Quickly work out how much to tip and split the bill per person, with common tip percentage presets.">
+<meta name="twitter:title" content="Tip Calculator — Work Out the Tip and Split It Per Person">
+<meta name="twitter:description" content="Work out how much to tip and what each person pays, with common tip percentages, rounding and a per-person split.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -76,6 +76,38 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Either is accepted, though tipping on the pre-tax subtotal is the more common convention. The difference on a normal bill is usually small."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do I have to pay a service charge in the UK?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A discretionary or optional service charge can be removed if you weren't happy with the service — ask before paying. A compulsory service charge has to be made clear before you order, for example on the menu, and then forms part of the price."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out a 15% tip?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Find 10% by moving the decimal point one place left, then add half of it again. On a £64 bill, 10% is £6.40, half of that is £3.20, so 15% is £9.60."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I split the bill and tip between friends?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Set the number of people and the calculator divides the tip and the total evenly. If some people ordered much more than others, use the split bill calculator's itemised tab so each person's tip matches what they spent."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do staff get the tips I leave?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In Great Britain, the Employment (Allocation of Tips) Act requires employers to pass on all tips, gratuities and service charges to workers without deductions, and to have a written policy on how they are shared. Cash tips given directly to a member of staff are theirs to keep or share as their workplace agrees."
         }
       }
     ]
@@ -138,9 +170,36 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">Tip amount is simply Bill &times; (Tip % &divide; 100), and the total is the bill plus that tip.</p>
-      <p class="about-text">When splitting between several people, both the tip and the total are divided evenly &mdash; this assumes everyone is splitting equally. For itemized splits where people ordered different amounts, see the Split Bill calculator.</p>
+      <p class="tool-section-title">How the tip is worked out</p>
+      <p class="about-text">The tip is the bill multiplied by the tip percentage and divided by 100; the total is the bill plus the tip. Split between several people, both are divided evenly.</p>
+      <p class="about-text"><strong>Example:</strong> a &pound;86 dinner for four with a 12.5% tip. The tip is 86 &times; 0.125 = &pound;10.75, the total &pound;96.75, and each person pays <strong>&pound;24.19</strong> (&pound;24.1875, rounded). If people ordered very different amounts, the <a href="/split-bill/">itemised bill splitter</a> shares the tip by what each person spent.</p>
+      <p class="about-text"><strong>Quick mental maths:</strong> 10% is the bill with the decimal point moved one place left. Add half of that again for 15%, or double it for 20%. On &pound;86: 10% is &pound;8.60, 15% is &pound;12.90, 20% is &pound;17.20.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Tip amounts at a glance</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Bill</th><th>10%</th><th>12.5%</th><th>15%</th><th>20%</th></tr></thead>
+            <tbody>
+<tr><td>20.00</td><td>2.00</td><td>2.50</td><td>3.00</td><td>4.00</td></tr>
+<tr><td>40.00</td><td>4.00</td><td>5.00</td><td>6.00</td><td>8.00</td></tr>
+<tr><td>60.00</td><td>6.00</td><td>7.50</td><td>9.00</td><td>12.00</td></tr>
+<tr><td>80.00</td><td>8.00</td><td>10.00</td><td>12.00</td><td>16.00</td></tr>
+<tr><td>100.00</td><td>10.00</td><td>12.50</td><td>15.00</td><td>20.00</td></tr>
+<tr><td>150.00</td><td>15.00</td><td>18.75</td><td>22.50</td><td>30.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Tipping in the UK and elsewhere</p>
+      <p class="about-text"><strong>UK:</strong> 10&ndash;12.5% is usual in restaurants when service isn't included. Many restaurants add a discretionary service charge, often 12.5%, to the bill &mdash; if it's there, you don't need to tip on top, and because it is discretionary you can ask for it to be removed if the service was poor. Since October 2024 employers in Great Britain must pass all tips and service charges on to their staff in full.</p>
+      <p class="about-text"><strong>US and Canada:</strong> tipping is expected and makes up a large part of servers' pay. 15&ndash;20% of the pre-tax bill is standard in restaurants, with 18&ndash;20% common in cities.</p>
+      <p class="about-text"><strong>Much of Europe:</strong> service is usually included in the price, and rounding up or leaving 5&ndash;10% for good service is normal. <strong>Japan:</strong> tipping isn't customary and can cause confusion.</p>
     </main>
 
     <main class="tool">
@@ -149,41 +208,51 @@
       <p class="about-text">It varies by country and setting. Around 15-20% is customary in US restaurants, while in the UK 10-12.5% is typical and service is often already added to the bill — worth checking before adding more.</p>
       <p class="faq-q">Should I tip on the pre-tax or post-tax total?</p>
       <p class="about-text">Either is accepted, though tipping on the pre-tax subtotal is the more common convention. The difference on a normal bill is usually small.</p>
+      <p class="faq-q">Do I have to pay a service charge in the UK?</p>
+      <p class="about-text">A discretionary or optional service charge can be removed if you weren't happy with the service &mdash; ask before paying. A compulsory service charge has to be made clear before you order, for example on the menu, and then forms part of the price.</p>
+      <p class="faq-q">How do I work out a 15% tip?</p>
+      <p class="about-text">Find 10% by moving the decimal point one place left, then add half of it again. On a &pound;64 bill, 10% is &pound;6.40, half of that is &pound;3.20, so 15% is &pound;9.60.</p>
+      <p class="faq-q">How do I split the bill and tip between friends?</p>
+      <p class="about-text">Set the number of people and the calculator divides the tip and the total evenly. If some people ordered much more than others, use the <a href="/split-bill/">split bill calculator's</a> itemised tab so each person's tip matches what they spent.</p>
+      <p class="faq-q">Do staff get the tips I leave?</p>
+      <p class="about-text">In Great Britain, the Employment (Allocation of Tips) Act requires employers to pass on all tips, gratuities and service charges to workers without deductions, and to have a written policy on how they are shared. Cash tips given directly to a member of staff are theirs to keep or share as their workplace agrees.</p>
     </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
     <div class="hub-grid">
-      <a class="hub-card" href="/discount/">
-        <span class="icon">🏷️</span>
-        <div class="title">Discount Calculator</div>
-        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
-      </a>
       <a class="hub-card" href="/split-bill/">
         <span class="icon">🧑‍🤝‍🧑</span>
         <div class="title">Split Bill</div>
         <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
       </a>
-      <a class="hub-card" href="/grade/">
-        <span class="icon">🎓</span>
-        <div class="title">Grade / Score</div>
-        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      <a class="hub-card" href="/discount/">
+        <span class="icon">🏷️</span>
+        <div class="title">Discount Calculator</div>
+        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
       </a>
-      <a class="hub-card" href="/unit-converter/">
-        <span class="icon">📐</span>
-        <div class="title">Unit Converter</div>
-        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
       </a>
-      <a class="hub-card" href="/bmi/">
-        <span class="icon">⚖️</span>
-        <div class="title">BMI Calculator</div>
-        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      <a class="hub-card" href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
       </a>
-      <a class="hub-card" href="/fuel-cost/">
-        <span class="icon">⛽</span>
-        <div class="title">Fuel Cost / MPG</div>
-        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      <a class="hub-card" href="/vat/">
+        <span class="icon">🧾</span>
+        <div class="title">Tax / VAT</div>
+        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
+      </a>
+      <a class="hub-card" href="/everyday/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Everyday calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
       </a>
     </div>
+    <!-- end related calculators -->
 
     <footer class="site-footer">
       <p class="footer-categories">

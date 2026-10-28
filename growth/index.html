@@ -4,17 +4,17 @@
 <script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>YoY / MoM Growth Calculator</title>
+<title>YoY &amp; MoM Growth Calculator — Year-on-Year and Month-on-Month %</title>
 <meta name="description" content="Enter a series of monthly figures to calculate month-on-month and year-on-year growth, plus cumulative change over time.">
 <link rel="canonical" href="https://lotsofcalcs.com/growth/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="YoY / MoM Growth Calculator">
+<meta property="og:title" content="YoY &amp; MoM Growth Calculator — Year-on-Year and Month-on-Month %">
 <meta property="og:description" content="Enter a series of monthly figures to calculate month-on-month and year-on-year growth, plus cumulative change over time.">
 <meta property="og:url" content="https://lotsofcalcs.com/growth/">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="YoY / MoM Growth Calculator">
+<meta name="twitter:title" content="YoY &amp; MoM Growth Calculator — Year-on-Year and Month-on-Month %">
 <meta name="twitter:description" content="Enter a series of monthly figures to calculate month-on-month and year-on-year growth, plus cumulative change over time.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
@@ -77,6 +77,38 @@
           "@type": "Answer",
           "text": "Seasonality. A quiet January after a busy December shows a steep monthly fall even in a growing business, which is exactly why the year-on-year comparison matters."
         }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I calculate year-on-year growth?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Take last year's figure from this year's, divide by last year's and multiply by 100. March sales of £27,000 against £24,000 the March before is a 3,000 ÷ 24,000 × 100 = 12.5% YoY increase."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is there no YoY figure for my first 12 months?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Year-on-year needs the same month a year earlier to compare against, so it starts at the 13th entry. Start your list a year before the first month you want a YoY figure for."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do the month labels matter?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — labels such as “Jan 2026” are only for your reference. The calculation uses the order of the rows, so enter one month per row, in date order, with no months missing."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if a month's value is zero?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Growth from zero can't be expressed as a percentage, because it means dividing by zero, so that comparison shows a dash. Growth to zero is shown as −100%."
+        }
       }
     ]
   }
@@ -122,9 +154,36 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">Month-on-month (MoM) growth compares each figure to the one immediately before it: (This Month &minus; Last Month) &divide; Last Month &times; 100.</p>
-      <p class="about-text">Year-on-year (YoY) growth instead compares a figure to the same point 12 entries earlier, which removes seasonal effects that a MoM comparison can't. Cumulative growth shows the total percentage change from your first entry to your last.</p>
+      <p class="tool-section-title">How each figure is worked out</p>
+      <p class="about-text"><strong>Month-on-month (MoM)</strong> compares each month with the one before: (this month &minus; last month) &divide; last month &times; 100.</p>
+      <p class="about-text"><strong>Year-on-year (YoY)</strong> compares each month with the same month a year earlier &mdash; the entry 12 rows above it &mdash; so it appears from your 13th month onwards.</p>
+      <p class="about-text"><strong>Cumulative growth</strong> is the total change from your first entry to your last.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Worked example</p>
+      <p class="about-text">A shop's sales were &pound;40,000 in November, &pound;58,000 in December and &pound;36,000 in January. Month-on-month, December is up (58,000 &minus; 40,000) &divide; 40,000 = <strong>45%</strong> and January is down (36,000 &minus; 58,000) &divide; 58,000 = <strong>&minus;37.9%</strong>.</p>
+      <p class="about-text">That January fall looks alarming, but if the previous January was &pound;32,000, year-on-year January is up (36,000 &minus; 32,000) &divide; 32,000 = <strong>12.5%</strong>. The shop is growing; December is simply always busy. That is why seasonal businesses watch YoY.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Turning monthly growth into a yearly rate</p>
+      <p class="about-text">Monthly growth compounds, so 12 months of 3% growth is not 36% a year. Multiply 1.03 by itself 12 times and you get 1.426 &mdash; <strong>42.6%</strong> annual growth. Going the other way, 20% growth over a year is (1.20)<sup>1/12</sup> &minus; 1 = <strong>1.53%</strong> a month, not 1.67%.</p>
+      <div class="table-scroll">
+        <div style="min-width:360px;">
+          <table class="out-table">
+            <thead><tr><th>Steady monthly growth</th><th>Equivalent annual growth</th></tr></thead>
+            <tbody>
+<tr><td>1%</td><td>12.7%</td></tr>
+<tr><td>2%</td><td>26.8%</td></tr>
+<tr><td>3%</td><td>42.6%</td></tr>
+<tr><td>5%</td><td>79.6%</td></tr>
+<tr><td>10%</td><td>213.8%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">For growth across several years, the <a href="/cagr/">CAGR calculator</a> gives the steady yearly rate between two values.</p>
     </main>
 
     <main class="tool">
@@ -133,36 +192,51 @@
       <p class="about-text">Month-on-month compares each figure to the previous month, so it reacts quickly but is noisy. Year-on-year compares it to the same month a year earlier, which strips out seasonal patterns and shows the underlying trend.</p>
       <p class="faq-q">Why can month-on-month growth look terrible when the business is fine?</p>
       <p class="about-text">Seasonality. A quiet January after a busy December shows a steep monthly fall even in a growing business, which is exactly why the year-on-year comparison matters.</p>
+      <p class="faq-q">How do I calculate year-on-year growth?</p>
+      <p class="about-text">Take last year's figure from this year's, divide by last year's and multiply by 100. March sales of &pound;27,000 against &pound;24,000 the March before is a 3,000 &divide; 24,000 &times; 100 = 12.5% YoY increase.</p>
+      <p class="faq-q">Why is there no YoY figure for my first 12 months?</p>
+      <p class="about-text">Year-on-year needs the same month a year earlier to compare against, so it starts at the 13th entry. Start your list a year before the first month you want a YoY figure for.</p>
+      <p class="faq-q">Do the month labels matter?</p>
+      <p class="about-text">No &mdash; labels such as &ldquo;Jan 2026&rdquo; are only for your reference. The calculation uses the order of the rows, so enter one month per row, in date order, with no months missing.</p>
+      <p class="faq-q">What if a month's value is zero?</p>
+      <p class="about-text">Growth from zero can't be expressed as a percentage, because it means dividing by zero, so that comparison shows a dash. Growth <em>to</em> zero is shown as &minus;100%.</p>
     </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">More Business &amp; Analysis calculators</div>
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
     <div class="hub-grid">
-      <a class="hub-card" href="/marketplace-fees/">
-        <span class="icon">🏷️</span>
-        <div class="title">Marketplace Fees</div>
-        <div class="desc">eBay, Etsy and Amazon fees itemised → what you keep, and what to list at.</div>
+      <a class="hub-card" href="/cagr/">
+        <span class="icon">🧮</span>
+        <div class="title">CAGR</div>
+        <div class="desc">Compound annual growth rate between a start and end value.</div>
       </a>
-      <a class="hub-card" href="/ai-cost/">
-        <span class="icon">🤖</span>
-        <div class="title">AI Cost</div>
-        <div class="desc">Token prices, caching and batch discounts → what an LLM API really costs.</div>
-      </a>
-      <a class="hub-card" href="/margin-markup/">
-        <span class="icon">📊</span>
-        <div class="title">Margin vs Markup</div>
-        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
-      </a>
-      <a class="hub-card" href="/vat/">
-        <span class="icon">🧾</span>
-        <div class="title">Tax / VAT</div>
-        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
       </a>
       <a class="hub-card" href="/ab-test-significance/">
         <span class="icon">🧪</span>
         <div class="title">A/B Test Significance</div>
         <div class="desc">Control plus any number of variants → uplift, z-score and p-value for each.</div>
       </a>
+      <a class="hub-card" href="/compound-interest/">
+        <span class="icon">🌱</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting amount + annual return + years → what you'd end up with.</div>
+      </a>
+      <a class="hub-card" href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+      <a class="hub-card" href="/business-analysis/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Business &amp; Analysis calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
     </div>
+    <!-- end related calculators -->
 
     <footer class="site-footer">
       <p class="footer-categories">

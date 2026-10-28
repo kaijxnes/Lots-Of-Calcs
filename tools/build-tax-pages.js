@@ -16,6 +16,7 @@ const TaxEngine = require("../tax-engine.js");
 const registry = require("./tax/registry.js");
 const config = require("./salary-pages-config.js");
 const uk = require("./build-salary-pages.js");
+const related = require("./related.js");
 
 const ROOT = registry.ROOT;
 const SITE = "https://lotsofcalcs.com";
@@ -668,6 +669,7 @@ ${breakdown}
 ${tables}
     </details>
 
+${related.block("/salary/")}
 ${FOOTER}
   </div>
   <script src="/tax-engine.js"></script>

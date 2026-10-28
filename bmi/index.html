@@ -4,18 +4,18 @@
 <script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BMI Calculator</title>
-<meta name="description" content="Calculate your Body Mass Index (BMI) from height and weight, in metric or imperial units, with your BMI category.">
+<title>BMI Calculator — Metric or Imperial, with Your BMI Category</title>
+<meta name="description" content="Calculate your Body Mass Index from your height and weight in metric or imperial units, see your BMI category and the healthy weight range for your height.">
 <link rel="canonical" href="https://lotsofcalcs.com/bmi/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="BMI Calculator">
-<meta property="og:description" content="Calculate your Body Mass Index (BMI) from height and weight, in metric or imperial units, with your BMI category.">
+<meta property="og:title" content="BMI Calculator — Metric or Imperial, with Your BMI Category">
+<meta property="og:description" content="Calculate your Body Mass Index from your height and weight in metric or imperial units, see your BMI category and the healthy weight range for your height.">
 <meta property="og:url" content="https://lotsofcalcs.com/bmi/">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="BMI Calculator">
-<meta name="twitter:description" content="Calculate your Body Mass Index (BMI) from height and weight, in metric or imperial units, with your BMI category.">
+<meta name="twitter:title" content="BMI Calculator — Metric or Imperial, with Your BMI Category">
+<meta name="twitter:description" content="Calculate your Body Mass Index from your height and weight in metric or imperial units, see your BMI category and the healthy weight range for your height.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -67,7 +67,39 @@
         "name": "What is a healthy BMI range?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The standard adult categories are under 18.5 underweight, 18.5 to 24.9 normal weight, 25 to 29.9 overweight, and 30 or above obese."
+          "text": "For adults, 18.5 to 24.9. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or above is obese. Some groups are advised to use lower thresholds — see the question on ethnicity below."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I work out my BMI in stones and pounds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Turn your weight into pounds (stones × 14, plus the pounds) and your height into inches (feet × 12, plus the inches). Then multiply the pounds by 703 and divide by the inches squared. 11st 7lb at 5ft 8in is 161 lb and 68 in, so 703 × 161 ÷ 4,624 = 24.5. The calculator does this for you on the Imperial tab."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is a healthy weight for my height?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply your height in metres squared by 18.5 for the bottom of the healthy range and by 24.9 for the top. At 1.75 m that is 56.7 kg to 76.3 kg, or about 8st 13lb to 12st. The calculator shows the range for your height as you type, and the table above covers common heights."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are the BMI ranges different for different ethnic groups?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. The NHS advises that people of South Asian, Chinese, other Asian, Middle Eastern, Black African or African-Caribbean family background have a higher risk of type 2 diabetes and other conditions at a lower BMI, and uses 23 or more as overweight and 27.5 or more as obese for these groups."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I use this BMI calculator for a child?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Children and teenagers are still growing, so their BMI is compared with other children of the same age and sex using centile charts rather than the adult categories. The NHS has a separate healthy weight calculator for under-18s."
         }
       },
       {
@@ -75,7 +107,7 @@
         "name": "Is BMI accurate for everyone?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. BMI only compares height and weight, so it cannot tell muscle from fat and can misclassify very muscular people, older adults, and children. Treat it as a rough screening figure rather than a diagnosis."
+          "text": "No. BMI only compares height and weight, so it cannot tell muscle from fat and can misclassify very muscular people, older adults and pregnant women. Treat it as a rough screening figure, and use waist measurement alongside it."
         }
       }
     ]
@@ -88,7 +120,7 @@
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">BMI Calculator</h1>
-      <p class="page-subtitle">Height and weight → Body Mass Index and category.</p>
+      <p class="page-subtitle">Height and weight → Body Mass Index, category and the healthy weight range for your height.</p>
     </header>
 
     <main class="tool">
@@ -121,10 +153,17 @@
             <input type="number" id="i-inches" placeholder="0" step="any">
           </div>
         </div>
-        <div class="field">
-          <label for="i-weight">Weight (lb)</label>
-          <input type="number" id="i-weight" placeholder="0" step="any">
+        <div class="field-row">
+          <div class="field">
+            <label for="i-stone">Weight (st)</label>
+            <input type="number" id="i-stone" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="i-weight">Weight (lb)</label>
+            <input type="number" id="i-weight" placeholder="0" step="any">
+          </div>
         </div>
+        <p class="tool-hint">Weigh yourself in pounds only? Leave stone blank and put the whole weight in pounds.</p>
       </div>
 
       <div class="result-box">
@@ -134,6 +173,7 @@
         </div>
         <hr class="divider">
         <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Healthy weight for your height</span><span class="r-value" id="bmi-range">—</span></div>
           <div class="result-row"><span class="r-label">Underweight</span><span class="r-value">below 18.5</span></div>
           <div class="result-row"><span class="r-label">Normal weight</span><span class="r-value">18.5 – 24.9</span></div>
           <div class="result-row"><span class="r-label">Overweight</span><span class="r-value">25 – 29.9</span></div>
@@ -142,52 +182,97 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">About this calculator</p>
-      <p class="about-text">BMI is calculated as weight (kg) &divide; height (m)&sup2;, or 703 &times; weight (lb) &divide; height (in)&sup2; in imperial units.</p>
-      <p class="about-text">It's a quick screening tool, not a diagnosis &mdash; it doesn't distinguish muscle from fat, so very muscular people can show a higher BMI without carrying excess body fat. The standard categories are under 18.5 (underweight), 18.5&ndash;24.9 (normal), 25&ndash;29.9 (overweight), and 30+ (obese).</p>
+      <p class="tool-section-title">How BMI is calculated</p>
+      <p class="about-text">Body Mass Index is your weight divided by the square of your height:</p>
+      <p class="about-text"><strong>BMI = weight (kg) &divide; height (m)&sup2;</strong></p>
+      <p class="about-text">In imperial units the same thing is <strong>703 &times; weight (lb) &divide; height (in)&sup2;</strong>, where 703 converts pounds and inches into kilograms and metres. Stones are turned into pounds first: one stone is 14 pounds.</p>
+      <p class="about-text"><strong>Worked example (metric).</strong> Someone 175 cm tall weighing 70 kg: 1.75 &times; 1.75 = 3.0625, and 70 &divide; 3.0625 = <strong>22.9</strong>, which is in the healthy range.</p>
+      <p class="about-text"><strong>Worked example (stones and pounds).</strong> Someone 5ft 10in weighing 12st: that is 70 inches and 168 pounds. 70 &times; 70 = 4,900, and 703 &times; 168 &divide; 4,900 = <strong>24.1</strong> &mdash; just inside the healthy range, which tops out at 24.9.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Healthy weight for your height</p>
+      <p class="about-text">The healthy range is a BMI of 18.5 to 24.9, so the healthy weight for a height is 18.5 &times; height&sup2; up to 24.9 &times; height&sup2;. For common adult heights:</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Height</th><th>Healthy weight (kg)</th><th>Healthy weight (st, lb)</th></tr></thead>
+            <tbody>
+<tr><td>150 cm (4ft 11in)</td><td>41.6 – 56.0 kg</td><td>6st 8lb – 8st 12lb</td></tr>
+<tr><td>155 cm (5ft 1in)</td><td>44.4 – 59.8 kg</td><td>7st 0lb – 9st 6lb</td></tr>
+<tr><td>160 cm (5ft 3in)</td><td>47.4 – 63.7 kg</td><td>7st 6lb – 10st 1lb</td></tr>
+<tr><td>165 cm (5ft 5in)</td><td>50.4 – 67.8 kg</td><td>7st 13lb – 10st 9lb</td></tr>
+<tr><td>170 cm (5ft 7in)</td><td>53.5 – 72.0 kg</td><td>8st 6lb – 11st 5lb</td></tr>
+<tr><td>175 cm (5ft 9in)</td><td>56.7 – 76.3 kg</td><td>8st 13lb – 12st 0lb</td></tr>
+<tr><td>180 cm (5ft 11in)</td><td>59.9 – 80.7 kg</td><td>9st 6lb – 12st 10lb</td></tr>
+<tr><td>185 cm (6ft 1in)</td><td>63.3 – 85.2 kg</td><td>10st 0lb – 13st 6lb</td></tr>
+<tr><td>190 cm (6ft 3in)</td><td>66.8 – 89.9 kg</td><td>10st 7lb – 14st 2lb</td></tr>
+<tr><td>195 cm (6ft 5in)</td><td>70.3 – 94.7 kg</td><td>11st 1lb – 14st 13lb</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Heights in feet and inches are rounded to the nearest inch. For adults only &mdash; see below for children.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">What BMI does and doesn't tell you</p>
+      <p class="about-text">BMI is a quick screening figure, not a diagnosis. It compares weight with height and nothing else, so it can't tell muscle from fat or say where fat is carried. A very muscular person can have an &ldquo;overweight&rdquo; BMI with little body fat, and an older adult who has lost muscle can have a healthy BMI while carrying more fat than it suggests.</p>
+      <p class="about-text">Waist size adds what BMI misses. The NHS suggests measuring your waist and comparing it with your height: a waist of less than half your height is the healthy target for most adults.</p>
+      <p class="about-text">If your BMI is outside the healthy range, or you are worried about your weight, your GP or practice nurse can look at the whole picture.</p>
     </main>
 
     <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
       <p class="faq-q">What is a healthy BMI range?</p>
-      <p class="about-text">The standard adult categories are under 18.5 underweight, 18.5 to 24.9 normal weight, 25 to 29.9 overweight, and 30 or above obese.</p>
+      <p class="about-text">For adults, 18.5 to 24.9. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or above is obese. Some groups are advised to use lower thresholds &mdash; see the question on ethnicity below.</p>
+      <p class="faq-q">How do I work out my BMI in stones and pounds?</p>
+      <p class="about-text">Turn your weight into pounds (stones &times; 14, plus the pounds) and your height into inches (feet &times; 12, plus the inches). Then multiply the pounds by 703 and divide by the inches squared. 11st 7lb at 5ft 8in is 161 lb and 68 in, so 703 &times; 161 &divide; 4,624 = 24.5. The calculator does this for you on the Imperial tab.</p>
+      <p class="faq-q">What is a healthy weight for my height?</p>
+      <p class="about-text">Multiply your height in metres squared by 18.5 for the bottom of the healthy range and by 24.9 for the top. At 1.75 m that is 56.7 kg to 76.3 kg, or about 8st 13lb to 12st. The calculator shows the range for your height as you type, and the table above covers common heights.</p>
+      <p class="faq-q">Are the BMI ranges different for different ethnic groups?</p>
+      <p class="about-text">Yes. The NHS advises that people of South Asian, Chinese, other Asian, Middle Eastern, Black African or African-Caribbean family background have a higher risk of type 2 diabetes and other conditions at a lower BMI, and uses 23 or more as overweight and 27.5 or more as obese for these groups.</p>
+      <p class="faq-q">Can I use this BMI calculator for a child?</p>
+      <p class="about-text">No. Children and teenagers are still growing, so their BMI is compared with other children of the same age and sex using centile charts rather than the adult categories. The NHS has a separate healthy weight calculator for under-18s.</p>
       <p class="faq-q">Is BMI accurate for everyone?</p>
-      <p class="about-text">No. BMI only compares height and weight, so it cannot tell muscle from fat and can misclassify very muscular people, older adults, and children. Treat it as a rough screening figure rather than a diagnosis.</p>
+      <p class="about-text">No. BMI only compares height and weight, so it cannot tell muscle from fat and can misclassify very muscular people, older adults and pregnant women. Treat it as a rough screening figure, and use waist measurement alongside it.</p>
     </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">More Everyday calculators</div>
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
     <div class="hub-grid">
-      <a class="hub-card" href="/tip/">
-        <span class="icon">🍽️</span>
-        <div class="title">Tip Calculator</div>
-        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
-      </a>
-      <a class="hub-card" href="/discount/">
-        <span class="icon">🏷️</span>
-        <div class="title">Discount Calculator</div>
-        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
-      </a>
-      <a class="hub-card" href="/split-bill/">
-        <span class="icon">🧑‍🤝‍🧑</span>
-        <div class="title">Split Bill</div>
-        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
-      </a>
-      <a class="hub-card" href="/grade/">
-        <span class="icon">🎓</span>
-        <div class="title">Grade / Score</div>
-        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      <a class="hub-card" href="/pace/">
+        <span class="icon">🏃</span>
+        <div class="title">Running Pace</div>
+        <div class="desc">Any two of distance, time and pace → the third, plus speed and splits.</div>
       </a>
       <a class="hub-card" href="/unit-converter/">
         <span class="icon">📐</span>
         <div class="title">Unit Converter</div>
         <div class="desc">Length, weight, temperature and volume conversions.</div>
       </a>
-      <a class="hub-card" href="/fuel-cost/">
-        <span class="icon">⛽</span>
-        <div class="title">Fuel Cost / MPG</div>
-        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      <a class="hub-card" href="/weight-on-other-planets/">
+        <span class="icon">🪐</span>
+        <div class="title">Weight on Other Planets</div>
+        <div class="desc">What you'd weigh on the Moon, Mars, Jupiter, Saturn and the Sun.</div>
+      </a>
+      <a class="hub-card" href="/birthday/">
+        <span class="icon">🎂</span>
+        <div class="title">Birthday Calculator</div>
+        <div class="desc">Your exact age, day of the week born, and days until your next birthday.</div>
+      </a>
+      <a class="hub-card" href="/date-diff/">
+        <span class="icon">📅</span>
+        <div class="title">Date Difference</div>
+        <div class="desc">Years, months and days between two dates.</div>
+      </a>
+      <a class="hub-card" href="/everyday/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Everyday calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
       </a>
     </div>
+    <!-- end related calculators -->
 
     <footer class="site-footer">
       <p class="footer-categories">

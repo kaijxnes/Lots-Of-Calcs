@@ -21,16 +21,23 @@ function num(id) {
   return parseFloat(document.getElementById(id).value) || 0;
 }
 
+/* A UK (imperial) gallon is about 20% bigger than a US one, so the same
+   car shows a higher MPG in the UK. UK pumps price per litre. */
+const LITRES_PER_GALLON = { uk: 4.54609, us: 3.785411784 };
+
 function calcMpg() {
   const distance = num("mpg-distance");
   const efficiency = num("mpg-efficiency");
   const price = num("mpg-price");
+  const gallon = document.getElementById("mpg-gallon").value;
+  const perLitre = document.getElementById("mpg-price-unit").value === "litre";
 
-  const fuelNeeded = efficiency !== 0 ? distance / efficiency : 0;
-  const cost = fuelNeeded * price;
+  const gallons = efficiency !== 0 ? distance / efficiency : 0;
+  const litres = gallons * LITRES_PER_GALLON[gallon];
+  const cost = (perLitre ? litres : gallons) * price;
 
   document.getElementById("mpg-cost").textContent = fmtMoney(cost);
-  document.getElementById("mpg-fuel").textContent = fuelNeeded.toFixed(2) + " gal";
+  document.getElementById("mpg-fuel").textContent = litres.toFixed(2) + " L (" + gallons.toFixed(2) + " gal)";
 }
 
 function calcL100() {
@@ -45,7 +52,7 @@ function calcL100() {
   document.getElementById("l100-fuel").textContent = fuelNeeded.toFixed(2) + " L";
 }
 
-["mpg-distance", "mpg-efficiency", "mpg-price"].forEach((id) =>
+["mpg-distance", "mpg-efficiency", "mpg-price", "mpg-gallon", "mpg-price-unit"].forEach((id) =>
   document.getElementById(id).addEventListener("input", calcMpg)
 );
 ["l100-distance", "l100-efficiency", "l100-price"].forEach((id) =>
