@@ -13,13 +13,10 @@
 
    tools/build-tax-pages.js runs this along with every other country, and
    writes the sitemap; use that after any change to the tax data. */
-const fs = require("fs");
-const path = require("path");
 const TaxEngine = require("../tax-engine.js");
 const registry = require("./tax/registry.js");
 const config = require("./salary-pages-config.js");
-
-const ROOT = registry.ROOT;
+const site = require("./lib/site.js");
 
 // The salaries with pages are listed in tools/salary-pages-config.js; the
 // cross-links between pages are generated from that list.
@@ -166,7 +163,8 @@ function build(gross, chain, cfg, allSalaries) {
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Home", item: "https://lotsofcalcs.com/" },
         { "@type": "ListItem", position: 2, name: "Salary after tax", item: "https://lotsofcalcs.com/salary/" },
-        { "@type": "ListItem", position: 3, name: `${money0(gross)} after tax`, item: url }
+        { "@type": "ListItem", position: 3, name: "England, Wales & N. Ireland", item: "https://lotsofcalcs.com/salary/uk/" },
+        { "@type": "ListItem", position: 4, name: `${money0(gross)} after tax`, item: url }
       ]
     },
     {
@@ -182,7 +180,7 @@ function build(gross, chain, cfg, allSalaries) {
   const niRows = r.ni_rows.filter((x) => x.rate > 0).map(row).join("");
 
   // ---- cross-links to sibling salaries ----
-  const sib = allSalaries.filter((s) => s !== gross).map((s) => {
+  const sib = site.neighbours(allSalaries, gross, 4).map((s) => {
     const o = compute(s, chain);
     return "      <a class=\"hub-card\" href=\"/salary/" + s + "-after-tax/\">\n" +
       "        <span class=\"icon\">💷</span>\n" +
@@ -233,7 +231,7 @@ ${ldJson}
 <body>
   <div class="page">
     <header class="site-header">
-      <a class="back-link" href="/">← All calculators</a>
+      <a class="back-link" href="/salary/uk/">← Salary after tax in the UK</a>
       <h1 class="page-title">${money0(gross)} after tax</h1>
       <p class="page-subtitle">What a ${money0(gross)} salary actually leaves you, in the ${cfg.taxYear} tax year.</p>
     </header>
@@ -315,10 +313,10 @@ ${sib}      <a class="hub-card" href="/salary/scotland/${gross}-after-tax/">
         <div class="title">${money0(gross)} after tax in Scotland</div>
         <div class="desc">Scotland's own income tax bands, same National Insurance.</div>
       </a>
-      <a class="hub-card" href="/vat/">
-        <span class="icon">🧾</span>
-        <div class="title">Tax / VAT Calculator</div>
-        <div class="desc">Add or remove VAT, plus a custom income tax band split.</div>
+      <a class="hub-card" href="/salary/uk/">
+        <span class="icon">📋</span>
+        <div class="title">All UK salaries</div>
+        <div class="desc">Every salary, hourly rate and monthly figure, with a calculator.</div>
       </a>
     </div>
 
@@ -352,11 +350,7 @@ function main() {
     if (SALARIES.indexOf(gross) === -1) {
       console.log(`!! ${gross} is not in SALARIES; add it there so cross-links include it`);
     }
-    const dir = path.join(ROOT, "salary", `${gross}-after-tax`);
-    fs.mkdirSync(dir, { recursive: true });
-    fs.writeFileSync(path.join(dir, "index.html"), build(gross, chain, cfg, SALARIES));
-    const r = compute(gross, chain);
-    console.log(`built /salary/${gross}-after-tax/  net ${money(r.net)}  (${money(r.per_month)}/mo)`);
+    site.write(`salary/${gross}-after-tax`, build(gross, chain, cfg, SALARIES));
   });
 }
 

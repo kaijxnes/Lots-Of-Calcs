@@ -1,29 +1,66 @@
 /* Which salary pages exist, shared by the page generators.
 
-   Add a salary to a list and re-run `node tools/build-tax-pages.js` to create
+   Add an amount to a list and re-run `node tools/build-tax-pages.js` to create
    the pages; hubs, cross-links and the sitemap are generated from these lists,
-   so they stay consistent. */
+   so they stay consistent.
+
+   Amounts are the ones people actually search for: round thousands, round
+   hourly rates. A page for every single pound (43,001, 43,002…) would be
+   thousands of near-identical pages nobody searches for, which search engines
+   treat as spam — the calculator on every page covers the in-between figures. */
+
+function range(from, to, step) {
+  const out = [];
+  for (let v = from; v <= to; v += step) out.push(v);
+  return out;
+}
 
 const SALARIES = {
-  GBP: [20000, 25000, 30000, 35000, 40000, 45000, 50000, 60000, 70000, 80000, 100000, 150000],
-  USD: [30000, 40000, 50000, 60000, 70000, 75000, 80000, 90000, 100000, 120000, 150000, 200000],
-  EUR: [20000, 25000, 30000, 35000, 40000, 50000, 60000, 70000, 80000, 100000],
+  GBP: range(15000, 60000, 1000).concat(range(65000, 100000, 5000), [110000, 120000, 125000, 150000, 175000, 200000]),
+  USD: range(30000, 100000, 5000).concat([110000, 120000, 130000, 150000, 175000, 200000, 250000]),
+  EUR: range(20000, 100000, 5000).concat([120000, 150000]),
   NOK: [300000, 400000, 500000, 600000, 700000, 800000, 1000000],
   SEK: [300000, 400000, 500000, 600000, 700000, 800000, 1000000],
   DKK: [300000, 400000, 500000, 600000, 700000, 800000, 1000000],
   JPY: [3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 10000000, 12000000],
   INR: [500000, 800000, 1000000, 1200000, 1500000, 2000000, 2500000, 3000000, 5000000],
-  AUD: [50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000],
-  NZD: [50000, 60000, 70000, 80000, 90000, 100000, 120000, 150000]
+  AUD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000]),
+  NZD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000])
 };
+
+/* Hourly-rate pages. `hours` is the full-time week the annual figure assumes
+   (every page says so and lets the visitor change it). `rates` are the pages
+   each place gets; `national` adds the rates that only get an all-states
+   comparison page in the US. */
+const HOURLY = {
+  USD: { hours: 40, rates: [15, 18, 20, 22, 25, 30, 35, 40, 50], national: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32, 35, 40, 45, 50] },
+  GBP: { hours: 37.5, rates: [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30, 35, 40, 50] },
+  AUD: { hours: 38, rates: [25, 28, 30, 32, 35, 38, 40, 45, 50, 60] },
+  NZD: { hours: 40, rates: [24, 25, 28, 30, 32, 35, 40, 45, 50] }
+};
+
+/* Monthly-pay pages (gross a month → take-home a month), only for places
+   where a salary is normally quoted and paid in twelve equal months. Places
+   that pay 13 or 14 instalments (Austria, Spain, Italy, Portugal) or add a
+   holiday allowance on top (the Netherlands) are left out, because "a month"
+   means something different there. */
+const MONTHLY = {
+  GBP: [1500, 1750, 2000, 2250, 2500, 2750, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 10000],
+  EUR: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000],
+  SEK: [25000, 30000, 35000, 40000, 45000, 50000, 60000, 70000],
+  NOK: [35000, 40000, 45000, 50000, 60000, 70000, 80000],
+  DKK: [25000, 30000, 35000, 40000, 45000, 50000, 60000]
+};
+const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk"];
 
 /* The salary each hub uses for its headline comparison */
 const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000 };
 
 /* Where each jurisdiction's pages live, and how its name reads in a sentence.
-   Jurisdictions not listed (the UK, which has its own generator, and the US
-   federal file, which is never shown on its own) get no generic pages. */
+   The UK's pages sit directly under /salary/ (its annual pages come from
+   tools/build-salary-pages.js). The US federal file is never shown on its own. */
 const PLACES = {
+  "gb": { path: "", inName: "the UK", shortName: "England, Wales & N. Ireland" },
   "gb-sct": { path: "scotland", inName: "Scotland" },
   "de": { path: "germany" }, "fr": { path: "france" }, "es": { path: "spain" }, "it": { path: "italy" },
   "nl": { path: "netherlands", inName: "the Netherlands" }, "ie": { path: "ireland" }, "pt": { path: "portugal" },
@@ -45,7 +82,8 @@ function placeFor(id, doc) {
 /* Comparison sets shown on salary pages: places people weigh against each other */
 const COMPARE = {
   US: ["us-tx", "us-fl", "us-wa", "us-ca", "us-ny", "us-ny-nyc", "us-il", "us-pa", "us-ma", "us-nj", "us-ga", "us-nc", "us-co", "us-az", "us-oh"],
-  EUR: ["de", "fr", "es", "it", "nl", "ie", "pt", "at"]
+  EUR: ["de", "fr", "es", "it", "nl", "ie", "pt", "at"],
+  GBP: ["gb", "gb-sct"]
 };
 
-module.exports = { SALARIES, HEADLINE, PLACES, COMPARE, placeFor };
+module.exports = { SALARIES, HOURLY, MONTHLY, MONTHLY_PLACES, HEADLINE, PLACES, COMPARE, placeFor };
