@@ -131,15 +131,21 @@
     optionsEl.style.display = optionsEl.children.length ? "" : "none";
   }
 
-  function drawNote(loaded, hub) {
+  function drawNote(loaded, hub, id) {
     var leaf = loaded[loaded.length - 1];
-    noteEl.textContent = leaf.taxYear.label + " tax year. An estimate, not a payslip: it assumes one job and no other income, pension or student loan. ";
+    var text = document.createTextNode(leaf.taxYear.label + " tax year. An estimate, not a payslip: it assumes one job and no other income or pension. ");
+    noteEl.textContent = "";
+    noteEl.appendChild(text);
     if (hub) {
       var a = document.createElement("a");
       a.href = hub;
       a.textContent = "Full breakdown and sources for " + selected().textContent + " →";
       noteEl.appendChild(a);
     }
+    TaxEngine.checked(id).then(function (info) {
+      if (selected().value !== id) return; // moved on to another place
+      text.textContent = TaxEngine.checkedLine(info) + ". An estimate, not a payslip: it assumes one job and no other income or pension. ";
+    }).catch(function () { /* the tax year alone is fine */ });
   }
 
   function switchTo(id) {
@@ -160,7 +166,7 @@
         if (ticket !== loading) return; // a later choice won
         chain = loaded;
         drawOptions(TaxEngine.merge(loaded).options);
-        drawNote(loaded, opt.getAttribute("data-hub"));
+        drawNote(loaded, opt.getAttribute("data-hub"), id);
         salaryEl.disabled = false;
         calculate();
       })

@@ -280,6 +280,7 @@
     }
   ],
   "lastVerified": null,
+  "lastChecked": null,
   "verifyAt": "https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/",
   "tests": [
     {

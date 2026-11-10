@@ -250,6 +250,7 @@
     }
   ],
   "lastVerified": null,
+  "lastChecked": null,
   "verifyAt": "https://sede.agenciatributaria.gob.es/Sede/irpf.html",
   "tests": [
     {

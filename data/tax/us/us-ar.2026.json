@@ -144,6 +144,7 @@
     }
   ],
   "lastVerified": null,
+  "lastChecked": null,
   "verifyAt": "https://arkleg.state.ar.us/Bills/Detail?id=hb1001&ddBienniumSession=2025%2F2026S1",
   "tests": [
     {

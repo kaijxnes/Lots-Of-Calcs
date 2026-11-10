@@ -231,6 +231,7 @@
     }
   ],
   "lastVerified": null,
+  "lastChecked": null,
   "verifyAt": "https://skat.dk/borger/skatteberegning",
   "tests": [
     {

@@ -57,7 +57,8 @@ function buildIndex(all, today) {
       parent: doc.parent,
       standalone: !!doc.standalone,
       taxYear: doc.taxYear.label,
-      lastVerified: doc.lastVerified
+      lastVerified: doc.lastVerified,
+      lastChecked: doc.lastChecked || null
     };
   });
   return {

@@ -8,21 +8,41 @@
   "standalone": true,
   "currency": "GBP",
   "locale": "en-GB",
-  "taxYear": { "label": "2026/27", "start": "2026-04-06", "end": "2027-04-05" },
-  "options": {},
+  "taxYear": {"label": "2026/27", "start": "2026-04-06", "end": "2027-04-05"},
+  "options": {
+    "studentLoan": {
+      "label": "Student loan",
+      "default": "none",
+      "inSummary": false,
+      "choices": {"none": "None", "plan1": "Plan 1", "plan2": "Plan 2", "plan4": "Plan 4 (Scotland)", "plan5": "Plan 5"}
+    },
+    "postgradLoan": {
+      "label": "Postgraduate loan",
+      "default": "no",
+      "inSummary": false,
+      "choices": {"no": "No", "yes": "Yes"}
+    }
+  },
   "items": [
     {
       "id": "gb-personal-allowance",
       "label": "Personal allowance",
       "show": true,
       "note": "Withdrawn by £1 for every £2 of income over £100,000, which is what creates the 60% effective band up to £125,140.",
-      "value": { "taper": 12570, "of": "gross", "from": 100000, "per": 0.5 }
+      "value": {"taper": 12570, "of": "gross", "from": 100000, "per": 0.5}
     },
     {
       "id": "gb-taxable",
       "label": "Taxable income",
       "show": true,
-      "value": { "max": [0, { "sub": ["gross", "gb-personal-allowance"] }] }
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "gb-personal-allowance"]
+          }
+        ]
+      }
     },
     {
       "id": "gb-income-tax",
@@ -30,11 +50,7 @@
       "group": "tax",
       "note": "Thresholds are on taxable income, i.e. after the personal allowance.",
       "charge": {
-        "brackets": [
-          [0, 20, "Basic rate"],
-          [37700, 40, "Higher rate"],
-          [125140, 45, "Additional rate"]
-        ],
+        "brackets": [[0, 20, "Basic rate"], [37700, 40, "Higher rate"], [125140, 45, "Additional rate"]],
         "of": "gb-taxable"
       }
     },
@@ -51,53 +67,182 @@
         ],
         "of": "gross"
       }
+    },
+    {
+      "id": "gb-student-loan",
+      "label": "Student loan repayment",
+      "group": "loan",
+      "note": "9% of earnings above the plan's yearly threshold: Plan 1 £26,900, Plan 2 £29,385, Plan 4 £33,795, Plan 5 £25,000. Collected through PAYE alongside tax.",
+      "charge": {
+        "option": "studentLoan",
+        "cases": {
+          "none": 0,
+          "plan1": {
+            "pct": 9,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["gross", 26900]
+                }
+              ]
+            }
+          },
+          "plan2": {
+            "pct": 9,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["gross", 29385]
+                }
+              ]
+            }
+          },
+          "plan4": {
+            "pct": 9,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["gross", 33795]
+                }
+              ]
+            }
+          },
+          "plan5": {
+            "pct": 9,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["gross", 25000]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "gb-postgrad-loan",
+      "label": "Postgraduate loan repayment",
+      "group": "loan",
+      "note": "6% of earnings above £21,000, on top of any undergraduate plan.",
+      "charge": {
+        "option": "postgradLoan",
+        "cases": {
+          "no": 0,
+          "yes": {
+            "pct": 6,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["gross", 21000]
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   ],
   "assumptions": [
     "Standard tax code (1257L) and personal allowance",
     "Employment income only, paid evenly through the year",
-    "National Insurance category A"
+    "National Insurance category A",
+    "No student or postgraduate loan unless one is chosen; repayments worked out on the year's earnings, where payroll works per pay period"
   ],
   "notModelled": [
     "Pension contributions (workplace or salary sacrifice)",
-    "Student loan and postgraduate loan repayments",
     "Tax codes other than the standard personal allowance",
     "Benefits in kind, salary sacrifice and taxable expenses",
     "Blind person's allowance, marriage allowance and other reliefs"
   ],
   "provisional": [],
   "sources": [
-    { "title": "Income Tax rates and Personal Allowances (GOV.UK)", "url": "https://www.gov.uk/income-tax-rates" },
-    { "title": "National Insurance rates and categories (GOV.UK)", "url": "https://www.gov.uk/national-insurance-rates-letters" },
-    { "title": "SI 2026/231 reg 5 — 2026-27 NI thresholds", "url": "https://www.legislation.gov.uk/uksi/2026/231/regulation/5/made" },
-    { "title": "Income Tax (Indexation) Order 2021 — allowance and basic rate limit frozen", "url": "https://www.legislation.gov.uk/uksi/2021/111/article/3/made" }
+    {"title": "Income Tax rates and Personal Allowances (GOV.UK)", "url": "https://www.gov.uk/income-tax-rates"},
+    {
+      "title": "National Insurance rates and categories (GOV.UK)",
+      "url": "https://www.gov.uk/national-insurance-rates-letters"
+    },
+    {
+      "title": "SI 2026/231 reg 5 — 2026-27 NI thresholds",
+      "url": "https://www.legislation.gov.uk/uksi/2026/231/regulation/5/made"
+    },
+    {
+      "title": "Income Tax (Indexation) Order 2021 — allowance and basic rate limit frozen",
+      "url": "https://www.legislation.gov.uk/uksi/2021/111/article/3/made"
+    },
+    {
+      "title": "Repaying your student loan: what you pay (GOV.UK)",
+      "url": "https://www.gov.uk/repaying-your-student-loan/what-you-pay"
+    }
   ],
   "obtainedFrom": [
-    { "title": "House of Commons Library briefing CBP-10618 and other secondary sources", "note": "Consistent across several independent sources; thresholds frozen since 2021/22." },
-    { "title": "PolicyEngine UK parameters", "url": "https://github.com/PolicyEngine/policyengine-uk/tree/442fe5943d4676fddb07cfcc363cd2702796b4f2/policyengine_uk/parameters/gov/hmrc", "note": "Cross-check, 24 Oct 2026: allowance, bands, NI thresholds and rates all agree." }
+    {
+      "title": "House of Commons Library briefing CBP-10618 and other secondary sources",
+      "note": "Consistent across several independent sources; thresholds frozen since 2021/22."
+    },
+    {
+      "title": "PolicyEngine UK parameters",
+      "url": "https://github.com/PolicyEngine/policyengine-uk/tree/442fe5943d4676fddb07cfcc363cd2702796b4f2/policyengine_uk/parameters/gov/hmrc",
+      "note": "Cross-check, 24 Oct 2026: allowance, bands, NI thresholds and rates all agree."
+    },
+    {
+      "title": "Student loan thresholds 2026/27 (Cintra, payroll bureau)",
+      "url": "https://cintra.co.uk/blog/student-loan-repayments-26-27/",
+      "note": "Plan 1 £26,900, Plan 2 £29,385, Plan 4 £33,795, Plan 5 £25,000, postgraduate £21,000; 9% and 6%. Several other payroll sites agree; GOV.UK not reachable from the build environment."
+    }
   ],
   "lastVerified": null,
+  "lastChecked": "2026-11-10",
   "verifyAt": "https://www.gov.uk/income-tax-rates",
   "tests": [
     {
       "gross": 30000,
       "note": "Tax (30,000 − 12,570) × 20% = 3,486. NI (30,000 − 12,570) × 8% = 1,394.40.",
-      "expect": { "gb-personal-allowance": 12570, "gb-income-tax": 3486, "gb-ni": 1394.4, "net": 25119.6 }
+      "expect": {"gb-personal-allowance": 12570, "gb-income-tax": 3486, "gb-ni": 1394.4, "net": 25119.6}
     },
     {
       "gross": 60000,
       "note": "Taxable 47,430: 37,700 × 20% + 9,730 × 40% = 11,432. NI 37,700 × 8% + 9,730 × 2% = 3,210.60.",
-      "expect": { "gb-income-tax": 11432, "gb-ni": 3210.6 }
+      "expect": {"gb-income-tax": 11432, "gb-ni": 3210.6}
     },
     {
       "gross": 110000,
       "note": "Allowance 12,570 − 5,000 = 7,570; taxable 102,430: 7,540 + 64,730 × 40% = 33,432. NI 3,016 + 59,730 × 2% = 4,210.60.",
-      "expect": { "gb-personal-allowance": 7570, "gb-income-tax": 33432, "gb-ni": 4210.6 }
+      "expect": {"gb-personal-allowance": 7570, "gb-income-tax": 33432, "gb-ni": 4210.6}
     },
     {
       "gross": 150000,
       "note": "No allowance; taxable 150,000: 7,540 + 87,440 × 40% + 24,860 × 45% = 53,703. NI 3,016 + 99,730 × 2% = 5,010.60.",
-      "expect": { "gb-personal-allowance": 0, "gb-income-tax": 53703, "gb-ni": 5010.6 }
+      "expect": {"gb-personal-allowance": 0, "gb-income-tax": 53703, "gb-ni": 5010.6}
+    },
+    {
+      "gross": 40000,
+      "options": {"studentLoan": "plan2"},
+      "note": "Plan 2: 9% x (40,000 - 29,385) = 955.35; take-home 32,319.60 - 955.35.",
+      "expect": {"gb-student-loan": 955.35, "net": 31364.25}
+    },
+    {
+      "gross": 30000,
+      "options": {"studentLoan": "plan1"},
+      "note": "Plan 1: 9% x (30,000 - 26,900) = 279.",
+      "expect": {"gb-student-loan": 279}
+    },
+    {
+      "gross": 40000,
+      "options": {"studentLoan": "plan4", "postgradLoan": "yes"},
+      "note": "Plan 4: 9% x (40,000 - 33,795) = 558.45; postgraduate 6% x (40,000 - 21,000) = 1,140.",
+      "expect": {"gb-student-loan": 558.45, "gb-postgrad-loan": 1140, "net": 30621.15}
+    },
+    {
+      "gross": 24000,
+      "options": {"studentLoan": "plan5"},
+      "note": "Below the £25,000 Plan 5 threshold: nothing to repay.",
+      "expect": {"gb-student-loan": 0}
     }
   ]
 }

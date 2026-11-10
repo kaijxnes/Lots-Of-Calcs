@@ -244,6 +244,7 @@
     }
   ],
   "lastVerified": null,
+  "lastChecked": null,
   "verifyAt": "https://app.skatteverket.se/rakna-skatt-client-skut-skatteutrakning/",
   "tests": [
     {

@@ -26,6 +26,9 @@ function warn(where, msg) { warnings.push(where + ": " + msg); }
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const KINDS = ["country", "state", "region", "city", "county"];
+/* tax and social are compulsory; loan (student loans) and pension are
+   deductions a visitor opts into, so they default to nothing */
+const GROUPS = ["tax", "social", "loan", "pension"];
 
 function checkBrackets(where, v) {
   if (Array.isArray(v)) {
@@ -62,6 +65,8 @@ function validateDoc(file, doc) {
   if (!("parent" in doc)) err(w, "missing 'parent' (use null for a root)");
   if (!("lastVerified" in doc)) err(w, "missing 'lastVerified' (null until checked against a primary source)");
   if (doc.lastVerified !== null && doc.lastVerified !== undefined && !DATE.test(doc.lastVerified)) err(w, "lastVerified must be null or YYYY-MM-DD");
+  if (!("lastChecked" in doc)) err(w, "missing 'lastChecked' (null until the figures have been checked against current sources)");
+  if (doc.lastChecked !== null && doc.lastChecked !== undefined && !DATE.test(doc.lastChecked)) err(w, "lastChecked must be null or YYYY-MM-DD");
   if (doc.kind && KINDS.indexOf(doc.kind) === -1) err(w, "kind must be one of " + KINDS.join(", "));
   if (!doc.parent && (!doc.currency || !doc.locale)) err(w, "a root jurisdiction needs currency and locale");
   if (doc.taxYear) {
@@ -81,7 +86,7 @@ function validateDoc(file, doc) {
     const hasCharge = "charge" in item;
     const hasValue = "value" in item;
     if (hasCharge === hasValue) err(iw, "needs exactly one of value or charge");
-    if (hasCharge && ["tax", "social"].indexOf(item.group) === -1) err(iw, "charge group must be tax or social");
+    if (hasCharge && GROUPS.indexOf(item.group) === -1) err(iw, "charge group must be one of " + GROUPS.join(", "));
     walkExpr(iw, hasCharge ? item.charge : item.value);
   });
 }
@@ -197,11 +202,11 @@ function main() {
 
   if (TABLE) {
     const cur = reg.currentFiles(all);
-    console.log("id".padEnd(14) + "name".padEnd(34) + "year".padEnd(10) + "verified".padEnd(12) + "provisional");
+    console.log("id".padEnd(14) + "name".padEnd(34) + "year".padEnd(10) + "checked".padEnd(12) + "verified".padEnd(12) + "provisional");
     Object.keys(cur).sort().forEach((id) => {
       const d = cur[id].doc;
       console.log(id.padEnd(14) + d.name.slice(0, 32).padEnd(34) + d.taxYear.label.padEnd(10) +
-        String(d.lastVerified || "—").padEnd(12) + ((d.provisional || []).length ? d.provisional.length + " item(s)" : ""));
+        String(d.lastChecked || "—").padEnd(12) + String(d.lastVerified || "—").padEnd(12) + ((d.provisional || []).length ? d.provisional.length + " item(s)" : ""));
     });
     console.log("");
   }

@@ -137,6 +137,15 @@
 
   /* If the registry cannot be loaded the baked figures simply stay — the page
      is still complete and correct, it just can't recalculate */
+  /* "Rates last checked" comes from the index rather than the HTML, so the
+     monthly check updates it without rewriting every page */
+  var checkedEl = document.getElementById("rates-checked");
+  if (checkedEl) {
+    TaxEngine.checked(id).then(function (info) {
+      checkedEl.firstChild.textContent = TaxEngine.checkedLine(info) + " · ";
+    }).catch(function () { /* keep the page's own wording */ });
+  }
+
   TaxEngine.load(id)
     .then(function (loaded) {
       chain = loaded;

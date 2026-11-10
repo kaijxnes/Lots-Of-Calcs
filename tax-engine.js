@@ -331,6 +331,39 @@ const TaxEngine = (function () {
     });
   }
 
+  /* When a jurisdiction's figures were last checked against current
+     sources, from the index. A place is only as fresh as the stalest file in
+     its chain (California needs both the federal and the state file checked),
+     so this is the earliest date, or null if any file has never been checked. */
+  function checked(id, base) {
+    const root = base || "/data/tax/";
+    return getJSON(root + "index.json").then((index) => {
+      const dates = [];
+      let verified = true;
+      let year = null;
+      for (let cur = id; cur; cur = index.jurisdictions[cur] && index.jurisdictions[cur].parent) {
+        const e = index.jurisdictions[cur];
+        if (!e) break;
+        if (year === null) year = e.taxYear;
+        dates.push(e.lastChecked || null);
+        if (!e.lastVerified) verified = false;
+      }
+      const known = dates.every(Boolean);
+      return { lastChecked: known ? dates.sort()[0] : null, verified: verified, taxYear: year };
+    });
+  }
+
+  function longDate(iso) {
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const p = iso.split("-").map(Number);
+    return p[2] + " " + months[p[1] - 1] + " " + p[0];
+  }
+
+  /* One line for a page: "2026/27 tax year · rates last checked 10 November 2026" */
+  function checkedLine(info) {
+    return info.taxYear + " tax year · rates last checked " + (info.lastChecked ? longDate(info.lastChecked) : "— not yet");
+  }
+
   /* ---- formatting ----
 
      English pages throughout, but each currency written its own way: lakh
@@ -368,6 +401,8 @@ const TaxEngine = (function () {
     evaluate: evaluate,
     merge: merge,
     load: load,
+    checked: checked,
+    checkedLine: checkedLine,
     money: money,
     OPS: OPS
   };

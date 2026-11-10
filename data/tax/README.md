@@ -35,6 +35,12 @@ update the figures and tests, run `node tools/tax/check.js --write`. The index
 switches to the new file once its start date has passed; add `"draft": true`
 to keep it out of the index until you are ready. Old years stay in the folder.
 
+**Record a check.** Each month every file is compared with its current
+published sources (a scheduled task does this). When a file's figures are
+confirmed as still current, set `lastChecked` to that date; pages show it as
+"rates last checked", read from `index.json`, and `/tax-rates/` lists every
+file's date. Change a figure only with a source for the new value.
+
 **Mark something verified.** When a person has checked a file against the
 primary source (the links in `sources` / `verifyAt`), set `lastVerified` to
 that date. Pages say "not verified" while it is `null`.
@@ -58,7 +64,9 @@ that date. Pages say "not verified" while it is `null`.
   "standalone": true,            // false if it only makes sense with a child (US federal)
   "currency": "USD", "locale": "en-US",          // roots only
   "taxYear": { "label": "2026", "start": "2026-01-01", "end": "2026-12-31" },
-  "options": {                   // choices a visitor can make; "status" is filing status
+  "options": {                   // choices a visitor can make; "status" is filing status;
+                                 // "inSummary": false keeps an opt-in choice (student loan)
+                                 // out of the one-line description of a page
     "status": { "label": "Filing status", "default": "single",
                 "choices": { "single": "Single", "married": "Married filing jointly" } }
   },
@@ -68,7 +76,8 @@ that date. Pages say "not verified" while it is `null`.
   "provisional": [ ... ],        // figures not yet confirmed for this year, and why
   "sources": [ { "title": "...", "url": "..." } ],   // primary sources to verify against
   "obtainedFrom": [ { "title": "...", "url": "...", "note": "..." } ],  // where the numbers actually came from
-  "lastVerified": null,          // YYYY-MM-DD once checked against a primary source
+  "lastVerified": null,          // YYYY-MM-DD once a person has checked it against a primary source
+  "lastChecked": null,           // YYYY-MM-DD the figures were last confirmed against current sources
   "verifyAt": "https://...",     // the single best page to check against
   "tests": [ { "gross": 75000, "options": {...}, "note": "working", "expect": { "item-id": 1234.56, "net": 50000 } } ]
 }
@@ -86,7 +95,8 @@ earlier ones by id, including the parent's.
 { "id": "ca-sdi", "label": "State Disability Insurance", "group": "social", "charge": <expr> }
 ```
 
-- `group` is `tax` or `social`.
+- `group` is `tax` or `social` for compulsory deductions, or `loan` / `pension`
+  for ones a visitor opts into (UK student loans), which default to nothing.
 - `show: true` puts a value in the breakdown (e.g. personal allowance).
 - A child item with the same id as a parent's replaces it — it must say
   `"replaces": true`. That is how Scotland swaps in its own income tax.
@@ -117,7 +127,8 @@ Unknown keys are an error, so a typo fails the check instead of being ignored.
 
 ## Coverage (October 2026)
 
-- **UK**: England/Wales/NI and Scotland, 2026/27.
+- **UK**: England/Wales/NI and Scotland, 2026/27, with student loan Plans 1, 2,
+  4 and 5 and the postgraduate loan as options.
 - **US**: federal and FICA, all 50 states and DC, state payroll programs,
   New York City; Indiana and Maryland county taxes as options. Rules
   transcribed from PolicyEngine US and compared against PolicyEngine's own

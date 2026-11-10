@@ -22,8 +22,12 @@
     taxable: document.getElementById("out-taxable"),
     tax: document.getElementById("out-tax"),
     ni: document.getElementById("out-ni"),
+    loan: document.getElementById("out-loan"),
+    pgl: document.getElementById("out-pgl"),
     net: document.getElementById("out-net")
   };
+  var plan = document.getElementById("opt-studentLoan");
+  var postgrad = document.getElementById("opt-postgradLoan");
 
   if (!els.salary) return;
 
@@ -57,6 +61,19 @@
     });
   }
 
+  /* Student loan choices; "none" and "no" are the page's own defaults */
+  function options() {
+    return {
+      studentLoan: plan ? plan.value : "none",
+      postgradLoan: postgrad ? postgrad.value : "no"
+    };
+  }
+
+  function loansChosen() {
+    var o = options();
+    return o.studentLoan !== "none" || o.postgradLoan !== "no";
+  }
+
   function render(r) {
     els.heroNet.textContent = money(r.net);
     els.month.textContent = money(r.perMonth);
@@ -68,6 +85,8 @@
     els.taxable.textContent = money(r.values["gb-taxable"]);
     els.tax.textContent = money(r.values["gb-income-tax"]);
     els.ni.textContent = money(r.values["gb-ni"]);
+    if (els.loan) els.loan.textContent = money(r.values["gb-student-loan"]);
+    if (els.pgl) els.pgl.textContent = money(r.values["gb-postgrad-loan"]);
     els.net.textContent = money(r.net);
   }
 
@@ -76,27 +95,27 @@
 
     var raw = String(els.salary.value).trim().replace(/[\s,£]/g, "");
 
-    if (raw === "") {
+    if (raw === "" && !loansChosen()) {
       setError("");
       restore();
       els.salary.value = "";
       return;
     }
 
-    var gross = Number(raw);
+    var gross = raw === "" ? Number(bakedSalary) : Number(raw);
     if (!isFinite(gross)) return fail("That isn't a number.");
     if (gross < 0) return fail("A salary can't be negative.");
     if (gross > 100000000) return fail("That is beyond what this is useful for — try something under £100m.");
 
     setError("");
-    render(TaxEngine.compute(chain, gross));
+    render(TaxEngine.compute(chain, gross, options()));
 
     /* Say plainly when the figures on screen no longer match the page's own
        subject, so nobody screenshots the wrong number */
-    var changed = Number(bakedSalary) !== gross;
+    var changed = Number(bakedSalary) !== gross || loansChosen();
     els.note.innerHTML = changed
-      ? "Showing <strong>" + money(gross) + "</strong>. The written parts of this page still describe " +
-        money(Number(bakedSalary)) + "."
+      ? "Showing <strong>" + money(gross) + "</strong>" + (loansChosen() ? " with your loan repayments" : "") +
+        ". The written parts of this page still describe " + money(Number(bakedSalary)) + " with no student loan."
       : "Change the figure and everything above updates. The page itself still describes " +
         money(Number(bakedSalary)) + ".";
   }
@@ -107,18 +126,31 @@
   }
 
   els.salary.addEventListener("input", calculate);
+  if (plan) plan.addEventListener("change", calculate);
+  if (postgrad) postgrad.addEventListener("change", calculate);
 
   /* Rates come from the tax registry the page was generated from, so a
      corrected rate reaches both without touching either. If it cannot be loaded
      the baked figures simply stay as they are — the page is still complete and
      correct. */
+  var checkedEl = document.getElementById("rates-checked");
+  if (checkedEl) {
+    TaxEngine.checked(JURISDICTION).then(function (info) {
+      checkedEl.firstChild.textContent = TaxEngine.checkedLine(info) + " · ";
+    }).catch(function () { /* keep the page's own wording */ });
+  }
+
   TaxEngine.load(JURISDICTION)
     .then(function (loaded) {
       chain = loaded;
       els.salary.disabled = false;
+      if (plan) plan.disabled = false;
+      if (postgrad) postgrad.disabled = false;
     })
     .catch(function () {
       els.salary.disabled = true;
+      if (plan) plan.disabled = true;
+      if (postgrad) postgrad.disabled = true;
       els.note.textContent =
         "The live recalculation could not load its rates, so the salary box is switched off. " +
         "The figures on this page are unaffected.";
