@@ -26,6 +26,9 @@ function warn(where, msg) { warnings.push(where + ": " + msg); }
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const KINDS = ["country", "state", "region", "city", "county"];
+/* tax and social are compulsory; loan (student loans) and pension are
+   deductions a visitor opts into, so they default to nothing */
+const GROUPS = ["tax", "social", "loan", "pension"];
 
 function checkBrackets(where, v) {
   if (Array.isArray(v)) {
@@ -81,7 +84,7 @@ function validateDoc(file, doc) {
     const hasCharge = "charge" in item;
     const hasValue = "value" in item;
     if (hasCharge === hasValue) err(iw, "needs exactly one of value or charge");
-    if (hasCharge && ["tax", "social"].indexOf(item.group) === -1) err(iw, "charge group must be tax or social");
+    if (hasCharge && GROUPS.indexOf(item.group) === -1) err(iw, "charge group must be one of " + GROUPS.join(", "));
     walkExpr(iw, hasCharge ? item.charge : item.value);
   });
 }

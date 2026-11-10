@@ -90,6 +90,19 @@ const FOOTER = `    <footer class="site-footer">
       <p><a href="/about/">About this site</a></p>
     </footer>`;
 
+/* Each plan's repayment on this salary, from the registry */
+function studentLoanAnswer(gross, r, cfg) {
+  const plans = [["plan1", "Plan 1"], ["plan2", "Plan 2"], ["plan4", "Plan 4"], ["plan5", "Plan 5"]].map(([k, name]) => {
+    const v = TaxEngine.compute(cfg.chain, gross, { studentLoan: k }).values["gb-student-loan"];
+    return `${name} ${money(v)}`;
+  });
+  const pgl = TaxEngine.compute(cfg.chain, gross, { postgradLoan: "yes" }).values["gb-postgrad-loan"];
+  return `It depends on your plan. On ${money0(gross)} a year the repayments are: ${plans.join(", ")}, ` +
+    `and ${money(pgl)} for a postgraduate loan, which is paid on top of any other plan. Repayments are 9% of ` +
+    "earnings above your plan's threshold (6% for postgraduate loans) and come out of your pay with tax. " +
+    "Choose your plan in the calculator above to see your take-home with it. The figures above assume no student loan.";
+}
+
 function faqs(gross, r, cfg) {
   return [
     [
@@ -124,12 +137,14 @@ function faqs(gross, r, cfg) {
       "Ireland only."
     ],
     [
-      "Does this include pension contributions or a student loan?",
-      "No, and both will reduce your take-home. A workplace pension is typically " +
-      "deducted before tax, so it lowers your taxable pay as well as your net pay. " +
-      "A student loan is taken as a percentage of earnings above a threshold that " +
-      "depends on which plan you are on. Either can be worth hundreds of pounds a " +
-      "year, so treat the figure here as take-home before those are applied."
+      `How much student loan do I repay on ${money0(gross)}?`,
+      studentLoanAnswer(gross, r, cfg)
+    ],
+    [
+      "Does this include pension contributions?",
+      "No. A workplace pension is typically deducted before tax, so it lowers your " +
+      "taxable pay as well as your net pay, and can be worth hundreds of pounds a " +
+      "year — treat the figure here as take-home before any pension."
     ],
     [
       `What is the marginal rate on ${money0(gross)}?`,
@@ -261,6 +276,8 @@ ${ldJson}
           <div class="result-row"><span class="r-label">Taxable income</span><span class="r-value" id="out-taxable">${money(r.taxable)}</span></div>
           <div class="result-row"><span class="r-label">− Income tax</span><span class="r-value" id="out-tax">${money(r.income_tax)}</span></div>
           <div class="result-row"><span class="r-label">− National Insurance</span><span class="r-value" id="out-ni">${money(r.ni)}</span></div>
+          <div class="result-row"><span class="r-label">− Student loan</span><span class="r-value" id="out-loan">£0.00</span></div>
+          <div class="result-row"><span class="r-label">− Postgraduate loan</span><span class="r-value" id="out-pgl">£0.00</span></div>
           <div class="result-row highlight"><span class="r-label">Take-home pay</span><span class="r-value" id="out-net">${money(r.net)}</span></div>
         </div>
       </div>
@@ -269,6 +286,16 @@ ${ldJson}
       <div class="field" style="max-width:320px;">
         <label for="salary">Gross annual salary</label>
         <input type="number" id="salary" value="${gross}" step="any" min="0" placeholder="0">
+      </div>
+      <div class="field-row" style="max-width:480px;">
+        <div class="field">
+          <label for="opt-studentLoan">Student loan</label>
+          <select id="opt-studentLoan"><option value="none" selected>None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4 (Scotland)</option><option value="plan5">Plan 5</option></select>
+        </div>
+        <div class="field">
+          <label for="opt-postgradLoan">Postgraduate loan</label>
+          <select id="opt-postgradLoan"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+        </div>
       </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the figure and everything above updates. The page itself still describes ${money0(gross)}.</p>
@@ -289,7 +316,7 @@ ${ldJson}
       <p class="tool-hint" style="margin-top:12px;">Income tax is charged on taxable income &mdash; your salary after the personal allowance. National Insurance is charged on the gross salary instead, using its own thresholds, which is why the two are listed separately rather than added into one rate.</p>
 
       <p class="tool-hint" style="margin-top:14px;">${ratesLine}</p>
-      <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions, no student loan repayments, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
+      <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions, no student loan unless you choose one above, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
     </main>
 
     <main class="tool">
@@ -299,7 +326,7 @@ ${ldJson}
       <p class="about-text"><strong>National Insurance</strong> is charged on gross pay rather than taxable income, with its own threshold at ${money0(cfg.niThreshold)}. On this salary it comes to ${money(r.ni)}. It happens to share a threshold with the personal allowance at the moment, which makes the two look like one deduction — they are not, and they have diverged before.</p>
       <p class="about-text">The difference between the two numbers people quote matters here. Your <strong>effective rate</strong> on ${money0(gross)} is ${oneDp(r.deduction_rate)}% &mdash; what is taken across the whole salary. Your <strong>marginal rate</strong> is ${Math.round(r.marginal)}% &mdash; what is taken from the next pound you earn. When you are weighing a pay rise, overtime or a second job, the marginal rate is the number that applies, and it is always the higher of the two.</p>
       <p class="about-text">Monthly pay is shown as a twelfth of the annual figure. Real payslips can differ, particularly in the first months of a new job or after a mid-year rise, because PAYE works cumulatively across the tax year rather than treating each month in isolation. It evens out by the end of the year.</p>
-      <p class="about-text">What this leaves out is worth being clear about, because each item is real money. Pension contributions are usually taken before tax, so they reduce both your taxable pay and your take-home. Student loan repayments are a percentage of earnings above a plan-specific threshold. Salary sacrifice, company cars and medical insurance all change the picture. And Scotland sets its own income tax bands, so none of the tax figures here apply there &mdash; though the National Insurance does.</p>
+      <p class="about-text">What this leaves out is worth being clear about, because each item is real money. Pension contributions are usually taken before tax, so they reduce both your taxable pay and your take-home. Student loan repayments are a percentage of earnings above a plan-specific threshold &mdash; pick your plan in the calculator to include them. Salary sacrifice, company cars and medical insurance all change the picture. And Scotland sets its own income tax bands, so none of the tax figures here apply there &mdash; though the National Insurance does.</p>
     </main>
 
     <main class="tool">
@@ -334,6 +361,7 @@ function main() {
   const doc = chain[chain.length - 1];
   const ni = doc.items.find((it) => it.id === "gb-ni");
   const cfg = {
+    chain: chain,
     taxYear: doc.taxYear.label,
     taxYearStart: doc.taxYear.start,
     taxYearEnd: doc.taxYear.end,

@@ -201,8 +201,10 @@ function deductionPhrase(p) {
   return hasSocial ? "income tax and social contributions" : "income tax";
 }
 
+/* Options marked inSummary: false (student loans) are opt-in extras: leave
+   them out of the "single; region: Madrid" line a page is described by */
 function optionSummary(p, opts) {
-  return Object.keys(p.options).filter((k) => k !== "status").map((k) =>
+  return Object.keys(p.options).filter((k) => k !== "status" && p.options[k].inSummary !== false).map((k) =>
     p.options[k].label + ": " + p.options[k].choices[opts[k]]).join("; ");
 }
 
@@ -334,7 +336,8 @@ function bandTables(p, r) {
 }
 
 function explanation(p, r) {
-  const parts = r.charges.map((c) => {
+  /* An opt-in deduction left at nothing (no student loan) needs no paragraph */
+  const parts = r.charges.filter((c) => c.group === "tax" || c.group === "social" || Math.abs(c.amount) >= 0.005).map((c) => {
     const item = p.items.find((it) => it.id === c.id);
     return `      <p class="about-text"><strong>${esc(c.label)}: ${p.money(c.amount)}.</strong> ${esc(item.note || "")}</p>`;
   });
