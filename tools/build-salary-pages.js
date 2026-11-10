@@ -315,7 +315,8 @@ ${ldJson}
       </div>
       <p class="tool-hint" style="margin-top:12px;">Income tax is charged on taxable income &mdash; your salary after the personal allowance. National Insurance is charged on the gross salary instead, using its own thresholds, which is why the two are listed separately rather than added into one rate.</p>
 
-      <p class="tool-hint" style="margin-top:14px;">${ratesLine}</p>
+      <p class="tool-hint" id="rates-checked" style="margin-top:14px;">${cfg.taxYear} tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
+      <p class="tool-hint">${ratesLine}</p>
       <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions, no student loan unless you choose one above, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
     </main>
 

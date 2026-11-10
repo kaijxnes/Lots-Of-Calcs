@@ -26,6 +26,7 @@
     }
   ],
   "lastVerified": null,
+  "lastChecked": null,
   "verifyAt": "https://taxfoundation.org/data/all/state/state-income-tax-rates/",
   "tests": [
     {

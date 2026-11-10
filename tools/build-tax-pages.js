@@ -218,6 +218,13 @@ function statusLabel(p, opts) {
    or { kind: "monthly", value: monthly pay }. The figures are always worked
    out on the annual equivalent; the mode decides what the box asks for and
    which figure leads. */
+/* The date is filled in from data/tax/index.json by the page's script, so
+   the monthly check moves it without rebuilding every page; the HTML carries
+   the tax year and a link to the full list */
+function checkedHint(p) {
+  return `      <p class="tool-hint" id="rates-checked">${esc(p.doc.taxYear.label)} tax year · <a href="/tax-rates/">when every rate was last checked</a></p>`;
+}
+
 function toolBlock(p, gross, r, heading, mode) {
   const m = mode || { kind: "annual" };
   const selects = Object.keys(p.options).map((k) => {
@@ -311,6 +318,7 @@ ${inputs}
 ${selects}
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the ${m.kind === "hourly" ? "rate, the hours" : m.kind === "monthly" ? "pay" : "salary"} or the options and everything above updates.</p>
+${checkedHint(p)}
     </main>
 `;
 }
@@ -361,7 +369,7 @@ function aboutTheFigures(p) {
       <p class="tool-section-title">About these figures</p>
       <p class="about-text">They use the <strong>${esc(leaf.taxYear.label)}</strong> tax year, which runs from ${niceDate(leaf.taxYear.start)} to ${niceDate(leaf.taxYear.end)}. ${verified
         ? "The rates were last checked against the official sources on " + niceDate(p.chain.map((d) => d.lastVerified).sort()[0]) + "."
-        : `The rates have not yet been checked by a person against the official sources — <a href="${esc(verifyAt)}" rel="nofollow noopener" target="_blank">check them here</a> before relying on them.`} This is an estimate, not a payslip.</p>
+        : `The rates have not yet been checked by a person against the official sources — <a href="${esc(verifyAt)}" rel="nofollow noopener" target="_blank">check them here</a> before relying on them.`} This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
       <ul class="about-list">${li(assumptions)}</ul>
       <p class="about-text"><strong>Leaves out:</strong></p>
@@ -1027,6 +1035,47 @@ ${FOOTER}
 `;
 }
 
+// ---------------------------------------------------------------- /tax-rates/
+
+/* Every tax file in force, when it was last checked, and whether a person
+   has verified it. Rebuilt with everything else, so the monthly check that
+   moves the dates also refreshes this page. */
+function taxRatesPage() {
+  const url = SITE + "/tax-rates/";
+  const title = "Tax Rates Used on Lots Of Calcs — When Each Was Last Checked";
+  const desc = "Every income tax and payroll rate set behind the salary calculators: the tax year in force, when it was last checked against published sources, and the official page to check it against.";
+  const fmt = (d) => (d ? niceDate(d) : "Not yet");
+  const ids = Object.keys(current).sort((a, b) => {
+    const da = current[a].doc, db = current[b].doc;
+    return (da.country + (da.parent ? "1" : "0") + da.name).localeCompare(db.country + (db.parent ? "1" : "0") + db.name);
+  });
+  const rows = ids.map((id) => {
+    const d = current[id].doc;
+    const name = byId[id] ? `<a href="${hubUrl(byId[id])}">${esc(d.name)}</a>` : esc(d.name);
+    const official = d.verifyAt || (d.sources[0] && d.sources[0].url);
+    return [name, esc(d.taxYear.label), fmt(d.lastChecked), d.lastVerified ? niceDate(d.lastVerified) : "Not yet",
+      String((d.provisional || []).length || "—"), official ? `<a href="${esc(official)}" rel="nofollow noopener" target="_blank">Official source</a>` : ""];
+  });
+  const checkedCount = ids.filter((id) => current[id].doc.lastChecked).length;
+  const ld = [webPage(title, desc, url), breadcrumb([["Home", SITE + "/"], ["Tax rates", url]])];
+  return head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="/salary/">← Salary after tax</a>
+      <h1 class="page-title">Tax rates and when they were checked</h1>
+      <p class="page-subtitle">Every tax and payroll rate set the salary calculators use.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text">Each country, state and region has its own file of rates and thresholds for its current tax year. They are checked every month against the tax authority's published figures and any change is put in straight away; ${checkedCount} of ${ids.length} have been checked so far. New tax years are prepared as soon as their figures are published and switch on when the year starts.</p>
+      <p class="about-text"><strong>Last checked</strong> is the last time the figures were compared with current published sources and found to be up to date. <strong>Verified</strong> means a person has also gone through every figure against the official source. Until then, treat the results as estimates. <strong>Not yet confirmed</strong> counts figures that had not been published for the year when the file was made, where the previous year's amount is used.</p>
+${site.table(["Where", "Tax year", "Last checked", "Verified", "Not yet confirmed", ""], rows, 640)}    </main>
+
+${FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
 // ---------------------------------------------------------------- main
 
 /* Folders of generated pages: anything matching here that this run didn't
@@ -1068,6 +1117,8 @@ function main() {
   });
   write("salary/us", usHub());
   write("salary", salaryIndex());
+  write("tax-rates", taxRatesPage());
+  urls.push(["/tax-rates/", "0.5"]);
 
   let pruned = 0;
   new Set(["salary", "salary/us"].concat(everywhere.map((p) => dirOf(base(p))))).forEach((dir) => { pruned += site.prune(dir, GENERATED); });

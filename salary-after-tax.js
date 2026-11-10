@@ -133,6 +133,13 @@
      corrected rate reaches both without touching either. If it cannot be loaded
      the baked figures simply stay as they are — the page is still complete and
      correct. */
+  var checkedEl = document.getElementById("rates-checked");
+  if (checkedEl) {
+    TaxEngine.checked(JURISDICTION).then(function (info) {
+      checkedEl.firstChild.textContent = TaxEngine.checkedLine(info) + " · ";
+    }).catch(function () { /* keep the page's own wording */ });
+  }
+
   TaxEngine.load(JURISDICTION)
     .then(function (loaded) {
       chain = loaded;
