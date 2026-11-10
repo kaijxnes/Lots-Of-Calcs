@@ -10,17 +10,14 @@
    or anything reading it without scripts. Which salaries get pages is set in
    tools/salary-pages-config.js. The UK (England, Wales and Northern Ireland)
    pages come from tools/build-salary-pages.js, which this runs first. */
-const fs = require("fs");
-const path = require("path");
 const TaxEngine = require("../tax-engine.js");
 const registry = require("./tax/registry.js");
 const config = require("./salary-pages-config.js");
 const uk = require("./build-salary-pages.js");
 const related = require("./related.js");
+const site = require("./lib/site.js");
 
-const ROOT = registry.ROOT;
-const SITE = "https://lotsofcalcs.com";
-const TODAY = new Date().toISOString().slice(0, 10);
+const SITE = site.SITE;
 
 // ---------------------------------------------------------------- helpers
 
@@ -59,10 +56,10 @@ function yearPhrase(doc) {
   return /^\d{4}$/.test(label) ? label + " tax year" : label + " tax year";
 }
 
+/* Through site.write, which records which pages really changed so the
+   sitemap's <lastmod> only moves for those */
 function write(rel, html) {
-  const dir = path.join(ROOT, rel);
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(path.join(dir, "index.html"), html);
+  site.write(rel, html);
 }
 
 const FOOTER = `    <footer class="site-footer">
@@ -153,23 +150,47 @@ function contextFor(id) {
   return {
     id, doc, chain, root, place, currency, options: merged.options, defaults, items: merged.items,
     salaries: config.SALARIES[currency],
+    hourly: config.HOURLY[currency] ? config.HOURLY[currency].rates : [],
+    hours: config.HOURLY[currency] ? config.HOURLY[currency].hours : null,
+    monthly: config.MONTHLY_PLACES.includes(id) ? config.MONTHLY[currency] : [],
     money: (v) => TaxEngine.money(v, currency),
     money0: (v) => TaxEngine.money(v, currency, true)
   };
 }
 
-const places = Object.keys(current)
-  .filter((id) => id !== "gb" && current[id].doc.standalone && config.placeFor(id, current[id].doc))
+const everywhere = Object.keys(current)
+  .filter((id) => current[id].doc.standalone && config.placeFor(id, current[id].doc))
   .map(contextFor);
 const byId = {};
-places.forEach((p) => { byId[p.id] = p; });
+everywhere.forEach((p) => { byId[p.id] = p; });
+/* The UK's annual pages come from tools/build-salary-pages.js; every other
+   place gets its annual pages and hub here */
+const places = everywhere.filter((p) => p.id !== "gb");
+
+/* The UK's pages sit directly under /salary/, everyone else's in a folder */
+function base(p) {
+  return "/salary/" + (p.place.path ? p.place.path + "/" : "");
+}
 
 function pageUrl(p, n) {
-  return "/salary/" + p.place.path + "/" + slugFor(n, p.currency) + "/";
+  return base(p) + slugFor(n, p.currency) + "/";
+}
+
+function hourUrl(p, rate) {
+  return base(p) + rate + "-an-hour-after-tax/";
+}
+
+function monthUrl(p, m) {
+  return base(p) + m + "-a-month-after-tax/";
 }
 
 function hubUrl(p) {
-  return "/salary/" + p.place.path + "/";
+  return p.id === "gb" ? "/salary/uk/" : base(p);
+}
+
+/* "/salary/us/texas/" -> "salary/us/texas", for write() */
+function dirOf(url) {
+  return url.replace(/^\/|\/$/g, "");
 }
 
 /* Phrase for what comes out of pay */
@@ -191,7 +212,12 @@ function statusLabel(p, opts) {
 
 // ---------------------------------------------------------------- shared blocks
 
-function toolBlock(p, gross, r, heading) {
+/* mode: { kind: "annual" } (default), { kind: "hourly", value: rate, hours },
+   or { kind: "monthly", value: monthly pay }. The figures are always worked
+   out on the annual equivalent; the mode decides what the box asks for and
+   which figure leads. */
+function toolBlock(p, gross, r, heading, mode) {
+  const m = mode || { kind: "annual" };
   const selects = Object.keys(p.options).map((k) => {
     const o = p.options[k];
     const opts = Object.keys(o.choices).map((c) =>
@@ -207,25 +233,69 @@ function toolBlock(p, gross, r, heading) {
   const charges = r.charges.map((c) =>
     `          <div class="result-row"><span class="r-label">${esc(c.label)}</span><span class="r-value" data-item="${esc(c.id)}">${p.money(c.amount)}</span></div>`).join("\n");
 
-  return `    <main class="tool" id="salary-tool" data-tax-id="${esc(p.id)}" data-currency="${p.currency}" data-gross="${gross}">
-      <div class="result-box" aria-live="polite">
-        <div class="result-hero">
+  const heroRow = (label, key, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${label}</span><span class="r-value" data-out="${key}">${value}</span></div>`;
+  let hero;
+  if (m.kind === "monthly") {
+    hero = `        <div class="result-hero">
+          <div class="value" data-out="month">${p.money(r.perMonth)}</div>
+          <div class="label">Take-home pay, a month</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+${heroRow("A year", "net", p.money(r.net), "highlight")}
+${heroRow("A week", "week", p.money(r.perWeek))}
+${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
+        </div>`;
+  } else {
+    hero = `        <div class="result-hero">
           <div class="value" data-out="net">${p.money(r.net)}</div>
           <div class="label">Take-home pay, a year</div>
         </div>
         <hr class="divider">
         <div class="result-grid">
-          <div class="result-row highlight"><span class="r-label">A month</span><span class="r-value" data-out="month">${p.money(r.perMonth)}</span></div>
-          <div class="result-row"><span class="r-label">A week</span><span class="r-value" data-out="week">${p.money(r.perWeek)}</span></div>
-          <div class="result-row"><span class="r-label">A working day</span><span class="r-value" data-out="day">${p.money(r.perDay)}</span></div>
-          <div class="result-row"><span class="r-label">Effective tax rate</span><span class="r-value" data-out="rate">${pct1(r.deductionRate)}</span></div>
+${heroRow("A month", "month", p.money(r.perMonth), "highlight")}
+${heroRow("A week", "week", p.money(r.perWeek))}
+${m.kind === "hourly" ? heroRow("Per hour worked", "hour", p.money(r.net / (m.hours * 52))) : heroRow("A working day", "day", p.money(r.perDay))}
+${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
+        </div>`;
+  }
+
+  let inputs;
+  if (m.kind === "hourly") {
+    inputs = `      <p class="tool-section-title" style="margin-top:22px;">Try a different rate</p>
+      <div class="field-row" style="max-width:480px;">
+        <div class="field">
+          <label for="salary">Hourly rate (${p.currency})</label>
+          <input type="number" id="salary" value="${m.value}" step="any" min="0" placeholder="0">
         </div>
+        <div class="field">
+          <label for="hours">Hours a week</label>
+          <input type="number" id="hours" value="${m.hours}" step="any" min="0" placeholder="${m.hours}">
+        </div>
+      </div>`;
+  } else if (m.kind === "monthly") {
+    inputs = `      <p class="tool-section-title" style="margin-top:22px;">Try different pay</p>
+      <div class="field" style="max-width:320px;">
+        <label for="salary">Gross monthly pay (${p.currency})</label>
+        <input type="number" id="salary" value="${m.value}" step="any" min="0" placeholder="0">
+      </div>`;
+  } else {
+    inputs = `      <p class="tool-section-title" style="margin-top:22px;">Try a different salary</p>
+      <div class="field" style="max-width:320px;">
+        <label for="salary">Gross annual salary (${p.currency})</label>
+        <input type="number" id="salary" value="${gross}" step="any" min="0" placeholder="0">
+      </div>`;
+  }
+
+  return `    <main class="tool" id="salary-tool" data-tax-id="${esc(p.id)}" data-currency="${p.currency}" data-gross="${gross}" data-mode="${m.kind}">
+      <div class="result-box" aria-live="polite">
+${hero}
       </div>
 
       <p class="tool-section-title" style="margin-top:22px;">${esc(heading)}</p>
       <div class="result-box">
         <div class="result-grid">
-          <div class="result-row"><span class="r-label">Gross salary</span><span class="r-value" data-out="gross">${p.money0(gross)}</span></div>
+          <div class="result-row"><span class="r-label">${m.kind === "annual" ? "Gross salary" : "Gross pay, a year"}</span><span class="r-value" data-out="gross">${p.money0(gross)}</span></div>
 ${shown}
 ${charges}
           <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value" data-out="deductions">${p.money(r.totalDeductions)}</span></div>
@@ -235,14 +305,10 @@ ${charges}
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">Try a different salary</p>
-      <div class="field" style="max-width:320px;">
-        <label for="salary">Gross annual salary (${p.currency})</label>
-        <input type="number" id="salary" value="${gross}" step="any" min="0" placeholder="0">
-      </div>
+${inputs}
 ${selects}
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
+      <p class="tool-hint" id="salary-note">Change the ${m.kind === "hourly" ? "rate, the hours" : m.kind === "monthly" ? "pay" : "salary"} or the options and everything above updates.</p>
     </main>
 `;
 }
@@ -321,10 +387,15 @@ function iconFor(p) {
 
 // ---------------------------------------------------------------- comparison
 
-function comparison(p, gross) {
+/* opts.link(q): the page to link each place to, or null for no link;
+   opts.label: how the amount reads in the heading ("$25 an hour") */
+function comparison(p, gross, opts) {
+  const o = opts || {};
+  const link = o.link || ((q) => pageUrl(q, gross));
   let ids;
   if (p.root.country === "US") ids = config.COMPARE.US;
   else if (p.currency === "EUR") ids = config.COMPARE.EUR;
+  else if (p.currency === "GBP") ids = config.COMPARE.GBP;
   else return "";
   ids = Array.from(new Set([p.id].concat(ids))).filter((id) => byId[id]);
   const rows = ids.map((id) => {
@@ -333,11 +404,12 @@ function comparison(p, gross) {
     return { q, r };
   }).sort((a, b) => b.r.net - a.r.net);
   const body = rows.map(({ q, r }) => {
-    const name = q.id === p.id ? `<strong>${esc(q.place.shortName)}</strong>` : `<a href="${pageUrl(q, gross)}">${esc(q.place.shortName)}</a>`;
+    const href = q.id === p.id ? null : link(q);
+    const name = q.id === p.id ? `<strong>${esc(q.place.shortName)}</strong>` : href ? `<a href="${href}">${esc(q.place.shortName)}</a>` : esc(q.place.shortName);
     return `<tr><td>${name}</td><td>${p.money(r.net)}</td><td>${p.money(r.perMonth)}</td><td>${pct1(r.deductionRate)}</td></tr>`;
   }).join("");
-  const what = p.root.country === "US" ? "other states" : "other euro countries";
-  return `      <p class="tool-section-title" style="margin-top:22px;">${esc(p.money0(gross))} in ${what}</p>
+  const what = p.root.country === "US" ? "in other states" : p.currency === "GBP" ? "across the UK" : "in other euro countries";
+  return `      <p class="tool-section-title" style="margin-top:22px;">${esc(o.label || p.money0(gross))} ${what}</p>
       <div class="table-scroll">
         <div style="min-width:420px;">
           <table class="out-table">
@@ -346,7 +418,7 @@ function comparison(p, gross) {
           </table>
         </div>
       </div>
-      <p class="tool-hint" style="margin-top:12px;">Each place on its own default assumptions${p.root.country === "US" ? " — single filer, standard deduction" : ""}. Tax systems differ in what they count, so treat this as a rough guide to where the same salary goes further.</p>
+      <p class="tool-hint" style="margin-top:12px;">${p.currency === "GBP" ? "Scotland sets its own income tax bands; National Insurance is the same everywhere in the UK." : `Each place on its own default assumptions${p.root.country === "US" ? " — single filer, standard deduction" : ""}. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.`}</p>
 `;
 }
 
@@ -403,7 +475,7 @@ function salaryPage(p, gross) {
     faqLd(q)
   ];
 
-  const others = p.salaries.filter((s) => s !== gross).map((s) => {
+  const others = site.neighbours(p.salaries, gross, 4).map((s) => {
     const o = TaxEngine.compute(p.chain, s, p.defaults);
     return card(pageUrl(p, s), iconFor(p), `${p.money0(s)} after tax`, `${p.money0(o.net)} a year, ${p.money0(o.perMonth)} a month.`);
   }).join("");
@@ -433,7 +505,7 @@ ${faqHtml}    </main>
 ${aboutTheFigures(p)}
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in ${esc(inName)}</div>
     <div class="hub-grid">
-${others}${card(hubUrl(p), "📋", `All salaries in ${p.place.shortName}`, "Every salary on one page, with a calculator.")}${p.root.country === "US" ? card("/salary/us/", "🇺🇸", "Compare all 50 states", "Take-home pay in every state at the same salary.") : card("/salary/", "🌍", "Other countries", "Salary after tax pages for other countries.")}    </div>
+${others}${card(hubUrl(p), "📋", `All salaries in ${p.place.shortName}`, "Every salary, hourly rate and monthly figure, with a calculator.")}${p.root.country === "US" ? card("/salary/us/", "🇺🇸", "Compare all 50 states", "Take-home pay in every state at the same salary.") : card("/salary/", "🌍", "Other countries", "Salary after tax pages for other countries.")}    </div>
 
 ${FOOTER}
   </div>
@@ -492,7 +564,7 @@ ${toolBlock(p, gross, r, `Where ${p.money0(gross)} goes`)}
           </table>
         </div>
       </div>
-${comparison(p, gross)}    </main>
+${payLinks(p)}${comparison(p, gross)}    </main>
 
     <main class="tool">
       <p class="tool-section-title">What comes out of pay in ${esc(inName)}</p>
@@ -504,6 +576,277 @@ ${FOOTER}
   </div>
   <script src="/tax-engine.js"></script>
   <script src="/salary-page.js"></script>
+</body>
+</html>
+`;
+}
+
+// ---------------------------------------------------------------- hourly and monthly pages
+
+/* The hourly and monthly pages a place has, as link lists for its hub */
+function payLinks(p) {
+  const parts = [];
+  if (p.hourly.length) {
+    parts.push(`      <p class="tool-section-title" style="margin-top:22px;">By hourly rate</p>
+      <p class="salary-links">${p.hourly.map((h) => `<a href="${hourUrl(p, h)}">${esc(p.money0(h))} an hour</a>`).join(" ")}</p>
+`);
+  }
+  if (p.monthly.length) {
+    parts.push(`      <p class="tool-section-title" style="margin-top:22px;">By monthly pay</p>
+      <p class="salary-links">${p.monthly.map((m) => `<a href="${monthUrl(p, m)}">${esc(p.money0(m))} a month</a>`).join(" ")}</p>
+`);
+  }
+  return parts.join("");
+}
+
+/* The UK file covers England, Wales and Northern Ireland only; say so where
+   a page is titled "in the UK" */
+function ukNote(p, scotUrl) {
+  if (p.id !== "gb") return "";
+  return `      <p class="tool-hint">These figures are for England, Wales and Northern Ireland. Scotland sets its own income tax bands${scotUrl ? ` &mdash; <a href="${scotUrl}">see the Scottish figures</a>` : ""}.</p>
+`;
+}
+
+function assumptionsFor(p) {
+  const opts = optionSummary(p, p.defaults);
+  const status = statusLabel(p, p.defaults);
+  return [status ? lowerFirst(status) : null, opts].filter(Boolean).join("; ");
+}
+
+function accuracyFaq(p, what) {
+  const verified = p.chain.every((d) => d.lastVerified);
+  const line = assumptionsFor(p);
+  return [`How accurate are these figures?`,
+    `They apply the ${p.doc.taxYear.label} rates and thresholds to ${what}${line ? " for " + line : ""}. ` +
+    (verified ? "The rates have been checked against the official sources." : "The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them.") +
+    " Pensions, credits and deductions specific to you will change the result."];
+}
+
+function leavesOutFaq(p) {
+  const notModelled = Array.from(new Set(p.chain.flatMap((d) => d.notModelled || [])));
+  return [`What does this leave out?`, notModelled.length ? notModelled.join("; ") + "." : "Nothing beyond the assumptions listed on this page."];
+}
+
+function hourlyPage(p, rate) {
+  const hrs = p.hours;
+  const yearHours = hrs * 52;
+  const gross = rate * yearHours;
+  const r = TaxEngine.compute(p.chain, gross, p.defaults);
+  const perHour = r.net / yearHours;
+  const url = SITE + hourUrl(p, rate);
+  const inName = p.place.inName;
+  const year = p.doc.taxYear.label;
+  const mr = p.money0(rate);
+  const line = assumptionsFor(p);
+  const phrase = deductionPhrase(p);
+  const title = `${mr} an Hour After Tax in ${inName} (${year}) — Take-Home Pay`;
+  const desc = `${mr} an hour at ${hrs} hours a week is ${p.money0(gross)} a year. In ${inName} that leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month, or ${p.money(perHour)} for each hour worked.`;
+
+  /* The same rate at other weekly hours: part-time to long weeks */
+  const weeks = Array.from(new Set([16, 20, 30, hrs, 45])).sort((a, b) => a - b);
+  const hoursRows = weeks.map((h) => {
+    const g = rate * h * 52;
+    const o = TaxEngine.compute(p.chain, g, p.defaults);
+    const cell = (x) => (h === hrs ? `<strong>${x}</strong>` : x);
+    return [cell(h + " hours"), cell(p.money0(g)), cell(p.money(o.net)), cell(p.money(o.perMonth)), cell(p.money(o.net / (h * 52)))];
+  });
+
+  const overtime = rate * (1 - r.marginalRate / 100);
+  const part = TaxEngine.compute(p.chain, rate * 20 * 52, p.defaults);
+  const q = [
+    [`How much is ${mr} an hour a year?`,
+      `${mr} an hour for ${hrs} hours a week over 52 weeks is ${p.money0(gross)} a year before tax. After ${phrase} in ${inName}, that leaves ${p.money(r.net)} a year.`],
+    [`How much is ${mr} an hour after tax a month?`,
+      `${p.money(r.perMonth)} a month, or ${p.money(r.perWeek)} a week, working ${hrs} hours a week. Each hour worked takes home ${p.money(perHour)} once ${pct1(r.deductionRate)} has gone in deductions.`],
+    [`What if I work part-time at ${mr} an hour?`,
+      `At 20 hours a week, ${mr} an hour is ${p.money0(rate * 20 * 52)} a year and leaves ${p.money(part.net)} after tax, or ${p.money(part.perMonth)} a month. Lower earnings are taxed at a lower average rate, so take-home doesn't fall quite in proportion to the hours. The table above covers other weekly hours.`],
+    [`How much of an overtime hour do I keep?`,
+      `At this level of pay your marginal rate is ${Math.round(r.marginalRate)}%, so an extra hour at ${mr} leaves about ${p.money(overtime)} after tax. Overtime paid at a higher rate keeps the same share of the higher figure.`]
+  ];
+  if (p.id === "gb") q.push(["Is this the same in Scotland?", "No. Scotland sets its own income tax bands and rates, so the income tax differs at most rates of pay; National Insurance is the same across the UK. These figures are for England, Wales and Northern Ireland."]);
+  q.push(leavesOutFaq(p));
+  q.push(accuracyFaq(p, `${mr} an hour for ${hrs} hours a week`));
+
+  const crumb = crumbs(p).concat([[`${mr} an hour after tax`, url]]);
+  const ld = [webPage(title, desc, url), breadcrumb(crumb), faqLd(q)];
+
+  const others = site.neighbours(p.hourly, rate, 4).map((h) => {
+    const o = TaxEngine.compute(p.chain, h * yearHours, p.defaults);
+    return card(hourUrl(p, h), iconFor(p), `${p.money0(h)} an hour after tax`, `${p.money0(o.net)} a year, ${p.money0(o.perMonth)} a month.`);
+  }).join("");
+  const national = p.root.country === "US" && config.HOURLY.USD.national.includes(rate)
+    ? card(`/salary/us/${rate}-an-hour-after-tax/`, "🇺🇸", `${mr} an hour in every state`, "Take-home pay at this rate in all 50 states, ranked.") : "";
+  const scot = p.id === "gb" && byId["gb-sct"] ? hourUrl(byId["gb-sct"], rate) : null;
+
+  return head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${hubUrl(p)}">← Salary after tax in ${esc(inName)}</a>
+      <h1 class="page-title">${esc(mr)} an hour after tax in ${esc(inName)}</h1>
+      <p class="page-subtitle">${hrs} hours a week, 52 weeks a year: ${esc(p.money0(gross))} before tax in the ${esc(year)} tax year${line ? " — " + esc(line) : ""}.</p>
+    </header>
+
+${toolBlock(p, gross, r, "Where it goes", { kind: "hourly", value: rate, hours: hrs })}
+    <main class="tool">
+      <p class="about-text">Paid <strong>${esc(mr)} an hour</strong> for ${hrs} hours a week, you earn ${esc(p.money0(gross))} a year. Once ${esc(phrase)} are taken off in ${esc(inName)}, you take home <strong>${p.money(r.net)}</strong> a year &mdash; <strong>${p.money(r.perMonth)}</strong> a month, or ${p.money(perHour)} for every hour worked.</p>
+${ukNote(p, scot)}      <p class="tool-section-title" style="margin-top:22px;">${esc(mr)} an hour at different hours</p>
+${site.table(["Hours a week", "Gross a year", "Take-home a year", "A month", "Per hour"], hoursRows, 480)}      <p class="tool-hint" style="margin-top:12px;">Assumes you're paid for all 52 weeks, including paid holiday. If some weeks are unpaid, enter your average weekly hours across the year in the calculator above.</p>
+${bandTables(p, r)}${comparison(p, gross, { label: `${mr} an hour`, link: (o) => (o.hourly.includes(rate) ? hourUrl(o, rate) : null) })}    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How ${esc(mr)} an hour after tax is worked out</p>
+      <p class="about-text">The hourly rate is turned into a yearly salary first &mdash; ${esc(mr)} &times; ${hrs} hours &times; 52 weeks = ${esc(p.money0(gross))} &mdash; because tax is worked out on yearly income. The take-home is then spread back over the year.</p>
+${explanation(p, r)}
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+${aboutTheFigures(p)}
+    <div class="hub-group-title" style="margin-top:28px;">Other hourly rates in ${esc(inName)}</div>
+    <div class="hub-grid">
+${others}${national}${card(hubUrl(p), "📋", `All pay in ${p.place.shortName}`, "Every salary, hourly rate and monthly figure, with a calculator.")}    </div>
+
+${FOOTER}
+  </div>
+  <script src="/tax-engine.js"></script>
+  <script src="/salary-page.js"></script>
+</body>
+</html>
+`;
+}
+
+function monthlyPage(p, monthly) {
+  const gross = monthly * 12;
+  const r = TaxEngine.compute(p.chain, gross, p.defaults);
+  const url = SITE + monthUrl(p, monthly);
+  const inName = p.place.inName;
+  const year = p.doc.taxYear.label;
+  const mm = p.money0(monthly);
+  const line = assumptionsFor(p);
+  const phrase = deductionPhrase(p);
+  const title = `${mm} a Month After Tax in ${inName} (${year}) — Monthly Take-Home Pay`;
+  const desc = `${mm} a month before tax is ${p.money0(gross)} a year. In ${inName} it leaves ${p.money(r.perMonth)} a month after tax — ${p.money(r.net)} a year.`;
+
+  const rows = site.neighbours(p.monthly, monthly, 3).concat([monthly]).sort((a, b) => a - b).map((x) => {
+    const o = TaxEngine.compute(p.chain, x * 12, p.defaults);
+    const cell = (c) => (x === monthly ? `<strong>${c}</strong>` : c);
+    const name = x === monthly ? esc(p.money0(x)) : `<a href="${monthUrl(p, x)}">${esc(p.money0(x))}</a>`;
+    return [cell(name), cell(p.money(o.perMonth)), cell(p.money(o.totalDeductions / 12)), cell(pct1(o.deductionRate))];
+  });
+
+  const monthTax = r.totalDeductions / 12;
+  const q = [
+    [`How much is ${mm} a month after tax in ${inName}?`,
+      `${p.money(r.perMonth)} a month. ${mm} a month is ${p.money0(gross)} a year before tax; after ${phrase} that leaves ${p.money(r.net)} a year, or ${p.money(r.perWeek)} a week.`],
+    [`How much is ${mm} a month a year?`,
+      `${p.money0(gross)} before tax — twelve times the monthly figure. Salaries are usually quoted per year, so this is the number to compare with a job advert.`],
+    [`How much tax do I pay on ${mm} a month?`,
+      `About ${p.money(monthTax)} a month, ${pct1(r.deductionRate)} of the gross, counting every deduction on this page. The next ${p.currency === "JPY" ? "yen" : "unit"} you earn is taxed at ${Math.round(r.marginalRate)}%.`],
+    [`Why might my payslip show a different amount?`,
+      p.currency === "GBP"
+        ? "PAYE works cumulatively across the tax year, so the first month of a new job, a mid-year pay rise or an emergency tax code can make one month's figure differ. Pension contributions, student loan repayments and benefits in kind also come off a real payslip."
+        : "Withholding in a single month can differ from a twelfth of the annual figure — for example in the first month of a job, after a pay rise, or where bonuses and one-off payments are taxed differently. Pension contributions and other deductions specific to you also come off a real payslip."]
+  ];
+  if (p.id === "gb") q.push(["Is this the same in Scotland?", "No. Scotland sets its own income tax bands and rates, so the income tax differs at most salaries; National Insurance is the same across the UK. These figures are for England, Wales and Northern Ireland."]);
+  q.push(leavesOutFaq(p));
+  q.push(accuracyFaq(p, `${mm} a month`));
+
+  const crumb = crumbs(p).concat([[`${mm} a month after tax`, url]]);
+  const ld = [webPage(title, desc, url), breadcrumb(crumb), faqLd(q)];
+
+  const others = site.neighbours(p.monthly, monthly, 4).map((x) => {
+    const o = TaxEngine.compute(p.chain, x * 12, p.defaults);
+    return card(monthUrl(p, x), iconFor(p), `${p.money0(x)} a month after tax`, `${p.money0(o.perMonth)} a month, ${p.money0(o.net)} a year.`);
+  }).join("");
+  const scot = p.id === "gb" && byId["gb-sct"] ? monthUrl(byId["gb-sct"], monthly) : null;
+
+  return head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${hubUrl(p)}">← Salary after tax in ${esc(inName)}</a>
+      <h1 class="page-title">${esc(mm)} a month after tax in ${esc(inName)}</h1>
+      <p class="page-subtitle">What ${esc(mm)} a month before tax leaves you in the ${esc(year)} tax year${line ? " — " + esc(line) : ""}.</p>
+    </header>
+
+${toolBlock(p, gross, r, "Where it goes, over a year", { kind: "monthly", value: monthly })}
+    <main class="tool">
+      <p class="about-text">Gross pay of <strong>${esc(mm)} a month</strong> is ${esc(p.money0(gross))} a year. Once ${esc(phrase)} are taken off in ${esc(inName)}, you take home <strong>${p.money(r.perMonth)}</strong> a month &mdash; ${p.money(r.net)} a year. About ${p.money(monthTax)} a month, ${pct1(r.deductionRate)} of your pay, goes in deductions.</p>
+${ukNote(p, scot)}      <p class="tool-section-title" style="margin-top:22px;">Nearby monthly pay</p>
+${site.table(["Gross a month", "Take-home a month", "Deductions a month", "Effective rate"], rows, 420)}${bandTables(p, r)}${comparison(p, gross, { label: `${mm} a month`, link: (o) => (o.monthly.includes(monthly) ? monthUrl(o, monthly) : null) })}    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How ${esc(mm)} a month after tax is worked out</p>
+      <p class="about-text">Tax is worked out on the year, so the monthly figure is multiplied by twelve &mdash; ${esc(p.money0(gross))} &mdash; the deductions are worked out on that, and the take-home is divided back by twelve. The yearly amounts below are for the whole year.</p>
+${explanation(p, r)}
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+${aboutTheFigures(p)}
+    <div class="hub-group-title" style="margin-top:28px;">Other monthly pay in ${esc(inName)}</div>
+    <div class="hub-grid">
+${others}${card(hubUrl(p), "📋", `All pay in ${p.place.shortName}`, "Every salary, hourly rate and monthly figure, with a calculator.")}    </div>
+
+${FOOTER}
+  </div>
+  <script src="/tax-engine.js"></script>
+  <script src="/salary-page.js"></script>
+</body>
+</html>
+`;
+}
+
+/* /salary/us/<rate>-an-hour-after-tax/: one hourly rate in every state */
+function usHourly(rate) {
+  const hrs = config.HOURLY.USD.hours;
+  const gross = rate * hrs * 52;
+  const usd = (v) => TaxEngine.money(v, "USD");
+  const mr = TaxEngine.money(rate, "USD", true);
+  const states = places.filter((p) => p.root.country === "US");
+  const rows = states.map((p) => ({ p, r: TaxEngine.compute(p.chain, gross, p.defaults) })).sort((a, b) => b.r.net - a.r.net);
+  const best = rows[0], worst = rows[rows.length - 1];
+  const median = rows[Math.floor(rows.length / 2)];
+  const url = SITE + `/salary/us/${rate}-an-hour-after-tax/`;
+  const title = `${mr} an Hour After Tax in Every State (2026) — Take-Home Pay by State`;
+  const desc = `${mr} an hour full-time is ${TaxEngine.money(gross, "USD", true)} a year. After tax it leaves ${usd(best.r.net)} in ${best.p.place.shortName} and ${usd(worst.r.net)} in ${worst.p.place.shortName}. All 50 states and DC, ranked.`;
+
+  const body = rows.map(({ p, r }, i) => {
+    const href = p.hourly.includes(rate) ? hourUrl(p, rate) : hubUrl(p);
+    return [String(i + 1), `<a href="${href}">${esc(p.place.shortName)}</a>`, usd(r.net), usd(r.perMonth), usd(r.net / (hrs * 52)), pct1(r.deductionRate)];
+  });
+
+  const q = [
+    [`How much is ${mr} an hour a year?`, `${mr} an hour for ${hrs} hours a week over 52 weeks is ${usd(gross)} a year before tax.`],
+    [`How much is ${mr} an hour after taxes?`, `It depends on the state. A single filer on the standard deduction takes home between ${usd(worst.r.net)} a year in ${worst.p.place.shortName} and ${usd(best.r.net)} in ${best.p.place.shortName}; in the middle state, ${median.p.place.shortName}, it is ${usd(median.r.net)}, or ${usd(median.r.perMonth)} a month.`],
+    [`Which states take the least from ${mr} an hour?`, `States with no tax on wages come out on top: ${rows.slice(0, 5).map((x) => x.p.place.shortName).join(", ")} lead the table. Federal income tax, Social Security and Medicare are the same in every state.`],
+    [`How much is ${mr} an hour per month after tax?`, `Between ${usd(worst.r.perMonth)} and ${usd(best.r.perMonth)} a month depending on the state, working ${hrs} hours a week. Each state's page has the full breakdown and a calculator for your own hours.`]
+  ];
+  const ld = [webPage(title, desc, url), breadcrumb([["Home", SITE + "/"], ["Salary after tax", SITE + "/salary/"], ["United States", SITE + "/salary/us/"], [`${mr} an hour`, url]]), faqLd(q)];
+
+  const nat = config.HOURLY.USD.national;
+  const others = site.neighbours(nat, rate, 4).map((h) => card(`/salary/us/${h}-an-hour-after-tax/`, "🇺🇸", `${TaxEngine.money(h, "USD", true)} an hour after tax`, `${TaxEngine.money(h * hrs * 52, "USD", true)} a year before tax, in every state.`)).join("");
+
+  return head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="/salary/us/">← All states</a>
+      <h1 class="page-title">${esc(mr)} an hour after tax in every state</h1>
+      <p class="page-subtitle">${hrs} hours a week, 52 weeks a year (${esc(usd(gross))}), 2026, single filer on the standard deduction.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text">Working full-time at <strong>${esc(mr)} an hour</strong> earns ${esc(usd(gross))} a year. After federal and state taxes and payroll deductions, that leaves <strong>${usd(best.r.net)}</strong> in ${esc(best.p.place.shortName)} but <strong>${usd(worst.r.net)}</strong> in ${esc(worst.p.place.shortName)} &mdash; ${usd(best.r.net - worst.r.net)} a year apart for the same hours at the same rate.</p>
+${site.table(["#", "State", "Take-home a year", "A month", "Per hour", "Effective rate"], body, 560)}      <p class="tool-hint" style="margin-top:12px;">Federal income tax, Social Security and Medicare are the same everywhere; the differences are state and local income taxes and state payroll programs. Indiana and Maryland include a county tax at their most populous county's rate; other local taxes are not included. Each state's page lists what it leaves out.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other hourly rates</div>
+    <div class="hub-grid">
+${others}${card("/salary/us/", "🇺🇸", "Salary after tax by state", "Every state at $50k, $75k and $100k.")}    </div>
+
+${FOOTER}
+  </div>
 </body>
 </html>
 `;
@@ -540,6 +883,8 @@ function usHub() {
           </table>
         </div>
       </div>
+      <p class="tool-section-title" style="margin-top:22px;">Hourly pay in every state</p>
+      <p class="salary-links">${config.HOURLY.USD.national.map((h) => `<a href="/salary/us/${h}-an-hour-after-tax/">$${h} an hour</a>`).join(" ")}</p>
       <p class="tool-hint" style="margin-top:12px;">Ranked by take-home pay at $75,000. Indiana and Maryland include a county income tax at their most populous county's rate; local taxes elsewhere (Ohio and Michigan cities, Pennsylvania's earned income tax) are not included &mdash; each state's page says what it leaves out. Indexed figures some states had not yet published for 2026 use the 2025 amounts.</p>
     </main>
 
@@ -597,7 +942,7 @@ function salaryIndex() {
 
   const tables = groups.map(([label, xs]) => {
     const links = label === "United Kingdom"
-      ? uk.SALARIES.map((s) => `<a href="/salary/${s}-after-tax/">${TaxEngine.money(s, "GBP", true)}</a>`).concat(xs.filter((x) => x.hub).map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`))
+      ? [`<a href="/salary/uk/">England, Wales &amp; N. Ireland: every salary, hourly rate and monthly figure</a>`].concat(xs.filter((x) => x.hub).map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`))
       : (label === "United States" ? [`<a href="/salary/us/">All states compared</a>`] : []).concat(xs.map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`));
     return `        <p class="salary-links-title">${esc(label)}</p>
         <p class="salary-links">${links.join(" ")}</p>`;
@@ -679,43 +1024,54 @@ ${FOOTER}
 `;
 }
 
-// ---------------------------------------------------------------- sitemap
-
-function updateSitemap(urls) {
-  const file = path.join(ROOT, "sitemap.xml");
-  let xml = fs.readFileSync(file, "utf8");
-  const START = "  <!-- salary pages: generated by tools/build-tax-pages.js -->\n";
-  const END = "  <!-- end salary pages -->\n";
-  // Drop the generated block, and any hand-added salary entries from before it existed
-  if (xml.includes(START)) xml = xml.slice(0, xml.indexOf(START)) + xml.slice(xml.indexOf(END) + END.length);
-  xml = xml.replace(/  <url>\s*<loc>https:\/\/lotsofcalcs\.com\/salary\/[^<]*<\/loc>[\s\S]*?<\/url>\n/g, "");
-  const block = START + urls.map(([loc, priority]) =>
-    `  <url>\n    <loc>${SITE}${loc}</loc>\n    <lastmod>${TODAY}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>${priority}</priority>\n  </url>\n`).join("") + END;
-  xml = xml.replace("</urlset>", block + "</urlset>");
-  fs.writeFileSync(file, xml);
-}
-
 // ---------------------------------------------------------------- main
+
+/* Folders of generated pages: anything matching here that this run didn't
+   write is a page for an amount taken off a list, and is removed */
+const GENERATED = /^\d+(-lakh)?-after-tax$|^\d+-an-hour-after-tax$|^\d+-a-month-after-tax$/;
 
 function main() {
   uk.main();
   const urls = [["/salary/", "0.8"], ["/salary/us/", "0.8"]];
   uk.SALARIES.forEach((s) => urls.push([`/salary/${s}-after-tax/`, "0.7"]));
 
-  let pages = 0;
-  places.forEach((p) => {
-    write("salary/" + p.place.path, placeHub(p));
+  const count = { annual: uk.SALARIES.length, hourly: 0, monthly: 0, hubs: 2 };
+  everywhere.forEach((p) => {
+    write(dirOf(hubUrl(p)), placeHub(p));
     urls.push([hubUrl(p), "0.7"]);
-    p.salaries.forEach((s) => {
-      write("salary/" + p.place.path + "/" + slugFor(s, p.currency), salaryPage(p, s));
-      urls.push([pageUrl(p, s), "0.6"]);
-      pages++;
+    count.hubs++;
+    if (p.id !== "gb") {
+      p.salaries.forEach((s) => {
+        write(dirOf(pageUrl(p, s)), salaryPage(p, s));
+        urls.push([pageUrl(p, s), "0.6"]);
+        count.annual++;
+      });
+    }
+    p.hourly.forEach((h) => {
+      write(dirOf(hourUrl(p, h)), hourlyPage(p, h));
+      urls.push([hourUrl(p, h), "0.6"]);
+      count.hourly++;
     });
+    p.monthly.forEach((m) => {
+      write(dirOf(monthUrl(p, m)), monthlyPage(p, m));
+      urls.push([monthUrl(p, m), "0.6"]);
+      count.monthly++;
+    });
+  });
+  config.HOURLY.USD.national.forEach((h) => {
+    write(`salary/us/${h}-an-hour-after-tax`, usHourly(h));
+    urls.push([`/salary/us/${h}-an-hour-after-tax/`, "0.7"]);
+    count.hourly++;
   });
   write("salary/us", usHub());
   write("salary", salaryIndex());
-  updateSitemap(urls);
-  console.log(`built ${pages} salary pages and ${places.length + 2} hubs for ${places.length} places; sitemap now lists ${urls.length} salary URLs`);
+
+  let pruned = 0;
+  new Set(["salary", "salary/us"].concat(everywhere.map((p) => dirOf(base(p))))).forEach((dir) => { pruned += site.prune(dir, GENERATED); });
+
+  site.sitemapBlock("salary pages", "tools/build-tax-pages.js", urls, "/salary/");
+  console.log(`built ${count.annual} annual, ${count.hourly} hourly and ${count.monthly} monthly pages and ${count.hubs} hubs` +
+    `; ${site.changed.size} changed, ${pruned} removed; sitemap lists ${urls.length} salary URLs`);
 }
 
 main();
