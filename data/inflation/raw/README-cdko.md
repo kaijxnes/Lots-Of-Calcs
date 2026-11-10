@@ -1,1 +1,0 @@
-CDKO — "Retail Prices Index: Long run series: 1800 to 2024: Jan 1974=100" — https://www.ons.gov.uk/generator?format=csv&uri=/economy/inflationandpriceindices/timeseries/cdko/mm23 — downloaded 2026-11-10
