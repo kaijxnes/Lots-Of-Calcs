@@ -36,6 +36,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Yukon | [ca-yt](ca-yt.md) | 2026 | 12 | 2026-11-11 | — |
 | Denmark | [dk](dk.md) | 2026 | 25 | — | — |
 | Spain | [es](es.md) | 2026 | 112 | — | — |
+| Finland | [fi](fi.md) | 2026 | 29 | 2026-11-11 | — |
 | India | [in](in.md) | 2026-27 | 40 | — | — |
 | Italy | [it](it.md) | 2026 | 46 | — | — |
 | Japan | [jp](jp.md) | 2026 | 86 | — | — |

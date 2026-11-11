@@ -210,6 +210,17 @@
       "lastVerified": null,
       "lastChecked": null
     },
+    "fi": {
+      "file": "fi/fi.2026.json",
+      "name": "Finland",
+      "kind": "country",
+      "country": "FI",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null,
+      "lastChecked": "2026-11-11"
+    },
     "fr": {
       "file": "fr/fr.2026.json",
       "name": "France",

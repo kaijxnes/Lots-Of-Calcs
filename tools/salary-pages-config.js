@@ -53,7 +53,7 @@ const MONTHLY = {
   NOK: [35000, 40000, 45000, 50000, 60000, 70000, 80000],
   DKK: [25000, 30000, 35000, 40000, 45000, 50000, 60000]
 };
-const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk"];
+const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi"];
 
 /* The salary each hub uses for its headline comparison */
 const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000, CAD: 75000 };
@@ -67,7 +67,7 @@ const PLACES = {
   "de": { path: "germany" }, "fr": { path: "france" }, "es": { path: "spain" }, "it": { path: "italy" },
   "nl": { path: "netherlands", inName: "the Netherlands" }, "ie": { path: "ireland" }, "pt": { path: "portugal" },
   "at": { path: "austria" }, "no": { path: "norway" }, "dk": { path: "denmark" }, "se": { path: "sweden" },
-  "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
+  "fi": { path: "finland" }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
   "us-dc": { path: "us/washington-dc", inName: "Washington, DC", shortName: "Washington, DC" },
   "us-ny-nyc": { path: "us/new-york-city" }
 };
@@ -88,7 +88,7 @@ function placeFor(id, doc) {
 /* Comparison sets shown on salary pages: places people weigh against each other */
 const COMPARE = {
   US: ["us-tx", "us-fl", "us-wa", "us-ca", "us-ny", "us-ny-nyc", "us-il", "us-pa", "us-ma", "us-nj", "us-ga", "us-nc", "us-co", "us-az", "us-oh"],
-  EUR: ["de", "fr", "es", "it", "nl", "ie", "pt", "at"],
+  EUR: ["de", "fr", "es", "it", "nl", "ie", "pt", "at", "fi"],
   GBP: ["gb", "gb-sct"],
   CA: ["ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"]
 };
