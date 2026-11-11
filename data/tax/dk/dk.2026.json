@@ -7,17 +7,39 @@
   "standalone": true,
   "currency": "DKK",
   "locale": "da-DK",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "options": {
     "municipality": {
       "label": "Municipality",
       "default": "average",
-      "choices": {"average": "National average"}
+      "choices": {
+        "average": "National average"
+      }
     },
     "church": {
       "label": "Church member",
       "default": "no",
-      "choices": {"no": "No", "yes": "Yes"}
+      "choices": {
+        "no": "No",
+        "yes": "Yes"
+      }
+    },
+    "pensionPct": {
+      "label": "Your pension contribution (% of pay)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 0.5,
+      "samples": [
+        4,
+        8
+      ],
+      "inSummary": false
     }
   },
   "items": [
@@ -27,7 +49,10 @@
       "group": "social",
       "note": "DKK 99.48 a month for full-time employees.",
       "charge": {
-        "min": [1193.76, "gross"]
+        "min": [
+          1193.76,
+          "gross"
+        ]
       }
     },
     {
@@ -41,7 +66,10 @@
           "max": [
             0,
             {
-              "sub": ["gross", "dk-atp"]
+              "sub": [
+                "gross",
+                "dk-atp"
+              ]
             }
           ]
         }
@@ -52,20 +80,69 @@
       "label": "Personal income",
       "show": true,
       "value": {
-        "sub": ["gross", "dk-atp", "dk-am"]
+        "sub": [
+          "gross",
+          "dk-atp",
+          "dk-am"
+        ]
+      }
+    },
+    {
+      "id": "dk-pension-amount",
+      "label": "Pension contribution",
+      "note": "Your share of an employer-administered (labour market) pension, as a percentage of pay. It cannot exceed pay left after ATP and AM-bidrag.",
+      "value": {
+        "min": [
+          {
+            "pct": {
+              "input": "pensionPct"
+            },
+            "of": "gross"
+          },
+          {
+            "max": [
+              0,
+              "dk-personal-income"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "dk-pension-net",
+      "label": "Pension contribution after AM-bidrag",
+      "note": "AM-bidrag is still paid on the contribution (it stays in the AM-bidrag base, AMBL §2 stk. 1 nr. 4); the rest comes off personal income before tax.",
+      "value": {
+        "mul": [
+          0.92,
+          "dk-pension-amount"
+        ]
+      }
+    },
+    {
+      "id": "dk-personal-income-taxed",
+      "label": "Personal income after pension",
+      "value": {
+        "sub": [
+          "dk-personal-income",
+          "dk-pension-net"
+        ]
       }
     },
     {
       "id": "dk-employment-deduction",
       "label": "Employment deduction (beskæftigelsesfradrag)",
-      "note": "12.75% of pay, at most DKK 63,300.",
+      "note": "12.75% of pay, at most DKK 63,300. Pension contributions to employer schemes count towards it (LL §9 J refers to the AM-bidrag base).",
       "value": {
         "min": [
           63300,
           {
             "pct": 12.75,
             "of": {
-              "sub": ["gross", "dk-atp"]
+              "sub": [
+                "gross",
+                "dk-atp"
+              ]
             }
           }
         ]
@@ -84,7 +161,10 @@
               "max": [
                 0,
                 {
-                  "sub": ["dk-personal-income", 235200]
+                  "sub": [
+                    "dk-personal-income",
+                    235200
+                  ]
                 }
               ]
             }
@@ -97,7 +177,11 @@
       "label": "Taxable income",
       "show": true,
       "value": {
-        "sub": ["dk-personal-income", "dk-employment-deduction", "dk-job-deduction"]
+        "sub": [
+          "dk-personal-income-taxed",
+          "dk-employment-deduction",
+          "dk-job-deduction"
+        ]
       }
     },
     {
@@ -108,13 +192,18 @@
       "charge": {
         "pct": {
           "option": "municipality",
-          "cases": {"average": 25.05}
+          "cases": {
+            "average": 25.05
+          }
         },
         "of": {
           "max": [
             0,
             {
-              "sub": ["dk-taxable", 54100]
+              "sub": [
+                "dk-taxable",
+                54100
+              ]
             }
           ]
         }
@@ -128,13 +217,19 @@
       "charge": {
         "pct": {
           "option": "church",
-          "cases": {"no": 0, "yes": 0.87}
+          "cases": {
+            "no": 0,
+            "yes": 0.87
+          }
         },
         "of": {
           "max": [
             0,
             {
-              "sub": ["dk-taxable", 54100]
+              "sub": [
+                "dk-taxable",
+                54100
+              ]
             }
           ]
         }
@@ -153,7 +248,10 @@
               "max": [
                 0,
                 {
-                  "sub": ["dk-personal-income", 54100]
+                  "sub": [
+                    "dk-personal-income-taxed",
+                    54100
+                  ]
                 }
               ]
             }
@@ -164,7 +262,10 @@
               "max": [
                 0,
                 {
-                  "sub": ["dk-personal-income", 641200]
+                  "sub": [
+                    "dk-personal-income-taxed",
+                    641200
+                  ]
                 }
               ]
             }
@@ -175,7 +276,10 @@
               "max": [
                 0,
                 {
-                  "sub": ["dk-personal-income", 777900]
+                  "sub": [
+                    "dk-personal-income-taxed",
+                    777900
+                  ]
                 }
               ]
             }
@@ -186,11 +290,25 @@
               "max": [
                 0,
                 {
-                  "sub": ["dk-personal-income", 2592700]
+                  "sub": [
+                    "dk-personal-income-taxed",
+                    2592700
+                  ]
                 }
               ]
             }
           }
+        ]
+      }
+    },
+    {
+      "id": "dk-pension",
+      "label": "Pension contribution",
+      "group": "pension",
+      "note": "What reaches your pension: the contribution less the 8% AM-bidrag on it.",
+      "charge": {
+        "sum": [
+          "dk-pension-net"
         ]
       }
     }
@@ -201,9 +319,9 @@
   ],
   "notModelled": [
     "Individual municipal tax rates",
-    "Labour-market and private pension contributions",
     "Senior and single-parent employment deductions",
-    "Interest, union dues, commuting and other deductions"
+    "Interest, union dues, commuting and other deductions",
+    "Private (non-employer) pension savings and the employer's share of contributions"
   ],
   "provisional": [
     "The national average municipal rate is given as 24.94%–25.43% by different sources; 25.05% is used",
@@ -218,16 +336,35 @@
       "title": "Den juridiske vejledning C.A.4.3.7 — beskæftigelsesfradrag",
       "url": "https://tax.dk/jv/ca/C_A_4_3_7.htm"
     },
-    {"title": "skat.dk — AM-bidrag", "url": "https://skat.dk/borger/am-bidrag"},
+    {
+      "title": "skat.dk — AM-bidrag",
+      "url": "https://skat.dk/borger/am-bidrag"
+    },
     {
       "title": "RSM — Satser og beløbsgrænser 2025/2026",
       "url": "https://www.rsm.global/denmark/sites/default/files/media/ePublikationer/Satser%20og%20bel%C3%B8bsgr%C3%A6nser%2020252026%20-%20RSM%20-%20NET_0.pdf"
+    },
+    {
+      "title": "Ligningsloven § 9 J (beskæftigelsesfradrag basis = AM-bidrag basis)",
+      "url": "https://danskelove.dk/ligningsloven/9j"
+    },
+    {
+      "title": "Arbejdsmarkedsbidragsloven § 2 (pension contributions in the AM-bidrag basis)",
+      "url": "https://danskelove.dk/arbejdsmarkedsbidragsloven/2"
+    },
+    {
+      "title": "Juridisk Vejledning C.A.10.2.1.3.1.1 (contribution deducted before A-skat)",
+      "url": "https://tax.dk/jv/ca/C_A_10_2_1_3_1_1.htm"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Personal allowance DKK 54,100 (Dinero, Legal Desk); employment deduction 12.75% up to DKK 63,300 on the AM-bidrag base (Den juridiske vejledning 2026-1); job deduction; 2026 bottom/middle/top/top-top thresholds (tax.dk, loen.dk); average municipal and church rates (calculator sites, disagreeing); ATP (ansogningshjaelpen.dk)."
+    },
+    {
+      "title": "Danish statute text via danskelove.dk and the Juridisk Vejledning, 11 Nov 2026",
+      "note": "Employer-scheme pension contributions are deducted before A-skat, are in the AM-bidrag basis (AMBL §2 stk. 1 nr. 4) and therefore in the employment deduction basis (LL §9 J)."
     }
   ],
   "lastVerified": null,
@@ -237,18 +374,73 @@
     {
       "gross": 600000,
       "note": "AM 8% × 598,806.24 = 47,904.50; personal income 550,901.74. Employment deduction capped at 63,300; job deduction capped at 3,100; taxable 484,501.74. Municipal 25.05% × 430,401.74 = 107,815.64. Bottom tax 12.01% × 496,801.74 = 59,665.89.",
-      "expect": {"dk-am": 47904.5, "dk-taxable": 484501.74, "dk-municipal": 107815.64, "dk-state": 59665.89, "net": 383420.22}
+      "expect": {
+        "dk-am": 47904.5,
+        "dk-taxable": 484501.74,
+        "dk-municipal": 107815.64,
+        "dk-state": 59665.89,
+        "net": 383420.22
+      }
     },
     {
       "gross": 900000,
       "note": "Personal income 826,901.74: middle tax 7.5% × 185,701.74 = 13,927.63 and top tax 7.5% × 49,001.74 = 3,675.13, on top of bottom tax 92,813.49.",
-      "expect": {"dk-state": 110416.25, "net": 539531.85}
+      "expect": {
+        "dk-state": 110416.25,
+        "net": 539531.85
+      }
     },
     {
       "gross": 600000,
-      "options": {"church": "yes"},
+      "options": {
+        "church": "yes"
+      },
       "note": "Church tax 0.87% × 430,401.74 = 3,744.50.",
-      "expect": {"dk-church": 3744.5}
+      "expect": {
+        "dk-church": 3744.5
+      }
+    },
+    {
+      "gross": 600000,
+      "options": {
+        "pensionPct": 5
+      },
+      "note": "Contribution 30,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.",
+      "expect": {
+        "dk-am": 47904.5,
+        "dk-taxable": 456901.74,
+        "dk-municipal": 100901.84,
+        "dk-state": 56351.13,
+        "net": 366048.78
+      }
+    },
+    {
+      "gross": 400000,
+      "options": {
+        "pensionPct": 8
+      },
+      "note": "Contribution 32,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.",
+      "expect": {
+        "dk-am": 31904.5,
+        "dk-taxable": 283513.95,
+        "dk-municipal": 57468.19,
+        "dk-state": 34031.75,
+        "net": 245961.8
+      }
+    },
+    {
+      "gross": 900000,
+      "options": {
+        "pensionPct": 10
+      },
+      "note": "Contribution 90,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.",
+      "expect": {
+        "dk-am": 71904.5,
+        "dk-taxable": 677701.74,
+        "dk-municipal": 156212.24,
+        "dk-state": 90586.84,
+        "net": 497302.67
+      }
     }
   ]
 }

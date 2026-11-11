@@ -6,13 +6,15 @@ Generated from `data/tax/in/in.2026-27.json` by `tools/tax/checklist.js`. Do not
 - Currency: INR
 - Rates last checked: not yet
 - Verified by a person: **not yet**
-- Provisional items: `Rates come from secondary sources that agree the 2026 Budget left the new-regime slabs unchanged under the Income Tax Act 2025`
+- Provisional items: `Rates come from secondary sources that agree the 2026 Budget left the new-regime slabs unchanged under the Income Tax Act 2025`, `Professional tax thresholds for Maharashtra and Karnataka come from payroll references, not the state notifications`
 
 ## Check against
 
 - **Start here:** https://incometaxindia.gov.in/Pages/tools/income-tax-calculator.aspx
 - Income Tax Department — tax rates for individuals: https://incometaxindia.gov.in/Pages/i-am/individual.aspx
 - Income Tax Act, 2025: https://incometaxindia.gov.in/
+- EPFO — contribution rates (12% employee share, ₹15,000 wage ceiling): https://www.epfindia.gov.in/site_en/Contribution_Rate.php
+- Constitution of India, Article 276(2) — professions tax limited to ₹2,500 a year: https://www.indiacode.nic.in/handle/123456789/15240
 
 ## Figures
 
@@ -61,6 +63,25 @@ Tick each figure once it matches the official source. Amounts are yearly, in INR
 
 - [ ] rate 4%
 
+### Employees' Provident Fund (EPF) (`in-epf`)
+
+> The employee's 12% share, either on the statutory ₹15,000-a-month wage ceiling or on full basic pay, taken here as half of salary (the minimum the 2025 labour codes allow wages to be). No tax relief under the new regime.
+
+- [ ] 12% of the ₹15,000 wage ceiling (₹1,800 a month) — capped at 21,600
+- [ ] 12% of the ₹15,000 wage ceiling (₹1,800 a month) — rate 12%
+- [ ] 12% of the ₹15,000 wage ceiling (₹1,800 a month) — rate 50%
+- [ ] 12% of basic pay (taken as 50% of salary) — rate 12%
+- [ ] 12% of basic pay (taken as 50% of salary) — rate 50%
+
+### Professional tax (`in-professional-tax`)
+
+> ₹2,500 a year — ₹200 a month and ₹300 in one month — the maximum the Constitution allows (Article 276). Maharashtra charges it on pay over ₹10,000 a month, Karnataka on pay of ₹25,000 a month or more.
+
+- [ ] Maharashtra — applies when over 120,000
+- [ ] Maharashtra — amount 2,500
+- [ ] Karnataka — applies when at least 300,000
+- [ ] Karnataka — amount 2,500
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
@@ -69,13 +90,17 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 1,300,000: in-income-tax 25,000; in-cess 1,000; net 1,274,000 — Taxable 12.25 lakh. Slab tax 63,750, capped by marginal relief at the ₹25,000 above ₹12 lakh. Cess 1,000.
 - [ ] 2,500,000: in-income-tax 307,500; in-cess 12,300 — Taxable 24.25 lakh: 20,000 + 40,000 + 60,000 + 80,000 + 100,000 + 7,500 = 3,07,500. Cess 12,300.
 - [ ] 6,000,000: in-income-tax 1,493,250; in-cess 59,730 — Taxable 59.25 lakh: 3,00,000 + 30% × 35.25 lakh = 13,57,500; surcharge 10% = 1,35,750 (marginal relief does not bite); cess 59,730.
+- [ ] 1,200,000 with epf = ceiling: in-epf 21,600; in-professional-tax 0; net 1,178,400 — EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.
+- [ ] 1,200,000 with epf = basic, profTax = mh: in-epf 72,000; in-professional-tax 2,500; net 1,125,500 — EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.
+- [ ] 250,000 with profTax = ka: in-epf 0; in-professional-tax 0; net 250,000 — EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.
+- [ ] 2,400,000 with epf = basic, profTax = ka: in-epf 144,000; in-professional-tax 2,500; net 1,961,000 — EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.
 
 ## Not modelled (confirm the page says so)
 
 - The old tax regime and its deductions (80C, HRA, home loan interest)
-- Employee Provident Fund contributions (12% of basic pay, which depends on how the salary is structured)
-- State professional tax (up to ₹2,500 a year)
 - Employer NPS contributions
+- Professional tax in states other than Maharashtra and Karnataka, and Maharashtra's lower slabs below ₹10,000 a month and exemptions for women
+- Voluntary PF contributions above 12%
 
 ## Sign off
 

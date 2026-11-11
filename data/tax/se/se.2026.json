@@ -7,8 +7,22 @@
   "standalone": true,
   "currency": "SEK",
   "locale": "sv-SE",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
-  "options": {},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {
+    "church": {
+      "label": "Church of Sweden member",
+      "default": "no",
+      "choices": {
+        "no": "No",
+        "yes": "Yes (church fee, national average)"
+      },
+      "inSummary": false
+    }
+  },
   "items": [
     {
       "id": "se-basic-allowance",
@@ -20,12 +34,18 @@
           {
             "round": {
               "if": {
-                "lte": ["gross", 58608.0]
+                "lte": [
+                  "gross",
+                  58608.0
+                ]
               },
               "then": 25041.6,
               "else": {
                 "if": {
-                  "lte": ["gross", 161024.0]
+                  "lte": [
+                    "gross",
+                    161024.0
+                  ]
                 },
                 "then": {
                   "sum": [
@@ -33,19 +53,28 @@
                     {
                       "pct": 20,
                       "of": {
-                        "sub": ["gross", 58608.0]
+                        "sub": [
+                          "gross",
+                          58608.0
+                        ]
                       }
                     }
                   ]
                 },
                 "else": {
                   "if": {
-                    "lte": ["gross", 184112.0]
+                    "lte": [
+                      "gross",
+                      184112.0
+                    ]
                   },
                   "then": 45584.0,
                   "else": {
                     "if": {
-                      "lte": ["gross", 466496.0]
+                      "lte": [
+                        "gross",
+                        466496.0
+                      ]
                     },
                     "then": {
                       "sub": [
@@ -53,7 +82,10 @@
                         {
                           "pct": 10,
                           "of": {
-                            "sub": ["gross", 184112.0]
+                            "sub": [
+                              "gross",
+                              184112.0
+                            ]
                           }
                         }
                       ]
@@ -79,7 +111,10 @@
           "max": [
             0,
             {
-              "sub": ["gross", "se-basic-allowance"]
+              "sub": [
+                "gross",
+                "se-basic-allowance"
+              ]
             }
           ]
         },
@@ -91,7 +126,10 @@
       "id": "se-municipal-tax",
       "label": "Municipal and regional tax",
       "note": "The 2026 national average of 32.38%; it ranges from 28.93% to 35.65%.",
-      "value": {"pct": 32.38, "of": "se-taxable"}
+      "value": {
+        "pct": 32.38,
+        "of": "se-taxable"
+      }
     },
     {
       "id": "se-state-tax",
@@ -103,7 +141,10 @@
           "max": [
             0,
             {
-              "sub": ["se-taxable", 643000]
+              "sub": [
+                "se-taxable",
+                643000
+              ]
             }
           ]
         }
@@ -118,7 +159,10 @@
         "round": {
           "pct": 7,
           "of": {
-            "min": ["gross", 673038]
+            "min": [
+              "gross",
+              673038
+            ]
           }
         },
         "to": 100
@@ -140,12 +184,18 @@
                     "sub": [
                       {
                         "if": {
-                          "lte": ["gross", 53872.0]
+                          "lte": [
+                            "gross",
+                            53872.0
+                          ]
                         },
                         "then": "gross",
                         "else": {
                           "if": {
-                            "lte": ["gross", 191808.0]
+                            "lte": [
+                              "gross",
+                              191808.0
+                            ]
                           },
                           "then": {
                             "sum": [
@@ -153,14 +203,20 @@
                               {
                                 "pct": 38.74,
                                 "of": {
-                                  "sub": ["gross", 53872.0]
+                                  "sub": [
+                                    "gross",
+                                    53872.0
+                                  ]
                                 }
                               }
                             ]
                           },
                           "else": {
                             "if": {
-                              "lte": ["gross", 478336.0]
+                              "lte": [
+                                "gross",
+                                478336.0
+                              ]
                             },
                             "then": {
                               "sum": [
@@ -168,7 +224,10 @@
                                 {
                                   "pct": 25.1,
                                   "of": {
-                                    "sub": ["gross", 191808.0]
+                                    "sub": [
+                                      "gross",
+                                      191808.0
+                                    ]
                                   }
                                 }
                               ]
@@ -199,13 +258,57 @@
           {
             "sub": [
               {
-                "sum": ["se-municipal-tax", "se-state-tax"]
+                "sum": [
+                  "se-municipal-tax",
+                  "se-state-tax"
+                ]
               },
               "se-pension-fee",
               "se-work-credit"
             ]
           }
         ]
+      }
+    },
+    {
+      "id": "se-burial-fee",
+      "label": "Burial fee (begravningsavgift)",
+      "group": "tax",
+      "note": "0.292% of taxable earned income everywhere except Stockholm (0.07%) and Tranås (0.285%), which set their own (2026).",
+      "charge": {
+        "pct": 0.292,
+        "of": "se-taxable"
+      }
+    },
+    {
+      "id": "se-public-service-fee",
+      "label": "Public service fee (public service-avgift)",
+      "group": "tax",
+      "note": "1% of taxable earned income, at most SEK 1,184 (1% of 1.42 × the SEK 83,400 income base amount) in 2026. Paid by everyone 18 or over.",
+      "charge": {
+        "min": [
+          {
+            "pct": 1,
+            "of": "se-taxable"
+          },
+          1184
+        ]
+      }
+    },
+    {
+      "id": "se-church-fee",
+      "label": "Church fee (kyrkoavgift)",
+      "group": "tax",
+      "note": "Church of Sweden members only: the 2026 national average of 1.05%; each parish sets its own.",
+      "charge": {
+        "option": "church",
+        "cases": {
+          "no": 0,
+          "yes": {
+            "pct": 1.05,
+            "of": "se-taxable"
+          }
+        }
       }
     }
   ],
@@ -216,9 +319,8 @@
   ],
   "notModelled": [
     "Individual municipal rates",
-    "Burial fee (about 0.3%) and church fee for Church of Sweden members",
-    "Public service fee (1% of income, capped at about SEK 1,250)",
-    "Deductions for travel and other work expenses"
+    "Deductions for travel and other work expenses",
+    "Individual parish church fees and the Stockholm and Tranås burial fees"
   ],
   "provisional": [
     "The earned income tax credit uses the formula from Skatteverket's 2025 technical description; it reproduces the SEK 52,390 2026 maximum quoted by a secondary source, but the 2026 edition was not read directly"
@@ -235,12 +337,28 @@
     {
       "title": "SCB — Kommunalskatterna 2026",
       "url": "https://www.scb.se/hitta-statistik/statistik-efter-amne/offentlig-ekonomi/finanser-for-den-kommunala-sektorn/kommunalskatterna/pong/statistiknyhet/kommunalskatterna-2026/"
+    },
+    {
+      "title": "Skatteverket — Belopp och procent, inkomstår 2026",
+      "url": "https://www.skatteverket.se/privat/skatter/beloppochprocent/2026"
+    },
+    {
+      "title": "Skatteverket — Teknisk beskrivning SKV 433, 2026 (public service-avgiften)",
+      "url": "https://skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf"
+    },
+    {
+      "title": "Svenska kyrkan — kyrkoavgiften (2026 national average 1.05%)",
+      "url": "https://www.svenskakyrkan.se/kyrkoavgiften"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Skiktgräns SEK 643,000, price base amount SEK 59,200, income base amount SEK 83,400 (Skatteverket 2026 PDF excerpts); average municipal rate 32.38% (SCB); basic allowance and earned income credit structure (SKV 433 excerpts; credit maximum SEK 52,390 per astrid.so)."
+    },
+    {
+      "title": "Skatteverket pages and SKV 433 PDF text, 11 Nov 2026",
+      "note": "Burial fee 0.292% (Stockholm 0.07%, Tranås 0.285%); public service fee 1% up to 1.42 income base amounts, max SEK 1,184; income base amount SEK 83,400. Church fee average 1.05% from Svenska kyrkan."
     }
   ],
   "lastVerified": null,
@@ -249,19 +367,55 @@
   "tests": [
     {
       "gross": 300000,
-      "note": "Basic allowance 0.77 × 59,200 − 10% × (300,000 − 184,112) = 34,000 (rounded up). Taxable 266,000; municipal 86,130.80. Credit (1.813 × 59,200 + 25.1% × 108,192 − 34,000) × 32.38% = 32,537.30. Pension fee 21,000, credited back. Tax 86,130.80 − 21,000 − 32,537.30 = 32,593.50.",
+      "note": "Basic allowance 0.77 × 59,200 − 10% × (300,000 − 184,112) = 34,000 (rounded up). Taxable 266,000; municipal 86,130.80. Credit (1.813 × 59,200 + 25.1% × 108,192 − 34,000) × 32.38% = 32,537.30. Pension fee 21,000, credited back. Tax 86,130.80 − 21,000 − 32,537.30 = 32,593.50. Less the burial fee (0.292%) and public service fee (1%, max 1,184) on taxable income 266,000: 1,961.00.",
       "expect": {
         "se-basic-allowance": 34000,
         "se-taxable": 266000,
         "se-work-credit": 32537.3,
         "se-income-tax": 32593.5,
-        "net": 246406.5
+        "net": 244445.78
       }
     },
     {
       "gross": 700000,
       "note": "Basic allowance 0.293 × 59,200 → 17,400. Taxable 682,600: municipal 221,025.88, state 20% × 39,600 = 7,920. Credit at its maximum (3.027 × 59,200 − 17,400) × 32.38% = 52,390.32. Pension fee capped: 7% × 673,038 = 47,112.66 → 47,100.",
-      "expect": {"se-state-tax": 7920, "se-work-credit": 52390.32, "se-pension-fee": 47100}
+      "expect": {
+        "se-state-tax": 7920,
+        "se-work-credit": 52390.32,
+        "se-pension-fee": 47100
+      }
+    },
+    {
+      "gross": 400000,
+      "options": {},
+      "note": "Taxable 376,000: burial 0.292%, public service 1% capped at 1,184, church 1.05% if a member.",
+      "expect": {
+        "se-burial-fee": 1097.92,
+        "se-public-service-fee": 1184,
+        "se-church-fee": 0.0
+      }
+    },
+    {
+      "gross": 600000,
+      "options": {
+        "church": "yes"
+      },
+      "note": "Taxable 582,600: burial 0.292%, public service 1% capped at 1,184, church 1.05% if a member.",
+      "expect": {
+        "se-burial-fee": 1701.19,
+        "se-public-service-fee": 1184,
+        "se-church-fee": 6117.3
+      }
+    },
+    {
+      "gross": 80000,
+      "options": {},
+      "note": "Taxable 50,600: burial 0.292%, public service 1% capped at 1,184, church 1.05% if a member.",
+      "expect": {
+        "se-burial-fee": 147.75,
+        "se-public-service-fee": 506.0,
+        "se-church-fee": 0.0
+      }
     }
   ]
 }

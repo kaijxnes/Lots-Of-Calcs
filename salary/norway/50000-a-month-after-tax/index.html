@@ -108,7 +108,7 @@
         "name": "What does this leave out?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The Finnmark and Nord-Troms action zone, which has lower rates; The low-income limit and phase-in for national insurance (only affects very small incomes); Interest deductions, union dues, pension savings and other deductions; Wealth tax."
+          "text": "The Finnmark and Nord-Troms reduction in employer's contribution and other zone benefits (the lower tax rate and special deduction are included); The low-income limit and phase-in for national insurance (only affects very small incomes); Interest deductions, union dues, pension savings and other deductions; Wealth tax."
         }
       },
       {
@@ -116,7 +116,7 @@
         "name": "How accurate are these figures?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "They apply the 2026 rates and thresholds to kr 50,000 a month. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result."
+          "text": "They apply the 2026 rates and thresholds to kr 50,000 a month for Where you live: Rest of Norway. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result."
         }
       }
     ]
@@ -129,7 +129,7 @@
     <header class="site-header">
       <a class="back-link" href="/salary/norway/">← Salary after tax in Norway</a>
       <h1 class="page-title">kr 50,000 a month after tax in Norway</h1>
-      <p class="page-subtitle">What kr 50,000 a month before tax leaves you in the 2026 tax year.</p>
+      <p class="page-subtitle">What kr 50,000 a month before tax leaves you in the 2026 tax year — Where you live: Rest of Norway.</p>
     </header>
 
     <main class="tool" id="salary-tool" data-tax-id="no" data-currency="NOK" data-gross="600000" data-mode="monthly">
@@ -154,6 +154,7 @@
           <div class="result-row"><span class="r-label">National insurance (trygdeavgift)</span><span class="r-value" data-item="no-national-insurance">kr 45,600.00</span></div>
           <div class="result-row"><span class="r-label">Tax on ordinary income</span><span class="r-value" data-item="no-income-tax">kr 85,747.20</span></div>
           <div class="result-row"><span class="r-label">Bracket tax (trinnskatt)</span><span class="r-value" data-item="no-bracket-tax">kr 12,835.40</span></div>
+          <div class="result-row"><span class="r-label">Union dues</span><span class="r-value" data-item="no-union-dues">kr 0.00</span></div>
           <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value" data-out="deductions">kr 144,182.60</span></div>
           <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value" data-out="rate">24.0%</span></div>
           <div class="result-row"><span class="r-label">Marginal rate</span><span class="r-value" data-out="marginal">34%</span></div>
@@ -166,7 +167,14 @@
         <label for="salary">Gross monthly pay (NOK)</label>
         <input type="number" id="salary" value="50000" step="any" min="0" placeholder="0">
       </div>
-
+      <div class="field" style="max-width:320px;">
+        <label for="opt-zone">Where you live</label>
+        <select id="opt-zone" data-option="zone"><option value="standard" selected>Rest of Norway</option><option value="finnmark">Finnmark and Nord-Troms (innsatssonen)</option></select>
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-unionDues">Union dues (NOK a year)</label>
+        <input type="number" id="opt-unionDues" data-option="unionDues" value="0" min="0" max="100000" step="100" inputmode="decimal">
+      </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the pay or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
@@ -205,9 +213,9 @@
     <main class="tool">
       <p class="tool-section-title">How kr 50,000 a month after tax is worked out</p>
       <p class="about-text">Tax is worked out on the year, so the monthly figure is multiplied by twelve &mdash; kr 600,000 &mdash; the deductions are worked out on that, and the take-home is divided back by twelve. The yearly amounts below are for the whole year.</p>
-      <p class="about-text"><strong>Ordinary income (alminnelig inntekt) after allowances: kr 389,760.00.</strong> Pay less the minimum deduction (46%, at most NOK 95,700) and the NOK 114,540 personal allowance.</p>
+      <p class="about-text"><strong>Ordinary income (alminnelig inntekt) after allowances: kr 389,760.00.</strong> Pay less the minimum deduction (46%, at most NOK 95,700), the NOK 114,540 personal allowance, union dues up to NOK 8,700, and in Finnmark and Nord-Troms the NOK 45,000 special deduction.</p>
       <p class="about-text"><strong>National insurance (trygdeavgift): kr 45,600.00.</strong> 7.6% of pay.</p>
-      <p class="about-text"><strong>Tax on ordinary income: kr 85,747.20.</strong> 22%.</p>
+      <p class="about-text"><strong>Tax on ordinary income: kr 85,747.20.</strong> 22%, or 18.5% for residents of Finnmark and Nord-Troms.</p>
       <p class="about-text"><strong>Bracket tax (trinnskatt): kr 12,835.40.</strong> On gross pay: 1.7% from NOK 226,100, 4.0% from 318,300, 13.7% from 725,050, 16.8% from 980,100 and 17.8% from 1,467,200.</p>
     </main>
 
@@ -222,9 +230,9 @@
       <p class="faq-q">Why might my payslip show a different amount?</p>
       <p class="about-text">Withholding in a single month can differ from a twelfth of the annual figure — for example in the first month of a job, after a pay rise, or where bonuses and one-off payments are taxed differently. Pension contributions and other deductions specific to you also come off a real payslip.</p>
       <p class="faq-q">What does this leave out?</p>
-      <p class="about-text">The Finnmark and Nord-Troms action zone, which has lower rates; The low-income limit and phase-in for national insurance (only affects very small incomes); Interest deductions, union dues, pension savings and other deductions; Wealth tax.</p>
+      <p class="about-text">The Finnmark and Nord-Troms reduction in employer's contribution and other zone benefits (the lower tax rate and special deduction are included); The low-income limit and phase-in for national insurance (only affects very small incomes); Interest deductions, union dues, pension savings and other deductions; Wealth tax.</p>
       <p class="faq-q">How accurate are these figures?</p>
-      <p class="about-text">They apply the 2026 rates and thresholds to kr 50,000 a month. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
+      <p class="about-text">They apply the 2026 rates and thresholds to kr 50,000 a month for Where you live: Rest of Norway. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
     </main>
 
     <main class="tool">
@@ -233,9 +241,11 @@
       <p class="about-text"><strong>Assumes:</strong></p>
       <ul class="about-list"><li>Resident employee in mainland Norway</li><li>Employment income only; each person is taxed individually</li></ul>
       <p class="about-text"><strong>Leaves out:</strong></p>
-      <ul class="about-list"><li>The Finnmark and Nord-Troms action zone, which has lower rates</li><li>The low-income limit and phase-in for national insurance (only affects very small incomes)</li><li>Interest deductions, union dues, pension savings and other deductions</li><li>Wealth tax</li></ul>
+      <ul class="about-list"><li>The Finnmark and Nord-Troms reduction in employer's contribution and other zone benefits (the lower tax rate and special deduction are included)</li><li>The low-income limit and phase-in for national insurance (only affects very small incomes)</li><li>Interest deductions, union dues, pension savings and other deductions</li><li>Wealth tax</li></ul>
+      <p class="about-text"><strong>Not yet confirmed for this year:</strong></p>
+      <ul class="about-list"><li>Union dues maximum NOK 8,700 is the government's 2026 proposal; the enacted figure was not confirmed separately</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
-      <ul class="about-list"><li><a href="https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skatte-og-avgiftssatser/skattesatser-2026/id3121978/" rel="nofollow noopener" target="_blank">Regjeringen — Skattesatser 2026</a></li><li><a href="https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/" rel="nofollow noopener" target="_blank">Skatteetaten — Forskuddsutskrivingen 2026</a></li><li><a href="https://www.regjeringen.no/no/aktuelt/endringer-i-lover-og-forskrifter-fra-1.-januar-2026-fra-finansdepartementet/id3144251/" rel="nofollow noopener" target="_blank">Regjeringen — Endringer i lover og forskrifter fra 1. januar 2026</a></li></ul>
+      <ul class="about-list"><li><a href="https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skatte-og-avgiftssatser/skattesatser-2026/id3121978/" rel="nofollow noopener" target="_blank">Regjeringen — Skattesatser 2026</a></li><li><a href="https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/" rel="nofollow noopener" target="_blank">Skatteetaten — Forskuddsutskrivingen 2026</a></li><li><a href="https://www.regjeringen.no/no/aktuelt/endringer-i-lover-og-forskrifter-fra-1.-januar-2026-fra-finansdepartementet/id3144251/" rel="nofollow noopener" target="_blank">Regjeringen — Endringer i lover og forskrifter fra 1. januar 2026</a></li><li><a href="https://www.skatteetaten.no/satser/finnmarksfradraget/?year=2026" rel="nofollow noopener" target="_blank">Skatteetaten — Finnmarksfradraget 2026 (NOK 45,000)</a></li><li><a href="https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skattesatser-2026/id3121978/" rel="nofollow noopener" target="_blank">Regjeringen — Skattesatser 2026</a></li><li><a href="https://www.regjeringen.no/nn/tema/kommuner-og-regioner/regional--og-distriktspolitikk/nordomradepolitikk/sa-mykje-kan-du-spare-ved-a-bu-og-arbeide-i-finnmark-og-nord-troms-i-2026/id3084477/" rel="nofollow noopener" target="_blank">Regjeringen — Så mykje kan du spare ved å bu og arbeide i Finnmark og Nord-Troms i 2026</a></li></ul>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other monthly pay in Norway</div>

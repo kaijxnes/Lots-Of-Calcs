@@ -7,8 +7,33 @@
   "standalone": true,
   "currency": "INR",
   "locale": "en-IN",
-  "taxYear": {"label": "2026-27", "start": "2026-04-01", "end": "2027-03-31"},
-  "options": {},
+  "taxYear": {
+    "label": "2026-27",
+    "start": "2026-04-01",
+    "end": "2027-03-31"
+  },
+  "options": {
+    "epf": {
+      "label": "Provident Fund (EPF)",
+      "default": "none",
+      "inSummary": false,
+      "choices": {
+        "none": "Not included",
+        "ceiling": "12% of the ₹15,000 wage ceiling (₹1,800 a month)",
+        "basic": "12% of basic pay (taken as 50% of salary)"
+      }
+    },
+    "profTax": {
+      "label": "Professional tax",
+      "default": "none",
+      "inSummary": false,
+      "choices": {
+        "none": "None / other state",
+        "mh": "Maharashtra",
+        "ka": "Karnataka"
+      }
+    }
+  },
   "items": [
     {
       "id": "in-taxable",
@@ -19,7 +44,10 @@
         "max": [
           0,
           {
-            "sub": ["gross", 75000]
+            "sub": [
+              "gross",
+              75000
+            ]
           }
         ]
       }
@@ -30,17 +58,52 @@
       "note": "New regime slabs. The section 87A rebate removes the tax entirely up to ₹12 lakh of taxable income, and marginal relief caps it at the income above ₹12 lakh just beyond that.",
       "value": {
         "if": {
-          "lte": ["in-taxable", 1200000]
+          "lte": [
+            "in-taxable",
+            1200000
+          ]
         },
         "then": 0,
         "else": {
           "min": [
             {
-              "brackets": [[0, 0], [400000, 5], [800000, 10], [1200000, 15], [1600000, 20], [2000000, 25], [2400000, 30]],
+              "brackets": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  400000,
+                  5
+                ],
+                [
+                  800000,
+                  10
+                ],
+                [
+                  1200000,
+                  15
+                ],
+                [
+                  1600000,
+                  20
+                ],
+                [
+                  2000000,
+                  25
+                ],
+                [
+                  2400000,
+                  30
+                ]
+              ],
               "of": "in-taxable"
             },
             {
-              "sub": ["in-taxable", 1200000]
+              "sub": [
+                "in-taxable",
+                1200000
+              ]
             }
           ]
         }
@@ -52,18 +115,27 @@
       "note": "10% of tax above ₹50 lakh, 15% above ₹1 crore and 25% above ₹2 crore, with marginal relief at each step.",
       "value": {
         "if": {
-          "gt": ["in-taxable", 20000000]
+          "gt": [
+            "in-taxable",
+            20000000
+          ]
         },
         "then": {
           "min": [
-            {"pct": 25, "of": "in-slab-tax"},
+            {
+              "pct": 25,
+              "of": "in-slab-tax"
+            },
             {
               "sub": [
                 {
                   "sum": [
                     6417000.0,
                     {
-                      "sub": ["in-taxable", 20000000]
+                      "sub": [
+                        "in-taxable",
+                        20000000
+                      ]
                     }
                   ]
                 },
@@ -74,18 +146,27 @@
         },
         "else": {
           "if": {
-            "gt": ["in-taxable", 10000000]
+            "gt": [
+              "in-taxable",
+              10000000
+            ]
           },
           "then": {
             "min": [
-              {"pct": 15, "of": "in-slab-tax"},
+              {
+                "pct": 15,
+                "of": "in-slab-tax"
+              },
               {
                 "sub": [
                   {
                     "sum": [
                       2838000.0,
                       {
-                        "sub": ["in-taxable", 10000000]
+                        "sub": [
+                          "in-taxable",
+                          10000000
+                        ]
                       }
                     ]
                   },
@@ -96,18 +177,27 @@
           },
           "else": {
             "if": {
-              "gt": ["in-taxable", 5000000]
+              "gt": [
+                "in-taxable",
+                5000000
+              ]
             },
             "then": {
               "min": [
-                {"pct": 10, "of": "in-slab-tax"},
+                {
+                  "pct": 10,
+                  "of": "in-slab-tax"
+                },
                 {
                   "sub": [
                     {
                       "sum": [
                         1080000.0,
                         {
-                          "sub": ["in-taxable", 5000000]
+                          "sub": [
+                            "in-taxable",
+                            5000000
+                          ]
                         }
                       ]
                     },
@@ -127,7 +217,10 @@
       "group": "tax",
       "note": "New tax regime (the default): nothing to ₹4 lakh, then 5%, 10%, 15%, 20%, 25% in steps of ₹4 lakh, and 30% above ₹24 lakh.",
       "charge": {
-        "sum": ["in-slab-tax", "in-surcharge"]
+        "sum": [
+          "in-slab-tax",
+          "in-surcharge"
+        ]
       }
     },
     {
@@ -138,32 +231,117 @@
       "charge": {
         "pct": 4,
         "of": {
-          "sum": ["in-slab-tax", "in-surcharge"]
+          "sum": [
+            "in-slab-tax",
+            "in-surcharge"
+          ]
+        }
+      }
+    },
+    {
+      "id": "in-epf",
+      "label": "Employees' Provident Fund (EPF)",
+      "group": "pension",
+      "note": "The employee's 12% share, either on the statutory ₹15,000-a-month wage ceiling or on full basic pay, taken here as half of salary (the minimum the 2025 labour codes allow wages to be). No tax relief under the new regime.",
+      "charge": {
+        "option": "epf",
+        "cases": {
+          "none": 0,
+          "ceiling": {
+            "min": [
+              21600,
+              {
+                "pct": 12,
+                "of": {
+                  "pct": 50,
+                  "of": "gross"
+                }
+              }
+            ]
+          },
+          "basic": {
+            "pct": 12,
+            "of": {
+              "pct": 50,
+              "of": "gross"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "in-professional-tax",
+      "label": "Professional tax",
+      "group": "tax",
+      "note": "₹2,500 a year — ₹200 a month and ₹300 in one month — the maximum the Constitution allows (Article 276). Maharashtra charges it on pay over ₹10,000 a month, Karnataka on pay of ₹25,000 a month or more.",
+      "charge": {
+        "option": "profTax",
+        "cases": {
+          "none": 0,
+          "mh": {
+            "if": {
+              "gt": [
+                "gross",
+                120000
+              ]
+            },
+            "then": 2500,
+            "else": 0
+          },
+          "ka": {
+            "if": {
+              "gte": [
+                "gross",
+                300000
+              ]
+            },
+            "then": 2500,
+            "else": 0
+          }
         }
       }
     }
   ],
-  "assumptions": ["Resident individual under 60 on the new tax regime", "Salary is the only income"],
+  "assumptions": [
+    "Resident individual under 60 on the new tax regime",
+    "Salary is the only income"
+  ],
   "notModelled": [
     "The old tax regime and its deductions (80C, HRA, home loan interest)",
-    "Employee Provident Fund contributions (12% of basic pay, which depends on how the salary is structured)",
-    "State professional tax (up to ₹2,500 a year)",
-    "Employer NPS contributions"
+    "Employer NPS contributions",
+    "Professional tax in states other than Maharashtra and Karnataka, and Maharashtra's lower slabs below ₹10,000 a month and exemptions for women",
+    "Voluntary PF contributions above 12%"
   ],
   "provisional": [
-    "Rates come from secondary sources that agree the 2026 Budget left the new-regime slabs unchanged under the Income Tax Act 2025"
+    "Rates come from secondary sources that agree the 2026 Budget left the new-regime slabs unchanged under the Income Tax Act 2025",
+    "Professional tax thresholds for Maharashtra and Karnataka come from payroll references, not the state notifications"
   ],
   "sources": [
     {
       "title": "Income Tax Department — tax rates for individuals",
       "url": "https://incometaxindia.gov.in/Pages/i-am/individual.aspx"
     },
-    {"title": "Income Tax Act, 2025", "url": "https://incometaxindia.gov.in/"}
+    {
+      "title": "Income Tax Act, 2025",
+      "url": "https://incometaxindia.gov.in/"
+    },
+    {
+      "title": "EPFO — contribution rates (12% employee share, ₹15,000 wage ceiling)",
+      "url": "https://www.epfindia.gov.in/site_en/Contribution_Rate.php"
+    },
+    {
+      "title": "Constitution of India, Article 276(2) — professions tax limited to ₹2,500 a year",
+      "url": "https://www.indiacode.nic.in/handle/123456789/15240"
+    }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Slabs, ₹75,000 standard deduction and ₹60,000 rebate up to ₹12 lakh (BankBazaar, Tata Capital, 5paisa agree); 25% maximum surcharge. The 4% cess and surcharge bands are long-standing Finance Act rules."
+    },
+    {
+      "title": "Web search, 11 Nov 2026",
+      "note": "Maharashtra and Karnataka professional tax slabs from payroll references (Tally, Kredily, IndPayroll, BankBazaar agree on ₹200 a month and ₹300 in one month, ₹2,500 a year, above ₹10,000 and from ₹25,000 a month respectively)."
     }
   ],
   "lastVerified": null,
@@ -173,22 +351,85 @@
     {
       "gross": 1000000,
       "note": "Taxable 9.25 lakh, under ₹12 lakh: no tax after the rebate.",
-      "expect": {"in-income-tax": 0, "net": 1000000}
+      "expect": {
+        "in-income-tax": 0,
+        "net": 1000000
+      }
     },
     {
       "gross": 1300000,
       "note": "Taxable 12.25 lakh. Slab tax 63,750, capped by marginal relief at the ₹25,000 above ₹12 lakh. Cess 1,000.",
-      "expect": {"in-income-tax": 25000, "in-cess": 1000, "net": 1274000}
+      "expect": {
+        "in-income-tax": 25000,
+        "in-cess": 1000,
+        "net": 1274000
+      }
     },
     {
       "gross": 2500000,
       "note": "Taxable 24.25 lakh: 20,000 + 40,000 + 60,000 + 80,000 + 100,000 + 7,500 = 3,07,500. Cess 12,300.",
-      "expect": {"in-income-tax": 307500, "in-cess": 12300}
+      "expect": {
+        "in-income-tax": 307500,
+        "in-cess": 12300
+      }
     },
     {
       "gross": 6000000,
       "note": "Taxable 59.25 lakh: 3,00,000 + 30% × 35.25 lakh = 13,57,500; surcharge 10% = 1,35,750 (marginal relief does not bite); cess 59,730.",
-      "expect": {"in-income-tax": 1493250, "in-cess": 59730}
+      "expect": {
+        "in-income-tax": 1493250,
+        "in-cess": 59730
+      }
+    },
+    {
+      "gross": 1200000,
+      "options": {
+        "epf": "ceiling"
+      },
+      "note": "EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.",
+      "expect": {
+        "in-epf": 21600.0,
+        "in-professional-tax": 0,
+        "net": 1178400.0
+      }
+    },
+    {
+      "gross": 1200000,
+      "options": {
+        "epf": "basic",
+        "profTax": "mh"
+      },
+      "note": "EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.",
+      "expect": {
+        "in-epf": 72000.0,
+        "in-professional-tax": 2500,
+        "net": 1125500.0
+      }
+    },
+    {
+      "gross": 250000,
+      "options": {
+        "profTax": "ka"
+      },
+      "note": "EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.",
+      "expect": {
+        "in-epf": 0.0,
+        "in-professional-tax": 0,
+        "net": 250000.0
+      }
+    },
+    {
+      "gross": 2400000,
+      "options": {
+        "epf": "basic",
+        "profTax": "ka"
+      },
+      "note": "EPF 12% of half of salary (capped at 21,600 for the ceiling option); professional tax ₹2,500 above the state threshold; income tax unchanged under the new regime.",
+      "expect": {
+        "in-epf": 144000.0,
+        "in-professional-tax": 2500,
+        "net": 1961000.0
+      }
     }
   ]
 }
