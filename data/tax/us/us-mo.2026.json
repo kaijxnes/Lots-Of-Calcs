@@ -6,7 +6,11 @@
   "country": "US",
   "parent": "us",
   "standalone": true,
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "items": [
     {
       "id": "mo-federal-tax-deduction",
@@ -19,7 +23,28 @@
           {
             "mul": [
               {
-                "lookup": [[0, 0.35], [25000, 0.25], [50000, 0.15], [100000, 0.05], [125000, 0]],
+                "lookup": [
+                  [
+                    0,
+                    0.35
+                  ],
+                  [
+                    25000,
+                    0.25
+                  ],
+                  [
+                    50000,
+                    0.15
+                  ],
+                  [
+                    100000,
+                    0.05
+                  ],
+                  [
+                    125000,
+                    0
+                  ]
+                ],
                 "of": "us-wages",
                 "strict": true
               },
@@ -37,7 +62,11 @@
         "max": [
           0,
           {
-            "sub": ["us-wages", "us-standard-deduction", "mo-federal-tax-deduction"]
+            "sub": [
+              "us-wages",
+              "us-standard-deduction",
+              "mo-federal-tax-deduction"
+            ]
           }
         ]
       }
@@ -47,12 +76,65 @@
       "label": "Missouri income tax",
       "group": "tax",
       "charge": {
-        "brackets": [[0, 0], [1348, 2], [2696, 2.5], [4044, 3], [5392, 3.5], [6740, 4], [8088, 4.5], [9436, 4.7]],
+        "brackets": [
+          [
+            0,
+            0
+          ],
+          [
+            1348,
+            2
+          ],
+          [
+            2696,
+            2.5
+          ],
+          [
+            4044,
+            3
+          ],
+          [
+            5392,
+            3.5
+          ],
+          [
+            6740,
+            4
+          ],
+          [
+            8088,
+            4.5
+          ],
+          [
+            9436,
+            4.7
+          ]
+        ],
         "of": "mo-taxable"
+      }
+    },
+    {
+      "id": "us-mo-city-tax",
+      "label": "City earnings tax",
+      "group": "tax",
+      "note": "Kansas City and the City of St. Louis each charge residents 1% of earnings; voters renewed both in April 2026.",
+      "charge": {
+        "option": "city",
+        "cases": {
+          "none": 0,
+          "kansascity": {
+            "pct": 1,
+            "of": "us-fica-wages"
+          },
+          "stlouis": {
+            "pct": 1,
+            "of": "us-fica-wages"
+          }
+        }
       }
     }
   ],
-  "notModelled": ["Kansas City and St. Louis 1% earnings taxes"],
+  "notModelled": [],
   "provisional": [],
   "sources": [
     {
@@ -78,6 +160,14 @@
     {
       "title": "Missouri Department of Revenue 2025 Individual Income Tax Year Changes (This reference should be updated once the 2025 tax form comes out)",
       "url": "https://dor.mo.gov/taxation/individual/tax-types/income/year-changes/"
+    },
+    {
+      "title": "Kansas City, MO — earnings tax guide (1%)",
+      "url": "https://www.kcmo.gov/city-hall/departments/finance/tax-home/tax-guides/tax-guide-for-non-resident-businesses"
+    },
+    {
+      "title": "City of St. Louis — About the earnings tax (1%)",
+      "url": "https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/general-fund-revenues.cfm"
     }
   ],
   "obtainedFrom": [
@@ -85,6 +175,10 @@
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mo",
       "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    },
+    {
+      "title": "Official city or state pages, 11 Nov 2026",
+      "note": "Kansas City and the City of St. Louis each charge residents 1% of earnings; voters renewed both in April 2026."
     }
   ],
   "lastVerified": null,
@@ -94,18 +188,94 @@
     {
       "gross": 40000,
       "note": "Federal tax deduction $655, missouri taxable income $23,245. Missouri income tax $911.88. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"mo-federal-tax-deduction": 655, "mo-taxable": 23245, "mo-income-tax": 911.88, "net": 33408.12}
+      "expect": {
+        "mo-federal-tax-deduction": 655,
+        "mo-taxable": 23245,
+        "mo-income-tax": 911.88,
+        "net": 33408.12
+      }
     },
     {
       "gross": 85000,
       "note": "Federal tax deduction $1,480.5, missouri taxable income $67,419.5. Missouri income tax $2,988.08. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"mo-federal-tax-deduction": 1480.5, "mo-taxable": 67419.5, "mo-income-tax": 2988.08, "net": 65639.42}
+      "expect": {
+        "mo-federal-tax-deduction": 1480.5,
+        "mo-taxable": 67419.5,
+        "mo-income-tax": 2988.08,
+        "net": 65639.42
+      }
     },
     {
       "gross": 150000,
-      "options": {"status": "married"},
+      "options": {
+        "status": "married"
+      },
       "note": "Federal tax deduction $0, missouri taxable income $117,800. Missouri income tax $5,355.97. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"mo-federal-tax-deduction": 0, "mo-taxable": 117800, "mo-income-tax": 5355.97, "net": 117829.03}
+      "expect": {
+        "mo-federal-tax-deduction": 0,
+        "mo-taxable": 117800,
+        "mo-income-tax": 5355.97,
+        "net": 117829.03
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "kansascity"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-mo-city-tax": 750.0,
+        "net": 58308.91
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "stlouis"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-mo-city-tax": 750.0,
+        "net": 58308.91
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2,
+        "city": "kansascity"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-mo-city-tax": 600.0,
+        "net": 55264.05
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "k401Pct": 6,
+        "city": "kansascity"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-mo-city-tax": 1200.0,
+        "net": 82107.3
+      }
     }
-  ]
+  ],
+  "options": {
+    "city": {
+      "label": "City",
+      "default": "none",
+      "choices": {
+        "none": "Elsewhere in Missouri",
+        "kansascity": "Kansas City",
+        "stlouis": "St. Louis (city)"
+      },
+      "inSummary": false
+    }
+  }
 }

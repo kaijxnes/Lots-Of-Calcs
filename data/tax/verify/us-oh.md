@@ -17,6 +17,9 @@ Generated from `data/tax/us/us-oh.2026.json` by `tools/tax/checklist.js`. Do not
 - Ohio Income Tax Form 2025 Instructions (Page 44): https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=44
 - Ohio Income Tax Form 2025 Instructions (Line 44): https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=26
 - Ohio Income Tax Form 2025 Instructions (Page 17): https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=17
+- City of Columbus — Income Tax Division (2.5%): https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information
+- Central Collection Agency — tax rates 2026 (Cleveland 2.5%): https://www.ccaohio.gov/tax-rates#year-2026
+- City of Cincinnati — income tax (1.8% since 2 Oct 2020): https://www.cincinnati-oh.gov/finance/income-taxes/
 
 ## Figures
 
@@ -49,6 +52,14 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] from 500,000: 0
 - [ ] factor 20
 
+### City income tax (`us-oh-city-tax`)
+
+> On qualifying wages (Medicare wages): Columbus 2.5%, Cleveland 2.5%, Cincinnati 1.8%.
+
+- [ ] Columbus — rate 2.5%
+- [ ] Cleveland — rate 2.5%
+- [ ] Cincinnati — rate 1.8%
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
@@ -56,12 +67,17 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 40,000: oh-taxable 37,600; oh-income-tax 649.63; net 33,670.37 — Ohio taxable income $37,600. Ohio income tax $649.63. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 85,000: oh-taxable 83,100; oh-income-tax 1,900.88; net 66,726.62 — Ohio taxable income $83,100. Ohio income tax $1,900.88. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 150,000 with status = married: oh-taxable 146,200; oh-income-tax 3,636.13; net 119,548.87 — Ohio taxable income $146,200. Ohio income tax $3,636.13. PolicyEngine US 2.62.5 gives the same state figures to the cent.
+- [ ] 75,000 with city = columbus: us-oh-city-tax 1,875; net 58,098.50 — City tax on Medicare wages: separate calculation.
+- [ ] 75,000 with city = cleveland: us-oh-city-tax 1,875; net 58,098.50 — City tax on Medicare wages: separate calculation.
+- [ ] 75,000 with city = cincinnati: us-oh-city-tax 1,350; net 58,623.50 — City tax on Medicare wages: separate calculation.
+- [ ] 60,000 with status = married, children = 2, city = columbus: us-oh-city-tax 1,500; net 54,322.62 — City tax on Medicare wages: separate calculation.
+- [ ] 120,000 with k401Pct = 6, city = columbus: us-oh-city-tax 3,000; net 81,968.62 — City tax on Medicare wages: separate calculation.
 
 ## Not modelled (confirm the page says so)
 
-- Municipal income taxes (most Ohio cities, typically 1–2.5%)
 - School district income taxes
 - Joint filing credit (needs both spouses to have income)
+- Municipal income taxes in other Ohio cities (typically 1–2.5%)
 
 ## Sign off
 

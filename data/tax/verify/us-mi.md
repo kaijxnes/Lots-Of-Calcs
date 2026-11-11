@@ -17,6 +17,8 @@ Generated from `data/tax/us/us-mi.2026.json` by `tools/tax/checklist.js`. Do not
 - Michigan Treasury, Withholding Tax Information by Calendar Year (2026 personal exemption): https://www.michigan.gov/taxes/business-taxes/withholding/calendar-year-tax-information
 - 2025 Tax Year Income Tax Rate for Individuals and Fiduciaries: https://www.michigan.gov/treasury/reference/taxpayer-notices/2025/05/01/2025-tax-year-income-tax-rate-for-individuals-and-fiduciaries
 - Michigan 2024 Book MI-1040CR7 Home Heating Instructions, Table A: https://web.archive.org/web/20250202150154/https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/BOOK_MI-1040CR-7.pdf#page=11
+- Michigan Treasury — City withholding guide 5469 (Detroit 2.4% resident): https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/City-Withholding/TY2025/5469_ty2025.pdf
+- City of Detroit — Individual income tax filers ($600 exemption): https://detroitmi.gov/node/10171
 
 ## Figures
 
@@ -31,6 +33,15 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] Single — factor 1
 - [ ] Married filing jointly — factor 2
 
+### Detroit city income tax (`us-mi-city-tax`)
+
+> 2.4% for residents, after a $600 exemption for you, your spouse on a joint return and each dependant.
+
+- [ ] Detroit — rate 2.4%
+- [ ] Detroit — factor 600
+- [ ] Detroit, Single — factor 1
+- [ ] Detroit, Married filing jointly — factor 2
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
@@ -38,10 +49,13 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 40,000: mi-income-tax 1,449.25; net 32,870.75 — Michigan income tax $1,449.25. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 85,000: mi-income-tax 3,361.75; net 65,265.75 — Michigan income tax $3,361.75. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 150,000 with status = married: mi-income-tax 5,873.50; net 117,311.50 — Michigan income tax $5,873.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.
+- [ ] 75,000 with city = detroit: us-mi-city-tax 1,785.60; net 56,870.15 — City tax on wages after 401(k) less exemptions: separate calculation.
+- [ ] 60,000 with status = married, children = 2, city = detroit: us-mi-city-tax 1,382.40; net 53,539.10 — City tax on wages after 401(k) less exemptions: separate calculation.
+- [ ] 120,000 with k401Pct = 6, city = detroit: us-mi-city-tax 2,692.80; net 80,397.95 — City tax on wages after 401(k) less exemptions: separate calculation.
 
 ## Not modelled (confirm the page says so)
 
-- City income taxes (Detroit 2.4%, Grand Rapids 1.5%, and 22 other cities)
+- City income taxes outside Detroit (Grand Rapids 1.5% and 22 other cities)
 
 ## Sign off
 

@@ -6,7 +6,11 @@
   "country": "US",
   "parent": "us",
   "standalone": true,
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "items": [
     {
       "id": "oh-taxable",
@@ -22,10 +26,30 @@
               {
                 "mul": [
                   {
-                    "status": {"single": 1, "married": 2}
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
                   },
                   {
-                    "lookup": [[0, 2400], [40001, 2150], [80001, 1900], [500000, 0]],
+                    "lookup": [
+                      [
+                        0,
+                        2400
+                      ],
+                      [
+                        40001,
+                        2150
+                      ],
+                      [
+                        80001,
+                        1900
+                      ],
+                      [
+                        500000,
+                        0
+                      ]
+                    ],
                     "of": "us-wages"
                   }
                 ]
@@ -47,11 +71,23 @@
             "sub": [
               {
                 "if": {
-                  "lte": ["oh-taxable", 26050]
+                  "lte": [
+                    "oh-taxable",
+                    26050
+                  ]
                 },
                 "then": 0,
                 "else": {
-                  "brackets": [[0, 1.27448], [26050, 2.75]],
+                  "brackets": [
+                    [
+                      0,
+                      1.27448
+                    ],
+                    [
+                      26050,
+                      2.75
+                    ]
+                  ],
                   "of": "oh-taxable"
                 }
               },
@@ -64,10 +100,30 @@
                         {
                           "mul": [
                             {
-                              "status": {"single": 1, "married": 2}
+                              "status": {
+                                "single": 1,
+                                "married": 2
+                              }
                             },
                             {
-                              "lookup": [[0, 2400], [40001, 2150], [80001, 1900], [500000, 0]],
+                              "lookup": [
+                                [
+                                  0,
+                                  2400
+                                ],
+                                [
+                                  40001,
+                                  2150
+                                ],
+                                [
+                                  80001,
+                                  1900
+                                ],
+                                [
+                                  500000,
+                                  0
+                                ]
+                              ],
                               "of": "us-wages"
                             }
                           ]
@@ -81,7 +137,10 @@
                   "mul": [
                     20,
                     {
-                      "status": {"single": 1, "married": 2}
+                      "status": {
+                        "single": 1,
+                        "married": 2
+                      }
                     }
                   ]
                 },
@@ -91,12 +150,36 @@
           }
         ]
       }
+    },
+    {
+      "id": "us-oh-city-tax",
+      "label": "City income tax",
+      "group": "tax",
+      "note": "On qualifying wages (Medicare wages): Columbus 2.5%, Cleveland 2.5%, Cincinnati 1.8%.",
+      "charge": {
+        "option": "city",
+        "cases": {
+          "none": 0,
+          "columbus": {
+            "pct": 2.5,
+            "of": "us-fica-wages"
+          },
+          "cleveland": {
+            "pct": 2.5,
+            "of": "us-fica-wages"
+          },
+          "cincinnati": {
+            "pct": 1.8,
+            "of": "us-fica-wages"
+          }
+        }
+      }
     }
   ],
   "notModelled": [
-    "Municipal income taxes (most Ohio cities, typically 1–2.5%)",
     "School district income taxes",
-    "Joint filing credit (needs both spouses to have income)"
+    "Joint filing credit (needs both spouses to have income)",
+    "Municipal income taxes in other Ohio cities (typically 1–2.5%)"
   ],
   "provisional": [],
   "sources": [
@@ -123,6 +206,18 @@
     {
       "title": "Ohio Income Tax Form 2025 Instructions (Page 17)",
       "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=17"
+    },
+    {
+      "title": "City of Columbus — Income Tax Division (2.5%)",
+      "url": "https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information"
+    },
+    {
+      "title": "Central Collection Agency — tax rates 2026 (Cleveland 2.5%)",
+      "url": "https://www.ccaohio.gov/tax-rates#year-2026"
+    },
+    {
+      "title": "City of Cincinnati — income tax (1.8% since 2 Oct 2020)",
+      "url": "https://www.cincinnati-oh.gov/finance/income-taxes/"
     }
   ],
   "obtainedFrom": [
@@ -130,6 +225,10 @@
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/oh",
       "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    },
+    {
+      "title": "Official city or state pages, 11 Nov 2026",
+      "note": "On qualifying wages (Medicare wages): Columbus 2.5%, Cleveland 2.5%, Cincinnati 1.8%."
     }
   ],
   "lastVerified": null,
@@ -139,18 +238,103 @@
     {
       "gross": 40000,
       "note": "Ohio taxable income $37,600. Ohio income tax $649.63. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"oh-taxable": 37600, "oh-income-tax": 649.63, "net": 33670.37}
+      "expect": {
+        "oh-taxable": 37600,
+        "oh-income-tax": 649.63,
+        "net": 33670.37
+      }
     },
     {
       "gross": 85000,
       "note": "Ohio taxable income $83,100. Ohio income tax $1,900.88. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"oh-taxable": 83100, "oh-income-tax": 1900.88, "net": 66726.62}
+      "expect": {
+        "oh-taxable": 83100,
+        "oh-income-tax": 1900.88,
+        "net": 66726.62
+      }
     },
     {
       "gross": 150000,
-      "options": {"status": "married"},
+      "options": {
+        "status": "married"
+      },
       "note": "Ohio taxable income $146,200. Ohio income tax $3,636.13. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"oh-taxable": 146200, "oh-income-tax": 3636.13, "net": 119548.87}
+      "expect": {
+        "oh-taxable": 146200,
+        "oh-income-tax": 3636.13,
+        "net": 119548.87
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "columbus"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-oh-city-tax": 1875.0,
+        "net": 58098.5
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "cleveland"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-oh-city-tax": 1875.0,
+        "net": 58098.5
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "cincinnati"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-oh-city-tax": 1350.0,
+        "net": 58623.5
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2,
+        "city": "columbus"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-oh-city-tax": 1500.0,
+        "net": 54322.62
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "k401Pct": 6,
+        "city": "columbus"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-oh-city-tax": 3000.0,
+        "net": 81968.62
+      }
     }
-  ]
+  ],
+  "options": {
+    "city": {
+      "label": "City",
+      "default": "none",
+      "choices": {
+        "none": "No city tax",
+        "columbus": "Columbus",
+        "cleveland": "Cleveland",
+        "cincinnati": "Cincinnati"
+      },
+      "inSummary": false
+    }
+  }
 }

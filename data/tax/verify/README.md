@@ -63,9 +63,9 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Massachusetts | [us-ma](us-ma.md) | 2026 | 11 | — | — |
 | Maryland | [us-md](us-md.md) | 2026 | 73 | — | — |
 | Maine | [us-me](us-me.md) | 2026 | 28 | — | — |
-| Michigan | [us-mi](us-mi.md) | 2026 | 7 | — | — |
+| Michigan | [us-mi](us-mi.md) | 2026 | 14 | — | — |
 | Minnesota | [us-mn](us-mn.md) | 2026 | 22 | — | — |
-| Missouri | [us-mo](us-mo.md) | 2026 | 17 | — | — |
+| Missouri | [us-mo](us-mo.md) | 2026 | 23 | — | — |
 | Mississippi | [us-ms](us-ms.md) | 2026 | 9 | — | — |
 | Montana | [us-mt](us-mt.md) | 2026 | 7 | — | — |
 | North Carolina | [us-nc](us-nc.md) | 2026 | 6 | — | — |
@@ -75,10 +75,10 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | New Jersey | [us-nj](us-nj.md) | 2026 | 26 | — | — |
 | New Mexico | [us-nm](us-nm.md) | 2026 | 24 | — | — |
 | Nevada | [us-nv](us-nv.md) | 2026 | 3 | — | — |
-| Ohio | [us-oh](us-oh.md) | 2026 | 20 | — | — |
+| Ohio | [us-oh](us-oh.md) | 2026 | 28 | — | — |
 | Oklahoma | [us-ok](us-ok.md) | 2026 | 16 | — | — |
 | Oregon | [us-or](us-or.md) | 2026 | 33 | — | — |
-| Pennsylvania | [us-pa](us-pa.md) | 2026 | 5 | — | — |
+| Pennsylvania | [us-pa](us-pa.md) | 2026 | 9 | — | — |
 | Rhode Island | [us-ri](us-ri.md) | 2026 | 16 | — | — |
 | South Carolina | [us-sc](us-sc.md) | 2026 | 14 | — | — |
 | South Dakota | [us-sd](us-sd.md) | 2026 | 3 | — | — |

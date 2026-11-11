@@ -6,7 +6,11 @@
   "country": "US",
   "parent": "us",
   "standalone": true,
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "items": [
     {
       "id": "mi-income-tax",
@@ -25,7 +29,10 @@
                   "mul": [
                     5900,
                     {
-                      "status": {"single": 1, "married": 2}
+                      "status": {
+                        "single": 1,
+                        "married": 2
+                      }
                     }
                   ]
                 }
@@ -34,9 +41,54 @@
           ]
         }
       }
+    },
+    {
+      "id": "us-mi-city-tax",
+      "label": "Detroit city income tax",
+      "group": "tax",
+      "note": "2.4% for residents, after a $600 exemption for you, your spouse on a joint return and each dependant.",
+      "charge": {
+        "option": "city",
+        "cases": {
+          "none": 0,
+          "detroit": {
+            "pct": 2.4,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "us-wages",
+                    {
+                      "mul": [
+                        600,
+                        {
+                          "sum": [
+                            {
+                              "status": {
+                                "single": 1,
+                                "married": 2
+                              }
+                            },
+                            {
+                              "input": "children"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   ],
-  "notModelled": ["City income taxes (Detroit 2.4%, Grand Rapids 1.5%, and 22 other cities)"],
+  "notModelled": [
+    "City income taxes outside Detroit (Grand Rapids 1.5% and 22 other cities)"
+  ],
   "provisional": [],
   "sources": [
     {
@@ -62,6 +114,14 @@
     {
       "title": "Michigan 2024 Book MI-1040CR7 Home Heating Instructions, Table A",
       "url": "https://web.archive.org/web/20250202150154/https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/BOOK_MI-1040CR-7.pdf#page=11"
+    },
+    {
+      "title": "Michigan Treasury — City withholding guide 5469 (Detroit 2.4% resident)",
+      "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/City-Withholding/TY2025/5469_ty2025.pdf"
+    },
+    {
+      "title": "City of Detroit — Individual income tax filers ($600 exemption)",
+      "url": "https://detroitmi.gov/node/10171"
     }
   ],
   "obtainedFrom": [
@@ -69,6 +129,10 @@
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mi",
       "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    },
+    {
+      "title": "Official city or state pages, 11 Nov 2026",
+      "note": "2.4% for residents, after a $600 exemption for you, your spouse on a joint return and each dependant."
     }
   ],
   "lastVerified": null,
@@ -78,18 +142,76 @@
     {
       "gross": 40000,
       "note": "Michigan income tax $1,449.25. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"mi-income-tax": 1449.25, "net": 32870.75}
+      "expect": {
+        "mi-income-tax": 1449.25,
+        "net": 32870.75
+      }
     },
     {
       "gross": 85000,
       "note": "Michigan income tax $3,361.75. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"mi-income-tax": 3361.75, "net": 65265.75}
+      "expect": {
+        "mi-income-tax": 3361.75,
+        "net": 65265.75
+      }
     },
     {
       "gross": 150000,
-      "options": {"status": "married"},
+      "options": {
+        "status": "married"
+      },
       "note": "Michigan income tax $5,873.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"mi-income-tax": 5873.5, "net": 117311.5}
+      "expect": {
+        "mi-income-tax": 5873.5,
+        "net": 117311.5
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "detroit"
+      },
+      "note": "City tax on wages after 401(k) less exemptions: separate calculation.",
+      "expect": {
+        "us-mi-city-tax": 1785.6,
+        "net": 56870.15
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2,
+        "city": "detroit"
+      },
+      "note": "City tax on wages after 401(k) less exemptions: separate calculation.",
+      "expect": {
+        "us-mi-city-tax": 1382.4,
+        "net": 53539.1
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "k401Pct": 6,
+        "city": "detroit"
+      },
+      "note": "City tax on wages after 401(k) less exemptions: separate calculation.",
+      "expect": {
+        "us-mi-city-tax": 2692.8,
+        "net": 80397.95
+      }
     }
-  ]
+  ],
+  "options": {
+    "city": {
+      "label": "City",
+      "default": "none",
+      "choices": {
+        "none": "Elsewhere in Michigan",
+        "detroit": "Detroit"
+      },
+      "inSummary": false
+    }
+  }
 }
