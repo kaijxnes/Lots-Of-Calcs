@@ -6,7 +6,11 @@
   "country": "US",
   "parent": "us",
   "standalone": true,
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "items": [
     {
       "id": "pa-income-tax",
@@ -16,7 +20,10 @@
       "charge": {
         "pct": 3.07,
         "of": {
-          "sub": ["gross", "us-health-amount"]
+          "sub": [
+            "gross",
+            "us-health-amount"
+          ]
         }
       }
     },
@@ -24,13 +31,32 @@
       "id": "pa-ui",
       "label": "Unemployment insurance",
       "group": "social",
-      "charge": {"pct": 0.07, "of": "gross"}
+      "charge": {
+        "pct": 0.07,
+        "of": "gross"
+      }
+    },
+    {
+      "id": "us-pa-city-tax",
+      "label": "Philadelphia wage tax",
+      "group": "tax",
+      "note": "Residents pay 3.74% to 30 June 2026 and 3.735% from 1 July, so 3.7375% across the calendar year, on all compensation (Medicare wages, including 401(k) deferrals).",
+      "charge": {
+        "option": "city",
+        "cases": {
+          "none": 0,
+          "philadelphia": {
+            "pct": 3.7375,
+            "of": "us-fica-wages"
+          }
+        }
+      }
     }
   ],
   "notModelled": [
-    "Local earned income taxes (usually about 1%; Philadelphia 3.74%)",
     "Local services tax (up to $52 a year)",
-    "Tax forgiveness for low incomes"
+    "Tax forgiveness for low incomes",
+    "Local earned income taxes outside Philadelphia (usually about 1%)"
   ],
   "provisional": [],
   "sources": [
@@ -57,6 +83,10 @@
     {
       "title": "2024 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN)",
       "url": "https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2024/2024_pa-40in.pdf#page=1"
+    },
+    {
+      "title": "City of Philadelphia — Earnings Tax (rates from 1 July 2025 and 1 July 2026)",
+      "url": "https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/"
     }
   ],
   "obtainedFrom": [
@@ -64,6 +94,10 @@
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/pa",
       "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    },
+    {
+      "title": "Official city or state pages, 11 Nov 2026",
+      "note": "Residents pay 3.74% to 30 June 2026 and 3.735% from 1 July, so 3.7375% across the calendar year, on all compensation (Medicare wages, including 401(k) deferrals)."
     }
   ],
   "lastVerified": null,
@@ -73,18 +107,79 @@
     {
       "gross": 40000,
       "note": "Pennsylvania income tax $1,228; Unemployment insurance $28. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"pa-income-tax": 1228, "pa-ui": 28, "net": 33064}
+      "expect": {
+        "pa-income-tax": 1228,
+        "pa-ui": 28,
+        "net": 33064
+      }
     },
     {
       "gross": 85000,
       "note": "Pennsylvania income tax $2,609.5; Unemployment insurance $59.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"pa-income-tax": 2609.5, "pa-ui": 59.5, "net": 65958.5}
+      "expect": {
+        "pa-income-tax": 2609.5,
+        "pa-ui": 59.5,
+        "net": 65958.5
+      }
     },
     {
       "gross": 150000,
-      "options": {"status": "married"},
+      "options": {
+        "status": "married"
+      },
       "note": "Pennsylvania income tax $4,605; Unemployment insurance $105. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"pa-income-tax": 4605, "pa-ui": 105, "net": 118475}
+      "expect": {
+        "pa-income-tax": 4605,
+        "pa-ui": 105,
+        "net": 118475
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "philadelphia"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-pa-city-tax": 2803.13,
+        "net": 56434.38
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2,
+        "city": "philadelphia"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-pa-city-tax": 2242.5,
+        "net": 52843.5
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "k401Pct": 6,
+        "city": "philadelphia"
+      },
+      "note": "City tax on Medicare wages: separate calculation.",
+      "expect": {
+        "us-pa-city-tax": 4485.0,
+        "net": 79381.0
+      }
     }
-  ]
+  ],
+  "options": {
+    "city": {
+      "label": "City",
+      "default": "none",
+      "choices": {
+        "none": "Elsewhere in Pennsylvania",
+        "philadelphia": "Philadelphia"
+      },
+      "inSummary": false
+    }
+  }
 }

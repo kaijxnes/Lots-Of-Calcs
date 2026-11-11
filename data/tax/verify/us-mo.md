@@ -17,6 +17,8 @@ Generated from `data/tax/us/us-mo.2026.json` by `tools/tax/checklist.js`. Do not
 - 2025 MO-1040 Book - Individual Income Tax Long Form: https://dor.mo.gov/forms/MO-1040%20Instructions_2025.pdf#page=26
 - 2025 Missouri Withholding Tax Formula: https://dor.mo.gov/forms/Withholding%20Table%20-%20Weekly_2025.pdf#page=2
 - Missouri Department of Revenue 2025 Individual Income Tax Year Changes (This reference should be updated once the 2025 tax form comes out): https://dor.mo.gov/taxation/individual/tax-types/income/year-changes/
+- Kansas City, MO — earnings tax guide (1%): https://www.kcmo.gov/city-hall/departments/finance/tax-home/tax-guides/tax-guide-for-non-resident-businesses
+- City of St. Louis — About the earnings tax (1%): https://www.stlouis-mo.gov/government/departments/collector/earnings-tax/general-fund-revenues.cfm
 
 ## Figures
 
@@ -44,6 +46,13 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] from 8,088: 4.5%
 - [ ] from 9,436: 4.7%
 
+### City earnings tax (`us-mo-city-tax`)
+
+> Kansas City and the City of St. Louis each charge residents 1% of earnings; voters renewed both in April 2026.
+
+- [ ] Kansas City — rate 1%
+- [ ] St. Louis (city) — rate 1%
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
@@ -51,10 +60,10 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 40,000: mo-federal-tax-deduction 655; mo-taxable 23,245; mo-income-tax 911.88; net 33,408.12 — Federal tax deduction $655, missouri taxable income $23,245. Missouri income tax $911.88. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 85,000: mo-federal-tax-deduction 1,480.50; mo-taxable 67,419.50; mo-income-tax 2,988.08; net 65,639.42 — Federal tax deduction $1,480.5, missouri taxable income $67,419.5. Missouri income tax $2,988.08. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 150,000 with status = married: mo-federal-tax-deduction 0; mo-taxable 117,800; mo-income-tax 5,355.97; net 117,829.03 — Federal tax deduction $0, missouri taxable income $117,800. Missouri income tax $5,355.97. PolicyEngine US 2.62.5 gives the same state figures to the cent.
-
-## Not modelled (confirm the page says so)
-
-- Kansas City and St. Louis 1% earnings taxes
+- [ ] 75,000 with city = kansascity: us-mo-city-tax 750; net 58,308.91 — City tax on Medicare wages: separate calculation.
+- [ ] 75,000 with city = stlouis: us-mo-city-tax 750; net 58,308.91 — City tax on Medicare wages: separate calculation.
+- [ ] 60,000 with status = married, children = 2, city = kansascity: us-mo-city-tax 600; net 55,264.05 — City tax on Medicare wages: separate calculation.
+- [ ] 120,000 with k401Pct = 6, city = kansascity: us-mo-city-tax 1,200; net 82,107.30 — City tax on Medicare wages: separate calculation.
 
 ## Sign off
 

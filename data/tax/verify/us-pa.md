@@ -17,6 +17,7 @@ Generated from `data/tax/us/us-pa.2026.json` by `tools/tax/checklist.js`. Do not
 - The General Assembly of Pennsylvania House Bill No. 200, Section 302 (3), page 50, line 27: https://www.legis.state.pa.us/CFDOCS/Legis/PN/Public/btCheck.cfm?txtType=PDF&sessYr=2003&sessInd=0&billBody=H&billTyp=B&billNbr=0200&pn=3160#page=50
 - PA Form PA-40 Instructions, page 1: https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2021/2021_pa-40in.pdf#page=1
 - 2024 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN): https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2024/2024_pa-40in.pdf#page=1
+- City of Philadelphia — Earnings Tax (rates from 1 July 2025 and 1 July 2026): https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/
 
 ## Figures
 
@@ -32,6 +33,12 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 
 - [ ] rate 0.07%
 
+### Philadelphia wage tax (`us-pa-city-tax`)
+
+> Residents pay 3.74% to 30 June 2026 and 3.735% from 1 July, so 3.7375% across the calendar year, on all compensation (Medicare wages, including 401(k) deferrals).
+
+- [ ] Philadelphia — rate 3.7375%
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
@@ -39,12 +46,15 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 40,000: pa-income-tax 1,228; pa-ui 28; net 33,064 — Pennsylvania income tax $1,228; Unemployment insurance $28. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 85,000: pa-income-tax 2,609.50; pa-ui 59.5; net 65,958.50 — Pennsylvania income tax $2,609.5; Unemployment insurance $59.5. PolicyEngine US 2.62.5 gives the same state figures to the cent.
 - [ ] 150,000 with status = married: pa-income-tax 4,605; pa-ui 105; net 118,475 — Pennsylvania income tax $4,605; Unemployment insurance $105. PolicyEngine US 2.62.5 gives the same state figures to the cent.
+- [ ] 75,000 with city = philadelphia: us-pa-city-tax 2,803.13; net 56,434.38 — City tax on Medicare wages: separate calculation.
+- [ ] 60,000 with status = married, children = 2, city = philadelphia: us-pa-city-tax 2,242.50; net 52,843.50 — City tax on Medicare wages: separate calculation.
+- [ ] 120,000 with k401Pct = 6, city = philadelphia: us-pa-city-tax 4,485; net 79,381 — City tax on Medicare wages: separate calculation.
 
 ## Not modelled (confirm the page says so)
 
-- Local earned income taxes (usually about 1%; Philadelphia 3.74%)
 - Local services tax (up to $52 a year)
 - Tax forgiveness for low incomes
+- Local earned income taxes outside Philadelphia (usually about 1%)
 
 ## Sign off
 
