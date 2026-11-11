@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node *)",
+      "Bash(python3 *)",
+      "Bash(python3.13 *)",
+      "Bash(git *)",
+      "Bash(curl *)",
+      "Bash(pip *)",
+      "Bash(ls *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(grep *)",
+      "Bash(sed *)",
+      "Bash(wc *)",
+      "Bash(du *)",
+      "Bash(mkdir *)",
+      "Bash(cp *)",
+      "Bash(mv *)",
+      "Bash(sort *)",
+      "Bash(diff *)",
+      "WebSearch",
+      "WebFetch"
+    ]
+  }
+}
