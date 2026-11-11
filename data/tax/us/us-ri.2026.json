@@ -18,12 +18,12 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "taper": {
                   "status": {"single": 11200, "married": 22400}
                 },
-                "of": "gross",
+                "of": "us-wages",
                 "from": 261000,
                 "step": 7450,
                 "pctPerStep": 20
@@ -37,7 +37,7 @@
                     }
                   ]
                 },
-                "of": "gross",
+                "of": "us-wages",
                 "from": 261000,
                 "step": 7450,
                 "pctPerStep": 20

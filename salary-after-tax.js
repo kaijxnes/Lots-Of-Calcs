@@ -24,10 +24,13 @@
     ni: document.getElementById("out-ni"),
     loan: document.getElementById("out-loan"),
     pgl: document.getElementById("out-pgl"),
+    pension: document.getElementById("out-pension"),
     net: document.getElementById("out-net")
   };
   var plan = document.getElementById("opt-studentLoan");
   var postgrad = document.getElementById("opt-postgradLoan");
+  var pensionPct = document.getElementById("opt-pensionPct");
+  var pensionType = document.getElementById("opt-pensionType");
 
   if (!els.salary) return;
 
@@ -65,13 +68,16 @@
   function options() {
     return {
       studentLoan: plan ? plan.value : "none",
-      postgradLoan: postgrad ? postgrad.value : "no"
+      postgradLoan: postgrad ? postgrad.value : "no",
+      pensionPct: pensionPct ? pensionPct.value : 0,
+      pensionType: pensionType ? pensionType.value : "relief"
     };
   }
 
+  /* Anything beyond the page's own no-loan, no-pension case */
   function loansChosen() {
     var o = options();
-    return o.studentLoan !== "none" || o.postgradLoan !== "no";
+    return o.studentLoan !== "none" || o.postgradLoan !== "no" || Number(o.pensionPct) > 0;
   }
 
   function render(r) {
@@ -87,6 +93,7 @@
     els.ni.textContent = money(r.values["gb-ni"]);
     if (els.loan) els.loan.textContent = money(r.values["gb-student-loan"]);
     if (els.pgl) els.pgl.textContent = money(r.values["gb-postgrad-loan"]);
+    if (els.pension) els.pension.textContent = money(r.values["gb-pension"]);
     els.net.textContent = money(r.net);
   }
 
@@ -114,8 +121,8 @@
        subject, so nobody screenshots the wrong number */
     var changed = Number(bakedSalary) !== gross || loansChosen();
     els.note.innerHTML = changed
-      ? "Showing <strong>" + money(gross) + "</strong>" + (loansChosen() ? " with your loan repayments" : "") +
-        ". The written parts of this page still describe " + money(Number(bakedSalary)) + " with no student loan."
+      ? "Showing <strong>" + money(gross) + "</strong>" + (loansChosen() ? " with your loans and pension" : "") +
+        ". The written parts of this page still describe " + money(Number(bakedSalary)) + " with no student loan or pension."
       : "Change the figure and everything above updates. The page itself still describes " +
         money(Number(bakedSalary)) + ".";
   }
@@ -128,6 +135,8 @@
   els.salary.addEventListener("input", calculate);
   if (plan) plan.addEventListener("change", calculate);
   if (postgrad) postgrad.addEventListener("change", calculate);
+  if (pensionPct) pensionPct.addEventListener("input", calculate);
+  if (pensionType) pensionType.addEventListener("change", calculate);
 
   /* Rates come from the tax registry the page was generated from, so a
      corrected rate reaches both without touching either. If it cannot be loaded
@@ -146,11 +155,15 @@
       els.salary.disabled = false;
       if (plan) plan.disabled = false;
       if (postgrad) postgrad.disabled = false;
+      if (pensionPct) pensionPct.disabled = false;
+      if (pensionType) pensionType.disabled = false;
     })
     .catch(function () {
       els.salary.disabled = true;
       if (plan) plan.disabled = true;
       if (postgrad) postgrad.disabled = true;
+      if (pensionPct) pensionPct.disabled = true;
+      if (pensionType) pensionType.disabled = true;
       els.note.textContent =
         "The live recalculation could not load its rates, so the salary box is switched off. " +
         "The figures on this page are unaffected.";

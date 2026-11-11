@@ -24,7 +24,7 @@
                 "taper": {
                   "status": {"single": 3000, "married": 8500}
                 },
-                "of": "gross",
+                "of": "us-wages",
                 "from": 25500,
                 "step": 500,
                 "perStep": {
@@ -50,7 +50,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               "al-deduction",
               "us-income-tax",
               {

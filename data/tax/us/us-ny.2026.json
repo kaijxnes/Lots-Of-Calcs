@@ -17,7 +17,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "status": {"single": 8000, "married": 16050}
               }
@@ -65,7 +65,7 @@
       "note": "Above $107,650 of income New York claws back the benefit of the lower brackets, phased in over $50,000; above $25 million all income is taxed at the top rate.",
       "value": {
         "if": {
-          "gt": ["gross", 25000000]
+          "gt": ["us-wages", 25000000]
         },
         "then": {
           "sub": [
@@ -96,7 +96,7 @@
                             0,
                             {
                               "sub": [
-                                "gross",
+                                "us-wages",
                                 {
                                   "max": [
                                     {

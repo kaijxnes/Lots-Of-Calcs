@@ -18,7 +18,7 @@
           0,
           {
             "sub": [
-              {"pct": 4.45, "of": "gross"},
+              {"pct": 4.45, "of": "us-wages"},
               {
                 "max": [
                   0,
@@ -32,7 +32,7 @@
                             0,
                             {
                               "sub": [
-                                "gross",
+                                "us-wages",
                                 {
                                   "status": {"single": 18213, "married": 36426}
                                 }

@@ -18,7 +18,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "status": {"single": 3605, "married": 8240}
               },
@@ -37,7 +37,7 @@
       "charge": {
         "if": {
           "lte": [
-            "gross",
+            "us-wages",
             {
               "status": {"single": 12765, "married": 26560}
             }

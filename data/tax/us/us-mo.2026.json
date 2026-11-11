@@ -20,7 +20,7 @@
             "mul": [
               {
                 "lookup": [[0, 0.35], [25000, 0.25], [50000, 0.15], [100000, 0.05], [125000, 0]],
-                "of": "gross",
+                "of": "us-wages",
                 "strict": true
               },
               "us-income-tax"
@@ -37,7 +37,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "us-standard-deduction", "mo-federal-tax-deduction"]
+            "sub": ["us-wages", "us-standard-deduction", "mo-federal-tax-deduction"]
           }
         ]
       }

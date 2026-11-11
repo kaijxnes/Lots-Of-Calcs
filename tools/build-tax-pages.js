@@ -229,6 +229,12 @@ function toolBlock(p, gross, r, heading, mode) {
   const m = mode || { kind: "annual" };
   const selects = Object.keys(p.options).map((k) => {
     const o = p.options[k];
+    if (o.type === "number") {
+      return `      <div class="field" style="max-width:320px;">
+        <label for="opt-${esc(k)}">${esc(o.label)}</label>
+        <input type="number" id="opt-${esc(k)}" data-option="${esc(k)}" value="${o.default}" min="${o.min !== undefined ? o.min : ""}"${o.max !== undefined ? ` max="${o.max}"` : ""} step="${o.step || "any"}" inputmode="decimal">
+      </div>`;
+    }
     const opts = Object.keys(o.choices).map((c) =>
       `<option value="${esc(c)}"${c === p.defaults[k] ? " selected" : ""}>${esc(o.choices[c])}</option>`).join("");
     return `      <div class="field" style="max-width:320px;">
@@ -345,7 +351,11 @@ function bandTables(p, r) {
 
 function explanation(p, r) {
   /* An opt-in deduction left at nothing (no student loan) needs no paragraph */
-  const parts = r.charges.filter((c) => c.group === "tax" || c.group === "social" || Math.abs(c.amount) >= 0.005).map((c) => {
+  const parts = r.charges.filter((c) => {
+    if (Math.abs(c.amount) >= 0.005) return true;
+    const item = p.items.find((it) => it.id === c.id);
+    return (c.group === "tax" || c.group === "social") && !item.mayBeNegative;
+  }).map((c) => {
     const item = p.items.find((it) => it.id === c.id);
     return `      <p class="about-text"><strong>${esc(c.label)}: ${p.money(c.amount)}.</strong> ${esc(item.note || "")}</p>`;
   });
@@ -1011,7 +1021,7 @@ ${select}
 ${breakdown}
         </div>
       </div>
-      <p class="tool-hint" id="salary-note" style="margin-top:12px;">${esc(chain[0].taxYear.label)} tax year. An estimate, not a payslip: it assumes one job and no other income, pension or student loan.</p>
+      <p class="tool-hint" id="salary-note" style="margin-top:12px;">${esc(chain[0].taxYear.label)} tax year. An estimate, not a payslip: it assumes one job and no other income. Pensions, student loans and other deductions can be added where the place has them.</p>
     </main>
 
     <main class="tool">

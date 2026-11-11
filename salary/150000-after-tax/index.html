@@ -113,10 +113,10 @@
       },
       {
         "@type": "Question",
-        "name": "Does this include pension contributions?",
+        "name": "How does a pension change take-home pay on £150,000?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "No. A workplace pension is typically deducted before tax, so it lowers your taxable pay as well as your net pay, and can be worth hundreds of pounds a year — treat the figure here as take-home before any pension."
+          "text": "Putting 5% of £150,000 (£7,500.00 a year) into a pension leaves you £87,161.40 a year through a net pay arrangement, or £85,286.40 under relief at source before you claim back the extra higher-rate relief through self assessment, because tax relief tops the contribution up. Through salary sacrifice you'd keep £87,311.40, as it saves National Insurance too. The figures above assume no pension; enter yours in the calculator to include it."
         }
       },
       {
@@ -167,6 +167,7 @@
           <div class="result-row"><span class="r-label">− National Insurance</span><span class="r-value" id="out-ni">£5,010.60</span></div>
           <div class="result-row"><span class="r-label">− Student loan</span><span class="r-value" id="out-loan">£0.00</span></div>
           <div class="result-row"><span class="r-label">− Postgraduate loan</span><span class="r-value" id="out-pgl">£0.00</span></div>
+          <div class="result-row"><span class="r-label">− Pension contribution</span><span class="r-value" id="out-pension">£0.00</span></div>
           <div class="result-row highlight"><span class="r-label">Take-home pay</span><span class="r-value" id="out-net">£91,286.40</span></div>
         </div>
       </div>
@@ -184,6 +185,16 @@
         <div class="field">
           <label for="opt-postgradLoan">Postgraduate loan</label>
           <select id="opt-postgradLoan"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+        </div>
+      </div>
+      <div class="field-row" style="max-width:480px;">
+        <div class="field">
+          <label for="opt-pensionPct">Pension (% of salary)</label>
+          <input type="number" id="opt-pensionPct" value="0" min="0" max="100" step="0.5" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="opt-pensionType">Pension type</label>
+          <select id="opt-pensionType"><option value="relief" selected>Relief at source</option><option value="netpay">Net pay (before tax)</option><option value="sacrifice">Salary sacrifice</option></select>
         </div>
       </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
@@ -206,7 +217,7 @@
 
       <p class="tool-hint" id="rates-checked" style="margin-top:14px;">2026/27 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
       <p class="tool-hint">Figures use the <strong>2026/27</strong> tax year, which runs from 6 April 2026 to 5 April 2027, for <strong>England, Wales and Northern Ireland</strong>. These rates have not been verified against HMRC directly — check <a href="https://www.gov.uk/income-tax-rates" rel="nofollow noopener" target="_blank">gov.uk</a> before relying on them.</p>
-      <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions, no student loan unless you choose one above, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
+      <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions or student loan unless you add them above, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
     </main>
 
     <main class="tool">
@@ -231,8 +242,8 @@
       <p class="about-text">No. Scotland sets its own income tax bands and rates, and they differ from England, Wales and Northern Ireland at almost every salary. National Insurance is identical UK-wide, so the NI figure above holds, but the income tax will not. The figures on this page are for England, Wales and Northern Ireland only.</p>
       <p class="faq-q">How much student loan do I repay on £150,000?</p>
       <p class="about-text">It depends on your plan. On £150,000 a year the repayments are: Plan 1 £11,079.00, Plan 2 £10,855.35, Plan 4 £10,458.45, Plan 5 £11,250.00, and £7,740.00 for a postgraduate loan, which is paid on top of any other plan. Repayments are 9% of earnings above your plan's threshold (6% for postgraduate loans) and come out of your pay with tax. Choose your plan in the calculator above to see your take-home with it. The figures above assume no student loan.</p>
-      <p class="faq-q">Does this include pension contributions?</p>
-      <p class="about-text">No. A workplace pension is typically deducted before tax, so it lowers your taxable pay as well as your net pay, and can be worth hundreds of pounds a year — treat the figure here as take-home before any pension.</p>
+      <p class="faq-q">How does a pension change take-home pay on £150,000?</p>
+      <p class="about-text">Putting 5% of £150,000 (£7,500.00 a year) into a pension leaves you £87,161.40 a year through a net pay arrangement, or £85,286.40 under relief at source before you claim back the extra higher-rate relief through self assessment, because tax relief tops the contribution up. Through salary sacrifice you'd keep £87,311.40, as it saves National Insurance too. The figures above assume no pension; enter yours in the calculator to include it.</p>
       <p class="faq-q">What is the marginal rate on £150,000?</p>
       <p class="about-text">47% — that is what is taken from the next pound you earn, as opposed to the 39.1% taken from your salary overall. The two differ because the personal allowance is tax-free, which pulls the average down below the rate you are actually charged at the top of your income. The marginal rate is the one that matters when weighing a pay rise or overtime.</p>
     </main>

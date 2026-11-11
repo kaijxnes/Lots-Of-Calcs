@@ -18,12 +18,12 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               "us-standard-deduction",
               {
                 "if": {
                   "lte": [
-                    "gross",
+                    "us-wages",
                     {
                       "status": {"single": 36667, "married": 55000}
                     }
@@ -47,7 +47,7 @@
                                     0,
                                     {
                                       "sub": [
-                                        "gross",
+                                        "us-wages",
                                         {
                                           "status": {"single": 20000, "married": 30000}
                                         }

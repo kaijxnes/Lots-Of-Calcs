@@ -17,7 +17,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "status": {"single": 5706, "married": 11412}
               }
@@ -74,7 +74,7 @@
                       },
                       {
                         "taper": 153,
-                        "of": "gross",
+                        "of": "us-wages",
                         "from": {
                           "status": {"single": 252203, "married": 504411}
                         },

@@ -66,7 +66,10 @@ that date. Pages say "not verified" while it is `null`.
   "taxYear": { "label": "2026", "start": "2026-01-01", "end": "2026-12-31" },
   "options": {                   // choices a visitor can make; "status" is filing status;
                                  // "inSummary": false keeps an opt-in choice (student loan)
-                                 // out of the one-line description of a page
+                                 // out of the one-line description of a page;
+                                 // "type": "number" (with default, min, max, step,
+                                 // integer, samples) is a typed number such as a
+                                 // pension % or a number of children
     "status": { "label": "Filing status", "default": "single",
                 "choices": { "single": "Single", "married": "Married filing jointly" } }
   },
@@ -122,13 +125,20 @@ earlier ones by id, including the parent's.
 | `{"quadratic": {"of": x, "offset": o, "scale": s, "a": .., "b": .., "c": ..}}` | (a·y + b)·y + c with y = (x − o)/s — Germany's tariff |
 | `{"status": {"single": a, "married": b}}` | pick by filing status (works for numbers, bracket tables and lookups) |
 | `{"option": "county", "cases": {"marion": a, "default": b}}` | pick by any option |
+| `{"input": "pensionPct"}` | the number a visitor typed for a number option |
 
 Unknown keys are an error, so a typo fails the check instead of being ignored.
 
 ## Coverage (October 2026)
 
 - **UK**: England/Wales/NI and Scotland, 2026/27, with student loan Plans 1, 2,
-  4 and 5 and the postgraduate loan as options.
+  4 and 5, the postgraduate loan, and pension contributions (relief at source,
+  net pay or salary sacrifice) as options.
+- **US options**: traditional 401(k) %, pre-tax health premiums and children
+  (Child Tax Credit) flow through federal and every state's income tax;
+  Pennsylvania taxes 401(k) deferrals. State payroll programs stay on gross pay.
+- **Other options**: Germany children (care insurance), Australia HELP debt,
+  New Zealand KiwiSaver and student loan, Ireland pension contributions.
 - **US**: federal and FICA, all 50 states and DC, state payroll programs,
   New York City; Indiana and Maryland county taxes as options. Rules
   transcribed from PolicyEngine US and compared against PolicyEngine's own

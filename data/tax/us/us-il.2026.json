@@ -16,7 +16,7 @@
       "value": {
         "if": {
           "lte": [
-            "gross",
+            "us-wages",
             {
               "status": {"single": 250000, "married": 500000}
             }
@@ -43,7 +43,7 @@
           "max": [
             0,
             {
-              "sub": ["gross", "il-exemption"]
+              "sub": ["us-wages", "il-exemption"]
             }
           ]
         }

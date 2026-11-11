@@ -32,6 +32,7 @@ const TaxEngine = (function () {
     round: ["round", "to", "mode"],
     quadratic: ["quadratic"],
     option: ["option", "cases"],
+    input: ["input"],
     status: ["status"],
     sum: ["sum"],
     sub: ["sub"],
@@ -132,6 +133,12 @@ const TaxEngine = (function () {
       case "status":
       case "option":
         return evaluate(pick(expr, ctx), ctx, sink);
+      case "input": {
+        /* A number the visitor types: a pension percentage, a number of children */
+        const v = ctx.options[expr.input];
+        if (typeof v !== "number") fail("'" + expr.input + "' is not a number option", expr);
+        return v;
+      }
       case "sum":
         return expr.sum.reduce((acc, e) => acc + ev(e), 0);
       case "sub":
@@ -236,6 +243,17 @@ const TaxEngine = (function () {
   function resolveOptions(spec, given) {
     const out = {};
     Object.keys(spec).forEach((k) => {
+      if (spec[k].type === "number") {
+        /* Typed in, so anything unusable falls back to the default and
+           anything out of range is pulled back into it */
+        let n = given && given[k] !== undefined && given[k] !== "" ? Number(given[k]) : spec[k].default;
+        if (!isFinite(n)) n = spec[k].default;
+        if (spec[k].min !== undefined) n = Math.max(spec[k].min, n);
+        if (spec[k].max !== undefined) n = Math.min(spec[k].max, n);
+        if (spec[k].integer) n = Math.floor(n);
+        out[k] = n;
+        return;
+      }
       const choices = spec[k].choices || {};
       const v = given && given[k] !== undefined ? given[k] : spec[k].default;
       if (!Object.prototype.hasOwnProperty.call(choices, v)) fail("unknown " + k + " '" + v + "'");

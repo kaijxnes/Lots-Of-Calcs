@@ -14,9 +14,107 @@
       "label": "Filing status",
       "default": "single",
       "choices": {"single": "Single", "married": "Married filing jointly"}
+    },
+    "k401Pct": {
+      "label": "401(k) contribution (% of pay)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "samples": [6, 50],
+      "inSummary": false
+    },
+    "healthMonthly": {
+      "label": "Pre-tax health insurance ($ a month)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10000,
+      "step": 10,
+      "samples": [250],
+      "inSummary": false
+    },
+    "children": {
+      "label": "Children under 17",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "integer": true,
+      "samples": [2],
+      "inSummary": false
     }
   },
   "items": [
+    {
+      "id": "us-401k-amount",
+      "label": "401(k) contribution",
+      "value": {
+        "min": [
+          {
+            "pct": {"input": "k401Pct"},
+            "of": "gross"
+          },
+          24500,
+          {"pct": 85, "of": "gross"}
+        ]
+      },
+      "note": "Traditional (pre-tax) 401(k) or 403(b) deferrals, up to the 2026 limit of $24,500 (catch-up contributions for 50 and over not included)."
+    },
+    {
+      "id": "us-health-amount",
+      "label": "Pre-tax health insurance",
+      "value": {
+        "min": [
+          {
+            "mul": [
+              12,
+              {"input": "healthMonthly"}
+            ]
+          },
+          {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {"pct": 85, "of": "gross"},
+                  "us-401k-amount"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "note": "Your share of employer health, dental and vision premiums paid through a cafeteria (Section 125) plan. Together with the 401(k), capped at 85% of pay, since payroll can't deduct more than is left after taxes."
+    },
+    {
+      "id": "us-wages",
+      "label": "Taxable wages",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "us-401k-amount", "us-health-amount"]
+          }
+        ]
+      },
+      "note": "Pay after pre-tax deductions: what federal and most state income taxes start from."
+    },
+    {
+      "id": "us-fica-wages",
+      "label": "Social Security and Medicare wages",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": ["gross", "us-health-amount"]
+          }
+        ]
+      },
+      "note": "401(k) deferrals still pay Social Security and Medicare; cafeteria-plan premiums don't."
+    },
     {
       "id": "us-standard-deduction",
       "label": "Federal standard deduction",
@@ -33,7 +131,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "us-standard-deduction"]
+            "sub": ["us-wages", "us-standard-deduction"]
           }
         ]
       }
@@ -53,6 +151,71 @@
       }
     },
     {
+      "id": "us-ctc-max",
+      "label": "Child Tax Credit available",
+      "value": {
+        "taper": {
+          "mul": [
+            2200,
+            {"input": "children"}
+          ]
+        },
+        "of": "us-wages",
+        "from": {
+          "status": {"single": 200000, "married": 400000}
+        },
+        "step": 1000,
+        "perStep": 50
+      },
+      "note": "$2,200 per child under 17, reduced by $50 for each $1,000 (or part) of income over $200,000 ($400,000 married)."
+    },
+    {
+      "id": "us-ctc-used",
+      "label": "Child Tax Credit set against tax",
+      "value": {
+        "min": ["us-ctc-max", "us-income-tax"]
+      }
+    },
+    {
+      "id": "us-actc",
+      "label": "Refundable Child Tax Credit",
+      "value": {
+        "min": [
+          {
+            "sub": ["us-ctc-max", "us-ctc-used"]
+          },
+          {
+            "mul": [
+              1700,
+              {"input": "children"}
+            ]
+          },
+          {
+            "pct": 15,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["us-wages", 2500]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "note": "Up to $1,700 a child of any credit left over is paid out, limited to 15% of earnings over $2,500."
+    },
+    {
+      "id": "us-child-tax-credit",
+      "label": "Child Tax Credit",
+      "group": "tax",
+      "mayBeNegative": true,
+      "note": "Comes off federal income tax; up to $1,700 a child can be paid out even where no tax is owed. A negative figure here adds to your take-home.",
+      "charge": {
+        "sub": [0, "us-ctc-used", "us-actc"]
+      }
+    },
+    {
       "id": "us-social-security",
       "label": "Social Security",
       "group": "social",
@@ -60,7 +223,7 @@
       "charge": {
         "pct": 6.2,
         "of": {
-          "min": ["gross", 184500]
+          "min": ["us-fica-wages", 184500]
         }
       }
     },
@@ -68,7 +231,7 @@
       "id": "us-medicare",
       "label": "Medicare",
       "group": "social",
-      "charge": {"pct": 1.45, "of": "gross"}
+      "charge": {"pct": 1.45, "of": "us-fica-wages"}
     },
     {
       "id": "us-additional-medicare",
@@ -82,7 +245,7 @@
             0,
             {
               "sub": [
-                "gross",
+                "us-fica-wages",
                 {
                   "status": {"single": 200000, "married": 250000}
                 }
@@ -91,13 +254,28 @@
           ]
         }
       }
+    },
+    {
+      "id": "us-401k",
+      "label": "401(k) contribution",
+      "group": "pension",
+      "charge": "us-401k-amount",
+      "note": "Taken from pay before federal and most state income tax, but after Social Security and Medicare."
+    },
+    {
+      "id": "us-pretax-health",
+      "label": "Pre-tax health insurance",
+      "group": "benefit",
+      "charge": "us-health-amount",
+      "note": "Taken before income tax, Social Security and Medicare."
     }
   ],
   "assumptions": [
     "Wages are the only income",
     "Married filing jointly means one spouse earns the whole salary and the other has no income",
     "Standard deduction, no itemizing",
-    "No dependants, and under 65"
+    "No dependants, and under 65",
+    "No 401(k), health premiums or children unless entered"
   ],
   "notModelled": [
     "Pre-tax 401(k), HSA and health insurance contributions",
@@ -105,7 +283,9 @@
     "Itemized deductions, including state and local taxes (SALT) — high earners in high-tax states may pay less federal tax by itemizing",
     "The deductions for tips, overtime, car loan interest and seniors introduced for 2025–2028",
     "Alternative minimum tax",
-    "Head of household, married filing separately and qualifying surviving spouse"
+    "Head of household, married filing separately and qualifying surviving spouse",
+    "Roth 401(k) (after-tax), HSA and FSA contributions",
+    "State child and dependent credits"
   ],
   "provisional": [],
   "sources": [
@@ -117,6 +297,14 @@
     {
       "title": "26 U.S.C. § 3101 — FICA rates, including the additional Medicare tax",
       "url": "https://www.law.cornell.edu/uscode/text/26/3101"
+    },
+    {
+      "title": "401(k) limit increases to $24,500 for 2026 (IRS)",
+      "url": "https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500"
+    },
+    {
+      "title": "Child Tax Credit (IRS)",
+      "url": "https://www.irs.gov/credits-deductions/individuals/child-tax-credit"
     }
   ],
   "obtainedFrom": [
@@ -128,6 +316,11 @@
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Journal of Accountancy, Accounting Today and The Tax Adviser summaries of Rev. Proc. 2025-32 agree on the standard deductions and the 10%, 32%, 35% and 37% thresholds."
+    },
+    {
+      "title": "Rev. Proc. 2025-32 figures as reported by Kiplinger and Ramsey Solutions",
+      "url": "https://www.kiplinger.com/taxes/2026-family-tax-credits-three-irs-changes-you-need-to-know-now",
+      "note": "401(k) limit $24,500; Child Tax Credit $2,200, refundable up to $1,700, for 2026."
     }
   ],
   "lastVerified": null,
@@ -155,6 +348,42 @@
       "gross": 300000,
       "note": "Taxable 283,900: 1,240 + 4,560 + 55,300 × 22% = 12,166 + 96,075 × 24% = 23,058 + 54,450 × 32% = 17,424 + 27,675 × 35% = 9,686.25 → 68,134.25. SS capped at 184,500 × 6.2% = 11,439. Additional Medicare 100,000 × 0.9% = 900.",
       "expect": {"us-income-tax": 68134.25, "us-social-security": 11439, "us-medicare": 4350, "us-additional-medicare": 900}
+    },
+    {
+      "gross": 75000,
+      "options": {"children": 2},
+      "note": "Tax 7,670 (as with no children); credit 2 x 2,200 = 4,400, all used against tax.",
+      "expect": {"us-income-tax": 7670, "us-child-tax-credit": -4400}
+    },
+    {
+      "gross": 25000,
+      "options": {"children": 1},
+      "note": "Taxable 8,900, tax 890. Credit 2,200: 890 against tax, the other 1,310 refundable (under 1,700 and under 15% x 22,500 = 3,375).",
+      "expect": {"us-income-tax": 890, "us-actc": 1310, "us-child-tax-credit": -2200}
+    },
+    {
+      "gross": 75000,
+      "options": {"k401Pct": 6},
+      "note": "401(k) 4,500: taxable 75,000 - 4,500 - 16,100 = 54,400; tax 5,800 + 22% x 4,000 = 6,680. Social Security still on 75,000: 4,650.",
+      "expect": {"us-income-tax": 6680, "us-social-security": 4650, "us-401k": 4500}
+    },
+    {
+      "gross": 75000,
+      "options": {"healthMonthly": 200},
+      "note": "Premiums 2,400 off before everything: Social Security 6.2% x 72,600 = 4,501.20, Medicare 1.45% x 72,600 = 1,052.70.",
+      "expect": {"us-social-security": 4501.2, "us-medicare": 1052.7}
+    },
+    {
+      "gross": 200000,
+      "options": {"k401Pct": 50},
+      "note": "50% would be 100,000; capped at the 24,500 limit.",
+      "expect": {"us-401k": 24500}
+    },
+    {
+      "gross": 410000,
+      "options": {"status": "married", "children": 2},
+      "note": "10,000 over the 400,000 threshold: 10 steps x 50 = 500 off 4,400.",
+      "expect": {"us-ctc-max": 3900}
     }
   ]
 }

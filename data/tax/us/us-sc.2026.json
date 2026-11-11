@@ -37,7 +37,7 @@
                                 0,
                                 {
                                   "sub": [
-                                    "gross",
+                                    "us-wages",
                                     {
                                       "status": {"single": 40000, "married": 80000}
                                     }
@@ -70,7 +70,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "sc-deduction"]
+            "sub": ["us-wages", "sc-deduction"]
           }
         ]
       }

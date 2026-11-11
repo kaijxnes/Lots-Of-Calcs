@@ -20,7 +20,7 @@
           },
           {
             "if": {
-              "gt": ["gross", 1107750]
+              "gt": ["us-wages", 1107750]
             },
             "then": {
               "pct": 80,
@@ -46,7 +46,7 @@
                             "max": [
                               0,
                               {
-                                "sub": ["gross", 244400]
+                                "sub": ["us-wages", 244400]
                               }
                             ]
                           },
@@ -60,7 +60,7 @@
                         "max": [
                           0,
                           {
-                            "sub": ["gross", 337800]
+                            "sub": ["us-wages", 337800]
                           }
                         ]
                       }
@@ -81,7 +81,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "mn-standard-deduction"]
+            "sub": ["us-wages", "mn-standard-deduction"]
           }
         ]
       }

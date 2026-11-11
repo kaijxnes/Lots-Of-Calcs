@@ -10,6 +10,26 @@
   "locale": "en-GB",
   "taxYear": {"label": "2026/27", "start": "2026-04-06", "end": "2027-04-05"},
   "options": {
+    "pensionPct": {
+      "label": "Pension contribution (% of salary)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 100,
+      "step": 0.5,
+      "samples": [5, 20],
+      "inSummary": false
+    },
+    "pensionType": {
+      "label": "Pension type",
+      "default": "relief",
+      "inSummary": false,
+      "choices": {
+        "relief": "Relief at source (most personal and many workplace pensions)",
+        "netpay": "Net pay arrangement (taken before tax)",
+        "sacrifice": "Salary sacrifice"
+      }
+    },
     "studentLoan": {
       "label": "Student loan",
       "default": "none",
@@ -25,11 +45,55 @@
   },
   "items": [
     {
+      "id": "gb-pension-gross",
+      "label": "Pension contribution (gross)",
+      "value": {
+        "pct": {"input": "pensionPct"},
+        "of": "gross"
+      },
+      "note": "Your contribution as a percentage of salary, before any tax relief."
+    },
+    {
+      "id": "gb-tax-pay",
+      "label": "Pay for income tax",
+      "value": {
+        "sub": [
+          "gross",
+          {
+            "option": "pensionType",
+            "cases": {"relief": 0, "netpay": "gb-pension-gross", "sacrifice": "gb-pension-gross"}
+          }
+        ]
+      },
+      "note": "Net pay and salary sacrifice contributions come off before income tax."
+    },
+    {
+      "id": "gb-ni-pay",
+      "label": "Pay for National Insurance",
+      "value": {
+        "sub": [
+          "gross",
+          {
+            "option": "pensionType",
+            "cases": {"relief": 0, "netpay": 0, "sacrifice": "gb-pension-gross"}
+          }
+        ]
+      },
+      "note": "Only salary sacrifice reduces the pay National Insurance and student loans are worked out on."
+    },
+    {
       "id": "gb-personal-allowance",
       "label": "Personal allowance",
       "show": true,
-      "note": "Withdrawn by £1 for every £2 of income over £100,000, which is what creates the 60% effective band up to £125,140.",
-      "value": {"taper": 12570, "of": "gross", "from": 100000, "per": 0.5}
+      "note": "Withdrawn by £1 for every £2 of income over £100,000, which is what creates the 60% effective band up to £125,140. The £100,000 taper is measured on adjusted net income, which pension contributions reduce.",
+      "value": {
+        "taper": 12570,
+        "of": {
+          "sub": ["gross", "gb-pension-gross"]
+        },
+        "from": 100000,
+        "per": 0.5
+      }
     },
     {
       "id": "gb-taxable",
@@ -39,7 +103,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "gb-personal-allowance"]
+            "sub": ["gb-tax-pay", "gb-personal-allowance"]
           }
         ]
       }
@@ -65,7 +129,7 @@
           [12570, 8, "Primary threshold to upper earnings limit"],
           [50270, 2, "Above the upper earnings limit"]
         ],
-        "of": "gross"
+        "of": "gb-ni-pay"
       }
     },
     {
@@ -83,7 +147,7 @@
               "max": [
                 0,
                 {
-                  "sub": ["gross", 26900]
+                  "sub": ["gb-ni-pay", 26900]
                 }
               ]
             }
@@ -94,7 +158,7 @@
               "max": [
                 0,
                 {
-                  "sub": ["gross", 29385]
+                  "sub": ["gb-ni-pay", 29385]
                 }
               ]
             }
@@ -105,7 +169,7 @@
               "max": [
                 0,
                 {
-                  "sub": ["gross", 33795]
+                  "sub": ["gb-ni-pay", 33795]
                 }
               ]
             }
@@ -116,7 +180,7 @@
               "max": [
                 0,
                 {
-                  "sub": ["gross", 25000]
+                  "sub": ["gb-ni-pay", 25000]
                 }
               ]
             }
@@ -139,11 +203,25 @@
               "max": [
                 0,
                 {
-                  "sub": ["gross", 21000]
+                  "sub": ["gb-ni-pay", 21000]
                 }
               ]
             }
           }
+        }
+      }
+    },
+    {
+      "id": "gb-pension",
+      "label": "Pension contribution",
+      "group": "pension",
+      "note": "With relief at source you pay 80% of the contribution and your pension provider claims the other 20% from HMRC; higher and additional rate taxpayers can claim more back through self assessment, which isn't included here. Net pay and salary sacrifice contributions are taken in full, before tax.",
+      "charge": {
+        "option": "pensionType",
+        "cases": {
+          "relief": {"pct": 80, "of": "gb-pension-gross"},
+          "netpay": "gb-pension-gross",
+          "sacrifice": "gb-pension-gross"
         }
       }
     }
@@ -152,13 +230,15 @@
     "Standard tax code (1257L) and personal allowance",
     "Employment income only, paid evenly through the year",
     "National Insurance category A",
-    "No student or postgraduate loan unless one is chosen; repayments worked out on the year's earnings, where payroll works per pay period"
+    "No student or postgraduate loan unless one is chosen; repayments worked out on the year's earnings, where payroll works per pay period",
+    "No pension contribution unless one is entered"
   ],
   "notModelled": [
-    "Pension contributions (workplace or salary sacrifice)",
     "Tax codes other than the standard personal allowance",
     "Benefits in kind, salary sacrifice and taxable expenses",
-    "Blind person's allowance, marriage allowance and other reliefs"
+    "Blind person's allowance, marriage allowance and other reliefs",
+    "Extra relief on relief-at-source pensions for higher-rate taxpayers (claimed through self assessment)",
+    "Employer pension contributions, and auto-enrolment's qualifying earnings band (contributions are a percentage of the whole salary)"
   ],
   "provisional": [],
   "sources": [
@@ -178,6 +258,10 @@
     {
       "title": "Repaying your student loan: what you pay (GOV.UK)",
       "url": "https://www.gov.uk/repaying-your-student-loan/what-you-pay"
+    },
+    {
+      "title": "Tax on your private pension contributions: tax relief (GOV.UK)",
+      "url": "https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief"
     }
   ],
   "obtainedFrom": [
@@ -243,6 +327,36 @@
       "options": {"studentLoan": "plan5"},
       "note": "Below the £25,000 Plan 5 threshold: nothing to repay.",
       "expect": {"gb-student-loan": 0}
+    },
+    {
+      "gross": 40000,
+      "options": {"pensionPct": 5, "pensionType": "netpay"},
+      "note": "Net pay: contribution 2,000 off before tax, taxable 38,000 - 12,570 = 25,430, tax 5,086; NI on 40,000 = 8% x 27,430 = 2,194.40; take-home 40,000 - 5,086 - 2,194.40 - 2,000.",
+      "expect": {"gb-income-tax": 5086, "gb-ni": 2194.4, "gb-pension": 2000, "net": 30719.6}
+    },
+    {
+      "gross": 40000,
+      "options": {"pensionPct": 5, "pensionType": "sacrifice"},
+      "note": "Salary sacrifice: tax and NI both on 38,000; NI 8% x 25,430 = 2,034.40.",
+      "expect": {"gb-income-tax": 5086, "gb-ni": 2034.4, "net": 30879.6}
+    },
+    {
+      "gross": 40000,
+      "options": {"pensionPct": 5, "pensionType": "relief"},
+      "note": "Relief at source: tax 20% x 27,430 = 5,486 and NI 2,194.40 on the full salary; you pay 80% of 2,000 = 1,600. Same take-home as net pay for a basic-rate taxpayer.",
+      "expect": {"gb-income-tax": 5486, "gb-pension": 1600, "net": 30719.6}
+    },
+    {
+      "gross": 110000,
+      "options": {"pensionPct": 10, "pensionType": "netpay"},
+      "note": "Contribution 11,000 brings adjusted net income to 99,000, under the £100,000 taper, so the full 12,570 allowance stays.",
+      "expect": {"gb-personal-allowance": 12570}
+    },
+    {
+      "gross": 40000,
+      "options": {"pensionPct": 5, "pensionType": "sacrifice", "studentLoan": "plan2"},
+      "note": "Salary sacrifice also lowers student loan pay: 9% x (38,000 - 29,385) = 775.35.",
+      "expect": {"gb-student-loan": 775.35}
     }
   ]
 }

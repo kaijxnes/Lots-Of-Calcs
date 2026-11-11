@@ -28,7 +28,7 @@ const DATE = /^\d{4}-\d{2}-\d{2}$/;
 const KINDS = ["country", "state", "region", "city", "county"];
 /* tax and social are compulsory; loan (student loans) and pension are
    deductions a visitor opts into, so they default to nothing */
-const GROUPS = ["tax", "social", "loan", "pension"];
+const GROUPS = ["tax", "social", "loan", "pension", "benefit"];
 
 function checkBrackets(where, v) {
   if (Array.isArray(v)) {
@@ -97,7 +97,9 @@ function optionCombos(options) {
   let combos = [{}];
   Object.keys(options || {}).forEach((k) => {
     const next = [];
-    Object.keys(options[k].choices).forEach((v) => combos.forEach((c) => next.push(Object.assign({}, c, { [k]: v }))));
+    /* A number option is exercised at its default and the sample values it lists */
+    const values = options[k].type === "number" ? Array.from(new Set([options[k].default].concat(options[k].samples || []))) : Object.keys(options[k].choices);
+    values.forEach((v) => combos.forEach((c) => next.push(Object.assign({}, c, { [k]: v }))));
     combos = next;
   });
   return combos;

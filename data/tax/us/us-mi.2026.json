@@ -20,7 +20,7 @@
             0,
             {
               "sub": [
-                "gross",
+                "us-wages",
                 {
                   "mul": [
                     5900,

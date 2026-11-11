@@ -108,7 +108,7 @@
         "name": "What does this leave out?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Pension contributions (workplace or salary sacrifice); Tax codes other than the standard personal allowance; Benefits in kind, salary sacrifice and taxable expenses; Blind person's allowance, marriage allowance and other reliefs; Student loan and postgraduate loan repayments."
+          "text": "Tax codes other than the standard personal allowance; Benefits in kind, salary sacrifice and taxable expenses; Blind person's allowance, marriage allowance and other reliefs; Extra relief on relief-at-source pensions for higher-rate taxpayers (claimed through self assessment); Employer pension contributions, and auto-enrolment's qualifying earnings band (contributions are a percentage of the whole salary); Pension contributions (workplace or salary sacrifice); Student loan and postgraduate loan repayments."
         }
       },
       {
@@ -156,6 +156,7 @@
           <div class="result-row"><span class="r-label">National Insurance</span><span class="r-value" data-item="gb-ni">£674.40</span></div>
           <div class="result-row"><span class="r-label">Student loan repayment</span><span class="r-value" data-item="gb-student-loan">£0.00</span></div>
           <div class="result-row"><span class="r-label">Postgraduate loan repayment</span><span class="r-value" data-item="gb-postgrad-loan">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Pension contribution</span><span class="r-value" data-item="gb-pension">£0.00</span></div>
           <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value" data-out="deductions">£2,320.73</span></div>
           <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value" data-out="rate">11.1%</span></div>
           <div class="result-row"><span class="r-label">Marginal rate</span><span class="r-value" data-out="marginal">28%</span></div>
@@ -167,6 +168,14 @@
       <div class="field" style="max-width:320px;">
         <label for="salary">Gross monthly pay (GBP)</label>
         <input type="number" id="salary" value="1750" step="any" min="0" placeholder="0">
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-pensionPct">Pension contribution (% of salary)</label>
+        <input type="number" id="opt-pensionPct" data-option="pensionPct" value="0" min="0" max="100" step="0.5" inputmode="decimal">
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-pensionType">Pension type</label>
+        <select id="opt-pensionType" data-option="pensionType"><option value="relief" selected>Relief at source (most personal and many workplace pensions)</option><option value="netpay">Net pay arrangement (taken before tax)</option><option value="sacrifice">Salary sacrifice</option></select>
       </div>
       <div class="field" style="max-width:320px;">
         <label for="opt-studentLoan">Student loan</label>
@@ -233,7 +242,7 @@
     <main class="tool">
       <p class="tool-section-title">How £1,750 a month after tax is worked out</p>
       <p class="about-text">Tax is worked out on the year, so the monthly figure is multiplied by twelve &mdash; £21,000 &mdash; the deductions are worked out on that, and the take-home is divided back by twelve. The yearly amounts below are for the whole year.</p>
-      <p class="about-text"><strong>Personal allowance: £12,570.00.</strong> Withdrawn by £1 for every £2 of income over £100,000, which is what creates the 60% effective band up to £125,140.</p>
+      <p class="about-text"><strong>Personal allowance: £12,570.00.</strong> Withdrawn by £1 for every £2 of income over £100,000, which is what creates the 60% effective band up to £125,140. The £100,000 taper is measured on adjusted net income, which pension contributions reduce.</p>
       <p class="about-text"><strong>Scottish income tax: £1,646.33.</strong> Replaces the rest-of-UK bands. Thresholds are on taxable income: with the full £12,570 allowance the bands start at £12,571, £16,538, £29,527, £43,663, £75,001 and £125,141 of gross pay. The personal allowance and National Insurance are set UK-wide and are unchanged.</p>
       <p class="about-text"><strong>National Insurance: £674.40.</strong> Class 1 employee contributions, charged on gross pay rather than taxable income. Weekly thresholds of £241.73 and £966.73 are £12,570 and £50,270 a year.</p>
     </main>
@@ -249,7 +258,7 @@
       <p class="faq-q">Why might my payslip show a different amount?</p>
       <p class="about-text">PAYE works cumulatively across the tax year, so the first month of a new job, a mid-year pay rise or an emergency tax code can make one month's figure differ. Pension contributions, student loan repayments and benefits in kind also come off a real payslip.</p>
       <p class="faq-q">What does this leave out?</p>
-      <p class="about-text">Pension contributions (workplace or salary sacrifice); Tax codes other than the standard personal allowance; Benefits in kind, salary sacrifice and taxable expenses; Blind person's allowance, marriage allowance and other reliefs; Student loan and postgraduate loan repayments.</p>
+      <p class="about-text">Tax codes other than the standard personal allowance; Benefits in kind, salary sacrifice and taxable expenses; Blind person's allowance, marriage allowance and other reliefs; Extra relief on relief-at-source pensions for higher-rate taxpayers (claimed through self assessment); Employer pension contributions, and auto-enrolment's qualifying earnings band (contributions are a percentage of the whole salary); Pension contributions (workplace or salary sacrifice); Student loan and postgraduate loan repayments.</p>
       <p class="faq-q">How accurate are these figures?</p>
       <p class="about-text">They apply the 2026/27 rates and thresholds to £1,750 a month. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
     </main>
@@ -258,11 +267,11 @@
       <p class="tool-section-title">About these figures</p>
       <p class="about-text">They use the <strong>2026/27</strong> tax year, which runs from 6 April 2026 to 5 April 2027. The rates have not yet been checked by a person against the official sources — <a href="https://www.gov.scot/publications/scottish-income-tax-rates-and-bands/pages/2026-to-2027/" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
-      <ul class="about-list"><li>Standard tax code (1257L) and personal allowance</li><li>Employment income only, paid evenly through the year</li><li>National Insurance category A</li><li>No student or postgraduate loan unless one is chosen; repayments worked out on the year's earnings, where payroll works per pay period</li></ul>
+      <ul class="about-list"><li>Standard tax code (1257L) and personal allowance</li><li>Employment income only, paid evenly through the year</li><li>National Insurance category A</li><li>No student or postgraduate loan unless one is chosen; repayments worked out on the year's earnings, where payroll works per pay period</li><li>No pension contribution unless one is entered</li></ul>
       <p class="about-text"><strong>Leaves out:</strong></p>
-      <ul class="about-list"><li>Pension contributions (workplace or salary sacrifice)</li><li>Tax codes other than the standard personal allowance</li><li>Benefits in kind, salary sacrifice and taxable expenses</li><li>Blind person's allowance, marriage allowance and other reliefs</li><li>Student loan and postgraduate loan repayments</li></ul>
+      <ul class="about-list"><li>Tax codes other than the standard personal allowance</li><li>Benefits in kind, salary sacrifice and taxable expenses</li><li>Blind person's allowance, marriage allowance and other reliefs</li><li>Extra relief on relief-at-source pensions for higher-rate taxpayers (claimed through self assessment)</li><li>Employer pension contributions, and auto-enrolment's qualifying earnings band (contributions are a percentage of the whole salary)</li><li>Pension contributions (workplace or salary sacrifice)</li><li>Student loan and postgraduate loan repayments</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
-      <ul class="about-list"><li><a href="https://www.gov.uk/income-tax-rates" rel="nofollow noopener" target="_blank">Income Tax rates and Personal Allowances (GOV.UK)</a></li><li><a href="https://www.gov.uk/national-insurance-rates-letters" rel="nofollow noopener" target="_blank">National Insurance rates and categories (GOV.UK)</a></li><li><a href="https://www.legislation.gov.uk/uksi/2026/231/regulation/5/made" rel="nofollow noopener" target="_blank">SI 2026/231 reg 5 — 2026-27 NI thresholds</a></li><li><a href="https://www.legislation.gov.uk/uksi/2021/111/article/3/made" rel="nofollow noopener" target="_blank">Income Tax (Indexation) Order 2021 — allowance and basic rate limit frozen</a></li><li><a href="https://www.gov.uk/repaying-your-student-loan/what-you-pay" rel="nofollow noopener" target="_blank">Repaying your student loan: what you pay (GOV.UK)</a></li><li><a href="https://www.gov.scot/publications/scottish-income-tax-rates-and-bands/pages/2026-to-2027/" rel="nofollow noopener" target="_blank">Scottish Income Tax 2026 to 2027 — rates and bands (gov.scot)</a></li><li><a href="https://www.parliament.scot/chamber-and-committees/votes-and-motions/S6M-20844" rel="nofollow noopener" target="_blank">Scottish Rate Resolution 2026-27 (S6M-20844)</a></li><li><a href="https://www.gov.uk/scottish-income-tax" rel="nofollow noopener" target="_blank">Income Tax in Scotland (GOV.UK)</a></li></ul>
+      <ul class="about-list"><li><a href="https://www.gov.uk/income-tax-rates" rel="nofollow noopener" target="_blank">Income Tax rates and Personal Allowances (GOV.UK)</a></li><li><a href="https://www.gov.uk/national-insurance-rates-letters" rel="nofollow noopener" target="_blank">National Insurance rates and categories (GOV.UK)</a></li><li><a href="https://www.legislation.gov.uk/uksi/2026/231/regulation/5/made" rel="nofollow noopener" target="_blank">SI 2026/231 reg 5 — 2026-27 NI thresholds</a></li><li><a href="https://www.legislation.gov.uk/uksi/2021/111/article/3/made" rel="nofollow noopener" target="_blank">Income Tax (Indexation) Order 2021 — allowance and basic rate limit frozen</a></li><li><a href="https://www.gov.uk/repaying-your-student-loan/what-you-pay" rel="nofollow noopener" target="_blank">Repaying your student loan: what you pay (GOV.UK)</a></li><li><a href="https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief" rel="nofollow noopener" target="_blank">Tax on your private pension contributions: tax relief (GOV.UK)</a></li><li><a href="https://www.gov.scot/publications/scottish-income-tax-rates-and-bands/pages/2026-to-2027/" rel="nofollow noopener" target="_blank">Scottish Income Tax 2026 to 2027 — rates and bands (gov.scot)</a></li><li><a href="https://www.parliament.scot/chamber-and-committees/votes-and-motions/S6M-20844" rel="nofollow noopener" target="_blank">Scottish Rate Resolution 2026-27 (S6M-20844)</a></li><li><a href="https://www.gov.uk/scottish-income-tax" rel="nofollow noopener" target="_blank">Income Tax in Scotland (GOV.UK)</a></li></ul>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other monthly pay in Scotland</div>
