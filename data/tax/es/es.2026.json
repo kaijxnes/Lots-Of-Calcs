@@ -26,7 +26,9 @@
       "default": "madrid",
       "choices": {
         "madrid": "Comunidad de Madrid",
-        "catalonia": "Catalonia"
+        "catalonia": "Catalonia",
+        "andalusia": "Andalusia",
+        "valencia": "Valencian Community"
       }
     },
     "children": {
@@ -342,7 +344,7 @@
     {
       "id": "es-minimum-regional",
       "label": "Personal and family minimum (regional)",
-      "note": "Madrid sets its own: €5,956.65 for you, €2,575.85, €2,897.83, €4,400 and €4,950 for children and €3,005.16 more for each under 3. Catalonia uses the state amounts.",
+      "note": "Madrid, Andalusia and Valencia set their own: Madrid €5,956.65 for you and €2,575.85 / €2,897.83 / €4,400 / €4,950 for children (+€3,005.16 under 3); Andalusia €5,790 and €2,510 / €2,820 / €4,170 / €4,700 (+€2,920); Valencia €6,105 and €2,640 / €2,970 / €4,400 / €4,950 (+€3,080). Catalonia uses the state amounts.",
       "value": {
         "option": "region",
         "cases": {
@@ -440,7 +442,195 @@
               }
             ]
           },
-          "catalonia": "es-minimum-state"
+          "catalonia": "es-minimum-state",
+          "andalusia": {
+            "sum": [
+              5790,
+              {
+                "mul": [
+                  "es-child-share",
+                  {
+                    "sum": [
+                      {
+                        "mul": [
+                          2510,
+                          {
+                            "min": [
+                              {
+                                "input": "children"
+                              },
+                              1
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          2820,
+                          {
+                            "clamp": {
+                              "sub": [
+                                {
+                                  "input": "children"
+                                },
+                                1
+                              ]
+                            },
+                            "min": 0,
+                            "max": 1
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          4170,
+                          {
+                            "clamp": {
+                              "sub": [
+                                {
+                                  "input": "children"
+                                },
+                                2
+                              ]
+                            },
+                            "min": 0,
+                            "max": 1
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          4700,
+                          {
+                            "max": [
+                              0,
+                              {
+                                "sub": [
+                                  {
+                                    "input": "children"
+                                  },
+                                  3
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          2920,
+                          {
+                            "min": [
+                              {
+                                "input": "childrenUnder3"
+                              },
+                              {
+                                "input": "children"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "valencia": {
+            "sum": [
+              6105,
+              {
+                "mul": [
+                  "es-child-share",
+                  {
+                    "sum": [
+                      {
+                        "mul": [
+                          2640,
+                          {
+                            "min": [
+                              {
+                                "input": "children"
+                              },
+                              1
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          2970,
+                          {
+                            "clamp": {
+                              "sub": [
+                                {
+                                  "input": "children"
+                                },
+                                1
+                              ]
+                            },
+                            "min": 0,
+                            "max": 1
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          4400,
+                          {
+                            "clamp": {
+                              "sub": [
+                                {
+                                  "input": "children"
+                                },
+                                2
+                              ]
+                            },
+                            "min": 0,
+                            "max": 1
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          4950,
+                          {
+                            "max": [
+                              0,
+                              {
+                                "sub": [
+                                  {
+                                    "input": "children"
+                                  },
+                                  3
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          3080,
+                          {
+                            "min": [
+                              {
+                                "input": "childrenUnder3"
+                              },
+                              {
+                                "input": "children"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
         }
       }
     },
@@ -526,7 +716,7 @@
       "id": "es-regional-tax",
       "label": "Income tax — regional share (IRPF autonómico)",
       "group": "tax",
-      "note": "Each autonomous community sets its own scale for its half of IRPF.",
+      "note": "Each autonomous community sets its own scale for its half of IRPF. Valencia's 2026 scale is the one cut in July 2026 with effect from January (Ley 5/2026).",
       "charge": {
         "option": "region",
         "cases": {
@@ -681,6 +871,182 @@
                 ]
               }
             ]
+          },
+          "andalusia": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "brackets": [
+                      [
+                        0,
+                        9.5
+                      ],
+                      [
+                        13000,
+                        12
+                      ],
+                      [
+                        21100,
+                        15
+                      ],
+                      [
+                        35200,
+                        18.5
+                      ],
+                      [
+                        60000,
+                        22.5
+                      ]
+                    ],
+                    "of": "es-base"
+                  },
+                  {
+                    "brackets": [
+                      [
+                        0,
+                        9.5
+                      ],
+                      [
+                        13000,
+                        12
+                      ],
+                      [
+                        21100,
+                        15
+                      ],
+                      [
+                        35200,
+                        18.5
+                      ],
+                      [
+                        60000,
+                        22.5
+                      ]
+                    ],
+                    "of": {
+                      "min": [
+                        "es-minimum-regional",
+                        "es-base"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "valencia": {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "brackets": [
+                      [
+                        0,
+                        8.8
+                      ],
+                      [
+                        12000,
+                        11.7
+                      ],
+                      [
+                        22000,
+                        14.6
+                      ],
+                      [
+                        32000,
+                        17
+                      ],
+                      [
+                        42000,
+                        19.4
+                      ],
+                      [
+                        52000,
+                        21.9
+                      ],
+                      [
+                        62000,
+                        24.4
+                      ],
+                      [
+                        72000,
+                        26.1
+                      ],
+                      [
+                        100000,
+                        27.35
+                      ],
+                      [
+                        150000,
+                        28.35
+                      ],
+                      [
+                        200000,
+                        29.35
+                      ]
+                    ],
+                    "of": "es-base"
+                  },
+                  {
+                    "brackets": [
+                      [
+                        0,
+                        8.8
+                      ],
+                      [
+                        12000,
+                        11.7
+                      ],
+                      [
+                        22000,
+                        14.6
+                      ],
+                      [
+                        32000,
+                        17
+                      ],
+                      [
+                        42000,
+                        19.4
+                      ],
+                      [
+                        52000,
+                        21.9
+                      ],
+                      [
+                        62000,
+                        24.4
+                      ],
+                      [
+                        72000,
+                        26.1
+                      ],
+                      [
+                        100000,
+                        27.35
+                      ],
+                      [
+                        150000,
+                        28.35
+                      ],
+                      [
+                        200000,
+                        29.35
+                      ]
+                    ],
+                    "of": {
+                      "min": [
+                        "es-minimum-regional",
+                        "es-base"
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
           }
         }
       }
@@ -701,7 +1067,7 @@
     "Employment income only"
   ],
   "notModelled": [
-    "Regions other than Madrid and Catalonia — including Andalusia and Valencia, whose 2026 scales could not be confirmed — and the separate Basque and Navarre systems",
+    "Regions other than Madrid, Catalonia, Andalusia and Valencia, and the separate Basque and Navarre systems",
     "Regional and state deductions (rent, family, donations) and higher regional personal minimums",
     "The solidarity contribution on pay above the maximum base (a fraction of 1% for the employee)",
     "Employer pension contributions and the higher €8,500 limit for company plans",
@@ -742,6 +1108,18 @@
     {
       "title": "AEAT Manual IRPF 2025: Comunidad de Madrid minimums",
       "url": "https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-autonomico-personal-familiar/comunidad-madrid-importes-minimo-personal-familiar.html"
+    },
+    {
+      "title": "Andalucía: Ley 5/2021 de Tributos Cedidos (consolidated, BOE), arts. 23 and 23 bis",
+      "url": "https://www.boe.es/buscar/pdf/2021/BOE-A-2021-17915-consolidado.pdf"
+    },
+    {
+      "title": "Comunitat Valenciana: Ley 13/1997 (consolidated to 10 Aug 2026, BOE), arts. 2 and 2 bis",
+      "url": "https://www.boe.es/buscar/pdf/1998/BOE-A-1998-8202-consolidado.pdf"
+    },
+    {
+      "title": "Comunitat Valenciana: Ley 5/2026, de 31 de julio (2026 scale cut)",
+      "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2026-19331"
     }
   ],
   "obtainedFrom": [
@@ -752,6 +1130,10 @@
     {
       "title": "Text extracted from the BOE consolidated PDFs, 11 Nov 2026",
       "note": "State minimums and pension limit from Ley 35/2006; Madrid's own personal and family minimums from Decreto Legislativo 1/2010, which replace the €5,550 previously used for Madrid's half."
+    },
+    {
+      "title": "Text extracted from the BOE consolidated PDFs, 11 Nov 2026",
+      "note": "Andalusian scale and minimums (Ley 5/2021 arts. 23, 23 bis, updated 31 Dec 2025); Valencian 2026 scale and minimums (Ley 13/1997 arts. 2, 2 bis, consolidated 10 Aug 2026 incl. Ley 5/2026)."
     }
   ],
   "lastVerified": null,
@@ -885,6 +1267,70 @@
         "es-state-tax": 6160.24,
         "es-regional-tax": 5450.0,
         "net": 53410.82
+      }
+    },
+    {
+      "gross": 30000,
+      "options": {
+        "region": "andalusia"
+      },
+      "note": "Base 26,050.00; regional minimum 5,790.00; scale from the region's law (BOE consolidated); separate implementation.",
+      "expect": {
+        "es-state-tax": 2463.0,
+        "es-regional-tax": 2399.45,
+        "net": 23187.55
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "region": "valencia"
+      },
+      "note": "Base 54,100.00; regional minimum 6,105.00; scale from the region's law (BOE consolidated); separate implementation.",
+      "expect": {
+        "es-state-tax": 7332.0,
+        "es-regional-tax": 7248.66,
+        "net": 41519.34
+      }
+    },
+    {
+      "gross": 45000,
+      "options": {
+        "region": "valencia",
+        "children": 2,
+        "childrenUnder3": 1,
+        "childClaim": "full"
+      },
+      "note": "Base 40,075.00; regional minimum 14,795.00; scale from the region's law (BOE consolidated); separate implementation.",
+      "expect": {
+        "es-state-tax": 3961.88,
+        "es-regional-tax": 3675.74,
+        "net": 34437.39
+      }
+    },
+    {
+      "gross": 250000,
+      "options": {
+        "region": "valencia"
+      },
+      "note": "Base 244,021.06; regional minimum 6,105.00; scale from the region's law (BOE consolidated); separate implementation.",
+      "expect": {
+        "es-state-tax": 49828.24,
+        "es-regional-tax": 59496.94,
+        "net": 136695.88
+      }
+    },
+    {
+      "gross": 40000,
+      "options": {
+        "region": "andalusia",
+        "children": 1
+      },
+      "note": "Base 35,400.00; regional minimum 7,045.00; scale from the region's law (BOE consolidated); separate implementation.",
+      "expect": {
+        "es-state-tax": 3758.5,
+        "es-regional-tax": 3689.73,
+        "net": 29951.78
       }
     }
   ]

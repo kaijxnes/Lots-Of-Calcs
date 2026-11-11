@@ -19,6 +19,9 @@ Generated from `data/tax/es/es.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Ley 35/2006 (consolidated, BOE): art. 52 pension limit, arts. 57–58 minimums: https://www.boe.es/buscar/pdf/2006/BOE-A-2006-20764-consolidado.pdf
 - Comunidad de Madrid: Decreto Legislativo 1/2010 (consolidated, BOE), arts. 1–2 bis: https://www.boe.es/buscar/pdf/2010/BOCM-m-2010-90068-consolidado.pdf
 - AEAT Manual IRPF 2025: Comunidad de Madrid minimums: https://sede.agenciatributaria.gob.es/Sede/ayuda/manuales-videos-folletos/manuales-practicos/irpf-2025/c14-adecuacion-impuesto-circunstancias-personales/minimo-autonomico-personal-familiar/comunidad-madrid-importes-minimo-personal-familiar.html
+- Andalucía: Ley 5/2021 de Tributos Cedidos (consolidated, BOE), arts. 23 and 23 bis: https://www.boe.es/buscar/pdf/2021/BOE-A-2021-17915-consolidado.pdf
+- Comunitat Valenciana: Ley 13/1997 (consolidated to 10 Aug 2026, BOE), arts. 2 and 2 bis: https://www.boe.es/buscar/pdf/1998/BOE-A-1998-8202-consolidado.pdf
+- Comunitat Valenciana: Ley 5/2026, de 31 de julio (2026 scale cut): https://www.boe.es/buscar/doc.php?id=BOE-A-2026-19331
 
 ## Figures
 
@@ -90,7 +93,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 
 ### Personal and family minimum (regional) (`es-minimum-regional`)
 
-> Madrid sets its own: €5,956.65 for you, €2,575.85, €2,897.83, €4,400 and €4,950 for children and €3,005.16 more for each under 3. Catalonia uses the state amounts.
+> Madrid, Andalusia and Valencia set their own: Madrid €5,956.65 for you and €2,575.85 / €2,897.83 / €4,400 / €4,950 for children (+€3,005.16 under 3); Andalusia €5,790 and €2,510 / €2,820 / €4,170 / €4,700 (+€2,920); Valencia €6,105 and €2,640 / €2,970 / €4,400 / €4,950 (+€3,080). Catalonia uses the state amounts.
 
 - [ ] Comunidad de Madrid — amount 5,956.65
 - [ ] Comunidad de Madrid — factor 2,575.85
@@ -103,6 +106,28 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 - [ ] Comunidad de Madrid — factor 4,950
 - [ ] Comunidad de Madrid — less 3
 - [ ] Comunidad de Madrid — factor 3,005.16
+- [ ] Andalusia — amount 5,790
+- [ ] Andalusia — factor 2,510
+- [ ] Andalusia — capped at 1
+- [ ] Andalusia — factor 2,820
+- [ ] Andalusia — less 1
+- [ ] Andalusia — at most 1
+- [ ] Andalusia — factor 4,170
+- [ ] Andalusia — less 2
+- [ ] Andalusia — factor 4,700
+- [ ] Andalusia — less 3
+- [ ] Andalusia — factor 2,920
+- [ ] Valencian Community — amount 6,105
+- [ ] Valencian Community — factor 2,640
+- [ ] Valencian Community — capped at 1
+- [ ] Valencian Community — factor 2,970
+- [ ] Valencian Community — less 1
+- [ ] Valencian Community — at most 1
+- [ ] Valencian Community — factor 4,400
+- [ ] Valencian Community — less 2
+- [ ] Valencian Community — factor 4,950
+- [ ] Valencian Community — less 3
+- [ ] Valencian Community — factor 3,080
 
 ### Income tax — state share (IRPF estatal) (`es-state-tax`)
 
@@ -117,7 +142,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 
 ### Income tax — regional share (IRPF autonómico) (`es-regional-tax`)
 
-> Each autonomous community sets its own scale for its half of IRPF.
+> Each autonomous community sets its own scale for its half of IRPF. Valencia's 2026 scale is the one cut in July 2026 with effect from January (Ley 5/2026).
 
 - [ ] Comunidad de Madrid — from 0: 8.5%
 - [ ] Comunidad de Madrid — from 13,362.22: 10.7%
@@ -132,6 +157,22 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 - [ ] Catalonia — from 90,000: 23.5%
 - [ ] Catalonia — from 120,000: 24.5%
 - [ ] Catalonia — from 175,000: 25.5%
+- [ ] Andalusia — from 0: 9.5%
+- [ ] Andalusia — from 13,000: 12%
+- [ ] Andalusia — from 21,100: 15%
+- [ ] Andalusia — from 35,200: 18.5%
+- [ ] Andalusia — from 60,000: 22.5%
+- [ ] Valencian Community — from 0: 8.8%
+- [ ] Valencian Community — from 12,000: 11.7%
+- [ ] Valencian Community — from 22,000: 14.6%
+- [ ] Valencian Community — from 32,000: 17%
+- [ ] Valencian Community — from 42,000: 19.4%
+- [ ] Valencian Community — from 52,000: 21.9%
+- [ ] Valencian Community — from 62,000: 24.4%
+- [ ] Valencian Community — from 72,000: 26.1%
+- [ ] Valencian Community — from 100,000: 27.35%
+- [ ] Valencian Community — from 150,000: 28.35%
+- [ ] Valencian Community — from 200,000: 29.35%
 
 ## Spot checks
 
@@ -147,10 +188,15 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 45,000 with pensionAnnual = 3000: es-base 38,575; es-state-tax 4,459.88; es-regional-tax 3,883.09; net 30,732.04 — Separate implementation of arts. 52, 57, 58 and 61 and Madrid's art. 2–2 bis.
 - [ ] 12,000 with pensionAnnual = 1500: es-base 418; es-state-tax 0; es-regional-tax 0; net 9,720 — Separate implementation of arts. 52, 57, 58 and 61 and Madrid's art. 2–2 bis.
 - [ ] 70,000 with children = 5, childrenUnder3 = 2, childClaim = full, pensionAnnual = 1000: es-base 63,021.06; es-state-tax 6,160.24; es-regional-tax 5,450; net 53,410.82 — Separate implementation of arts. 52, 57, 58 and 61 and Madrid's art. 2–2 bis.
+- [ ] 30,000 with region = andalusia: es-state-tax 2,463; es-regional-tax 2,399.45; net 23,187.55 — Base 26,050.00; regional minimum 5,790.00; scale from the region's law (BOE consolidated); separate implementation.
+- [ ] 60,000 with region = valencia: es-state-tax 7,332; es-regional-tax 7,248.66; net 41,519.34 — Base 54,100.00; regional minimum 6,105.00; scale from the region's law (BOE consolidated); separate implementation.
+- [ ] 45,000 with region = valencia, children = 2, childrenUnder3 = 1, childClaim = full: es-state-tax 3,961.88; es-regional-tax 3,675.74; net 34,437.39 — Base 40,075.00; regional minimum 14,795.00; scale from the region's law (BOE consolidated); separate implementation.
+- [ ] 250,000 with region = valencia: es-state-tax 49,828.24; es-regional-tax 59,496.94; net 136,695.88 — Base 244,021.06; regional minimum 6,105.00; scale from the region's law (BOE consolidated); separate implementation.
+- [ ] 40,000 with region = andalusia, children = 1: es-state-tax 3,758.50; es-regional-tax 3,689.73; net 29,951.78 — Base 35,400.00; regional minimum 7,045.00; scale from the region's law (BOE consolidated); separate implementation.
 
 ## Not modelled (confirm the page says so)
 
-- Regions other than Madrid and Catalonia — including Andalusia and Valencia, whose 2026 scales could not be confirmed — and the separate Basque and Navarre systems
+- Regions other than Madrid, Catalonia, Andalusia and Valencia, and the separate Basque and Navarre systems
 - Regional and state deductions (rent, family, donations) and higher regional personal minimums
 - The solidarity contribution on pay above the maximum base (a fraction of 1% for the employee)
 - Employer pension contributions and the higher €8,500 limit for company plans
