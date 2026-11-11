@@ -146,6 +146,8 @@
           <div class="result-row"><span class="r-label">Independent earner tax credit</span><span class="r-value" data-item="nz-ietc">$0.00</span></div>
           <div class="result-row"><span class="r-label">Income tax (PAYE)</span><span class="r-value" data-item="nz-income-tax">$21,227.50</span></div>
           <div class="result-row"><span class="r-label">ACC earners' levy</span><span class="r-value" data-item="nz-acc">$1,662.50</span></div>
+          <div class="result-row"><span class="r-label">KiwiSaver</span><span class="r-value" data-item="nz-kiwisaver">$0.00</span></div>
+          <div class="result-row"><span class="r-label">Student loan repayment</span><span class="r-value" data-item="nz-student-loan">$0.00</span></div>
           <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value" data-out="deductions">$22,890.00</span></div>
           <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value" data-out="rate">24.1%</span></div>
           <div class="result-row"><span class="r-label">Marginal rate</span><span class="r-value" data-out="marginal">35%</span></div>
@@ -158,7 +160,14 @@
         <label for="salary">Gross annual salary (NZD)</label>
         <input type="number" id="salary" value="95000" step="any" min="0" placeholder="0">
       </div>
-
+      <div class="field" style="max-width:320px;">
+        <label for="opt-kiwisaver">KiwiSaver</label>
+        <select id="opt-kiwisaver" data-option="kiwisaver"><option value="3">3% (temporary rate)</option><option value="4">4%</option><option value="6">6%</option><option value="8">8%</option><option value="10">10%</option><option value="none" selected>Not a member</option><option value="3.5">3.5% (default)</option></select>
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-studentLoan">Student loan</label>
+        <select id="opt-studentLoan" data-option="studentLoan"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+      </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026-27 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
@@ -199,7 +208,7 @@
       <p class="about-text"><strong>Not yet confirmed for this year:</strong></p>
       <ul class="about-list"><li>Figures are from secondary payroll and calculator sources that agree with each other; not checked against Inland Revenue or ACC directly</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
-      <ul class="about-list"><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals" rel="nofollow noopener" target="_blank">Inland Revenue — Tax rates for individuals</a></li><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc" rel="nofollow noopener" target="_blank">Inland Revenue — Independent earner tax credit</a></li><li><a href="https://www.acc.co.nz/for-business/understanding-levies-if-you-work/" rel="nofollow noopener" target="_blank">ACC — Levy rates</a></li></ul>
+      <ul class="about-list"><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals" rel="nofollow noopener" target="_blank">Inland Revenue — Tax rates for individuals</a></li><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc" rel="nofollow noopener" target="_blank">Inland Revenue — Independent earner tax credit</a></li><li><a href="https://www.acc.co.nz/for-business/understanding-levies-if-you-work/" rel="nofollow noopener" target="_blank">ACC — Levy rates</a></li><li><a href="https://www.ird.govt.nz/updates/news-folder/2026/taxation-bill-now-in-effect" rel="nofollow noopener" target="_blank">KiwiSaver and student loan changes (Inland Revenue)</a></li></ul>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in New Zealand</div>

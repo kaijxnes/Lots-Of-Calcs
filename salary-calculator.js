@@ -111,19 +111,35 @@
       var label = document.createElement("label");
       label.htmlFor = "opt-" + key;
       label.textContent = o.label;
-      var sel = document.createElement("select");
+      var sel;
+      if (o.type === "number") {
+        /* A typed number: pension %, number of children */
+        sel = document.createElement("input");
+        sel.type = "number";
+        sel.value = o["default"];
+        if (o.min !== undefined) sel.min = o.min;
+        if (o.max !== undefined) sel.max = o.max;
+        sel.step = o.step || "any";
+        sel.inputMode = "decimal";
+        sel.addEventListener("input", function () {
+          options[key] = sel.value;
+          calculate();
+        });
+      } else {
+        sel = document.createElement("select");
+        Object.keys(o.choices).forEach(function (c) {
+          var opt = document.createElement("option");
+          opt.value = c;
+          opt.textContent = o.choices[c];
+          if (c === o["default"]) opt.selected = true;
+          sel.appendChild(opt);
+        });
+        sel.addEventListener("change", function () {
+          options[key] = sel.value;
+          calculate();
+        });
+      }
       sel.id = "opt-" + key;
-      Object.keys(o.choices).forEach(function (c) {
-        var opt = document.createElement("option");
-        opt.value = c;
-        opt.textContent = o.choices[c];
-        if (c === o["default"]) opt.selected = true;
-        sel.appendChild(opt);
-      });
-      sel.addEventListener("change", function () {
-        options[key] = sel.value;
-        calculate();
-      });
       field.appendChild(label);
       field.appendChild(sel);
       optionsEl.appendChild(field);
@@ -133,7 +149,7 @@
 
   function drawNote(loaded, hub, id) {
     var leaf = loaded[loaded.length - 1];
-    var text = document.createTextNode(leaf.taxYear.label + " tax year. An estimate, not a payslip: it assumes one job and no other income or pension. ");
+    var text = document.createTextNode(leaf.taxYear.label + " tax year. An estimate, not a payslip: it assumes one job and no other income. ");
     noteEl.textContent = "";
     noteEl.appendChild(text);
     if (hub) {
@@ -144,7 +160,7 @@
     }
     TaxEngine.checked(id).then(function (info) {
       if (selected().value !== id) return; // moved on to another place
-      text.textContent = TaxEngine.checkedLine(info) + ". An estimate, not a payslip: it assumes one job and no other income or pension. ";
+      text.textContent = TaxEngine.checkedLine(info) + ". An estimate, not a payslip: it assumes one job and no other income. ";
     }).catch(function () { /* the tax year alone is fine */ });
   }
 

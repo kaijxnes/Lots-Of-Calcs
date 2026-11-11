@@ -8,7 +8,28 @@
   "currency": "NZD",
   "locale": "en-NZ",
   "taxYear": {"label": "2026-27", "start": "2026-04-01", "end": "2027-03-31"},
-  "options": {},
+  "options": {
+    "kiwisaver": {
+      "label": "KiwiSaver",
+      "default": "none",
+      "inSummary": false,
+      "choices": {
+        "none": "Not a member",
+        "3": "3% (temporary rate)",
+        "3.5": "3.5% (default)",
+        "4": "4%",
+        "6": "6%",
+        "8": "8%",
+        "10": "10%"
+      }
+    },
+    "studentLoan": {
+      "label": "Student loan",
+      "default": "no",
+      "inSummary": false,
+      "choices": {"no": "No", "yes": "Yes"}
+    }
+  },
   "items": [
     {
       "id": "nz-ietc",
@@ -75,6 +96,42 @@
           "min": ["gross", 156641]
         }
       }
+    },
+    {
+      "id": "nz-kiwisaver",
+      "label": "KiwiSaver",
+      "group": "pension",
+      "note": "Your contribution as a percentage of gross pay; the default rose to 3.5% from 1 April 2026. Your employer's contribution goes on top and isn't taken from your pay.",
+      "charge": {
+        "pct": {
+          "option": "kiwisaver",
+          "cases": {"none": 0, "3": 3, "3.5": 3.5, "4": 4, "6": 6, "8": 8, "10": 10}
+        },
+        "of": "gross"
+      }
+    },
+    {
+      "id": "nz-student-loan",
+      "label": "Student loan repayment",
+      "group": "loan",
+      "note": "12% of income over $24,128 a year.",
+      "charge": {
+        "option": "studentLoan",
+        "cases": {
+          "no": 0,
+          "yes": {
+            "pct": 12,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": ["gross", 24128]
+                }
+              ]
+            }
+          }
+        }
+      }
     }
   ],
   "assumptions": [
@@ -98,12 +155,21 @@
       "title": "Inland Revenue — Independent earner tax credit",
       "url": "https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc"
     },
-    {"title": "ACC — Levy rates", "url": "https://www.acc.co.nz/for-business/understanding-levies-if-you-work/"}
+    {"title": "ACC — Levy rates", "url": "https://www.acc.co.nz/for-business/understanding-levies-if-you-work/"},
+    {
+      "title": "KiwiSaver and student loan changes (Inland Revenue)",
+      "url": "https://www.ird.govt.nz/updates/news-folder/2026/taxation-bill-now-in-effect"
+    }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Bands unchanged since 31 July 2024 (calculate.co.nz, nztax.tools, Boundless agree); ACC earners' levy 1.75% capped at $156,641 for 2026–27; IETC amounts and abatement."
+    },
+    {
+      "title": "2026-27 payroll changes (iPayroll)",
+      "url": "https://support.ipayroll.co.nz/portal/en/kb/articles/changes-for-the-01-april-2026-31-march-2027-tax-year",
+      "note": "KiwiSaver default 3.5%; student loan threshold unchanged at $24,128, 12%."
     }
   ],
   "lastVerified": null,
@@ -119,6 +185,12 @@
       "gross": 200000,
       "note": "ACC capped at 1.75% × 156,641 = 2,741.22.",
       "expect": {"nz-acc": 2741.22, "nz-income-tax": 57077.5}
+    },
+    {
+      "gross": 80000,
+      "options": {"kiwisaver": "3.5", "studentLoan": "yes"},
+      "note": "KiwiSaver 3.5% x 80,000 = 2,800; student loan 12% x (80,000 - 24,128) = 6,704.64.",
+      "expect": {"nz-kiwisaver": 2800, "nz-student-loan": 6704.64}
     }
   ]
 }

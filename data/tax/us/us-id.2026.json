@@ -17,7 +17,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "us-standard-deduction"]
+            "sub": ["us-wages", "us-standard-deduction"]
           }
         ]
       }

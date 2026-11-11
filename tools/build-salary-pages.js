@@ -103,6 +103,18 @@ function studentLoanAnswer(gross, r, cfg) {
     "Choose your plan in the calculator above to see your take-home with it. The figures above assume no student loan.";
 }
 
+/* 5% into a pension, each way it can be paid, from the registry */
+function pensionAnswer(gross, r, cfg) {
+  const with5 = (type) => TaxEngine.compute(cfg.chain, gross, { pensionPct: 5, pensionType: type }).net;
+  const relief = with5("relief"), netpay = with5("netpay"), sacrifice = with5("sacrifice");
+  const first = Math.abs(relief - netpay) < 0.005
+    ? `leaves you ${money(relief)} a year under relief at source or a net pay arrangement, only ${money(r.net - relief)} less than with no pension`
+    : `leaves you ${money(netpay)} a year through a net pay arrangement, or ${money(relief)} under relief at source before you claim back the extra higher-rate relief through self assessment`;
+  return `Putting 5% of ${money0(gross)} (${money(gross * 0.05)} a year) into a pension ${first}, because tax relief ` +
+    `tops the contribution up. Through salary sacrifice you'd keep ${money(sacrifice)}, as it saves National Insurance too. ` +
+    "The figures above assume no pension; enter yours in the calculator to include it.";
+}
+
 function faqs(gross, r, cfg) {
   return [
     [
@@ -141,10 +153,8 @@ function faqs(gross, r, cfg) {
       studentLoanAnswer(gross, r, cfg)
     ],
     [
-      "Does this include pension contributions?",
-      "No. A workplace pension is typically deducted before tax, so it lowers your " +
-      "taxable pay as well as your net pay, and can be worth hundreds of pounds a " +
-      "year — treat the figure here as take-home before any pension."
+      `How does a pension change take-home pay on ${money0(gross)}?`,
+      pensionAnswer(gross, r, cfg)
     ],
     [
       `What is the marginal rate on ${money0(gross)}?`,
@@ -278,6 +288,7 @@ ${ldJson}
           <div class="result-row"><span class="r-label">− National Insurance</span><span class="r-value" id="out-ni">${money(r.ni)}</span></div>
           <div class="result-row"><span class="r-label">− Student loan</span><span class="r-value" id="out-loan">£0.00</span></div>
           <div class="result-row"><span class="r-label">− Postgraduate loan</span><span class="r-value" id="out-pgl">£0.00</span></div>
+          <div class="result-row"><span class="r-label">− Pension contribution</span><span class="r-value" id="out-pension">£0.00</span></div>
           <div class="result-row highlight"><span class="r-label">Take-home pay</span><span class="r-value" id="out-net">${money(r.net)}</span></div>
         </div>
       </div>
@@ -295,6 +306,16 @@ ${ldJson}
         <div class="field">
           <label for="opt-postgradLoan">Postgraduate loan</label>
           <select id="opt-postgradLoan"><option value="no" selected>No</option><option value="yes">Yes</option></select>
+        </div>
+      </div>
+      <div class="field-row" style="max-width:480px;">
+        <div class="field">
+          <label for="opt-pensionPct">Pension (% of salary)</label>
+          <input type="number" id="opt-pensionPct" value="0" min="0" max="100" step="0.5" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="opt-pensionType">Pension type</label>
+          <select id="opt-pensionType"><option value="relief" selected>Relief at source</option><option value="netpay">Net pay (before tax)</option><option value="sacrifice">Salary sacrifice</option></select>
         </div>
       </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
@@ -317,7 +338,7 @@ ${ldJson}
 
       <p class="tool-hint" id="rates-checked" style="margin-top:14px;">${cfg.taxYear} tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
       <p class="tool-hint">${ratesLine}</p>
-      <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions, no student loan unless you choose one above, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
+      <p class="tool-hint">Assumes the standard tax code and personal allowance, no pension contributions or student loan unless you add them above, no benefits in kind and no other income. A working day is taken as one of 260 in a year. This is an estimate, not a payslip.</p>
     </main>
 
     <main class="tool">

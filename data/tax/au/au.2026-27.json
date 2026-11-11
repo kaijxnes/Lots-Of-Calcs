@@ -13,6 +13,12 @@
       "label": "Private hospital cover",
       "default": "yes",
       "choices": {"yes": "Yes", "no": "No"}
+    },
+    "help": {
+      "label": "HELP / HECS debt",
+      "default": "no",
+      "inSummary": false,
+      "choices": {"no": "No", "yes": "Yes"}
     }
   },
   "items": [
@@ -129,6 +135,28 @@
           }
         }
       }
+    },
+    {
+      "id": "au-help",
+      "label": "HELP repayment",
+      "group": "loan",
+      "note": "From 2026-27: nothing on income up to $69,528, then 15% of income above it up to $129,717, then $9,028.35 plus 17% above that; above $186,050, 10% of all income. Worked out on salary, where the ATO uses repayment income.",
+      "charge": {
+        "option": "help",
+        "cases": {
+          "no": 0,
+          "yes": {
+            "if": {
+              "gt": ["gross", 186050]
+            },
+            "then": {"pct": 10, "of": "gross"},
+            "else": {
+              "brackets": [[0, 0], [69528, 15], [129717, 17]],
+              "of": "gross"
+            }
+          }
+        }
+      }
     }
   ],
   "assumptions": [
@@ -163,12 +191,21 @@
     {
       "title": "ATO — Low income tax offset",
       "url": "https://www.ato.gov.au/individuals-and-families/income-deductions-offsets-and-records/tax-offsets/low-and-middle-income-earner-tax-offsets"
+    },
+    {
+      "title": "Study and training support loans rates and repayment thresholds (ATO)",
+      "url": "https://www.ato.gov.au/tax-rates-and-codes/study-and-training-support-loans-rates-and-repayment-thresholds"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "2026–27 rates with the 15% second rate (SuperGuide, Etax, taxbne agree); Medicare levy thresholds $28,011 / $35,013 for 2025–26 (Munros, Kalkine, paygcalculator); LITO $700 / $37,500 / $66,667 (Trinity Group); ATO pages on the $1,000 deduction (28 May and 8 July 2026)."
+    },
+    {
+      "title": "2026-27 HELP thresholds (WeMoney, H&R Block)",
+      "url": "https://www.wemoney.com.au/blog/how-hecs-help-debt-and-indexation-work",
+      "note": "$69,528 / $129,717 / $186,050 at 15%, 17% and 10%; consistent across several sources."
     }
   ],
   "lastVerified": null,
@@ -190,6 +227,24 @@
       "options": {"cover": "no"},
       "note": "Taxable 129,000: surcharge 1.25% = 1,612.50.",
       "expect": {"au-mls": 1612.5, "net": 96587.5}
+    },
+    {
+      "gross": 100000,
+      "options": {"help": "yes"},
+      "note": "15% x (100,000 - 69,528) = 4,570.80.",
+      "expect": {"au-help": 4570.8}
+    },
+    {
+      "gross": 150000,
+      "options": {"help": "yes"},
+      "note": "9,028.35 + 17% x (150,000 - 129,717) = 9,028.35 + 3,448.11 = 12,476.46.",
+      "expect": {"au-help": 12476.46}
+    },
+    {
+      "gross": 200000,
+      "options": {"help": "yes"},
+      "note": "Above 186,050: 10% x 200,000 = 20,000.",
+      "expect": {"au-help": 20000}
     }
   ]
 }

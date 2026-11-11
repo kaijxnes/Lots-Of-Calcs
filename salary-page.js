@@ -23,7 +23,8 @@
   var bakedHours = hoursInput ? Number(hoursInput.value) : 0;
   var error = document.getElementById("salary-error");
   var note = document.getElementById("salary-note");
-  var selects = Array.prototype.slice.call(document.querySelectorAll("select[data-option]"));
+  /* Options are dropdowns or typed numbers (pension %, children) */
+  var selects = Array.prototype.slice.call(document.querySelectorAll("select[data-option], input[data-option]"));
   var outs = Array.prototype.slice.call(document.querySelectorAll("[data-out], [data-item]"));
 
   /* What the page was generated with, so clearing the box restores it */
@@ -133,7 +134,7 @@
 
   input.addEventListener("input", calculate);
   if (hoursInput) hoursInput.addEventListener("input", calculate);
-  selects.forEach(function (s) { s.addEventListener("change", calculate); });
+  selects.forEach(function (s) { s.addEventListener(s.tagName === "INPUT" ? "input" : "change", calculate); });
 
   /* If the registry cannot be loaded the baked figures simply stay — the page
      is still complete and correct, it just can't recalculate */

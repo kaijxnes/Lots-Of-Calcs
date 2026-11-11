@@ -17,7 +17,7 @@
         "taper": {
           "status": {"single": 15000, "married": 24000}
         },
-        "of": "gross",
+        "of": "us-wages",
         "from": {
           "status": {"single": 30000, "married": 48000}
         },
@@ -33,7 +33,7 @@
         "max": [
           0,
           {
-            "sub": ["gross", "ct-exemption"]
+            "sub": ["us-wages", "ct-exemption"]
           }
         ]
       }
@@ -71,7 +71,7 @@
                             0,
                             {
                               "sub": [
-                                "gross",
+                                "us-wages",
                                 {
                                   "status": {"single": 56500, "married": 100500}
                                 }
@@ -107,7 +107,7 @@
                             0,
                             {
                               "sub": [
-                                "gross",
+                                "us-wages",
                                 {
                                   "status": {"single": 105000, "married": 210000}
                                 }
@@ -145,7 +145,7 @@
                             0,
                             {
                               "sub": [
-                                "gross",
+                                "us-wages",
                                 {
                                   "status": {"single": 200000, "married": 400000}
                                 }
@@ -183,7 +183,7 @@
                             0,
                             {
                               "sub": [
-                                "gross",
+                                "us-wages",
                                 {
                                   "status": {"single": 500000, "married": 1000000}
                                 }
@@ -285,7 +285,7 @@
                         ]
                       }
                     },
-                    "of": "gross",
+                    "of": "us-wages",
                     "strict": true
                   }
                 ]

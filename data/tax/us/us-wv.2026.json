@@ -17,7 +17,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "mul": [
                   2000,

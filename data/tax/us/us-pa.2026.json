@@ -13,7 +13,12 @@
       "label": "Pennsylvania income tax",
       "group": "tax",
       "note": "A flat 3.07% of wages with no standard deduction.",
-      "charge": {"pct": 3.07, "of": "gross"}
+      "charge": {
+        "pct": 3.07,
+        "of": {
+          "sub": ["gross", "us-health-amount"]
+        }
+      }
     },
     {
       "id": "pa-ui",

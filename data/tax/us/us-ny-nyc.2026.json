@@ -31,7 +31,7 @@
                 "sum": [
                   {
                     "if": {
-                      "lte": ["gross", 250000]
+                      "lte": ["us-wages", 250000]
                     },
                     "then": {
                       "status": {"single": 63, "married": 125}
@@ -40,7 +40,7 @@
                   },
                   {
                     "if": {
-                      "lte": ["gross", 500000]
+                      "lte": ["us-wages", 500000]
                     },
                     "then": {
                       "if": {

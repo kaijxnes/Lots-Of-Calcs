@@ -18,12 +18,12 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "taper": {
                   "status": {"single": 15700, "married": 31400}
                 },
-                "of": "gross",
+                "of": "us-wages",
                 "from": {
                   "status": {"single": 102250, "married": 204550}
                 },
@@ -47,7 +47,7 @@
                     }
                   ]
                 },
-                "of": "gross",
+                "of": "us-wages",
                 "from": {
                   "status": {"single": 341000, "married": 409150}
                 },

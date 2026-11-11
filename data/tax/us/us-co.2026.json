@@ -18,7 +18,7 @@
           "us-taxable",
           {
             "if": {
-              "gte": ["gross", 300000]
+              "gte": ["us-wages", 300000]
             },
             "then": {
               "max": [

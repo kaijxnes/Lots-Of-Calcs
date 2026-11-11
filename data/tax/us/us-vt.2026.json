@@ -17,7 +17,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               {
                 "status": {"single": 7650, "married": 15300}
               },

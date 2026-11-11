@@ -23,7 +23,7 @@
                 "married": [[0, 8750], [250000, 7000], [260000, 5250], [270000, 3500], [280000, 1750], [290000, 0]]
               }
             },
-            "of": "gross"
+            "of": "us-wages"
           }
         ]
       }
@@ -37,7 +37,7 @@
           0,
           {
             "sub": [
-              "gross",
+              "us-wages",
               "or-federal-tax-subtraction",
               {
                 "status": {"single": 2835, "married": 5670}
@@ -69,7 +69,7 @@
               {
                 "if": {
                   "lte": [
-                    "gross",
+                    "us-wages",
                     {
                       "status": {"single": 100000, "married": 200000}
                     }
