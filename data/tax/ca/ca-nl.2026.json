@@ -1,0 +1,183 @@
+{
+  "id": "ca-nl",
+  "name": "Newfoundland and Labrador",
+  "appliesTo": "Residents of Newfoundland and Labrador on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-nl-credits",
+      "label": "Newfoundland and Labrador non-refundable credits",
+      "note": "8.7% of the basic personal amount ($13,094) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 8.7,
+        "of": {
+          "sum": [
+            13094,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-nl-basic",
+      "label": "Basic Newfoundland and Labrador tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    8.7
+                  ],
+                  [
+                    44678,
+                    14.5
+                  ],
+                  [
+                    89354,
+                    15.8
+                  ],
+                  [
+                    159528,
+                    17.8
+                  ],
+                  [
+                    223340,
+                    19.8
+                  ],
+                  [
+                    285319,
+                    20.8
+                  ],
+                  [
+                    570638,
+                    21.3
+                  ],
+                  [
+                    1141275,
+                    21.8
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-nl-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-nl-income-tax",
+      "label": "Newfoundland and Labrador income tax",
+      "group": "tax",
+      "note": "8.7% to $44,678, 14.5% to $89,354, 15.8% to $159,528, 17.8% to $223,340, 19.8% to $285,319, 20.8% to $570,638, 21.3% to $1,141,275, 21.8% above, less credits.",
+      "charge": {
+        "sum": [
+          "ca-nl-basic"
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI",
+    "Low-income tax reductions claimed on the return"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 122nd edition, effective January 1, 2026",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf"
+    },
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 123rd edition, effective July 1, 2026",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/t4127-jul-26e.pdf"
+    },
+    {
+      "title": "CRA: Current year tax rates and income brackets (2026)",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Text extracted from the CRA T4127 PDFs",
+      "note": "Table 8.1 bands, Table 8.2 basic amounts and the province's formulas in chapter 4, transcribed on 11 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-11",
+  "verifyAt": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1576.75,
+        "ca-ei": 489.0,
+        "ca-income-tax": 1397.38,
+        "ca-nl-income-tax": 1291.1,
+        "net": 25245.77
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3361.75,
+        "ca-ei": 978.0,
+        "ca-income-tax": 5338.3,
+        "ca-nl-income-tax": 4559.17,
+        "net": 45762.79
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 13301.6,
+        "ca-nl-income-tax": 10325.93,
+        "net": 70602.95
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 38876.54,
+        "ca-nl-income-tax": 26912.83,
+        "net": 128441.11
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 69667.99,
+        "ca-nl-income-tax": 46359.03,
+        "net": 178203.46
+      }
+    }
+  ],
+  "note": "Newfoundland and Labrador raised its basic personal amount from $11,188 to $13,094 from 1 Jan 2026 (announced 29 Apr 2026). Payroll uses a prorated $15,000 from July to catch up."
+}

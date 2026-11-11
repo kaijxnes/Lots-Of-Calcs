@@ -1,0 +1,165 @@
+{
+  "id": "ca-nu",
+  "name": "Nunavut",
+  "appliesTo": "Residents of Nunavut on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-nu-credits",
+      "label": "Nunavut non-refundable credits",
+      "note": "4% of the basic personal amount ($19,659) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 4,
+        "of": {
+          "sum": [
+            19659,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-nu-basic",
+      "label": "Basic Nunavut tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    4
+                  ],
+                  [
+                    55801,
+                    7
+                  ],
+                  [
+                    111602,
+                    9
+                  ],
+                  [
+                    181439,
+                    11.5
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-nu-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-nu-income-tax",
+      "label": "Nunavut income tax",
+      "group": "tax",
+      "note": "4% to $55,801, 7% to $111,602, 9% to $181,439, 11.5% above, less credits.",
+      "charge": {
+        "sum": [
+          "ca-nu-basic"
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 122nd edition, effective January 1, 2026",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf"
+    },
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 123rd edition, effective July 1, 2026",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/t4127-jul-26e.pdf"
+    },
+    {
+      "title": "CRA: Current year tax rates and income brackets (2026)",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Text extracted from the CRA T4127 PDFs",
+      "note": "Table 8.1 bands, Table 8.2 basic amounts and the province's formulas in chapter 4, transcribed on 11 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-11",
+  "verifyAt": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1576.75,
+        "ca-ei": 489.0,
+        "ca-income-tax": 1397.38,
+        "ca-nu-income-tax": 331.01,
+        "net": 26205.87
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3361.75,
+        "ca-ei": 978.0,
+        "ca-income-tax": 5338.3,
+        "ca-nu-income-tax": 1549.07,
+        "net": 48772.89
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 13301.6,
+        "ca-nu-income-tax": 4275.02,
+        "net": 76653.86
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 38876.54,
+        "ca-nu-income-tax": 13456.29,
+        "net": 141897.65
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 69667.99,
+        "ca-nu-income-tax": 24956.29,
+        "net": 199606.2
+      }
+    }
+  ]
+}

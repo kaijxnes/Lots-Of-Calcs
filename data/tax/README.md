@@ -132,7 +132,7 @@ earlier ones by id, including the parent's.
 
 Unknown keys are an error, so a typo fails the check instead of being ignored.
 
-## Coverage (October 2026)
+## Coverage (November 2026)
 
 - **UK**: England/Wales/NI and Scotland, 2026/27, with student loan Plans 1, 2,
   4 and 5, the postgraduate loan, and pension contributions (relief at source,
@@ -142,6 +142,14 @@ Unknown keys are an error, so a typo fails the check instead of being ignored.
   Pennsylvania taxes 401(k) deferrals. State payroll programs stay on gross pay.
 - **Other options**: Germany children (care insurance), Australia HELP debt,
   New Zealand KiwiSaver and student loan, Ireland pension contributions.
+- **Canada**: federal tax, CPP/CPP2 and EI, and all 13 provinces and
+  territories for 2026, following the CRA Payroll Deductions Formulas (T4127)
+  for one job with only the basic personal amount claimed; Ontario surtax,
+  health premium and tax reduction, the BC tax reduction and Alberta's
+  supplemental credit included. Quebec (`ca-qc`) replaces CPP, EI and federal
+  tax with QPP, Quebec's EI rate, QPIP and the 16.5% abatement, and adds
+  Quebec tax from Revenu Québec's TP-1015.F-V. Tests come from a separate
+  implementation of the same formulas, written from the PDFs' text.
 - **US**: federal and FICA, all 50 states and DC, state payroll programs,
   New York City; Indiana and Maryland county taxes as options. Rules
   transcribed from PolicyEngine US and compared against PolicyEngine's own
