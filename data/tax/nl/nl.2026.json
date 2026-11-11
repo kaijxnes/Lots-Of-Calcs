@@ -7,16 +7,75 @@
   "standalone": true,
   "currency": "EUR",
   "locale": "nl-NL",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
-  "options": {},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {
+    "pensionPct": {
+      "label": "Pension contribution (% of pay)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 0.5,
+      "samples": [
+        5,
+        8
+      ],
+      "inSummary": false
+    }
+  },
   "items": [
+    {
+      "id": "nl-pension-amount",
+      "label": "Pension contribution",
+      "note": "Your share of the employer pension scheme's premium, as a percentage of gross pay. Schemes usually charge it on pay above a franchise, so check your payslip for the euro amount.",
+      "value": {
+        "pct": {
+          "input": "pensionPct"
+        },
+        "of": "gross"
+      }
+    },
+    {
+      "id": "nl-taxable",
+      "label": "Taxable wage",
+      "show": true,
+      "note": "Employee pension premiums come off pay before wage tax and the tax credits are worked out.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              "nl-pension-amount"
+            ]
+          }
+        ]
+      }
+    },
     {
       "id": "nl-box1-tax",
       "label": "Tax at Box 1 rates",
       "note": "35.75% up to €38,883 and 37.56% up to €78,426 — both including national insurance contributions — then 49.50%.",
       "value": {
-        "brackets": [[0, 35.75], [38883, 37.56], [78426, 49.5]],
-        "of": "gross"
+        "brackets": [
+          [
+            0,
+            35.75
+          ],
+          [
+            38883,
+            37.56
+          ],
+          [
+            78426,
+            49.5
+          ]
+        ],
+        "of": "nl-taxable"
       }
     },
     {
@@ -24,7 +83,12 @@
       "label": "General tax credit (algemene heffingskorting)",
       "show": true,
       "note": "€3,115, reduced by 6.398% of income above €29,736.",
-      "value": {"taper": 3115, "of": "gross", "from": 29736, "per": 0.06398}
+      "value": {
+        "taper": 3115,
+        "of": "nl-taxable",
+        "from": 29736,
+        "per": 0.06398
+      }
     },
     {
       "id": "nl-labour-credit",
@@ -40,8 +104,25 @@
                 "min": [
                   5685,
                   {
-                    "brackets": [[0, 8.324], [11965, 31.009], [25845, 1.95], [45592, 0]],
-                    "of": "gross"
+                    "brackets": [
+                      [
+                        0,
+                        8.324
+                      ],
+                      [
+                        11965,
+                        31.009
+                      ],
+                      [
+                        25845,
+                        1.95
+                      ],
+                      [
+                        45592,
+                        0
+                      ]
+                    ],
+                    "of": "nl-taxable"
                   }
                 ]
               },
@@ -51,7 +132,10 @@
                   "max": [
                     0,
                     {
-                      "sub": ["gross", 45592]
+                      "sub": [
+                        "nl-taxable",
+                        45592
+                      ]
                     }
                   ]
                 }
@@ -70,8 +154,23 @@
         "max": [
           0,
           {
-            "sub": ["nl-box1-tax", "nl-general-credit", "nl-labour-credit"]
+            "sub": [
+              "nl-box1-tax",
+              "nl-general-credit",
+              "nl-labour-credit"
+            ]
           }
+        ]
+      }
+    },
+    {
+      "id": "nl-pension",
+      "label": "Pension contribution",
+      "group": "pension",
+      "note": "Paid from your salary into the employer pension scheme.",
+      "charge": {
+        "sum": [
+          "nl-pension-amount"
         ]
       }
     }
@@ -82,7 +181,7 @@
     "Employment income only; each person is taxed individually"
   ],
   "notModelled": [
-    "Employee pension contributions, which depend on the pension fund (often 4–9% of pay above a franchise)",
+    "The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay)",
     "The 30% ruling for incoming employees",
     "Other credits (income-dependent combination credit for parents) and benefits (toeslagen)",
     "Box 2 and Box 3 income"
@@ -100,6 +199,10 @@
     {
       "title": "Deloitte — Pakket Belastingplan 2026, tarieven en heffingskortingen",
       "url": "https://www.deloitte.com/nl/nl/services/tax/blogs/pakket-belastingplan-2026-tarieven-heffingskortingen.html"
+    },
+    {
+      "title": "Belastingdienst — pensioenpremie: aftrekbaar van het loon",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/werk_en_inkomen/pensioen_en_andere_uitkeringen/"
     }
   ],
   "obtainedFrom": [
@@ -115,17 +218,69 @@
     {
       "gross": 50000,
       "note": "Box 1: 38,883 × 35.75% = 13,900.67 + 11,117 × 37.56% = 4,175.55 → 18,076.22. General credit 3,115 − 6.398% × 20,264 = 1,818.51. Labour credit 5,685 − 6.51% × 4,408 = 5,398.04. Tax 10,859.67.",
-      "expect": {"nl-general-credit": 1818.51, "nl-labour-credit": 5398.04, "nl-income-tax": 10859.67, "net": 39140.33}
+      "expect": {
+        "nl-general-credit": 1818.51,
+        "nl-labour-credit": 5398.04,
+        "nl-income-tax": 10859.67,
+        "net": 39140.33
+      }
     },
     {
       "gross": 20000,
       "note": "Box 1 7,150. General credit in full, 3,115. Labour credit 11,965 × 8.324% = 995.97 + 31.009% × 8,035 = 2,491.57 → 3,487.54. Tax 547.46.",
-      "expect": {"nl-income-tax": 547.46}
+      "expect": {
+        "nl-income-tax": 547.46
+      }
     },
     {
       "gross": 90000,
       "note": "Box 1: 13,900.67 + 39,543 × 37.56% = 14,852.35 + 11,574 × 49.5% = 5,729.13 → 34,482.15. No general credit; labour credit 5,685 − 6.51% × 44,408 = 2,794.04.",
-      "expect": {"nl-labour-credit": 2794.04, "nl-income-tax": 31688.11}
+      "expect": {
+        "nl-labour-credit": 2794.04,
+        "nl-income-tax": 31688.11
+      }
+    },
+    {
+      "gross": 50000,
+      "options": {
+        "pensionPct": 6
+      },
+      "note": "Taxable wage 47,000.00; box 1, credits and tax recomputed on it.",
+      "expect": {
+        "nl-taxable": 47000.0,
+        "nl-general-credit": 2010.45,
+        "nl-labour-credit": 5593.34,
+        "nl-income-tax": 9345.63,
+        "net": 37654.37
+      }
+    },
+    {
+      "gross": 90000,
+      "options": {
+        "pensionPct": 8
+      },
+      "note": "Taxable wage 82,800.00; box 1, credits and tax recomputed on it.",
+      "expect": {
+        "nl-taxable": 82800.0,
+        "nl-general-credit": 0.0,
+        "nl-labour-credit": 3262.76,
+        "nl-income-tax": 27655.39,
+        "net": 55144.61
+      }
+    },
+    {
+      "gross": 30000,
+      "options": {
+        "pensionPct": 4
+      },
+      "note": "Taxable wage 28,800.00; box 1, credits and tax recomputed on it.",
+      "expect": {
+        "nl-taxable": 28800.0,
+        "nl-general-credit": 3115.0,
+        "nl-labour-credit": 5357.64,
+        "nl-income-tax": 1823.36,
+        "net": 26976.64
+      }
     }
   ]
 }

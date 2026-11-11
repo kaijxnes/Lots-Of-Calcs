@@ -217,6 +217,7 @@
           <div class="result-row"><span class="r-label">Wage-cost relief payment</span><span class="r-value" data-item="it-cuneo-payment">€0.00</span></div>
           <div class="result-row"><span class="r-label">Regional surcharge (addizionale regionale)</span><span class="r-value" data-item="it-regional">€689.27</span></div>
           <div class="result-row"><span class="r-label">Municipal surcharge (addizionale comunale)</span><span class="r-value" data-item="it-municipal">€363.24</span></div>
+          <div class="result-row"><span class="r-label">Pension fund contribution</span><span class="r-value" data-item="it-pension">€0.00</span></div>
           <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value" data-out="deductions">€17,432.23</span></div>
           <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value" data-out="rate">34.9%</span></div>
           <div class="result-row"><span class="r-label">Marginal rate</span><span class="r-value" data-out="marginal">49%</span></div>
@@ -232,6 +233,10 @@
       <div class="field" style="max-width:320px;">
         <label for="opt-surcharges">Regional and municipal surcharges</label>
         <select id="opt-surcharges" data-option="surcharges"><option value="milan" selected>Milan (Lombardy)</option><option value="none">National taxes only</option></select>
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-pensionPct">Pension fund contribution (% of pay)</label>
+        <input type="number" id="opt-pensionPct" data-option="pensionPct" value="0" min="0" max="50" step="0.5" inputmode="decimal">
       </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
@@ -253,7 +258,7 @@
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
-            <tbody><tr><td><a href="/salary/ireland/50000-after-tax/">Ireland</a></td><td>€39,648.43</td><td>€3,304.04</td><td>20.7%</td></tr><tr><td><a href="/salary/netherlands/50000-after-tax/">Netherlands</a></td><td>€39,140.33</td><td>€3,261.69</td><td>21.7%</td></tr><tr><td><a href="/salary/spain/50000-after-tax/">Spain</a></td><td>€36,155.65</td><td>€3,012.97</td><td>27.7%</td></tr><tr><td><a href="/salary/austria/50000-after-tax/">Austria</a></td><td>€35,626.96</td><td>€2,968.91</td><td>28.7%</td></tr><tr><td><a href="/salary/france/50000-after-tax/">France</a></td><td>€35,369.96</td><td>€2,947.50</td><td>29.3%</td></tr><tr><td><a href="/salary/portugal/50000-after-tax/">Portugal</a></td><td>€33,235.11</td><td>€2,769.59</td><td>33.5%</td></tr><tr><td><strong>Italy</strong></td><td>€32,567.77</td><td>€2,713.98</td><td>34.9%</td></tr><tr><td><a href="/salary/germany/50000-after-tax/">Germany</a></td><td>€32,329.00</td><td>€2,694.08</td><td>35.3%</td></tr></tbody>
+            <tbody><tr><td><a href="/salary/ireland/50000-after-tax/">Ireland</a></td><td>€39,648.43</td><td>€3,304.04</td><td>20.7%</td></tr><tr><td><a href="/salary/netherlands/50000-after-tax/">Netherlands</a></td><td>€39,140.33</td><td>€3,261.69</td><td>21.7%</td></tr><tr><td><a href="/salary/spain/50000-after-tax/">Spain</a></td><td>€36,190.21</td><td>€3,015.85</td><td>27.6%</td></tr><tr><td><a href="/salary/austria/50000-after-tax/">Austria</a></td><td>€35,626.96</td><td>€2,968.91</td><td>28.7%</td></tr><tr><td><a href="/salary/france/50000-after-tax/">France</a></td><td>€35,369.96</td><td>€2,947.50</td><td>29.3%</td></tr><tr><td><a href="/salary/portugal/50000-after-tax/">Portugal</a></td><td>€33,235.11</td><td>€2,769.59</td><td>33.5%</td></tr><tr><td><strong>Italy</strong></td><td>€32,567.77</td><td>€2,713.98</td><td>34.9%</td></tr><tr><td><a href="/salary/germany/50000-after-tax/">Germany</a></td><td>€32,329.00</td><td>€2,694.08</td><td>35.3%</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -262,6 +267,7 @@
 
     <main class="tool">
       <p class="tool-section-title">What comes out of pay in Italy</p>
+      <p class="about-text"><strong>Taxable income (reddito imponibile): €45,405.00.</strong> Pay less INPS and deductible pension fund contributions.</p>
       <p class="about-text"><strong>Social security (INPS): €4,595.00.</strong> 9.19%, plus 1% on pay above €56,224, on pay up to €122,295 (the ceiling for anyone who started contributing after 1995).</p>
       <p class="about-text"><strong>Income tax (IRPEF): €11,784.72.</strong> 23% up to €28,000, 33% to €50,000 (cut from 35% in 2026) and 43% above, less the tax credits.</p>
       <p class="about-text"><strong>Regional surcharge (addizionale regionale): €689.27.</strong> Lombardy: 1.23% to €15,000, 1.58% to €28,000, 1.72% to €50,000, 1.73% above.</p>
@@ -274,11 +280,11 @@
       <p class="about-text"><strong>Assumes:</strong></p>
       <ul class="about-list"><li>A private-sector employee in the main pension fund (FPLD) who started contributing after 1995</li><li>No dependants</li><li>Employment income only</li></ul>
       <p class="about-text"><strong>Leaves out:</strong></p>
-      <ul class="about-list"><li>Surcharges for regions and cities other than Milan, which typically add 1.5–4% of taxable income (Rome's 2026 regional table could not be confirmed)</li><li>Dependant tax credits and the single allowance for children (assegno unico)</li><li>The supplementary payment (trattamento integrativo) of up to €1,200 for incomes up to €15,000</li><li>Severance pay accrual (TFR), which is not deducted from pay</li><li>Joint filing — Italy taxes each person separately</li></ul>
+      <ul class="about-list"><li>Surcharges for regions and cities other than Milan, which typically add 1.5–4% of taxable income (Rome's 2026 regional table could not be confirmed)</li><li>Dependant tax credits and the single allowance for children (assegno unico)</li><li>The supplementary payment (trattamento integrativo) of up to €1,200 for incomes up to €15,000</li><li>Severance pay accrual (TFR), which is not deducted from pay</li><li>Joint filing — Italy taxes each person separately</li><li>The extra deduction for workers in their first job (contributions below the limit in the first five years)</li></ul>
       <p class="about-text"><strong>Not yet confirmed for this year:</strong></p>
-      <ul class="about-list"><li>Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%</li></ul>
+      <ul class="about-list"><li>Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%</li><li>The €5,300 pension limit is taken from several agreeing secondary sources citing L. 199/2025; the Gazzetta Ufficiale text was not read directly</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
-      <ul class="about-list"><li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917" rel="nofollow noopener" target="_blank">TUIR art. 11 (aliquote) and art. 13 (detrazioni), as amended by Legge 199/2025</a></li><li><a href="https://www.gazzettaufficiale.it/" rel="nofollow noopener" target="_blank">Legge 30 dicembre 2025 n. 199 (Legge di Bilancio 2026)</a></li><li><a href="https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf" rel="nofollow noopener" target="_blank">INPS circolare n. 6 del 30 gennaio 2026 — minimali, massimali, prima fascia</a></li><li><a href="https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php" rel="nofollow noopener" target="_blank">MEF — addizionali regionali e comunali</a></li></ul>
+      <ul class="about-list"><li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917" rel="nofollow noopener" target="_blank">TUIR art. 11 (aliquote) and art. 13 (detrazioni), as amended by Legge 199/2025</a></li><li><a href="https://www.gazzettaufficiale.it/" rel="nofollow noopener" target="_blank">Legge 30 dicembre 2025 n. 199 (Legge di Bilancio 2026)</a></li><li><a href="https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf" rel="nofollow noopener" target="_blank">INPS circolare n. 6 del 30 gennaio 2026 — minimali, massimali, prima fascia</a></li><li><a href="https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php" rel="nofollow noopener" target="_blank">MEF — addizionali regionali e comunali</a></li><li><a href="https://www.gazzettaufficiale.it/eli/id/2025/12/30/25G00212/sg" rel="nofollow noopener" target="_blank">Legge 30 dicembre 2025, n. 199 (Budget Law 2026), art. 1 para. 201: pension contribution limit €5,300</a></li></ul>
     </main>
 
     <footer class="site-footer">

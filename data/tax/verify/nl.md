@@ -13,6 +13,7 @@ Generated from `data/tax/nl/nl.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Belastingdienst — tarieven en heffingskortingen 2026: https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen
 - Belastingdienst — tabel arbeidskorting 2026: https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/arbeidskorting/tabel-arbeidskorting-2026
 - Deloitte — Pakket Belastingplan 2026, tarieven en heffingskortingen: https://www.deloitte.com/nl/nl/services/tax/blogs/pakket-belastingplan-2026-tarieven-heffingskortingen.html
+- Belastingdienst — pensioenpremie: aftrekbaar van het loon: https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/werk_en_inkomen/pensioen_en_andere_uitkeringen/
 
 ## Figures
 
@@ -53,10 +54,13 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 50,000: nl-general-credit 1,818.51; nl-labour-credit 5,398.04; nl-income-tax 10,859.67; net 39,140.33 — Box 1: 38,883 × 35.75% = 13,900.67 + 11,117 × 37.56% = 4,175.55 → 18,076.22. General credit 3,115 − 6.398% × 20,264 = 1,818.51. Labour credit 5,685 − 6.51% × 4,408 = 5,398.04. Tax 10,859.67.
 - [ ] 20,000: nl-income-tax 547.46 — Box 1 7,150. General credit in full, 3,115. Labour credit 11,965 × 8.324% = 995.97 + 31.009% × 8,035 = 2,491.57 → 3,487.54. Tax 547.46.
 - [ ] 90,000: nl-labour-credit 2,794.04; nl-income-tax 31,688.11 — Box 1: 13,900.67 + 39,543 × 37.56% = 14,852.35 + 11,574 × 49.5% = 5,729.13 → 34,482.15. No general credit; labour credit 5,685 − 6.51% × 44,408 = 2,794.04.
+- [ ] 50,000 with pensionPct = 6: nl-taxable 47,000; nl-general-credit 2,010.45; nl-labour-credit 5,593.34; nl-income-tax 9,345.63; net 37,654.37 — Taxable wage 47,000.00; box 1, credits and tax recomputed on it.
+- [ ] 90,000 with pensionPct = 8: nl-taxable 82,800; nl-general-credit 0; nl-labour-credit 3,262.76; nl-income-tax 27,655.39; net 55,144.61 — Taxable wage 82,800.00; box 1, credits and tax recomputed on it.
+- [ ] 30,000 with pensionPct = 4: nl-taxable 28,800; nl-general-credit 3,115; nl-labour-credit 5,357.64; nl-income-tax 1,823.36; net 26,976.64 — Taxable wage 28,800.00; box 1, credits and tax recomputed on it.
 
 ## Not modelled (confirm the page says so)
 
-- Employee pension contributions, which depend on the pension fund (often 4–9% of pay above a franchise)
+- The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay)
 - The 30% ruling for incoming employees
 - Other credits (income-dependent combination credit for parents) and benefits (toeslagen)
 - Box 2 and Box 3 income

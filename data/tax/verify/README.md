@@ -18,7 +18,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | **Ireland** | [ie](ie.md) | 2026 | 24 | — | — |
 | **Australia** | [au](au.md) | 2026-27 | 33 | — | — |
 | **New Zealand** | [nz](nz.md) | 2026-27 | 23 | — | — |
-| **France** | [fr](fr.md) | 2026 | 38 | — | — |
+| **France** | [fr](fr.md) | 2026 | 57 | — | — |
 | Austria | [at](at.md) | 2026 | 42 | — | — |
 | Canada (federal) | [ca](ca.md) | 2026 | 26 | 2026-11-11 | — |
 | Alberta | [ca-ab](ca-ab.md) | 2026 | 15 | 2026-11-11 | — |
@@ -35,13 +35,13 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Saskatchewan | [ca-sk](ca-sk.md) | 2026 | 10 | 2026-11-11 | — |
 | Yukon | [ca-yt](ca-yt.md) | 2026 | 12 | 2026-11-11 | — |
 | Denmark | [dk](dk.md) | 2026 | 21 | — | — |
-| Spain | [es](es.md) | 2026 | 39 | — | — |
+| Spain | [es](es.md) | 2026 | 69 | — | — |
 | India | [in](in.md) | 2026-27 | 27 | — | — |
-| Italy | [it](it.md) | 2026 | 42 | — | — |
+| Italy | [it](it.md) | 2026 | 46 | — | — |
 | Japan | [jp](jp.md) | 2026 | 58 | — | — |
-| Netherlands | [nl](nl.md) | 2026 | 16 | — | — |
+| Netherlands | [nl](nl.md) | 2026 | 19 | — | — |
 | Norway | [no](no.md) | 2026 | 13 | — | — |
-| Portugal | [pt](pt.md) | 2026 | 23 | — | — |
+| Portugal | [pt](pt.md) | 2026 | 37 | — | — |
 | Sweden | [se](se.md) | 2026 | 29 | — | — |
 | Alaska | [us-ak](us-ak.md) | 2026 | 3 | — | — |
 | Alabama | [us-al](us-al.md) | 2026 | 20 | — | — |

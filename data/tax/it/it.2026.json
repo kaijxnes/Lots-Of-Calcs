@@ -7,12 +7,32 @@
   "standalone": true,
   "currency": "EUR",
   "locale": "it-IT",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "options": {
     "surcharges": {
       "label": "Regional and municipal surcharges",
       "default": "milan",
-      "choices": {"milan": "Milan (Lombardy)", "none": "National taxes only"}
+      "choices": {
+        "milan": "Milan (Lombardy)",
+        "none": "National taxes only"
+      }
+    },
+    "pensionPct": {
+      "label": "Pension fund contribution (% of pay)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 50,
+      "step": 0.5,
+      "samples": [
+        2,
+        20
+      ],
+      "inSummary": false
     }
   },
   "items": [
@@ -26,7 +46,10 @@
           {
             "pct": 9.19,
             "of": {
-              "min": ["gross", 122295]
+              "min": [
+                "gross",
+                122295
+              ]
             }
           },
           {
@@ -37,7 +60,10 @@
                 {
                   "sub": [
                     {
-                      "min": ["gross", 122295]
+                      "min": [
+                        "gross",
+                        122295
+                      ]
                     },
                     56224
                   ]
@@ -49,6 +75,28 @@
       }
     },
     {
+      "id": "it-pension-amount",
+      "label": "Supplementary pension contribution",
+      "note": "Your own contribution to a pension fund (fondo pensione), as a percentage of gross pay.",
+      "value": {
+        "pct": {
+          "input": "pensionPct"
+        },
+        "of": "gross"
+      }
+    },
+    {
+      "id": "it-pension-deductible",
+      "label": "Deductible pension contribution",
+      "note": "Deductible up to €5,300 a year from 2026, raised from €5,164.57 by the 2026 Budget Law (L. 199/2025, para. 201).",
+      "value": {
+        "min": [
+          "it-pension-amount",
+          5300
+        ]
+      }
+    },
+    {
       "id": "it-taxable",
       "label": "Taxable income (reddito imponibile)",
       "show": true,
@@ -56,10 +104,15 @@
         "max": [
           0,
           {
-            "sub": ["gross", "it-inps"]
+            "sub": [
+              "gross",
+              "it-inps",
+              "it-pension-deductible"
+            ]
           }
         ]
-      }
+      },
+      "note": "Pay less INPS and deductible pension fund contributions."
     },
     {
       "id": "it-employee-credit",
@@ -69,12 +122,18 @@
         "sum": [
           {
             "if": {
-              "lte": ["it-taxable", 15000]
+              "lte": [
+                "it-taxable",
+                15000
+              ]
             },
             "then": 1955,
             "else": {
               "if": {
-                "lte": ["it-taxable", 28000]
+                "lte": [
+                  "it-taxable",
+                  28000
+                ]
               },
               "then": {
                 "sum": [
@@ -85,7 +144,10 @@
                       {
                         "div": [
                           {
-                            "sub": [28000, "it-taxable"]
+                            "sub": [
+                              28000,
+                              "it-taxable"
+                            ]
                           },
                           13000
                         ]
@@ -96,7 +158,10 @@
               },
               "else": {
                 "if": {
-                  "lte": ["it-taxable", 50000]
+                  "lte": [
+                    "it-taxable",
+                    50000
+                  ]
                 },
                 "then": {
                   "mul": [
@@ -104,7 +169,10 @@
                     {
                       "div": [
                         {
-                          "sub": [50000, "it-taxable"]
+                          "sub": [
+                            50000,
+                            "it-taxable"
+                          ]
                         },
                         22000
                       ]
@@ -117,11 +185,17 @@
           },
           {
             "if": {
-              "gt": ["it-taxable", 25000]
+              "gt": [
+                "it-taxable",
+                25000
+              ]
             },
             "then": {
               "if": {
-                "lte": ["it-taxable", 35000]
+                "lte": [
+                  "it-taxable",
+                  35000
+                ]
               },
               "then": 65,
               "else": 0
@@ -137,17 +211,26 @@
       "note": "An extra €1,000 deduction between €20,000 and €32,000, tapering to nothing at €40,000.",
       "value": {
         "if": {
-          "lte": ["it-taxable", 20000]
+          "lte": [
+            "it-taxable",
+            20000
+          ]
         },
         "then": 0,
         "else": {
           "if": {
-            "lte": ["it-taxable", 32000]
+            "lte": [
+              "it-taxable",
+              32000
+            ]
           },
           "then": 1000,
           "else": {
             "if": {
-              "lte": ["it-taxable", 40000]
+              "lte": [
+                "it-taxable",
+                40000
+              ]
             },
             "then": {
               "mul": [
@@ -155,7 +238,10 @@
                 {
                   "div": [
                     {
-                      "sub": [40000, "it-taxable"]
+                      "sub": [
+                        40000,
+                        "it-taxable"
+                      ]
                     },
                     8000
                   ]
@@ -178,7 +264,20 @@
           {
             "sub": [
               {
-                "brackets": [[0, 23], [28000, 33], [50000, 43]],
+                "brackets": [
+                  [
+                    0,
+                    23
+                  ],
+                  [
+                    28000,
+                    33
+                  ],
+                  [
+                    50000,
+                    43
+                  ]
+                ],
                 "of": "it-taxable"
               },
               "it-employee-credit",
@@ -199,13 +298,29 @@
           0,
           {
             "if": {
-              "lte": ["it-taxable", 20000]
+              "lte": [
+                "it-taxable",
+                20000
+              ]
             },
             "then": {
               "mul": [
                 "it-taxable",
                 {
-                  "lookup": [[0, 0.071], [8500, 0.053], [15000, 0.048]],
+                  "lookup": [
+                    [
+                      0,
+                      0.071
+                    ],
+                    [
+                      8500,
+                      0.053
+                    ],
+                    [
+                      15000,
+                      0.048
+                    ]
+                  ],
                   "of": "it-taxable",
                   "strict": true
                 }
@@ -225,7 +340,24 @@
         "option": "surcharges",
         "cases": {
           "milan": {
-            "brackets": [[0, 1.23], [15000, 1.58], [28000, 1.72], [50000, 1.73]],
+            "brackets": [
+              [
+                0,
+                1.23
+              ],
+              [
+                15000,
+                1.58
+              ],
+              [
+                28000,
+                1.72
+              ],
+              [
+                50000,
+                1.73
+              ]
+            ],
             "of": "it-taxable"
           },
           "none": 0
@@ -242,13 +374,30 @@
         "cases": {
           "milan": {
             "if": {
-              "gt": ["it-taxable", 23000]
+              "gt": [
+                "it-taxable",
+                23000
+              ]
             },
-            "then": {"pct": 0.8, "of": "it-taxable"},
+            "then": {
+              "pct": 0.8,
+              "of": "it-taxable"
+            },
             "else": 0
           },
           "none": 0
         }
+      }
+    },
+    {
+      "id": "it-pension",
+      "label": "Pension fund contribution",
+      "group": "pension",
+      "note": "Paid from your salary into a supplementary pension fund.",
+      "charge": {
+        "sum": [
+          "it-pension-amount"
+        ]
       }
     }
   ],
@@ -262,10 +411,12 @@
     "Dependant tax credits and the single allowance for children (assegno unico)",
     "The supplementary payment (trattamento integrativo) of up to €1,200 for incomes up to €15,000",
     "Severance pay accrual (TFR), which is not deducted from pay",
-    "Joint filing — Italy taxes each person separately"
+    "Joint filing — Italy taxes each person separately",
+    "The extra deduction for workers in their first job (contributions below the limit in the first five years)"
   ],
   "provisional": [
-    "Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%"
+    "Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%",
+    "The €5,300 pension limit is taken from several agreeing secondary sources citing L. 199/2025; the Gazzetta Ufficiale text was not read directly"
   ],
   "sources": [
     {
@@ -283,12 +434,20 @@
     {
       "title": "MEF — addizionali regionali e comunali",
       "url": "https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php"
+    },
+    {
+      "title": "Legge 30 dicembre 2025, n. 199 (Budget Law 2026), art. 1 para. 201: pension contribution limit €5,300",
+      "url": "https://www.gazzettaufficiale.it/eli/id/2025/12/30/25G00212/sg"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "2026 bands and the 33% cut (Fiscomania, Fiscozen, diritto.it agree, citing L. 199/2025); €1,955 credit; cuneo fiscale structure (QuiFinanza, informazionefiscale); INPS circolare 6/2026 values (INPS, fiscoetasse, Il Sole 24 Ore agree); Lombardy bands (comparison tables) and Milan 0.8% with €23,000 exemption (CISL note). The €1,910/€1,190 credit formula is the long-standing art. 13 TUIR text."
+    },
+    {
+      "title": "Web search, 11 Nov 2026",
+      "note": "Fiscozen, MySolution, InvestireOggi and ECNews agree that L. 199/2025 para. 201 raises the deductible limit in D.Lgs. 252/2005 art. 8 from €5,164.57 to €5,300 from the 2026 tax year."
     }
   ],
   "lastVerified": null,
@@ -298,23 +457,80 @@
     {
       "gross": 30000,
       "note": "INPS 9.19% = 2,757. Taxable 27,243. Gross tax 23% = 6,265.89. Credit 1,910 + 1,190 × 757/13,000 = 1,979.29, plus 65 = 2,044.29; wage-cost credit 1,000. IRPEF 3,221.60. Lombardy 184.50 + 193.44 = 377.94; Milan 0.8% = 217.94.",
-      "expect": {"it-taxable": 27243, "it-irpef": 3221.6, "it-regional": 377.94, "it-municipal": 217.94, "net": 23425.52}
+      "expect": {
+        "it-taxable": 27243,
+        "it-irpef": 3221.6,
+        "it-regional": 377.94,
+        "it-municipal": 217.94,
+        "net": 23425.52
+      }
     },
     {
       "gross": 18000,
       "note": "Taxable 16,345.80; gross tax 3,759.53; credit 1,910 + 1,190 × 11,654.20/13,000 = 2,976.81; IRPEF 782.73. Tax-free relief 4.8% × 16,345.80 = 784.60. Below Milan's exemption.",
-      "expect": {"it-irpef": 782.73, "it-cuneo-payment": -784.6, "it-municipal": 0, "net": 16141.91}
+      "expect": {
+        "it-irpef": 782.73,
+        "it-cuneo-payment": -784.6,
+        "it-municipal": 0,
+        "net": 16141.91
+      }
     },
     {
       "gross": 80000,
       "note": "INPS 7,352 + 1% × 23,776 = 7,589.76. Taxable 72,410.24 → 6,440 + 7,260 + 9,636.40 = 23,336.40, no credits.",
-      "expect": {"it-inps": 7589.76, "it-irpef": 23336.4}
+      "expect": {
+        "it-inps": 7589.76,
+        "it-irpef": 23336.4
+      }
     },
     {
       "gross": 30000,
-      "options": {"surcharges": "none"},
+      "options": {
+        "surcharges": "none"
+      },
       "note": "As the first case without surcharges.",
-      "expect": {"net": 24021.4}
+      "expect": {
+        "net": 24021.4
+      }
+    },
+    {
+      "gross": 30000,
+      "options": {
+        "pensionPct": 4
+      },
+      "note": "Contribution 1,200.00, deductible 1,200.00: taxable income falls by that much and the credits follow the lower income.",
+      "expect": {
+        "it-pension-deductible": 1200.0,
+        "it-taxable": 26043.0,
+        "it-irpef": 2835.75,
+        "net": 22639.93
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "pensionPct": 10
+      },
+      "note": "Contribution 6,000.00, deductible 5,300.00: taxable income falls by that much and the credits follow the lower income.",
+      "expect": {
+        "it-pension-deductible": 5300.0,
+        "it-taxable": 49148.24,
+        "it-irpef": 13344.97,
+        "net": 33956.43
+      }
+    },
+    {
+      "gross": 18000,
+      "options": {
+        "pensionPct": 3
+      },
+      "note": "Contribution 540.00, deductible 540.00: taxable income falls by that much and the credits follow the lower income.",
+      "expect": {
+        "it-pension-deductible": 540.0,
+        "it-taxable": 15805.8,
+        "it-irpef": 609.1,
+        "net": 15758.15
+      }
     }
   ]
 }

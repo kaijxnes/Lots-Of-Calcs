@@ -108,7 +108,7 @@
         "name": "What does this leave out?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "IRS Jovem (partial exemption for workers under 35); Non-habitual resident and IFICI regimes; Personal deductions (general family expenses, health, education, housing); The Azores and Madeira regional rates."
+          "text": "Non-habitual resident and IFICI regimes; Personal deductions (general family expenses, health, education, housing); The Azores and Madeira regional rates; The €126 extra for an only child under 3, and shared-custody halves of the dependant deduction; Other deductions from tax (general family expenses, health, education, housing) still apply to IRS Jovem claimants as usual."
         }
       },
       {
@@ -152,6 +152,7 @@
         <div class="result-grid">
           <div class="result-row"><span class="r-label">Gross salary</span><span class="r-value" data-out="gross">€20,000</span></div>
           <div class="result-row"><span class="r-label">Taxable income (rendimento coletável)</span><span class="r-value" data-item="pt-taxable">€15,412.91</span></div>
+          <div class="result-row"><span class="r-label">IRS Jovem exempt pay</span><span class="r-value" data-item="pt-jovem-exempt">€0.00</span></div>
           <div class="result-row"><span class="r-label">Social security (Segurança Social)</span><span class="r-value" data-item="pt-social-security">€2,200.00</span></div>
           <div class="result-row"><span class="r-label">Income tax (IRS)</span><span class="r-value" data-item="pt-irs">€2,247.93</span></div>
           <div class="result-row"><span class="r-label">Additional solidarity rate</span><span class="r-value" data-item="pt-solidarity">€0.00</span></div>
@@ -171,6 +172,18 @@
         <label for="opt-status">Filing</label>
         <select id="opt-status" data-option="status"><option value="single" selected>Single</option><option value="married">Married, joint return, one earner</option></select>
       </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-irsJovem">IRS Jovem (aged 35 or under)</label>
+        <select id="opt-irsJovem" data-option="irsJovem"><option value="none" selected>Not claimed</option><option value="y1">1st year of work income (100% exempt)</option><option value="y2to4">2nd–4th year (75%)</option><option value="y5to7">5th–7th year (50%)</option><option value="y8to10">8th–10th year (25%)</option></select>
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-children">Dependants</label>
+        <input type="number" id="opt-children" data-option="children" value="0" min="0" max="10" step="1" inputmode="decimal">
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-childrenUnder7">Of whom aged 6 or under</label>
+        <input type="number" id="opt-childrenUnder7" data-option="childrenUnder7" value="0" min="0" max="10" step="1" inputmode="decimal">
+      </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
@@ -183,7 +196,7 @@
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
-            <tbody><tr><td><a href="/salary/netherlands/20000-after-tax/">Netherlands</a></td><td>€19,452.54</td><td>€1,621.04</td><td>2.7%</td></tr><tr><td><a href="/salary/ireland/20000-after-tax/">Ireland</a></td><td>€19,274.01</td><td>€1,606.17</td><td>3.6%</td></tr><tr><td><a href="/salary/italy/20000-after-tax/">Italy</a></td><td>€17,432.61</td><td>€1,452.72</td><td>12.8%</td></tr><tr><td><a href="/salary/spain/20000-after-tax/">Spain</a></td><td>€17,420.69</td><td>€1,451.72</td><td>12.9%</td></tr><tr><td><a href="/salary/austria/20000-after-tax/">Austria</a></td><td>€16,894.55</td><td>€1,407.88</td><td>15.5%</td></tr><tr><td><a href="/salary/france/20000-after-tax/">France</a></td><td>€15,831.95</td><td>€1,319.33</td><td>20.8%</td></tr><tr><td><strong>Portugal</strong></td><td>€15,552.07</td><td>€1,296.01</td><td>22.2%</td></tr><tr><td><a href="/salary/germany/20000-after-tax/">Germany</a></td><td>€15,268.00</td><td>€1,272.33</td><td>23.7%</td></tr></tbody>
+            <tbody><tr><td><a href="/salary/netherlands/20000-after-tax/">Netherlands</a></td><td>€19,452.54</td><td>€1,621.04</td><td>2.7%</td></tr><tr><td><a href="/salary/ireland/20000-after-tax/">Ireland</a></td><td>€19,274.01</td><td>€1,606.17</td><td>3.6%</td></tr><tr><td><a href="/salary/spain/20000-after-tax/">Spain</a></td><td>€17,455.26</td><td>€1,454.60</td><td>12.7%</td></tr><tr><td><a href="/salary/italy/20000-after-tax/">Italy</a></td><td>€17,432.61</td><td>€1,452.72</td><td>12.8%</td></tr><tr><td><a href="/salary/austria/20000-after-tax/">Austria</a></td><td>€16,894.55</td><td>€1,407.88</td><td>15.5%</td></tr><tr><td><a href="/salary/france/20000-after-tax/">France</a></td><td>€15,831.95</td><td>€1,319.33</td><td>20.8%</td></tr><tr><td><strong>Portugal</strong></td><td>€15,552.07</td><td>€1,296.01</td><td>22.2%</td></tr><tr><td><a href="/salary/germany/20000-after-tax/">Germany</a></td><td>€15,268.00</td><td>€1,272.33</td><td>23.7%</td></tr></tbody>
           </table>
         </div>
       </div>
@@ -192,9 +205,10 @@
 
     <main class="tool">
       <p class="tool-section-title">How €20,000 after tax is worked out</p>
+      <p class="about-text"><strong>IRS Jovem exempt pay: €0.00.</strong> 100% of work income in the first year, 75% in years 2–4, 50% in years 5–7 and 25% in years 8–10, up to 55 × IAS (€29,542.15 in 2026) (CIRS art. 12.º-B).</p>
       <p class="about-text"><strong>Taxable income (rendimento coletável): €15,412.91.</strong> Pay less the specific deduction: €4,587.09 (8.54 × the 2026 social support index), or social security paid if more.</p>
       <p class="about-text"><strong>Social security (Segurança Social): €2,200.00.</strong> 11% of pay, with no ceiling.</p>
-      <p class="about-text"><strong>Income tax (IRS): €2,247.93.</strong> 2026 rates after the October 2026 cut (backdated to January) to the first six bands. Tax may not leave less than the €12,880 subsistence minimum.</p>
+      <p class="about-text"><strong>Income tax (IRS): €2,247.93.</strong> 2026 rates after the October 2026 cut (backdated to January). With IRS Jovem, the rate on all pay applies only to the part that is not exempt. Less the deduction for dependants. Tax may not leave less than the €12,880 subsistence minimum.</p>
       <p class="about-text"><strong>Additional solidarity rate: €0.00.</strong> 2.5% of taxable income between €80,000 and €250,000, 5% above.</p>
     </main>
 
@@ -209,7 +223,7 @@
       <p class="faq-q">How much is €20,000 after tax in Portugal if I'm married?</p>
       <p class="about-text">€15,919.62 a year (€1,326.64 a month) as &quot;Married, joint return, one earner&quot;, against €15,552.07 for a single person — a difference of €367.55. That assumes one spouse earns the whole salary.</p>
       <p class="faq-q">What does this leave out?</p>
-      <p class="about-text">IRS Jovem (partial exemption for workers under 35); Non-habitual resident and IFICI regimes; Personal deductions (general family expenses, health, education, housing); The Azores and Madeira regional rates.</p>
+      <p class="about-text">Non-habitual resident and IFICI regimes; Personal deductions (general family expenses, health, education, housing); The Azores and Madeira regional rates; The €126 extra for an only child under 3, and shared-custody halves of the dependant deduction; Other deductions from tax (general family expenses, health, education, housing) still apply to IRS Jovem claimants as usual.</p>
       <p class="faq-q">How accurate are these Portugal figures?</p>
       <p class="about-text">They apply the 2026 rates and thresholds to a €20,000 salary for single. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
     </main>
@@ -218,13 +232,13 @@
       <p class="tool-section-title">About these figures</p>
       <p class="about-text">They use the <strong>2026</strong> tax year, which runs from 1 January 2026 to 31 December 2026. The rates have not yet been checked by a person against the official sources — <a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs68.aspx" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
-      <ul class="about-list"><li>Mainland Portugal (the Azores and Madeira have lower rates)</li><li>Employment (Category A) income only; the annual gross includes the 13th and 14th month payments</li><li>No dependants</li></ul>
+      <ul class="about-list"><li>Mainland Portugal (the Azores and Madeira have lower rates)</li><li>Employment (Category A) income only; the annual gross includes the 13th and 14th month payments</li><li>No dependants</li><li>IRS Jovem and dependants only if chosen</li></ul>
       <p class="about-text"><strong>Leaves out:</strong></p>
-      <ul class="about-list"><li>IRS Jovem (partial exemption for workers under 35)</li><li>Non-habitual resident and IFICI regimes</li><li>Personal deductions (general family expenses, health, education, housing)</li><li>The Azores and Madeira regional rates</li></ul>
+      <ul class="about-list"><li>Non-habitual resident and IFICI regimes</li><li>Personal deductions (general family expenses, health, education, housing)</li><li>The Azores and Madeira regional rates</li><li>The €126 extra for an only child under 3, and shared-custody halves of the dependant deduction</li><li>Other deductions from tax (general family expenses, health, education, housing) still apply to IRS Jovem claimants as usual</li></ul>
       <p class="about-text"><strong>Not yet confirmed for this year:</strong></p>
       <ul class="about-list"><li>Monthly withholding in 2026 used the earlier rates; the annual return settles the difference</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
-      <ul class="about-list"><li><a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs68.aspx" rel="nofollow noopener" target="_blank">Código do IRS, art. 68.º (taxas) and art. 25.º (dedução específica)</a></li><li><a href="https://diariodarepublica.pt/" rel="nofollow noopener" target="_blank">Lei 73-A/2025 — Orçamento do Estado para 2026</a></li><li><a href="https://www.jornaldenegocios.pt/economia/detalhe/reducao-intercalar-das-taxas-do-irs-em-2026-aprovada-no-parlamento" rel="nofollow noopener" target="_blank">Jornal de Negócios — Redução intercalar das taxas do IRS em 2026 aprovada no Parlamento (9 Oct 2026)</a></li></ul>
+      <ul class="about-list"><li><a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs68.aspx" rel="nofollow noopener" target="_blank">Código do IRS, art. 68.º (taxas) and art. 25.º (dedução específica)</a></li><li><a href="https://diariodarepublica.pt/" rel="nofollow noopener" target="_blank">Lei 73-A/2025 — Orçamento do Estado para 2026</a></li><li><a href="https://www.jornaldenegocios.pt/economia/detalhe/reducao-intercalar-das-taxas-do-irs-em-2026-aprovada-no-parlamento" rel="nofollow noopener" target="_blank">Jornal de Negócios — Redução intercalar das taxas do IRS em 2026 aprovada no Parlamento (9 Oct 2026)</a></li><li><a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs12b.aspx" rel="nofollow noopener" target="_blank">Código do IRS, art. 12.º-B (IRS Jovem)</a></li><li><a href="https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs78a.aspx" rel="nofollow noopener" target="_blank">Código do IRS, art. 78.º-A (dedução relativa aos dependentes)</a></li><li><a href="https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/Folhetos_informativos/Documents/Folheto_IRS_jovem_2025.pdf" rel="nofollow noopener" target="_blank">AT — Folheto IRS Jovem 2025 (rate on all income, applied to the non-exempt part)</a></li><li><a href="https://at.madeira.gov.pt/ficheiros/Portaria_480_A_2025_1%5B1%5D.pdf" rel="nofollow noopener" target="_blank">Portaria n.º 480-A/2025/1 — IAS 2026 €537.13</a></li></ul>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in Portugal</div>

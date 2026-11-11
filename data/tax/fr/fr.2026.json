@@ -7,12 +7,34 @@
   "standalone": true,
   "currency": "EUR",
   "locale": "fr-FR",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "options": {
     "status": {
       "label": "Household",
       "default": "single",
-      "choices": {"single": "Single (1 share)", "married": "Married or PACS, one earner (2 shares)"}
+      "choices": {
+        "single": "Single (1 share)",
+        "married": "Married or PACS, one earner (2 shares)"
+      }
+    },
+    "children": {
+      "label": "Dependent children",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "integer": true,
+      "samples": [
+        1,
+        2,
+        3
+      ],
+      "inSummary": false
     }
   },
   "items": [
@@ -26,10 +48,16 @@
           {
             "pct": 6.9,
             "of": {
-              "min": ["gross", 48060]
+              "min": [
+                "gross",
+                48060
+              ]
             }
           },
-          {"pct": 0.4, "of": "gross"}
+          {
+            "pct": 0.4,
+            "of": "gross"
+          }
         ]
       }
     },
@@ -41,19 +69,37 @@
       "charge": {
         "sum": [
           {
-            "brackets": [[0, 4.01], [48060, 9.72]],
+            "brackets": [
+              [
+                0,
+                4.01
+              ],
+              [
+                48060,
+                9.72
+              ]
+            ],
             "of": {
-              "min": ["gross", 384480]
+              "min": [
+                "gross",
+                384480
+              ]
             }
           },
           {
             "if": {
-              "gt": ["gross", 48060]
+              "gt": [
+                "gross",
+                48060
+              ]
             },
             "then": {
               "pct": 0.14,
               "of": {
-                "min": ["gross", 384480]
+                "min": [
+                  "gross",
+                  384480
+                ]
               }
             },
             "else": 0
@@ -70,14 +116,20 @@
           {
             "pct": 98.25,
             "of": {
-              "min": ["gross", 192240]
+              "min": [
+                "gross",
+                192240
+              ]
             }
           },
           {
             "max": [
               0,
               {
-                "sub": ["gross", 192240]
+                "sub": [
+                  "gross",
+                  192240
+                ]
               }
             ]
           }
@@ -89,7 +141,10 @@
       "label": "CSG and CRDS",
       "group": "social",
       "note": "CSG 9.2% (6.8% of it deductible from taxable income) and CRDS 0.5%.",
-      "charge": {"pct": 9.7, "of": "fr-csg-base"}
+      "charge": {
+        "pct": 9.7,
+        "of": "fr-csg-base"
+      }
     },
     {
       "id": "fr-net-taxable-pay",
@@ -100,7 +155,10 @@
           "gross",
           "fr-pension-basic",
           "fr-pension-complementary",
-          {"pct": 6.8, "of": "fr-csg-base"}
+          {
+            "pct": 6.8,
+            "of": "fr-csg-base"
+          }
         ]
       }
     },
@@ -118,7 +176,10 @@
               {
                 "min": [
                   {
-                    "clamp": {"pct": 10, "of": "fr-net-taxable-pay"},
+                    "clamp": {
+                      "pct": 10,
+                      "of": "fr-net-taxable-pay"
+                    },
                     "min": 509,
                     "max": 14555
                   },
@@ -131,24 +192,202 @@
       }
     },
     {
-      "id": "fr-tax-before-decote",
-      "label": "Income tax before the décote",
-      "note": "The scale is applied to income per household share (quotient familial): one share for a single person, two for a married couple.",
+      "id": "fr-child-shares",
+      "label": "Extra shares for children",
+      "note": "Half a share each for the first two children and a whole share for each child from the third (CGI art. 194).",
+      "value": {
+        "sum": [
+          {
+            "mul": [
+              0.5,
+              {
+                "min": [
+                  {
+                    "input": "children"
+                  },
+                  2
+                ]
+              }
+            ]
+          },
+          {
+            "max": [
+              0,
+              {
+                "sub": [
+                  {
+                    "input": "children"
+                  },
+                  2
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-lone-parent-share",
+      "label": "Single parent's extra half-share",
+      "note": "A single person bringing up children alone gets a further half-share (case T).",
+      "value": {
+        "if": {
+          "gt": [
+            {
+              "input": "children"
+            },
+            0
+          ]
+        },
+        "then": {
+          "status": {
+            "single": 0.5,
+            "married": 0
+          }
+        },
+        "else": 0
+      }
+    },
+    {
+      "id": "fr-shares",
+      "label": "Household shares (parts)",
+      "show": true,
+      "value": {
+        "sum": [
+          {
+            "status": {
+              "single": 1,
+              "married": 2
+            }
+          },
+          "fr-child-shares",
+          "fr-lone-parent-share"
+        ]
+      }
+    },
+    {
+      "id": "fr-tax-with-shares",
+      "label": "Tax with every share",
+      "value": {
+        "mul": [
+          "fr-shares",
+          {
+            "brackets": [
+              [
+                0,
+                0
+              ],
+              [
+                11600,
+                11
+              ],
+              [
+                29579,
+                30
+              ],
+              [
+                84577,
+                41
+              ],
+              [
+                181917,
+                45
+              ]
+            ],
+            "of": {
+              "div": [
+                "fr-taxable",
+                "fr-shares"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-tax-adult-shares",
+      "label": "Tax with the adults' shares only",
       "value": {
         "mul": [
           {
-            "status": {"single": 1, "married": 2}
+            "status": {
+              "single": 1,
+              "married": 2
+            }
           },
           {
-            "brackets": [[0, 0, "Up to €11,600"], [11600, 11], [29579, 30], [84577, 41], [181917, 45]],
+            "brackets": [
+              [
+                0,
+                0
+              ],
+              [
+                11600,
+                11
+              ],
+              [
+                29579,
+                30
+              ],
+              [
+                84577,
+                41
+              ],
+              [
+                181917,
+                45
+              ]
+            ],
             "of": {
               "div": [
                 "fr-taxable",
                 {
-                  "status": {"single": 1, "married": 2}
+                  "status": {
+                    "single": 1,
+                    "married": 2
+                  }
                 }
               ]
             }
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-qf-cap",
+      "label": "Cap on the saving from children's shares",
+      "note": "Each extra half-share can cut tax by at most €1,807; for a single parent the first child's whole share is capped at €4,262 instead (CGI art. 197, 2026).",
+      "value": {
+        "sum": [
+          {
+            "mul": [
+              1807,
+              2,
+              "fr-child-shares"
+            ]
+          },
+          {
+            "mul": [
+              2,
+              "fr-lone-parent-share",
+              2455
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fr-tax-before-decote",
+      "label": "Income tax before the décote",
+      "note": "The scale is applied to income per household share (quotient familial): one share for a single person, two for a married couple, more for children — but the saving from children's shares is capped.",
+      "value": {
+        "max": [
+          "fr-tax-with-shares",
+          {
+            "sub": [
+              "fr-tax-adult-shares",
+              "fr-qf-cap"
+            ]
           }
         ]
       }
@@ -171,9 +410,15 @@
                     {
                       "sub": [
                         {
-                          "status": {"single": 897, "married": 1483}
+                          "status": {
+                            "single": 897,
+                            "married": 1483
+                          }
                         },
-                        {"pct": 45.25, "of": "fr-tax-before-decote"}
+                        {
+                          "pct": 45.25,
+                          "of": "fr-tax-before-decote"
+                        }
                       ]
                     }
                   ]
@@ -203,12 +448,18 @@
                       "min": [
                         "fr-taxable",
                         {
-                          "status": {"single": 500000, "married": 1000000}
+                          "status": {
+                            "single": 500000,
+                            "married": 1000000
+                          }
                         }
                       ]
                     },
                     {
-                      "status": {"single": 250000, "married": 500000}
+                      "status": {
+                        "single": 250000,
+                        "married": 500000
+                      }
                     }
                   ]
                 }
@@ -224,7 +475,10 @@
                   "sub": [
                     "fr-taxable",
                     {
-                      "status": {"single": 500000, "married": 1000000}
+                      "status": {
+                        "single": 500000,
+                        "married": 1000000
+                      }
                     }
                   ]
                 }
@@ -237,15 +491,15 @@
   ],
   "assumptions": [
     "A private-sector employee who is not a cadre, outside Alsace-Moselle",
-    "No children; married means one spouse earns the whole salary",
+    "Married means one spouse earns the whole salary; children only if entered",
     "Employment income only"
   ],
   "notModelled": [
     "Employer-arranged health (mutuelle) and provident contributions, which typically add 1–2% to employee deductions",
-    "Children and additional household shares",
     "The 2025–2026 minimum 20% tax on incomes over €250,000 (contribution différentielle)",
     "Tax credits and reductions (home help, donations) and actual work expenses instead of the 10% deduction",
-    "Overtime exemptions and the Alsace-Moselle health contribution"
+    "Overtime exemptions and the Alsace-Moselle health contribution",
+    "Shared custody (alternating residence) and disabled dependants' extra shares"
   ],
   "provisional": [
     "France taxes each year's income the following spring with that year's finance law. This uses the latest scale (indexed 0.9% by the 2026 finance law, applied to 2025 income), which is also the basis for withholding through 2026; the scale for 2026 income will be set by the 2027 finance law."
@@ -270,6 +524,10 @@
     {
       "title": "Article 223 sexies CGI — contribution exceptionnelle sur les hauts revenus",
       "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025049019"
+    },
+    {
+      "title": "Article 194 CGI — quotient familial shares",
+      "url": "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049371120"
     }
   ],
   "obtainedFrom": [
@@ -277,6 +535,10 @@
       "title": "OpenFisca-France parameters (maintained with French public administrations)",
       "url": "https://github.com/openfisca/openfisca-france/tree/5cc6563749b88254b479ef89c98099cb9513d6cb/openfisca_france/parameters",
       "note": "Scale, décote, 10% deduction limits, PASS 2026 (€48,060), CNAV, Agirc-Arrco, CEG, CET, CSG and CRDS rates, commit of 23 Oct 2026."
+    },
+    {
+      "title": "OpenFisca-France parameters, commit be579829 (27 Oct 2026)",
+      "note": "plaf_qf: shares per child (art. 194) and caps of €1,807 per half-share and €4,262 for a single parent's first child (art. 197, values for 2025 income, matching this file's scale)."
     }
   ],
   "lastVerified": null,
@@ -286,23 +548,100 @@
     {
       "gross": 25000,
       "note": "Pension 1,725 + 100 = 1,825; Agirc-Arrco + CEG 4.01% = 1,002.50; CSG base 24,562.50; CSG deductible 1,670.25. Net taxable 20,502.25, less 10% → 18,452.03. Tax 11% × 6,852.03 = 753.72; décote 897 − 341.06 = 555.94 → 198.",
-      "expect": {"fr-net-taxable-pay": 20502.25, "fr-taxable": 18452.03, "fr-income-tax": 198, "net": 19591.94}
+      "expect": {
+        "fr-net-taxable-pay": 20502.25,
+        "fr-taxable": 18452.03,
+        "fr-income-tax": 198,
+        "net": 19591.94
+      }
     },
     {
       "gross": 70000,
       "note": "Above the PASS: complementary 4.01% × 48,060 + 9.72% × 21,940 + 0.14% × 70,000 = 4,157.77. Taxable 51,812.45 → 1,977.69 + 6,670.04 = 8,647.73 → 8,648.",
-      "expect": {"fr-pension-complementary": 4157.77, "fr-taxable": 51812.45, "fr-income-tax": 8648}
+      "expect": {
+        "fr-pension-complementary": 4157.77,
+        "fr-taxable": 51812.45,
+        "fr-income-tax": 8648
+      }
     },
     {
       "gross": 60000,
-      "options": {"status": "married"},
+      "options": {
+        "status": "married"
+      },
       "note": "Two shares: taxable 44,337.14 → 22,168.57 per share, tax per share 1,384.81 + ... = 947.13 → × 2 = 1,894 after rounding; no décote.",
-      "expect": {"fr-income-tax": 1894, "net": 45659.94}
+      "expect": {
+        "fr-income-tax": 1894,
+        "net": 45659.94
+      }
     },
     {
       "gross": 400000,
       "note": "Taxable 318,392.12; high income contribution 3% × 68,392.12 = 2,051.76.",
-      "expect": {"fr-income-tax": 119800, "fr-high-income": 2051.76}
+      "expect": {
+        "fr-income-tax": 119800,
+        "fr-high-income": 2051.76
+      }
+    },
+    {
+      "gross": 40000,
+      "options": {
+        "status": "single",
+        "children": 1
+      },
+      "note": "2.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.",
+      "expect": {
+        "fr-shares": 2.0,
+        "fr-income-tax": 113
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2
+      },
+      "note": "3.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.",
+      "expect": {
+        "fr-shares": 3.0,
+        "fr-income-tax": 41
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "status": "married",
+        "children": 3
+      },
+      "note": "4.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.",
+      "expect": {
+        "fr-shares": 4.0,
+        "fr-income-tax": 5737
+      }
+    },
+    {
+      "gross": 90000,
+      "options": {
+        "status": "single",
+        "children": 2
+      },
+      "note": "2.5 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.",
+      "expect": {
+        "fr-shares": 2.5,
+        "fr-income-tax": 7064
+      }
+    },
+    {
+      "gross": 250000,
+      "options": {
+        "status": "married",
+        "children": 2
+      },
+      "note": "3.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.",
+      "expect": {
+        "fr-shares": 3.0,
+        "fr-income-tax": 42892
+      }
     }
   ]
 }

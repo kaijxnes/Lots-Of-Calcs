@@ -16,6 +16,7 @@ Generated from `data/tax/fr/fr.2026.json` by `tools/tax/checklist.js`. Do not ed
 - URSSAF — taux de cotisations salariales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-secteur-prive.html
 - Agirc-Arrco — taux de cotisation: https://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
 - Article 223 sexies CGI — contribution exceptionnelle sur les hauts revenus: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025049019
+- Article 194 CGI — quotient familial shares: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049371120
 
 ## Figures
 
@@ -65,17 +66,50 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 - [ ] at least 509
 - [ ] at most 14,555
 
-### Income tax before the décote (`fr-tax-before-decote`)
+### Extra shares for children (`fr-child-shares`)
 
-> The scale is applied to income per household share (quotient familial): one share for a single person, two for a married couple.
+> Half a share each for the first two children and a whole share for each child from the third (CGI art. 194).
 
-- [ ] Single — factor 1
-- [ ] Married filing jointly — factor 2
-- [ ] from 0: 0% (Up to €11,600)
+- [ ] factor 0.5
+- [ ] capped at 2
+- [ ] less 2
+
+### Single parent's extra half-share (`fr-lone-parent-share`)
+
+> A single person bringing up children alone gets a further half-share (case T).
+
+- [ ] Single — amount 0.5
+
+### Household shares (parts) (`fr-shares`)
+
+- [ ] Single — amount 1
+- [ ] Married filing jointly — amount 2
+
+### Tax with every share (`fr-tax-with-shares`)
+
+- [ ] from 0: 0%
 - [ ] from 11,600: 11%
 - [ ] from 29,579: 30%
 - [ ] from 84,577: 41%
 - [ ] from 181,917: 45%
+
+### Tax with the adults' shares only (`fr-tax-adult-shares`)
+
+- [ ] Single — factor 1
+- [ ] Married filing jointly — factor 2
+- [ ] from 0: 0%
+- [ ] from 11,600: 11%
+- [ ] from 29,579: 30%
+- [ ] from 84,577: 41%
+- [ ] from 181,917: 45%
+
+### Cap on the saving from children's shares (`fr-qf-cap`)
+
+> Each extra half-share can cut tax by at most €1,807; for a single parent the first child's whole share is capped at €4,262 instead (CGI art. 197, 2026).
+
+- [ ] factor 1,807
+- [ ] factor 2
+- [ ] factor 2,455
 
 ### Income tax (impôt sur le revenu) (`fr-income-tax`)
 
@@ -106,14 +140,19 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 70,000: fr-pension-complementary 4,157.77; fr-taxable 51,812.45; fr-income-tax 8,648 — Above the PASS: complementary 4.01% × 48,060 + 9.72% × 21,940 + 0.14% × 70,000 = 4,157.77. Taxable 51,812.45 → 1,977.69 + 6,670.04 = 8,647.73 → 8,648.
 - [ ] 60,000 with status = married: fr-income-tax 1,894; net 45,659.94 — Two shares: taxable 44,337.14 → 22,168.57 per share, tax per share 1,384.81 + ... = 947.13 → × 2 = 1,894 after rounding; no décote.
 - [ ] 400,000: fr-income-tax 119,800; fr-high-income 2,051.76 — Taxable 318,392.12; high income contribution 3% × 68,392.12 = 2,051.76.
+- [ ] 40,000 with status = single, children = 1: fr-shares 2; fr-income-tax 113 — 2.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.
+- [ ] 60,000 with status = married, children = 2: fr-shares 3; fr-income-tax 41 — 3.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.
+- [ ] 120,000 with status = married, children = 3: fr-shares 4; fr-income-tax 5,737 — 4.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.
+- [ ] 90,000 with status = single, children = 2: fr-shares 2.5; fr-income-tax 7,064 — 2.5 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.
+- [ ] 250,000 with status = married, children = 2: fr-shares 3; fr-income-tax 42,892 — 3.0 shares; tax = max(scale on every share, adults' shares less the cap); separate implementation of CGI art. 194 and 197.
 
 ## Not modelled (confirm the page says so)
 
 - Employer-arranged health (mutuelle) and provident contributions, which typically add 1–2% to employee deductions
-- Children and additional household shares
 - The 2025–2026 minimum 20% tax on incomes over €250,000 (contribution différentielle)
 - Tax credits and reductions (home help, donations) and actual work expenses instead of the 10% deduction
 - Overtime exemptions and the Alsace-Moselle health contribution
+- Shared custody (alternating residence) and disabled dependants' extra shares
 
 ## Sign off
 

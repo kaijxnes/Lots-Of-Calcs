@@ -6,7 +6,7 @@ Generated from `data/tax/it/it.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Currency: EUR
 - Rates last checked: not yet
 - Verified by a person: **not yet**
-- Provisional items: `Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%`
+- Provisional items: `Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%`, `The €5,300 pension limit is taken from several agreeing secondary sources citing L. 199/2025; the Gazzetta Ufficiale text was not read directly`
 
 ## Check against
 
@@ -15,6 +15,7 @@ Generated from `data/tax/it/it.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Legge 30 dicembre 2025 n. 199 (Legge di Bilancio 2026): https://www.gazzettaufficiale.it/
 - INPS circolare n. 6 del 30 gennaio 2026 — minimali, massimali, prima fascia: https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf
 - MEF — addizionali regionali e comunali: https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php
+- Legge 30 dicembre 2025, n. 199 (Budget Law 2026), art. 1 para. 201: pension contribution limit €5,300: https://www.gazzettaufficiale.it/eli/id/2025/12/30/25G00212/sg
 
 ## Figures
 
@@ -28,6 +29,12 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 - [ ] capped at 122,295
 - [ ] rate 1%
 - [ ] less 56,224
+
+### Deductible pension contribution (`it-pension-deductible`)
+
+> Deductible up to €5,300 a year from 2026, raised from €5,164.57 by the 2026 Budget Law (L. 199/2025, para. 201).
+
+- [ ] capped at 5,300
 
 ### Employee tax credit (detrazione lavoro dipendente) (`it-employee-credit`)
 
@@ -101,6 +108,9 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 18,000: it-irpef 782.73; it-cuneo-payment -784.60; it-municipal 0; net 16,141.91 — Taxable 16,345.80; gross tax 3,759.53; credit 1,910 + 1,190 × 11,654.20/13,000 = 2,976.81; IRPEF 782.73. Tax-free relief 4.8% × 16,345.80 = 784.60. Below Milan's exemption.
 - [ ] 80,000: it-inps 7,589.76; it-irpef 23,336.40 — INPS 7,352 + 1% × 23,776 = 7,589.76. Taxable 72,410.24 → 6,440 + 7,260 + 9,636.40 = 23,336.40, no credits.
 - [ ] 30,000 with surcharges = none: net 24,021.40 — As the first case without surcharges.
+- [ ] 30,000 with pensionPct = 4: it-pension-deductible 1,200; it-taxable 26,043; it-irpef 2,835.75; net 22,639.93 — Contribution 1,200.00, deductible 1,200.00: taxable income falls by that much and the credits follow the lower income.
+- [ ] 60,000 with pensionPct = 10: it-pension-deductible 5,300; it-taxable 49,148.24; it-irpef 13,344.97; net 33,956.43 — Contribution 6,000.00, deductible 5,300.00: taxable income falls by that much and the credits follow the lower income.
+- [ ] 18,000 with pensionPct = 3: it-pension-deductible 540; it-taxable 15,805.80; it-irpef 609.10; net 15,758.15 — Contribution 540.00, deductible 540.00: taxable income falls by that much and the credits follow the lower income.
 
 ## Not modelled (confirm the page says so)
 
@@ -109,6 +119,7 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - The supplementary payment (trattamento integrativo) of up to €1,200 for incomes up to €15,000
 - Severance pay accrual (TFR), which is not deducted from pay
 - Joint filing — Italy taxes each person separately
+- The extra deduction for workers in their first job (contributions below the limit in the first five years)
 
 ## Sign off
 
