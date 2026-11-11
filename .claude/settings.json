@@ -22,6 +22,7 @@
       "Bash(diff *)",
       "WebSearch",
       "WebFetch"
-    ]
+    ],
+    "defaultMode": "bypassPermissions"
   }
 }
