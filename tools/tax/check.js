@@ -2,7 +2,7 @@
 /* Validates the tax registry and runs every jurisdiction's worked examples.
 
      node tools/tax/check.js            check everything
-     node tools/tax/check.js --write    also regenerate data/tax/index.json
+     node tools/tax/check.js --write    also regenerate data/tax/index.json and data/tax/verify/
      node tools/tax/check.js us-ca      only jurisdictions whose id starts with us-ca
      node tools/tax/check.js --table    print a summary of every jurisdiction
 
@@ -201,6 +201,10 @@ function main() {
   } else if (!fs.existsSync(indexPath) || fs.readFileSync(indexPath, "utf8") !== text) {
     err("data/tax/index.json", "out of date — run node tools/tax/check.js --write");
   }
+
+  /* Verification checklists (data/tax/verify/) are generated from the same files */
+  const staleLists = require("./checklist.js").sync(all, !WRITE);
+  if (!WRITE && staleLists.length) err("data/tax/verify/", staleLists.length + " checklist(s) out of date — run node tools/tax/check.js --write");
 
   if (TABLE) {
     const cur = reg.currentFiles(all);
