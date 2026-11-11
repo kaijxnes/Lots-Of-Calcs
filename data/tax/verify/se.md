@@ -14,6 +14,9 @@ Generated from `data/tax/se/se.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Skatteverket — Belopp och procent, inkomstår 2026: https://www.skatteverket.se/privat/skatter/beloppochprocent/2026
 - Skatteverket — Teknisk beskrivning SKV 433, 2026 (utgåva 36): https://www.skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf
 - SCB — Kommunalskatterna 2026: https://www.scb.se/hitta-statistik/statistik-efter-amne/offentlig-ekonomi/finanser-for-den-kommunala-sektorn/kommunalskatterna/pong/statistiknyhet/kommunalskatterna-2026/
+- Skatteverket — Belopp och procent, inkomstår 2026: https://www.skatteverket.se/privat/skatter/beloppochprocent/2026
+- Skatteverket — Teknisk beskrivning SKV 433, 2026 (public service-avgiften): https://skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf
+- Svenska kyrkan — kyrkoavgiften (2026 national average 1.05%): https://www.svenskakyrkan.se/kyrkoavgiften
 
 ## Figures
 
@@ -71,19 +74,40 @@ Tick each figure once it matches the official source. Amounts are yearly, in SEK
 - [ ] factor 179,198.40
 - [ ] factor 0.32380000000000003
 
+### Burial fee (begravningsavgift) (`se-burial-fee`)
+
+> 0.292% of taxable earned income everywhere except Stockholm (0.07%) and Tranås (0.285%), which set their own (2026).
+
+- [ ] rate 0.292%
+
+### Public service fee (public service-avgift) (`se-public-service-fee`)
+
+> 1% of taxable earned income, at most SEK 1,184 (1% of 1.42 × the SEK 83,400 income base amount) in 2026. Paid by everyone 18 or over.
+
+- [ ] rate 1%
+- [ ] capped at 1,184
+
+### Church fee (kyrkoavgift) (`se-church-fee`)
+
+> Church of Sweden members only: the 2026 national average of 1.05%; each parish sets its own.
+
+- [ ] Yes (church fee, national average) — rate 1.05%
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
 
-- [ ] 300,000: se-basic-allowance 34,000; se-taxable 266,000; se-work-credit 32,537.30; se-income-tax 32,593.50; net 246,406.50 — Basic allowance 0.77 × 59,200 − 10% × (300,000 − 184,112) = 34,000 (rounded up). Taxable 266,000; municipal 86,130.80. Credit (1.813 × 59,200 + 25.1% × 108,192 − 34,000) × 32.38% = 32,537.30. Pension fee 21,000, credited back. Tax 86,130.80 − 21,000 − 32,537.30 = 32,593.50.
+- [ ] 300,000: se-basic-allowance 34,000; se-taxable 266,000; se-work-credit 32,537.30; se-income-tax 32,593.50; net 244,445.78 — Basic allowance 0.77 × 59,200 − 10% × (300,000 − 184,112) = 34,000 (rounded up). Taxable 266,000; municipal 86,130.80. Credit (1.813 × 59,200 + 25.1% × 108,192 − 34,000) × 32.38% = 32,537.30. Pension fee 21,000, credited back. Tax 86,130.80 − 21,000 − 32,537.30 = 32,593.50. Less the burial fee (0.292%) and public service fee (1%, max 1,184) on taxable income 266,000: 1,961.00.
 - [ ] 700,000: se-state-tax 7,920; se-work-credit 52,390.32; se-pension-fee 47,100 — Basic allowance 0.293 × 59,200 → 17,400. Taxable 682,600: municipal 221,025.88, state 20% × 39,600 = 7,920. Credit at its maximum (3.027 × 59,200 − 17,400) × 32.38% = 52,390.32. Pension fee capped: 7% × 673,038 = 47,112.66 → 47,100.
+- [ ] 400,000 with : se-burial-fee 1,097.92; se-public-service-fee 1,184; se-church-fee 0 — Taxable 376,000: burial 0.292%, public service 1% capped at 1,184, church 1.05% if a member.
+- [ ] 600,000 with church = yes: se-burial-fee 1,701.19; se-public-service-fee 1,184; se-church-fee 6,117.30 — Taxable 582,600: burial 0.292%, public service 1% capped at 1,184, church 1.05% if a member.
+- [ ] 80,000 with : se-burial-fee 147.75; se-public-service-fee 506; se-church-fee 0 — Taxable 50,600: burial 0.292%, public service 1% capped at 1,184, church 1.05% if a member.
 
 ## Not modelled (confirm the page says so)
 
 - Individual municipal rates
-- Burial fee (about 0.3%) and church fee for Church of Sweden members
-- Public service fee (1% of income, capped at about SEK 1,250)
 - Deductions for travel and other work expenses
+- Individual parish church fees and the Stockholm and Tranås burial fees
 
 ## Sign off
 

@@ -7,8 +7,58 @@
   "standalone": true,
   "currency": "EUR",
   "locale": "de-AT",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
-  "options": {},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {
+    "children": {
+      "label": "Children under 18",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "integer": true,
+      "samples": [
+        1,
+        3
+      ],
+      "inSummary": false
+    },
+    "children18": {
+      "label": "Children 18+ still getting family allowance",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "integer": true,
+      "samples": [
+        1
+      ],
+      "inSummary": false
+    },
+    "bonusShare": {
+      "label": "Familienbonus Plus claimed",
+      "default": "full",
+      "inSummary": false,
+      "choices": {
+        "full": "In full",
+        "half": "Half (split with the other parent)"
+      }
+    },
+    "soleEarner": {
+      "label": "Sole earner or single parent",
+      "default": "no",
+      "inSummary": false,
+      "choices": {
+        "no": "No",
+        "yes": "Yes (Alleinverdiener- / Alleinerzieherabsetzbetrag)"
+      }
+    }
+  },
   "items": [
     {
       "id": "at-social-regular",
@@ -20,9 +70,29 @@
           {
             "div": [
               {
-                "lookup": [[0, 15.12], [2225, 16.12], [2427, 17.12], [2630, 18.07]],
+                "lookup": [
+                  [
+                    0,
+                    15.12
+                  ],
+                  [
+                    2225,
+                    16.12
+                  ],
+                  [
+                    2427,
+                    17.12
+                  ],
+                  [
+                    2630,
+                    18.07
+                  ]
+                ],
                 "of": {
-                  "div": ["gross", 14]
+                  "div": [
+                    "gross",
+                    14
+                  ]
                 },
                 "strict": true
               },
@@ -32,7 +102,10 @@
           {
             "min": [
               {
-                "div": ["gross", 14]
+                "div": [
+                  "gross",
+                  14
+                ]
               },
               6930
             ]
@@ -53,9 +126,29 @@
               {
                 "sub": [
                   {
-                    "lookup": [[0, 15.12], [2225, 16.12], [2427, 17.12], [2630, 18.07]],
+                    "lookup": [
+                      [
+                        0,
+                        15.12
+                      ],
+                      [
+                        2225,
+                        16.12
+                      ],
+                      [
+                        2427,
+                        17.12
+                      ],
+                      [
+                        2630,
+                        18.07
+                      ]
+                    ],
                     "of": {
-                      "div": ["gross", 14]
+                      "div": [
+                        "gross",
+                        14
+                      ]
                     },
                     "strict": true
                   },
@@ -70,7 +163,10 @@
               {
                 "mul": [
                   {
-                    "div": ["gross", 14]
+                    "div": [
+                      "gross",
+                      14
+                    ]
                   },
                   2
                 ]
@@ -94,7 +190,10 @@
               {
                 "mul": [
                   {
-                    "div": ["gross", 14]
+                    "div": [
+                      "gross",
+                      14
+                    ]
                   },
                   12
                 ]
@@ -107,17 +206,83 @@
       }
     },
     {
+      "id": "at-familienbonus",
+      "label": "Familienbonus Plus",
+      "show": true,
+      "note": "€2,000.16 a year per child under 18 (12 × €166.68) and €700.08 per child over 18 still receiving family allowance (12 × €58.34), or half each if parents split it. It can only cut tax to zero (EStG §33 Abs. 3a).",
+      "value": {
+        "mul": [
+          {
+            "option": "bonusShare",
+            "cases": {
+              "full": 1,
+              "half": 0.5
+            }
+          },
+          {
+            "sum": [
+              {
+                "mul": [
+                  2000.16,
+                  {
+                    "input": "children"
+                  }
+                ]
+              },
+              {
+                "mul": [
+                  700.08,
+                  {
+                    "input": "children18"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
       "id": "at-income-tax",
       "label": "Income tax on monthly pay (Lohnsteuer)",
       "group": "tax",
-      "note": "2026 tariff: nothing to €13,539, then 20%, 30%, 40%, 48% and 50%, and 55% above €1 million. Less the €496 commuter tax credit (Verkehrsabsetzbetrag) and its €804 supplement for lower incomes.",
+      "note": "2026 tariff: nothing to €13,539, then 20%, 30%, 40%, 48% and 50%, and 55% above €1 million. Less the €496 commuter tax credit (Verkehrsabsetzbetrag) and its €804 supplement for lower incomes. Less the Familienbonus Plus for children.",
       "charge": {
         "max": [
           0,
           {
             "sub": [
               {
-                "brackets": [[0, 0], [13539, 20], [21992, 30], [36458, 40], [70365, 48], [104859, 50], [1000000, 55]],
+                "brackets": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    13539,
+                    20
+                  ],
+                  [
+                    21992,
+                    30
+                  ],
+                  [
+                    36458,
+                    40
+                  ],
+                  [
+                    70365,
+                    48
+                  ],
+                  [
+                    104859,
+                    50
+                  ],
+                  [
+                    1000000,
+                    55
+                  ]
+                ],
                 "of": "at-taxable"
               },
               {
@@ -125,7 +290,10 @@
                   496,
                   {
                     "if": {
-                      "lte": ["at-taxable", 19761]
+                      "lte": [
+                        "at-taxable",
+                        19761
+                      ]
                     },
                     "then": 804,
                     "else": {
@@ -137,7 +305,10 @@
                             {
                               "div": [
                                 {
-                                  "sub": [30259, "at-taxable"]
+                                  "sub": [
+                                    30259,
+                                    "at-taxable"
+                                  ]
                                 },
                                 10498
                               ]
@@ -148,10 +319,107 @@
                     }
                   }
                 ]
-              }
+              },
+              "at-familienbonus"
             ]
           }
         ]
+      }
+    },
+    {
+      "id": "at-sole-earner-credit",
+      "label": "Sole earner / single parent credit",
+      "group": "tax",
+      "mayBeNegative": true,
+      "note": "€612 with one child, €828 with two and €273 more for each further child (2026). It is paid out even when there is no tax to set it against.",
+      "charge": {
+        "if": {
+          "gt": [
+            {
+              "sum": [
+                {
+                  "input": "children"
+                },
+                {
+                  "input": "children18"
+                }
+              ]
+            },
+            0
+          ]
+        },
+        "then": {
+          "option": "soleEarner",
+          "cases": {
+            "no": 0,
+            "yes": {
+              "sub": [
+                0,
+                {
+                  "sum": [
+                    612,
+                    {
+                      "mul": [
+                        216,
+                        {
+                          "min": [
+                            1,
+                            {
+                              "max": [
+                                0,
+                                {
+                                  "sub": [
+                                    {
+                                      "sum": [
+                                        {
+                                          "input": "children"
+                                        },
+                                        {
+                                          "input": "children18"
+                                        }
+                                      ]
+                                    },
+                                    1
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "mul": [
+                        273,
+                        {
+                          "max": [
+                            0,
+                            {
+                              "sub": [
+                                {
+                                  "sum": [
+                                    {
+                                      "input": "children"
+                                    },
+                                    {
+                                      "input": "children18"
+                                    }
+                                  ]
+                                },
+                                2
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "else": 0
       }
     },
     {
@@ -160,7 +428,28 @@
       "group": "tax",
       "note": "Taxed separately: the first €620 free, then 6% up to €25,000, 27% to €50,000, 35.75% to €83,333.",
       "charge": {
-        "brackets": [[0, 0], [620, 6], [25000, 27], [50000, 35.75], [83333, 50]],
+        "brackets": [
+          [
+            0,
+            0
+          ],
+          [
+            620,
+            6
+          ],
+          [
+            25000,
+            27
+          ],
+          [
+            50000,
+            35.75
+          ],
+          [
+            83333,
+            50
+          ]
+        ],
         "of": {
           "max": [
             0,
@@ -169,7 +458,10 @@
                 {
                   "mul": [
                     {
-                      "div": ["gross", 14]
+                      "div": [
+                        "gross",
+                        14
+                      ]
                     },
                     2
                   ]
@@ -185,13 +477,15 @@
   "assumptions": [
     "Salaried employee (Angestellter) paid in 14 equal instalments, the usual Austrian pattern",
     "No children; each person is taxed individually",
-    "No commuter allowance (Pendlerpauschale)"
+    "No commuter allowance (Pendlerpauschale)",
+    "Children and family credits only if entered"
   ],
   "notModelled": [
-    "Family bonus (Familienbonus Plus) and other credits for children or sole earners",
     "Commuter allowance and the higher commuter credit",
     "Refund of social insurance for very low incomes (negative tax)",
-    "The €2,100 exemption limit for small special payments"
+    "The €2,100 exemption limit for small special payments",
+    "The Kindermehrbetrag paid to low earners who cannot use the full Familienbonus Plus",
+    "The partner income limit for the sole-earner credit"
   ],
   "provisional": [
     "The unemployment insurance reduction thresholds (€2,225 / €2,427 / €2,630 a month) come from a single secondary source",
@@ -213,12 +507,24 @@
     {
       "title": "§ 67 EStG 1988 — sonstige Bezüge",
       "url": "https://www.ris.bka.gv.at/NormDokument.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004570&Paragraf=67"
+    },
+    {
+      "title": "BMF — Familienbonus Plus (166,68 / 58,34 Euro a month)",
+      "url": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerveranlagung/steuertarif-steuerabsetzbetraege/familienbonus-plus.html"
+    },
+    {
+      "title": "BMF — FAQ Familienbonus Plus",
+      "url": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerveranlagung/steuertarif-steuerabsetzbetraege/familienbonusplus-faq.html"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "2026 tariff bands (1.73% indexation; several sources agree); €6,930 monthly contribution ceiling (oesterreich.gv.at, usp.gv.at); €496 commuter credit and €804 supplement phasing out from €19,761 to €30,259 (BMF Steuerbuch 2026, finanz.at); 18.07% employee rate (calculators)."
+    },
+    {
+      "title": "BMF pages, 11 Nov 2026",
+      "note": "Familienbonus Plus €166.68 / €58.34 a month (§33 Abs. 3a EStG, BMF FAQ, LStR); sole earner / single parent credit €612, €828, €1,101 and €273 per further child from the BMF 2026 overview of tax credits."
     }
   ],
   "lastVerified": null,
@@ -240,7 +546,81 @@
     {
       "gross": 30000,
       "note": "Monthly 2,142.86 is under €2,225, so no unemployment insurance: 15.12% × 12 months = 3,888; special 14.12% × 4,285.71 = 605.14. Taxable 21,694.29 → 20% × 8,155.29 = 1,631.06, less 496 and a supplement of 804 × 8,564.71/10,498 = 655.94 → 479.12. Special payments 6% × 3,060.57 = 183.63.",
-      "expect": {"at-social-regular": 3888, "at-income-tax": 479.12, "at-income-tax-special": 183.63, "net": 24844.1}
+      "expect": {
+        "at-social-regular": 3888,
+        "at-income-tax": 479.12,
+        "at-income-tax-special": 183.63,
+        "net": 24844.1
+      }
+    },
+    {
+      "gross": 50000,
+      "options": {
+        "children": 2
+      },
+      "note": "Familienbonus 4,000.32 off the tariff tax (not below zero); sole earner credit 0; separate implementation.",
+      "expect": {
+        "at-familienbonus": 4000.32,
+        "at-income-tax": 1090.94,
+        "at-sole-earner-credit": 0.0,
+        "net": 39627.28
+      }
+    },
+    {
+      "gross": 30000,
+      "options": {
+        "children": 3
+      },
+      "note": "Familienbonus 6,000.48 off the tariff tax (not below zero); sole earner credit 0; separate implementation.",
+      "expect": {
+        "at-familienbonus": 6000.48,
+        "at-income-tax": 0.0,
+        "at-sole-earner-credit": 0.0,
+        "net": 25323.22
+      }
+    },
+    {
+      "gross": 45000,
+      "options": {
+        "children": 1,
+        "children18": 1,
+        "bonusShare": "half"
+      },
+      "note": "Familienbonus 1,350.12 off the tariff tax (not below zero); sole earner credit 0; separate implementation.",
+      "expect": {
+        "at-familienbonus": 1350.12,
+        "at-income-tax": 2687.75,
+        "at-sole-earner-credit": 0.0,
+        "net": 33962.36
+      }
+    },
+    {
+      "gross": 20000,
+      "options": {
+        "children": 1,
+        "soleEarner": "yes"
+      },
+      "note": "Familienbonus 2,000.16 off the tariff tax (not below zero); sole earner credit 612; separate implementation.",
+      "expect": {
+        "at-familienbonus": 2000.16,
+        "at-income-tax": 0.0,
+        "at-sole-earner-credit": -612.0,
+        "net": 17506.55
+      }
+    },
+    {
+      "gross": 70000,
+      "options": {
+        "children": 4,
+        "soleEarner": "yes"
+      },
+      "note": "Familienbonus 8,000.64 off the tariff tax (not below zero); sole earner credit 1374; separate implementation.",
+      "expect": {
+        "at-familienbonus": 8000.64,
+        "at-income-tax": 2560.96,
+        "at-sole-earner-credit": -1374.0,
+        "net": 55803.66
+      }
     }
   ]
 }

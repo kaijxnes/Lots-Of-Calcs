@@ -7,12 +7,67 @@
   "standalone": true,
   "currency": "JPY",
   "locale": "ja-JP",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "options": {
     "age": {
       "label": "Age",
       "default": "under40",
-      "choices": {"under40": "Under 40", "40to64": "40 to 64"}
+      "choices": {
+        "under40": "Under 40",
+        "40to64": "40 to 64"
+      }
+    },
+    "spouse": {
+      "label": "Dependent spouse",
+      "default": "no",
+      "inSummary": false,
+      "choices": {
+        "no": "No",
+        "yes": "Yes (spouse's income ¥620,000 or less)"
+      }
+    },
+    "dependants": {
+      "label": "Dependants aged 16–18 or 23+",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "integer": true,
+      "samples": [
+        1
+      ],
+      "inSummary": false
+    },
+    "dependants19to22": {
+      "label": "Dependants aged 19–22",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 10,
+      "step": 1,
+      "integer": true,
+      "samples": [
+        1
+      ],
+      "inSummary": false
+    },
+    "ideco": {
+      "label": "iDeCo contributions (¥ a year)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 276000,
+      "step": 1000,
+      "samples": [
+        144000,
+        276000
+      ],
+      "inSummary": false
     }
   },
   "items": [
@@ -28,7 +83,10 @@
               4.925,
               {
                 "option": "age",
-                "cases": {"under40": 0, "40to64": 0.81}
+                "cases": {
+                  "under40": 0,
+                  "40to64": 0.81
+                }
               }
             ]
           },
@@ -36,7 +94,10 @@
           {
             "min": [
               {
-                "div": ["gross", 12]
+                "div": [
+                  "gross",
+                  12
+                ]
               },
               1390000
             ]
@@ -56,7 +117,10 @@
           {
             "min": [
               {
-                "div": ["gross", 12]
+                "div": [
+                  "gross",
+                  12
+                ]
               },
               1390000
             ]
@@ -76,7 +140,10 @@
           {
             "min": [
               {
-                "div": ["gross", 12]
+                "div": [
+                  "gross",
+                  12
+                ]
               },
               650000
             ]
@@ -89,13 +156,21 @@
       "label": "Employment insurance",
       "group": "social",
       "note": "0.5% for general businesses in FY2026.",
-      "charge": {"pct": 0.5, "of": "gross"}
+      "charge": {
+        "pct": 0.5,
+        "of": "gross"
+      }
     },
     {
       "id": "jp-insurance",
       "label": "Social insurance total",
       "value": {
-        "sum": ["jp-health", "jp-child-levy", "jp-pension", "jp-employment"]
+        "sum": [
+          "jp-health",
+          "jp-child-levy",
+          "jp-pension",
+          "jp-employment"
+        ]
       }
     },
     {
@@ -111,14 +186,20 @@
               "gross",
               {
                 "if": {
-                  "lte": ["gross", 3600000]
+                  "lte": [
+                    "gross",
+                    3600000
+                  ]
                 },
                 "then": {
                   "max": [
                     740000,
                     {
                       "sum": [
-                        {"pct": 30, "of": "gross"},
+                        {
+                          "pct": 30,
+                          "of": "gross"
+                        },
                         80000
                       ]
                     }
@@ -126,21 +207,33 @@
                 },
                 "else": {
                   "if": {
-                    "lte": ["gross", 6600000]
+                    "lte": [
+                      "gross",
+                      6600000
+                    ]
                   },
                   "then": {
                     "sum": [
-                      {"pct": 20, "of": "gross"},
+                      {
+                        "pct": 20,
+                        "of": "gross"
+                      },
                       440000
                     ]
                   },
                   "else": {
                     "if": {
-                      "lte": ["gross", 8500000]
+                      "lte": [
+                        "gross",
+                        8500000
+                      ]
                     },
                     "then": {
                       "sum": [
-                        {"pct": 10, "of": "gross"},
+                        {
+                          "pct": 10,
+                          "of": "gross"
+                        },
                         1100000
                       ]
                     },
@@ -160,16 +253,104 @@
       "note": "¥1,040,000 for total income up to ¥4.89 million, ¥670,000 up to ¥6.55 million, ¥620,000 up to ¥23.5 million, then tapering away.",
       "value": {
         "lookup": [
-          [0, 1040000],
-          [4890000, 670000],
-          [6550000, 620000],
-          [23500000, 480000],
-          [24000000, 320000],
-          [24500000, 160000],
-          [25000000, 0]
+          [
+            0,
+            1040000
+          ],
+          [
+            4890000,
+            670000
+          ],
+          [
+            6550000,
+            620000
+          ],
+          [
+            23500000,
+            480000
+          ],
+          [
+            24000000,
+            320000
+          ],
+          [
+            24500000,
+            160000
+          ],
+          [
+            25000000,
+            0
+          ]
         ],
         "of": "jp-employment-income",
         "strict": true
+      }
+    },
+    {
+      "id": "jp-ideco",
+      "label": "iDeCo contributions",
+      "note": "Fully deductible from income for both income and resident tax (small-enterprise mutual aid premiums deduction). Capped here at ¥276,000, the limit for employees with no workplace pension.",
+      "value": {
+        "min": [
+          {
+            "input": "ideco"
+          },
+          276000
+        ]
+      }
+    },
+    {
+      "id": "jp-family-deductions",
+      "label": "Spouse and dependant deductions (income tax)",
+      "show": true,
+      "note": "Spouse ¥380,000 (¥260,000 or ¥130,000 once your total income passes ¥9 million or ¥9.5 million, none above ¥10 million); ¥380,000 per general dependant and ¥630,000 per dependant aged 19–22.",
+      "value": {
+        "sum": [
+          {
+            "option": "spouse",
+            "cases": {
+              "no": 0,
+              "yes": {
+                "lookup": [
+                  [
+                    0,
+                    380000
+                  ],
+                  [
+                    9000000,
+                    260000
+                  ],
+                  [
+                    9500000,
+                    130000
+                  ],
+                  [
+                    10000000,
+                    0
+                  ]
+                ],
+                "of": "jp-employment-income",
+                "strict": true
+              }
+            }
+          },
+          {
+            "mul": [
+              380000,
+              {
+                "input": "dependants"
+              }
+            ]
+          },
+          {
+            "mul": [
+              630000,
+              {
+                "input": "dependants19to22"
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -181,7 +362,13 @@
           "max": [
             0,
             {
-              "sub": ["jp-employment-income", "jp-basic-deduction", "jp-insurance"]
+              "sub": [
+                "jp-employment-income",
+                "jp-basic-deduction",
+                "jp-insurance",
+                "jp-ideco",
+                "jp-family-deductions"
+              ]
             }
           ]
         },
@@ -199,13 +386,149 @@
           "mul": [
             1.021,
             {
-              "brackets": [[0, 5], [1950000, 10], [3300000, 20], [6950000, 23], [9000000, 33], [18000000, 40], [40000000, 45]],
+              "brackets": [
+                [
+                  0,
+                  5
+                ],
+                [
+                  1950000,
+                  10
+                ],
+                [
+                  3300000,
+                  20
+                ],
+                [
+                  6950000,
+                  23
+                ],
+                [
+                  9000000,
+                  33
+                ],
+                [
+                  18000000,
+                  40
+                ],
+                [
+                  40000000,
+                  45
+                ]
+              ],
               "of": "jp-taxable"
             }
           ]
         },
         "to": 1,
         "mode": "down"
+      }
+    },
+    {
+      "id": "jp-family-deductions-resident",
+      "label": "Spouse and dependant deductions (resident tax)",
+      "note": "Resident tax allows less: spouse ¥330,000 (¥220,000, ¥110,000), ¥330,000 per general dependant and ¥450,000 per dependant aged 19–22.",
+      "value": {
+        "sum": [
+          {
+            "option": "spouse",
+            "cases": {
+              "no": 0,
+              "yes": {
+                "lookup": [
+                  [
+                    0,
+                    330000
+                  ],
+                  [
+                    9000000,
+                    220000
+                  ],
+                  [
+                    9500000,
+                    110000
+                  ],
+                  [
+                    10000000,
+                    0
+                  ]
+                ],
+                "of": "jp-employment-income",
+                "strict": true
+              }
+            }
+          },
+          {
+            "mul": [
+              330000,
+              {
+                "input": "dependants"
+              }
+            ]
+          },
+          {
+            "mul": [
+              450000,
+              {
+                "input": "dependants19to22"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "jp-personal-deduction-gap",
+      "label": "Gap between income tax and resident tax personal deductions",
+      "note": "¥50,000 for the basic deduction, plus ¥50,000 (¥40,000, ¥20,000) for a spouse, ¥50,000 per general dependant and ¥180,000 per dependant aged 19–22; it sets the adjustment credit.",
+      "value": {
+        "sum": [
+          50000,
+          {
+            "option": "spouse",
+            "cases": {
+              "no": 0,
+              "yes": {
+                "lookup": [
+                  [
+                    0,
+                    50000
+                  ],
+                  [
+                    9000000,
+                    40000
+                  ],
+                  [
+                    9500000,
+                    20000
+                  ],
+                  [
+                    10000000,
+                    0
+                  ]
+                ],
+                "of": "jp-employment-income",
+                "strict": true
+              }
+            }
+          },
+          {
+            "mul": [
+              50000,
+              {
+                "input": "dependants"
+              }
+            ]
+          },
+          {
+            "mul": [
+              180000,
+              {
+                "input": "dependants19to22"
+              }
+            ]
+          }
+        ]
       }
     },
     {
@@ -224,14 +547,20 @@
                     "gross",
                     {
                       "if": {
-                        "lte": ["gross", 3600000]
+                        "lte": [
+                          "gross",
+                          3600000
+                        ]
                       },
                       "then": {
                         "max": [
                           650000,
                           {
                             "sum": [
-                              {"pct": 30, "of": "gross"},
+                              {
+                                "pct": 30,
+                                "of": "gross"
+                              },
                               80000
                             ]
                           }
@@ -239,21 +568,33 @@
                       },
                       "else": {
                         "if": {
-                          "lte": ["gross", 6600000]
+                          "lte": [
+                            "gross",
+                            6600000
+                          ]
                         },
                         "then": {
                           "sum": [
-                            {"pct": 20, "of": "gross"},
+                            {
+                              "pct": 20,
+                              "of": "gross"
+                            },
                             440000
                           ]
                         },
                         "else": {
                           "if": {
-                            "lte": ["gross", 8500000]
+                            "lte": [
+                              "gross",
+                              8500000
+                            ]
                           },
                           "then": {
                             "sum": [
-                              {"pct": 10, "of": "gross"},
+                              {
+                                "pct": 10,
+                                "of": "gross"
+                              },
                               1100000
                             ]
                           },
@@ -264,7 +605,9 @@
                   ]
                 },
                 430000,
-                "jp-insurance"
+                "jp-insurance",
+                "jp-ideco",
+                "jp-family-deductions-resident"
               ]
             }
           ]
@@ -277,7 +620,7 @@
       "id": "jp-resident-tax",
       "label": "Resident tax (jūminzei)",
       "group": "tax",
-      "note": "10% of taxable income less the ¥2,500 adjustment credit, plus the ¥5,000 per-capita levy (including the forest environment tax). It is charged in the following year; shown here as if the salary were the same both years.",
+      "note": "10% of taxable income less the adjustment credit (5% of the gap between income tax and resident tax personal deductions, at least ¥2,500), plus the ¥5,000 per-capita levy (including the forest environment tax). It is charged in the following year; shown here as if the salary were the same both years.",
       "charge": {
         "sum": [
           {
@@ -285,8 +628,48 @@
               0,
               {
                 "sub": [
-                  {"pct": 10, "of": "jp-resident-taxable"},
-                  2500
+                  {
+                    "pct": 10,
+                    "of": "jp-resident-taxable"
+                  },
+                  {
+                    "max": [
+                      2500,
+                      {
+                        "pct": 5,
+                        "of": {
+                          "if": {
+                            "lte": [
+                              "jp-resident-taxable",
+                              2000000
+                            ]
+                          },
+                          "then": {
+                            "min": [
+                              "jp-personal-deduction-gap",
+                              "jp-resident-taxable"
+                            ]
+                          },
+                          "else": {
+                            "max": [
+                              50000,
+                              {
+                                "sub": [
+                                  "jp-personal-deduction-gap",
+                                  {
+                                    "sub": [
+                                      "jp-resident-taxable",
+                                      2000000
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        }
+                      }
+                    ]
+                  }
                 ]
               }
             ]
@@ -294,21 +677,35 @@
           5000
         ]
       }
+    },
+    {
+      "id": "jp-ideco-paid",
+      "label": "iDeCo contributions",
+      "group": "pension",
+      "note": "What you pay into iDeCo, as entered.",
+      "charge": {
+        "sum": [
+          "jp-ideco"
+        ]
+      }
     }
   ],
   "assumptions": [
     "Salaried employee in Tokyo enrolled in Kyōkai Kenpo",
     "Paid in 12 equal monthly amounts with no bonus",
-    "Single, no dependants"
+    "Single, no dependants",
+    "Spouse, dependants and iDeCo only if entered"
   ],
   "notModelled": [
     "Bonuses (social insurance and withholding work differently on them)",
-    "Spouse and dependant deductions",
     "Furusato nōzei and other deductions",
-    "Corporate health insurance societies, whose rates differ"
+    "Corporate health insurance societies, whose rates differ",
+    "The special spouse deduction (spouse earning more than ¥620,000) and the new special deduction for 19–22-year-olds earning over ¥580,000",
+    "Higher iDeCo limits for some workers and the 2027 increase"
   ],
   "provisional": [
-    "Tokyo's 2026 health insurance rate of 9.85% comes from a third-party summary; Kyōkai Kenpo's own table confirms only that it fell from 9.91%"
+    "Tokyo's 2026 health insurance rate of 9.85% comes from a third-party summary; Kyōkai Kenpo's own table confirms only that it fell from 9.91%",
+    "Resident tax spouse amounts above ¥9 million of income (¥220,000 / ¥110,000) follow from the adjustment-credit gaps rather than a page stating them directly"
   ],
   "sources": [
     {
@@ -326,12 +723,36 @@
     {
       "title": "MHLW — employment insurance rates FY2026",
       "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000108634.html"
+    },
+    {
+      "title": "NTA Tax Answer No.1191 配偶者控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm"
+    },
+    {
+      "title": "NTA Tax Answer No.1180 扶養控除",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm"
+    },
+    {
+      "title": "NTA Tax Answer No.1135 小規模企業共済等掛金控除 (iDeCo)",
+      "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm"
+    },
+    {
+      "title": "Nerima City — 調整控除 (adjustment credit)",
+      "url": "https://www.city.nerima.tokyo.jp/kurashi/zei/jyuminzei/zeigakukojo/choseikojo.html"
+    },
+    {
+      "title": "Nagoya City — 調整控除",
+      "url": "https://www.city.nagoya.jp/kurashi/zeikin/1037356/1011880/1011883/1011893.html"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "2026 basic deduction tiers and ¥740,000 minimum employment income deduction (several tax advisers and JILI agree); care rate 1.62% and child levy 0.23% (Kyōkai Kenpo); employment insurance 0.5% (SmartHR and others); Tokyo health rate 9.85% (third party). Pension rate 18.3% and the ¥650,000 cap, resident tax structure and the income tax bands are long-standing."
+    },
+    {
+      "title": "NTA tax answers and municipal resident tax pages, 11 Nov 2026",
+      "note": "Income tax spouse and dependant amounts from the NTA; resident tax amounts (¥330,000 / ¥450,000) and the adjustment credit formula from Nerima, Nagoya, Obihiro and Nakano city pages."
     }
   ],
   "lastVerified": null,
@@ -352,13 +773,78 @@
     {
       "gross": 15000000,
       "note": "Pension capped at 9.15% × 650,000 × 12 = 713,700. Employment income 13,050,000; basic deduction 620,000.",
-      "expect": {"jp-pension": 713700, "jp-basic-deduction": 620000, "jp-income-tax": 2100574}
+      "expect": {
+        "jp-pension": 713700,
+        "jp-basic-deduction": 620000,
+        "jp-income-tax": 2100574
+      }
     },
     {
       "gross": 5000000,
-      "options": {"age": "40to64"},
+      "options": {
+        "age": "40to64"
+      },
       "note": "Adds the long-term care contribution, 0.81% = 40,500.",
-      "expect": {"jp-income-tax": 89133, "net": 3899204.5}
+      "expect": {
+        "jp-income-tax": 89133,
+        "net": 3899204.5
+      }
+    },
+    {
+      "gross": 5000000,
+      "options": {
+        "spouse": "yes"
+      },
+      "note": "Separate implementation: family deductions 380,000 (income tax) / 330,000 (resident), gap 100,000, adjustment 2,500.",
+      "expect": {
+        "jp-taxable": 1406000,
+        "jp-income-tax": 71776,
+        "jp-resident-tax": 209100.0,
+        "net": 3986061.5
+      }
+    },
+    {
+      "gross": 8000000,
+      "options": {
+        "dependants": 1,
+        "dependants19to22": 1,
+        "ideco": 276000
+      },
+      "note": "Separate implementation: family deductions 1,010,000 (income tax) / 780,000 (resident), gap 280,000, adjustment 2,500.",
+      "expect": {
+        "jp-taxable": 2989000,
+        "jp-income-tax": 205629,
+        "jp-resident-tax": 348400.0,
+        "net": 6015371.0
+      }
+    },
+    {
+      "gross": 3000000,
+      "options": {
+        "spouse": "yes",
+        "dependants": 2
+      },
+      "note": "Separate implementation: family deductions 1,140,000 (income tax) / 990,000 (resident), gap 200,000, adjustment 8,000.",
+      "expect": {
+        "jp-taxable": 0,
+        "jp-income-tax": 0,
+        "jp-resident-tax": 13000.0,
+        "net": 2547162.5
+      }
+    },
+    {
+      "gross": 12000000,
+      "options": {
+        "spouse": "yes",
+        "dependants19to22": 2
+      },
+      "note": "Separate implementation: family deductions 1,260,000 (income tax) / 900,000 (resident), gap 410,000, adjustment 2,500.",
+      "expect": {
+        "jp-taxable": 6794000,
+        "jp-income-tax": 950857,
+        "jp-resident-tax": 736900.0,
+        "net": 8937193.0
+      }
     }
   ]
 }

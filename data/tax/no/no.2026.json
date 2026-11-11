@@ -7,21 +7,50 @@
   "standalone": true,
   "currency": "NOK",
   "locale": "nb-NO",
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
-  "options": {},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {
+    "zone": {
+      "label": "Where you live",
+      "default": "standard",
+      "choices": {
+        "standard": "Rest of Norway",
+        "finnmark": "Finnmark and Nord-Troms (innsatssonen)"
+      }
+    },
+    "unionDues": {
+      "label": "Union dues (NOK a year)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 100000,
+      "step": 100,
+      "samples": [
+        6000,
+        12000
+      ],
+      "inSummary": false
+    }
+  },
   "items": [
     {
       "id": "no-national-insurance",
       "label": "National insurance (trygdeavgift)",
       "group": "social",
       "note": "7.6% of pay.",
-      "charge": {"pct": 7.6, "of": "gross"}
+      "charge": {
+        "pct": 7.6,
+        "of": "gross"
+      }
     },
     {
       "id": "no-ordinary-income",
       "label": "Ordinary income (alminnelig inntekt) after allowances",
       "show": true,
-      "note": "Pay less the minimum deduction (46%, at most NOK 95,700) and the NOK 114,540 personal allowance.",
+      "note": "Pay less the minimum deduction (46%, at most NOK 95,700), the NOK 114,540 personal allowance, union dues up to NOK 8,700, and in Finnmark and Nord-Troms the NOK 45,000 special deduction.",
       "value": {
         "max": [
           0,
@@ -31,10 +60,28 @@
               {
                 "min": [
                   95700,
-                  {"pct": 46, "of": "gross"}
+                  {
+                    "pct": 46,
+                    "of": "gross"
+                  }
                 ]
               },
-              114540
+              114540,
+              {
+                "option": "zone",
+                "cases": {
+                  "standard": 0,
+                  "finnmark": 45000
+                }
+              },
+              {
+                "min": [
+                  {
+                    "input": "unionDues"
+                  },
+                  8700
+                ]
+              }
             ]
           }
         ]
@@ -44,8 +91,17 @@
       "id": "no-income-tax",
       "label": "Tax on ordinary income",
       "group": "tax",
-      "note": "22%.",
-      "charge": {"pct": 22, "of": "no-ordinary-income"}
+      "note": "22%, or 18.5% for residents of Finnmark and Nord-Troms.",
+      "charge": {
+        "pct": {
+          "option": "zone",
+          "cases": {
+            "standard": 22,
+            "finnmark": 18.5
+          }
+        },
+        "of": "no-ordinary-income"
+      }
     },
     {
       "id": "no-bracket-tax",
@@ -53,19 +109,58 @@
       "group": "tax",
       "note": "On gross pay: 1.7% from NOK 226,100, 4.0% from 318,300, 13.7% from 725,050, 16.8% from 980,100 and 17.8% from 1,467,200.",
       "charge": {
-        "brackets": [[0, 0], [226100, 1.7], [318300, 4.0], [725050, 13.7], [980100, 16.8], [1467200, 17.8]],
+        "brackets": [
+          [
+            0,
+            0
+          ],
+          [
+            226100,
+            1.7
+          ],
+          [
+            318300,
+            4.0
+          ],
+          [
+            725050,
+            13.7
+          ],
+          [
+            980100,
+            16.8
+          ],
+          [
+            1467200,
+            17.8
+          ]
+        ],
         "of": "gross"
+      }
+    },
+    {
+      "id": "no-union-dues",
+      "label": "Union dues",
+      "group": "benefit",
+      "note": "What you pay your union, as entered; up to NOK 8,700 of it is deductible.",
+      "charge": {
+        "input": "unionDues"
       }
     }
   ],
-  "assumptions": ["Resident employee in mainland Norway", "Employment income only; each person is taxed individually"],
+  "assumptions": [
+    "Resident employee in mainland Norway",
+    "Employment income only; each person is taxed individually"
+  ],
   "notModelled": [
-    "The Finnmark and Nord-Troms action zone, which has lower rates",
+    "The Finnmark and Nord-Troms reduction in employer's contribution and other zone benefits (the lower tax rate and special deduction are included)",
     "The low-income limit and phase-in for national insurance (only affects very small incomes)",
     "Interest deductions, union dues, pension savings and other deductions",
     "Wealth tax"
   ],
-  "provisional": [],
+  "provisional": [
+    "Union dues maximum NOK 8,700 is the government's 2026 proposal; the enacted figure was not confirmed separately"
+  ],
   "sources": [
     {
       "title": "Regjeringen — Skattesatser 2026",
@@ -78,12 +173,28 @@
     {
       "title": "Regjeringen — Endringer i lover og forskrifter fra 1. januar 2026",
       "url": "https://www.regjeringen.no/no/aktuelt/endringer-i-lover-og-forskrifter-fra-1.-januar-2026-fra-finansdepartementet/id3144251/"
+    },
+    {
+      "title": "Skatteetaten — Finnmarksfradraget 2026 (NOK 45,000)",
+      "url": "https://www.skatteetaten.no/satser/finnmarksfradraget/?year=2026"
+    },
+    {
+      "title": "Regjeringen — Skattesatser 2026",
+      "url": "https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skattesatser-2026/id3121978/"
+    },
+    {
+      "title": "Regjeringen — Så mykje kan du spare ved å bu og arbeide i Finnmark og Nord-Troms i 2026",
+      "url": "https://www.regjeringen.no/nn/tema/kommuner-og-regioner/regional--og-distriktspolitikk/nordomradepolitikk/sa-mykje-kan-du-spare-ved-a-bu-og-arbeide-i-finnmark-og-nord-troms-i-2026/id3084477/"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Adopted 2026 figures: personal allowance NOK 114,540 and steps 4–5 at 16.8% / 17.8% (Finance Ministry list of 1 January 2026 changes, Skatteetaten 2026 forecast); thresholds and minimum deduction (Prop. 1 LS, Storting committee report, snl.no); 22% and 7.6% (several sources). The October 2025 proposal had NOK 114,210 and 16.7% / 17.7%."
+    },
+    {
+      "title": "Skatteetaten and the 2026 budget rates table (Prop. 1 LS, as reproduced by Sands), 11 Nov 2026",
+      "note": "Zone rate 18.5% and NOK 45,000 deduction (Skatteetaten confirms the deduction); union dues maximum NOK 8,700 is the proposal figure."
     }
   ],
   "lastVerified": null,
@@ -93,12 +204,57 @@
     {
       "gross": 600000,
       "note": "National insurance 45,600. Ordinary income 600,000 − 95,700 − 114,540 = 389,760 × 22% = 85,747.20. Bracket tax 92,200 × 1.7% = 1,567.40 + 281,700 × 4% = 11,268 → 12,835.40.",
-      "expect": {"no-ordinary-income": 389760, "no-income-tax": 85747.2, "no-bracket-tax": 12835.4, "net": 455817.4}
+      "expect": {
+        "no-ordinary-income": 389760,
+        "no-income-tax": 85747.2,
+        "no-bracket-tax": 12835.4,
+        "net": 455817.4
+      }
     },
     {
       "gross": 1000000,
       "note": "Bracket tax 1,567.40 + 406,750 × 4% = 16,270 + 255,050 × 13.7% = 34,941.85 + 19,900 × 16.8% = 3,343.20 → 56,122.45.",
-      "expect": {"no-bracket-tax": 56122.45, "net": 694130.35}
+      "expect": {
+        "no-bracket-tax": 56122.45,
+        "net": 694130.35
+      }
+    },
+    {
+      "gross": 600000,
+      "options": {
+        "zone": "finnmark"
+      },
+      "note": "Separate implementation: zone rate and deduction, union dues capped at 8,700.",
+      "expect": {
+        "no-ordinary-income": 344760.0,
+        "no-income-tax": 63780.6,
+        "net": 477784.0
+      }
+    },
+    {
+      "gross": 500000,
+      "options": {
+        "unionDues": 6000
+      },
+      "note": "Separate implementation: zone rate and deduction, union dues capped at 8,700.",
+      "expect": {
+        "no-ordinary-income": 283760.0,
+        "no-income-tax": 62427.2,
+        "net": 384737.4
+      }
+    },
+    {
+      "gross": 800000,
+      "options": {
+        "zone": "finnmark",
+        "unionDues": 12000
+      },
+      "note": "Separate implementation: zone rate and deduction, union dues capped at 8,700.",
+      "expect": {
+        "no-ordinary-income": 536060.0,
+        "no-income-tax": 99171.1,
+        "net": 599923.35
+      }
     }
   ]
 }
