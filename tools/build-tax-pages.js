@@ -39,6 +39,19 @@ function lowerFirst(s) {
   return s.charAt(0).toLowerCase() + s.slice(1);
 }
 
+/* A charge's label in the middle of a sentence: "federal income tax", but
+   "Social Security", "Medicare" and "California income tax" keep their
+   capitals. Proper nouns are place names from the registry, a few programme
+   names, and any label whose second word is capitalised ("Canada Pension
+   Plan", "State Disability Insurance"). */
+const PROPER = new Set(["Medicare", "Medicaid", "Social", "Canada", "Quebec", "Employment"]);
+function inSentence(label) {
+  const words = label.split(" ");
+  if (words.length > 1 && /^[A-Z]/.test(words[1])) return label;
+  if (PROPER.has(words[0]) || PLACE_WORDS.has(words[0])) return label;
+  return lowerFirst(label);
+}
+
 /* How people say a salary: "75k", "12 lakh", "5 million yen" */
 function spoken(n, currency) {
   if (currency === "INR") return (n / 100000) + " lakh";
@@ -137,6 +150,7 @@ function faqLd(q) {
 
 const all = registry.readAll();
 const current = registry.currentFiles(all);
+const PLACE_WORDS = new Set(Object.keys(current).map((id) => current[id].doc.name.split(/[ (]/)[0]));
 
 function contextFor(id) {
   const doc = current[id].doc;
@@ -198,6 +212,7 @@ function deductionPhrase(p) {
   const hasSocial = p.items.some((it) => "charge" in it && it.group === "social");
   if (p.root.country === "US") return "federal and state taxes and payroll deductions";
   if (p.root.country === "GB") return "income tax and National Insurance";
+  if (p.root.country === "CA") return "federal and provincial income tax, pension contributions and EI";
   return hasSocial ? "income tax and social contributions" : "income tax";
 }
 
@@ -401,7 +416,7 @@ function card(href, icon, title, desc) {
 `;
 }
 
-const ICON = { US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", FR: "🇫🇷", ES: "🇪🇸", IT: "🇮🇹", NL: "🇳🇱", IE: "🇮🇪", PT: "🇵🇹", AT: "🇦🇹", NO: "🇳🇴", DK: "🇩🇰", SE: "🇸🇪", AU: "🇦🇺", NZ: "🇳🇿", IN: "🇮🇳", JP: "🇯🇵" };
+const ICON = { US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", FR: "🇫🇷", ES: "🇪🇸", IT: "🇮🇹", NL: "🇳🇱", IE: "🇮🇪", PT: "🇵🇹", AT: "🇦🇹", NO: "🇳🇴", DK: "🇩🇰", SE: "🇸🇪", AU: "🇦🇺", NZ: "🇳🇿", IN: "🇮🇳", JP: "🇯🇵", CA: "🇨🇦" };
 function iconFor(p) {
   return p.id === "gb-sct" ? "🏴󠁧󠁢󠁳󠁣󠁴󠁿" : (ICON[p.root.country] || "💷");
 }
@@ -415,6 +430,7 @@ function comparison(p, gross, opts) {
   const link = o.link || ((q) => pageUrl(q, gross));
   let ids;
   if (p.root.country === "US") ids = config.COMPARE.US;
+  else if (p.root.country === "CA") ids = config.COMPARE.CA;
   else if (p.currency === "EUR") ids = config.COMPARE.EUR;
   else if (p.currency === "GBP") ids = config.COMPARE.GBP;
   else return "";
@@ -429,7 +445,7 @@ function comparison(p, gross, opts) {
     const name = q.id === p.id ? `<strong>${esc(q.place.shortName)}</strong>` : href ? `<a href="${href}">${esc(q.place.shortName)}</a>` : esc(q.place.shortName);
     return `<tr><td>${name}</td><td>${p.money(r.net)}</td><td>${p.money(r.perMonth)}</td><td>${pct1(r.deductionRate)}</td></tr>`;
   }).join("");
-  const what = p.root.country === "US" ? "in other states" : p.currency === "GBP" ? "across the UK" : "in other euro countries";
+  const what = p.root.country === "US" ? "in other states" : p.root.country === "CA" ? "across Canada" : p.currency === "GBP" ? "across the UK" : "in other euro countries";
   return `      <p class="tool-section-title" style="margin-top:22px;">${esc(o.label || p.money0(gross))} ${what}</p>
       <div class="table-scroll">
         <div style="min-width:420px;">
@@ -439,7 +455,7 @@ function comparison(p, gross, opts) {
           </table>
         </div>
       </div>
-      <p class="tool-hint" style="margin-top:12px;">${p.currency === "GBP" ? "Scotland sets its own income tax bands; National Insurance is the same everywhere in the UK." : `Each place on its own default assumptions${p.root.country === "US" ? " — single filer, standard deduction" : ""}. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.`}</p>
+      <p class="tool-hint" style="margin-top:12px;">${p.currency === "GBP" ? "Scotland sets its own income tax bands; National Insurance is the same everywhere in the UK." : p.root.country === "CA" ? "Federal tax, CPP and EI are the same in every province except Quebec, which has its own pension plan (QPP), parental insurance (QPIP), a lower EI rate and a 16.5% cut in federal tax; the rest of the difference is provincial income tax." : `Each place on its own default assumptions${p.root.country === "US" ? " — single filer, standard deduction" : ""}. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.`}</p>
 `;
 }
 
@@ -461,7 +477,7 @@ function salaryPage(p, gross) {
   const status = statusLabel(p, p.defaults);
   const assumptionsLine = [status ? lowerFirst(status) : null, opts].filter(Boolean).join("; ");
 
-  const lines = r.charges.filter((c) => Math.abs(c.amount) >= 0.005).map((c) => `${lowerFirst(c.label)} ${p.money(c.amount)}`);
+  const lines = r.charges.filter((c) => Math.abs(c.amount) >= 0.005).map((c) => `${inSentence(c.label)} ${p.money(c.amount)}`);
   const q = [
     [`How much is ${m0} after tax in ${inName}?`,
       `A ${m0} salary in ${inName} leaves ${p.money(r.net)} a year after ${phrase}, which is ${p.money(r.perMonth)} a month or about ${p.money(r.perWeek)} a week. ` +
@@ -526,7 +542,7 @@ ${faqHtml}    </main>
 ${aboutTheFigures(p)}
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in ${esc(inName)}</div>
     <div class="hub-grid">
-${others}${card(hubUrl(p), "📋", `All salaries in ${p.place.shortName}`, "Every salary, hourly rate and monthly figure, with a calculator.")}${p.root.country === "US" ? card("/salary/us/", "🇺🇸", "Compare all 50 states", "Take-home pay in every state at the same salary.") : card("/salary/", "🌍", "Other countries", "Salary after tax pages for other countries.")}    </div>
+${others}${card(hubUrl(p), "📋", `All salaries in ${p.place.shortName}`, "Every salary, hourly rate and monthly figure, with a calculator.")}${p.root.country === "US" ? card("/salary/us/", "🇺🇸", "Compare all 50 states", "Take-home pay in every state at the same salary.") : p.root.country === "CA" ? card("/salary/canada/", "🇨🇦", "Compare every province", "Take-home pay in all 13 provinces and territories.") : card("/salary/", "🌍", "Other countries", "Salary after tax pages for other countries.")}    </div>
 
 ${FOOTER}
   </div>
@@ -540,6 +556,7 @@ ${FOOTER}
 function crumbs(p) {
   const list = [["Home", SITE + "/"], ["Salary after tax", SITE + "/salary/"]];
   if (p.root.country === "US") list.push(["United States", SITE + "/salary/us/"]);
+  if (p.root.country === "CA") list.push(["Canada", SITE + "/salary/canada/"]);
   list.push([p.place.shortName, SITE + hubUrl(p)]);
   return list;
 }
@@ -569,7 +586,7 @@ function placeHub(p) {
   }];
 
   return head({ title, desc, url, ld }) + `    <header class="site-header">
-      <a class="back-link" href="${p.root.country === "US" ? "/salary/us/" : "/salary/"}">← ${p.root.country === "US" ? "All states" : "Salary after tax"}</a>
+      <a class="back-link" href="${p.root.country === "US" ? "/salary/us/" : p.root.country === "CA" ? "/salary/canada/" : "/salary/"}">← ${p.root.country === "US" ? "All states" : p.root.country === "CA" ? "All provinces" : "Salary after tax"}</a>
       <h1 class="page-title">Salary after tax in ${esc(inName)}</h1>
       <p class="page-subtitle">Take-home pay for the ${esc(year)} tax year${assumptionsLine ? " — " + esc(assumptionsLine) : ""}. Change the salary or options below.</p>
     </header>
@@ -916,6 +933,58 @@ ${FOOTER}
 `;
 }
 
+// ---------------------------------------------------------------- Canada hub
+
+function caHub() {
+  const provs = places.filter((p) => p.root.country === "CA");
+  const cols = [50000, 75000, 100000];
+  const rows = provs.map((p) => ({ p, rs: cols.map((g) => TaxEngine.compute(p.chain, g, p.defaults)) }))
+    .sort((a, b) => b.rs[1].net - a.rs[1].net);
+  const cad = (v) => TaxEngine.money(v, "CAD");
+  const body = rows.map(({ p, rs }, i) =>
+    `<tr><td>${i + 1}</td><td><a href="${hubUrl(p)}">${esc(p.place.shortName)}</a></td>${rs.map((r, j) => `<td><a href="${pageUrl(p, cols[j])}">${cad(r.net)}</a></td>`).join("")}<td>${pct1(rs[1].deductionRate)}</td></tr>`).join("");
+  const best = rows[0], worst = rows[rows.length - 1];
+  const fedDoc = current["ca"].doc;
+  const url = SITE + "/salary/canada/";
+  const title = "Salary After Tax in Canada (2026) — Take-Home Pay by Province";
+  const desc = `Take-home pay in every Canadian province and territory for 2026: $75,000 leaves ${cad(best.rs[1].net)} in ${best.p.place.shortName} and ${cad(worst.rs[1].net)} in ${worst.p.place.shortName}, after federal and provincial tax, CPP and EI.`;
+  const ld = [webPage(title, desc, url), breadcrumb([["Home", SITE + "/"], ["Salary after tax", SITE + "/salary/"], ["Canada", url]])];
+  const q = [
+    ["Which province has the lowest taxes on a salary?", `At $75,000, ${best.p.place.shortName} leaves the most (${cad(best.rs[1].net)} a year) and ${worst.p.place.shortName} the least (${cad(worst.rs[1].net)}). The order changes with income: a province with a high basic personal amount does well at lower salaries, one with low top rates at higher ones, so check the columns for your pay.`],
+    ["What comes off a paycheque in Canada?", "Federal income tax, provincial or territorial income tax, Canada Pension Plan contributions (5.95% of earnings between $3,500 and $74,600, plus 4% up to $85,000) and Employment Insurance premiums (1.63% of earnings up to $68,900). Quebec has its own pension plan and parental insurance instead, and a lower EI rate."],
+    ["Why is federal tax lower in Quebec?", "Quebec residents get the Quebec abatement: 16.5% off basic federal tax, because Quebec runs some programs that the federal government pays for elsewhere. Quebec income tax is higher to match, and is collected by Revenu Québec."]
+  ];
+  ld.push(faqLd(q));
+  return head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="/salary/">← Salary after tax</a>
+      <h1 class="page-title">Salary after tax in Canada</h1>
+      <p class="page-subtitle">${esc(fedDoc.taxYear.label)} take-home pay in every province and territory, after federal and provincial income tax, CPP (or QPP) and EI.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text">The same $75,000 salary leaves <strong>${cad(best.rs[1].net)}</strong> in ${esc(best.p.place.shortName)} and <strong>${cad(worst.rs[1].net)}</strong> in ${esc(worst.p.place.shortName)} &mdash; ${cad(best.rs[1].net - worst.rs[1].net)} a year apart. Federal tax, CPP and EI are the same everywhere outside Quebec; the rest is provincial tax. Pick a province for a calculator and every salary from $40,000 to $250,000.</p>
+      <div class="table-scroll">
+        <div style="min-width:520px;">
+          <table class="out-table">
+            <thead><tr><th>#</th><th>Province or territory</th><th>$50,000</th><th>$75,000</th><th>$100,000</th><th>Effective rate at $75k</th></tr></thead>
+            <tbody>${body}</tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Ranked by take-home pay at $75,000, for one job all year with only the basic personal amount claimed, worked out with the CRA's payroll formulas. ${esc(TaxEngine.checkedLine({ taxYear: fedDoc.taxYear.label, lastChecked: fedDoc.lastChecked }))}.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+${FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
 // ---------------------------------------------------------------- salary calculator (/salary/)
 
 /* /salary/ is the calculator people reach from the homepage: pick where you're
@@ -935,14 +1004,15 @@ function locationList() {
   if (byId["gb-sct"]) groups[0][1].push(entry("gb-sct", "Scotland", "GBP", hubUrl(byId["gb-sct"])));
   const named = (ps) => ps.map((p) => entry(p.id, p.place.shortName, p.currency, hubUrl(p))).sort((a, b) => a.name.localeCompare(b.name));
   groups.push(["United States", named(places.filter((p) => p.root.country === "US"))]);
+  groups.push(["Canada", named(places.filter((p) => p.root.country === "CA"))]);
   Object.keys(REGIONS).forEach((region) => groups.push([region, named(places.filter((p) => REGIONS[region].includes(p.root.country)))]));
   return groups;
 }
 
 function salaryIndex() {
   const url = SITE + "/salary/";
-  const title = "Salary After Tax Calculator — Take-Home Pay in the UK, US, Europe & More";
-  const desc = "Work out your take-home pay after income tax and social contributions for the UK, every US state, Western Europe, Australia, New Zealand, India and Japan, for the current tax year.";
+  const title = "Salary After Tax Calculator — Take-Home Pay in the UK, US, Canada, Europe & More";
+  const desc = "Work out your take-home pay after income tax and social contributions for the UK, every US state, every Canadian province, Western Europe, Australia, New Zealand, India and Japan, for the current tax year.";
   const groups = locationList();
 
   /* Baked for the default location so the page shows a real answer before,
@@ -964,7 +1034,7 @@ function salaryIndex() {
   const tables = groups.map(([label, xs]) => {
     const links = label === "United Kingdom"
       ? [`<a href="/salary/uk/">England, Wales &amp; N. Ireland: every salary, hourly rate and monthly figure</a>`].concat(xs.filter((x) => x.hub).map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`))
-      : (label === "United States" ? [`<a href="/salary/us/">All states compared</a>`] : []).concat(xs.map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`));
+      : (label === "United States" ? [`<a href="/salary/us/">All states compared</a>`] : label === "Canada" ? [`<a href="/salary/canada/">All provinces compared</a>`] : []).concat(xs.map((x) => `<a href="${x.hub}">${esc(x.name)}</a>`));
     return `        <p class="salary-links-title">${esc(label)}</p>
         <p class="salary-links">${links.join(" ")}</p>`;
   }).join("\n");
@@ -1094,10 +1164,10 @@ const GENERATED = /^\d+(-lakh)?-after-tax$|^\d+-an-hour-after-tax$|^\d+-a-month-
 
 function main() {
   uk.main();
-  const urls = [["/salary/", "0.8"], ["/salary/us/", "0.8"]];
+  const urls = [["/salary/", "0.8"], ["/salary/us/", "0.8"], ["/salary/canada/", "0.8"]];
   uk.SALARIES.forEach((s) => urls.push([`/salary/${s}-after-tax/`, "0.7"]));
 
-  const count = { annual: uk.SALARIES.length, hourly: 0, monthly: 0, hubs: 2 };
+  const count = { annual: uk.SALARIES.length, hourly: 0, monthly: 0, hubs: 3 };
   everywhere.forEach((p) => {
     write(dirOf(hubUrl(p)), placeHub(p));
     urls.push([hubUrl(p), "0.7"]);
@@ -1126,12 +1196,13 @@ function main() {
     count.hourly++;
   });
   write("salary/us", usHub());
+  write("salary/canada", caHub());
   write("salary", salaryIndex());
   write("tax-rates", taxRatesPage());
   urls.push(["/tax-rates/", "0.5"]);
 
   let pruned = 0;
-  new Set(["salary", "salary/us"].concat(everywhere.map((p) => dirOf(base(p))))).forEach((dir) => { pruned += site.prune(dir, GENERATED); });
+  new Set(["salary", "salary/us", "salary/canada"].concat(everywhere.map((p) => dirOf(base(p))))).forEach((dir) => { pruned += site.prune(dir, GENERATED); });
 
   site.sitemapBlock("salary pages", "tools/build-tax-pages.js", urls, "/salary/");
   console.log(`built ${count.annual} annual, ${count.hourly} hourly and ${count.monthly} monthly pages and ${count.hubs} hubs` +

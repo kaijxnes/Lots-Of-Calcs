@@ -1,0 +1,276 @@
+{
+  "id": "ca-qc",
+  "name": "Quebec",
+  "appliesTo": "Residents of Quebec on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-cpp",
+      "replaces": true,
+      "label": "Quebec Pension Plan (QPP)",
+      "group": "social",
+      "note": "6.30% (5.30% base plus 1% first additional) of earnings above $3,500, up to $74,600: at most $4,479.30 in 2026.",
+      "charge": {
+        "pct": 6.3,
+        "of": "ca-cpp-earnings"
+      }
+    },
+    {
+      "id": "ca-cpp2",
+      "replaces": true,
+      "label": "Second additional QPP (QPP2)",
+      "group": "social",
+      "note": "4% of earnings between $74,600 and $85,000: at most $416.",
+      "charge": {
+        "pct": 4,
+        "of": "ca-cpp2-earnings"
+      }
+    },
+    {
+      "id": "ca-ei",
+      "replaces": true,
+      "label": "Employment Insurance (EI)",
+      "group": "social",
+      "note": "Quebec's reduced rate of 1.30% of insurable earnings up to $68,900 (at most $895.70), because QPIP pays parental benefits.",
+      "charge": {
+        "pct": 1.3,
+        "of": {
+          "min": [
+            "gross",
+            68900
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-cpp-base",
+      "replaces": true,
+      "label": "Base QPP contribution",
+      "value": {
+        "pct": 5.3,
+        "of": "ca-cpp-earnings"
+      }
+    },
+    {
+      "id": "ca-contributions-credit",
+      "replaces": true,
+      "label": "Contributions that earn a federal tax credit",
+      "note": "Base QPP, EI and QPIP premiums.",
+      "value": {
+        "sum": [
+          "ca-cpp-base",
+          "ca-ei",
+          {
+            "pct": 0.43,
+            "of": {
+              "min": [
+                "gross",
+                103000
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-income-tax",
+      "replaces": true,
+      "label": "Federal income tax",
+      "group": "tax",
+      "note": "Basic federal tax less the 16.5% Quebec abatement.",
+      "charge": {
+        "mul": [
+          "ca-federal-basic",
+          0.835
+        ]
+      }
+    },
+    {
+      "id": "ca-qc-qpip",
+      "label": "Quebec Parental Insurance Plan (QPIP)",
+      "group": "social",
+      "note": "0.430% of insurable earnings up to $103,000: at most $442.90.",
+      "charge": {
+        "pct": 0.43,
+        "of": {
+          "min": [
+            "gross",
+            103000
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-qc-taxable",
+      "label": "Quebec taxable income",
+      "show": true,
+      "note": "Salary less the deduction for workers (6%, up to $1,450) and the enhanced QPP contributions.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "min": [
+                  {
+                    "pct": 6,
+                    "of": "gross"
+                  },
+                  1450
+                ]
+              },
+              "ca-cpp-enhanced"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-qc-income-tax",
+      "label": "Quebec income tax",
+      "group": "tax",
+      "note": "14% to $54,345, 19% to $108,680, 24% to $132,245 and 25.75% above, less 14% of the $18,952 basic personal amount.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    14
+                  ],
+                  [
+                    54345,
+                    19
+                  ],
+                  [
+                    108680,
+                    24
+                  ],
+                  [
+                    132245,
+                    25.75
+                  ]
+                ],
+                "of": "ca-qc-taxable"
+              },
+              {
+                "pct": 14,
+                "of": 18952
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "note": "Quebec runs its own income tax, pension plan (QPP) and parental insurance (QPIP); federal tax is reduced by the 16.5% Quebec abatement.",
+  "notModelled": [
+    "Quebec credits other than the basic personal amount",
+    "The Quebec work premium and solidarity tax credit",
+    "The Health Services Fund, which only employers pay"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Revenu Quebec: Formulas to Calculate Source Deductions and Contributions (TP-1015.F-V), 2026",
+      "url": "https://www.revenuquebec.ca/documents/en/formulaires/tp/TP-1015.F-V(2026-01).pdf"
+    },
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 122nd edition: federal formulas for Quebec employees",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Text extracted from the Revenu Quebec TP-1015.F-V (2026-01) and CRA T4127 PDFs",
+      "note": "Rates, thresholds, basic personal amount, deduction for workers, QPP and QPIP figures transcribed on 11 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-11",
+  "verifyAt": "https://www.revenuquebec.ca/documents/en/formulaires/tp/TP-1015.F-V(2026-01).pdf",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of T4127 (federal, Quebec variants) and TP-1015.F-V steps 1 and 2.",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1669.5,
+        "ca-ei": 390.0,
+        "ca-qc-qpip": 129.0,
+        "ca-income-tax": 1152.46,
+        "ca-qc-taxable": 28285.0,
+        "ca-qc-income-tax": 1306.62,
+        "net": 25352.42
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of T4127 (federal, Quebec variants) and TP-1015.F-V steps 1 and 2.",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3559.5,
+        "ca-ei": 780.0,
+        "ca-qc-qpip": 258.0,
+        "ca-income-tax": 4427.35,
+        "ca-qc-taxable": 57985.0,
+        "ca-qc-income-tax": 5646.62,
+        "net": 45328.53
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of T4127 (federal, Quebec variants) and TP-1015.F-V steps 1 and 2.",
+      "expect": {
+        "ca-taxable": 98873.0,
+        "ca-cpp": 4479.3,
+        "ca-ei": 895.7,
+        "ca-qc-qpip": 430.0,
+        "ca-income-tax": 11054.06,
+        "ca-qc-taxable": 97423.0,
+        "ca-qc-income-tax": 13139.84,
+        "net": 69585.1
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of T4127 (federal, Quebec variants) and TP-1015.F-V steps 1 and 2.",
+      "expect": {
+        "ca-taxable": 198873.0,
+        "ca-cpp": 4479.3,
+        "ca-ei": 895.7,
+        "ca-qc-qpip": 442.9,
+        "ca-income-tax": 32407.63,
+        "ca-qc-taxable": 197423.0,
+        "ca-qc-income-tax": 37717.61,
+        "net": 123640.87
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of T4127 (federal, Quebec variants) and TP-1015.F-V steps 1 and 2.",
+      "expect": {
+        "ca-taxable": 298873.0,
+        "ca-cpp": 4479.3,
+        "ca-ei": 895.7,
+        "ca-qc-qpip": 442.9,
+        "ca-income-tax": 58118.48,
+        "ca-qc-taxable": 297423.0,
+        "ca-qc-income-tax": 63467.61,
+        "net": 172180.01
+      }
+    }
+  ]
+}

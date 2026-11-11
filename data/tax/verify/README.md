@@ -20,6 +20,20 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | **New Zealand** | [nz](nz.md) | 2026-27 | 23 | — | — |
 | **France** | [fr](fr.md) | 2026 | 38 | — | — |
 | Austria | [at](at.md) | 2026 | 42 | — | — |
+| Canada (federal) | [ca](ca.md) | 2026 | 26 | 2026-11-11 | — |
+| Alberta | [ca-ab](ca-ab.md) | 2026 | 15 | 2026-11-11 | — |
+| British Columbia | [ca-bc](ca-bc.md) | 2026 | 17 | 2026-11-11 | — |
+| Manitoba | [ca-mb](ca-mb.md) | 2026 | 13 | 2026-11-11 | — |
+| New Brunswick | [ca-nb](ca-nb.md) | 2026 | 11 | 2026-11-11 | — |
+| Newfoundland and Labrador | [ca-nl](ca-nl.md) | 2026 | 15 | 2026-11-11 | — |
+| Nova Scotia | [ca-ns](ca-ns.md) | 2026 | 12 | 2026-11-11 | — |
+| Northwest Territories | [ca-nt](ca-nt.md) | 2026 | 11 | 2026-11-11 | — |
+| Nunavut | [ca-nu](ca-nu.md) | 2026 | 11 | 2026-11-11 | — |
+| Ontario | [ca-on](ca-on.md) | 2026 | 37 | 2026-11-11 | — |
+| Prince Edward Island | [ca-pe](ca-pe.md) | 2026 | 13 | 2026-11-11 | — |
+| Quebec | [ca-qc](ca-qc.md) | 2026 | 23 | 2026-11-11 | — |
+| Saskatchewan | [ca-sk](ca-sk.md) | 2026 | 10 | 2026-11-11 | — |
+| Yukon | [ca-yt](ca-yt.md) | 2026 | 12 | 2026-11-11 | — |
 | Denmark | [dk](dk.md) | 2026 | 21 | — | — |
 | Spain | [es](es.md) | 2026 | 39 | — | — |
 | India | [in](in.md) | 2026-27 | 27 | — | — |

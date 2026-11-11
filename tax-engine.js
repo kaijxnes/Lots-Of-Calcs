@@ -398,7 +398,8 @@ const TaxEngine = (function () {
     JPY: { locale: "en-US", display: "symbol", decimals: 0 },
     INR: { locale: "en-IN", display: "symbol", decimals: 2 },
     AUD: { locale: "en-AU", display: "symbol", decimals: 2 },
-    NZD: { locale: "en-NZ", display: "symbol", decimals: 2 }
+    NZD: { locale: "en-NZ", display: "symbol", decimals: 2 },
+    CAD: { locale: "en-CA", display: "symbol", decimals: 2 }
   };
 
   /* whole: drop the pence/cents, for headline salary figures */

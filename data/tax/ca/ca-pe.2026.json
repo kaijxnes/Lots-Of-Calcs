@@ -1,0 +1,175 @@
+{
+  "id": "ca-pe",
+  "name": "Prince Edward Island",
+  "appliesTo": "Residents of Prince Edward Island on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-pe-credits",
+      "label": "Prince Edward Island non-refundable credits",
+      "note": "9.5% of the basic personal amount ($15,000) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 9.5,
+        "of": {
+          "sum": [
+            15000,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-pe-basic",
+      "label": "Basic Prince Edward Island tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    9.5
+                  ],
+                  [
+                    33928,
+                    13.47
+                  ],
+                  [
+                    65820,
+                    16.6
+                  ],
+                  [
+                    106890,
+                    17.62
+                  ],
+                  [
+                    142520,
+                    19
+                  ],
+                  [
+                    200000,
+                    20
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-pe-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-pe-income-tax",
+      "label": "Prince Edward Island income tax",
+      "group": "tax",
+      "note": "9.5% to $33,928, 13.47% to $65,820, 16.6% to $106,890, 17.62% to $142,520, 19% to $200,000, 20% above, less credits.",
+      "charge": {
+        "sum": [
+          "ca-pe-basic"
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI",
+    "Low-income tax reductions claimed on the return"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 122nd edition, effective January 1, 2026",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf"
+    },
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 123rd edition, effective July 1, 2026",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jul/t4127-jul-26e.pdf"
+    },
+    {
+      "title": "CRA: Current year tax rates and income brackets (2026)",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Text extracted from the CRA T4127 PDFs",
+      "note": "Table 8.1 bands, Table 8.2 basic amounts and the province's formulas in chapter 4, transcribed on 11 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-11",
+  "verifyAt": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1576.75,
+        "ca-ei": 489.0,
+        "ca-income-tax": 1397.38,
+        "ca-pe-income-tax": 1228.75,
+        "net": 25308.12
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3361.75,
+        "ca-ei": 978.0,
+        "ca-income-tax": 5338.3,
+        "ca-pe-income-tax": 4875.35,
+        "net": 45446.6
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 13301.6,
+        "ca-pe-income-tax": 11139.77,
+        "net": 69789.11
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 38876.54,
+        "ca-pe-income-tax": 29455.67,
+        "net": 125898.27
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298873.0,
+        "ca-cpp": 4230.45,
+        "ca-ei": 1123.07,
+        "ca-income-tax": 69667.99,
+        "ca-pe-income-tax": 49444.4,
+        "net": 175118.09
+      }
+    }
+  ],
+  "note": "PEI added a 20% band above $200,000 for 2026 (announced 14 Apr 2026). Payroll applies 21% from July to catch up; the full-year rate is 20%."
+}

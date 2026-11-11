@@ -25,7 +25,8 @@ const SALARIES = {
   JPY: [3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 10000000, 12000000],
   INR: [500000, 800000, 1000000, 1200000, 1500000, 2000000, 2500000, 3000000, 5000000],
   AUD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000]),
-  NZD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000])
+  NZD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000]),
+  CAD: range(40000, 100000, 5000).concat([110000, 120000, 130000, 150000, 175000, 200000, 250000])
 };
 
 /* Hourly-rate pages. `hours` is the full-time week the annual figure assumes
@@ -36,7 +37,8 @@ const HOURLY = {
   USD: { hours: 40, rates: [15, 18, 20, 22, 25, 30, 35, 40, 50], national: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32, 35, 40, 45, 50] },
   GBP: { hours: 37.5, rates: [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30, 35, 40, 50] },
   AUD: { hours: 38, rates: [25, 28, 30, 32, 35, 38, 40, 45, 50, 60] },
-  NZD: { hours: 40, rates: [24, 25, 28, 30, 32, 35, 40, 45, 50] }
+  NZD: { hours: 40, rates: [24, 25, 28, 30, 32, 35, 40, 45, 50] },
+  CAD: { hours: 40, rates: [18, 20, 22, 25, 28, 30, 35, 40, 45, 50] }
 };
 
 /* Monthly-pay pages (gross a month → take-home a month), only for places
@@ -54,7 +56,7 @@ const MONTHLY = {
 const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk"];
 
 /* The salary each hub uses for its headline comparison */
-const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000 };
+const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000, CAD: 75000 };
 
 /* Where each jurisdiction's pages live, and how its name reads in a sentence.
    The UK's pages sit directly under /salary/ (its annual pages come from
@@ -70,11 +72,15 @@ const PLACES = {
   "us-ny-nyc": { path: "us/new-york-city" }
 };
 
-/* US states default to /salary/us/<name>/ */
+/* US states default to /salary/us/<name>/, Canadian provinces and
+   territories to /salary/canada/<name>/ */
 function placeFor(id, doc) {
   if (PLACES[id]) return Object.assign({ inName: doc.name, shortName: doc.name }, PLACES[id]);
   if (id.startsWith("us-")) {
     return { path: "us/" + doc.name.toLowerCase().replace(/[^a-z]+/g, "-"), inName: doc.name, shortName: doc.name };
+  }
+  if (id.startsWith("ca-")) {
+    return { path: "canada/" + doc.name.toLowerCase().replace(/[^a-z]+/g, "-"), inName: doc.name, shortName: doc.name };
   }
   return null;
 }
@@ -83,7 +89,8 @@ function placeFor(id, doc) {
 const COMPARE = {
   US: ["us-tx", "us-fl", "us-wa", "us-ca", "us-ny", "us-ny-nyc", "us-il", "us-pa", "us-ma", "us-nj", "us-ga", "us-nc", "us-co", "us-az", "us-oh"],
   EUR: ["de", "fr", "es", "it", "nl", "ie", "pt", "at"],
-  GBP: ["gb", "gb-sct"]
+  GBP: ["gb", "gb-sct"],
+  CA: ["ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"]
 };
 
 module.exports = { SALARIES, HOURLY, MONTHLY, MONTHLY_PLACES, HEADLINE, PLACES, COMPARE, placeFor };
