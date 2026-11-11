@@ -1,0 +1,445 @@
+{
+  "id": "fi",
+  "name": "Finland",
+  "kind": "country",
+  "country": "FI",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "en-IE",
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {},
+  "items": [
+    {
+      "id": "fi-pension",
+      "label": "Employee pension contribution (TyEL)",
+      "group": "social",
+      "note": "7.30% of pay for all employees aged 17 to 64 in 2026.",
+      "charge": {
+        "pct": 7.3,
+        "of": "gross"
+      }
+    },
+    {
+      "id": "fi-unemployment",
+      "label": "Unemployment insurance contribution",
+      "group": "social",
+      "note": "0.89% of pay.",
+      "charge": {
+        "pct": 0.89,
+        "of": "gross"
+      }
+    },
+    {
+      "id": "fi-daily-allowance",
+      "label": "Health insurance daily allowance contribution",
+      "group": "social",
+      "note": "0.88% of pay for anyone earning €17,255 or more a year; nothing below that.",
+      "charge": {
+        "if": {
+          "gte": [
+            "gross",
+            17255
+          ]
+        },
+        "then": {
+          "pct": 0.88,
+          "of": "gross"
+        },
+        "else": 0
+      }
+    },
+    {
+      "id": "fi-net-earned",
+      "label": "Net earned income (puhdas ansiotulo)",
+      "show": true,
+      "note": "Pay less the automatic €750 deduction for work expenses and the employee contributions above, which are deductible.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "min": [
+                  750,
+                  "gross"
+                ]
+              },
+              "fi-pension",
+              "fi-unemployment",
+              "fi-daily-allowance"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fi-basic-deduction",
+      "label": "Basic deduction (perusvähennys)",
+      "show": true,
+      "note": "Up to €4,265 in municipal taxation, reduced by 18% of income above €4,265 (gone at about €27,960).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "min": [
+                  "fi-net-earned",
+                  4265
+                ]
+              },
+              {
+                "pct": 18,
+                "of": {
+                  "max": [
+                    0,
+                    {
+                      "sub": [
+                        "fi-net-earned",
+                        4265
+                      ]
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fi-municipal-taxable",
+      "label": "Taxable income in municipal taxation",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "fi-net-earned",
+              "fi-basic-deduction"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fi-state-before",
+      "label": "State income tax before credits",
+      "value": {
+        "brackets": [
+          [
+            0,
+            12.64
+          ],
+          [
+            22000,
+            19
+          ],
+          [
+            32600,
+            30.25
+          ],
+          [
+            40100,
+            33.25
+          ],
+          [
+            52100,
+            37.5
+          ]
+        ],
+        "of": "fi-net-earned"
+      }
+    },
+    {
+      "id": "fi-municipal-before",
+      "label": "Municipal tax before credits",
+      "value": {
+        "pct": 7.57,
+        "of": "fi-municipal-taxable"
+      }
+    },
+    {
+      "id": "fi-health-care-before",
+      "label": "Health care contribution before credits",
+      "value": {
+        "pct": 1.1,
+        "of": "fi-municipal-taxable"
+      }
+    },
+    {
+      "id": "fi-work-credit",
+      "label": "Earned income tax credit (työtulovähennys)",
+      "show": true,
+      "note": "18% of pay, at most €3,430, reduced by 2% of net earned income between €35,000 and €50,550 (so never below €3,119 once the full credit is reached).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "min": [
+                  3430,
+                  {
+                    "pct": 18,
+                    "of": "gross"
+                  }
+                ]
+              },
+              {
+                "pct": 2,
+                "of": {
+                  "clamp": {
+                    "sub": [
+                      "fi-net-earned",
+                      35000
+                    ]
+                  },
+                  "min": 0,
+                  "max": 15550
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fi-credit-left",
+      "label": "Credit left after state tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "fi-work-credit",
+              "fi-state-before"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fi-local-share",
+      "label": "Share of municipal tax and health care contribution kept after the credit",
+      "value": {
+        "if": {
+          "gt": [
+            {
+              "sum": [
+                "fi-municipal-before",
+                "fi-health-care-before"
+              ]
+            },
+            0
+          ]
+        },
+        "then": {
+          "max": [
+            0,
+            {
+              "sub": [
+                1,
+                {
+                  "div": [
+                    "fi-credit-left",
+                    {
+                      "sum": [
+                        "fi-municipal-before",
+                        "fi-health-care-before"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "else": 0
+      }
+    },
+    {
+      "id": "fi-state-tax",
+      "label": "State income tax",
+      "group": "tax",
+      "note": "12.64% up to €22,000 of net earned income, then 19%, 30.25% from €32,600, 33.25% from €40,100 and 37.5% from €52,100, less the earned income tax credit.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "fi-state-before",
+              "fi-work-credit"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "fi-municipal-tax",
+      "label": "Municipal tax",
+      "group": "tax",
+      "note": "The 2026 weighted average of 7.57% for mainland Finland (municipalities range from 4.7% to 10.9%). Any credit left after state tax comes off this and the health care contribution in proportion.",
+      "charge": {
+        "mul": [
+          "fi-municipal-before",
+          "fi-local-share"
+        ]
+      }
+    },
+    {
+      "id": "fi-health-care",
+      "label": "Health care contribution (sairaanhoitomaksu)",
+      "group": "social",
+      "note": "1.10% of income taxable in municipal taxation.",
+      "charge": {
+        "mul": [
+          "fi-health-care-before",
+          "fi-local-share"
+        ]
+      }
+    },
+    {
+      "id": "fi-yle-tax",
+      "label": "Public broadcasting tax (Yle-vero)",
+      "group": "tax",
+      "note": "2.5% of income above €15,150, at most €160.",
+      "charge": {
+        "min": [
+          160,
+          {
+            "pct": 2.5,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "fi-net-earned",
+                    15150
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "An employee aged 17 to 64 living in mainland Finland",
+    "The average municipal tax rate",
+    "Not a member of the Evangelical Lutheran or Orthodox church",
+    "Employment income only"
+  ],
+  "notModelled": [
+    "Church tax for members (about 1–2%, set by each parish)",
+    "Individual municipal tax rates",
+    "Holiday pay (lomaraha) and other payments taxed with pay",
+    "Travel, union and other deductions beyond the automatic €750",
+    "The higher earned income credit for over-65s and the extra for children"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Vero — Verotettavan tulon laskeminen henkilöverotuksessa 2026 (basic deduction, earned income credit)",
+      "url": "https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/"
+    },
+    {
+      "title": "Vero — Veroperusteet (health care and daily allowance contributions, Yle tax)",
+      "url": "https://vero.fi/henkiloasiakkaat/verokortti-ja-veroilmoitus/verokortti/veroprosentti-ja-tuloraja/veroperusteet/"
+    },
+    {
+      "title": "Veronmaksajat — Valtion tulovero 2026",
+      "url": "https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/ansiotulojen-verot-ja-maksut/valtion-tulovero/"
+    },
+    {
+      "title": "Veronmaksajat — Ansiotulosta tehtävät vähennykset 2026",
+      "url": "https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/verovahennykset/2026/ansiotulosta-tehtavat-vahennykset-2026/"
+    },
+    {
+      "title": "Eläketurvakeskus — Lakisääteiset sosiaalivakuutusmaksut Suomessa 2026",
+      "url": "https://www.etk.fi/wp-content/uploads/2026/01/lakisaateiset-sosiaalivakuutusmaksut-suomessa-2026-suomi-1.pdf"
+    },
+    {
+      "title": "Kuntaliitto / Verohallinto — Kuntien veroprosentit 2026 (weighted average 7.57%)",
+      "url": "https://www.kuntaliitto.fi/sites/default/files/media/file/Kuntien-veroprosentit-2026.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Vero, Veronmaksajat, ETK and Kuntaliitto, 11 Nov 2026",
+      "note": "Rules and figures transcribed from the pages and PDFs listed; the Veronmaksajat 2026 table of total deductions by salary was used as an end-to-end cross-check."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-11",
+  "verifyAt": "https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/",
+  "tests": [
+    {
+      "gross": 20000,
+      "note": "Separate implementation of the Vero rules.",
+      "expect": {
+        "fi-net-earned": 17436.0,
+        "fi-state-tax": 0.0,
+        "fi-municipal-tax": 105.98,
+        "fi-health-care": 15.4,
+        "fi-yle-tax": 57.15,
+        "net": 18007.47
+      }
+    },
+    {
+      "gross": 35000,
+      "note": "Separate implementation of the Vero rules.",
+      "expect": {
+        "fi-net-earned": 31075.5,
+        "fi-state-tax": 1075.15,
+        "fi-municipal-tax": 2352.42,
+        "fi-health-care": 341.83,
+        "fi-yle-tax": 160.0,
+        "net": 27896.11
+      }
+    },
+    {
+      "gross": 50000,
+      "note": "Separate implementation of the Vero rules.",
+      "expect": {
+        "fi-net-earned": 44715.0,
+        "fi-state-tax": 5362.34,
+        "fi-municipal-tax": 3384.93,
+        "fi-health-care": 491.87,
+        "fi-yle-tax": 160.0,
+        "net": 36065.87
+      }
+    },
+    {
+      "gross": 80000,
+      "note": "Separate implementation of the Vero rules.",
+      "expect": {
+        "fi-net-earned": 71994.0,
+        "fi-state-tax": 15394.8,
+        "fi-municipal-tax": 5449.95,
+        "fi-health-care": 791.93,
+        "fi-yle-tax": 160.0,
+        "net": 50947.32
+      }
+    },
+    {
+      "gross": 120000,
+      "note": "Separate implementation of the Vero rules.",
+      "expect": {
+        "fi-net-earned": 108366.0,
+        "fi-state-tax": 29034.3,
+        "fi-municipal-tax": 8203.31,
+        "fi-health-care": 1192.03,
+        "fi-yle-tax": 160.0,
+        "net": 70526.37
+      }
+    }
+  ]
+}

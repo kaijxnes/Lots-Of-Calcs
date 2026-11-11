@@ -416,7 +416,7 @@ function card(href, icon, title, desc) {
 `;
 }
 
-const ICON = { US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", FR: "🇫🇷", ES: "🇪🇸", IT: "🇮🇹", NL: "🇳🇱", IE: "🇮🇪", PT: "🇵🇹", AT: "🇦🇹", NO: "🇳🇴", DK: "🇩🇰", SE: "🇸🇪", AU: "🇦🇺", NZ: "🇳🇿", IN: "🇮🇳", JP: "🇯🇵", CA: "🇨🇦" };
+const ICON = { US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", FR: "🇫🇷", ES: "🇪🇸", IT: "🇮🇹", NL: "🇳🇱", IE: "🇮🇪", PT: "🇵🇹", AT: "🇦🇹", NO: "🇳🇴", DK: "🇩🇰", SE: "🇸🇪", AU: "🇦🇺", NZ: "🇳🇿", IN: "🇮🇳", JP: "🇯🇵", CA: "🇨🇦", FI: "🇫🇮" };
 function iconFor(p) {
   return p.id === "gb-sct" ? "🏴󠁧󠁢󠁳󠁣󠁴󠁿" : (ICON[p.root.country] || "💷");
 }
@@ -993,7 +993,7 @@ ${FOOTER}
    list at the bottom rather than being the page. */
 
 const REGIONS = {
-  Europe: ["DE", "FR", "ES", "IT", "NL", "IE", "PT", "AT", "NO", "DK", "SE"],
+  Europe: ["DE", "FR", "ES", "IT", "NL", "IE", "PT", "AT", "FI", "NO", "DK", "SE"],
   "Asia-Pacific": ["AU", "NZ", "IN", "JP"]
 };
 
