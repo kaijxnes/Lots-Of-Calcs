@@ -24,7 +24,7 @@ data/tax/
 node tools/tax/check.js            # validate, run every worked test, smoke-test every option
 node tools/tax/check.js us-ca      # one jurisdiction and its children
 node tools/tax/check.js --table    # summary: tax year, verified date, provisional items
-node tools/tax/check.js --write    # also regenerate index.json
+node tools/tax/check.js --write    # also regenerate index.json and the checklists in verify/
 ```
 
 **Correct a rate.** Edit the number in the file, update the affected `tests`
@@ -43,7 +43,10 @@ file's date. Change a figure only with a source for the new value.
 
 **Mark something verified.** When a person has checked a file against the
 primary source (the links in `sources` / `verifyAt`), set `lastVerified` to
-that date. Pages say "not verified" while it is `null`.
+that date. Pages say "not verified" while it is `null`. The checklists in
+`verify/` (one per jurisdiction, biggest audiences first in
+`verify/README.md`) list every figure in a file next to its sources, so a
+check is a matter of ticking down the list.
 
 **Rebuild the salary pages** after any change here:
 `node tools/build-tax-pages.js`. It regenerates every `/salary/` page and hub
