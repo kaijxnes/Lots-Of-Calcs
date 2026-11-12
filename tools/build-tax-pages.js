@@ -783,6 +783,8 @@ function monthlyPage(p, monthly) {
     [`Why might my payslip show a different amount?`,
       p.currency === "GBP"
         ? "PAYE works cumulatively across the tax year, so the first month of a new job, a mid-year pay rise or an emergency tax code can make one month's figure differ. Pension contributions, student loan repayments and benefits in kind also come off a real payslip."
+        : p.root.country === "CA"
+        ? "Many Canadian employers pay every two weeks (26 pays a year) rather than monthly, so a single paycheque is about 12/26 of the monthly figure. CPP and EI stop once you reach the year's maximums, so later pays in a high-earning year are a little larger."
         : "Withholding in a single month can differ from a twelfth of the annual figure — for example in the first month of a job, after a pay rise, or where bonuses and one-off payments are taxed differently. Pension contributions and other deductions specific to you also come off a real payslip."]
   ];
   if (p.id === "gb") q.push(["Is this the same in Scotland?", "No. Scotland sets its own income tax bands and rates, so the income tax differs at most salaries; National Insurance is the same across the UK. These figures are for England, Wales and Northern Ireland."]);

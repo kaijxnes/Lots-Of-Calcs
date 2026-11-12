@@ -26,14 +26,16 @@ const SETS = {
     monthly: [25, 50, 100, 150, 200, 250, 300, 400, 500, 750, 1000, 1500, 2000],
     lump: [1000, 2000, 5000, 10000, 15000, 20000, 25000, 50000, 100000, 250000],
     wrappers: "In the UK, a stocks and shares ISA or a pension lets investments grow without income or capital gains tax; outside them, tax may be due on gains and income above the yearly allowances.",
-    target: 100000
+    target: 100000,
+    wrapperLink: 'Choosing between an ISA and a pension? The <a href="/isa-vs-pension/">ISA vs pension calculator</a> compares them after tax.'
   },
   USD: {
     base: "/investing/us/", symbol: "$", country: "US",
     monthly: [25, 50, 100, 150, 200, 250, 300, 400, 500, 750, 1000, 1500, 2000],
     lump: [1000, 2000, 5000, 10000, 15000, 20000, 25000, 50000, 100000, 250000],
     wrappers: "In the US, a 401(k) or IRA lets investments grow without tax until you withdraw (or tax-free with a Roth); in a taxable brokerage account, dividends and gains are taxed.",
-    target: 100000
+    target: 100000,
+    wrapperLink: 'Roth or traditional? The <a href="/roth-vs-traditional/">Roth vs traditional calculator</a> compares them after tax (in Canada, <a href="/tfsa-vs-rrsp/">TFSA vs RRSP</a>).'
   }
 };
 
@@ -168,7 +170,7 @@ ${tool(set, kind, n)}
         ? `Investing <strong>${esc(a0)} a month</strong> for 10 years at ${EXAMPLE.rate}% a year grows to about <strong>${money(set, r10.value)}</strong>: ${money(set, r10.paid)} paid in and ${money(set, r10.growth)} of growth. Leave it for 30 years and it is about ${money(set, r30.value)}, of which ${money(set, r30.growth)} is growth.`
         : `A lump sum of <strong>${esc(a0)}</strong> left for 10 years at ${EXAMPLE.rate}% a year grows to about <strong>${money(set, r10.value)}</strong>. After 30 years it is about ${money(set, r30.value)} &mdash; ${(r30.value / n).toFixed(1)} times what you started with.`}</p>
       <p class="tool-section-title" style="margin-top:22px;">What ${esc(what)} grows to</p>
-${table(["Return a year"].concat(YEARS.map((y) => `${y} years`)), (paidRow ? [paidRow.map((c, i) => (i === 0 ? c : `<em>${c}</em>`))] : []).concat(grid), 120 + YEARS.length * 95)}      <p class="tool-hint" style="margin-top:12px;">Before fees, tax and inflation. ${monthly ? "Contributions are paid at the end of each month. " : ""}Each year grows by exactly the return shown.</p>
+${table(["Return a year"].concat(YEARS.map((y) => `${y} years`)), (paidRow ? [paidRow.map((c, i) => (i === 0 ? c : `<em>${c}</em>`))] : []).concat(grid), 120 + YEARS.length * 95)}      <p class="tool-hint" style="margin-top:12px;">Before fees, tax and inflation. ${monthly ? "Contributions are paid at the end of each month. " : ""}Each year grows by exactly the return shown. ${set.wrapperLink}</p>
     </main>
 
     <main class="tool">
