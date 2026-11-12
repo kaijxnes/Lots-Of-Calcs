@@ -51,9 +51,11 @@ const MONTHLY = {
   EUR: [2000, 2500, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000],
   SEK: [25000, 30000, 35000, 40000, 45000, 50000, 60000, 70000],
   NOK: [35000, 40000, 45000, 50000, 60000, 70000, 80000],
-  DKK: [25000, 30000, 35000, 40000, 45000, 50000, 60000]
+  DKK: [25000, 30000, 35000, 40000, 45000, 50000, 60000],
+  CAD: [3000, 3500, 4000, 4500, 5000, 5500, 6000, 7000, 8000, 10000]
 };
-const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi"];
+const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi",
+  "ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"];
 
 /* The salary each hub uses for its headline comparison */
 const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000, CAD: 75000 };

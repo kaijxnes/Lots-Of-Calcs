@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="/consent.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage Calculator — Monthly Repayments, Interest &amp; Balance by Year</title>
+<meta name="description" content="Work out your monthly mortgage repayment, the total interest and what you'll still owe each year, for repayment or interest-only mortgages. A £270,000 mortgage at 4.5% over 25 years costs £1,500.75 a month.">
+<link rel="canonical" href="https://lotsofcalcs.com/mortgage-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Mortgage Calculator — Monthly Repayments, Interest &amp; Balance by Year">
+<meta property="og:description" content="Work out your monthly mortgage repayment, the total interest and what you'll still owe each year, for repayment or interest-only mortgages. A £270,000 mortgage at 4.5% over 25 years costs £1,500.75 a month.">
+<meta property="og:url" content="https://lotsofcalcs.com/mortgage-calculator/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Mortgage Calculator — Monthly Repayments, Interest &amp; Balance by Year">
+<meta name="twitter:description" content="Work out your monthly mortgage repayment, the total interest and what you'll still owe each year, for repayment or interest-only mortgages. A £270,000 mortgage at 4.5% over 25 years costs £1,500.75 a month.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Mortgage Calculator — Monthly Repayments, Interest & Balance by Year",
+    "description": "Work out your monthly mortgage repayment, the total interest and what you'll still owe each year, for repayment or interest-only mortgages. A £270,000 mortgage at 4.5% over 25 years costs £1,500.75 a month.",
+    "url": "https://lotsofcalcs.com/mortgage-calculator/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Savings & Investing",
+        "item": "https://lotsofcalcs.com/savings-investing/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Mortgage Calculator",
+        "item": "https://lotsofcalcs.com/mortgage-calculator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Mortgage Calculator",
+    "url": "https://lotsofcalcs.com/mortgage-calculator/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How is a mortgage repayment worked out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "With a repayment mortgage, every monthly payment is the same and covers that month's interest plus some of the loan. The payment is set so the loan is paid off exactly at the end of the term: payment = loan × r × (1 + r)ⁿ ÷ ((1 + r)ⁿ − 1), where r is the annual rate divided by 12 and n is the number of months. On £270,000 at 4.5% over 25 years that is £1,500.75."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do I pay mostly interest at the start?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Interest is charged on what you still owe, which is highest at the start. In the first year of the example, £12,028 of the payments is interest and only £5,981 reduces the loan; you don't owe less than half until year 16. Overpaying early has the biggest effect for the same reason."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the difference between repayment and interest-only?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Interest-only payments cover just the interest, so they are lower — £1,012.50 a month in the example against £1,500.75 — but the whole £270,000 is still owed at the end and has to be repaid from savings, investments or a sale. Over 25 years interest-only costs £303,750 in interest, against £180,224 on repayment."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does a longer term make a mortgage cheaper?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It lowers the monthly payment but raises the total cost. The example over 35 years would cost £1,277.79 a month but £266,673 in interest, against £180,224 over 25 years."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does this include fees, insurance or property tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No — it is the loan alone. Arrangement fees can be added to the loan or paid up front; buildings insurance, and in the US property tax, homeowners insurance and any mortgage insurance, are paid on top. The mortgage affordability calculator includes US property tax and insurance."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Mortgage calculator</h1>
+      <p class="page-subtitle">Your monthly repayment, the interest over the term and what you still owe each year.</p>
+    </header>
+
+    <main class="tool" id="mc-tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="mc-currency">Currency</label>
+          <select id="mc-currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="A$">A$ Australian Dollar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mc-type">Mortgage type</label>
+          <select id="mc-type">
+            <option value="repayment" selected>Repayment (capital and interest)</option>
+            <option value="interest">Interest only</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="mc-price">Property price</label>
+          <input type="number" id="mc-price" value="300000" step="any" min="0" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="mc-deposit">Deposit</label>
+          <input type="number" id="mc-deposit" value="30000" step="any" min="0" inputmode="decimal">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="mc-rate">Interest rate (% a year)</label>
+          <input type="number" id="mc-rate" value="4.5" step="any" min="0" inputmode="decimal">
+          <p class="tool-hint" style="margin-top:4px;">An example — use the rate you've been offered</p>
+        </div>
+        <div class="field">
+          <label for="mc-years">Term (years)</label>
+          <input type="number" id="mc-years" value="25" step="any" min="0" inputmode="decimal">
+        </div>
+      </div>
+      <p class="tool-hint" id="mc-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="mc-monthly">£1,500.75</div>
+          <div class="label" id="mc-label">a month on a £270,000 mortgage</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Loan</span><span class="r-value" id="mc-loan">£270,000</span></div>
+          <div class="result-row"><span class="r-label">Loan to value</span><span class="r-value" id="mc-ltv">90%</span></div>
+          <div class="result-row"><span class="r-label">Total interest</span><span class="r-value" id="mc-interest">£180,224</span></div>
+          <div class="result-row highlight"><span class="r-label">Total repaid</span><span class="r-value" id="mc-total">£450,224</span></div>
+          <div class="result-row"><span class="r-label">Still owed at the end</span><span class="r-value" id="mc-end">£0</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:22px;">Year by year</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Year</th><th>Interest paid</th><th>Loan repaid</th><th>Still owed</th></tr></thead>
+            <tbody id="mc-body">
+<tr><td>1</td><td>£12,028</td><td>£5,981</td><td>£264,019</td></tr>
+<tr><td>2</td><td>£11,753</td><td>£6,256</td><td>£257,763</td></tr>
+<tr><td>3</td><td>£11,465</td><td>£6,544</td><td>£251,219</td></tr>
+<tr><td>4</td><td>£11,165</td><td>£6,844</td><td>£244,375</td></tr>
+<tr><td>5</td><td>£10,850</td><td>£7,159</td><td>£237,216</td></tr>
+<tr><td>6</td><td>£10,522</td><td>£7,487</td><td>£229,729</td></tr>
+<tr><td>7</td><td>£10,178</td><td>£7,831</td><td>£221,898</td></tr>
+<tr><td>8</td><td>£9,818</td><td>£8,191</td><td>£213,706</td></tr>
+<tr><td>9</td><td>£9,442</td><td>£8,567</td><td>£205,139</td></tr>
+<tr><td>10</td><td>£9,048</td><td>£8,961</td><td>£196,178</td></tr>
+<tr><td>11</td><td>£8,636</td><td>£9,373</td><td>£186,805</td></tr>
+<tr><td>12</td><td>£8,206</td><td>£9,803</td><td>£177,002</td></tr>
+<tr><td>13</td><td>£7,755</td><td>£10,254</td><td>£166,748</td></tr>
+<tr><td>14</td><td>£7,284</td><td>£10,725</td><td>£156,024</td></tr>
+<tr><td>15</td><td>£6,792</td><td>£11,217</td><td>£144,806</td></tr>
+<tr><td>16</td><td>£6,276</td><td>£11,733</td><td>£133,073</td></tr>
+<tr><td>17</td><td>£5,737</td><td>£12,272</td><td>£120,802</td></tr>
+<tr><td>18</td><td>£5,173</td><td>£12,835</td><td>£107,966</td></tr>
+<tr><td>19</td><td>£4,584</td><td>£13,425</td><td>£94,541</td></tr>
+<tr><td>20</td><td>£3,967</td><td>£14,042</td><td>£80,499</td></tr>
+<tr><td>21</td><td>£3,322</td><td>£14,687</td><td>£65,812</td></tr>
+<tr><td>22</td><td>£2,647</td><td>£15,362</td><td>£50,451</td></tr>
+<tr><td>23</td><td>£1,942</td><td>£16,067</td><td>£34,383</td></tr>
+<tr><td>24</td><td>£1,203</td><td>£16,806</td><td>£17,578</td></tr>
+<tr><td>25</td><td>£431</td><td>£17,578</td><td>£0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How the rate changes the payment</p>
+      <p class="about-text">The same £270,000 over 25 years at different rates:</p>
+      <div class="table-scroll">
+        <div style="min-width:440px;">
+          <table class="out-table">
+            <thead><tr><th>Rate</th><th>Monthly payment</th><th>Total interest</th><th>Against 4.5%</th></tr></thead>
+            <tbody>
+<tr><td>3%</td><td>£1,280.37</td><td>£114,111</td><td>−£220.38 a month</td></tr>
+<tr><td>3.5%</td><td>£1,351.68</td><td>£135,505</td><td>−£149.06 a month</td></tr>
+<tr><td>4%</td><td>£1,425.16</td><td>£157,548</td><td>−£75.59 a month</td></tr>
+<tr><td>4.5%</td><td>£1,500.75</td><td>£180,224</td><td>—</td></tr>
+<tr><td>5%</td><td>£1,578.39</td><td>£203,518</td><td>+£77.65 a month</td></tr>
+<tr><td>5.5%</td><td>£1,658.04</td><td>£227,411</td><td>+£157.29 a month</td></tr>
+<tr><td>6%</td><td>£1,739.61</td><td>£251,884</td><td>+£238.87 a month</td></tr>
+<tr><td>7%</td><td>£1,908.30</td><td>£302,491</td><td>+£407.56 a month</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-section-title" style="margin-top:22px;">And how the term changes it</p>
+      <div class="table-scroll">
+        <div style="min-width:440px;">
+          <table class="out-table">
+            <thead><tr><th>Term</th><th>Monthly payment</th><th>Total interest</th><th>Total repaid</th></tr></thead>
+            <tbody>
+<tr><td>15 years</td><td>£2,065.48</td><td>£101,787</td><td>£371,787</td></tr>
+<tr><td>20 years</td><td>£1,708.15</td><td>£139,957</td><td>£409,957</td></tr>
+<tr><td>25 years</td><td>£1,500.75</td><td>£180,224</td><td>£450,224</td></tr>
+<tr><td>30 years</td><td>£1,368.05</td><td>£222,498</td><td>£492,498</td></tr>
+<tr><td>35 years</td><td>£1,277.79</td><td>£266,673</td><td>£536,673</td></tr>
+<tr><td>40 years</td><td>£1,213.82</td><td>£312,633</td><td>£582,633</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Monthly interest is the annual rate divided by 12. Lenders' figures can differ by a few pence or cents depending on how they charge interest. For a particular loan size see <a href="/mortgage/">mortgage payments by amount</a> (<a href="/mortgage/us/">US</a>), and to see what paying extra saves, the <a href="/mortgage-overpayment/">overpayment calculator</a>.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How is a mortgage repayment worked out?</p>
+      <p class="about-text">With a repayment mortgage, every monthly payment is the same and covers that month's interest plus some of the loan. The payment is set so the loan is paid off exactly at the end of the term: payment = loan × r × (1 + r)ⁿ ÷ ((1 + r)ⁿ − 1), where r is the annual rate divided by 12 and n is the number of months. On £270,000 at 4.5% over 25 years that is £1,500.75.</p>
+      <p class="faq-q">Why do I pay mostly interest at the start?</p>
+      <p class="about-text">Interest is charged on what you still owe, which is highest at the start. In the first year of the example, £12,028 of the payments is interest and only £5,981 reduces the loan; you don't owe less than half until year 16. Overpaying early has the biggest effect for the same reason.</p>
+      <p class="faq-q">What is the difference between repayment and interest-only?</p>
+      <p class="about-text">Interest-only payments cover just the interest, so they are lower — £1,012.50 a month in the example against £1,500.75 — but the whole £270,000 is still owed at the end and has to be repaid from savings, investments or a sale. Over 25 years interest-only costs £303,750 in interest, against £180,224 on repayment.</p>
+      <p class="faq-q">Does a longer term make a mortgage cheaper?</p>
+      <p class="about-text">It lowers the monthly payment but raises the total cost. The example over 35 years would cost £1,277.79 a month but £266,673 in interest, against £180,224 over 25 years.</p>
+      <p class="faq-q">Does this include fees, insurance or property tax?</p>
+      <p class="about-text">No — it is the loan alone. Arrangement fees can be added to the loan or paid up front; buildings insurance, and in the US property tax, homeowners insurance and any mortgage insurance, are paid on top. The mortgage affordability calculator includes US property tax and insurance.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/mortgage-affordability/">
+        <span class="icon">🏠</span>
+        <div class="title">Mortgage Affordability</div>
+        <div class="desc">How much you could borrow and what home it buys — UK income multiples or the US 28/36 rule.</div>
+      </a>
+      <a class="hub-card" href="/mortgage-overpayment/">
+        <span class="icon">🏡</span>
+        <div class="title">Mortgage Overpayment</div>
+        <div class="desc">See the interest and years you'd save by overpaying your mortgage.</div>
+      </a>
+      <a class="hub-card" href="/rent-vs-buy/">
+        <span class="icon">🔑</span>
+        <div class="title">Rent vs Buy</div>
+        <div class="desc">Renting against buying over the years you'd stay — total cost and wealth, side by side.</div>
+      </a>
+      <a class="hub-card" href="/loan-repayment/">
+        <span class="icon">🏦</span>
+        <div class="title">Loan / APR Repayment</div>
+        <div class="desc">Loan amount + APR + term → monthly payment, total interest and amortisation.</div>
+      </a>
+      <a class="hub-card" href="/salary/">
+        <span class="icon">💷</span>
+        <div class="title">Salary After Tax</div>
+        <div class="desc">Take-home pay in the UK, every US state and Canadian province, Europe, Australia, India and Japan.</div>
+      </a>
+      <a class="hub-card" href="/savings-investing/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Savings &amp; Investing calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/savings-investing/">Savings &amp; Investing</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/mortgage-calculator.js"></script>
+</body>
+</html>

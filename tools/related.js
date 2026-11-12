@@ -20,6 +20,10 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 
 const RELATED = {
+  "/tfsa-vs-rrsp/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/isa-vs-pension/"],
+  "/roth-vs-traditional/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/isa-vs-pension/", "/tfsa-vs-rrsp/"],
+  "/isa-vs-pension/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/tfsa-vs-rrsp/"],
+  "/mortgage-calculator/": ["/mortgage-affordability/", "/mortgage-overpayment/", "/rent-vs-buy/", "/loan-repayment/", "/salary/", "/inflation/"],
   "/basic/": ["/scientific/", "/percent/", "/fractions/", "/decimal-to-fraction/", "/unit-converter/", "/number-to-words/"],
   "/scientific/": ["/basic/", "/fractions/", "/percent/", "/unit-converter/", "/watts-amps-volts/", "/decimal-to-fraction/"],
   "/percent/": ["/discount/", "/vat/", "/margin-markup/", "/growth/", "/fractions/", "/decimal-to-fraction/"],
@@ -34,13 +38,13 @@ const RELATED = {
   "/ai-cost/": ["/margin-markup/", "/growth/", "/ab-test-significance/", "/percent/", "/running-cost/", "/marketplace-fees/"],
   "/marketplace-fees/": ["/margin-markup/", "/vat/", "/discount/", "/cashback/", "/percent/", "/growth/"],
   "/inflation/": ["/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
-  "/mortgage-affordability/": ["/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
+  "/mortgage-affordability/": ["/mortgage-calculator/", "/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
   "/rent-vs-buy/": ["/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
   "/salary/": ["/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
   "/cagr/": ["/compound-interest/", "/inflation/", "/growth/", "/fund-fees/", "/savings-goal/", "/percent/"],
   "/compound-interest/": ["/savings-goal/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
   "/savings-goal/": ["/compound-interest/", "/salary/", "/inflation/", "/fund-fees/", "/rent-vs-buy/", "/household-bills/"],
-  "/mortgage-overpayment/": ["/mortgage-affordability/", "/loan-repayment/", "/rent-vs-buy/", "/compound-interest/", "/salary/", "/debt-snowball-vs-avalanche/", "/household-bills/"],
+  "/mortgage-overpayment/": ["/mortgage-calculator/", "/mortgage-affordability/", "/loan-repayment/", "/rent-vs-buy/", "/compound-interest/", "/salary/", "/debt-snowball-vs-avalanche/", "/household-bills/"],
   "/loan-repayment/": ["/car-finance/", "/mortgage-overpayment/", "/debt-snowball-vs-avalanche/", "/compound-interest/", "/salary/", "/cashback/"],
   "/debt-snowball-vs-avalanche/": ["/loan-repayment/", "/mortgage-overpayment/", "/car-finance/", "/savings-goal/", "/cashback/", "/salary/"],
   "/fund-fees/": ["/compound-interest/", "/cagr/", "/savings-goal/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/"],
