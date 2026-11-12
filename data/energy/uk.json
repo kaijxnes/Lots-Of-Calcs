@@ -1,0 +1,20 @@
+{
+  "_note": "Energy price cap figures used by tools/build-appliance-pages.js. Update each quarter from Ofgem (the monthly check task does this) and re-run the generator.",
+  "period": {
+    "label": "1 October to 31 December 2026",
+    "start": "2026-10-01",
+    "end": "2026-12-31",
+    "short": "Oct–Dec 2026"
+  },
+  "electricity": {
+    "unitRate": 26.32,
+    "standingCharge": 54.83,
+    "unit": "pence per kWh / pence per day",
+    "basis": "Direct Debit, average for England, Scotland and Wales; no VAT on electricity from 1 October 2026 to 31 March 2027"
+  },
+  "source": {
+    "title": "Ofgem — Energy price cap standing charges and unit rates by region",
+    "url": "https://www.ofgem.gov.uk/information-consumers/energy-advice-households/get-energy-price-cap-standing-charges-and-unit-rates-region"
+  },
+  "lastChecked": "2026-11-12"
+}
