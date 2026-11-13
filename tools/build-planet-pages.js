@@ -23,6 +23,8 @@ function bodies() {
 }
 
 const LB = 2.20462262;
+/* Orbital period and day length (NASA NSSDCA), shared with the age calculator */
+const { ORBIT } = require("../age-on-other-planets.js");
 const EARTH_G = 9.80665;
 const slug = (b) => b.name.toLowerCase().replace(/^the /, "").replace(/[^a-z]+/g, "-");
 const bare = (b) => b.name.replace(/^The /, "the ");
@@ -51,6 +53,17 @@ function page(b, all) {
     [`Would my mass change on ${where}?`, "No. Your mass — how much of you there is — is the same everywhere. What changes is weight, the force gravity pulls you down with, which is what scales measure."],
     [`Why is it ${more ? "heavier" : "lighter"} on ${where}?`, b.fact]
   ];
+  const orb = ORBIT[b.name];
+  const ageOn = (a) => a * ORBIT.Earth[0] / orb[0];
+  const ageFmt = (v) => (v >= 10 ? Math.floor(v).toLocaleString("en-GB") : (Math.floor(v * 10) / 10).toLocaleString("en-GB"));
+  if (orb) q.splice(1, 0, [`How old would I be on ${where}?`, `A year on ${where} lasts ${orb[0].toLocaleString("en-GB")} Earth days, so divide your age by ${(orb[0] / ORBIT.Earth[0]).toFixed(orb[0] < 365 ? 3 : 2)}${orb[0] < 365 ? " — you'd be older there" : ""}. At 30 you would be ${ageFmt(ageOn(30))} ${b.name} years old.`]);
+  const ageSection = orb ? `
+    <main class="tool">
+      <p class="tool-section-title">Your age on ${esc(where)}</p>
+      <p class="about-text">One ${esc(b.name)} year — a full trip round the Sun — takes ${orb[0].toLocaleString("en-GB")} Earth days${orb[0] > 3650 ? ` (${(orb[0] / ORBIT.Earth[0]).toFixed(1)} Earth years)` : ""}, and a day there, sunrise to sunrise, lasts ${orb[1].toLocaleString("en-GB")} hours${orb[1] > 48 ? ` (about ${Math.round(orb[1] / 24)} Earth days)` : ""}.</p>
+${site.table(["Your age on Earth", `On ${b.name}`], [10, 18, 21, 30, 40, 50, 60, 70, 80].map((a) => [`${a}`, `${ageFmt(ageOn(a))} ${b.name} year${ageOn(a) >= 1 && ageOn(a) < 2 ? "" : "s"}`]), 300)}      <p class="tool-hint" style="margin-top:12px;">Orbital period and day length from NASA's Planetary Fact Sheet. Put in your birthday on the <a href="/age-on-other-planets/">age on other planets calculator</a>.</p>
+    </main>
+` : "";
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Weight on Other Planets", SITE + "/weight-on-other-planets/"], [`Weight on ${Where}`, url]]), site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/weight-on-other-planets/">← Weight on other planets</a>
@@ -84,6 +97,7 @@ ${site.table(["On Earth", `On ${Where}`], kgRows, 300)}      <p class="tool-sect
 ${site.table(["On Earth", `On ${Where}`], lbRows, 360)}      <p class="tool-hint" style="margin-top:12px;">Gravity factor ${b.g} — NASA's ratio-to-Earth surface gravity from the NSSDCA Planetary Fact Sheet${/Titan|Ganymede/.test(b.name) ? ", worked out from the measured surface gravity" : ""}. Compare every world at once on the <a href="/weight-on-other-planets/">weight on other planets calculator</a>.</p>
     </main>
 
+${ageSection}
     <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
 ${site.faqHtml(q)}    </main>
