@@ -25,6 +25,8 @@ function bodies() {
 const LB = 2.20462262;
 /* Orbital period and day length (NASA NSSDCA), shared with the age calculator */
 const { ORBIT } = require("../age-on-other-planets.js");
+/* Distances and travel times, for a "how long to get there" link */
+const Travel = require("../space-travel.js");
 const EARTH_G = 9.80665;
 const slug = (b) => b.name.toLowerCase().replace(/^the /, "").replace(/[^a-z]+/g, "-");
 const bare = (b) => b.name.replace(/^The /, "the ");
@@ -94,7 +96,8 @@ ${site.table(["Your age on Earth", `On ${b.name}`], [10, 18, 21, 30, 40, 50, 60,
     <main class="tool">
       <p class="tool-section-title">Weight on ${esc(where)} in kilograms</p>
 ${site.table(["On Earth", `On ${Where}`], kgRows, 300)}      <p class="tool-section-title" style="margin-top:22px;">In pounds and stone</p>
-${site.table(["On Earth", `On ${Where}`], lbRows, 360)}      <p class="tool-hint" style="margin-top:12px;">Gravity factor ${b.g} — NASA's ratio-to-Earth surface gravity from the NSSDCA Planetary Fact Sheet${/Titan|Ganymede/.test(b.name) ? ", worked out from the measured surface gravity" : ""}. Compare every world at once on the <a href="/weight-on-other-planets/">weight on other planets calculator</a>.</p>
+${site.table(["On Earth", `On ${Where}`], lbRows, 360)}      <p class="tool-hint" style="margin-top:12px;">Gravity factor ${b.g} — NASA's ratio-to-Earth surface gravity from the NSSDCA Planetary Fact Sheet${/Titan|Ganymede/.test(b.name) ? ", worked out from the measured surface gravity" : ""}. Compare every world at once on the <a href="/weight-on-other-planets/">weight on other planets calculator</a>.</p>${Travel.dest(slug(b)) ? `
+      <p class="tool-hint" style="margin-top:8px;">How long would it take to get there? ${esc(Travel.distance(Travel.dest(slug(b)).d[Travel.dest(slug(b)).def]))} away${Travel.dest(slug(b)).def === "closest" ? " at its closest" : " on average"}: <a href="/how-long-to-get-to/${slug(b)}/">travel time to ${esc(where)}</a> by car, plane, rocket and light.</p>` : ""}
     </main>
 
 ${ageSection}

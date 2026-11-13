@@ -141,7 +141,7 @@ Object.keys(known).forEach((y) => Object.keys(known[y]).forEach((slug) => {
   if (got !== known[y][slug]) throw new Error(`${slug} ${y}: got ${got}, expected ${known[y][slug]}`);
 }));
 
-const urls = [["/days-until/", "0.6"]];
+const urls = []; /* the hub itself is in the sitemap with the calculators */
 EVENTS.forEach((e) => { site.write(`days-until/${e.slug}`, page(e)); urls.push([`/days-until/${e.slug}/`, "0.6"]); });
 site.write("days-until", hub());
 site.sitemapBlock("countdown pages", "tools/build-countdown-pages.js", urls);
