@@ -22,6 +22,7 @@ const NUMBERS = Array.from(new Set([].concat(
   range(1, 100, 1), range(110, 1000, 10), range(1100, 10000, 100), range(11000, 100000, 1000),
   range(110000, 1000000, 10000), range(1500000, 10000000, 500000),
   [15000000, 20000000, 25000000, 50000000, 75000000, 100000000, 250000000, 500000000, 1000000000],
+  range(1900, 2100, 1),
   [125000, 175000, 225000, 275000, 325000, 350000, 375000, 450000, 550000, 650000, 750000, 850000, 950000]
 ))).sort((a, b) => a - b);
 
@@ -38,11 +39,17 @@ function checkAgainstLive() {
 }
 
 const url = (n) => `/number-to-words/${n}/`;
-const fmt = (n) => n.toLocaleString("en-GB");
+const isYear = (n) => n >= 1900 && n <= 2100;
+/* Years are written without a thousands comma */
+const fmt = (n) => (isYear(n) ? String(n) : n.toLocaleString("en-GB"));
 
-const tc = (w) => w.replace(/(^|[ -])([a-z])/g, (m, a, c) => a + c.toUpperCase());
+const tc = (w) => w.replace(/(^|[ -])([a-z])/g, (m, a, c) => a + c.toUpperCase()).replace(/ And /g, " and ");
 
 function titleFor(n) {
+  if (isYear(n)) {
+    const said = W.yearSpoken(n), written = W.british(n);
+    return said === written ? `${n} in Words — ${tc(written)} (as a Year and a Number)` : `${n} in Words — ${tc(said)} or ${tc(written)}`;
+  }
   if (n >= 100000) return `${fmt(n)} in Words — ${tc(W.indian(n))} or ${tc(W.american(n))}`;
   if (n >= 1000) return `${fmt(n)} in Words — ${tc(W.british(n))} (UK, US & Cheque)`;
   return `${n} in Words — ${tc(W.british(n))} | How to Spell ${n}`;
@@ -60,7 +67,8 @@ function page(n) {
     ["British English", W.cap(uk)],
     ["American English", W.cap(us)]
   ];
-  if (n >= 1000) rows.push([`Indian English (${W.grouped(n, "indian")})`, W.cap(ind)]);
+  if (isYear(n)) rows.unshift(["Said as a year", W.cap(W.yearSpoken(n))]);
+  if (n >= 1000 && !isYear(n)) rows.push([`Indian English (${W.grouped(n, "indian")})`, W.cap(ind)]);
   rows.push(["Ordinal", `${W.ordinalSuffix(n)} — ${ord}${ordUs !== ord ? ` (US: ${ordUs})` : ""}`]);
   if (r) rows.push(["Roman numerals", r]);
   rows.push(["Digits", `${fmt(n)}${n >= 100000 ? ` (Indian grouping ${W.grouped(n, "indian")})` : ""}`]);
@@ -80,6 +88,7 @@ function page(n) {
       : (us !== uk ? `In British English, "and" goes before the last part of a number (${uk}); American English usually leaves it out (${us}). Both are correct in their own style.` : `There is no "and" in ${uk} in either British or American English.`)],
     [`What is the ordinal of ${fmt(n)}?`, `${W.ordinalSuffix(n)}, written ${ord}.`]
   ];
+  if (isYear(n)) q.unshift([`How do you say ${n} as a year?`, `${W.cap(W.yearSpoken(n))}. ${n >= 2001 && n <= 2009 ? "" : n % 100 > 0 && n % 100 < 10 ? `Some people say ${W.british(n)} instead. ` : n >= 2010 && n <= 2099 ? `"${W.cap(W.british(n))}" is also common, especially in formal writing. ` : ""}Written out as a number in full it is ${W.british(n)}${W.american(n) !== W.british(n) ? ` (US: ${W.american(n)})` : ""}.`]);
 
   const near = NUMBERS.filter((x) => x !== n).sort((a, b) => Math.abs(a - n) - Math.abs(b - n) || a - b).slice(0, 8).sort((a, b) => a - b);
   const ld = [site.webPage(title, desc, loc), site.breadcrumb([["Home", SITE + "/"], ["Number to Words", SITE + "/number-to-words/"], [`${fmt(n)} in words`, loc]]), site.faqLd(q)];
@@ -87,13 +96,13 @@ function page(n) {
   return site.head({ title, desc, url: loc, ld }) + `    <header class="site-header">
       <a class="back-link" href="/number-to-words/">← Number to words converter</a>
       <h1 class="page-title">${fmt(n)} in words</h1>
-      <p class="page-subtitle">How to write ${fmt(n)} out in full, in British, American${n >= 1000 ? " and Indian" : ""} English.</p>
+      <p class="page-subtitle">${isYear(n) ? `How to say and write the year ${n}, and ${n} as a number in full.` : `How to write ${fmt(n)} out in full, in British, American${n >= 1000 ? " and Indian" : ""} English.`}</p>
     </header>
 
     <main class="tool">
       <div class="result-box">
         <div class="result-hero">
-          <div class="value" style="font-size:1.5rem; line-height:1.3;">${esc(W.cap(uk))}</div>
+          <div class="value" style="font-size:1.5rem; line-height:1.3;">${esc(W.cap(isYear(n) ? W.yearSpoken(n) : uk))}</div>
           <div class="label">${fmt(n)} in words</div>
         </div>
         <hr class="divider">
@@ -130,7 +139,7 @@ function hubBlock() {
   const END = "    <!-- end number pages -->\n";
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length);
-  const groups = [["1 to 100", (n) => n <= 100], ["Hundreds", (n) => n > 100 && n <= 1000], ["Thousands", (n) => n > 1000 && n <= 100000], ["Lakhs and up to a million", (n) => n > 100000 && n <= 1000000], ["Millions, crores and a billion", (n) => n > 1000000]];
+  const groups = [["1 to 100", (n) => n <= 100], ["Hundreds", (n) => n > 100 && n <= 1000], ["Years", (n) => isYear(n)], ["Thousands", (n) => n > 1000 && n <= 100000 && !isYear(n)], ["Lakhs and up to a million", (n) => n > 100000 && n <= 1000000], ["Millions, crores and a billion", (n) => n > 1000000]];
   const html = `    <main class="tool">
       <p class="tool-section-title">Numbers in words</p>
 ${groups.map(([label, f]) => `      <p class="salary-links-title">${label}</p>
