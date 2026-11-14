@@ -29,7 +29,7 @@ const shift = (fn, days) => (y) => new Date(fn(y).getTime() + days * 86400000);
 const nth = (m, weekday, n) => (y) => { const first = new Date(Date.UTC(y, m - 1, 1)); return new Date(Date.UTC(y, m - 1, 1 + ((weekday - first.getUTCDay() + 7) % 7) + (n - 1) * 7)); };
 
 const EVENTS = [
-  { slug: "christmas", name: "Christmas", day: "Christmas Day", date: fixed(12, 25), note: "Christmas Day is always 25 December." },
+  { slug: "christmas", name: "Christmas", day: "Christmas Day", date: fixed(12, 25), note: "Christmas Day is always 25 December.", extra: 'Cooking the dinner? The <a href="/turkey-cooking-time/">turkey cooking time calculator</a> works out when to put the bird in.' },
   { slug: "christmas-eve", name: "Christmas Eve", day: "Christmas Eve", date: fixed(12, 24), note: "Christmas Eve is always 24 December." },
   { slug: "new-year", name: "New Year", day: "New Year's Day", date: fixed(1, 1), note: "New Year's Day is 1 January; New Year's Eve is the night before." },
   { slug: "easter", name: "Easter", day: "Easter Sunday", date: easter, note: "Easter Sunday is the first Sunday after the first full moon on or after 21 March (by the church's calculation), so it falls between 22 March and 25 April. Good Friday is two days before." },
@@ -87,7 +87,8 @@ function page(e) {
         </div>
         <p class="tool-hint" id="cd-detail" style="text-align:center; margin-top:8px;"></p>
       </div>
-      <p class="about-text" style="margin-top:14px;">${esc(e.note)}</p>
+      <p class="about-text" style="margin-top:14px;">${esc(e.note)}</p>${e.extra ? `
+      <p class="tool-hint" style="margin-top:8px;">${e.extra}</p>` : ""}
     </main>
 
     <main class="tool">

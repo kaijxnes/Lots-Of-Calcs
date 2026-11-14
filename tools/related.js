@@ -20,8 +20,11 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 
 const RELATED = {
+  "/working-days/": ["/date-diff/", "/days-until/", "/salary/", "/timezone/", "/birthday/", "/percent/"],
+  "/heating-cost/": ["/running-cost/", "/btu/", "/household-bills/", "/watts-amps-volts/", "/ev-charging-cost/", "/split-bill/"],
+  "/turkey-cooking-time/": ["/days-until/", "/unit-converter/", "/split-bill/", "/running-cost/", "/tip/", "/timezone/"],
   "/how-long-to-get-to/": ["/weight-on-other-planets/", "/age-on-other-planets/", "/unit-converter/", "/pace/", "/fuel-cost/", "/timezone/"],
-  "/days-until/": ["/date-diff/", "/birthday/", "/age-on-other-planets/", "/timezone/", "/roman-numerals/", "/number-to-words/"],
+  "/days-until/": ["/working-days/", "/turkey-cooking-time/", "/date-diff/", "/birthday/", "/age-on-other-planets/", "/timezone/", "/roman-numerals/", "/number-to-words/"],
   "/age-on-other-planets/": ["/weight-on-other-planets/", "/how-long-to-get-to/", "/birthday/", "/date-diff/", "/dog-age/", "/cat-age/", "/unit-converter/"],
   "/cheque-writer/": ["/number-to-words/", "/roman-numerals/", "/basic/", "/percent/", "/vat/", "/split-bill/"],
   "/tfsa-vs-rrsp/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/isa-vs-pension/"],
@@ -64,9 +67,9 @@ const RELATED = {
   "/ev-charging-cost/": ["/fuel-cost/", "/running-cost/", "/car-finance/", "/watts-amps-volts/", "/unit-converter/", "/household-bills/"],
   "/pace/": ["/unit-converter/", "/bmi/", "/date-diff/", "/fuel-cost/", "/timezone/", "/percent/"],
   "/household-bills/": ["/split-bill/", "/running-cost/", "/salary/", "/savings-goal/", "/tip/", "/percent/"],
-  "/running-cost/": ["/ev-charging-cost/", "/watts-amps-volts/", "/household-bills/", "/btu/", "/fuel-cost/", "/unit-converter/"],
+  "/running-cost/": ["/heating-cost/", "/ev-charging-cost/", "/watts-amps-volts/", "/household-bills/", "/btu/", "/fuel-cost/", "/unit-converter/"],
   "/coverage/": ["/btu/", "/unit-converter/", "/running-cost/", "/household-bills/", "/discount/", "/percent/"],
-  "/btu/": ["/coverage/", "/running-cost/", "/watts-amps-volts/", "/unit-converter/", "/household-bills/", "/ev-charging-cost/"],
+  "/btu/": ["/heating-cost/", "/coverage/", "/running-cost/", "/watts-amps-volts/", "/unit-converter/", "/household-bills/", "/ev-charging-cost/"],
   "/watts-amps-volts/": ["/running-cost/", "/ev-charging-cost/", "/btu/", "/unit-converter/", "/scientific/", "/basic/"],
   "/odds-converter/": ["/each-way/", "/accumulator/", "/lay/", "/dutching/", "/full-cover-bets/", "/percent/"],
   "/each-way/": ["/full-cover-bets/", "/odds-converter/", "/accumulator/", "/lay/", "/dutching/", "/percent/"],
@@ -75,7 +78,7 @@ const RELATED = {
   "/accumulator/": ["/full-cover-bets/", "/odds-converter/", "/each-way/", "/lay/", "/dutching/", "/percent/"],
   "/full-cover-bets/": ["/accumulator/", "/each-way/", "/odds-converter/", "/dutching/", "/lay/", "/percent/"],
   "/birthday/": ["/date-diff/", "/days-until/", "/age-on-other-planets/", "/timezone/", "/dog-age/", "/cat-age/", "/number-to-words/", "/roman-numerals/"],
-  "/date-diff/": ["/days-until/", "/birthday/", "/timezone/", "/pace/", "/number-to-words/", "/roman-numerals/", "/percent/"],
+  "/date-diff/": ["/working-days/", "/days-until/", "/birthday/", "/timezone/", "/pace/", "/number-to-words/", "/roman-numerals/", "/percent/"],
   "/timezone/": ["/date-diff/", "/birthday/", "/unit-converter/", "/pace/", "/basic/", "/number-to-words/"],
   "/dog-age/": ["/cat-age/", "/birthday/", "/date-diff/", "/bmi/", "/weight-on-other-planets/", "/unit-converter/"],
   "/cat-age/": ["/dog-age/", "/birthday/", "/date-diff/", "/bmi/", "/weight-on-other-planets/", "/unit-converter/"],
