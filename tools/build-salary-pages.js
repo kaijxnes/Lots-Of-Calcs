@@ -227,7 +227,6 @@ function build(gross, chain, cfg, allSalaries) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="/consent.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
@@ -249,6 +248,7 @@ function build(gross, chain, cfg, allSalaries) {
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
 <script type="application/ld+json">
 ${ldJson}
 </script>
