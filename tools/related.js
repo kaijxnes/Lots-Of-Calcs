@@ -20,7 +20,9 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 
 const RELATED = {
-  "/calorie-calculator/": ["/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
+  "/dry-january-calculator/": ["/calorie-calculator/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
+  "/pay-rise-calculator/": ["/salary/", "/inflation/", "/percent/", "/savings-goal/", "/isa-vs-pension/", "/mortgage-affordability/"],
+  "/calorie-calculator/": ["/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
   "/working-days/": ["/date-diff/", "/days-until/", "/salary/", "/timezone/", "/birthday/", "/percent/"],
   "/heating-cost/": ["/running-cost/", "/btu/", "/household-bills/", "/watts-amps-volts/", "/ev-charging-cost/", "/split-bill/"],
   "/turkey-cooking-time/": ["/days-until/", "/unit-converter/", "/split-bill/", "/running-cost/", "/tip/", "/timezone/"],
@@ -45,10 +47,10 @@ const RELATED = {
   "/weighted-average/": ["/grade/", "/percent/", "/ab-test-significance/", "/growth/", "/fractions/", "/basic/"],
   "/ai-cost/": ["/margin-markup/", "/growth/", "/ab-test-significance/", "/percent/", "/running-cost/", "/marketplace-fees/"],
   "/marketplace-fees/": ["/margin-markup/", "/vat/", "/discount/", "/cashback/", "/percent/", "/growth/"],
-  "/inflation/": ["/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
+  "/inflation/": ["/pay-rise-calculator/", "/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
   "/mortgage-affordability/": ["/mortgage-calculator/", "/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
   "/rent-vs-buy/": ["/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
-  "/salary/": ["/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
+  "/salary/": ["/pay-rise-calculator/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
   "/cagr/": ["/compound-interest/", "/inflation/", "/growth/", "/fund-fees/", "/savings-goal/", "/percent/"],
   "/compound-interest/": ["/savings-goal/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
   "/savings-goal/": ["/compound-interest/", "/salary/", "/inflation/", "/fund-fees/", "/rent-vs-buy/", "/household-bills/"],

@@ -3,7 +3,7 @@
 
    Bank holidays are GOV.UK's official list (https://www.gov.uk/bank-holidays.json,
    saved in data/holidays/). The generator (tools/build-working-days-pages.js)
-   writes them into the calculator page as JSON (#wd-holidays); the year and
+   writes them to bank-holidays.js (UK_BANK_HOLIDAYS), which the calculator pages load; the year and
    month pages are counted with this same module. Dates are "YYYY-MM-DD"
    strings and are handled in UTC so no time zone shifts a day. */
 var WorkingDays = (function () {
@@ -46,9 +46,8 @@ if (typeof module !== "undefined" && module.exports) {
 } else {
   (function () {
     var box = document.getElementById("wd-tool");
-    var data = document.getElementById("wd-holidays");
-    if (!box || !data) return;
-    var HOL = JSON.parse(data.textContent);
+    if (!box || typeof UK_BANK_HOLIDAYS === "undefined") return;
+    var HOL = UK_BANK_HOLIDAYS;
     var W = WorkingDays;
     var $ = function (id) { return document.getElementById(id); };
     var span = HOL._range;

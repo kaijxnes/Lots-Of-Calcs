@@ -324,7 +324,10 @@ const TaxEngine = (function () {
 
   function getJSON(url) {
     if (!cache[url]) {
-      cache[url] = fetch(url, { cache: "no-cache" }).then((res) => {
+      /* Normal HTTP caching: GitHub Pages lets a file be reused for 10
+         minutes, so a visitor sees new rates within minutes of an update
+         without re-checking every file on every page view. */
+      cache[url] = fetch(url).then((res) => {
         if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
         return res.json();
       });

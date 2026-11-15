@@ -37,10 +37,80 @@ const andList = (a) => (a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + 
 const SRC = 'Bank holidays from <a href="https://www.gov.uk/bank-holidays" rel="noopener">GOV.UK</a>.';
 const holTitle = (h) => esc(h.title) + (h.sub ? " (substitute day)" : "");
 
+/* ---------- paydays ---------- */
+const isWorking = (iso, r) => { const d = new Date(W.parse(iso)).getUTCDay(); return d !== 0 && d !== 6 && !HOL[r].some((h) => h.date === iso); };
+const step = (iso, by) => W.iso(W.parse(iso) + by * 86400000);
+/* the working day on or before / after a date */
+const onOrBefore = (iso, r) => { while (!isWorking(iso, r)) iso = step(iso, -1); return iso; };
+const onOrAfter = (iso, r) => { while (!isWorking(iso, r)) iso = step(iso, 1); return iso; };
+const lastWorking = (y, m, r) => onOrBefore(W.lastDay(y, m), r);
+const firstWorking = (y, m, r) => onOrAfter(W.first(y, m), r);
+const dayOf = (y, m, d) => W.iso(Date.UTC(y, m, d));
+const lastFriday = (y, m) => { let iso = W.lastDay(y, m); while (new Date(W.parse(iso)).getUTCDay() !== 5) iso = step(iso, -1); return iso; };
+/* payday rules: the date it's due; paid on the working day before if that isn't one */
+const RULES = [
+  ["Last working day", (y, m) => W.lastDay(y, m)],
+  ["Last Friday", lastFriday],
+  ["28th", (y, m) => dayOf(y, m, 28)],
+  ["25th", (y, m) => dayOf(y, m, 25)],
+  ["20th", (y, m) => dayOf(y, m, 20)],
+  ["15th", (y, m) => dayOf(y, m, 15)]
+];
+const paid = (rule, y, m, r) => onOrBefore(rule[1](y, m), r);
+const dm = (iso) => { const d = new Date(W.parse(iso)); return `${W.DAYS[d.getUTCDay()].slice(0, 3)} ${d.getUTCDate()} ${W.MONTHS[d.getUTCMonth()].slice(0, 3)}`; };
+const PAY_NOTE = "When payday falls on a weekend or bank holiday, most employers pay on the working day before — but it's set by your contract, so check with your employer. December pay is often earlier still, before Christmas.";
+
+function paydayPage(y) {
+  const url = SITE + `${BASE}${y}/payday-calendar/`;
+  const r = "england-and-wales";
+  const moved = W.MONTHS.map((n, m) => paid(RULES[3], y, m, r) !== RULES[3][1](y, m)).filter(Boolean).length;
+  const title = `Payday Calendar ${y} — UK Pay Dates When Payday Falls on a Weekend`;
+  const desc = `When you'll be paid in each month of ${y} if payday is the last working day, the last Friday, or the 15th, 20th, 25th or 28th — moved to the working day before for weekends and bank holidays.`;
+  const rows = W.MONTHS.map((n, m) => [`<a href="${BASE}${y}/${mslug(m)}/">${n}</a>`].concat(RULES.map((rule) => {
+    const due = rule[1](y, m), got = paid(rule, y, m, r);
+    return got === due || rule[0] === "Last working day" || rule[0] === "Last Friday" && isWorking(due, r) ? dm(got) : `<strong>${dm(got)}</strong>`;
+  })));
+  const diffs = [];
+  W.MONTHS.forEach((n, m) => ["scotland", "northern-ireland"].forEach((o) => RULES.forEach((rule) => {
+    const a = paid(rule, y, m, r), b = paid(rule, y, m, o);
+    if (a !== b) diffs.push(`${W.REGIONS[o]}, ${rule[0].toLowerCase()} in ${n}: ${dm(b)} (not ${dm(a)})`);
+  })));
+  const lw = W.MONTHS.map((n, m) => `${n} ${dm(lastWorking(y, m, r)).replace(/ \w+$/, "")}`);
+  const q = [
+    [`When is payday in ${y} if I'm paid on the last working day?`, `England and Wales: ${W.MONTHS.map((n, m) => `${n} — ${W.long(lastWorking(y, m, r)).replace(/ \d{4}$/, "")}`).join("; ")}.`],
+    [`What if payday falls on a weekend?`, PAY_NOTE],
+    [`When is the 25th paid early in ${y}?`, moved ? `${W.MONTHS.filter((n, m) => paid(RULES[3], y, m, r) !== RULES[3][1](y, m)).map((n) => { const m = W.MONTHS.indexOf(n); return `${n} (${W.long(paid(RULES[3], y, m, r)).replace(/ \d{4}$/, "")})`; }).join(", ")} — the 25th falls on a weekend or bank holiday in those months.` : `Never — the 25th is a working day in every month of ${y}.`]
+  ];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Working Days", SITE + BASE], [String(y), SITE + `${BASE}${y}/`], ["Payday calendar", url]]), site.faqLd(q)];
+  const other = YEARS.filter((x) => x !== y).map((x) => `<a href="${BASE}${x}/payday-calendar/">Payday calendar ${x}</a>`).join(" ");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${BASE}${y}/">← Working days in ${y}</a>
+      <h1 class="page-title">Payday calendar ${y}</h1>
+      <p class="page-subtitle">When you'll be paid each month, with paydays that fall on a weekend or bank holiday moved to the working day before.</p>
+    </header>
+
+    <main class="tool">
+      <p class="tool-section-title">If you're paid on the…</p>
+${site.table(["Month"].concat(RULES.map((x) => x[0])), rows, 640)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or bank holiday. England and Wales bank holidays.${diffs.length ? " In Scotland and Northern Ireland: " + esc(diffs.join("; ")) + "." : " Scotland and Northern Ireland are the same."} ${SRC}</p>
+      <p class="tool-hint">${esc(PAY_NOTE)}</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other years</div>
+    <p class="salary-links">${other}</p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
 function tool(from, to, region, fromToday) {
   const r = W.count(from, to, HOL[region]);
-  const data = { _range: RANGE };
-  REG.forEach((k) => { data[k] = HOL[k].map((h) => ({ date: h.date, title: h.title + (h.sub ? " (substitute day)" : "") })); });
   return `    <main class="tool" id="wd-tool"${fromToday ? ' data-from-today="1"' : ""}>
       <div class="field-row">
         <div class="field"><label for="wd-from">From</label><input type="date" id="wd-from" value="${from}"></div>
@@ -63,7 +133,6 @@ function tool(from, to, region, fromToday) {
       </div>
       <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays. ${SRC}</p>
     </main>
-  <script type="application/json" id="wd-holidays">${JSON.stringify(data)}</script>
 `;
 }
 
@@ -111,7 +180,7 @@ ${holidayTable(y)}      <p class="tool-hint" style="margin-top:12px;">When a ban
 
     <main class="tool">
       <p class="tool-section-title">Working days in each month of ${y}</p>
-${monthGrid(y, true)}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays. Count any dates with the <a href="${BASE}">working days calculator</a>.</p>
+${monthGrid(y, true)}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays. Count any dates with the <a href="${BASE}">working days calculator</a>. When you'll be paid each month: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>.</p>
     </main>
 
     <main class="tool">
@@ -144,6 +213,7 @@ function monthPage(y, m) {
   /* weekend bank holidays aren't days off; note them separately */
   const q = [
     [`How many working days are in ${name} ${y}?`, same ? `${ew.working} in every part of the UK: ${ew.calendar} days less ${ew.weekend} weekend days${ew.holidays.length ? ` and ${ew.holidays.length} bank holiday${ew.holidays.length > 1 ? "s" : ""}` : ""}.` : REG.map((r) => `${W.REGIONS[r]}: ${c[r].working}`).join("; ") + "."],
+    [`What is the last working day of ${name} ${y}?`, `${W.long(lastWorking(y, m, "england-and-wales"))} in England and Wales${REG.every((r) => lastWorking(y, m, r) === lastWorking(y, m, "england-and-wales")) ? ", Scotland and Northern Ireland" : `; ${REG.slice(1).map((r) => `${W.REGIONS[r]}: ${W.long(lastWorking(y, m, r))}`).join("; ")}`}. The first working day is ${W.long(firstWorking(y, m, "england-and-wales"))}${firstWorking(y, m, "scotland") !== firstWorking(y, m, "england-and-wales") ? ` (${W.long(firstWorking(y, m, "scotland"))} in Scotland)` : ""}.`],
     [`How many working hours are in ${name} ${y}?`, `${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day or ${(ew.working * 8).toLocaleString("en-GB")} on an 8-hour day (${ew.working} days, England and Wales).`],
     [`Are there any bank holidays in ${name} ${y}?`, holRows.length ? REG.filter((r) => c[r].holidays.length).map((r) => `${W.REGIONS[r]}: ${c[r].holidays.map((h) => `${h.title} on ${short(h.date)}`).join(", ")}`).join(". ") + "." : `No — there are no weekday bank holidays in ${name} ${y} anywhere in the UK.`]
   ];
@@ -156,8 +226,8 @@ function monthPage(y, m) {
     </header>
 
     <main class="tool">
-${site.table(["", "Working days", "Bank holidays", "Hours (7.5 h day)"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), (c[r].working * 7.5).toLocaleString("en-GB")]), 420)}${holRows.length ? `      <p class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</p>
-${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays. ${SRC}</p>
+${site.table(["", "Working days", "Bank holidays", "First working day", "Last working day"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), dm(firstWorking(y, m, r)), dm(lastWorking(y, m, r))]), 520)}${holRows.length ? `      <p class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</p>
+${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>. ${SRC}</p>
     </main>
 
 ${tool(W.first(y, m), W.lastDay(y, m), "england-and-wales", false)}
@@ -170,6 +240,7 @@ ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
   </div>
+  <script src="/bank-holidays.js"></script>
   <script src="/working-days.js"></script>
 </body>
 </html>
@@ -192,7 +263,7 @@ function hub() {
   ];
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Working Days", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Working Days Calculator", url, applicationCategory: "BusinessApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
-  const years = YEARS.map((y) => `<a href="${BASE}${y}/">Bank holidays and working days ${y}</a>`).join(" ");
+  const years = YEARS.map((y) => `<a href="${BASE}${y}/">Bank holidays and working days ${y}</a> <a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`).join(" ");
   const nextY = YEARS.find((y) => y > THIS_YEAR) || THIS_YEAR;
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
@@ -214,6 +285,7 @@ ${site.faqHtml(q)}    </main>
 ${related.block(BASE)}
 ${site.FOOTER}
   </div>
+  <script src="/bank-holidays.js"></script>
   <script src="/working-days.js"></script>
 </body>
 </html>
@@ -224,12 +296,27 @@ ${site.FOOTER}
    January 2027 in England and Wales = 21 weekdays less New Year's Day = 20;
    Scotland also loses its 2nd January substitute (Monday 4 January) = 19. */
 const chk = [[monthCount("england-and-wales", 2027, 0).working, 20], [monthCount("scotland", 2027, 0).working, 19], [W.count("2027-12-01", "2027-12-31", HOL["england-and-wales"]).working, 21]];
+/* last working day of December 2027 (27 and 28 are substitute days; 31st is a Friday) and of April 2027 */
+chk.push([lastWorking(2027, 11, "england-and-wales"), "2027-12-31"], [paid(RULES[3], 2027, 11, "england-and-wales"), "2027-12-24"], [paid(RULES[3], 2026, 11, "england-and-wales"), "2026-12-24"]);
 chk.forEach(([got, want], i) => { if (got !== want) throw new Error(`working days check ${i}: ${got} != ${want}`); });
+
+/* The bank holidays for the calculator, as one small file every page shares
+   (and the browser caches) rather than a copy inside each page */
+function holidaysScript() {
+  const data = { _range: RANGE };
+  REG.forEach((k) => { data[k] = HOL[k].map((h) => ({ date: h.date, title: h.title + (h.sub ? " (substitute day)" : "") })); });
+  return `/* UK bank holidays from GOV.UK (https://www.gov.uk/bank-holidays.json).
+   Generated by tools/build-working-days-pages.js — don't edit by hand. */
+var UK_BANK_HOLIDAYS = ${JSON.stringify(data)};
+`;
+}
+fs.writeFileSync(path.join(site.ROOT, "bank-holidays.js"), holidaysScript());
 
 const urls = [];
 site.write("working-days", hub());
 YEARS.forEach((y) => {
   site.write(`working-days/${y}`, yearPage(y)); urls.push([`${BASE}${y}/`, "0.6"]);
+  site.write(`working-days/${y}/payday-calendar`, paydayPage(y)); urls.push([`${BASE}${y}/payday-calendar/`, "0.6"]);
   W.MONTHS.forEach((n, m) => { site.write(`working-days/${y}/${mslug(m)}`, monthPage(y, m)); urls.push([`${BASE}${y}/${mslug(m)}/`, "0.5"]); });
 });
 site.sitemapBlock("working days pages", "tools/build-working-days-pages.js", urls);
