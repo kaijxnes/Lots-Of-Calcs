@@ -20,6 +20,7 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 
 const RELATED = {
+  "/calorie-calculator/": ["/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
   "/working-days/": ["/date-diff/", "/days-until/", "/salary/", "/timezone/", "/birthday/", "/percent/"],
   "/heating-cost/": ["/running-cost/", "/btu/", "/household-bills/", "/watts-amps-volts/", "/ev-charging-cost/", "/split-bill/"],
   "/turkey-cooking-time/": ["/days-until/", "/unit-converter/", "/split-bill/", "/running-cost/", "/tip/", "/timezone/"],
@@ -62,10 +63,10 @@ const RELATED = {
   "/split-bill/": ["/tip/", "/household-bills/", "/discount/", "/percent/", "/vat/", "/fuel-cost/"],
   "/grade/": ["/weighted-average/", "/percent/", "/fractions/", "/basic/", "/date-diff/", "/scientific/"],
   "/unit-converter/": ["/pace/", "/fuel-cost/", "/watts-amps-volts/", "/btu/", "/coverage/", "/scientific/"],
-  "/bmi/": ["/pace/", "/unit-converter/", "/weight-on-other-planets/", "/birthday/", "/date-diff/", "/percent/"],
+  "/bmi/": ["/calorie-calculator/", "/pace/", "/unit-converter/", "/weight-on-other-planets/", "/birthday/", "/date-diff/", "/percent/"],
   "/fuel-cost/": ["/ev-charging-cost/", "/car-finance/", "/unit-converter/", "/split-bill/", "/running-cost/", "/pace/"],
   "/ev-charging-cost/": ["/fuel-cost/", "/running-cost/", "/car-finance/", "/watts-amps-volts/", "/unit-converter/", "/household-bills/"],
-  "/pace/": ["/unit-converter/", "/bmi/", "/date-diff/", "/fuel-cost/", "/timezone/", "/percent/"],
+  "/pace/": ["/calorie-calculator/", "/unit-converter/", "/bmi/", "/date-diff/", "/fuel-cost/", "/timezone/", "/percent/"],
   "/household-bills/": ["/split-bill/", "/running-cost/", "/salary/", "/savings-goal/", "/tip/", "/percent/"],
   "/running-cost/": ["/heating-cost/", "/ev-charging-cost/", "/watts-amps-volts/", "/household-bills/", "/btu/", "/fuel-cost/", "/unit-converter/"],
   "/coverage/": ["/btu/", "/unit-converter/", "/running-cost/", "/household-bills/", "/discount/", "/percent/"],
