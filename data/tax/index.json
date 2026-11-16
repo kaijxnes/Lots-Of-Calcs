@@ -254,6 +254,28 @@
       "lastVerified": null,
       "lastChecked": "2026-11-10"
     },
+    "gb-sct-se": {
+      "file": "gb/gb-sct-se.2026-27.json",
+      "name": "Self-employed (Scotland)",
+      "kind": "variant",
+      "country": "GB",
+      "parent": "gb-sct",
+      "standalone": true,
+      "taxYear": "2026/27",
+      "lastVerified": null,
+      "lastChecked": "2026-11-16"
+    },
+    "gb-se": {
+      "file": "gb/gb-se.2026-27.json",
+      "name": "Self-employed (England, Wales & Northern Ireland)",
+      "kind": "variant",
+      "country": "GB",
+      "parent": "gb",
+      "standalone": true,
+      "taxYear": "2026/27",
+      "lastVerified": null,
+      "lastChecked": "2026-11-16"
+    },
     "ie": {
       "file": "ie/ie.2026.json",
       "name": "Ireland",

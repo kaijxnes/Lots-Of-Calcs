@@ -25,7 +25,7 @@ function err(where, msg) { errors.push(where + ": " + msg); }
 function warn(where, msg) { warnings.push(where + ": " + msg); }
 
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
-const KINDS = ["country", "state", "region", "city", "county"];
+const KINDS = ["country", "state", "region", "city", "county", "variant"]; // variant: the same place, another kind of taxpayer (self-employed)
 /* tax and social are compulsory; loan (student loans) and pension are
    deductions a visitor opts into, so they default to nothing */
 const GROUPS = ["tax", "social", "loan", "pension", "benefit"];

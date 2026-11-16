@@ -37,6 +37,8 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Denmark | [dk](dk.md) | 2026 | 25 | — | — |
 | Spain | [es](es.md) | 2026 | 112 | — | — |
 | Finland | [fi](fi.md) | 2026 | 29 | 2026-11-11 | — |
+| Self-employed (Scotland) | [gb-sct-se](gb-sct-se.md) | 2026/27 | 4 | 2026-11-16 | — |
+| Self-employed (England, Wales & Northern Ireland) | [gb-se](gb-se.md) | 2026/27 | 6 | 2026-11-16 | — |
 | India | [in](in.md) | 2026-27 | 40 | — | — |
 | Italy | [it](it.md) | 2026 | 46 | — | — |
 | Japan | [jp](jp.md) | 2026 | 86 | — | — |
