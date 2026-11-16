@@ -71,7 +71,7 @@ function page(n) {
   const r = W.roman(n);
   const loc = SITE + url(n);
   const title = titleFor(n);
-  const desc = `${fmt(n)} in words is "${uk}" in British English${us !== uk ? ` and "${us}" in American English` : ""}${n >= 100000 ? `, or "${ind}" (${W.grouped(n, "indian")}) in the Indian system` : ""}. Plus the ordinal${r ? ", Roman numerals" : ""} and how to write it on a cheque.`;
+  const desc = `${fmt(n)} in words is "${uk}"${us !== uk ? ` (US: "${us}")` : ""}${n >= 100000 ? `, or "${ind}" in India` : ""}. Plus the ordinal${r ? ", Roman numerals" : ""} and how to write it on a cheque.`;
 
   const rows = [
     ["British English", W.cap(uk)],

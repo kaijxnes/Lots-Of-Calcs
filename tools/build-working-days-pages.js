@@ -64,7 +64,7 @@ function paydayPage(y) {
   const url = SITE + `${BASE}${y}/payday-calendar/`;
   const r = "england-and-wales";
   const moved = W.MONTHS.map((n, m) => paid(RULES[3], y, m, r) !== RULES[3][1](y, m)).filter(Boolean).length;
-  const title = `Payday Calendar ${y} — UK Pay Dates When Payday Falls on a Weekend`;
+  const title = site.fitTitle(`Payday Calendar ${y} — UK Pay Dates When Payday Falls on a Weekend`, `Payday Calendar ${y} — UK Pay Dates for Weekends & Holidays`);
   const desc = `When you'll be paid in each month of ${y} if payday is the last working day, the last Friday, or the 15th, 20th, 25th or 28th — moved to the working day before for weekends and bank holidays.`;
   const rows = W.MONTHS.map((n, m) => [`<a href="${BASE}${y}/${mslug(m)}/">${n}</a>`].concat(RULES.map((rule) => {
     const due = rule[1](y, m), got = paid(rule, y, m, r);
@@ -204,7 +204,7 @@ function monthPage(y, m) {
   REG.forEach((r) => { c[r] = monthCount(r, y, m); });
   const ew = c["england-and-wales"];
   const same = REG.every((r) => c[r].working === ew.working);
-  const title = `How Many Working Days in ${name} ${y}? — ${ew.working}${same ? "" : " in England & Wales"}`;
+  const title = site.fitTitle(`How Many Working Days in ${name} ${y}? — ${ew.working}${same ? "" : " in England & Wales"}`, `How Many Working Days in ${name} ${y}? — ${ew.working}${same ? "" : " (Eng & Wales)"}`);
   const desc = `${name} ${y} has ${ew.working} working days in England and Wales${same ? ", Scotland and Northern Ireland" : `, ${c.scotland.working} in Scotland and ${c["northern-ireland"].working} in Northern Ireland`}: ${ew.calendar} days less ${ew.weekend} weekend days${ew.holidays.length ? ` and ${ew.holidays.length} bank holiday${ew.holidays.length > 1 ? "s" : ""} (${andList(ew.holidays.map((h) => h.title))})` : ", with no bank holidays"}.`;
   const holRows = [...new Set(REG.flatMap((r) => c[r].holidays.map((h) => h.date)))].sort().map((d) => {
     const h = REG.map((r) => c[r].holidays.find((x) => x.date === d));

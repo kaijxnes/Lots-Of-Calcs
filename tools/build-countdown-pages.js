@@ -116,7 +116,14 @@ function hub() {
   const title = "Countdowns — Days Until Christmas, Easter, Halloween & More";
   const desc = "Live countdowns to Christmas, New Year, Easter, Pancake Day, Mother's Day, Father's Day, Halloween, Bonfire Night, Thanksgiving and more, with the dates for the coming years.";
   const rows = EVENTS.map((e) => { const d = upcoming(e)[0]; return [`<a href="/days-until/${e.slug}/">${esc(e.name)}</a>`, esc(long(d))]; });
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Countdowns", url]])];
+  const xmas = EVENTS.find((e) => e.slug === "christmas"), easterE = EVENTS.find((e) => e.slug === "easter");
+  const faq = [
+    ["How many days until Christmas?", `Christmas Day is ${long(upcoming(xmas)[0])}. The Christmas countdown shows the days, hours and sleeps left, worked out live from your device's clock.`],
+    ["When is Easter?", `Easter Sunday is next on ${long(upcoming(easterE)[0])}. It moves each year: it's the first Sunday after the first full moon on or after 21 March, so it falls between 22 March and 25 April.`],
+    ["How are the countdowns worked out?", "Live in your browser from your device's date and time, counting to midnight at the start of the day, so they're right in any time zone. The dates themselves follow each day's rule, such as the fourth Thursday in November for US Thanksgiving."],
+    ["What about working days?", "The working days calculator counts weekdays less UK bank holidays between today and any date — for example, the working days left before Christmas."]
+  ];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Countdowns", url]]), site.faqLd(faq)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/date-diff/">← Date difference calculator</a>
       <h1 class="page-title">Countdowns</h1>
@@ -126,6 +133,10 @@ function hub() {
     <main class="tool">
 ${site.table(["Event", "Next date"], rows, 320)}      <p class="tool-hint" style="margin-top:12px;">For any other date, the <a href="/date-diff/">date difference calculator</a> counts the days between two dates.</p>
     </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(faq)}    </main>
 
 ${related.block("/days-until/")}
 ${site.FOOTER}

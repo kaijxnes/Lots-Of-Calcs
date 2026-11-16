@@ -69,7 +69,7 @@ function page(a) {
   const url = SITE + `/running-cost/${a.slug}/`;
   const perHour = a.watts ? (a.watts / 1000) * RATE : null;
   const tcName = a.name.replace(/(^|[ -])([a-z])/g, (m, x, c) => x + c.toUpperCase());
-  const title = `How Much Does ${article(a.name)} ${tcName} Cost to Run? — ${money(use)} per ${a.use}`;
+  const title = site.fitTitle(`How Much Does ${article(a.name)} ${tcName} Cost to Run? — ${money(use)} per ${a.use}`, `${tcName} Running Cost — ${money(use)} per ${a.use}`);
   const desc = `A typical ${name} costs about ${money(use)} per ${a.use}${perHour !== null && a.minutes !== 60 ? ` (${money(perHour)} an hour)` : ""} and around ${money(year)} a year at the price cap rate of ${RATE}p per kWh (${ENERGY.period.short}). Work out your own with its wattage.`;
   const rates = [20, 24, RATE, 30, 35].sort((x, y) => x - y);
   const rateRows = rates.map((r) => [`${r}p per kWh${r === RATE ? " (price cap)" : ""}`, money(k * r), money(k * r * a.uses * 52)]);
@@ -80,7 +80,7 @@ function page(a) {
     [`How can I make it cheaper?`, a.tip],
     ["Does this include the standing charge?", `No. The standing charge (${ENERGY.electricity.standingCharge}p a day under the price cap) is paid whatever you use, so it doesn't change with any one appliance. Fixed tariffs and some regions charge a different unit rate — put yours in the calculator.`]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Electricity Running Cost", SITE + "/running-cost/"], [`${a.name} running cost`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url, ENERGY.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Electricity Running Cost", SITE + "/running-cost/"], [`${a.name} running cost`, url]]), site.faqLd(q)];
   const inputs = a.kwh !== undefined
     ? `        <div class="field"><label for="app-kwh">Energy per ${esc(a.use)} (kWh)</label><input type="number" id="app-kwh" value="${a.kwh}" step="any" min="0" inputmode="decimal"></div>`
     : `        <div class="field"><label for="app-watts">Power (watts)</label><input type="number" id="app-watts" value="${a.watts}" step="any" min="0" inputmode="decimal"></div>

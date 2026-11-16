@@ -18,7 +18,7 @@ const amounts = [10, 20, 25, 50, 75, 100, 150, 200, 250, 300, 500, 750, 1000, 15
 
 function page() {
   const url = SITE + "/cheque-writer/";
-  const title = "Cheque Writer — How to Write an Amount in Words on a Cheque or Check";
+  const title = "Cheque Writer — Amounts in Words for a Cheque or Check";
   const desc = `Type an amount and get exactly what to write on a cheque: the words line and the figures box, for a UK cheque, US check, Indian cheque or euro cheque. £1,250.50 is "${W.chequeWords(EX, "uk")}".`;
   const q = [
     ["How do I write pence on a cheque?", `Write the pounds in words, then "and" and the pence: "${W.chequeWords(EX, "uk")}". Writing "and 50p" is also accepted. In the box, write £1,250.50.`],

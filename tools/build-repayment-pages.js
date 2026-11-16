@@ -16,6 +16,7 @@
    Payments use the standard repayment formula on a monthly rate of the annual
    rate divided by twelve, as the site's loan and overpayment calculators do. */
 const site = require("./lib/site.js");
+const links = require("./page-links.js");
 const { esc, card, table, neighbours, SITE } = site;
 
 function range(from, to, step) {
@@ -155,11 +156,18 @@ function mortgagePage(cfg, amount) {
   if (uk) {
     const lo = amount / 4.5, hi = amount / 4;
     afford = `<p class="about-text">Most UK lenders will lend up to around 4 to 4.5 times your annual income, sometimes more for higher earners. On that rule of thumb, borrowing ${esc(a0)} usually needs a household income of roughly <strong>${esc(money(s, lo, true))} to ${esc(money(s, hi, true))}</strong> &mdash; and lenders also check your outgoings and how the payment would look if rates rose.</p>
-      <p class="about-text">With a 10% deposit, ${esc(a0)} buys a home costing about ${esc(money(s, amount / 0.9, true))}; with 25% down, about ${esc(money(s, amount / 0.75, true))}. The <a href="/salary/uk/">salary after tax pages</a> show what an income leaves you each month.</p>`;
+      <p class="about-text">With a 10% deposit, ${esc(a0)} buys a home costing about ${esc(money(s, amount / 0.9, true))}; with 25% down, about ${esc(money(s, amount / 0.75, true))}. The <a href="/salary/uk/">salary after tax pages</a> show what an income leaves you each month.</p>${(() => {
+        const b = links.borrowUkNear(amount / 4.5), sd = links.stampDutyNear(amount / 0.9);
+        const items = [b ? `<a href="${b.url}">How much can I borrow on ${money(s, b.value, true)}?</a>` : "", sd ? `<a href="${sd.url}">Stamp duty on ${money(s, sd.value, true)}</a>` : ""].filter(Boolean);
+        return items.length ? `\n      <p class="salary-links">${items.join(" ")}</p>` : "";
+      })()}`;
   } else {
     const income = (exPay / 0.28) * 12;
     afford = `<p class="about-text">A common lender guideline keeps housing costs to about 28% of gross monthly income. Principal and interest of ${esc(money(s, exPay))} at ${pct(ex.rate)} over ${ex.years} years would need an income of about <strong>${esc(money(s, income, true))}</strong> a year &mdash; more once property tax, insurance and any HOA fees are added, which this payment doesn't include.</p>
-      <p class="about-text">With 20% down, a ${esc(a0)} loan buys a home costing about ${esc(money(s, amount / 0.8, true))}; with 10% down, about ${esc(money(s, amount / 0.9, true))}, though under 20% down usually means paying mortgage insurance too.</p>`;
+      <p class="about-text">With 20% down, a ${esc(a0)} loan buys a home costing about ${esc(money(s, amount / 0.8, true))}; with 10% down, about ${esc(money(s, amount / 0.9, true))}, though under 20% down usually means paying mortgage insurance too.</p>${(() => {
+        const b = links.borrowUsNear(income);
+        return b ? `\n      <p class="salary-links"><a href="${b.url}">How much house can I afford on ${money(s, b.value, true)}?</a></p>` : "";
+      })()}`;
   }
 
   const faq = [
@@ -288,9 +296,9 @@ ${others}${card(cfg.base, "📋", "All loan amounts", "Monthly repayments for ev
 
 // ---------------------------------------------------------------- hubs
 
-function hub({ loc, title, desc, h1, sub, sections, intro }) {
+function hub({ loc, title, desc, h1, sub, sections, intro, faq }) {
   const url = SITE + loc;
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], [h1, url]])];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], [h1, url]])].concat(faq ? [site.faqLd(faq)] : []);
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">${esc(h1)}</h1>
@@ -300,7 +308,11 @@ function hub({ loc, title, desc, h1, sub, sections, intro }) {
     <main class="tool">
       <p class="about-text">${intro}</p>
 ${sections}    </main>
-
+${faq ? `
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(faq)}    </main>
+` : ""}
 ${site.FOOTER}
   </div>
 </body>
@@ -325,7 +337,14 @@ function mortgageHub() {
     desc: "Monthly payments on every common mortgage size, from £50,000 to £1 million and $100,000 to $1 million, at a range of rates and terms.",
     h1: "Mortgage payments by amount",
     sub: "Monthly repayments and total interest for each common mortgage size.",
-    intro: `Pick an amount for its full table of payments at rates from ${pct(uk.rates[0])} to ${pct(uk.rates[uk.rates.length - 1])} and terms of ${uk.terms[0]} to ${uk.terms[uk.terms.length - 1]} years. The summary below uses example rates, not quoted ones. To see what overpaying would save, use the <a href="/mortgage-overpayment/">mortgage overpayment calculator</a>.`,
+    intro: `Pick an amount for its full table of payments at rates from ${pct(uk.rates[0])} to ${pct(uk.rates[uk.rates.length - 1])} and terms of ${uk.terms[0]} to ${uk.terms[uk.terms.length - 1]} years. The summary below uses example rates, not quoted ones. To work out a payment for any amount, use the <a href="/mortgage-calculator/">mortgage calculator</a>; to see how much you could borrow on your salary, the <a href="/mortgage-affordability/">mortgage affordability calculator</a>; for the tax on buying, the <a href="/stamp-duty-calculator/">stamp duty calculator</a>; and to see what overpaying would save, the <a href="/mortgage-overpayment/">mortgage overpayment calculator</a>.`,
+    faq: [
+      ["How is a mortgage payment worked out?", "On a repayment mortgage, each monthly payment covers that month's interest on what you still owe plus a slice of the loan, so the payment stays the same while the balance falls. Early payments are mostly interest; later ones mostly capital."],
+      [`What's the monthly payment on a £200,000 mortgage?`, `About ${money("£", payment(200000, uk.example.rate, uk.example.years))} a month at ${pct(uk.example.rate)} over ${uk.example.years} years, and ${money("£", payment(200000, uk.example.rate + 1, uk.example.years))} at ${pct(uk.example.rate + 1)}. Each amount's page has every rate and term.`],
+      [`What's the monthly payment on a $300,000 mortgage?`, `About ${money("$", payment(300000, us.example.rate, us.example.years))} a month in principal and interest at ${pct(us.example.rate)} over ${us.example.years} years, before property tax, insurance and any mortgage insurance.`],
+      ["Does a longer term save money?", "It lowers the monthly payment but raises the total cost, because you pay interest for longer: compare the total interest columns on any amount's page."],
+      ["How much can I borrow?", "UK lenders typically lend around 4 to 4.5 times income; US lenders look at how much of your gross income goes on housing and debts (the 28/36 rule). The mortgage affordability pages work it out by salary."]
+    ],
     sections: `      <p class="tool-section-title" style="margin-top:22px;">UK mortgages</p>
 ${amountTable(uk, "Mortgage")}      <p class="tool-section-title" style="margin-top:22px;">US mortgages</p>
 ${amountTable(us, "Mortgage")}      <p class="tool-hint" style="margin-top:12px;">US payments are principal and interest only, before property tax, insurance and any mortgage insurance.</p>
@@ -353,7 +372,13 @@ function loanHub() {
     desc: "Monthly repayments and total interest on personal loans from £1,000 to £50,000, at APRs from 5% to 30% over 1 to 7 years.",
     h1: "Loan repayments by amount",
     sub: "Monthly cost and total interest for each common loan size.",
-    intro: `Pick an amount for its full table of repayments at APRs from ${LOAN.rates[0]}% to ${LOAN.rates[LOAN.rates.length - 1]}% over 1 to 7 years. The summary below uses an example rate. For any amount, APR and term, use the <a href="/loan-repayment/">loan repayment calculator</a>.`,
+    intro: `Pick an amount for its full table of repayments at APRs from ${LOAN.rates[0]}% to ${LOAN.rates[LOAN.rates.length - 1]}% over 1 to 7 years. The summary below uses an example rate. For any amount, APR and term, use the <a href="/loan-repayment/">loan repayment calculator</a>; to pay off several debts in the cheapest order, the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a>; for a car, the <a href="/car-finance/">car finance calculator</a>.`,
+    faq: [
+      ["How are loan repayments worked out?", "A personal loan is repaid in equal monthly instalments: each covers the month's interest on the balance plus some of the loan, so the balance falls to zero at the end of the term. The APR includes the interest and any compulsory fees, so it's the figure to compare loans on."],
+      [`What are the repayments on a £10,000 loan?`, `About ${money("£", payment(10000, LOAN.example.rate, LOAN.example.years))} a month at ${LOAN.example.rate}% APR over ${LOAN.example.years} years, ${money("£", payment(10000, LOAN.example.rate, LOAN.example.years) * LOAN.example.years * 12 - 10000)} in interest altogether. Over 5 years it's ${money("£", payment(10000, LOAN.example.rate, 5))} a month but more interest overall.`],
+      ["Is a shorter loan better?", "It costs more each month but less in total, because you pay interest for fewer months. Pick the shortest term whose monthly payment you can comfortably afford."],
+      ["What APR will I get?", "The rate you're offered depends on your credit record, income and the amount and term; advertised 'representative' APRs only have to be offered to 51% of successful applicants. Use the tables to see how much a higher rate would cost."]
+    ],
     sections: amountTable(LOAN, "Loan")
   });
 }

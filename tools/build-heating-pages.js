@@ -89,7 +89,7 @@ function sizePage(w) {
     [`Is a ${sizeName(w)} electric heater cheaper than central heating?`, `Per unit of heat, no: electricity costs ${ER}p per kWh and gas ${GR}p, so even allowing for boiler losses (${m(gasHeat)} per kWh of heat at 90% efficiency) electric heat costs about ${ratio} times as much. But a heater warms one room, while central heating warms the whole house — heating just the room you're in for a few hours can still cost less overall.`],
     ["Does the type of heater matter?", "Not for the cost per hour: every electric heater — fan, convector, oil-filled, halogen or panel — turns 1 kWh of electricity into 1 kWh of heat. What changes is how quickly it warms you and how well it holds the heat; a thermostat and timer make the biggest difference to the bill."]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Heating Cost", SITE + BASE], [`${sizeName(w)} heater`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url, ENERGY.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Heating Cost", SITE + BASE], [`${sizeName(w)} heater`, url]]), site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Heating cost calculator</a>
       <h1 class="page-title">How much does a ${sizeName(w)} heater cost to run?</h1>
@@ -126,7 +126,7 @@ function hub() {
     ["How do I work out what a heater costs?", "Multiply the power in kW by the hours it runs and the price per kWh: a 2 kW heater for 3 hours at 26p uses 6 kWh and costs £1.56. The power is on the label or in the manual."],
     ["What efficiency is my boiler?", EFF_NOTE]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Heating Cost", url]]),
+  const ld = [site.webPage(title, desc, url, ENERGY.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Heating Cost", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Heating Cost Calculator", url, applicationCategory: "UtilitiesApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>

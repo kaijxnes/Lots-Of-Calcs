@@ -36,7 +36,37 @@ const FOOTER = `    <footer class="site-footer">
       <p><a href="/about/">About this site</a></p>
     </footer>`;
 
+/* Search results show about 155-160 characters of a description, so a
+   longer one is cut back to the last full sentence that fits (every page
+   leads with its answer), or failing that the last clause, with an ellipsis. */
+const DESC_MAX = 160;
+function clipDesc(d) {
+  if (!d || d.length <= DESC_MAX) return d;
+  let cut = -1;
+  const re = /[.!?](?=\s|$)/g;
+  let m;
+  while ((m = re.exec(d)) && m.index < DESC_MAX) cut = m.index + 1;
+  if (cut >= 80) return d.slice(0, cut).trim();
+  /* the last clause break outside brackets, so nothing is left half-open */
+  let at = -1, depth = 0;
+  for (let i = 0; i < DESC_MAX - 2; i++) {
+    const c = d[i];
+    if (c === "(") depth++;
+    else if (c === ")") depth = Math.max(0, depth - 1);
+    else if (depth === 0 && ((c === "," || c === ";") && d[i + 1] === " " || (c === " " && d[i + 1] === "—") || (c === " " && d[i + 1] === "("))) at = i;
+  }
+  return (at > 60 ? d.slice(0, at) : d.slice(0, d.lastIndexOf(" ", DESC_MAX - 2))).replace(/[\s,;—]+$/, "").trim() + "…";
+}
+
+/* Titles past about 65 characters are cut off in results: the first
+   candidate that fits wins, so a page keeps its usual title whenever it can */
+const TITLE_MAX = 65;
+function fitTitle(...cands) {
+  return cands.find((t) => t.length <= TITLE_MAX) || cands[cands.length - 1];
+}
+
 function head({ title, desc, url, ld }) {
+  desc = clipDesc(desc);
   const ldJson = JSON.stringify(ld, null, 2).replace(/</g, "\\u003C");
   return `<!DOCTYPE html>
 <html lang="en">
@@ -80,11 +110,15 @@ function breadcrumb(items) {
   };
 }
 
-function webPage(title, desc, url) {
-  return {
-    "@context": "https://schema.org", "@type": "WebPage", name: title, description: desc, url: url,
+/* modified: the date the figures behind the page were last confirmed
+   (rates checked), for pages built on data that changes */
+function webPage(title, desc, url, modified) {
+  const o = {
+    "@context": "https://schema.org", "@type": "WebPage", name: title, description: clipDesc(desc), url: url,
     isPartOf: { "@type": "WebSite", name: "Lots Of Calcs", url: SITE + "/" }
   };
+  if (modified) o.dateModified = modified;
+  return o;
 }
 
 /* q: [[question, answer], ...] as plain text */
@@ -206,6 +240,6 @@ function sitemapBlock(key, generator, urls, strip) {
 
 module.exports = {
   ROOT, SITE, TODAY, FOOTER,
-  esc, niceDate, head, breadcrumb, webPage, faqLd, faqHtml, card, table, neighbours,
+  esc, niceDate, clipDesc, fitTitle, head, breadcrumb, webPage, faqLd, faqHtml, card, table, neighbours,
   write, prune, sitemapBlock, changed
 };

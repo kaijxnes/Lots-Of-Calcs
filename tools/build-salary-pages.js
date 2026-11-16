@@ -18,6 +18,7 @@ const registry = require("./tax/registry.js");
 const config = require("./salary-pages-config.js");
 const site = require("./lib/site.js");
 const payRise = require("./pay-rise-config.js");
+const links = require("./page-links.js");
 
 // The salaries with pages are listed in tools/salary-pages-config.js; the
 // cross-links between pages are generated from that list.
@@ -187,7 +188,8 @@ function build(gross, chain, cfg, allSalaries) {
   const ld = [
     {
       "@context": "https://schema.org", "@type": "WebPage",
-      name: title, description: desc, url: url,
+      name: title, description: site.clipDesc(desc), url: url,
+      ...(cfg.chain.every((d) => d.lastChecked) ? { dateModified: cfg.chain.map((d) => d.lastChecked).sort()[0] } : {}),
       isPartOf: { "@type": "WebSite", name: "Lots Of Calcs", url: "https://lotsofcalcs.com/" }
     },
     {
@@ -237,17 +239,17 @@ function build(gross, chain, cfg, allSalaries) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(title)}</title>
-<meta name="description" content="${esc(desc)}">
+<meta name="description" content="${esc(site.clipDesc(desc))}">
 <link rel="canonical" href="${url}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
 <meta property="og:title" content="${esc(title)}">
-<meta property="og:description" content="${esc(desc)}">
+<meta property="og:description" content="${esc(site.clipDesc(desc))}">
 <meta property="og:url" content="${url}">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
-<meta name="twitter:description" content="${esc(desc)}">
+<meta name="twitter:description" content="${esc(site.clipDesc(desc))}">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -353,6 +355,11 @@ ${ldJson}
       </div>
       <p class="tool-hint" style="margin-top:12px;">After income tax and National Insurance, with no student loan or pension. More on pay rises: the <a href="/pay-rise-calculator/">pay rise calculator</a>${payRise.PCTS.map((x) => ` · <a href="${payRise.pctUrl(x)}">${x}%</a>`).join("")}.</p>
 
+${(() => {
+        const b = links.borrowUk(gross) || (links.borrowUkNear(gross) || {}).url, se = links.selfEmployed(gross);
+        const items = [b ? `<a href="${b}">How much can I borrow on ${money0(gross)}?</a>` : "", se ? `<a href="${se}">${money0(gross)} self-employed</a>` : "", payRise.has(3, gross) ? `<a href="${payRise.url(3, gross)}">3% pay rise on ${money0(gross)}</a>` : ""].filter(Boolean);
+        return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${money0(gross)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
+      })()}
       <p class="tool-section-title" style="margin-top:22px;">The bands, line by line</p>
       <div class="table-scroll">
         <div style="min-width:420px;">
