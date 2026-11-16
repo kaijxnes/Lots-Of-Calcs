@@ -20,6 +20,7 @@ const path = require("path");
 const ROOT = path.join(__dirname, "..");
 
 const RELATED = {
+  "/self-employed-tax-calculator/": ["/salary/", "/pay-rise-calculator/", "/vat/", "/isa-vs-pension/", "/working-days/", "/savings-goal/"],
   "/dry-january-calculator/": ["/calorie-calculator/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
   "/pay-rise-calculator/": ["/salary/", "/inflation/", "/percent/", "/savings-goal/", "/isa-vs-pension/", "/mortgage-affordability/"],
   "/calorie-calculator/": ["/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
@@ -42,7 +43,7 @@ const RELATED = {
   "/number-to-words/": ["/cheque-writer/", "/roman-numerals/", "/decimal-to-fraction/", "/fractions/", "/basic/", "/birthday/", "/date-diff/"],
   "/margin-markup/": ["/marketplace-fees/", "/vat/", "/discount/", "/percent/", "/growth/", "/cashback/"],
   "/growth/": ["/cagr/", "/percent/", "/ab-test-significance/", "/compound-interest/", "/margin-markup/", "/weighted-average/"],
-  "/vat/": ["/salary/", "/margin-markup/", "/discount/", "/percent/", "/marketplace-fees/", "/split-bill/"],
+  "/vat/": ["/self-employed-tax-calculator/", "/salary/", "/margin-markup/", "/discount/", "/percent/", "/marketplace-fees/", "/split-bill/"],
   "/ab-test-significance/": ["/growth/", "/weighted-average/", "/percent/", "/cagr/", "/ai-cost/", "/margin-markup/"],
   "/weighted-average/": ["/grade/", "/percent/", "/ab-test-significance/", "/growth/", "/fractions/", "/basic/"],
   "/ai-cost/": ["/margin-markup/", "/growth/", "/ab-test-significance/", "/percent/", "/running-cost/", "/marketplace-fees/"],
@@ -50,7 +51,7 @@ const RELATED = {
   "/inflation/": ["/pay-rise-calculator/", "/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
   "/mortgage-affordability/": ["/mortgage-calculator/", "/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
   "/rent-vs-buy/": ["/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
-  "/salary/": ["/pay-rise-calculator/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
+  "/salary/": ["/self-employed-tax-calculator/", "/pay-rise-calculator/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
   "/cagr/": ["/compound-interest/", "/inflation/", "/growth/", "/fund-fees/", "/savings-goal/", "/percent/"],
   "/compound-interest/": ["/savings-goal/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
   "/savings-goal/": ["/compound-interest/", "/salary/", "/inflation/", "/fund-fees/", "/rent-vs-buy/", "/household-bills/"],

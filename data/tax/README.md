@@ -10,6 +10,7 @@ data/tax/
   index.json                 generated: id -> the file currently in force
   gb/gb.2026-27.json         United Kingdom
   gb/gb-sct.2026-27.json     Scotland (child of gb)
+  gb/gb-se.2026-27.json      Self-employed, Class 4 NI (child of gb; gb-sct-se for Scotland)
   us/us.2026.json            US federal + FICA
   us/us-ca.2026.json         California (child of us)
   us/us-ny-nyc.2026.json     New York City (child of us-ny)
@@ -61,7 +62,8 @@ check is a matter of ticking down the list.
   "id": "us-ca",                 // unique; also the file name prefix
   "name": "California",
   "appliesTo": "Residents of California",
-  "kind": "state",               // country | state | region | city | county
+  "kind": "state",               // country | state | region | city | county | variant (same place,
+                                 // another kind of taxpayer: gb-se is self-employed, a child of gb)
   "country": "US",
   "parent": "us",                // null for a country; children inherit the parent's items
   "standalone": true,            // false if it only makes sense with a child (US federal)

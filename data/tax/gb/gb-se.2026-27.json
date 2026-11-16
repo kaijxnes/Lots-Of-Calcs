@@ -1,0 +1,115 @@
+{
+  "id": "gb-se",
+  "name": "Self-employed (England, Wales & Northern Ireland)",
+  "appliesTo": "Self-employed people in England, Wales and Northern Ireland",
+  "kind": "variant",
+  "country": "GB",
+  "parent": "gb",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026/27",
+    "start": "2026-04-06",
+    "end": "2027-04-05"
+  },
+  "options": {
+    "pensionType": {
+      "label": "Pension type",
+      "default": "relief",
+      "inSummary": false,
+      "choices": {
+        "relief": "Personal pension (relief at source)"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "gb-ni",
+      "replaces": true,
+      "label": "Class 4 National Insurance",
+      "group": "social",
+      "note": "Self-employed National Insurance on profits: 6% between £12,570 and £50,270 and 2% above. Paid through Self Assessment, not PAYE. Class 2 is treated as paid on profits of £7,105 or more, so there's nothing to pay.",
+      "charge": {
+        "brackets": [
+          [
+            0,
+            0,
+            "Below the lower profits limit"
+          ],
+          [
+            12570,
+            6,
+            "Lower to upper profits limit"
+          ],
+          [
+            50270,
+            2,
+            "Above the upper profits limit"
+          ]
+        ],
+        "of": "gross"
+      }
+    }
+  ],
+  "assumptions": [
+    "Self-employed sole trader: the figure is taxable profit, after allowable expenses",
+    "No other income, and nothing already paid through PAYE",
+    "Profits of £7,105 or more, so Class 2 National Insurance is treated as paid",
+    "No student loan or pension contribution unless one is chosen"
+  ],
+  "notModelled": [
+    "Voluntary Class 2 contributions (£3.65 a week) on profits under £7,105",
+    "Higher-rate relief on personal pension contributions, which is claimed through Self Assessment",
+    "Trading allowance, losses, capital allowances and other adjustments to profit",
+    "When the tax is paid: payments on account are worked out separately on the self-employed pages"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Self-employed National Insurance rates (GOV.UK)",
+      "url": "https://www.gov.uk/self-employed-national-insurance-rates"
+    },
+    {
+      "title": "Payments on account (GOV.UK)",
+      "url": "https://www.gov.uk/understand-self-assessment-bill/payments-on-account"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Self-employed National Insurance rates (GOV.UK)",
+      "url": "https://www.gov.uk/self-employed-national-insurance-rates",
+      "note": "Read 16 Nov 2026, tax year 2026 to 2027: Class 4 6% on profits over £12,570 up to £50,270 and 2% over £50,270; Class 2 treated as paid on profits of £7,105 or more, voluntary £3.65 a week below that."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-16",
+  "verifyAt": "https://www.gov.uk/self-employed-national-insurance-rates",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Tax as employed: (30,000 − 12,570) × 20% = 3,486. Class 4 (30,000 − 12,570) × 6% = 1,045.80. Net 25,468.20.",
+      "expect": {
+        "gb-income-tax": 3486,
+        "gb-ni": 1045.8,
+        "net": 25468.2
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Tax 11,432. Class 4 37,700 × 6% = 2,262 + 9,730 × 2% = 194.60 → 2,456.60. Net 46,111.40.",
+      "expect": {
+        "gb-income-tax": 11432,
+        "gb-ni": 2456.6,
+        "net": 46111.4
+      }
+    },
+    {
+      "gross": 10000,
+      "note": "Below the personal allowance and the lower profits limit: nothing to pay.",
+      "expect": {
+        "gb-income-tax": 0,
+        "gb-ni": 0,
+        "net": 10000
+      }
+    }
+  ]
+}
