@@ -258,6 +258,7 @@ function build(gross, chain, cfg, allSalaries) {
 <meta name="theme-color" content="#1f2233">
 <link rel="stylesheet" href="/styles.css">
 <script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
 <script type="application/ld+json">
 ${ldJson}
 </script>
