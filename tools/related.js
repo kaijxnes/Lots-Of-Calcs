@@ -18,8 +18,10 @@ const fs = require("fs");
 const path = require("path");
 
 const ROOT = path.join(__dirname, "..");
+const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/stamp-duty-calculator/": ["/mortgage-calculator/", "/mortgage-affordability/", "/rent-vs-buy/", "/mortgage-overpayment/", "/salary/", "/savings-goal/"],
   "/self-employed-tax-calculator/": ["/salary/", "/pay-rise-calculator/", "/vat/", "/isa-vs-pension/", "/working-days/", "/savings-goal/"],
   "/dry-january-calculator/": ["/calorie-calculator/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
   "/pay-rise-calculator/": ["/salary/", "/inflation/", "/percent/", "/savings-goal/", "/isa-vs-pension/", "/mortgage-affordability/"],
@@ -34,7 +36,7 @@ const RELATED = {
   "/tfsa-vs-rrsp/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/isa-vs-pension/"],
   "/roth-vs-traditional/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/isa-vs-pension/", "/tfsa-vs-rrsp/"],
   "/isa-vs-pension/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/tfsa-vs-rrsp/"],
-  "/mortgage-calculator/": ["/mortgage-affordability/", "/mortgage-overpayment/", "/rent-vs-buy/", "/loan-repayment/", "/salary/", "/inflation/"],
+  "/mortgage-calculator/": ["/stamp-duty-calculator/", "/mortgage-affordability/", "/mortgage-overpayment/", "/rent-vs-buy/", "/loan-repayment/", "/salary/", "/inflation/"],
   "/basic/": ["/scientific/", "/percent/", "/fractions/", "/decimal-to-fraction/", "/unit-converter/", "/number-to-words/"],
   "/scientific/": ["/basic/", "/fractions/", "/percent/", "/unit-converter/", "/watts-amps-volts/", "/decimal-to-fraction/"],
   "/percent/": ["/discount/", "/vat/", "/margin-markup/", "/growth/", "/fractions/", "/decimal-to-fraction/"],
@@ -49,8 +51,8 @@ const RELATED = {
   "/ai-cost/": ["/margin-markup/", "/growth/", "/ab-test-significance/", "/percent/", "/running-cost/", "/marketplace-fees/"],
   "/marketplace-fees/": ["/margin-markup/", "/vat/", "/discount/", "/cashback/", "/percent/", "/growth/"],
   "/inflation/": ["/pay-rise-calculator/", "/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
-  "/mortgage-affordability/": ["/mortgage-calculator/", "/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
-  "/rent-vs-buy/": ["/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
+  "/mortgage-affordability/": ["/stamp-duty-calculator/", "/mortgage-calculator/", "/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
+  "/rent-vs-buy/": ["/stamp-duty-calculator/", "/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
   "/salary/": ["/self-employed-tax-calculator/", "/pay-rise-calculator/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
   "/cagr/": ["/compound-interest/", "/inflation/", "/growth/", "/fund-fees/", "/savings-goal/", "/percent/"],
   "/compound-interest/": ["/savings-goal/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
@@ -112,10 +114,11 @@ function cards() {
 }
 
 function cardHtml(href, c) {
+  const tag = tags.span(href);
   return `      <a class="hub-card" href="${href}">
         <span class="icon">${c.icon}</span>
         <div class="title">${c.title}</div>
-        <div class="desc">${c.desc}</div>
+        <div class="desc">${c.desc}</div>${tag ? `\n        ${tag}` : ""}
       </a>
 `;
 }
@@ -164,6 +167,16 @@ function main() {
       n++;
     }
   });
+  /* country tags on the homepage's and category hubs' own cards */
+  let tagged = 0;
+  ["index.html"].concat(fs.readdirSync(ROOT, { withFileTypes: true }).filter((d) => d.isDirectory() && fs.existsSync(path.join(ROOT, d.name, "index.html"))).map((d) => path.join(d.name, "index.html"))).forEach((rel) => {
+    const file = path.join(ROOT, rel);
+    const html = fs.readFileSync(file, "utf8");
+    if (!html.includes('class="hub-card"')) return;
+    const next = tags.apply(html);
+    if (next !== html) { fs.writeFileSync(file, next); tagged++; }
+  });
+  if (tagged) console.log("country tags updated on " + tagged + " page(s)");
   const missing = Object.keys(known).filter((href) => !RELATED[href]);
   if (missing.length) console.log("no related list for: " + missing.join(", "));
   console.log("updated " + n + " page(s)");
