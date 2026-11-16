@@ -177,6 +177,15 @@ function main() {
     if (next !== html) { fs.writeFileSync(file, next); tagged++; }
   });
   if (tagged) console.log("country tags updated on " + tagged + " page(s)");
+  /* the homepage's category tiles: each count from its hub's own list */
+  const home = path.join(ROOT, "index.html");
+  const homeHtml = fs.readFileSync(home, "utf8");
+  const counted = homeHtml.replace(/(<a class="cat-tile" href="\/([^"/]+)\/">[\s\S]*?<span class="cat-tile-count">)(\d+)( calculators?<\/span>)/g, (m, a, dir, n, b) => {
+    const hub = path.join(ROOT, dir, "index.html");
+    const k = fs.existsSync(hub) && (fs.readFileSync(hub, "utf8").match(/"numberOfItems": (\d+)/) || [])[1];
+    return k ? a + k + b : m;
+  });
+  if (counted !== homeHtml) { fs.writeFileSync(home, counted); console.log("category tile counts updated"); }
   const missing = Object.keys(known).filter((href) => !RELATED[href]);
   if (missing.length) console.log("no related list for: " + missing.join(", "));
   console.log("updated " + n + " page(s)");
