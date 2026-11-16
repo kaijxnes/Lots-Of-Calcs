@@ -178,6 +178,144 @@ ${site.FOOTER}
 }
 
 /* Links from the calculator page, so the pages are reachable */
+/* ---------- Euros: Ireland and France, each by its own official rule ----------
+   Ireland: the Central Bank's mortgage measures (limits effective 1 January
+   2023) cap borrowing at 4 times gross income for first-time buyers and 3.5
+   times for second and subsequent buyers, with a 10% minimum deposit;
+   lenders may exceed the limits on up to 15% of lending.
+   France: the HCSF's binding decision D-HCSF-2021-7 (loans from 1 January
+   2022) caps the "taux d'effort" — loan repayments including interest and
+   insurance — at 35% of net income before income tax, over at most 25 years
+   (27 with a deferred start); banks may depart from it on 20% of lending.
+   Net income before tax is gross less social contributions, from the
+   France tax file. Rates are examples. */
+const EUR_SALARIES = config.SALARIES.EUR;
+const eur = (v) => "€" + Math.round(v).toLocaleString("en-IE");
+const curFiles = registry.currentFiles(registry.readAll());
+const chainOf = (id) => registry.chainFor(curFiles[id].doc, registry.readAll());
+const IE_CHAIN = chainOf("ie"), FR_CHAIN = chainOf("fr");
+const checkedOf = (c) => { const d = c.map((x) => x.lastChecked); return d.every(Boolean) ? d.sort()[0] : undefined; };
+const IE = { rate: 4, years: 30, ftb: 4, ssb: 3.5, deposit: 0.1 };
+const FR = { rate: 3.5, years: 25, effort: 0.35, deposit: 0.1 };
+const SRC_IE = '<a href="https://www.centralbank.ie/consumer-hub/explainers/what-are-the-mortgage-measures" rel="noopener">Central Bank of Ireland mortgage measures</a>';
+const SRC_FR = '<a href="https://www.economie.gouv.fr/hcsf/mesures/mesure-relative-loctroi-de-credits-immobiliers" rel="noopener">HCSF rule on home loans (economie.gouv.fr)</a>';
+
+function iePage(salary) {
+  const url = SITE + `${BASE}ireland/${salary}/`;
+  const t = TaxEngine.compute(IE_CHAIN, salary, {});
+  const ftb = salary * IE.ftb, ssb = salary * IE.ssb;
+  const pay = A.payment(ftb, IE.rate, IE.years), paySsb = A.payment(ssb, IE.rate, IE.years);
+  const share = Math.round(pay / t.perMonth * 100);
+  const title = site.fitTitle(`How Much Can I Borrow on ${eur(salary)} in Ireland? — ${eur(ftb)} Mortgage`, `How Much Can I Borrow on ${eur(salary)} in Ireland? — ${eur(ftb)}`);
+  const desc = `On ${eur(salary)} the Central Bank's rules let first-time buyers borrow up to ${eur(ftb)} (4× income) and movers ${eur(ssb)} (3.5×) — ${eur(pay)} a month at ${IE.rate}% over ${IE.years} years.`;
+  const q = [
+    [`How much can I borrow on ${eur(salary)} in Ireland?`, `Up to ${eur(ftb)} as a first-time buyer — 4 times your gross income, the Central Bank of Ireland's limit — or ${eur(ssb)} (3.5 times) if you're a second or subsequent buyer. Lenders can go above the limits for up to 15% of their lending, and every lender also checks you can afford the repayments.`],
+    ["How much deposit do I need?", `At least 10% for first-time and second buyers (30% for buy-to-let). With a 10% deposit, borrowing ${eur(ftb)} buys a home of up to about ${eur(ftb / 0.9)}, so the deposit is about ${eur(ftb / 0.9 * 0.1)}.`],
+    ["What would the repayments be?", `${eur(pay)} a month on ${eur(ftb)} at an example ${IE.rate}% over ${IE.years} years — ${share}% of the ${eur(t.perMonth)} a month that ${eur(salary)} leaves after income tax, USC and PRSI. On ${eur(ssb)} it would be ${eur(paySsb)}.`],
+    ["Buying with someone?", `The limit applies to your combined gross income: with a partner also on ${eur(salary)}, first-time buyers could borrow up to ${eur(ftb * 2)}.`]
+  ];
+  const ld = [site.webPage(title, desc, url, checkedOf(IE_CHAIN)), site.breadcrumb([["Home", SITE + "/"], ["Mortgage Affordability", SITE + BASE], [`Ireland, ${eur(salary)}`, url]]), site.faqLd(q)];
+  const near = site.neighbours(EUR_SALARIES, salary, 6).filter((x) => x !== salary).map((x) => `<a href="${BASE}ireland/${x}/">${eur(x)}</a>`).join(" ");
+  const rows = [["First-time buyer (4×)", eur(ftb), eur(ftb / 0.9), eur(pay), `${share}%`], ["Second or later buyer (3.5×)", eur(ssb), eur(ssb / 0.9), eur(paySsb), `${Math.round(paySsb / t.perMonth * 100)}%`], ["Joint, first-time (4× two incomes)", eur(ftb * 2), eur(ftb * 2 / 0.9), eur(pay * 2), "—"]];
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${BASE}">← Mortgage affordability calculator</a>
+      <h1 class="page-title">How much can I borrow on ${eur(salary)} in Ireland?</h1>
+      <p class="page-subtitle">Up to ${eur(ftb)} for a first-time buyer, ${eur(ssb)} for a mover, under the Central Bank's rules.</p>
+    </header>
+
+    <main class="tool">
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value">${eur(ftb)}</div>
+          <div class="label">maximum for a first-time buyer on ${eur(salary)} (4× income)</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Home it buys with a 10% deposit</span><span class="r-value">up to ${eur(ftb / 0.9)}</span></div>
+          <div class="result-row"><span class="r-label">Monthly repayment (${IE.rate}%, ${IE.years} years)</span><span class="r-value">${eur(pay)}</span></div>
+          <div class="result-row"><span class="r-label">Share of take-home pay</span><span class="r-value">${share}% of ${eur(t.perMonth)}</span></div>
+          <div class="result-row"><span class="r-label">Second or subsequent buyer (3.5×)</span><span class="r-value">${eur(ssb)}</span></div>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+${site.table(["Buyer", "Maximum loan", "Home (10% deposit)", "A month", "Of take-home"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">Limits from the ${SRC_IE} (effective 1 January 2023): loans of up to 4 times gross income for first-time buyers and 3.5 times for others, with at least a 10% deposit; lenders may exceed them on up to 15% of lending. The ${IE.rate}% rate over ${IE.years} years is an example, not a quote. Take-home is after income tax, USC and PRSI, single, from the <a href="/salary/ireland/">Ireland salary calculator</a>.</p>
+      <p class="salary-links"><a href="/salary/ireland/${salary}-after-tax/">${eur(salary)} after tax in Ireland</a> <a href="/mortgage-calculator/">Mortgage calculator</a></p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
+    <p class="salary-links">${near}</p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
+function frPage(salary) {
+  const url = SITE + `${BASE}france/${salary}/`;
+  const t = TaxEngine.compute(FR_CHAIN, salary, {});
+  const netBefore = salary - (t.byGroup.social || 0); // net before income tax
+  const cap = netBefore / 12 * FR.effort;
+  const loan = cap / A.payment(1, FR.rate, FR.years);
+  const loan20 = cap / A.payment(1, FR.rate, 20);
+  const title = site.fitTitle(`How Much Can I Borrow on ${eur(salary)} in France? — About ${eur(r1000(loan))}`, `Borrowing on ${eur(salary)} in France — About ${eur(r1000(loan))}`);
+  const desc = `On ${eur(salary)} gross in France, the 35% rule caps loan repayments at ${eur(cap)} a month — about ${eur(loan)} over ${FR.years} years at ${FR.rate}%, before borrower insurance.`;
+  const q = [
+    [`How much can I borrow on ${eur(salary)} in France?`, `About ${eur(loan)} over ${FR.years} years at an example ${FR.rate}%. Banks must keep repayments — including interest and borrower insurance — to at most 35% of your net income before income tax (the HCSF's binding rule since 2022): ${eur(netBefore)} a year, so ${eur(cap)} a month.`],
+    ["What is the 35% rule (taux d'endettement)?", "Since 1 January 2022 the Haut Conseil de stabilité financière has required lenders to keep a borrower's 'taux d'effort' — all loan repayments, interest and insurance included — to 35% of net income before tax, and loans to 25 years (27 if the start of repayments is deferred, for example on a new build). Banks can depart from it on 20% of their new lending, mostly for main homes and first-time buyers."],
+    ["Does a shorter loan change it?", `Yes — the same ${eur(cap)} a month repays less over a shorter term: about ${eur(loan20)} over 20 years. The 35% also includes any other loans you're repaying, which reduce what's left for the mortgage.`],
+    ["What about the deposit (apport)?", `Banks usually expect a deposit that covers at least the purchase costs, such as the notary's fees (frais de notaire). With a 10% deposit, ${eur(loan)} would buy a home of about ${eur(loan / 0.9)}.`]
+  ];
+  const ld = [site.webPage(title, desc, url, checkedOf(FR_CHAIN)), site.breadcrumb([["Home", SITE + "/"], ["Mortgage Affordability", SITE + BASE], [`France, ${eur(salary)}`, url]]), site.faqLd(q)];
+  const near = site.neighbours(EUR_SALARIES, salary, 6).filter((x) => x !== salary).map((x) => `<a href="${BASE}france/${x}/">${eur(x)}</a>`).join(" ");
+  const rows = [15, 20, 25].map((y) => { const l = cap / A.payment(1, FR.rate, y); return [`${y} years`, eur(l), eur(l / 0.9), eur(cap)]; });
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${BASE}">← Mortgage affordability calculator</a>
+      <h1 class="page-title">How much can I borrow on ${eur(salary)} in France?</h1>
+      <p class="page-subtitle">About ${eur(loan)} over ${FR.years} years, with repayments at the 35% limit (${eur(cap)} a month).</p>
+    </header>
+
+    <main class="tool">
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value">${eur(loan)}</div>
+          <div class="label">about what ${eur(salary)} could borrow over ${FR.years} years</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Maximum repayment (35%)</span><span class="r-value">${eur(cap)} a month</span></div>
+          <div class="result-row"><span class="r-label">Net income before income tax</span><span class="r-value">${eur(netBefore)} a year</span></div>
+          <div class="result-row"><span class="r-label">Home it buys with a 10% deposit</span><span class="r-value">about ${eur(loan / 0.9)}</span></div>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+${site.table(["Term", "Loan", "Home (10% deposit)", "A month"], rows, 440)}      <p class="tool-hint" style="margin-top:12px;">From the ${SRC_FR}: repayments, interest and insurance included, of at most 35% of net income before income tax, over at most 25 years; banks may depart from it on 20% of lending. The ${FR.rate}% rate is an example and borrower insurance isn't included, so the real figure is a little lower. Net income is gross less social contributions, from the <a href="/salary/france/">France salary calculator</a>.</p>
+      <p class="salary-links"><a href="/salary/france/${salary}-after-tax/">${eur(salary)} after tax in France</a> <a href="/mortgage-calculator/">Mortgage calculator</a></p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
+    <p class="salary-links">${near}</p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
 function hubBlock() {
   const file = path.join(site.ROOT, "mortgage-affordability/index.html");
   const START = "    <!-- borrowing pages: generated by tools/build-borrowing-pages.js -->\n", END = "    <!-- end borrowing pages -->\n";
@@ -189,6 +327,10 @@ function hubBlock() {
       <p class="salary-links">${UK_SALARIES.map((x) => `<a href="${BASE}uk/${x}/">${gbp(x)}</a>`).join(" ")}</p>
       <p class="salary-links-title">US: how much house can I afford on…</p>
       <p class="salary-links">${US_SALARIES.map((x) => `<a href="${BASE}us/${x}/">${usd(x)}</a>`).join(" ")}</p>
+      <p class="salary-links-title">Ireland: how much can I borrow on…</p>
+      <p class="salary-links">${EUR_SALARIES.map((x) => `<a href="${BASE}ireland/${x}/">${eur(x)}</a>`).join(" ")}</p>
+      <p class="salary-links-title">France: how much can I borrow on…</p>
+      <p class="salary-links">${EUR_SALARIES.map((x) => `<a href="${BASE}france/${x}/">${eur(x)}</a>`).join(" ")}</p>
     </main>
 
 `;
@@ -203,8 +345,14 @@ if (Math.round(A.uk({ ...UK, income: 30000 }).loan) !== 135000) throw new Error(
 const urls = [];
 UK_SALARIES.forEach((s) => { site.write(`mortgage-affordability/uk/${s}`, ukPage(s)); urls.push([`${BASE}uk/${s}/`, "0.6"]); });
 US_SALARIES.forEach((s) => { site.write(`mortgage-affordability/us/${s}`, usPage(s)); urls.push([`${BASE}us/${s}/`, "0.6"]); });
+EUR_SALARIES.forEach((s) => {
+  site.write(`mortgage-affordability/ireland/${s}`, iePage(s)); urls.push([`${BASE}ireland/${s}/`, "0.6"]);
+  site.write(`mortgage-affordability/france/${s}`, frPage(s)); urls.push([`${BASE}france/${s}/`, "0.6"]);
+});
 hubBlock();
 site.prune("mortgage-affordability/uk", /^\d+$/);
 site.prune("mortgage-affordability/us", /^\d+$/);
+site.prune("mortgage-affordability/ireland", /^\d+$/);
+site.prune("mortgage-affordability/france", /^\d+$/);
 site.sitemapBlock("borrowing pages", "tools/build-borrowing-pages.js", urls);
-console.log(`built ${urls.length} borrowing pages (${UK_SALARIES.length} UK, ${US_SALARIES.length} US)`);
+console.log(`built ${urls.length} borrowing pages (${UK_SALARIES.length} UK, ${US_SALARIES.length} US, ${EUR_SALARIES.length} Ireland, ${EUR_SALARIES.length} France)`);
