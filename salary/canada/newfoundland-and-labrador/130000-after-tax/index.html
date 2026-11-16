@@ -103,6 +103,14 @@
       },
       {
         "@type": "Question",
+        "name": "What is a 3% pay rise on $130,000 worth after tax in Newfoundland and Labrador?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 3% rise takes $130,000 to $133,900 — $3,900 more before tax. After deductions you keep $2,269.80 a year, or $189.15 a month."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "What does this leave out?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -170,6 +178,19 @@
       </div>
 
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</p>
+      <div class="field" style="max-width:200px;">
+        <label for="rise-pct">Pay rise (%)</label>
+        <input type="number" id="rise-pct" value="3" min="0" step="any" inputmode="decimal">
+      </div>
+      <div class="result-box">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">New salary</span><span class="r-value" data-out="rise-gross">$133,900</span></div>
+          <div class="result-row highlight"><span class="r-label">Extra take-home a month</span><span class="r-value" data-out="rise-month">$189.15</span></div>
+          <div class="result-row"><span class="r-label">Extra take-home a year</span><span class="r-value" data-out="rise-year">$2,269.80</span></div>
+          <div class="result-row"><span class="r-label">You keep</span><span class="r-value" data-out="rise-keep">58% of the rise</span></div>
+        </div>
+      </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
     </main>
@@ -186,6 +207,21 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Federal tax, CPP and EI are the same in every province except Quebec, which has its own pension plan (QPP), parental insurance (QPIP), a lower EI rate and a 16.5% cut in federal tax; the rest of the difference is provincial income tax.</p>
+      <p class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on $130,000</p>
+      <div class="table-scroll">
+        <div style="min-width:480px;">
+          <table class="out-table">
+            <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
+            <tbody>
+<tr><td>2%</td><td>$132,600</td><td>$1,513.20</td><td>$126.10</td><td>58%</td></tr>
+<tr><td>3%</td><td>$133,900</td><td>$2,269.80</td><td>$189.15</td><td>58%</td></tr>
+<tr><td>5%</td><td>$136,500</td><td>$3,783.00</td><td>$315.25</td><td>58%</td></tr>
+<tr><td>10%</td><td>$143,000</td><td>$7,566.00</td><td>$630.50</td><td>58%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (42% here), so you keep less of it than of your salary overall.</p>
     </main>
 
     <main class="tool">
@@ -207,6 +243,8 @@
       <p class="about-text">$7,421.87 a month — the annual take-home of $89,062.41 divided by twelve. Actual pay slips can differ where pay is split into more than twelve instalments or where withholding is settled at the end of the year.</p>
       <p class="faq-q">What is the marginal tax rate on $130,000 in Newfoundland and Labrador?</p>
       <p class="about-text">42% — that is what is taken from the next unit you earn, against 31.5% of the salary overall. The marginal rate is the one that matters when weighing a pay rise or overtime.</p>
+      <p class="faq-q">What is a 3% pay rise on $130,000 worth after tax in Newfoundland and Labrador?</p>
+      <p class="about-text">A 3% rise takes $130,000 to $133,900 — $3,900 more before tax. After deductions you keep $2,269.80 a year, or $189.15 a month.</p>
       <p class="faq-q">What does this leave out?</p>
       <p class="about-text">RRSP, pension plan and union dues deductions; Credits other than the basic personal amount, CPP/EI and the Canada employment amount (e.g. spouse, dependants, tuition, medical); The Canada Workers Benefit and other refundable credits and benefits; Provincial low-income tax reductions that are claimed on the return rather than through payroll; Provincial credits other than the basic personal amount and CPP/EI; Low-income tax reductions claimed on the return.</p>
       <p class="faq-q">How accurate are these Newfoundland and Labrador figures?</p>
