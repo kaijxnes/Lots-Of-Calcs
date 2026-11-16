@@ -15,6 +15,7 @@ const related = require("./related.js");
 const TaxEngine = require("../tax-engine.js");
 const registry = require("./tax/registry.js");
 const SE = require("../self-employed.js");
+const links = require("./page-links.js");
 const { esc, SITE } = site;
 
 const all = registry.readAll(), current = registry.currentFiles(all);
@@ -22,6 +23,7 @@ const chainOf = (id) => registry.chainFor(current[id].doc, all);
 const CH = { "gb-se": chainOf("gb-se"), "gb-sct-se": chainOf("gb-sct-se"), gb: chainOf("gb") };
 const DOC = current["gb-se"].doc;
 const YEAR = DOC.taxYear.label;
+const CHECKED = (() => { const d = [CH["gb-se"]].flatMap((c) => c.map((x) => x.lastChecked)); return d.every(Boolean) ? d.sort()[0] : undefined; })();
 const END_YEAR = +DOC.taxYear.end.slice(0, 4);
 const DUE = `31 January ${END_YEAR + 1}`; /* return and balancing payment for this tax year */
 const OPTS = TaxEngine.merge(CH["gb-se"]).options;
@@ -78,7 +80,7 @@ function tool(profit) {
 function page(profit) {
   const url = SITE + `${BASE}${profit}/`;
   const r = calc("gb-se", profit), s = calc("gb-sct-se", profit), e = calc("gb", profit), b = SE.bill(r);
-  const title = `${m0(profit)} Self-Employed After Tax — Tax, NI and Take-Home (${YEAR})`;
+  const title = site.fitTitle(`${m0(profit)} Self-Employed After Tax — Tax, NI and Take-Home (${YEAR})`, `${m0(profit)} Self-Employed After Tax — ${m0(r.net / 12)} a Month (${YEAR})`);
   const desc = `On ${m0(profit)} of self-employed profit you pay ${m(r.values["gb-income-tax"])} income tax and ${m(r.values["gb-ni"])} Class 4 NI, leaving ${m(r.net)} — ${m(r.net / 12)} a month (${YEAR}). Plus your Self Assessment bill and payments on account.`;
   const salaryLink = UK_SALARY_PAGES.includes(profit) ? ` (see <a href="/salary/${profit}-after-tax/">${m0(profit)} after tax as an employee</a>)` : "";
   const q = [
@@ -88,7 +90,7 @@ function page(profit) {
     ["Do I pay Class 2 National Insurance?", "Not on profits of £7,105 or more: since April 2024 it's treated as paid, so you still build up State Pension entitlement. Below that you can choose to pay voluntary Class 2 (£3.65 a week in 2026/27) to protect your record."],
     ["What are payments on account?", POA_TEXT]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Self-Employed Tax Calculator", SITE + BASE], [`${m0(profit)} profit`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url, CHECKED), site.breadcrumb([["Home", SITE + "/"], ["Self-Employed Tax Calculator", SITE + BASE], [`${m0(profit)} profit`, url]]), site.faqLd(q)];
   const rows = [
     ["Profit", m0(profit), m0(profit), m0(profit)],
     ["Income tax", m(r.values["gb-income-tax"]), m(s.values["gb-income-tax"]), m(e.values["gb-income-tax"])],
@@ -116,6 +118,7 @@ ${site.table(["", "Self-employed (Eng, Wales, NI)", "Self-employed (Scotland)", 
       <p class="tool-section-title">Frequently asked questions</p>
 ${site.faqHtml(q)}    </main>
 
+${(() => { const b = links.borrowUk(profit); return b ? `    <p class="salary-links"><a href="${b}">How much can I borrow on ${m0(profit)}?</a> (lenders usually want two years' accounts or tax calculations from the self-employed)</p>\n` : ""; })()}
     <div class="hub-group-title" style="margin-top:28px;">Other profits</div>
     <p class="salary-links">${others}</p>
 
@@ -131,7 +134,7 @@ ${site.FOOTER}
 function hub() {
   const url = SITE + BASE;
   const ex = calc("gb-se", 30000);
-  const title = `Self-Employed Tax Calculator — Take-Home Pay, NI and Payments on Account (${YEAR})`;
+  const title = `Self-Employed Tax Calculator — Take-Home Pay & NI (${YEAR})`;
   const desc = `Work out income tax, Class 4 National Insurance and take-home pay on your self-employed profit, your Self Assessment bill and payments on account (${YEAR}). On £30,000 profit you keep ${m(ex.net)}.`;
   const rows = PROFITS.map((p) => { const r = calc("gb-se", p), b = SE.bill(r); return [`<a href="${BASE}${p}/">${m0(p)}</a>`, m(r.values["gb-income-tax"]), m(r.values["gb-ni"]), m0(r.net), b.poa ? m0(b.poa) : "—"]; });
   const q = [
@@ -141,7 +144,7 @@ function hub() {
     ["How much should I put aside for tax?", "Look at the effective rate for your profit in the table: at £30,000 it's about 15%, at £60,000 about 23%. Putting aside 25–30% of each payment you receive covers most people, plus the first payment on account."],
     ["Are these figures up to date?", `They use the ${YEAR} rates from the same data files as the salary calculators, which are checked against GOV.UK every month; the "last checked" date is on the tax rates page.`]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Self-Employed Tax Calculator", url]]),
+  const ld = [site.webPage(title, desc, url, CHECKED), site.breadcrumb([["Home", SITE + "/"], ["Self-Employed Tax Calculator", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Self-Employed Tax Calculator", url, applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>

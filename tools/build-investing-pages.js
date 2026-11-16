@@ -115,8 +115,8 @@ function page(set, kind, n) {
 
   const what = monthly ? `${a0} a month` : `${a0}`;
   const title = monthly
-    ? `${a0} a Month Invested — What It Could Grow To in 10, 20 or 30 Years`
-    : `${a0} Invested — What It Could Be Worth in 10, 20 or 30 Years`;
+    ? site.fitTitle(`${a0} a Month Invested — What It Could Grow To in 10, 20 or 30 Years`, `${a0} a Month Invested — What It Grows To in 10, 20, 30 Years`, `${a0} a Month Invested — What It Could Grow To`)
+    : site.fitTitle(`${a0} Invested — What It Could Be Worth in 10, 20 or 30 Years`, `${a0} Invested — What It's Worth in 10, 20 or 30 Years`);
   const desc = monthly
     ? `Investing ${a0} a month could grow to ${money(set, r10.value)} in 10 years and ${money(set, r30.value)} in 30 at ${EXAMPLE.rate}% a year. Tables at returns from 2% to 10%, with fees and inflation.`
     : `${a0} invested could grow to ${money(set, r10.value)} in 10 years and ${money(set, r30.value)} in 30 at ${EXAMPLE.rate}% a year. Tables at returns from 2% to 10%, with fees and inflation.`;
@@ -203,7 +203,7 @@ ${site.FOOTER}
 function hub(set, isMain) {
   const loc = set.base;
   const full = SITE + loc;
-  const title = isMain ? "Investing by Amount — What Monthly Savings and Lump Sums Could Grow To"
+  const title = isMain ? "Investing by Amount — What Savings and Lump Sums Grow To"
     : "US Investing by Amount — What Monthly Investing and Lump Sums Could Grow To";
   const desc = `What ${set.symbol}25 to ${set.symbol}2,000 a month, or a lump sum of ${set.symbol}1,000 to ${set.symbol}250,000, could grow to over 5 to 40 years, at returns from 2% to 10% a year.`;
   const ex = (kind, n) => InvestingMaths.grow(Object.assign({ rate: EXAMPLE.rate, years: 10 }, plan(kind, n))).value;
@@ -211,7 +211,14 @@ function hub(set, isMain) {
   const mRows = set.monthly.map((n) => [`<a href="${url(set, "monthly", n)}">${money(set, n)} a month</a>`, money(set, ex("monthly", n)), money(set, ex30("monthly", n))]);
   const lRows = set.lump.map((n) => [`<a href="${url(set, "lump", n)}">${money(set, n)}</a>`, money(set, ex("lump", n)), money(set, ex30("lump", n))]);
   const other = isMain ? SETS.USD : SETS.GBP;
-  const ld = [site.webPage(title, desc, full), site.breadcrumb([["Home", SITE + "/"], ["Investing", SITE + "/investing/"]].concat(isMain ? [] : [["United States", full]]))];
+  const s0 = (v) => money(set, v);
+  const faq = [
+    [`How much will ${set.symbol}200 a month grow to?`, `About ${s0(ex("monthly", 200))} after 10 years and ${s0(ex30("monthly", 200))} after 30, at an example ${EXAMPLE.rate}% a year after fees — of which ${s0(200 * 12 * 30)} is what you paid in over 30 years. Each amount's page shows returns from 2% to 10%.`],
+    [`What could ${set.symbol}10,000 grow to?`, `About ${s0(ex("lump", 10000))} in 10 years and ${s0(ex30("lump", 10000))} in 30 at ${EXAMPLE.rate}% a year, if the returns are left to compound.`],
+    ["What return should I expect?", "No one knows: shares have averaged more than cash over long periods but can fall sharply, and returns aren't steady from year to year. The tables use a range so you can see the difference a percentage point makes; treat the figures as illustrations, not forecasts."],
+    ["Do fees and inflation matter?", "A lot, over decades: a 1% yearly fee can take a sixth to a quarter off what you end up with after 30 years, and inflation means a future pound buys less than today's. Each amount's page shows both; the fund fee drag calculator goes into fees in detail."]
+  ];
+  const ld = [site.webPage(title, desc, full), site.breadcrumb([["Home", SITE + "/"], ["Investing", SITE + "/investing/"]].concat(isMain ? [] : [["United States", full]])), site.faqLd(faq)];
   return site.head({ title, desc, url: full, ld }) + `    <header class="site-header">
       <a class="back-link" href="${isMain ? "/savings-investing/" : "/investing/"}">← ${isMain ? "Savings &amp; investing calculators" : "Investing in pounds"}</a>
       <h1 class="page-title">${isMain ? "Investing by amount" : "Investing by amount (US dollars)"}</h1>
@@ -222,8 +229,12 @@ function hub(set, isMain) {
       <p class="about-text">Pick an amount for its full table over 5 to 40 years, the effect of fees and inflation, and a calculator for your own figures. The summary below uses an example ${EXAMPLE.rate}% a year &mdash; an example, not a forecast. ${isMain ? `<a href="${other.base}">See the figures in dollars</a>.` : `<a href="${other.base}">See the figures in pounds</a>.`}</p>
       <p class="tool-section-title" style="margin-top:22px;">Investing every month</p>
 ${table(["Each month", `After 10 years at ${EXAMPLE.rate}%`, "After 30 years"], mRows, 420)}      <p class="tool-section-title" style="margin-top:22px;">A lump sum</p>
-${table(["Invested", `After 10 years at ${EXAMPLE.rate}%`, "After 30 years"], lRows, 420)}      <p class="tool-hint" style="margin-top:12px;">Before fees, tax and inflation. For other amounts, rising contributions and monthly compounding, use the <a href="/compound-interest/">compound interest calculator</a>; for a target, the <a href="/savings-goal/">savings goal calculator</a>.</p>
+${table(["Invested", `After 10 years at ${EXAMPLE.rate}%`, "After 30 years"], lRows, 420)}      <p class="tool-hint" style="margin-top:12px;">Before fees, tax and inflation. For other amounts, rising contributions and monthly compounding, use the <a href="/compound-interest/">compound interest calculator</a>; for a target, the <a href="/savings-goal/">savings goal calculator</a>; for what fees cost, the <a href="/fund-fees/">fund fee drag calculator</a>.</p>
     </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(faq)}    </main>
 
 ${site.FOOTER}
   </div>

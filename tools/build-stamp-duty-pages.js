@@ -14,6 +14,7 @@ const path = require("path");
 const site = require("./lib/site.js");
 const related = require("./related.js");
 const S = require("../stamp-duty.js");
+const links = require("./page-links.js");
 const { esc, SITE } = site;
 
 const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/property/uk-stamp-duty.json"), "utf8"));
@@ -81,7 +82,7 @@ function page(price) {
     [`What about a second home or buy-to-let at ${p0(price)}?`, `${p0(a.total)} in England and Northern Ireland, with 5% added to every band. In Scotland the Additional Dwelling Supplement of 8% of the price makes it ${p0(sa.total)}; Wales's higher rates make it ${p0(wa.total)}.`],
     ["When do I pay it?", "In England and Northern Ireland the return and payment are due within 14 days of completion; your solicitor or conveyancer normally files it and pays it for you, out of the money you send them. Scotland and Wales use their own taxes with their own returns, also usually handled by the solicitor."]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Stamp Duty Calculator", SITE + BASE], [`${p0(price)}`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Stamp Duty Calculator", SITE + BASE], [`${p0(price)}`, url]]), site.faqLd(q)];
   const near = site.neighbours(PRICES, price, 6).filter((x) => x !== price).map((x) => `<a href="${BASE}${x}/">Stamp duty on ${p0(x)}</a>`).join(" ");
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Stamp duty calculator</a>
@@ -99,7 +100,17 @@ ${site.table(["", "England &amp; NI (SDLT)", "Scotland (LBTT)", "Wales (LTT)"], 
       <p class="tool-section-title">Frequently asked questions</p>
 ${site.faqHtml(q)}    </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">Other prices</div>
+${(() => {
+    const mt = links.mortgageUkNear(price * 0.9), b = links.borrowUkNear(price * 0.9 / 4.5);
+    const items = [mt ? `<a href="${mt.url}">Payments on a ${p0(mt.value)} mortgage</a>` : "", b ? `<a href="${b.url}">How much can I borrow on ${p0(b.value)}?</a>` : ""].filter(Boolean);
+    return items.length ? `    <main class="tool">
+      <p class="tool-section-title">Buying at ${p0(price)}</p>
+      <p class="about-text">With a 10% deposit you'd borrow about ${p0(price * 0.9)}, which most lenders would want an income of around ${p0(price * 0.9 / 4.5)} or more for (4.5 times income).</p>
+      <p class="salary-links">${items.join(" ")}</p>
+    </main>
+
+` : "";
+  })()}    <div class="hub-group-title" style="margin-top:28px;">Other prices</div>
     <p class="salary-links">${near}</p>
 
 ${site.FOOTER}
@@ -124,7 +135,7 @@ function hub() {
     ["Is there stamp duty in Scotland and Wales?", "Not stamp duty itself: Scotland charges Land and Buildings Transaction Tax (LBTT) and Wales Land Transaction Tax (LTT), each with its own bands, set out below."],
     ["Are these rates current?", `They were last checked on ${R.lastChecked} against GOV.UK, Revenue Scotland and the Welsh Government, and are checked every month.`]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Stamp Duty Calculator", url]]),
+  const ld = [site.webPage(title, desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Stamp Duty Calculator", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Stamp Duty Calculator", url, applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>

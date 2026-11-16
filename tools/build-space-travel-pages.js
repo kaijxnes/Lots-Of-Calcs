@@ -139,7 +139,8 @@ const TITLE = {
   "speed-of-light": (n) => `How Long Does Light Take to Reach ${n}?`
 };
 function speedTitle(d, v, km) {
-  return `${TITLE[v.slug](d.star ? "Proxima Centauri" : d.name)} — ${titleCase(dur(km, v))}${v.slug === "by-car" ? " at 70 mph" : ""}`;
+  const q = TITLE[v.slug](d.star ? "Proxima Centauri" : d.name), t = titleCase(dur(km, v));
+  return site.fitTitle(`${q} — ${t}${v.slug === "by-car" ? " at 70 mph" : ""}`, `${q} — ${t}`, `${q.replace("the Fastest Spacecraft's Speed", "Record Spacecraft Speed")} — ${t}`, `${q.replace("the Fastest Spacecraft's Speed", "Top Probe Speed").replace("Would It Take to ", "to ").replace("How Long Does Light Take to Reach", "Light Time to")} — ${t}`);
 }
 
 function speedPage(d, v) {
@@ -147,7 +148,7 @@ function speedPage(d, v) {
   const km = d.d[d.def];
   const light = v.slug === "speed-of-light";
   const title = speedTitle(d, v, km);
-  const desc = `${v.name} (${v.label}), getting to ${where(d)} would take ${dur(km, v)}${distWord(d)}${d.star ? "" : ` and ${dur(d.d.farthest, v)} at its farthest`}. With the same speed to every planet${light ? "" : " and the speed of light"}.`;
+  const desc = `${Cap(dur(km, v))} to reach ${where(d)}${distWord(d)}${d.star ? "" : `, ${dur(d.d.farthest, v)} at its farthest`}: ${v.name.toLowerCase()}, ${v.label}. With every planet at the same speed${light ? "" : " and the speed of light"}.`;
   const ask = ASK[v.slug](d.name);
   const q = [
     [ask, `${Cap(dur(km, v))}${distWord(d)}, covering ${S.distance(km)} non-stop at ${v.label}${d.star ? "" : `. At its farthest, ${S.distance(d.d.farthest)}, it would take ${dur(d.d.farthest, v)}`}.`],

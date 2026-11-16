@@ -156,7 +156,7 @@ ${site.FOOTER}
 
 function hub() {
   const url = SITE + BASE;
-  const title = "Calorie Calculator — How Many Calories Should I Eat to Lose Weight?";
+  const title = "Calorie Calculator — How Many Calories to Eat to Lose Weight";
   const keepF = C.maintain("f", EX.kg, EX.cm, EX.age, EX.act);
   const desc = `Work out the calories you need a day to stay the same weight and to lose weight, and how long your goal will take. Uses the Mifflin–St Jeor equation and the NHS's advice to cut around 600 calories a day.`;
   const exF = { sex: "f", age: 35, cm: 165, kg: 70 }, exM = { sex: "m", age: 35, cm: 178, kg: 85 };

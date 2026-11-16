@@ -18,9 +18,11 @@ const { esc, SITE } = site;
 const all = registry.readAll(), current = registry.currentFiles(all);
 const CH = { gb: registry.chainFor(current.gb.doc, all), "gb-sct": registry.chainFor(current["gb-sct"].doc, all) };
 const YEAR = current.gb.doc.taxYear.label;
+const CHECKED = (() => { const d = [CH.gb].flatMap((c) => c.map((x) => x.lastChecked)); return d.every(Boolean) ? d.sort()[0] : undefined; })();
 const OPTS = TaxEngine.merge(CH.gb).options;
 const BASE = "/pay-rise-calculator/";
 const PR = require("./pay-rise-config.js");
+const links = require("./page-links.js");
 const PCTS = PR.PCTS, SALARIES = PR.SALARIES;
 /* the shorter list used in the hub's grid */
 const GRID = [20000, 25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000, 70000, 80000, 100000];
@@ -103,7 +105,7 @@ function page(pct, salary) {
   const sa = calc("gb-sct", salary), sb = calc("gb-sct", next);
   const title = `${pct}% Pay Rise on £${salary.toLocaleString("en-GB")} — ${m0(extra / 12)} a Month More After Tax`;
   /* nearby salaries for the links, rather than all sixty */
-  const desc = `A ${pct}% pay rise on £${salary.toLocaleString("en-GB")} is ${m0(gross)} a year before tax, taking you to ${m0(next)}. After income tax and National Insurance you keep ${m(extra)} a year — ${m(extra / 12)} a month (${YEAR}, ${ENG}).`;
+  const desc = `A ${pct}% pay rise on £${salary.toLocaleString("en-GB")} is ${m0(gross)} before tax (${m0(next)} in all). After tax and NI you keep ${m0(extra)} a year — ${m0(extra / 12)} a month (${YEAR}, England, Wales & NI).`;
   const rows = [
     ["Salary", m0(salary), m0(next), "+" + m0(gross)],
     ["Income tax", m(a.byGroup.tax || 0), m(b.byGroup.tax || 0), "+" + m((b.byGroup.tax || 0) - (a.byGroup.tax || 0))],
@@ -121,7 +123,7 @@ function page(pct, salary) {
     [`Why do I only keep ${Math.round(extra / gross * 100)}% of it?`, `Because a rise is taxed at your highest rates: ${why(a)}. Student loan repayments take another 9% of the rise if you're above the threshold, and a pension contribution set as a percentage of pay goes up with it.`],
     ["Which tax year is this?", `${YEAR}, using the same rates as the salary calculators. A rise in April may fall in the next tax year, which can have different thresholds.`]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Pay Rise Calculator", SITE + BASE], [`${pct}% on £${salary.toLocaleString("en-GB")}`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url, CHECKED), site.breadcrumb([["Home", SITE + "/"], ["Pay Rise Calculator", SITE + BASE], [`${pct}% on £${salary.toLocaleString("en-GB")}`, url]]), site.faqLd(q)];
   const others = site.neighbours(SALARIES, salary, 6).filter((s) => s !== salary).map((s) => `<a href="${BASE}${slugOf(pct, s)}/">£${s.toLocaleString("en-GB")}</a>`).join(" ") + ` <a href="${PR.pctUrl(pct)}">All salaries at ${pct}%</a>`;
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Pay rise calculator</a>
@@ -140,6 +142,7 @@ ${site.table(["Rise", "Before tax", "After tax, a year", "A month"], riseRows, 4
       <p class="tool-section-title">Frequently asked questions</p>
 ${site.faqHtml(q)}    </main>
 
+${(() => { const b = links.borrowUkNear(next); return b ? `    <p class="salary-links"><a href="${b.url}">How much can I borrow on ${m0(b.value)}?</a> <a href="/salary/${salary}-after-tax/">${m0(salary)} after tax</a></p>\n` : ""; })()}
     <div class="hub-group-title" style="margin-top:28px;">A ${pct}% rise on other salaries</div>
     <p class="salary-links">${others}</p>
 
@@ -166,7 +169,7 @@ function hub() {
     ["How do I work out a percentage pay rise?", "Multiply your salary by the percentage and divide by 100: 4% of £35,000 is £1,400. The calculator also takes a rise in pounds and shows it as a percentage."],
     ["Does it include my pension?", "Put in your pension contribution as a percentage of pay — it rises with your salary. Employer contributions aren't part of take-home pay."]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Pay Rise Calculator", url]]),
+  const ld = [site.webPage(title, desc, url, CHECKED), site.breadcrumb([["Home", SITE + "/"], ["Pay Rise Calculator", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Pay Rise Calculator", url, applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
@@ -200,7 +203,7 @@ ${site.FOOTER}
 function pctPage(pct) {
   const url = SITE + PR.pctUrl(pct);
   const ex = calc("gb", 30000), exN = calc("gb", 30000 * (1 + pct / 100));
-  const title = `${pct}% Pay Rise Calculator — What Is a ${pct}% Increase on My Salary Worth?`;
+  const title = site.fitTitle(`${pct}% Pay Rise Calculator — What Is a ${pct}% Increase on My Salary Worth?`, `${pct}% Pay Rise Calculator — What's a ${pct}% Increase Worth?`);
   const desc = `What a ${pct}% pay rise adds after tax — in the UK on every salary from £15,000 to £200,000 (${YEAR}), and on typical salaries in the US, Canada, Europe and beyond. On £30,000 a ${pct}% increase is ${m0(30000 * pct / 100)} before tax and ${m(( exN.net - ex.net) / 12)} a month after it.`;
   const rows = SALARIES.map((s) => {
     const a = calc("gb", s), b = calc("gb", s * (1 + pct / 100)), sa = calc("gb-sct", s), sb = calc("gb-sct", s * (1 + pct / 100));
@@ -211,7 +214,7 @@ function pctPage(pct) {
     [`Why is a ${pct}% rise worth less after tax?`, "The extra pay is taxed at your highest (marginal) rates, which are above your average rate — in the UK, 28% for most basic-rate taxpayers in England, Wales and Northern Ireland (20% income tax and 8% National Insurance), 42% for higher-rate, and an effective 60% plus NI between £100,000 and £125,140, where the personal allowance is withdrawn."],
     [`Is a ${pct}% pay rise good?`, "It depends on inflation: if prices have risen faster than your pay, a rise can still leave you worse off in real terms. The inflation calculator shows how prices have changed."]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Pay Rise Calculator", SITE + BASE], [`${pct}% pay rise`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url, CHECKED), site.breadcrumb([["Home", SITE + "/"], ["Pay Rise Calculator", SITE + BASE], [`${pct}% pay rise`, url]]), site.faqLd(q)];
   const others = PCTS.filter((x) => x !== pct).map((x) => `<a href="${PR.pctUrl(x)}">${x}% pay rise</a>`).join(" ");
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Pay rise calculator</a>

@@ -145,7 +145,7 @@ function page(series) {
   const from = 2000, amount = 100;
   const w = worth(cpi, amount, from);
   const url = SITE + "/inflation/";
-  const title = "Inflation Calculator UK & US — What Money From Any Year Is Worth Today";
+  const title = "Inflation Calculator UK & US — What Money Is Worth Today";
   const desc = `What money from any year is worth now, using official UK (ONS CPI, CPIH and RPI back to 1800) and US (BLS CPI) figures to ${cpi.latest.label}. £100 in 2000 is worth ${money(cpi, w)} today.`;
 
   const cpiYears = years(cpi), rpiYears = years(rpi), usYears = years(us);
