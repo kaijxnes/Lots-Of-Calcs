@@ -29,6 +29,8 @@ module.exports = {
   borrowUkNear: (salary) => near("mortgage-affordability/uk", salary),
   borrowUs: (salary) => exact("mortgage-affordability/us", salary),
   borrowUsNear: (salary) => near("mortgage-affordability/us", salary),
+  borrowIe: (salary) => exact("mortgage-affordability/ireland", salary),
+  borrowFr: (salary) => exact("mortgage-affordability/france", salary),
   /* stamp duty on a home price, mortgage payments on a loan */
   stampDutyNear: (price) => near("stamp-duty-calculator", price),
   mortgageUkNear: (amount) => near("mortgage", amount),

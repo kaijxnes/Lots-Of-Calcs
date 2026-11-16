@@ -585,9 +585,10 @@ ${toolBlock(p, gross, r, "Where it goes")}
     <main class="tool">
       <p class="about-text">A salary of <strong>${esc(m0)}</strong> in ${esc(inName)} leaves <strong>${p.money(r.net)}</strong> a year once ${esc(phrase)} are taken off &mdash; <strong>${p.money(r.perMonth)}</strong> a month. The deductions come to ${p.money(r.totalDeductions)}, or ${pct1(r.deductionRate)} of the gross, and the next ${p.currency === "JPY" ? "yen" : "unit"} earned is taxed at ${Math.round(r.marginalRate)}%.</p>
 ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
-    const b = p.root.country === "GB" ? links.borrowUk(gross) : p.root.country === "US" ? links.borrowUs(gross) : null;
+    const country = p.root.country;
+    const b = country === "GB" ? links.borrowUk(gross) : country === "US" ? links.borrowUs(gross) : country === "IE" ? links.borrowIe(gross) : country === "FR" ? links.borrowFr(gross) : null;
     const se = p.id === "gb-sct" ? links.selfEmployed(gross) : null;
-    const items = [b ? `<a href="${b}">${p.root.country === "US" ? `How much house can I afford on ${esc(m0)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : ""].filter(Boolean);
+    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : ""].filter(Boolean);
     return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 
