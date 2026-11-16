@@ -78,6 +78,18 @@
     breakdownEl.appendChild(row("Effective rate", pct(r.deductionRate)));
     breakdownEl.appendChild(row("Marginal rate", Math.round(r.marginalRate) + "%"));
     breakdownEl.appendChild(row("Take-home pay", money(r.net), true));
+
+    /* What would a pay rise be worth? */
+    var riseEl = document.getElementById("rise-pct");
+    if (riseEl) {
+      var p = Number(riseEl.value), ok = p >= 0 && isFinite(p) && p <= 1000;
+      var n = ok ? TaxEngine.compute(chain, r.gross * (1 + p / 100), options) : null;
+      var extra = n ? n.net - r.net : 0, more = r.gross * p / 100;
+      document.getElementById("out-rise-gross").textContent = ok ? money(r.gross + more, true) : "—";
+      document.getElementById("out-rise-month").textContent = ok ? money(extra / 12) : "—";
+      document.getElementById("out-rise-year").textContent = ok ? money(extra) : "—";
+      document.getElementById("out-rise-keep").textContent = ok && more > 0 ? Math.round(extra / more * 100) + "% of the rise" : "—";
+    }
   }
 
   function calculate() {
@@ -199,6 +211,8 @@
 
   locationEl.addEventListener("change", function () { switchTo(locationEl.value); });
   salaryEl.addEventListener("input", calculate);
+  var riseInput = document.getElementById("rise-pct");
+  if (riseInput) riseInput.addEventListener("input", calculate);
 
   /* A link like /salary/#us-ca opens on that place; otherwise the last one used */
   var start = window.location.hash.slice(1);

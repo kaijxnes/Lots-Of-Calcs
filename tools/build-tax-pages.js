@@ -15,6 +15,7 @@ const registry = require("./tax/registry.js");
 const config = require("./salary-pages-config.js");
 const uk = require("./build-salary-pages.js");
 const related = require("./related.js");
+const payRise = require("./pay-rise-config.js");
 const site = require("./lib/site.js");
 
 const SITE = site.SITE;
@@ -240,6 +241,31 @@ function checkedHint(p) {
   return `      <p class="tool-hint" id="rates-checked">${esc(p.doc.taxYear.label)} tax year · <a href="/tax-rates/">when every rate was last checked</a></p>`;
 }
 
+/* "What would a pay rise be worth?" inside the calculator: a % box, with the
+   figures for a 3% rise baked in and recalculated in the browser */
+const RISE_DEFAULT = 3;
+function riseBox(p, gross, outAttr) {
+  const r = TaxEngine.compute(p.chain, gross, p.defaults);
+  const n = TaxEngine.compute(p.chain, gross * (1 + RISE_DEFAULT / 100), p.defaults);
+  const extra = n.net - r.net, more = gross * RISE_DEFAULT / 100;
+  const row = (label, key, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${label}</span><span class="r-value" ${outAttr(key)}>${value}</span></div>`;
+  const uk = p.id === "gb" || p.id === "gb-sct";
+  return `      <p class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</p>
+      <div class="field" style="max-width:200px;">
+        <label for="rise-pct">Pay rise (%)</label>
+        <input type="number" id="rise-pct" value="${RISE_DEFAULT}" min="0" step="any" inputmode="decimal">
+      </div>
+      <div class="result-box">
+        <div class="result-grid">
+${row("New salary", "rise-gross", p.money0(gross + more))}
+${row("Extra take-home a month", "rise-month", p.money(extra / 12), "highlight")}
+${row("Extra take-home a year", "rise-year", p.money(extra))}
+${row("You keep", "rise-keep", gross > 0 ? Math.round(extra / more * 100) + "% of the rise" : "—")}
+        </div>
+      </div>
+${uk ? `      <p class="tool-hint">More on pay rises: the <a href="/pay-rise-calculator/">pay rise calculator</a>${payRise.PCTS.map((x) => ` · <a href="${payRise.pctUrl(x)}">${x}%</a>`).join("")}.</p>\n` : ""}`;
+}
+
 function toolBlock(p, gross, r, heading, mode) {
   const m = mode || { kind: "annual" };
   const selects = Object.keys(p.options).map((k) => {
@@ -338,7 +364,7 @@ ${charges}
 ${inputs}
 ${selects}
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" id="salary-note">Change the ${m.kind === "hourly" ? "rate, the hours" : m.kind === "monthly" ? "pay" : "salary"} or the options and everything above updates.</p>
+${riseBox(p, gross, (k) => `data-out="${k}"`)}      <p class="tool-hint" id="salary-note">Change the ${m.kind === "hourly" ? "rate, the hours" : m.kind === "monthly" ? "pay" : "salary"} or the options and everything above updates.</p>
 ${checkedHint(p)}
     </main>
 `;
@@ -461,6 +487,19 @@ function comparison(p, gross, opts) {
 
 // ---------------------------------------------------------------- salary page
 
+/* What 2%, 3%, 5% and 10% rises add, on an annual salary page */
+function riseTable(p, gross, r) {
+  const m0 = p.money0(gross);
+  const rows = [2, 3, 5, 10].map((x) => {
+    const n = TaxEngine.compute(p.chain, gross * (1 + x / 100), p.defaults), extra = n.net - r.net;
+    const label = p.id === "gb" && payRise.has(x, gross) ? `<a href="${payRise.url(x, gross)}">${x}%</a>` : `${x}%`;
+    return [label, p.money0(gross * (1 + x / 100)), p.money(extra), p.money(extra / 12), `${Math.round(extra / (gross * x / 100) * 100)}%`];
+  });
+  return `      <p class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on ${esc(m0)}</p>
+${site.table(["Rise", "New salary", "Extra a year", "Extra a month", "You keep"], rows, 480)}      <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (${Math.round(r.marginalRate)}% here), so you keep less of it than of your salary overall.</p>
+`;
+}
+
 function salaryPage(p, gross) {
   const r = TaxEngine.compute(p.chain, gross, p.defaults);
   const url = SITE + pageUrl(p, gross);
@@ -489,6 +528,11 @@ function salaryPage(p, gross) {
     [`What is the marginal tax rate on ${m0} in ${inName}?`,
       `${Math.round(r.marginalRate)}% — that is what is taken from the next ${p.currency === "JPY" ? "yen" : "unit"} you earn, against ${pct1(r.deductionRate)} of the salary overall. The marginal rate is the one that matters when weighing a pay rise or overtime.`]
   ];
+  {
+    const n3 = TaxEngine.compute(p.chain, gross * 1.03, p.defaults);
+    q.push([`What is a 3% pay rise on ${m0} worth after tax in ${inName}?`,
+      `A 3% rise takes ${m0} to ${p.money0(gross * 1.03)} — ${p.money0(gross * 0.03)} more before tax. After deductions you keep ${p.money(n3.net - r.net)} a year, or ${p.money((n3.net - r.net) / 12)} a month.`]);
+  }
   if (p.options.status) {
     Object.keys(p.options.status.choices).filter((c) => c !== p.defaults.status).forEach((c) => {
       const o = Object.assign({}, p.defaults, { status: c });
@@ -528,7 +572,7 @@ function salaryPage(p, gross) {
 ${toolBlock(p, gross, r, "Where it goes")}
     <main class="tool">
       <p class="about-text">A salary of <strong>${esc(m0)}</strong> in ${esc(inName)} leaves <strong>${p.money(r.net)}</strong> a year once ${esc(phrase)} are taken off &mdash; <strong>${p.money(r.perMonth)}</strong> a month. The deductions come to ${p.money(r.totalDeductions)}, or ${pct1(r.deductionRate)} of the gross, and the next ${p.currency === "JPY" ? "yen" : "unit"} earned is taxed at ${Math.round(r.marginalRate)}%.</p>
-${bandTables(p, r)}${comparison(p, gross)}    </main>
+${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}    </main>
 
     <main class="tool">
       <p class="tool-section-title">How ${esc(m0)} after tax is worked out</p>
@@ -1022,6 +1066,7 @@ function salaryIndex() {
   const chain = registry.loadChain("gb");
   const gross = config.HEADLINE.GBP;
   const r = TaxEngine.compute(chain, gross);
+  const ctxHub = { id: "gb", chain, defaults: {}, money: (v) => TaxEngine.money(v, "GBP"), money0: (v) => TaxEngine.money(v, "GBP", true) };
   const m = (v) => TaxEngine.money(v, "GBP");
   const row = (label, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${esc(label)}</span><span class="r-value">${value}</span></div>`;
   const breakdown = [row("Gross salary", TaxEngine.money(gross, "GBP", true))]
@@ -1093,7 +1138,7 @@ ${select}
 ${breakdown}
         </div>
       </div>
-      <p class="tool-hint" id="salary-note" style="margin-top:12px;">${esc(chain[0].taxYear.label)} tax year. An estimate, not a payslip: it assumes one job and no other income. Pensions, student loans and other deductions can be added where the place has them.</p>
+${riseBox(ctxHub, gross, (k) => `id="out-${k}"`)}      <p class="tool-hint" id="salary-note" style="margin-top:12px;">${esc(chain[0].taxYear.label)} tax year. An estimate, not a payslip: it assumes one job and no other income. Pensions, student loans and other deductions can be added where the place has them.</p>
     </main>
 
     <main class="tool">

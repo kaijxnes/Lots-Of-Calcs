@@ -17,6 +17,7 @@ const TaxEngine = require("../tax-engine.js");
 const registry = require("./tax/registry.js");
 const config = require("./salary-pages-config.js");
 const site = require("./lib/site.js");
+const payRise = require("./pay-rise-config.js");
 
 // The salaries with pages are listed in tools/salary-pages-config.js; the
 // cross-links between pages are generated from that list.
@@ -176,6 +177,12 @@ function build(gross, chain, cfg, allSalaries) {
     `breakdown of the deductions for the ${cfg.taxYear} tax year.`;
 
   const q = faqs(gross, r, cfg);
+  /* pay rises: 2, 3, 5 and 10% on this salary, after tax */
+  const rise = (x) => { const n = TaxEngine.compute(chain, gross * (1 + x / 100)); return { pct: x, gross: gross * (1 + x / 100), extra: n.net - r.net }; };
+  const r3 = rise(3);
+  q.splice(3, 0, [`What is a 3% pay rise on ${money0(gross)} worth after tax?`,
+    `A 3% rise takes ${money0(gross)} to ${money0(r3.gross)} — ${money0(gross * 0.03)} more before tax. After income tax and National Insurance you keep ${money(r3.extra)} a year, or ${money(r3.extra / 12)} a month: ${Math.round(r3.extra / (gross * 0.03) * 100)}% of the rise, because it's taxed at your ${Math.round(r.marginal)}% marginal rate.`]);
+  const riseRows = [2, 3, 5, 10].map(rise).map((x) => `<tr><td>${payRise.has(x.pct, gross) ? `<a href="${payRise.url(x.pct, gross)}">${x.pct}%</a>` : x.pct + "%"}</td><td>${money0(x.gross)}</td><td>${money(x.extra)}</td><td>${money(x.extra / 12)}</td><td>${Math.round(x.extra / (gross * x.pct / 100) * 100)}%</td></tr>`).join("");
 
   const ld = [
     {
@@ -320,6 +327,31 @@ ${ldJson}
       </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the figure and everything above updates. The page itself still describes ${money0(gross)}.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</p>
+      <div class="field" style="max-width:200px;">
+        <label for="rise-pct">Pay rise (%)</label>
+        <input type="number" id="rise-pct" value="3" min="0" step="any" inputmode="decimal">
+      </div>
+      <div class="result-box">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">New salary</span><span class="r-value" id="out-rise-gross">${money0(r3.gross)}</span></div>
+          <div class="result-row highlight"><span class="r-label">Extra take-home a month</span><span class="r-value" id="out-rise-month">${money(r3.extra / 12)}</span></div>
+          <div class="result-row"><span class="r-label">Extra take-home a year</span><span class="r-value" id="out-rise-year">${money(r3.extra)}</span></div>
+          <div class="result-row"><span class="r-label">You keep</span><span class="r-value" id="out-rise-keep">${Math.round(r3.extra / (gross * 0.03) * 100)}% of the rise</span></div>
+        </div>
+      </div>
+      <div class="table-scroll" style="margin-top:14px;">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
+            <tbody>
+              ${riseRows}
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">After income tax and National Insurance, with no student loan or pension. More on pay rises: the <a href="/pay-rise-calculator/">pay rise calculator</a>${payRise.PCTS.map((x) => ` · <a href="${payRise.pctUrl(x)}">${x}%</a>`).join("")}.</p>
 
       <p class="tool-section-title" style="margin-top:22px;">The bands, line by line</p>
       <div class="table-scroll">

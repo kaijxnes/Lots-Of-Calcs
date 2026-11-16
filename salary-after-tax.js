@@ -25,7 +25,11 @@
     loan: document.getElementById("out-loan"),
     pgl: document.getElementById("out-pgl"),
     pension: document.getElementById("out-pension"),
-    net: document.getElementById("out-net")
+    net: document.getElementById("out-net"),
+    riseGross: document.getElementById("out-rise-gross"),
+    riseMonth: document.getElementById("out-rise-month"),
+    riseYear: document.getElementById("out-rise-year"),
+    riseKeep: document.getElementById("out-rise-keep")
   };
   var plan = document.getElementById("opt-studentLoan");
   var postgrad = document.getElementById("opt-postgradLoan");
@@ -95,6 +99,18 @@
     if (els.pgl) els.pgl.textContent = money(r.values["gb-postgrad-loan"]);
     if (els.pension) els.pension.textContent = money(r.values["gb-pension"]);
     els.net.textContent = money(r.net);
+
+    /* What would a pay rise be worth? */
+    var riseEl = document.getElementById("rise-pct");
+    if (riseEl && els.riseMonth) {
+      var p = Number(riseEl.value), ok = p >= 0 && isFinite(p) && p <= 1000;
+      var n = ok ? TaxEngine.compute(chain, r.gross * (1 + p / 100), options()) : null;
+      var extra = n ? n.net - r.net : 0, more = r.gross * p / 100;
+      els.riseGross.textContent = ok ? "£" + Math.round(r.gross + more).toLocaleString("en-GB") : "—";
+      els.riseMonth.textContent = ok ? money(extra / 12) : "—";
+      els.riseYear.textContent = ok ? money(extra) : "—";
+      els.riseKeep.textContent = ok && more > 0 ? Math.round(extra / more * 100) + "% of the rise" : "—";
+    }
   }
 
   function calculate() {
@@ -133,6 +149,14 @@
   }
 
   els.salary.addEventListener("input", calculate);
+  /* a new % recalculates even with the page's own salary in the box */
+  var riseInput = document.getElementById("rise-pct");
+  if (riseInput) riseInput.addEventListener("input", function () {
+    if (!chain) return;
+    var raw = String(els.salary.value).trim().replace(/[\s,£]/g, "");
+    var gross = raw === "" ? Number(bakedSalary) : Number(raw);
+    if (isFinite(gross) && gross >= 0) render(TaxEngine.compute(chain, gross, options()));
+  });
   if (plan) plan.addEventListener("change", calculate);
   if (postgrad) postgrad.addEventListener("change", calculate);
   if (pensionPct) pensionPct.addEventListener("input", calculate);

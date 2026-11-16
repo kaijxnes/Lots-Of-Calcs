@@ -57,6 +57,21 @@
     outs.forEach(function (el, i) { el.textContent = baked[i]; });
   }
 
+  /* "What would a pay rise be worth?": the same deductions on the raised salary */
+  var riseInput = document.getElementById("rise-pct");
+  function rise(r) {
+    var p = riseInput ? Number(riseInput.value) : NaN;
+    if (!(p >= 0) || !isFinite(p) || p > 1000) return { "rise-gross": "—", "rise-month": "—", "rise-year": "—", "rise-keep": "—" };
+    var n = TaxEngine.compute(chain, r.gross * (1 + p / 100), options());
+    var extra = n.net - r.net, more = r.gross * p / 100;
+    return {
+      "rise-gross": TaxEngine.money(r.gross + more, currency, true),
+      "rise-month": money(extra / 12),
+      "rise-year": money(extra),
+      "rise-keep": more > 0 ? Math.round(extra / more * 100) + "% of the rise" : "—"
+    };
+  }
+
   function render(r) {
     var byOut = {
       net: money(r.net), month: money(r.perMonth), week: money(r.perWeek), day: money(r.perDay),
@@ -66,6 +81,8 @@
       marginal: Math.round(r.marginalRate) + "%",
       gross: TaxEngine.money(r.gross, currency, true)
     };
+    var extra = rise(r);
+    Object.keys(extra).forEach(function (k) { byOut[k] = extra[k]; });
     outs.forEach(function (el) {
       var key = el.getAttribute("data-out");
       if (key) {
@@ -133,6 +150,14 @@
   }
 
   input.addEventListener("input", calculate);
+  if (riseInput) riseInput.addEventListener("input", function () {
+    /* with the page's own salary untouched, still recalculate the rise */
+    if (!chain) return;
+    var raw = String(input.value).trim().replace(/[\s,]/g, "");
+    var value = raw === "" ? bakedValue : Number(raw);
+    if (!isFinite(value) || value < 0) return;
+    try { render(TaxEngine.compute(chain, annual(value), options())); } catch (e) { /* leave as it was */ }
+  });
   if (hoursInput) hoursInput.addEventListener("input", calculate);
   selects.forEach(function (s) { s.addEventListener(s.tagName === "INPUT" ? "input" : "change", calculate); });
 
