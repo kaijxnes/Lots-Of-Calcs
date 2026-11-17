@@ -1,0 +1,19 @@
+/* Cloudflare Workers static-assets settings for lotsofcalcs.com.
+   The site is plain files: no build step, every page is committed.
+   - not_found_handling: unknown addresses get /404.html with a 404 status
+   - html_handling: /vat/100 redirects to /vat/100/ (folders are the URLs)
+   - what isn't served (build tools, notes) is listed in .assetsignore
+   Old addresses are redirected in _redirects. */
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lots-of-calcs",
+  "compatibility_date": "2026-11-17",
+  "observability": {
+    "enabled": true
+  },
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  }
+}

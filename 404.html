@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Not Found — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Page not found</h1>
+      <p class="page-subtitle">There's nothing at this address. It may have moved, or there's a typo in the link.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text" id="nf-nearest" hidden></p>
+      <div class="hub-search">
+        <span class="hub-search-icon" aria-hidden="true">🔍</span>
+        <input type="search" id="nf-search" placeholder="Search calculators…" aria-label="Search calculators">
+      </div>
+      <p class="tool-section-title" id="nf-heading" style="margin-top:18px;">Popular calculators</p>
+      <div class="hub-grid" id="nf-cards">
+      <a class="hub-card" hidden href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
+      </a>
+      <a class="hub-card" hidden href="/scientific/">
+        <span class="icon">🧑‍🔬</span>
+        <div class="title">Scientific Calculator</div>
+        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      </a>
+      <a class="hub-card" hidden href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+      <a class="hub-card" hidden href="/fractions/">
+        <span class="icon">➗</span>
+        <div class="title">Fraction Calculator</div>
+        <div class="desc">Add, subtract, multiply and divide fractions, with the working shown.</div>
+      </a>
+      <a class="hub-card" hidden href="/decimal-to-fraction/">
+        <span class="icon">🔁</span>
+        <div class="title">Decimal ↔ Fraction</div>
+        <div class="desc">Convert either way, including recurring decimals done exactly.</div>
+      </a>
+      <a class="hub-card" hidden href="/number-to-words/">
+        <span class="icon">🔤</span>
+        <div class="title">Number to Words</div>
+        <div class="desc">Numbers written out in British English, plus ordinal and cheque wording.</div>
+      </a>
+      <a class="hub-card" hidden href="/cheque-writer/">
+        <span class="icon">🖊️</span>
+        <div class="title">Cheque Writer</div>
+        <div class="desc">The amount in words and figures for a UK cheque, US check or Indian cheque.</div>
+      </a>
+      <a class="hub-card" hidden href="/margin-markup/">
+        <span class="icon">📊</span>
+        <div class="title">Margin vs Markup</div>
+        <div class="desc">Cost + margin% or markup% → sell price, and back-solve either way.</div>
+      </a>
+      <a class="hub-card" hidden href="/growth/">
+        <span class="icon">📈</span>
+        <div class="title">YoY / MoM Growth</div>
+        <div class="desc">Feed in a monthly series, get month-on-month and year-on-year change.</div>
+      </a>
+      <a class="hub-card" hidden href="/vat/">
+        <span class="icon">🧾</span>
+        <div class="title">Tax / VAT</div>
+        <div class="desc">Add or remove VAT, plus a progressive income tax band split.</div>
+      </a>
+      <a class="hub-card" hidden href="/ab-test-significance/">
+        <span class="icon">🧪</span>
+        <div class="title">A/B Test Significance</div>
+        <div class="desc">Control plus any number of variants → uplift, z-score and p-value for each.</div>
+      </a>
+      <a class="hub-card" hidden href="/weighted-average/">
+        <span class="icon">🎚️</span>
+        <div class="title">Weighted Average</div>
+        <div class="desc">Values and weights → the weighted average, with each row's contribution.</div>
+      </a>
+      <a class="hub-card" hidden href="/ai-cost/">
+        <span class="icon">🤖</span>
+        <div class="title">AI Cost</div>
+        <div class="desc">Token prices, caching and batch discounts → what an LLM API really costs.</div>
+      </a>
+      <a class="hub-card" hidden href="/marketplace-fees/">
+        <span class="icon">🏷️</span>
+        <div class="title">Marketplace Fees</div>
+        <div class="desc">eBay, Etsy and Amazon fees itemised → what you keep, and what to list at.</div>
+      </a>
+      <a class="hub-card" hidden href="/salary/">
+        <span class="icon">💷</span>
+        <div class="title">Salary After Tax</div>
+        <div class="desc">Take-home pay in the UK, every US state and Canadian province, Europe, Australia, India and Japan.</div>
+      </a>
+      <a class="hub-card" hidden href="/self-employed-tax-calculator/">
+        <span class="icon">🧾</span>
+        <div class="title">Self-Employed Tax</div>
+        <div class="desc">Tax, Class 4 NI and take-home on your profit, plus payments on account.</div>
+      </a>
+      <a class="hub-card" hidden href="/pay-rise-calculator/">
+        <span class="icon">📈</span>
+        <div class="title">Pay Rise Calculator</div>
+        <div class="desc">What a pay rise adds to your take-home pay after tax — UK, US, Canada, Europe and more.</div>
+      </a>
+      <a class="hub-card" hidden href="/cagr/">
+        <span class="icon">🧮</span>
+        <div class="title">CAGR</div>
+        <div class="desc">Compound annual growth rate between a start and end value.</div>
+      </a>
+      <a class="hub-card" hidden href="/compound-interest/">
+        <span class="icon">🌱</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting amount + annual return + years → what you'd end up with.</div>
+      </a>
+      <a class="hub-card" hidden href="/savings-goal/">
+        <span class="icon">🎯</span>
+        <div class="title">Savings Goal</div>
+        <div class="desc">Goal + current savings + time frame → the monthly contribution you need.</div>
+      </a>
+      <a class="hub-card" hidden href="/mortgage-overpayment/">
+        <span class="icon">🏡</span>
+        <div class="title">Mortgage Overpayment</div>
+        <div class="desc">See the interest and years you'd save by overpaying your mortgage.</div>
+      </a>
+      <a class="hub-card" hidden href="/loan-repayment/">
+        <span class="icon">🏦</span>
+        <div class="title">Loan / APR Repayment</div>
+        <div class="desc">Loan amount + APR + term → monthly payment, total interest and amortisation.</div>
+      </a>
+      <a class="hub-card" hidden href="/debt-snowball-vs-avalanche/">
+        <span class="icon">❄️</span>
+        <div class="title">Debt Snowball vs Avalanche</div>
+        <div class="desc">Both strategies on your debts — interest, months and payoff order.</div>
+      </a>
+      <a class="hub-card" hidden href="/fund-fees/">
+        <span class="icon">🪫</span>
+        <div class="title">Fund Fee Drag</div>
+        <div class="desc">What platform and fund charges really cost over a long horizon.</div>
+      </a>
+      <a class="hub-card" hidden href="/car-finance/">
+        <span class="icon">🚗</span>
+        <div class="title">Car Finance</div>
+        <div class="desc">HP or PCP with a balloon — monthly payments, interest and true total cost.</div>
+      </a>
+      <a class="hub-card" hidden href="/cashback/">
+        <span class="icon">💳</span>
+        <div class="title">Cashback</div>
+        <div class="desc">Multiple spending categories at different rates → what a card really pays.</div>
+      </a>
+      <a class="hub-card" hidden href="/inflation/">
+        <span class="icon">📉</span>
+        <div class="title">Inflation Calculator</div>
+        <div class="desc">What money from any year is worth today, from official UK and US figures.</div>
+      </a>
+      <a class="hub-card" hidden href="/rent-vs-buy/">
+        <span class="icon">🔑</span>
+        <div class="title">Rent vs Buy</div>
+        <div class="desc">Renting against buying over the years you'd stay — total cost and wealth, side by side.</div>
+      </a>
+      <a class="hub-card" hidden href="/mortgage-affordability/">
+        <span class="icon">🏠</span>
+        <div class="title">Mortgage Affordability</div>
+        <div class="desc">How much you could borrow and what home it buys — UK income multiples or the US 28/36 rule.</div>
+      </a>
+      <a class="hub-card" hidden href="/mortgage-calculator/">
+        <span class="icon">🏡</span>
+        <div class="title">Mortgage Calculator</div>
+        <div class="desc">Monthly repayments, total interest and what you still owe each year — repayment or interest-only.</div>
+      </a>
+      <a class="hub-card" hidden href="/stamp-duty-calculator/">
+        <span class="icon">🏠</span>
+        <div class="title">Stamp Duty</div>
+        <div class="desc">Stamp duty, LBTT or LTT on a home — movers, first-time buyers and second homes.</div>
+      </a>
+      <a class="hub-card" hidden href="/isa-vs-pension/">
+        <span class="icon">⚖️</span>
+        <div class="title">ISA vs Pension</div>
+        <div class="desc">Same cost to you, ISA or pension — which leaves more after tax at your tax rates.</div>
+      </a>
+      <a class="hub-card" hidden href="/roth-vs-traditional/">
+        <span class="icon">🇺🇸</span>
+        <div class="title">Roth vs Traditional</div>
+        <div class="desc">Roth or traditional 401(k)/IRA: compare after-tax retirement money at your tax rates.</div>
+      </a>
+      <a class="hub-card" hidden href="/tfsa-vs-rrsp/">
+        <span class="icon">🍁</span>
+        <div class="title">TFSA vs RRSP</div>
+        <div class="desc">TFSA or RRSP with the refund reinvested: which leaves more after tax.</div>
+      </a>
+      <a class="hub-card" hidden href="/tip/">
+        <span class="icon">🍽️</span>
+        <div class="title">Tip Calculator</div>
+        <div class="desc">Bill + tip% + people → tip amount and per-person total.</div>
+      </a>
+      <a class="hub-card" hidden href="/discount/">
+        <span class="icon">🏷️</span>
+        <div class="title">Discount Calculator</div>
+        <div class="desc">Original price + % off → final price, including stacked discounts.</div>
+      </a>
+      <a class="hub-card" hidden href="/split-bill/">
+        <span class="icon">🧑‍🤝‍🧑</span>
+        <div class="title">Split Bill</div>
+        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
+      </a>
+      <a class="hub-card" hidden href="/turkey-cooking-time/">
+        <span class="icon">🦃</span>
+        <div class="title">Turkey Cooking Time</div>
+        <div class="desc">How long to roast and defrost a turkey by weight, and when to put it in.</div>
+      </a>
+      <a class="hub-card" hidden href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" hidden href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+      <a class="hub-card" hidden href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" hidden href="/calorie-calculator/">
+        <span class="icon">🥗</span>
+        <div class="title">Calorie Calculator</div>
+        <div class="desc">Calories a day to stay the same weight or lose weight, and how long it'll take.</div>
+      </a>
+      <a class="hub-card" hidden href="/dry-january-calculator/">
+        <span class="icon">🍷</span>
+        <div class="title">Dry January</div>
+        <div class="desc">Money, alcohol units and calories saved by not drinking in January.</div>
+      </a>
+      <a class="hub-card" hidden href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" hidden href="/ev-charging-cost/">
+        <span class="icon">🔌</span>
+        <div class="title">EV Charging Cost</div>
+        <div class="desc">What a charge costs, including losses — plus the yearly saving against petrol.</div>
+      </a>
+      <a class="hub-card" hidden href="/pace/">
+        <span class="icon">🏃</span>
+        <div class="title">Running Pace</div>
+        <div class="desc">Any two of distance, time and pace → the third, plus speed and splits.</div>
+      </a>
+      <a class="hub-card" hidden href="/household-bills/">
+        <span class="icon">🏠</span>
+        <div class="title">Household Bill Splitter</div>
+        <div class="desc">Add everyone's contribution %, list the bills, and split the total fairly.</div>
+      </a>
+      <a class="hub-card" hidden href="/running-cost/">
+        <span class="icon">💡</span>
+        <div class="title">Electricity Running Cost</div>
+        <div class="desc">Appliance wattage and hours → what it costs to run per day, month and year.</div>
+      </a>
+      <a class="hub-card" hidden href="/heating-cost/">
+        <span class="icon">🔥</span>
+        <div class="title">Heating Cost</div>
+        <div class="desc">What an electric heater costs to run, against gas central heating.</div>
+      </a>
+      <a class="hub-card" hidden href="/coverage/">
+        <span class="icon">🎨</span>
+        <div class="title">Paint &amp; Flooring Coverage</div>
+        <div class="desc">Room dimensions → how much paint or flooring you'll need.</div>
+      </a>
+      <a class="hub-card" hidden href="/btu/">
+        <span class="icon">🌡️</span>
+        <div class="title">BTU / Radiator Sizing</div>
+        <div class="desc">Room dimensions → the heat output you need, in BTU and watts.</div>
+      </a>
+      <a class="hub-card" hidden href="/watts-amps-volts/">
+        <span class="icon">⚡</span>
+        <div class="title">Watts, Amps &amp; Volts</div>
+        <div class="desc">Convert power, current and voltage — DC, single phase and three phase.</div>
+      </a>
+      <a class="hub-card" hidden href="/odds-converter/">
+        <span class="icon">🎲</span>
+        <div class="title">Odds Converter</div>
+        <div class="desc">Fractional, decimal and American odds → implied probability and payout.</div>
+      </a>
+      <a class="hub-card" hidden href="/each-way/">
+        <span class="icon">🐎</span>
+        <div class="title">Each-Way Bet</div>
+        <div class="desc">Win and place parts of an each-way bet → total return and profit.</div>
+      </a>
+      <a class="hub-card" hidden href="/lay/">
+        <span class="icon">🔁</span>
+        <div class="title">Matched Betting / Lay</div>
+        <div class="desc">Back and lay odds → lay stake, liability and the profit locked in.</div>
+      </a>
+      <a class="hub-card" hidden href="/dutching/">
+        <span class="icon">🔀</span>
+        <div class="title">Dutching</div>
+        <div class="desc">Split a stake across selections so the return is the same whichever wins.</div>
+      </a>
+      <a class="hub-card" hidden href="/accumulator/">
+        <span class="icon">🎰</span>
+        <div class="title">Accumulator</div>
+        <div class="desc">Multiple legs → combined odds, return and profit, with acca bonus.</div>
+      </a>
+      <a class="hub-card" hidden href="/full-cover-bets/">
+        <span class="icon">🎲</span>
+        <div class="title">Full Cover Bets</div>
+        <div class="desc">Trixie, Yankee, Lucky 15, Heinz and Goliath — with non-runners handled properly.</div>
+      </a>
+      <a class="hub-card" hidden href="/birthday/">
+        <span class="icon">🎂</span>
+        <div class="title">Birthday Calculator</div>
+        <div class="desc">Your exact age, day of the week born, and days until your next birthday.</div>
+      </a>
+      <a class="hub-card" hidden href="/date-diff/">
+        <span class="icon">📅</span>
+        <div class="title">Date Difference</div>
+        <div class="desc">Years, months and days between two dates.</div>
+      </a>
+      <a class="hub-card" hidden href="/working-days/">
+        <span class="icon">🗓️</span>
+        <div class="title">Working Days</div>
+        <div class="desc">Working days between two dates, less weekends and UK bank holidays.</div>
+      </a>
+      <a class="hub-card" hidden href="/days-until/">
+        <span class="icon">⏳</span>
+        <div class="title">Countdowns</div>
+        <div class="desc">Live countdowns to Christmas, Easter, Halloween, Mother's Day and more.</div>
+      </a>
+      <a class="hub-card" hidden href="/timezone/">
+        <span class="icon">🌍</span>
+        <div class="title">Time Zone Converter</div>
+        <div class="desc">Convert a date and time between two time zones, DST included.</div>
+      </a>
+      <a class="hub-card" hidden href="/dog-age/">
+        <span class="icon">🐕</span>
+        <div class="title">Dog Age</div>
+        <div class="desc">Your dog's age in human years, adjusted for size, plus the epigenetic formula.</div>
+      </a>
+      <a class="hub-card" hidden href="/cat-age/">
+        <span class="icon">🐈</span>
+        <div class="title">Cat Age</div>
+        <div class="desc">Your cat's age in human years, with lifestage and the ×7 myth debunked.</div>
+      </a>
+      <a class="hub-card" hidden href="/roman-numerals/">
+        <span class="icon">🏛️</span>
+        <div class="title">Roman Numeral Converter</div>
+        <div class="desc">Numbers to Roman numerals and back, with a breakdown and reference table.</div>
+      </a>
+      <a class="hub-card" hidden href="/weight-on-other-planets/">
+        <span class="icon">🪐</span>
+        <div class="title">Weight on Other Planets</div>
+        <div class="desc">What you'd weigh on the Moon, Mars, Jupiter, Saturn and the Sun.</div>
+      </a>
+      <a class="hub-card" hidden href="/age-on-other-planets/">
+        <span class="icon">🪐</span>
+        <div class="title">Age on Other Planets</div>
+        <div class="desc">How old you'd be on Mars, Jupiter and every other planet, and your next birthday there.</div>
+      </a>
+      <a class="hub-card" hidden href="/how-long-to-get-to/">
+        <span class="icon">🚀</span>
+        <div class="title">Space Travel Time</div>
+        <div class="desc">How long to reach the Moon, Mars or any planet by car, plane, rocket or light.</div>
+      </a>
+      </div>
+      <p class="tool-hint" id="nf-none" hidden>No calculators match that. Try another word, or browse a category below.</p>
+      <p class="tool-hint" style="margin-top:16px;">Or go to the <a href="/">homepage</a> to see all 69 calculators.</p>
+    </main>
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/savings-investing/">Savings &amp; Investing</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/404.js"></script>
+</body>
+</html>
