@@ -189,6 +189,8 @@ function main() {
   const missing = Object.keys(known).filter((href) => !RELATED[href]);
   if (missing.length) console.log("no related list for: " + missing.join(", "));
   console.log("updated " + n + " page(s)");
+  /* the 404 page lists every calculator on the homepage */
+  require("./build-404.js").build();
 }
 
 module.exports = { block, RELATED };

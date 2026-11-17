@@ -1,0 +1,11 @@
+# Files in the repository that aren't part of the website (gitignore syntax).
+# The browser does load data/ (tax rates, inflation series), so it stays.
+.git
+.claude
+.assetsignore
+wrangler.jsonc
+node_modules
+tools
+README.md
+CNAME
+.gitignore
