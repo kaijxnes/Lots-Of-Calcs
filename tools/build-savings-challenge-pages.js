@@ -26,7 +26,9 @@ const VARIANTS = [
   { slug: "reverse", mode: "reverse", amount: 1, name: "Reverse 52-week savings challenge" },
   { slug: "reverse-2-pound", mode: "reverse", amount: 2, name: "Reverse £2 52-week savings challenge" },
   { slug: "365-day-1p", mode: "daily", amount: 0.01, name: "1p 365-day savings challenge" },
-  { slug: "365-day-2p", mode: "daily", amount: 0.02, name: "2p 365-day savings challenge" }
+  { slug: "365-day-2p", mode: "daily", amount: 0.02, name: "2p 365-day savings challenge" },
+  { slug: "100-envelope-challenge", mode: "envelope", amount: 1, name: "100 envelope savings challenge" },
+  { slug: "100-envelope-challenge-50p", mode: "envelope", amount: 0.5, name: "50p 100 envelope savings challenge" }
 ];
 const M = (v) => S.money(v, "£");
 const tc = (t) => t.replace(/(^|[\s-])([a-z])/g, (m, a, b) => a + b.toUpperCase());
@@ -34,7 +36,7 @@ const total = (v) => S.r2(v.amount * S.multiplier(v.mode));
 const link = (v) => `${BASE}?mode=${v.mode}&amp;amount=${v.amount}`;
 
 function chartTable(rows, unit) {
-  return site.table([unit, "Date", "Save", "Total so far"], rows.map((r) => [String(r.i), S.niceDate(r.date), M(r.deposit), M(r.total)]), 340);
+  return site.table([unit, "Date", "Save", "Total so far"], rows.map((r) => [String(r.label), S.niceDate(r.date), M(r.deposit), M(r.total)]), 340);
 }
 function monthTable(rows) {
   return site.table(["Month", "Deposits", "Saved that month"], S.byMonth(rows).map((x) => [S.monthName(x.month), String(x.n), M(x.total)]), 320);
@@ -56,6 +58,7 @@ function calculatorPage() {
     ["How much do you save with the 52-week challenge?", "£1,378 if you start at £1 and add £1 each week: £1 + £2 + … + £52. Starting at £2 doubles it to £2,756, and £5 a week rising gives £6,890. The total is always the starting amount × 1,378."],
     ["What is the reverse 52-week challenge?", `The same deposits in the opposite order: £52 in week 1 down to £1 in week 52. You still save £1,378, but the big amounts come in January rather than December, when money is tightest — December needs ${M(decR)} instead of ${M(dec1)}.`],
     ["How much is the 1p a day challenge?", "£667.95. You save 1p on day 1, 2p on day 2 and so on to £3.65 on day 365. The 2p version saves £1,335.90."],
+    ["What is the 100 envelope challenge?", "100 envelopes numbered 1 to 100. Each day you pick one and put in that many pounds, so after 100 days you've saved £5,050. The calculator shuffles the order for you and dates each envelope; the 50p version saves £2,525."],
     ["How do I save £1,000 with the 52-week challenge?", "Start at 73p and add 73p each week: 73p × 1,378 = £1,005.94. Put a target into the calculator's 'Aim for a total' box and it works out the amount for any total."],
     ["Where should I keep the money?", "Somewhere separate that you won't dip into but can reach if you need to, such as an easy-access savings account or a cash ISA. The interest is a bonus; add the rate to see roughly what it adds."],
     ["What if I miss a week?", "Catch up the next week or spread it over the following few. The chart keeps a running total, so you can always see where you should be."]
@@ -73,7 +76,7 @@ function calculatorPage() {
     <main class="tool" id="sc-tool">
       <div class="no-print">
       <div class="field-row">
-        <div class="field"><label for="sc-mode">Challenge</label><select id="sc-mode"><option value="classic" selected>Classic: a bit more each week</option><option value="reverse">Reverse: biggest week first</option><option value="daily">365 days: a bit more each day</option></select></div>
+        <div class="field"><label for="sc-mode">Challenge</label><select id="sc-mode"><option value="classic" selected>Classic: a bit more each week</option><option value="reverse">Reverse: biggest week first</option><option value="daily">365 days: a bit more each day</option><option value="envelope">100 envelopes: one a day, any order</option></select></div>
         <div class="field"><label for="sc-amount">Amount (first deposit and each increase)</label><input type="number" id="sc-amount" value="1" min="0.01" step="any" inputmode="decimal"></div>
       </div>
       <div class="field-row">
@@ -160,9 +163,12 @@ function variantPage(v, i) {
   const url = SITE + `${BASE}${v.slug}/`;
   const rows = S.plan(v.mode, v.amount, START), m = S.MODES[v.mode], t = total(v);
   const first = rows[0].deposit, last = rows[rows.length - 1].deposit, dec = december(rows);
-  const daily = v.mode === "daily";
+  const daily = v.mode === "daily", env = v.mode === "envelope";
+  const lastDate = S.niceDate(rows[rows.length - 1].date);
   const title = site.fitTitle(`${tc(v.name)} — Save ${M(t)} (${YEAR} Chart)`, `${tc(v.name)} — ${M(t)}`);
-  const how = daily
+  const how = env
+    ? `Fill 100 envelopes, one a day in any order, with ${M(v.amount)} to ${M(v.amount * 100)} — envelope n gets ${v.amount === 1 ? "£n" : M(v.amount) + " × n"}`
+    : daily
     ? `Save ${M(first)} on day 1, ${M(rows[1].deposit)} on day 2 and so on up to ${M(last)} on day 365`
     : v.mode === "reverse"
       ? `Save ${M(first)} in week 1, ${M(rows[1].deposit)} in week 2 and so on down to ${M(last)} in week 52`
@@ -170,7 +176,8 @@ function variantPage(v, i) {
   const desc = `${how}, and you'll have ${M(t)}. The full dated chart for ${YEAR}, month-by-month totals and a tracker to tick off each ${m.unit.toLowerCase()}.`;
   const q = [
     [`How much does the ${v.name} save?`, `${M(t)}: ${M(v.amount)} × ${S.multiplier(v.mode).toLocaleString("en-GB")}. ${how}.`],
-    [`How much do I need in December?`, `${M(dec)} if you start on 1 January ${YEAR}${v.mode === "classic" ? ", the heaviest month; the reverse version puts the big deposits in January instead" : ""}.`],
+    env ? ["How long does it take?", `100 days at one envelope a day: starting on 1 January ${YEAR}, the last goes in on ${lastDate}. Doing two a week instead takes a year — any pace works, as long as every envelope gets filled.`]
+      : [`How much do I need in December?`, `${M(dec)} if you start on 1 January ${YEAR}${v.mode === "classic" ? ", the heaviest month; the reverse version puts the big deposits in January instead" : ""}.`],
     ["Can I start on a different date?", `Yes. Open it in the <a href="${link(v)}">savings challenge calculator</a>, set your start date and tick off each ${m.unit.toLowerCase()} as you go; your progress is saved in your browser.`]
   ];
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["52 Week Savings Challenge", SITE + BASE], [v.name, url]]), site.faqLd(q.map(([a, b]) => [a, b.replace(/<[^>]+>/g, "")]))];
@@ -183,12 +190,15 @@ function variantPage(v, i) {
 
     <main class="tool">
       <div class="result-box">
-        <div class="result-hero"><div class="value">${M(t)}</div><div class="label">saved over ${daily ? "365 days" : "52 weeks"}</div></div>
+        <div class="result-hero"><div class="value">${M(t)}</div><div class="label">saved over ${env ? "100 days" : daily ? "365 days" : "52 weeks"}</div></div>
         <hr class="divider">
         <div class="result-grid">
-          <div class="result-row"><span class="r-label">First ${m.unit.toLowerCase()}</span><span class="r-value">${M(first)}</span></div>
+${env ? `          <div class="result-row"><span class="r-label">Smallest and biggest envelope</span><span class="r-value">${M(v.amount)} and ${M(v.amount * 100)}</span></div>
+          <div class="result-row"><span class="r-label">Last envelope in</span><span class="r-value">${lastDate}</span></div>
+` : `          <div class="result-row"><span class="r-label">First ${m.unit.toLowerCase()}</span><span class="r-value">${M(first)}</span></div>
           <div class="result-row"><span class="r-label">Last ${m.unit.toLowerCase()}</span><span class="r-value">${M(last)}</span></div>
           <div class="result-row"><span class="r-label">December ${YEAR}</span><span class="r-value">${M(dec)}</span></div>
+`}
           <div class="result-row highlight"><span class="r-label">Total</span><span class="r-value">${M(t)}</span></div>
         </div>
       </div>
@@ -220,7 +230,7 @@ ${site.FOOTER}
 }
 
 /* Hand checks: £1 rising for 52 weeks = £1,378; 1p a day for 365 days = £667.95; reverse matches */
-if (total(VARIANTS[1]) !== 1378 || total(VARIANTS[7]) !== 667.95 || S.plan("reverse", 1, START)[51].total !== 1378 || S.plan("daily", 0.01, START)[364].total !== 667.95) throw new Error("challenge check");
+if (total(VARIANTS[9]) !== 5050 || S.plan("envelope", 1, START)[99].total !== 5050 || new Set(S.plan("envelope", 1, START).map((r) => r.label)).size !== 100 || total(VARIANTS[1]) !== 1378 || total(VARIANTS[7]) !== 667.95 || S.plan("reverse", 1, START)[51].total !== 1378 || S.plan("daily", 0.01, START)[364].total !== 667.95) throw new Error("challenge check");
 
 const urls = [];
 site.write("52-week-savings-challenge", calculatorPage());

@@ -47,3 +47,7 @@
 # The fraction pages live under /fraction-to-decimal/; the converter has both directions
 /fraction-to-decimal/ /decimal-to-fraction/ 301
 /fraction-to-decimal /decimal-to-fraction/ 301
+
+# Savings & Investing was split into four categories in November 2026
+/savings-investing/ /personal-finance/ 301
+/savings-investing /personal-finance/ 301

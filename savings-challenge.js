@@ -11,8 +11,20 @@ const SavingsChallenge = (function () {
   const MODES = {
     classic: { periods: 52, days: 7, label: "Classic 52 weeks", unit: "Week", reverse: false },
     reverse: { periods: 52, days: 7, label: "Reverse 52 weeks", unit: "Week", reverse: true },
-    daily: { periods: 365, days: 1, label: "365 days", unit: "Day", reverse: false }
+    daily: { periods: 365, days: 1, label: "365 days", unit: "Day", reverse: false },
+    envelope: { periods: 100, days: 1, label: "100 envelopes", unit: "Envelope", reverse: false, shuffle: true }
   };
+
+  /* The envelope order: shuffled, but the same every time for a given start
+     date, so a printed chart and the ticks saved in the browser still match */
+  function shuffled(n, seedText) {
+    let seed = 0;
+    for (const ch of seedText) seed = (seed * 31 + ch.charCodeAt(0)) >>> 0;
+    const rand = () => { seed = (seed + 0x6d2b79f5) >>> 0; let t = seed; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    const a = Array.from({ length: n }, (_, i) => i + 1);
+    for (let i = n - 1; i > 0; i--) { const j = Math.floor(rand() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  }
   const r2 = (v) => Math.round(v * 100) / 100;
 
   function multiplier(mode) { const p = MODES[mode].periods; return p * (p + 1) / 2; }
@@ -26,12 +38,13 @@ const SavingsChallenge = (function () {
   /* rows: [{ i, date, deposit, total }] — deposits rounded to the penny */
   function plan(mode, amount, startIso) {
     const m = MODES[mode], rows = [];
+    const order = m.shuffle ? shuffled(m.periods, startIso) : null;
     let total = 0;
     for (let i = 1; i <= m.periods; i++) {
-      const k = m.reverse ? m.periods + 1 - i : i;
+      const k = order ? order[i - 1] : m.reverse ? m.periods + 1 - i : i;
       const deposit = r2(k * amount);
       total = r2(total + deposit);
-      rows.push({ i, date: addDays(startIso, (i - 1) * m.days), deposit, total });
+      rows.push({ i, label: order ? k : i, date: addDays(startIso, (i - 1) * m.days), deposit, total });
     }
     return rows;
   }
@@ -115,7 +128,7 @@ if (typeof module !== "undefined" && module.exports) {
       var earned = S.interest(rows, mode, aer);
       $("sc-total").textContent = S.money(total, cur);
       $("sc-total-label").textContent = "saved by " + S.niceDate(rows[rows.length - 1].date);
-      $("sc-biggest").textContent = S.money(biggest, cur) + " (" + m.unit.toLowerCase() + " " + (m.reverse ? 1 : rows.length) + ")";
+      $("sc-biggest").textContent = S.money(biggest, cur) + (m.shuffle ? " (envelope " + m.periods + ")" : " (" + m.unit.toLowerCase() + " " + (m.reverse ? 1 : rows.length) + ")");
       $("sc-average").textContent = S.money(S.r2(total / 12), cur) + " a month";
       $("sc-interest").textContent = aer > 0 ? S.money(earned, cur) + " (estimate)" : "Add a savings rate to see it";
       $("sc-with-interest").textContent = S.money(S.r2(total + earned), cur);
@@ -127,7 +140,7 @@ if (typeof module !== "undefined" && module.exports) {
       rows.forEach(function (r) {
         var tr = document.createElement("tr");
         var on = t.indexOf(r.i) !== -1;
-        tr.innerHTML = "<td>" + r.i + "</td><td>" + S.niceDate(r.date) + "</td><td>" + S.money(r.deposit, cur) + "</td><td>" + S.money(r.total, cur) +
+        tr.innerHTML = "<td>" + r.label + "</td><td>" + S.niceDate(r.date) + "</td><td>" + S.money(r.deposit, cur) + "</td><td>" + S.money(r.total, cur) +
           '</td><td><input type="checkbox" aria-label="Saved ' + m.unit.toLowerCase() + " " + r.i + '"' + (on ? " checked" : "") + "></td>";
         if (on) tr.className = "sc-done";
         tr.querySelector("input").addEventListener("change", function (e) {
