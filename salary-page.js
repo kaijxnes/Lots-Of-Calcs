@@ -7,7 +7,7 @@
    salary, an hourly rate with hours a week, or monthly pay, and everything is
    worked out from the annual equivalent. Rows are matched by data attributes
    the generator writes:
-     [data-out="net|month|week|day|hour|deductions|rate|marginal|gross"]
+     [data-out="net|month|biweekly|semimonthly|week|day|hour|deductions|rate|marginal|gross"]
      [data-item="<registry item id>"]
    and the options (filing status, county, region…) are <select data-option>. */
 (function () {
@@ -75,6 +75,7 @@
   function render(r) {
     var byOut = {
       net: money(r.net), month: money(r.perMonth), week: money(r.perWeek), day: money(r.perDay),
+      biweekly: money(r.net / 26), semimonthly: money(r.net / 24),
       hour: mode === "hourly" ? money(r.net / (hours() * 52)) : undefined,
       deductions: money(r.totalDeductions),
       rate: (Math.round(r.deductionRate * 10) / 10).toFixed(1) + "%",

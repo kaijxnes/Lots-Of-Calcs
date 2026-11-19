@@ -282,6 +282,10 @@ ${row("You keep", "rise-keep", gross > 0 ? Math.round(extra / more * 100) + "% o
 ${uk ? `      <p class="tool-hint">More on pay rises: the <a href="/pay-rise-calculator/">pay rise calculator</a>${payRise.PCTS.map((x) => ` · <a href="${payRise.pctUrl(x)}">${x}%</a>`).join("")}.</p>\n` : ""}`;
 }
 
+/* The US and Canada mostly pay every two weeks: show paychecks too */
+function paysBiweekly(p) { return p.root.country === "US" || p.root.country === "CA"; }
+const SCHEDULE_URL = "/biweekly-pay-schedule/";
+
 function toolBlock(p, gross, r, heading, mode) {
   const m = mode || { kind: "annual" };
   const selects = Object.keys(p.options).map((k) => {
@@ -315,7 +319,7 @@ function toolBlock(p, gross, r, heading, mode) {
         <hr class="divider">
         <div class="result-grid">
 ${heroRow("A year", "net", p.money(r.net), "highlight")}
-${heroRow("A week", "week", p.money(r.perWeek))}
+${paysBiweekly(p) ? heroRow("Every two weeks (biweekly)", "biweekly", p.money(r.net / 26)) + "\n" + heroRow("Twice a month (semi-monthly)", "semimonthly", p.money(r.net / 24)) + "\n" : ""}${heroRow("A week", "week", p.money(r.perWeek))}
 ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
         </div>`;
   } else {
@@ -326,7 +330,7 @@ ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
         <hr class="divider">
         <div class="result-grid">
 ${heroRow("A month", "month", p.money(r.perMonth), "highlight")}
-${heroRow("A week", "week", p.money(r.perWeek))}
+${paysBiweekly(p) ? heroRow("Every two weeks (biweekly)", "biweekly", p.money(r.net / 26)) + "\n" + heroRow("Twice a month (semi-monthly)", "semimonthly", p.money(r.net / 24)) + "\n" : ""}${heroRow("A week", "week", p.money(r.perWeek))}
 ${m.kind === "hourly" ? heroRow("Per hour worked", "hour", p.money(r.net / (m.hours * 52))) : heroRow("A working day", "day", p.money(r.perDay))}
 ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
         </div>`;
@@ -526,7 +530,9 @@ function salaryPage(p, gross) {
   const title = p.currency === "INR" ? `₹${gross / 100000} Lakh Salary After Tax in India (FY ${year}) — In-Hand Pay`
     : p.currency === "JPY" ? `${m0} (${gross / 1000000} Million Yen) After Tax in Japan (${year})`
     : site.fitTitle(`${m0} After Tax in ${inName} (${year}) — ${say} Take-Home Pay`, `${m0} After Tax in ${inName} (${year}) — ${p.money0(r.perMonth)} a Month`, `${m0} After Tax in ${inName} — ${p.money0(r.perMonth)} a Month`, `${m0} After Tax in ${inName} (${year})`);
-  const desc = `${m0} a year in ${inName} leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month. Every deduction for the ${year} tax year, line by line.`;
+  const desc = paysBiweekly(p)
+    ? `${m0} a year in ${inName} leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month or ${p.money(r.net / 26)} biweekly. Every deduction for ${year}, line by line.`
+    : `${m0} a year in ${inName} leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month. Every deduction for the ${year} tax year, line by line.`;
   const phrase = deductionPhrase(p);
   const opts = optionSummary(p, p.defaults);
   const status = statusLabel(p, p.defaults);
@@ -541,6 +547,8 @@ function salaryPage(p, gross) {
       (assumptionsLine ? ` That is for ${assumptionsLine}.` : "")],
     [`How much is ${m0} a month after tax in ${inName}?`,
       `${p.money(r.perMonth)} a month — the annual take-home of ${p.money(r.net)} divided by twelve. Actual pay slips can differ where pay is split into more than twelve instalments or where withholding is settled at the end of the year.`],
+    ...(paysBiweekly(p) ? [[`How much is ${m0} a year biweekly after taxes in ${inName}?`,
+      `${p.money(r.net / 26)} a paycheck if you're paid every two weeks — 26 paychecks a year. Paid twice a month instead, it's ${p.money(r.net / 24)} a paycheck (24 a year). In years with 27 biweekly paydays, each paycheck is a little smaller if your employer spreads the same salary across them; the biweekly pay schedule shows which years those are.`]] : []),
     [`What is the marginal tax rate on ${m0} in ${inName}?`,
       `${Math.round(r.marginalRate)}% — that is what is taken from the next ${p.currency === "JPY" ? "yen" : "unit"} you earn, against ${pct1(r.deductionRate)} of the salary overall. The marginal rate is the one that matters when weighing a pay rise or overtime.`]
   ];
@@ -593,7 +601,7 @@ ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
     const b = country === "GB" ? links.borrowUk(gross) : country === "US" ? links.borrowUs(gross) : country === "IE" ? links.borrowIe(gross) : country === "FR" ? links.borrowFr(gross) : null;
     const se = p.id === "gb-sct" ? links.selfEmployed(gross) : null;
     const bu = country === "GB" ? links.budgetUk(gross) : null;
-    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : ""].filter(Boolean);
+    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : ""].filter(Boolean);
     return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 
@@ -745,7 +753,9 @@ function hourlyPage(p, rate) {
   const line = assumptionsFor(p);
   const phrase = deductionPhrase(p);
   const title = site.fitTitle(`${mr} an Hour After Tax in ${inName} (${year}) — Take-Home Pay`, `${mr} an Hour After Tax in ${inName} (${year}) — ${p.money0(r.perMonth)} a Month`, `${mr} an Hour After Tax in ${inName} — ${p.money0(r.perMonth)} a Month`, `${mr} an Hour After Tax in ${inName}`);
-  const desc = `${mr} an hour at ${hrs} hours a week is ${p.money0(gross)} a year. In ${inName} that leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month, or ${p.money(perHour)} for each hour worked.`;
+  const desc = paysBiweekly(p)
+    ? `${mr} an hour at ${hrs} hours a week is ${p.money0(gross)} a year. In ${inName} that leaves ${p.money(r.net)} after tax — ${p.money(r.net / 26)} biweekly or ${p.money(r.perMonth)} a month.`
+    : `${mr} an hour at ${hrs} hours a week is ${p.money0(gross)} a year. In ${inName} that leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month, or ${p.money(perHour)} for each hour worked.`;
 
   /* The same rate at other weekly hours: part-time to long weeks */
   const weeks = Array.from(new Set([16, 20, 30, hrs, 45])).sort((a, b) => a - b);
@@ -763,6 +773,8 @@ function hourlyPage(p, rate) {
       `${mr} an hour for ${hrs} hours a week over 52 weeks is ${p.money0(gross)} a year before tax. After ${phrase} in ${inName}, that leaves ${p.money(r.net)} a year.`],
     [`How much is ${mr} an hour after tax a month?`,
       `${p.money(r.perMonth)} a month, or ${p.money(r.perWeek)} a week, working ${hrs} hours a week. Each hour worked takes home ${p.money(perHour)} once ${pct1(r.deductionRate)} has gone in deductions.`],
+    ...(paysBiweekly(p) ? [[`How much is ${mr} an hour biweekly after taxes in ${inName}?`,
+      `${p.money(r.net / 26)} every two weeks, working ${hrs} hours a week: ${p.money(rate * hrs * 2)} gross for the ${hrs * 2} hours, less ${pct1(r.deductionRate)} in deductions. Paid twice a month instead, it's ${p.money(r.net / 24)} a paycheck.`]] : []),
     [`What if I work part-time at ${mr} an hour?`,
       `At 20 hours a week, ${mr} an hour is ${p.money0(rate * 20 * 52)} a year and leaves ${p.money(part.net)} after tax, or ${p.money(part.perMonth)} a month. Lower earnings are taxed at a lower average rate, so take-home doesn't fall quite in proportion to the hours. The table above covers other weekly hours.`],
     [`How much of an overtime hour do I keep?`,
@@ -926,7 +938,8 @@ function usHourly(rate) {
     [`How much is ${mr} an hour a year?`, `${mr} an hour for ${hrs} hours a week over 52 weeks is ${usd(gross)} a year before tax.`],
     [`How much is ${mr} an hour after taxes?`, `It depends on the state. A single filer on the standard deduction takes home between ${usd(worst.r.net)} a year in ${worst.p.place.shortName} and ${usd(best.r.net)} in ${best.p.place.shortName}; in the middle state, ${median.p.place.shortName}, it is ${usd(median.r.net)}, or ${usd(median.r.perMonth)} a month.`],
     [`Which states take the least from ${mr} an hour?`, `States with no tax on wages come out on top: ${rows.slice(0, 5).map((x) => x.p.place.shortName).join(", ")} lead the table. Federal income tax, Social Security and Medicare are the same in every state.`],
-    [`How much is ${mr} an hour per month after tax?`, `Between ${usd(worst.r.perMonth)} and ${usd(best.r.perMonth)} a month depending on the state, working ${hrs} hours a week. Each state's page has the full breakdown and a calculator for your own hours.`]
+    [`How much is ${mr} an hour per month after tax?`, `Between ${usd(worst.r.perMonth)} and ${usd(best.r.perMonth)} a month depending on the state, working ${hrs} hours a week. Each state's page has the full breakdown and a calculator for your own hours.`],
+    [`How much is ${mr} an hour biweekly after taxes?`, `Between ${usd(worst.r.net / 26)} and ${usd(best.r.net / 26)} a paycheck every two weeks, depending on the state; ${usd(median.r.net / 26)} in ${median.p.place.shortName}. That's ${usd(rate * hrs * 2)} gross for ${hrs * 2} hours before taxes.`]
   ];
   const ld = [webPage(title, desc, url), breadcrumb([["Home", SITE + "/"], ["Salary after tax", SITE + "/salary/"], ["United States", SITE + "/salary/us/"], [`${mr} an hour`, url]]), faqLd(q)];
 

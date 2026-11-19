@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/biweekly-pay-schedule/": ["/salary/", "/50-30-20-budget/", "/pay-rise-calculator/", "/working-days/", "/savings-goal/", "/date-diff/"],
   "/christmas-savings-calculator/": ["/52-week-savings-challenge/", "/savings-goal/", "/50-30-20-budget/", "/days-until/", "/split-bill/", "/discount/"],
   "/emergency-fund-calculator/": ["/50-30-20-budget/", "/savings-goal/", "/52-week-savings-challenge/", "/compound-interest/", "/salary/", "/household-bills/"],
   "/50-30-20-budget/": ["/salary/", "/emergency-fund-calculator/", "/savings-goal/", "/52-week-savings-challenge/", "/pay-rise-calculator/", "/household-bills/"],
