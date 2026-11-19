@@ -43,3 +43,7 @@
 /unit-converter /unit-converter/ 301
 /vat.html /vat/ 301
 /vat /vat/ 301
+
+# The fraction pages live under /fraction-to-decimal/; the converter has both directions
+/fraction-to-decimal/ /decimal-to-fraction/ 301
+/fraction-to-decimal /decimal-to-fraction/ 301
