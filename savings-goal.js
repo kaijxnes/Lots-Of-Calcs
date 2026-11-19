@@ -96,4 +96,18 @@ function calculate() {
 
 document.querySelectorAll("input, select").forEach((el) => el.addEventListener("input", calculate));
 
+/* Open with numbers filled in, e.g. from a "save £10,000 by 2030" page:
+   ?goal=10000&current=0&years=4&months=1&rate=4 */
+(function () {
+  const q = new URLSearchParams(window.location.search);
+  const map = { goal: "goal-amount", current: "current-savings", years: "tf-years", months: "tf-months", rate: "annual-rate" };
+  Object.keys(map).forEach((k) => {
+    const v = q.get(k);
+    if (v !== null && v !== "" && isFinite(Number(v)) && Number(v) >= 0) document.getElementById(map[k]).value = v;
+  });
+  const cur = q.get("cur");
+  if (cur && [...document.getElementById("currency").options].some((o) => o.value === cur)) document.getElementById("currency").value = cur;
+  if (q.get("rate") === "0") setMode("simple");
+})();
+
 calculate();
