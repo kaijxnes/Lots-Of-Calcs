@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Each-Way Bet Calculator — Returns, Place Terms &amp; Profit</title>
-<meta name="description" content="Work out the win part, place part, total return and profit on an each-way bet from your unit stake, odds and place terms.">
+<title>Each-Way Bet Calculator — Singles, Doubles &amp; Accas</title>
+<meta name="description" content="Work out the return and profit on an each-way single, double, treble or accumulator: win and place parts, place terms, non-runners and placed-only results.">
 <link rel="canonical" href="https://lotsofcalcs.com/each-way/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="Each-Way Bet Calculator — Returns, Place Terms &amp; Profit">
-<meta property="og:description" content="Work out the win part, place part, total return and profit on an each-way bet from your unit stake, odds and place terms.">
+<meta property="og:title" content="Each-Way Bet Calculator — Singles, Doubles &amp; Accas">
+<meta property="og:description" content="Work out the return and profit on an each-way single, double, treble or accumulator: win and place parts, place terms, non-runners and placed-only results.">
 <meta property="og:url" content="https://lotsofcalcs.com/each-way/">
 <meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Each-Way Bet Calculator — Returns, Place Terms &amp; Profit">
-<meta name="twitter:description" content="Work out the win part, place part, total return and profit on an each-way bet from your unit stake, odds and place terms.">
+<meta name="twitter:title" content="Each-Way Bet Calculator — Singles, Doubles &amp; Accas">
+<meta name="twitter:description" content="Work out the return and profit on an each-way single, double, treble or accumulator: win and place parts, place terms, non-runners and placed-only results.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -30,7 +30,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Each-Way Bet Calculator",
-    "description": "Work out the win part, place part, total return and profit on an each-way bet from your unit stake, odds and place terms.",
+    "description": "Work out the return and profit on an each-way single, double, treble or accumulator: win and place parts, place terms, non-runners and placed-only results.",
     "url": "https://lotsofcalcs.com/each-way/",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
@@ -121,7 +121,7 @@
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">Each-Way Bet Calculator</h1>
-      <p class="page-subtitle">An each-way bet is two bets — one for the win, one for the place. Work out what each part returns.</p>
+      <p class="page-subtitle">An each-way bet is two bets — one for the win, one for the place. Work out what a single, double, treble or acca returns.</p>
     </header>
 
     <main class="tool">
@@ -129,16 +129,6 @@
         <div class="field">
           <label for="unit-stake">Unit stake (per part)</label>
           <input type="number" id="unit-stake" placeholder="10.00" step="any" value="10">
-        </div>
-        <div class="field">
-          <label for="odds">Odds</label>
-          <input type="text" id="odds" placeholder="10/1 or 11.0" value="10/1">
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="place-terms">Place terms</label>
-          <input type="text" id="place-terms" placeholder="1/5" value="1/5">
         </div>
         <div class="field">
           <label for="currency">Currency</label>
@@ -154,31 +144,41 @@
           </select>
         </div>
       </div>
-      <p class="tool-hint">Odds accept fractional (10/1) or decimal (11.0). Place terms are the fraction of the odds paid for placing, e.g. 1/5 or 1/4.</p>
 
-      <p class="tool-section-title">Outcome</p>
-      <div class="tabs" role="tablist">
-        <button class="tab active" data-outcome="won" type="button">Won</button>
-        <button class="tab" data-outcome="placed" type="button">Placed only</button>
-        <button class="tab" data-outcome="lost" type="button">Lost</button>
+      <p class="tool-section-title">Selections</p>
+      <p class="tool-hint">Odds accept fractional (10/1), evens or decimal (11.0). Place terms are the fraction of the odds paid for placing, e.g. 1/5 or 1/4. Add a second selection for an each-way double, a third for a treble, and so on. A non-runner is Void.</p>
+      <div class="table-scroll">
+        <div style="min-width:400px;">
+          <div class="dyn-table-head">
+            <span class="row-index">#</span>
+            <span class="grow">Odds</span>
+            <span class="fixed-sm">Place terms</span>
+            <span class="fixed-sm">Result</span>
+            <span style="width:34px"></span>
+          </div>
+          <div class="dyn-list" id="ew-rows"></div>
+        </div>
       </div>
+      <button class="btn btn-ghost" id="add-sel" type="button">+ Add a selection (each-way double)</button>
 
-      <p class="tool-hint" id="ew-error" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" id="ew-error" role="alert" style="color: var(--bad); display: none;"></p>
 
-      <div class="result-box" style="margin-top:16px;">
+      <div class="result-box" style="margin-top:16px;" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="total-profit">£120.00</div>
-          <div class="label">Total profit / loss</div>
+          <div class="label"><span id="bet-type">Each-way single</span>: profit / loss</div>
         </div>
         <hr class="divider">
         <div class="result-grid">
           <div class="result-row"><span class="r-label">Total staked (2 &times; unit)</span><span class="r-value" id="total-staked">£20.00</span></div>
+          <div class="result-row"><span class="r-label">Win odds (decimal)</span><span class="r-value" id="win-odds-out">11.00</span></div>
+          <div class="result-row"><span class="r-label">Place odds (decimal)</span><span class="r-value" id="place-odds-out">3.00</span></div>
           <div class="result-row"><span class="r-label">Win part returns</span><span class="r-value" id="win-return">£110.00</span></div>
           <div class="result-row"><span class="r-label">Place part returns</span><span class="r-value" id="place-return">£30.00</span></div>
           <div class="result-row highlight"><span class="r-label">Total return</span><span class="r-value" id="total-return">£140.00</span></div>
         </div>
       </div>
-      <p class="tool-hint" style="margin-top:16px;">Place odds work out as <span id="place-odds-note">3.00</span> in decimal — that's 1 + (odds &minus; 1) &times; the place fraction.</p>
+      <p class="tool-hint" style="margin-top:16px;">Place odds are 1 + (odds &minus; 1) &times; the place terms for each selection; with several selections the win and place odds are each multiplied together.</p>
     </main>
 
     <main class="tool">
@@ -186,7 +186,7 @@
       <p class="about-text">An each-way bet is really two separate bets of the same size: one that your selection wins, and one that it finishes in the places. That's why a &quot;&pound;10 each-way&quot; bet costs &pound;20 &mdash; the unit stake is what goes on each part, and the total staked is always double it.</p>
       <p class="about-text">The place part is settled at a fraction of the win odds, set by the bookmaker's place terms. At 1/5 terms, a 10/1 selection pays 2/1 for placing, which is 3.00 in decimal. The general rule this uses is place decimal odds = 1 + (win decimal odds &minus; 1) &times; the place fraction.</p>
       <p class="about-text">If your selection wins, both parts pay out, because a winner has also placed. If it only places, the win part is lost and the place part pays. If it does neither, you lose the whole stake. This calculator follows those standard UK each-way rules.</p>
-      <p class="about-text">Assumptions: the number of places offered and the place fraction are whatever your bookmaker advertised for that race or market, so enter the terms they quoted. Dead heats, Rule 4 deductions and non-runners are not modelled, and any of those will change the actual settled return.</p>
+      <p class="about-text">Assumptions: the number of places offered and the place fraction are whatever your bookmaker advertised for that race or market, so enter the terms they quoted. Dead heats and Rule 4 deductions are not modelled, and either will change the actual settled return. Mark a non-runner as Void: in a multiple it counts as odds of 1.00, and on its own the stake is returned.</p>
     </main>
 
     <main class="tool">
@@ -227,7 +227,7 @@
 
       <p class="tool-section-title" style="margin-top:22px;">Each-way doubles and accumulators</p>
       <p class="about-text">An each-way double is a win double plus a place double, so &pound;5 each-way costs &pound;10. Take a 5/1 and a 3/1 at 1/5 terms: the win double pays 6.00 &times; 4.00 = 24.00, and the place double pays 2.00 &times; 1.60 = 3.20.</p>
-      <p class="about-text">If both win, you get both doubles: &pound;120 + &pound;16 = <strong>&pound;136</strong>. If either one only places, the win double is lost and the place double returns &pound;16, a &pound;4 profit on the &pound;10. If either misses the places, both doubles lose. Each-way trebles and accumulators work the same way with more legs; the <a href="/accumulator/">accumulator calculator</a> works out either half from the leg odds.</p>
+      <p class="about-text">If both win, you get both doubles: &pound;120 + &pound;16 = <strong>&pound;136</strong>. If either one only places, the win double is lost and the place double returns &pound;16, a &pound;6 profit on the &pound;10. If either misses the places, both doubles lose. Each-way trebles and accumulators work the same way with more legs. Add selections in the calculator above to work any of them out.</p>
     </main>
 
     <main class="tool">

@@ -1579,3 +1579,6 @@ hr.divider {
 .bookmark-hint-close:hover {
   color: var(--text-main);
 }
+
+/* Recurring decimal digits, overlined: 0.1 with the 6 marked */
+.rec { text-decoration: overline; }
