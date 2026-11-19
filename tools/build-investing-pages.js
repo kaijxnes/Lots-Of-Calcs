@@ -220,7 +220,7 @@ function hub(set, isMain) {
   ];
   const ld = [site.webPage(title, desc, full), site.breadcrumb([["Home", SITE + "/"], ["Investing", SITE + "/investing/"]].concat(isMain ? [] : [["United States", full]])), site.faqLd(faq)];
   return site.head({ title, desc, url: full, ld }) + `    <header class="site-header">
-      <a class="back-link" href="${isMain ? "/savings-investing/" : "/investing/"}">← ${isMain ? "Savings &amp; investing calculators" : "Investing in pounds"}</a>
+      <a class="back-link" href="${isMain ? "/investing-pensions/" : "/investing/"}">← ${isMain ? "Investing &amp; pension calculators" : "Investing in pounds"}</a>
       <h1 class="page-title">${isMain ? "Investing by amount" : "Investing by amount (US dollars)"}</h1>
       <p class="page-subtitle">What a monthly amount or a lump sum could grow to, at returns from 2% to 10% a year.</p>
     </header>

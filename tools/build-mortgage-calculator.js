@@ -55,7 +55,7 @@ function page() {
 
   const ld = [
     site.webPage(title, desc, url),
-    site.breadcrumb([["Home", SITE + "/"], ["Savings & Investing", SITE + "/savings-investing/"], ["Mortgage Calculator", url]]),
+    site.breadcrumb([["Home", SITE + "/"], ["Mortgages & Loans", SITE + "/mortgages-loans/"], ["Mortgage Calculator", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Mortgage Calculator", url: url, applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } },
     site.faqLd(q)
   ];

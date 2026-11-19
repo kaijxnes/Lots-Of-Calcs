@@ -110,7 +110,7 @@ function build(P) {
   ];
   const ld = [
     site.webPage(P.title, desc, url),
-    site.breadcrumb([["Home", SITE + "/"], ["Savings & Investing", SITE + "/savings-investing/"], [P.name, url]]),
+    site.breadcrumb([["Home", SITE + "/"], ["Investing & Pensions", SITE + "/investing-pensions/"], [P.name, url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: P.name, url: url, applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: P.currency } },
     site.faqLd(q)
   ];

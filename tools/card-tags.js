@@ -18,7 +18,7 @@ const TAGS = {
   "/tfsa-vs-rrsp/": "Canada"
 };
 const NAMES = { UK: "United Kingdom", US: "United States", Canada: "Canada" };
-const span = (href) => (TAGS[href] ? `<span class="card-tag" title="For the ${NAMES[TAGS[href]]}">${TAGS[href]}</span>` : "");
+const span = (href) => (TAGS[href] ? `<span class="card-tag" title="For ${/^United/.test(NAMES[TAGS[href]]) ? "the " : ""}${NAMES[TAGS[href]]}">${TAGS[href]}</span>` : "");
 
 /* Rewrites every hub card in an HTML string to carry its tag (or none) */
 function apply(html) {
