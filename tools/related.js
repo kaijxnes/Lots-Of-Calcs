@@ -21,9 +21,10 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/52-week-savings-challenge/": ["/savings-goal/", "/compound-interest/", "/dry-january-calculator/", "/split-bill/", "/inflation/", "/salary/"],
   "/stamp-duty-calculator/": ["/mortgage-calculator/", "/mortgage-affordability/", "/rent-vs-buy/", "/mortgage-overpayment/", "/salary/", "/savings-goal/"],
   "/self-employed-tax-calculator/": ["/salary/", "/pay-rise-calculator/", "/vat/", "/isa-vs-pension/", "/working-days/", "/savings-goal/"],
-  "/dry-january-calculator/": ["/calorie-calculator/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
+  "/dry-january-calculator/": ["/calorie-calculator/", "/52-week-savings-challenge/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
   "/pay-rise-calculator/": ["/salary/", "/inflation/", "/percent/", "/savings-goal/", "/isa-vs-pension/", "/mortgage-affordability/"],
   "/calorie-calculator/": ["/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
   "/working-days/": ["/date-diff/", "/days-until/", "/salary/", "/timezone/", "/birthday/", "/percent/"],
@@ -55,8 +56,8 @@ const RELATED = {
   "/rent-vs-buy/": ["/stamp-duty-calculator/", "/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
   "/salary/": ["/self-employed-tax-calculator/", "/pay-rise-calculator/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
   "/cagr/": ["/compound-interest/", "/inflation/", "/growth/", "/fund-fees/", "/savings-goal/", "/percent/"],
-  "/compound-interest/": ["/savings-goal/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
-  "/savings-goal/": ["/compound-interest/", "/salary/", "/inflation/", "/fund-fees/", "/rent-vs-buy/", "/household-bills/"],
+  "/compound-interest/": ["/savings-goal/", "/52-week-savings-challenge/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
+  "/savings-goal/": ["/compound-interest/", "/52-week-savings-challenge/", "/salary/", "/inflation/", "/fund-fees/", "/rent-vs-buy/", "/household-bills/"],
   "/mortgage-overpayment/": ["/mortgage-calculator/", "/mortgage-affordability/", "/loan-repayment/", "/rent-vs-buy/", "/compound-interest/", "/salary/", "/debt-snowball-vs-avalanche/", "/household-bills/"],
   "/loan-repayment/": ["/car-finance/", "/mortgage-overpayment/", "/debt-snowball-vs-avalanche/", "/compound-interest/", "/salary/", "/cashback/"],
   "/debt-snowball-vs-avalanche/": ["/loan-repayment/", "/mortgage-overpayment/", "/car-finance/", "/savings-goal/", "/cashback/", "/salary/"],
