@@ -358,7 +358,7 @@ ${ldJson}
 
 ${(() => {
         const b = links.borrowUk(gross) || (links.borrowUkNear(gross) || {}).url, se = links.selfEmployed(gross);
-        const items = [b ? `<a href="${b}">How much can I borrow on ${money0(gross)}?</a>` : "", se ? `<a href="${se}">${money0(gross)} self-employed</a>` : "", payRise.has(3, gross) ? `<a href="${payRise.url(3, gross)}">3% pay rise on ${money0(gross)}</a>` : ""].filter(Boolean);
+        const items = [b ? `<a href="${b}">How much can I borrow on ${money0(gross)}?</a>` : "", se ? `<a href="${se}">${money0(gross)} self-employed</a>` : "", payRise.has(3, gross) ? `<a href="${payRise.url(3, gross)}">3% pay rise on ${money0(gross)}</a>` : "", links.budgetUk(gross) ? `<a href="${links.budgetUk(gross)}">50/30/20 budget on ${money0(gross)}</a>` : ""].filter(Boolean);
         return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${money0(gross)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
       })()}
       <p class="tool-section-title" style="margin-top:22px;">The bands, line by line</p>

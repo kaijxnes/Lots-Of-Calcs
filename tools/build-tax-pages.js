@@ -589,7 +589,8 @@ ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
     const country = p.root.country;
     const b = country === "GB" ? links.borrowUk(gross) : country === "US" ? links.borrowUs(gross) : country === "IE" ? links.borrowIe(gross) : country === "FR" ? links.borrowFr(gross) : null;
     const se = p.id === "gb-sct" ? links.selfEmployed(gross) : null;
-    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : ""].filter(Boolean);
+    const bu = country === "GB" ? links.budgetUk(gross) : null;
+    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : ""].filter(Boolean);
     return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 

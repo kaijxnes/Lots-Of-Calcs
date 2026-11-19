@@ -36,6 +36,8 @@ module.exports = {
   mortgageUkNear: (amount) => near("mortgage", amount),
   mortgageUsNear: (amount) => near("mortgage/us", amount),
   selfEmployed: (profit) => exact("self-employed-tax-calculator", profit),
+  /* the 50/30/20 budget on a UK salary */
+  budgetUk: (salary) => exact("50-30-20-budget", salary),
   salaryUk: (salary) => (fs.existsSync(path.join(ROOT, "salary", `${salary}-after-tax`, "index.html")) ? `/salary/${salary}-after-tax/` : null),
   money
 };
