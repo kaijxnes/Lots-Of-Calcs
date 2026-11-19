@@ -65,6 +65,30 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "How do you work out an each-way bet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Double the unit stake for the total cost, work out the place odds as the win odds' profit part times the place terms (8/1 at 1/5 is 8/5), then add up whichever parts pay. £5 each-way at 8/1, 1/5 terms, returns £58 if it wins and £13 if it only places."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is each-way worth it on a favourite?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Rarely. At short odds the place part pays so little that a placed finish loses money overall: at 2/1 with 1/5 terms, £5 each-way that only places returns £7 against £10 staked. Each-way suits bigger prices in races with good place terms."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is an each-way double?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Two bets: a win double and a place double, each at the unit stake. Each double needs both selections to do their part, so if one of them misses the places, the whole each-way double is lost."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Does a £10 each-way bet cost £10 or £20?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -166,13 +190,61 @@
     </main>
 
     <main class="tool">
+      <p class="tool-section-title">How to work out an each-way bet</p>
+      <p class="about-text"><strong>1. Double the stake.</strong> &pound;5 each-way is a &pound;5 win bet plus a &pound;5 place bet: &pound;10 in total.</p>
+      <p class="about-text"><strong>2. Work out the place odds.</strong> Take the profit part of the odds and apply the place terms. At 8/1 with 1/5 terms, the place part is paid at 8/5, which is 1.6/1 (2.60 in decimal).</p>
+      <p class="about-text"><strong>3. Settle each part.</strong> The win part pays at the full odds only if it wins; the place part pays if it finishes anywhere in the places, winning included.</p>
+      <div class="table-scroll">
+        <div style="min-width:480px;">
+          <table class="out-table">
+            <thead><tr><th>£5 e/w at 8/1, 1/5 terms</th><th>Win part</th><th>Place part</th><th>Return</th><th>Profit</th></tr></thead>
+            <tbody>
+<tr><td>Wins</td><td>£45.00</td><td>£13.00</td><td><strong>£58.00</strong></td><td>£48.00</td></tr>
+<tr><td>Places (2nd or 3rd)</td><td>£0</td><td>£13.00</td><td><strong>£13.00</strong></td><td>£3.00</td></tr>
+<tr><td>Unplaced</td><td>£0</td><td>£0</td><td>£0</td><td>&minus;£10.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="about-text" style="margin-top:12px;">The same bet at 1/4 terms returns &pound;60.00 if it wins and &pound;15.00 if it only places. At short odds the place part can return less than the whole stake: at 2/1 with 1/5 terms, &pound;5 each-way that only places returns &pound;7, less than the &pound;10 staked.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Standard each-way terms in UK horse racing</p>
+      <div class="table-scroll">
+        <div style="min-width:460px;">
+          <table class="out-table">
+            <thead><tr><th>Race</th><th>Places paid</th><th>Terms</th></tr></thead>
+            <tbody>
+<tr><td>2&ndash;4 runners</td><td>Win only</td><td>&mdash;</td></tr>
+<tr><td>5&ndash;7 runners</td><td>1st, 2nd</td><td>1/4</td></tr>
+<tr><td>8+ runners (non-handicap)</td><td>1st, 2nd, 3rd</td><td>1/5</td></tr>
+<tr><td>Handicap, 12&ndash;15 runners</td><td>1st, 2nd, 3rd</td><td>1/4</td></tr>
+<tr><td>Handicap, 16+ runners</td><td>1st&ndash;4th</td><td>1/4 at most firms (some pay 1/5 below 22 runners)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">These are the usual terms, as set out by <a href="https://www.timeform.com/betting/place-terms-when-to-back-each-way" rel="noopener">Timeform</a> and <a href="https://www.sportinglife.com/free-bets/guides/basics/what-is-an-each-way" rel="noopener">Sporting Life</a>. Bookmakers often pay extra places on big races, so use the terms your bookmaker shows.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Each-way doubles and accumulators</p>
+      <p class="about-text">An each-way double is a win double plus a place double, so &pound;5 each-way costs &pound;10. Take a 5/1 and a 3/1 at 1/5 terms: the win double pays 6.00 &times; 4.00 = 24.00, and the place double pays 2.00 &times; 1.60 = 3.20.</p>
+      <p class="about-text">If both win, you get both doubles: &pound;120 + &pound;16 = <strong>&pound;136</strong>. If either one only places, the win double is lost and the place double returns &pound;16, a &pound;4 profit on the &pound;10. If either misses the places, both doubles lose. Each-way trebles and accumulators work the same way with more legs; the <a href="/accumulator/">accumulator calculator</a> works out either half from the leg odds.</p>
+    </main>
+
+    <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do you work out an each-way bet?</p>
+      <p class="about-text">Double the unit stake for the total cost, work out the place odds as the win odds' profit part times the place terms (8/1 at 1/5 is 8/5), then add up whichever parts pay. £5 each-way at 8/1, 1/5 terms, returns £58 if it wins and £13 if it only places.</p>
+      <p class="faq-q">Is each-way worth it on a favourite?</p>
+      <p class="about-text">Rarely. At short odds the place part pays so little that a placed finish loses money overall: at 2/1 with 1/5 terms, £5 each-way that only places returns £7 against £10 staked. Each-way suits bigger prices in races with good place terms.</p>
+      <p class="faq-q">What is an each-way double?</p>
+      <p class="about-text">Two bets: a win double and a place double, each at the unit stake. Each double needs both selections to do their part, so if one of them misses the places, the whole each-way double is lost.</p>
       <p class="faq-q">Does a £10 each-way bet cost £10 or £20?</p>
       <p class="about-text">It costs £20. Each-way is two bets of £10 — one on the win, one on the place — so the unit stake you enter is doubled to give the total staked.</p>
       <p class="faq-q">Do I get both parts if my selection wins?</p>
       <p class="about-text">Yes. A winner has also placed, so the win part and the place part both pay out. That is why the return on a winning each-way bet is much larger than on one that only places.</p>
       <p class="faq-q">What do place terms like 1/5 mean?</p>
       <p class="about-text">They are the fraction of the win odds paid on the place part. At 1/5 terms a 10/1 selection is paid at 2/1 for placing, so a £10 place part returns £30 including the stake.</p>
+      <p class="tool-hint" style="margin-top:12px;">18+. A calculator shows what a bet pays, not whether it will win &mdash; the bookmaker's margin is built into every price. If gambling stops being fun, <a href="https://www.begambleaware.org/" rel="noopener">BeGambleAware</a> offers free, confidential help.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->
