@@ -1,0 +1,31 @@
+# Response headers for lotsofcalcs.com (Cloudflare static assets).
+#
+# Caching: pages are always re-checked, so an update shows at once. Scripts,
+# styles and data can be reused for an hour, then are refreshed in the
+# background, so moving between calculators doesn't re-fetch them. Images and
+# icons barely change, so they keep for 30 days.
+
+/*
+  Strict-Transport-Security: max-age=31536000
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
+
+/*.css
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/*.js
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/data/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/*.png
+  Cache-Control: public, max-age=2592000
+
+/*.jpg
+  Cache-Control: public, max-age=2592000
+
+/*.ico
+  Cache-Control: public, max-age=2592000
