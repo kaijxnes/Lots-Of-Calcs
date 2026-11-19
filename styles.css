@@ -1582,3 +1582,17 @@ hr.divider {
 
 /* Recurring decimal digits, overlined: 0.1 with the 6 marked */
 .rec { text-decoration: overline; }
+
+/* 52-week savings challenge: a scrolling chart, ticked weeks faded, and a
+   clean printout (just the chart and totals) */
+.sc-chart { max-height: 560px; overflow: auto; }
+.sc-done td { opacity: 0.5; }
+.sc-done td:nth-child(3) { text-decoration: line-through; }
+@media print {
+  .no-print, .site-footer, .consent-banner, .consent-settings, .bookmark-hint, .hub-grid, .hub-group-title { display: none !important; }
+  .sc-chart { max-height: none; overflow: visible; }
+  body, .page, main.tool { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+  .result-box, .result-row, .result-hero { background: #fff !important; border-color: #999 !important; }
+  .out-table th, .out-table td, .page-title, .page-subtitle, .r-label, .r-value, .value, .label, .tool-section-title, .tool-hint, .about-text { color: #000 !important; }
+  .sc-done td { opacity: 1; }
+}

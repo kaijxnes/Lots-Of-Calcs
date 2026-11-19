@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>52 Week Savings Challenge Calculator — Chart, Totals &amp; Tracker</title>
+<meta name="description" content="Save £1 in week 1, £2 in week 2 and so on, and you'll have £1,378 after 52 weeks. Work out any version, print the chart and tick off each week as you go.">
+<link rel="canonical" href="https://lotsofcalcs.com/52-week-savings-challenge/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="52 Week Savings Challenge Calculator — Chart, Totals &amp; Tracker">
+<meta property="og:description" content="Save £1 in week 1, £2 in week 2 and so on, and you'll have £1,378 after 52 weeks. Work out any version, print the chart and tick off each week as you go.">
+<meta property="og:url" content="https://lotsofcalcs.com/52-week-savings-challenge/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="52 Week Savings Challenge Calculator — Chart, Totals &amp; Tracker">
+<meta name="twitter:description" content="Save £1 in week 1, £2 in week 2 and so on, and you'll have £1,378 after 52 weeks. Work out any version, print the chart and tick off each week as you go.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "52 Week Savings Challenge Calculator — Chart, Totals & Tracker",
+    "description": "Save £1 in week 1, £2 in week 2 and so on, and you'll have £1,378 after 52 weeks. Work out any version, print the chart and tick off each week as you go.",
+    "url": "https://lotsofcalcs.com/52-week-savings-challenge/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "52 Week Savings Challenge",
+        "item": "https://lotsofcalcs.com/52-week-savings-challenge/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "52 Week Savings Challenge Calculator",
+    "url": "https://lotsofcalcs.com/52-week-savings-challenge/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much do you save with the 52-week challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "£1,378 if you start at £1 and add £1 each week: £1 + £2 + … + £52. Starting at £2 doubles it to £2,756, and £5 a week rising gives £6,890. The total is always the starting amount × 1,378."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the reverse 52-week challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The same deposits in the opposite order: £52 in week 1 down to £1 in week 52. You still save £1,378, but the big amounts come in January rather than December, when money is tightest — December needs £10 instead of £202."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much is the 1p a day challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "£667.95. You save 1p on day 1, 2p on day 2 and so on to £3.65 on day 365. The 2p version saves £1,335.90."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I save £1,000 with the 52-week challenge?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Start at 73p and add 73p each week: 73p × 1,378 = £1,005.94. Put a target into the calculator's 'Aim for a total' box and it works out the amount for any total."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where should I keep the money?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Somewhere separate that you won't dip into but can reach if you need to, such as an easy-access savings account or a cash ISA. The interest is a bonus; add the rate to see roughly what it adds."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What if I miss a week?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Catch up the next week or spread it over the following few. The chart keeps a running total, so you can always see where you should be."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link no-print" href="/">← All calculators</a>
+      <h1 class="page-title">52 week savings challenge</h1>
+      <p class="page-subtitle">Save a little more each week and finish the year with £1,378 — or pick your own amount, start date and version.</p>
+    </header>
+
+    <main class="tool" id="sc-tool">
+      <div class="no-print">
+      <div class="field-row">
+        <div class="field"><label for="sc-mode">Challenge</label><select id="sc-mode"><option value="classic" selected>Classic: a bit more each week</option><option value="reverse">Reverse: biggest week first</option><option value="daily">365 days: a bit more each day</option></select></div>
+        <div class="field"><label for="sc-amount">Amount (first deposit and each increase)</label><input type="number" id="sc-amount" value="1" min="0.01" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="sc-start">Start date</label><input type="date" id="sc-start" value=""></div>
+        <div class="field"><label for="sc-cur">Currency</label><select id="sc-cur"><option value="£" selected>£</option><option value="$">$</option><option value="€">€</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="sc-target">Aim for a total (optional)</label><input type="number" id="sc-target" placeholder="e.g. 1000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="sc-aer">Savings rate, AER % (optional)</label><input type="number" id="sc-aer" placeholder="e.g. 4" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <p class="tool-hint" id="sc-error" role="alert" style="color: var(--bad); display: none;"></p>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="sc-total">£1,378</div>
+          <div class="label" id="sc-total-label">saved by 24 Dec 2027</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Biggest deposit</span><span class="r-value" id="sc-biggest">£52 (week 52)</span></div>
+          <div class="result-row"><span class="r-label">On average</span><span class="r-value" id="sc-average">£114.83 a month</span></div>
+          <div class="result-row"><span class="r-label">Interest</span><span class="r-value" id="sc-interest">Add a savings rate to see it</span></div>
+          <div class="result-row highlight"><span class="r-label">Total with interest</span><span class="r-value" id="sc-with-interest">£1,378</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:20px;">Your chart</p>
+      <p class="tool-hint" id="sc-progress">Tick each week as you save it. Your ticks stay in this browser.</p>
+      <div class="no-print" style="display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 12px;">
+        <button class="btn btn-ghost" id="sc-print" type="button">🖨️ Print the chart</button>
+        <button class="btn btn-ghost" id="sc-clear" type="button">Clear ticks</button>
+      </div>
+      <div class="table-scroll sc-chart">
+        <div style="min-width:340px;">
+          <table class="out-table">
+            <thead><tr><th id="sc-unit-head">Week</th><th>Date</th><th>Save</th><th>Total so far</th><th>Done</th></tr></thead>
+            <tbody id="sc-rows">
+<tr><td>1</td><td>1 Jan 2027</td><td>£1</td><td>£1</td><td><input type="checkbox" aria-label="Saved week 1"></td></tr>
+<tr><td>2</td><td>8 Jan 2027</td><td>£2</td><td>£3</td><td><input type="checkbox" aria-label="Saved week 2"></td></tr>
+<tr><td>3</td><td>15 Jan 2027</td><td>£3</td><td>£6</td><td><input type="checkbox" aria-label="Saved week 3"></td></tr>
+<tr><td>4</td><td>22 Jan 2027</td><td>£4</td><td>£10</td><td><input type="checkbox" aria-label="Saved week 4"></td></tr>
+<tr><td>5</td><td>29 Jan 2027</td><td>£5</td><td>£15</td><td><input type="checkbox" aria-label="Saved week 5"></td></tr>
+<tr><td>6</td><td>5 Feb 2027</td><td>£6</td><td>£21</td><td><input type="checkbox" aria-label="Saved week 6"></td></tr>
+<tr><td>7</td><td>12 Feb 2027</td><td>£7</td><td>£28</td><td><input type="checkbox" aria-label="Saved week 7"></td></tr>
+<tr><td>8</td><td>19 Feb 2027</td><td>£8</td><td>£36</td><td><input type="checkbox" aria-label="Saved week 8"></td></tr>
+<tr><td>9</td><td>26 Feb 2027</td><td>£9</td><td>£45</td><td><input type="checkbox" aria-label="Saved week 9"></td></tr>
+<tr><td>10</td><td>5 Mar 2027</td><td>£10</td><td>£55</td><td><input type="checkbox" aria-label="Saved week 10"></td></tr>
+<tr><td>11</td><td>12 Mar 2027</td><td>£11</td><td>£66</td><td><input type="checkbox" aria-label="Saved week 11"></td></tr>
+<tr><td>12</td><td>19 Mar 2027</td><td>£12</td><td>£78</td><td><input type="checkbox" aria-label="Saved week 12"></td></tr>
+<tr><td>13</td><td>26 Mar 2027</td><td>£13</td><td>£91</td><td><input type="checkbox" aria-label="Saved week 13"></td></tr>
+<tr><td>14</td><td>2 Apr 2027</td><td>£14</td><td>£105</td><td><input type="checkbox" aria-label="Saved week 14"></td></tr>
+<tr><td>15</td><td>9 Apr 2027</td><td>£15</td><td>£120</td><td><input type="checkbox" aria-label="Saved week 15"></td></tr>
+<tr><td>16</td><td>16 Apr 2027</td><td>£16</td><td>£136</td><td><input type="checkbox" aria-label="Saved week 16"></td></tr>
+<tr><td>17</td><td>23 Apr 2027</td><td>£17</td><td>£153</td><td><input type="checkbox" aria-label="Saved week 17"></td></tr>
+<tr><td>18</td><td>30 Apr 2027</td><td>£18</td><td>£171</td><td><input type="checkbox" aria-label="Saved week 18"></td></tr>
+<tr><td>19</td><td>7 May 2027</td><td>£19</td><td>£190</td><td><input type="checkbox" aria-label="Saved week 19"></td></tr>
+<tr><td>20</td><td>14 May 2027</td><td>£20</td><td>£210</td><td><input type="checkbox" aria-label="Saved week 20"></td></tr>
+<tr><td>21</td><td>21 May 2027</td><td>£21</td><td>£231</td><td><input type="checkbox" aria-label="Saved week 21"></td></tr>
+<tr><td>22</td><td>28 May 2027</td><td>£22</td><td>£253</td><td><input type="checkbox" aria-label="Saved week 22"></td></tr>
+<tr><td>23</td><td>4 Jun 2027</td><td>£23</td><td>£276</td><td><input type="checkbox" aria-label="Saved week 23"></td></tr>
+<tr><td>24</td><td>11 Jun 2027</td><td>£24</td><td>£300</td><td><input type="checkbox" aria-label="Saved week 24"></td></tr>
+<tr><td>25</td><td>18 Jun 2027</td><td>£25</td><td>£325</td><td><input type="checkbox" aria-label="Saved week 25"></td></tr>
+<tr><td>26</td><td>25 Jun 2027</td><td>£26</td><td>£351</td><td><input type="checkbox" aria-label="Saved week 26"></td></tr>
+<tr><td>27</td><td>2 Jul 2027</td><td>£27</td><td>£378</td><td><input type="checkbox" aria-label="Saved week 27"></td></tr>
+<tr><td>28</td><td>9 Jul 2027</td><td>£28</td><td>£406</td><td><input type="checkbox" aria-label="Saved week 28"></td></tr>
+<tr><td>29</td><td>16 Jul 2027</td><td>£29</td><td>£435</td><td><input type="checkbox" aria-label="Saved week 29"></td></tr>
+<tr><td>30</td><td>23 Jul 2027</td><td>£30</td><td>£465</td><td><input type="checkbox" aria-label="Saved week 30"></td></tr>
+<tr><td>31</td><td>30 Jul 2027</td><td>£31</td><td>£496</td><td><input type="checkbox" aria-label="Saved week 31"></td></tr>
+<tr><td>32</td><td>6 Aug 2027</td><td>£32</td><td>£528</td><td><input type="checkbox" aria-label="Saved week 32"></td></tr>
+<tr><td>33</td><td>13 Aug 2027</td><td>£33</td><td>£561</td><td><input type="checkbox" aria-label="Saved week 33"></td></tr>
+<tr><td>34</td><td>20 Aug 2027</td><td>£34</td><td>£595</td><td><input type="checkbox" aria-label="Saved week 34"></td></tr>
+<tr><td>35</td><td>27 Aug 2027</td><td>£35</td><td>£630</td><td><input type="checkbox" aria-label="Saved week 35"></td></tr>
+<tr><td>36</td><td>3 Sep 2027</td><td>£36</td><td>£666</td><td><input type="checkbox" aria-label="Saved week 36"></td></tr>
+<tr><td>37</td><td>10 Sep 2027</td><td>£37</td><td>£703</td><td><input type="checkbox" aria-label="Saved week 37"></td></tr>
+<tr><td>38</td><td>17 Sep 2027</td><td>£38</td><td>£741</td><td><input type="checkbox" aria-label="Saved week 38"></td></tr>
+<tr><td>39</td><td>24 Sep 2027</td><td>£39</td><td>£780</td><td><input type="checkbox" aria-label="Saved week 39"></td></tr>
+<tr><td>40</td><td>1 Oct 2027</td><td>£40</td><td>£820</td><td><input type="checkbox" aria-label="Saved week 40"></td></tr>
+<tr><td>41</td><td>8 Oct 2027</td><td>£41</td><td>£861</td><td><input type="checkbox" aria-label="Saved week 41"></td></tr>
+<tr><td>42</td><td>15 Oct 2027</td><td>£42</td><td>£903</td><td><input type="checkbox" aria-label="Saved week 42"></td></tr>
+<tr><td>43</td><td>22 Oct 2027</td><td>£43</td><td>£946</td><td><input type="checkbox" aria-label="Saved week 43"></td></tr>
+<tr><td>44</td><td>29 Oct 2027</td><td>£44</td><td>£990</td><td><input type="checkbox" aria-label="Saved week 44"></td></tr>
+<tr><td>45</td><td>5 Nov 2027</td><td>£45</td><td>£1,035</td><td><input type="checkbox" aria-label="Saved week 45"></td></tr>
+<tr><td>46</td><td>12 Nov 2027</td><td>£46</td><td>£1,081</td><td><input type="checkbox" aria-label="Saved week 46"></td></tr>
+<tr><td>47</td><td>19 Nov 2027</td><td>£47</td><td>£1,128</td><td><input type="checkbox" aria-label="Saved week 47"></td></tr>
+<tr><td>48</td><td>26 Nov 2027</td><td>£48</td><td>£1,176</td><td><input type="checkbox" aria-label="Saved week 48"></td></tr>
+<tr><td>49</td><td>3 Dec 2027</td><td>£49</td><td>£1,225</td><td><input type="checkbox" aria-label="Saved week 49"></td></tr>
+<tr><td>50</td><td>10 Dec 2027</td><td>£50</td><td>£1,275</td><td><input type="checkbox" aria-label="Saved week 50"></td></tr>
+<tr><td>51</td><td>17 Dec 2027</td><td>£51</td><td>£1,326</td><td><input type="checkbox" aria-label="Saved week 51"></td></tr>
+<tr><td>52</td><td>24 Dec 2027</td><td>£52</td><td>£1,378</td><td><input type="checkbox" aria-label="Saved week 52"></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-section-title" style="margin-top:20px;">Month by month</p>
+      <div class="table-scroll">
+        <div style="min-width:300px;">
+          <table class="out-table">
+            <thead><tr><th>Month</th><th>Deposits</th><th>Saved that month</th></tr></thead>
+            <tbody id="sc-months">
+<tr><td>January 2027</td><td>5</td><td>£15</td></tr>
+<tr><td>February 2027</td><td>4</td><td>£30</td></tr>
+<tr><td>March 2027</td><td>4</td><td>£46</td></tr>
+<tr><td>April 2027</td><td>5</td><td>£80</td></tr>
+<tr><td>May 2027</td><td>4</td><td>£82</td></tr>
+<tr><td>June 2027</td><td>4</td><td>£98</td></tr>
+<tr><td>July 2027</td><td>5</td><td>£145</td></tr>
+<tr><td>August 2027</td><td>4</td><td>£134</td></tr>
+<tr><td>September 2027</td><td>4</td><td>£150</td></tr>
+<tr><td>October 2027</td><td>5</td><td>£210</td></tr>
+<tr><td>November 2027</td><td>4</td><td>£186</td></tr>
+<tr><td>December 2027</td><td>4</td><td>£202</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Which version?</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Challenge</th><th>First deposit</th><th>Last deposit</th><th>Total</th></tr></thead>
+            <tbody>
+<tr><td><a href="/52-week-savings-challenge/50p/">50p 52-week savings challenge</a></td><td>50p</td><td>£26</td><td><strong>£689</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/1-pound/">£1 52-week savings challenge</a></td><td>£1</td><td>£52</td><td><strong>£1,378</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/2-pound/">£2 52-week savings challenge</a></td><td>£2</td><td>£104</td><td><strong>£2,756</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/5-pound/">£5 52-week savings challenge</a></td><td>£5</td><td>£260</td><td><strong>£6,890</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/10-pound/">£10 52-week savings challenge</a></td><td>£10</td><td>£520</td><td><strong>£13,780</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/reverse/">Reverse 52-week savings challenge</a></td><td>£52</td><td>£1</td><td><strong>£1,378</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/reverse-2-pound/">Reverse £2 52-week savings challenge</a></td><td>£104</td><td>£2</td><td><strong>£2,756</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/365-day-1p/">1p 365-day savings challenge</a></td><td>1p</td><td>£3.65</td><td><strong>£667.95</strong></td></tr>
+<tr><td><a href="/52-week-savings-challenge/365-day-2p/">2p 365-day savings challenge</a></td><td>2p</td><td>£7.30</td><td><strong>£1,335.90</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Each has its full dated chart for 2027, starting 1 January. Any start date works in the calculator.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How it works</p>
+      <p class="about-text">In week 1 you save the starting amount, in week 2 twice it, and so on up to 52 times it in week 52. Add those up and you get <strong>1,378 × the starting amount</strong>: £1,378 from £1, £2,756 from £2, £689 from 50p.</p>
+      <p class="about-text"><strong>The catch is the end of the year.</strong> Starting on 1 January, the classic version asks for £202 in December, just when Christmas costs land. The reverse version front-loads it, so December needs only £10; it's the same £1,378 either way.</p>
+      <p class="about-text"><strong>The 365-day version</strong> goes up a little every day instead: 1p on day 1, 2p on day 2 and £3.65 on day 365, for £667.95. Smaller steps, but you have to remember daily.</p>
+      <p class="about-text"><strong>Making it stick:</strong> set up a weekly standing order into a separate savings account, print the chart for the fridge, or tick off each week here and the page remembers your progress. If you'd rather save the same amount every week, the <a href="/savings-goal/">savings goal calculator</a> works out what you need, and the <a href="/compound-interest/">compound interest calculator</a> shows what it grows to.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How much do you save with the 52-week challenge?</p>
+      <p class="about-text">£1,378 if you start at £1 and add £1 each week: £1 + £2 + … + £52. Starting at £2 doubles it to £2,756, and £5 a week rising gives £6,890. The total is always the starting amount × 1,378.</p>
+      <p class="faq-q">What is the reverse 52-week challenge?</p>
+      <p class="about-text">The same deposits in the opposite order: £52 in week 1 down to £1 in week 52. You still save £1,378, but the big amounts come in January rather than December, when money is tightest — December needs £10 instead of £202.</p>
+      <p class="faq-q">How much is the 1p a day challenge?</p>
+      <p class="about-text">£667.95. You save 1p on day 1, 2p on day 2 and so on to £3.65 on day 365. The 2p version saves £1,335.90.</p>
+      <p class="faq-q">How do I save £1,000 with the 52-week challenge?</p>
+      <p class="about-text">Start at 73p and add 73p each week: 73p × 1,378 = £1,005.94. Put a target into the calculator's 'Aim for a total' box and it works out the amount for any total.</p>
+      <p class="faq-q">Where should I keep the money?</p>
+      <p class="about-text">Somewhere separate that you won't dip into but can reach if you need to, such as an easy-access savings account or a cash ISA. The interest is a bonus; add the rate to see roughly what it adds.</p>
+      <p class="faq-q">What if I miss a week?</p>
+      <p class="about-text">Catch up the next week or spread it over the following few. The chart keeps a running total, so you can always see where you should be.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/savings-goal/">
+        <span class="icon">🎯</span>
+        <div class="title">Savings Goal</div>
+        <div class="desc">Goal + current savings + time frame → the monthly contribution you need.</div>
+      </a>
+      <a class="hub-card" href="/compound-interest/">
+        <span class="icon">🌱</span>
+        <div class="title">Compound Interest</div>
+        <div class="desc">Starting amount + annual return + years → what you'd end up with.</div>
+      </a>
+      <a class="hub-card" href="/dry-january-calculator/">
+        <span class="icon">🍷</span>
+        <div class="title">Dry January</div>
+        <div class="desc">Money, alcohol units and calories saved by not drinking in January.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/split-bill/">
+        <span class="icon">🧑‍🤝‍🧑</span>
+        <div class="title">Split Bill</div>
+        <div class="desc">Equal split with tip%, or an itemized uneven split per person.</div>
+      </a>
+      <a class="hub-card" href="/inflation/">
+        <span class="icon">📉</span>
+        <div class="title">Inflation Calculator</div>
+        <div class="desc">What money from any year is worth today, from official UK and US figures.</div>
+      </a>
+      <a class="hub-card" href="/savings-investing/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Savings &amp; Investing calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/savings-investing/">Savings &amp; Investing</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/savings-challenge.js"></script>
+</body>
+</html>
