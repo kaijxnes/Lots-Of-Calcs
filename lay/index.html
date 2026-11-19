@@ -65,6 +65,22 @@
     "mainEntity": [
       {
         "@type": "Question",
+        "name": "What does it mean to lay a bet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "To bet against an outcome on a betting exchange. You win the backer's stake if the selection loses, and pay out the liability, lay stake × (lay odds − 1), if it wins."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do you calculate a lay stake?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For a normal bet: back odds × back stake ÷ (lay odds − commission). £10 backed at 3.0 and laid at 3.1 with 2% commission needs a £9.74 lay, leaving a 45p loss whichever way it goes. For a stake-not-returned free bet, use (back odds − 1) × stake on top instead."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Why do I lose a small amount on a qualifying bet?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -169,13 +185,53 @@
     </main>
 
     <main class="tool">
+      <p class="tool-section-title">What laying a bet means</p>
+      <p class="about-text">Laying is betting that something <em>won't</em> happen. On a betting exchange you take the bookmaker's side: if you lay a horse at 4.0 for &pound;10, you win &pound;10 if it loses, and pay out &pound;30 (your liability) if it wins. Matched betting combines this with a back bet at a bookmaker, so the two cancel out.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example: a qualifying bet</p>
+      <p class="about-text">Back <strong>&pound;10 at 3.0</strong> with a bookmaker and lay at <strong>3.1</strong> on an exchange charging <strong>2%</strong> commission. Lay stake = (3.0 &times; &pound;10) &divide; (3.1 &minus; 0.02) = <strong>&pound;9.74</strong>, with a liability of &pound;9.74 &times; 2.1 = <strong>&pound;20.45</strong>.</p>
+      <div class="table-scroll">
+        <div style="min-width:400px;">
+          <table class="out-table">
+            <thead><tr><th>Outcome</th><th>Bookmaker</th><th>Exchange</th><th>Net</th></tr></thead>
+            <tbody>
+<tr><td>Selection wins</td><td>+£20.00</td><td>&minus;£20.45</td><td><strong>&minus;£0.45</strong></td></tr>
+<tr><td>Selection loses</td><td>&minus;£10.00</td><td>+£9.55 (after 2%)</td><td><strong>&minus;£0.45</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="about-text" style="margin-top:12px;">Either way you're 45p down: that's the qualifying loss, the price of unlocking the free bet.</p>
+
+      <p class="tool-section-title" style="margin-top:22px;">Worked example: a &pound;10 free bet</p>
+      <p class="about-text">Place the <strong>&pound;10 free bet at 6.0</strong> (stake not returned) and lay at <strong>6.2</strong>, 2% commission. Lay stake = (6.0 &minus; 1) &times; &pound;10 &divide; (6.2 &minus; 0.02) = <strong>&pound;8.09</strong>, liability &pound;42.07.</p>
+      <div class="table-scroll">
+        <div style="min-width:400px;">
+          <table class="out-table">
+            <thead><tr><th>Outcome</th><th>Bookmaker</th><th>Exchange</th><th>Net</th></tr></thead>
+            <tbody>
+<tr><td>Selection wins</td><td>+£50.00</td><td>&minus;£42.07</td><td><strong>+£7.93</strong></td></tr>
+<tr><td>Selection loses</td><td>£0</td><td>+£7.93 (after 2%)</td><td><strong>+£7.93</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="about-text" style="margin-top:12px;">&pound;7.93 locked in from a &pound;10 free bet: 79% of its value. Higher odds keep more of a free bet, as long as the back and lay prices stay close.</p>
+    </main>
+
+    <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">What does it mean to lay a bet?</p>
+      <p class="about-text">To bet against an outcome on a betting exchange. You win the backer's stake if the selection loses, and pay out the liability, lay stake × (lay odds − 1), if it wins.</p>
+      <p class="faq-q">How do you calculate a lay stake?</p>
+      <p class="about-text">For a normal bet: back odds × back stake ÷ (lay odds − commission). £10 backed at 3.0 and laid at 3.1 with 2% commission needs a £9.74 lay, leaving a 45p loss whichever way it goes. For a stake-not-returned free bet, use (back odds − 1) × stake on top instead.</p>
       <p class="faq-q">Why do I lose a small amount on a qualifying bet?</p>
       <p class="about-text">Because the lay price at the exchange is almost always a little higher than the back price at the bookmaker, and commission is charged on top. That gap is the qualifying loss — usually a small, predictable cost that you accept in order to unlock a free bet worth much more.</p>
       <p class="faq-q">How much of a free bet can I actually keep?</p>
       <p class="about-text">Typically around 70–80% of its face value. The closer the back and lay odds are, the more you retain, which is why free bets are usually placed at higher odds where the proportional gap between the two prices is smaller.</p>
       <p class="faq-q">What is liability and why is it bigger than my lay stake?</p>
       <p class="about-text">Liability is what you would pay out if the selection wins, calculated as lay stake × (lay odds − 1). You need that amount available in your exchange account for the bet to be matched, so it is the real cash requirement rather than the lay stake itself.</p>
+      <p class="tool-hint" style="margin-top:12px;">18+. A calculator shows what a bet pays, not whether it will win &mdash; the bookmaker's margin is built into every price. If gambling stops being fun, <a href="https://www.begambleaware.org/" rel="noopener">BeGambleAware</a> offers free, confidential help.</p>
     </main>
 
     <!-- related calculators: generated by tools/related.js -->
