@@ -527,10 +527,13 @@ function salaryPage(p, gross) {
   const m0 = p.money0(gross);
   const say = spoken(gross, p.currency);
   const year = p.doc.taxYear.label;
-  const title = p.currency === "INR" ? `₹${gross / 100000} Lakh Salary After Tax in India (FY ${year}) — In-Hand Pay`
+  const inr = gross >= 10000000 ? `₹${gross / 10000000} Crore` : `₹${gross / 100000} Lakh`, lpa = `${gross / 100000} LPA`;
+  const title = p.currency === "INR" ? site.fitTitle(`${inr} (${lpa}) In-Hand Salary — ${p.money0(r.perMonth)} a Month (FY ${year})`, `${inr} In-Hand Salary — ${p.money0(r.perMonth)} a Month (FY ${year})`, `${inr} Salary After Tax in India (FY ${year})`)
     : p.currency === "JPY" ? `${m0} (${gross / 1000000} Million Yen) After Tax in Japan (${year})`
     : site.fitTitle(`${m0} After Tax in ${inName} (${year}) — ${say} Take-Home Pay`, `${m0} After Tax in ${inName} (${year}) — ${p.money0(r.perMonth)} a Month`, `${m0} After Tax in ${inName} — ${p.money0(r.perMonth)} a Month`, `${m0} After Tax in ${inName} (${year})`);
-  const desc = paysBiweekly(p)
+  const desc = p.currency === "INR"
+    ? `A ${inr.toLowerCase().replace("₹", "₹")} package (${lpa}) leaves ${p.money0(r.net)} a year in hand — ${p.money0(r.perMonth)} a month — under the new tax regime for FY ${year}. Income tax, cess and every deduction, line by line.`
+    : paysBiweekly(p)
     ? `${m0} a year in ${inName} leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month or ${p.money(r.net / 26)} biweekly. Every deduction for ${year}, line by line.`
     : `${m0} a year in ${inName} leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month. Every deduction for the ${year} tax year, line by line.`;
   const phrase = deductionPhrase(p);
@@ -547,6 +550,8 @@ function salaryPage(p, gross) {
       (assumptionsLine ? ` That is for ${assumptionsLine}.` : "")],
     [`How much is ${m0} a month after tax in ${inName}?`,
       `${p.money(r.perMonth)} a month — the annual take-home of ${p.money(r.net)} divided by twelve. Actual pay slips can differ where pay is split into more than twelve instalments or where withholding is settled at the end of the year.`],
+    ...(p.currency === "INR" ? [[`What is the in-hand salary for ${lpa}?`,
+      `${p.money(r.perMonth)} a month, or ${p.money(r.net)} a year, under the new tax regime for FY ${year}, before any Provident Fund or professional tax. Choose those in the calculator above to see them taken off too; employer PF contributions included in a CTC package also reduce what reaches your account.`]] : []),
     ...(paysBiweekly(p) ? [[`How much is ${m0} a year biweekly after taxes in ${inName}?`,
       `${p.money(r.net / 26)} a paycheck if you're paid every two weeks — 26 paychecks a year. Paid twice a month instead, it's ${p.money(r.net / 24)} a paycheck (24 a year). In years with 27 biweekly paydays, each paycheck is a little smaller if your employer spreads the same salary across them; the biweekly pay schedule shows which years those are.`]] : []),
     [`What is the marginal tax rate on ${m0} in ${inName}?`,

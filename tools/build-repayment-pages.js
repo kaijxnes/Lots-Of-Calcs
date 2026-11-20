@@ -28,14 +28,15 @@ function range(from, to, step) {
 const MORTGAGE = {
   GBP: {
     base: "/mortgage/", symbol: "£", country: "UK",
-    amounts: range(50000, 500000, 25000).concat([550000, 600000, 650000, 700000, 750000, 800000, 900000, 1000000]),
-    terms: [15, 20, 25, 30, 35],
+    /* the 25k ladder plus the in-between amounts people search for ("a 110,000 mortgage") */
+    amounts: [20000, 25000, 30000, 40000].concat(range(50000, 500000, 25000), [60000, 80000, 90000, 110000, 120000, 130000, 140000, 160000, 180000], [550000, 600000, 650000, 700000, 750000, 800000, 900000, 1000000]).sort((a, b) => a - b),
+    terms: [10, 15, 20, 25, 30, 35],
     rates: range(3, 7.5, 0.5),
     example: { rate: 4.5, years: 25 }
   },
   USD: {
     base: "/mortgage/us/", symbol: "$", country: "US",
-    amounts: range(100000, 800000, 50000).concat([900000, 1000000]),
+    amounts: [50000, 75000].concat(range(100000, 800000, 50000), [900000, 1000000]),
     terms: [10, 15, 20, 30],
     rates: range(4, 8, 0.5),
     example: { rate: 6.5, years: 30 }
