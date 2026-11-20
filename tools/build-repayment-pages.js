@@ -45,7 +45,8 @@ const MORTGAGE = {
 
 const LOAN = {
   base: "/loan/", symbol: "£",
-  amounts: [1000, 2000, 3000, 4000, 5000, 7500, 10000, 12000, 15000, 20000, 25000, 30000, 40000, 50000],
+  /* every thousand to £30,000 (people search "16k car loan", "25k loan"), then to £50,000 */
+  amounts: range(1000, 30000, 1000).concat([7500, 35000, 40000, 45000, 50000]).sort((a, b) => a - b),
   terms: [1, 2, 3, 4, 5, 7],
   rates: [5, 7, 9, 12, 15, 20, 25, 30],
   example: { rate: 7, years: 3 }
@@ -245,14 +246,17 @@ function loanPage(cfg, amount) {
   const high = 20;
   const highPay = payment(amount, high, ex.years);
 
-  const title = `${a0} Loan Repayments — Monthly Cost by APR & Term`;
-  const desc = `What a ${a0} loan costs each month at APRs from ${cfg.rates[0]}% to ${cfg.rates[cfg.rates.length - 1]}%, over 1 to 7 years. At ${ex.rate}% over ${ex.years} years it is ${money(s, exPay)} a month.`;
+  const title = site.fitTitle(`${a0} Loan & Car Loan Repayments — Monthly Cost by APR`, `${a0} Loan Repayments — Monthly Cost by APR & Term`);
+  const car4 = payment(amount, ex.rate, 4), car5 = payment(amount, ex.rate, 5);
+  const desc = `What a ${a0} personal or car loan costs each month at APRs from ${cfg.rates[0]}% to ${cfg.rates[cfg.rates.length - 1]}%, over 1 to 7 years. At ${ex.rate}% over ${ex.years} years it is ${money(s, exPay)} a month.`;
 
   const faq = [
     [`What are the monthly repayments on a ${a0} loan?`,
       `At ${ex.rate}% APR over ${ex.years} years, ${money(s, exPay)} a month, ${money(s, exPay * ex.years * 12)} in total. At ${high}% APR the same loan costs ${money(s, highPay)} a month. The table on this page covers every common rate and term.`],
     [`How much interest will I pay on ${a0}?`,
       `At ${ex.rate}% over ${ex.years} years, ${money(s, exInterest)}. Stretching it to ${longer} years cuts the monthly payment to ${money(s, longPay)} but raises the interest to ${money(s, longInterest)}.`],
+    [`How much is a ${a0} car loan a month?`,
+      `A car loan from a bank works like any personal loan: at ${ex.rate}% APR, ${money(s, car4)} a month over 4 years or ${money(s, car5)} over 5. Dealer finance with a balloon payment at the end (PCP, or HP with a final payment) has lower monthly payments but a large sum to pay or the car to hand back at the end — the car finance calculator works those out.`],
     [`Is a longer loan term better?`,
       `It makes each payment smaller but costs more overall, because you pay interest for longer. Choose the shortest term whose payment you can comfortably afford — and check whether the lender charges for paying off early.`],
     [`What APR will I get on a ${a0} loan?`,
@@ -281,7 +285,7 @@ ${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t) * t * 12 - amount, 
     <main class="tool">
       <p class="tool-section-title">How the repayment is worked out</p>
       <p class="about-text">Each month the lender charges interest on what you still owe, and your fixed payment covers that interest plus part of the loan, so the balance falls faster towards the end. The payment is <strong>P &times; r &times; (1 + r)<sup>n</sup> &divide; ((1 + r)<sup>n</sup> &minus; 1)</strong>, with P the amount borrowed, r the APR divided by 12 and n the number of months.</p>
-      <p class="about-text">The <a href="/loan-repayment/">loan repayment calculator</a> shows the balance year by year, and the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a> compares ways of paying off several debts.</p>
+      <p class="about-text">The <a href="/loan-repayment/">loan repayment calculator</a> shows the balance year by year, and the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a> compares ways of paying off several debts. Buying a car on dealer finance with a balloon payment? Use the <a href="/car-finance/">car finance calculator</a>.</p>
     </main>
 `;
   const script = `
@@ -432,6 +436,13 @@ function main() {
   linkBlock("loan-repayment/index.html", `    <main class="tool">
       <p class="tool-section-title">Repayments by loan size</p>
       <p class="salary-links">${amountLinks(LOAN, "loan", [3000, 5000, 10000, 15000, 20000, 25000])} <a href="/loan/">All amounts</a></p>
+    </main>
+`);
+
+  linkBlock("car-finance/index.html", `    <main class="tool">
+      <p class="tool-section-title">Car loan repayments by amount</p>
+      <p class="tool-hint">Borrowing from a bank rather than the dealer? A personal loan has no balloon payment — these show the monthly cost at every APR and term.</p>
+      <p class="salary-links">${amountLinks(LOAN, "car loan", [5000, 8000, 10000, 12000, 15000, 16000, 18000, 20000, 25000, 30000, 40000])} <a href="/loan/">All amounts</a></p>
     </main>
 `);
 
