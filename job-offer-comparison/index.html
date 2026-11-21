@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Offer Comparison Calculator — Which Salary Is Really Worth More?</title>
+<meta name="description" content="Compare two job offers after tax, pension, benefits and commuting — in the UK, US, Canada, Europe and more.">
+<link rel="canonical" href="https://lotsofcalcs.com/job-offer-comparison/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Job Offer Comparison Calculator — Which Salary Is Really Worth More?">
+<meta property="og:description" content="Compare two job offers after tax, pension, benefits and commuting — in the UK, US, Canada, Europe and more.">
+<meta property="og:url" content="https://lotsofcalcs.com/job-offer-comparison/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Job Offer Comparison Calculator — Which Salary Is Really Worth More?">
+<meta name="twitter:description" content="Compare two job offers after tax, pension, benefits and commuting — in the UK, US, Canada, Europe and more.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Job Offer Comparison Calculator — Which Salary Is Really Worth More?",
+    "description": "Compare two job offers after tax, pension, benefits and commuting — in the UK, US, Canada, Europe and more.",
+    "url": "https://lotsofcalcs.com/job-offer-comparison/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Job Offer Comparison",
+        "item": "https://lotsofcalcs.com/job-offer-comparison/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Job Offer Comparison Calculator",
+    "url": "https://lotsofcalcs.com/job-offer-comparison/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I compare two job offers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Compare what each leaves you with, not the headline salary: take-home pay after tax, plus what the employer puts into your pension, plus benefits with a cash value, minus the cost of getting to work. Then look at it per hour, since longer hours or a longer commute eat into a higher salary."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is a higher salary always better?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. In the example above, £38,000 sounds better than £35,000, but after tax the extra £3,000 becomes about £2,160; a 3% instead of 5% pension and £200 a month more commuting turn it into £850 a year less."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why is the employer pension added on top?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Your employer's contribution is money paid for you that you'd otherwise have to save from take-home pay, and it isn't taxed as income now. Your own contribution is part of your salary, so it's already inside the take-home figure if you choose it in the salary calculator."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What counts as other benefits?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anything with a clear yearly cash value you'd otherwise pay for: a car allowance, private medical insurance, a gym membership, free meals or a season ticket loan's interest saved. Extra holiday is worth roughly a day's pay per day."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I compare jobs in different countries?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — pick each place and the tax is worked out under its own rules. The real values come out in each currency; convert one at today's exchange rate and allow for living costs, which can matter more than the tax."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Job offer comparison</h1>
+      <p class="page-subtitle">Two offers side by side after tax, pension, benefits and the commute — so you can see which is really worth more.</p>
+    </header>
+
+    <main class="tool" id="jo-tool">
+      <div class="jo-grid">
+    <div class="jo-side">
+      <p class="tool-section-title" style="margin-top:0;">Offer A</p>
+      <div class="field"><label for="jo-a-place">Where</label><select id="jo-a-place"><optgroup label="United Kingdom"><option value="gb" data-currency="GBP" data-gross="35000" selected>England, Wales &amp; Northern Ireland</option><option value="gb-sct" data-currency="GBP" data-gross="35000">Scotland</option></optgroup><optgroup label="United States"><option value="us-al" data-currency="USD" data-gross="75000">Alabama</option><option value="us-ak" data-currency="USD" data-gross="75000">Alaska</option><option value="us-az" data-currency="USD" data-gross="75000">Arizona</option><option value="us-ar" data-currency="USD" data-gross="75000">Arkansas</option><option value="us-ca" data-currency="USD" data-gross="75000">California</option><option value="us-co" data-currency="USD" data-gross="75000">Colorado</option><option value="us-ct" data-currency="USD" data-gross="75000">Connecticut</option><option value="us-de" data-currency="USD" data-gross="75000">Delaware</option><option value="us-fl" data-currency="USD" data-gross="75000">Florida</option><option value="us-ga" data-currency="USD" data-gross="75000">Georgia</option><option value="us-hi" data-currency="USD" data-gross="75000">Hawaii</option><option value="us-id" data-currency="USD" data-gross="75000">Idaho</option><option value="us-il" data-currency="USD" data-gross="75000">Illinois</option><option value="us-in" data-currency="USD" data-gross="75000">Indiana</option><option value="us-ia" data-currency="USD" data-gross="75000">Iowa</option><option value="us-ks" data-currency="USD" data-gross="75000">Kansas</option><option value="us-ky" data-currency="USD" data-gross="75000">Kentucky</option><option value="us-la" data-currency="USD" data-gross="75000">Louisiana</option><option value="us-me" data-currency="USD" data-gross="75000">Maine</option><option value="us-md" data-currency="USD" data-gross="75000">Maryland</option><option value="us-ma" data-currency="USD" data-gross="75000">Massachusetts</option><option value="us-mi" data-currency="USD" data-gross="75000">Michigan</option><option value="us-mn" data-currency="USD" data-gross="75000">Minnesota</option><option value="us-ms" data-currency="USD" data-gross="75000">Mississippi</option><option value="us-mo" data-currency="USD" data-gross="75000">Missouri</option><option value="us-mt" data-currency="USD" data-gross="75000">Montana</option><option value="us-ne" data-currency="USD" data-gross="75000">Nebraska</option><option value="us-nv" data-currency="USD" data-gross="75000">Nevada</option><option value="us-nh" data-currency="USD" data-gross="75000">New Hampshire</option><option value="us-nj" data-currency="USD" data-gross="75000">New Jersey</option><option value="us-nm" data-currency="USD" data-gross="75000">New Mexico</option><option value="us-ny" data-currency="USD" data-gross="75000">New York</option><option value="us-ny-nyc" data-currency="USD" data-gross="75000">New York City</option><option value="us-nc" data-currency="USD" data-gross="75000">North Carolina</option><option value="us-nd" data-currency="USD" data-gross="75000">North Dakota</option><option value="us-oh" data-currency="USD" data-gross="75000">Ohio</option><option value="us-ok" data-currency="USD" data-gross="75000">Oklahoma</option><option value="us-or" data-currency="USD" data-gross="75000">Oregon</option><option value="us-pa" data-currency="USD" data-gross="75000">Pennsylvania</option><option value="us-ri" data-currency="USD" data-gross="75000">Rhode Island</option><option value="us-sc" data-currency="USD" data-gross="75000">South Carolina</option><option value="us-sd" data-currency="USD" data-gross="75000">South Dakota</option><option value="us-tn" data-currency="USD" data-gross="75000">Tennessee</option><option value="us-tx" data-currency="USD" data-gross="75000">Texas</option><option value="us-ut" data-currency="USD" data-gross="75000">Utah</option><option value="us-vt" data-currency="USD" data-gross="75000">Vermont</option><option value="us-va" data-currency="USD" data-gross="75000">Virginia</option><option value="us-wa" data-currency="USD" data-gross="75000">Washington</option><option value="us-dc" data-currency="USD" data-gross="75000">Washington, DC</option><option value="us-wv" data-currency="USD" data-gross="75000">West Virginia</option><option value="us-wi" data-currency="USD" data-gross="75000">Wisconsin</option><option value="us-wy" data-currency="USD" data-gross="75000">Wyoming</option></optgroup><optgroup label="Canada"><option value="ca-ab" data-currency="CAD" data-gross="75000">Alberta</option><option value="ca-bc" data-currency="CAD" data-gross="75000">British Columbia</option><option value="ca-mb" data-currency="CAD" data-gross="75000">Manitoba</option><option value="ca-nb" data-currency="CAD" data-gross="75000">New Brunswick</option><option value="ca-nl" data-currency="CAD" data-gross="75000">Newfoundland and Labrador</option><option value="ca-nt" data-currency="CAD" data-gross="75000">Northwest Territories</option><option value="ca-ns" data-currency="CAD" data-gross="75000">Nova Scotia</option><option value="ca-nu" data-currency="CAD" data-gross="75000">Nunavut</option><option value="ca-on" data-currency="CAD" data-gross="75000">Ontario</option><option value="ca-pe" data-currency="CAD" data-gross="75000">Prince Edward Island</option><option value="ca-qc" data-currency="CAD" data-gross="75000">Quebec</option><option value="ca-sk" data-currency="CAD" data-gross="75000">Saskatchewan</option><option value="ca-yt" data-currency="CAD" data-gross="75000">Yukon</option></optgroup><optgroup label="Europe"><option value="at" data-currency="EUR" data-gross="50000">Austria</option><option value="dk" data-currency="DKK" data-gross="600000">Denmark</option><option value="fi" data-currency="EUR" data-gross="50000">Finland</option><option value="fr" data-currency="EUR" data-gross="50000">France</option><option value="de" data-currency="EUR" data-gross="50000">Germany</option><option value="ie" data-currency="EUR" data-gross="50000">Ireland</option><option value="it" data-currency="EUR" data-gross="50000">Italy</option><option value="nl" data-currency="EUR" data-gross="50000">Netherlands</option><option value="no" data-currency="NOK" data-gross="600000">Norway</option><option value="pt" data-currency="EUR" data-gross="50000">Portugal</option><option value="es" data-currency="EUR" data-gross="50000">Spain</option><option value="se" data-currency="SEK" data-gross="500000">Sweden</option></optgroup><optgroup label="Asia-Pacific"><option value="au" data-currency="AUD" data-gross="90000">Australia</option><option value="in" data-currency="INR" data-gross="1200000">India</option><option value="jp" data-currency="JPY" data-gross="5000000">Japan</option><option value="nz" data-currency="NZD" data-gross="80000">New Zealand</option></optgroup></select></div>
+      <div class="field-row">
+        <div class="field"><label for="jo-a-salary">Salary a year <span class="tool-hint" id="jo-a-cur">GBP</span></label><input type="number" id="jo-a-salary" value="35000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="jo-a-bonus">Bonus a year</label><input type="number" id="jo-a-bonus" value="0" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="jo-a-pension">Employer pension %</label><input type="number" id="jo-a-pension" value="5" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="jo-a-perks">Other benefits a year</label><input type="number" id="jo-a-perks" value="0" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="jo-a-commute">Commute a month</label><input type="number" id="jo-a-commute" value="120" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="jo-a-hours">Hours a week</label><input type="number" id="jo-a-hours" value="37.5" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Take-home a year</span><span class="r-value" id="jo-a-net">£28,720</span></div>
+          <div class="result-row"><span class="r-label">Take-home a month</span><span class="r-value" id="jo-a-month">£2,393.30</span></div>
+          <div class="result-row"><span class="r-label">+ Employer pension</span><span class="r-value" id="jo-a-pension-out">£1,750</span></div>
+          <div class="result-row"><span class="r-label">+ Other benefits</span><span class="r-value" id="jo-a-perks-out">£0</span></div>
+          <div class="result-row"><span class="r-label">− Commuting</span><span class="r-value" id="jo-a-commute-out">−£1,440</span></div>
+          <div class="result-row highlight"><span class="r-label">Real value a year</span><span class="r-value" id="jo-a-real">£29,030</span></div>
+          <div class="result-row"><span class="r-label">Per hour worked</span><span class="r-value" id="jo-a-hour">£14.89</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="jo-side">
+      <p class="tool-section-title" style="margin-top:0;">Offer B</p>
+      <div class="field"><label for="jo-b-place">Where</label><select id="jo-b-place"><optgroup label="United Kingdom"><option value="gb" data-currency="GBP" data-gross="35000" selected>England, Wales &amp; Northern Ireland</option><option value="gb-sct" data-currency="GBP" data-gross="35000">Scotland</option></optgroup><optgroup label="United States"><option value="us-al" data-currency="USD" data-gross="75000">Alabama</option><option value="us-ak" data-currency="USD" data-gross="75000">Alaska</option><option value="us-az" data-currency="USD" data-gross="75000">Arizona</option><option value="us-ar" data-currency="USD" data-gross="75000">Arkansas</option><option value="us-ca" data-currency="USD" data-gross="75000">California</option><option value="us-co" data-currency="USD" data-gross="75000">Colorado</option><option value="us-ct" data-currency="USD" data-gross="75000">Connecticut</option><option value="us-de" data-currency="USD" data-gross="75000">Delaware</option><option value="us-fl" data-currency="USD" data-gross="75000">Florida</option><option value="us-ga" data-currency="USD" data-gross="75000">Georgia</option><option value="us-hi" data-currency="USD" data-gross="75000">Hawaii</option><option value="us-id" data-currency="USD" data-gross="75000">Idaho</option><option value="us-il" data-currency="USD" data-gross="75000">Illinois</option><option value="us-in" data-currency="USD" data-gross="75000">Indiana</option><option value="us-ia" data-currency="USD" data-gross="75000">Iowa</option><option value="us-ks" data-currency="USD" data-gross="75000">Kansas</option><option value="us-ky" data-currency="USD" data-gross="75000">Kentucky</option><option value="us-la" data-currency="USD" data-gross="75000">Louisiana</option><option value="us-me" data-currency="USD" data-gross="75000">Maine</option><option value="us-md" data-currency="USD" data-gross="75000">Maryland</option><option value="us-ma" data-currency="USD" data-gross="75000">Massachusetts</option><option value="us-mi" data-currency="USD" data-gross="75000">Michigan</option><option value="us-mn" data-currency="USD" data-gross="75000">Minnesota</option><option value="us-ms" data-currency="USD" data-gross="75000">Mississippi</option><option value="us-mo" data-currency="USD" data-gross="75000">Missouri</option><option value="us-mt" data-currency="USD" data-gross="75000">Montana</option><option value="us-ne" data-currency="USD" data-gross="75000">Nebraska</option><option value="us-nv" data-currency="USD" data-gross="75000">Nevada</option><option value="us-nh" data-currency="USD" data-gross="75000">New Hampshire</option><option value="us-nj" data-currency="USD" data-gross="75000">New Jersey</option><option value="us-nm" data-currency="USD" data-gross="75000">New Mexico</option><option value="us-ny" data-currency="USD" data-gross="75000">New York</option><option value="us-ny-nyc" data-currency="USD" data-gross="75000">New York City</option><option value="us-nc" data-currency="USD" data-gross="75000">North Carolina</option><option value="us-nd" data-currency="USD" data-gross="75000">North Dakota</option><option value="us-oh" data-currency="USD" data-gross="75000">Ohio</option><option value="us-ok" data-currency="USD" data-gross="75000">Oklahoma</option><option value="us-or" data-currency="USD" data-gross="75000">Oregon</option><option value="us-pa" data-currency="USD" data-gross="75000">Pennsylvania</option><option value="us-ri" data-currency="USD" data-gross="75000">Rhode Island</option><option value="us-sc" data-currency="USD" data-gross="75000">South Carolina</option><option value="us-sd" data-currency="USD" data-gross="75000">South Dakota</option><option value="us-tn" data-currency="USD" data-gross="75000">Tennessee</option><option value="us-tx" data-currency="USD" data-gross="75000">Texas</option><option value="us-ut" data-currency="USD" data-gross="75000">Utah</option><option value="us-vt" data-currency="USD" data-gross="75000">Vermont</option><option value="us-va" data-currency="USD" data-gross="75000">Virginia</option><option value="us-wa" data-currency="USD" data-gross="75000">Washington</option><option value="us-dc" data-currency="USD" data-gross="75000">Washington, DC</option><option value="us-wv" data-currency="USD" data-gross="75000">West Virginia</option><option value="us-wi" data-currency="USD" data-gross="75000">Wisconsin</option><option value="us-wy" data-currency="USD" data-gross="75000">Wyoming</option></optgroup><optgroup label="Canada"><option value="ca-ab" data-currency="CAD" data-gross="75000">Alberta</option><option value="ca-bc" data-currency="CAD" data-gross="75000">British Columbia</option><option value="ca-mb" data-currency="CAD" data-gross="75000">Manitoba</option><option value="ca-nb" data-currency="CAD" data-gross="75000">New Brunswick</option><option value="ca-nl" data-currency="CAD" data-gross="75000">Newfoundland and Labrador</option><option value="ca-nt" data-currency="CAD" data-gross="75000">Northwest Territories</option><option value="ca-ns" data-currency="CAD" data-gross="75000">Nova Scotia</option><option value="ca-nu" data-currency="CAD" data-gross="75000">Nunavut</option><option value="ca-on" data-currency="CAD" data-gross="75000">Ontario</option><option value="ca-pe" data-currency="CAD" data-gross="75000">Prince Edward Island</option><option value="ca-qc" data-currency="CAD" data-gross="75000">Quebec</option><option value="ca-sk" data-currency="CAD" data-gross="75000">Saskatchewan</option><option value="ca-yt" data-currency="CAD" data-gross="75000">Yukon</option></optgroup><optgroup label="Europe"><option value="at" data-currency="EUR" data-gross="50000">Austria</option><option value="dk" data-currency="DKK" data-gross="600000">Denmark</option><option value="fi" data-currency="EUR" data-gross="50000">Finland</option><option value="fr" data-currency="EUR" data-gross="50000">France</option><option value="de" data-currency="EUR" data-gross="50000">Germany</option><option value="ie" data-currency="EUR" data-gross="50000">Ireland</option><option value="it" data-currency="EUR" data-gross="50000">Italy</option><option value="nl" data-currency="EUR" data-gross="50000">Netherlands</option><option value="no" data-currency="NOK" data-gross="600000">Norway</option><option value="pt" data-currency="EUR" data-gross="50000">Portugal</option><option value="es" data-currency="EUR" data-gross="50000">Spain</option><option value="se" data-currency="SEK" data-gross="500000">Sweden</option></optgroup><optgroup label="Asia-Pacific"><option value="au" data-currency="AUD" data-gross="90000">Australia</option><option value="in" data-currency="INR" data-gross="1200000">India</option><option value="jp" data-currency="JPY" data-gross="5000000">Japan</option><option value="nz" data-currency="NZD" data-gross="80000">New Zealand</option></optgroup></select></div>
+      <div class="field-row">
+        <div class="field"><label for="jo-b-salary">Salary a year <span class="tool-hint" id="jo-b-cur">GBP</span></label><input type="number" id="jo-b-salary" value="38000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="jo-b-bonus">Bonus a year</label><input type="number" id="jo-b-bonus" value="0" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="jo-b-pension">Employer pension %</label><input type="number" id="jo-b-pension" value="3" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="jo-b-perks">Other benefits a year</label><input type="number" id="jo-b-perks" value="0" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="jo-b-commute">Commute a month</label><input type="number" id="jo-b-commute" value="320" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="jo-b-hours">Hours a week</label><input type="number" id="jo-b-hours" value="40" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Take-home a year</span><span class="r-value" id="jo-b-net">£30,880</span></div>
+          <div class="result-row"><span class="r-label">Take-home a month</span><span class="r-value" id="jo-b-month">£2,573.30</span></div>
+          <div class="result-row"><span class="r-label">+ Employer pension</span><span class="r-value" id="jo-b-pension-out">£1,140</span></div>
+          <div class="result-row"><span class="r-label">+ Other benefits</span><span class="r-value" id="jo-b-perks-out">£0</span></div>
+          <div class="result-row"><span class="r-label">− Commuting</span><span class="r-value" id="jo-b-commute-out">−£3,840</span></div>
+          <div class="result-row highlight"><span class="r-label">Real value a year</span><span class="r-value" id="jo-b-real">£28,180</span></div>
+          <div class="result-row"><span class="r-label">Per hour worked</span><span class="r-value" id="jo-b-hour">£13.55</span></div>
+        </div>
+      </div>
+    </div>
+      </div>
+      <p class="about-text" id="jo-verdict" style="margin-top:16px; font-weight:600;">Offer A is worth £850 more a year (£70.83 a month) once tax, pension, perks and commuting are counted.</p>
+      <p class="tool-hint">Take-home pay uses each place's 2026/27 rules with its usual defaults (in the UK, no student loan and no employee pension). For those, get the take-home figure from the <a href="/salary/">salary calculator</a>. Employer pension is a percentage of salary.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">The example: £35,000 or £38,000?</p>
+      <p class="about-text"><strong>Offer A</strong> pays £35,000 with a 5% employer pension and £120 a month in travel. <strong>Offer B</strong> pays £38,000 with 3% pension, £320 a month in travel and a 40-hour week instead of 37.5.</p>
+      <p class="about-text">After tax and National Insurance the £3,000 gap shrinks to £2,160. Offer A's pension is worth £610 more and its commute costs £2,400 less, so <strong>Offer A comes out £850 a year ahead</strong> — and £1.34 more per hour worked.</p>
+      <p class="tool-section-title" style="margin-top:20px;">Things that don't show up in the numbers</p>
+      <p class="about-text">Holiday allowance, flexible or remote working, bonus history (a "target" bonus isn't guaranteed), share schemes, sick pay, career prospects and how secure the job is. A useful check: how much would you need to be paid to take the job you like less?</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I compare two job offers?</p>
+      <p class="about-text">Compare what each leaves you with, not the headline salary: take-home pay after tax, plus what the employer puts into your pension, plus benefits with a cash value, minus the cost of getting to work. Then look at it per hour, since longer hours or a longer commute eat into a higher salary.</p>
+      <p class="faq-q">Is a higher salary always better?</p>
+      <p class="about-text">No. In the example above, £38,000 sounds better than £35,000, but after tax the extra £3,000 becomes about £2,160; a 3% instead of 5% pension and £200 a month more commuting turn it into £850 a year less.</p>
+      <p class="faq-q">Why is the employer pension added on top?</p>
+      <p class="about-text">Your employer's contribution is money paid for you that you'd otherwise have to save from take-home pay, and it isn't taxed as income now. Your own contribution is part of your salary, so it's already inside the take-home figure if you choose it in the salary calculator.</p>
+      <p class="faq-q">What counts as other benefits?</p>
+      <p class="about-text">Anything with a clear yearly cash value you'd otherwise pay for: a car allowance, private medical insurance, a gym membership, free meals or a season ticket loan's interest saved. Extra holiday is worth roughly a day's pay per day.</p>
+      <p class="faq-q">Can I compare jobs in different countries?</p>
+      <p class="about-text">Yes — pick each place and the tax is worked out under its own rules. The real values come out in each currency; convert one at today's exchange rate and allow for living costs, which can matter more than the tax.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/salary/">
+        <span class="icon">💷</span>
+        <div class="title">Salary After Tax</div>
+        <div class="desc">Take-home pay in the UK, every US state and Canadian province, Europe, Australia, India and Japan.</div>
+      </a>
+      <a class="hub-card" href="/pay-rise-calculator/">
+        <span class="icon">📈</span>
+        <div class="title">Pay Rise Calculator</div>
+        <div class="desc">What a pay rise adds to your take-home pay after tax — UK, US, Canada, Europe and more.</div>
+      </a>
+      <a class="hub-card" href="/50-30-20-budget/">
+        <span class="icon">📊</span>
+        <div class="title">50/30/20 Budget</div>
+        <div class="desc">Split take-home pay into needs, wants and savings.</div>
+      </a>
+      <a class="hub-card" href="/fuel-cost/">
+        <span class="icon">⛽</span>
+        <div class="title">Fuel Cost / MPG</div>
+        <div class="desc">Distance, fuel price and efficiency → trip cost.</div>
+      </a>
+      <a class="hub-card" href="/self-employed-tax-calculator/">
+        <span class="icon">🧾</span>
+        <div class="title">Self-Employed Tax</div>
+        <div class="desc">Tax, Class 4 NI and take-home on your profit, plus payments on account.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/personal-finance/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Personal Finance calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/tax-engine.js"></script>
+  <script src="/job-offer.js"></script>
+</body>
+</html>
