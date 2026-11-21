@@ -76,6 +76,16 @@
     if (navigator.share && /Android|iPhone|iPad/.test(navigator.userAgent)) navigator.share({ title: document.title, url: url }).catch(function () { /* closed */ });
   });
   bar.appendChild(btn);
+  /* print or save as PDF: the print stylesheet hides the page furniture */
+  if (window.print) {
+    var pr = document.createElement("button");
+    pr.type = "button";
+    pr.className = "btn btn-ghost share-btn no-print";
+    pr.textContent = "🖨 Print or save as PDF";
+    pr.style.marginLeft = "8px";
+    pr.addEventListener("click", function () { window.print(); });
+    bar.appendChild(pr);
+  }
   bar.appendChild(note);
   tool.appendChild(bar);
   if (applied) note.textContent = "Showing the numbers from a shared link.";
