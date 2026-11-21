@@ -35,16 +35,19 @@ function page(y) {
   const title = `Born in ${y}? How Old You Are in ${NOW} — ${before} or ${after}`;
   const desc = `If you were born in ${y}, you are ${after} in ${NOW} once you've had your birthday, or ${before} before it. With your generation and the year you turn every milestone age.`;
   const miles = [18, 21, 30, 40, 50, 60, 65, 70, 80, 90, 100].map((a) => [`${a}`, `${y + a}`, y + a < NOW ? "Done" : y + a === NOW ? "This year" : `In ${y + a - NOW} year${y + a - NOW === 1 ? "" : "s"}`]);
+  const future = Array.from(new Set([NOW + 1, NOW + 2, NOW + 3, NOW + 4, 2030, 2035, 2040, 2045, 2050].filter((t) => t > NOW))).sort((a, b) => a - b);
+  const ahead = future.map((t) => [String(t), `${t - y - 1} or ${t - y}`]);
   const q = [
+    [`How old will I be in 2030 if I was born in ${y}?`, `${2030 - y} once your birthday has passed in 2030, or ${2030 - y - 1} before it. In ${NOW + 1} you'll be ${NOW + 1 - y} after your birthday.`],
     [`How old am I if I was born in ${y}?`, `In ${NOW} you are ${after} if your birthday has already been this year, or ${before} if it's still to come.`],
     [`What generation is someone born in ${y}?`, `${W.cap(gen)}. ${genNote}`],
     [`Was ${y} a leap year?`, leap(y) ? `Yes — ${y} had a 29 February.` : `No. ${y} had 365 days.`],
     [`How do you write ${y} in words?`, `As a year it's said "${W.yearSpoken(y)}"; in full, ${W.british(y)}. In Roman numerals it's ${W.roman(y)}.`]
   ];
   const near = YEARS.filter((x) => x !== y && Math.abs(x - y) <= 5).map((x) => `<a href="${url(x)}">Born in ${x}</a>`).join(" ");
-  const ld = [site.webPage(title, desc, loc), site.breadcrumb([["Home", SITE + "/"], ["Birthday Calculator", SITE + "/birthday/"], [`Born in ${y}`, loc]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, loc), site.breadcrumb([["Home", SITE + "/"], ["Age Calculator", SITE + "/birthday/"], [`Born in ${y}`, loc]]), site.faqLd(q)];
   return site.head({ title, desc, url: loc, ld }) + `    <header class="site-header">
-      <a class="back-link" href="/birthday/">← Birthday calculator</a>
+      <a class="back-link" href="/birthday/">← Age calculator</a>
       <h1 class="page-title">Born in ${y}: how old are you?</h1>
       <p class="page-subtitle">Your age now, your generation, and when you reach each milestone.</p>
     </header>
@@ -63,11 +66,13 @@ function page(y) {
           <div class="result-row"><span class="r-label">Said as a year</span><span class="r-value"><a href="/number-to-words/${y}/">${esc(W.cap(W.yearSpoken(y)))}</a></span></div>
         </div>
       </div>
-      <p class="tool-hint" style="margin-top:12px;">For your exact age in years, months and days, and the day of the week you were born, use the <a href="/birthday/">birthday calculator</a>.</p>
+      <p class="tool-hint" style="margin-top:12px;">For your exact age in years, months and days, and the day of the week you were born, use the <a href="/birthday/">age calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">When you turn each age</p>
+      <p class="tool-section-title">How old you'll be in…</p>
+${site.table(["Year", "Age that year"], ahead, 260)}      <p class="tool-hint" style="margin-top:12px;">The lower age before your birthday that year, the higher one after it.</p>
+      <p class="tool-section-title" style="margin-top:20px;">When you turn each age</p>
 ${site.table(["Age", "Year", ""], miles, 300)}    </main>
 
     <main class="tool">
