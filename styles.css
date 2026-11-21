@@ -1559,6 +1559,13 @@ hr.divider {
   margin: 0 0 8px;
 }
 
+/* tall enough to tap comfortably (24px minimum) */
+.salary-links a {
+  display: inline-block;
+  padding: 3px 0;
+  min-height: 24px;
+}
+
 /* Country tag on calculators that only apply in one country (tools/card-tags.js) */
 .hub-card {
   position: relative;
