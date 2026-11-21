@@ -127,6 +127,16 @@
     })
     .then(function (json) {
       data = json;
+      /* Open with a year chosen, from a year page: ?measure=uk-cpi&from=1990&amount=100 */
+      var q = new URLSearchParams(window.location.search), m = q.get("measure");
+      if (m && data.series[m]) {
+        el.country.value = data.series[m].country;
+        drawMeasures();
+        el.measure.value = m;
+        drawYears();
+        if (q.get("from") && Array.prototype.some.call(el.from.options, function (o) { return o.value === q.get("from"); })) el.from.value = q.get("from");
+        if (Number(q.get("amount")) > 0) el.amount.value = q.get("amount");
+      }
       calculate();
     })
     .catch(function () {

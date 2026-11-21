@@ -259,6 +259,12 @@ ${site.table(["Year", "$100 then is worth now", "Inflation that year"], usRows, 
       <p class="tool-section-title">Frequently asked questions</p>
 ${site.faqHtml(q)}    </main>
 
+    <main class="tool">
+      <p class="tool-section-title">What money from a given year is worth today</p>
+      <p class="tool-hint">Each year has its own page: every amount from £1 or $1 to 10,000, then and now, and how it grew decade by decade.</p>
+<!-- year pages -->
+    </main>
+
 ${related.block("/inflation/")}
 ${site.FOOTER}
   </div>
@@ -268,6 +274,110 @@ ${site.FOOTER}
 `;
 }
 
+
+// ---------------------------------------------------------------- year pages
+
+/* "£100 in 1990 is worth how much today?" — a page per year:
+   /inflation/uk/<year>/ (CPI from 1988, the RPI long-run series before) and
+   /inflation/us/<year>/ (CPI-U from 1913). Built with the calculator page,
+   so they move on with every month of new data. */
+const YEAR_AMOUNTS = [1, 5, 10, 20, 50, 100, 500, 1000, 10000];
+const YEAR_PAGES = { uk: { from: 1900, label: "UK" }, us: { from: 1913, label: "US" } };
+
+function headline(series, country, y) {
+  if (country === "us") return series["us-cpi"];
+  return y >= 1988 && series["uk-cpi"].annual[y] ? series["uk-cpi"] : series["uk-rpi"];
+}
+
+function yearPage(series, country, y, list) {
+  const s = headline(series, country, y), L = s.latest;
+  const url = SITE + `/inflation/${country}/${y}/`;
+  const w = worth(s, 100, y), up = (s.latest.value / s.annual[y] - 1) * 100, avg = avgRate(s, y);
+  const sym = s.symbol, now = L.label;
+  const fmt = (v) => money(s, v, v >= 1000 ? 0 : 2);
+  const title = site.fitTitle(`${sym}100 in ${y} Is Worth ${fmt(w)} Today — ${YEAR_PAGES[country].label} Inflation`, `${sym}100 in ${y} Is Worth ${fmt(w)} Today`);
+  const measureName = s.short === "CPI" || s.short === "CPI-U" ? (country === "us" ? "the Consumer Price Index (CPI-U)" : "the Consumer Prices Index (CPI)") : "the long-run Retail Prices Index";
+  const desc = `${sym}100 in ${y} would cost about ${fmt(w)} in ${now}, by ${measureName}: prices up ${pct1(up)}, an average of ${pct1(avg)} a year. From ${sym}1 to ${sym}10,000, and the other way round.`;
+  const other = country === "uk" && s === series["uk-cpi"] && series["uk-rpi"].annual[y] ? series["uk-rpi"] : null;
+  const rows = YEAR_AMOUNTS.map((a) => [money(s, a, 0), `<strong>${fmt(worth(s, a, y))}</strong>`, fmt(a / (s.latest.value / s.annual[y]))]);
+  const marks = [];
+  for (let t = y + 10; t < L.year; t += 10) if (s.annual[t]) marks.push(t);
+  const markRows = marks.map((t) => [String(t), fmt(100 * s.annual[t] / s.annual[y]), pct1((s.annual[t] / s.annual[y] - 1) * 100)]).concat([[now, fmt(w), pct1(up)]]);
+  const q = [
+    [`How much is ${sym}100 from ${y} worth today?`, `About ${fmt(w)} in ${now} money, using ${measureName}. Something that cost ${sym}100 in ${y} would cost ${fmt(w)} now if its price had risen in line with inflation.`],
+    [`How much have prices gone up since ${y}?`, `By ${pct1(up)} in all, an average of ${pct1(avg)} a year${other ? `. The RPI, which usually runs higher, puts it at ${pct1((other.latest.value / other.annual[y] - 1) * 100)}` : ""}.`],
+    [`What would ${sym}100 today have been worth in ${y}?`, `${fmt(100 / (s.latest.value / s.annual[y]))}. Today's money buys that much less than the same amount did in ${y}.`],
+    ["Which inflation measure is used?", country === "us"
+      ? "The Consumer Price Index for All Urban Consumers (CPI-U) from the Bureau of Labor Statistics, the standard US measure, using each year's average and the latest month published."
+      : y >= 1988 ? "The Consumer Prices Index (CPI) from the Office for National Statistics, the official UK measure since 1996, using each year's average and the latest month published. CPI figures start in 1988; earlier years use the ONS long-run RPI series." : "The ONS long-run Retail Prices Index series, which goes back to 1800, as CPI figures only start in 1988. RPI tends to run a little higher than CPI."]
+  ];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Inflation Calculator", SITE + "/inflation/"], [`${sym}100 in ${y}`, url]]), site.faqLd(q)];
+  const near = site.neighbours(list, y, 6).map((x) => `<a href="/inflation/${country}/${x}/">${x}</a>`).join(" ");
+  const measureKey = Object.keys(series).find((k) => series[k] === s);
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="/inflation/">← Inflation calculator</a>
+      <h1 class="page-title">${sym}100 in ${y} is worth how much today?</h1>
+      <p class="page-subtitle">About <strong>${fmt(w)}</strong> in ${esc(now)} money — prices have risen ${pct1(up)} since ${y}${YEAR_PAGES[country].label === "UK" ? " in the UK" : " in the US"}.</p>
+    </header>
+
+    <main class="tool">
+      <div class="result-box">
+        <div class="result-hero"><div class="value">${fmt(w)}</div><div class="label">${sym}100 in ${y}, in ${esc(now)} money</div></div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Prices since ${y}</span><span class="r-value">+${pct1(up)}</span></div>
+          <div class="result-row highlight"><span class="r-label">Average a year</span><span class="r-value">${pct1(avg)}</span></div>
+          <div class="result-row"><span class="r-label">${sym}100 today, in ${y} money</span><span class="r-value">${fmt(100 / (s.latest.value / s.annual[y]))}</span></div>
+${other ? `          <div class="result-row"><span class="r-label">By RPI instead</span><span class="r-value">${fmt(worth(other, 100, y))}</span></div>\n` : ""}        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">By ${measureName}. <a href="/inflation/?measure=${measureKey}&amp;from=${y}&amp;amount=100">Open ${y} in the inflation calculator</a> for any amount, any two years, or another measure.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">${y} money in today's money</p>
+${site.table([`In ${y}`, `In ${esc(now)}`, `${esc(now)} money in ${y}`], rows, 380)}      <p class="tool-section-title" style="margin-top:20px;">How ${sym}100 from ${y} has grown</p>
+${site.table(["Year", `${sym}100 from ${y}`, "Rise since " + y], markRows, 320)}      <p class="tool-hint" style="margin-top:12px;">Using each year's average index and the latest month published (${esc(now)}). Source: <a href="${s.url}" rel="noopener">${esc(s.source)}</a>.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other years</div>
+    <p class="salary-links">${near}</p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
+function yearPages(series) {
+  const urls = [];
+  Object.keys(YEAR_PAGES).forEach((country) => {
+    const last = country === "us" ? series["us-cpi"].latest.year - 1 : series["uk-cpi"].latest.year - 1;
+    const list = [];
+    for (let y = YEAR_PAGES[country].from; y <= last; y++) if (headline(series, country, y).annual[y]) list.push(y);
+    list.forEach((y) => { site.write(`inflation/${country}/${y}`, yearPage(series, country, y, list)); urls.push([`/inflation/${country}/${y}/`, "0.5"]); });
+    YEAR_PAGES[country].list = list;
+    site.prune(`inflation/${country}`, /^\d{4}$/);
+  });
+  site.sitemapBlock("inflation year pages", "tools/build-inflation.js", urls);
+  return urls.length;
+}
+
+/* A list of every year page on the calculator, by decade */
+function yearLinks() {
+  return Object.keys(YEAR_PAGES).map((country) => {
+    const byDecade = {};
+    YEAR_PAGES[country].list.forEach((y) => { (byDecade[Math.floor(y / 10) * 10] = byDecade[Math.floor(y / 10) * 10] || []).push(y); });
+    const sym = country === "uk" ? "£" : "$";
+    return `      <p class="tool-section-title" style="margin-top:16px;">${YEAR_PAGES[country].label}: what ${sym}100 from a year is worth today</p>
+${Object.keys(byDecade).map((d) => `      <p class="salary-links"><strong>${d}s:</strong> ${byDecade[d].map((y) => `<a href="/inflation/${country}/${y}/">${y}</a>`).join(" ")}</p>`).join("\n")}`;
+  }).join("\n");
+}
+
 function main() {
   const series = build();
   const json = JSON.stringify({
@@ -275,7 +385,9 @@ function main() {
     series: series
   });
   fs.writeFileSync(OUT, json + "\n");
-  site.write("inflation", page(series));
+  const n = yearPages(series);
+  site.write("inflation", page(series).replace("<!-- year pages -->", yearLinks()));
+  console.log(`built ${n} inflation year pages`);
   Object.keys(series).forEach((k) => console.log(k, years(series[k])[0] + "–" + years(series[k]).slice(-1)[0], "latest", series[k].latest.label, series[k].latest.value, series[k].latest.rate12 + "%"));
 }
 
