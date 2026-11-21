@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sleep Calculator — What Time to Go to Bed (or Wake Up)</title>
+<meta name="description" content="What time to go to bed for the sleep you need, by age, using the CDC's recommended hours — or when you'll wake after a set amount of sleep.">
+<link rel="canonical" href="https://lotsofcalcs.com/sleep-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Sleep Calculator — What Time to Go to Bed (or Wake Up)">
+<meta property="og:description" content="What time to go to bed for the sleep you need, by age, using the CDC's recommended hours — or when you'll wake after a set amount of sleep.">
+<meta property="og:url" content="https://lotsofcalcs.com/sleep-calculator/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sleep Calculator — What Time to Go to Bed (or Wake Up)">
+<meta name="twitter:description" content="What time to go to bed for the sleep you need, by age, using the CDC's recommended hours — or when you'll wake after a set amount of sleep.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Sleep Calculator — What Time to Go to Bed (or Wake Up)",
+    "description": "What time to go to bed for the sleep you need, by age, using the CDC's recommended hours — or when you'll wake after a set amount of sleep.",
+    "url": "https://lotsofcalcs.com/sleep-calculator/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    },
+    "dateModified": "2026-11-21"
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Sleep Calculator",
+        "item": "https://lotsofcalcs.com/sleep-calculator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Sleep Calculator",
+    "url": "https://lotsofcalcs.com/sleep-calculator/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much sleep do adults need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CDC recommends 7 or more hours a night for adults aged 18 to 60, 7 to 9 hours at 61 to 64, and 7 to 8 hours from 65."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How much sleep do children need?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The CDC recommends 9 to 12 hours for children aged 6 to 12 and 8 to 10 hours for teenagers; younger children need more, including naps. The full table is above."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What time should I go to bed to wake up at 7am?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For 7 hours' sleep, about 11:45pm if you take 15 minutes to fall asleep; for 8 hours, 10:45pm; for 9 hours, 9:45pm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about sleep cycles?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You'll often read that sleep runs in 90-minute cycles and that you should time your alarm to the end of one. Neither the NHS nor the CDC gives that advice; both focus on getting enough hours and going to bed and getting up at the same time every day."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Sleep calculator</h1>
+      <p class="page-subtitle">When to go to bed for enough sleep, using the CDC's recommended hours by age.</p>
+    </header>
+
+    <main class="tool" id="sl2-tool">
+      <div class="field-row">
+        <div class="field"><label for="sl2-mode">I want to</label><select id="sl2-mode"><option value="wake" selected>Wake up at…</option><option value="bed">Go to bed at…</option></select></div>
+        <div class="field"><label for="sl2-time">Time</label><input type="time" id="sl2-time" value="07:00"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="sl2-age">Age</label><select id="sl2-age"><option value="0" data-min="14" data-max="17">Newborn, 0–3 months: 14–17 hours</option><option value="1" data-min="12" data-max="16">Infant, 4–12 months: 12–16 hours (including naps)</option><option value="2" data-min="11" data-max="14">Toddler, 1–2 years: 11–14 hours (including naps)</option><option value="3" data-min="10" data-max="13">Preschool, 3–5 years: 10–13 hours (including naps)</option><option value="4" data-min="9" data-max="12">School age, 6–12 years: 9–12 hours</option><option value="5" data-min="8" data-max="10">Teen, 13–17 years: 8–10 hours</option><option value="6" data-min="7" data-max="" selected>Adult, 18–60 years: 7 or more hours</option><option value="7" data-min="7" data-max="9">Adult, 61–64 years: 7–9 hours</option><option value="8" data-min="7" data-max="8">Adult, 65 years and older: 7–8 hours</option></select></div>
+        <div class="field"><label for="sl2-fall">Minutes to fall asleep</label><input type="number" id="sl2-fall" value="15" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-grid" id="sl2-out">
+          <div class="result-row"><span class="r-label">Bedtime for 7 hours' sleep</span><span class="r-value" id="sl2-a">11:45pm</span></div>
+          <div class="result-row highlight"><span class="r-label">Bedtime for 8 hours' sleep</span><span class="r-value" id="sl2-b">10:45pm</span></div>
+          <div class="result-row"><span class="r-label">Bedtime for 9 hours' sleep</span><span class="r-value" id="sl2-c">9:45pm</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Recommended hours from the <a href="https://www.cdc.gov/sleep/about/index.html" rel="noopener">CDC — About Sleep (May 2024)</a>. Not medical advice: if you're often tired despite enough sleep, talk to a GP or doctor.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">How much sleep you need, by age (CDC)</p>
+      <div class="table-scroll">
+        <div style="min-width:380px;">
+          <table class="out-table">
+            <thead><tr><th>Age group</th><th>Age</th><th>Recommended a day</th></tr></thead>
+            <tbody>
+<tr><td>Newborn</td><td>0–3 months</td><td>14–17 hours</td></tr>
+<tr><td>Infant</td><td>4–12 months</td><td>12–16 hours (including naps)</td></tr>
+<tr><td>Toddler</td><td>1–2 years</td><td>11–14 hours (including naps)</td></tr>
+<tr><td>Preschool</td><td>3–5 years</td><td>10–13 hours (including naps)</td></tr>
+<tr><td>School age</td><td>6–12 years</td><td>9–12 hours</td></tr>
+<tr><td>Teen</td><td>13–17 years</td><td>8–10 hours</td></tr>
+<tr><td>Adult</td><td>18–60 years</td><td>7 or more hours</td></tr>
+<tr><td>Adult</td><td>61–64 years</td><td>7–9 hours</td></tr>
+<tr><td>Adult</td><td>65 years and older</td><td>7–8 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How much sleep do adults need?</p>
+      <p class="about-text">The CDC recommends 7 or more hours a night for adults aged 18 to 60, 7 to 9 hours at 61 to 64, and 7 to 8 hours from 65.</p>
+      <p class="faq-q">How much sleep do children need?</p>
+      <p class="about-text">The CDC recommends 9 to 12 hours for children aged 6 to 12 and 8 to 10 hours for teenagers; younger children need more, including naps. The full table is above.</p>
+      <p class="faq-q">What time should I go to bed to wake up at 7am?</p>
+      <p class="about-text">For 7 hours' sleep, about 11:45pm if you take 15 minutes to fall asleep; for 8 hours, 10:45pm; for 9 hours, 9:45pm.</p>
+      <p class="faq-q">What about sleep cycles?</p>
+      <p class="about-text">You'll often read that sleep runs in 90-minute cycles and that you should time your alarm to the end of one. Neither the NHS nor the CDC gives that advice; both focus on getting enough hours and going to bed and getting up at the same time every day.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/calorie-calculator/">
+        <span class="icon">🥗</span>
+        <div class="title">Calorie Calculator</div>
+        <div class="desc">Calories a day to stay the same weight or lose weight, and how long it'll take.</div>
+      </a>
+      <a class="hub-card" href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" href="/days-until/">
+        <span class="icon">⏳</span>
+        <div class="title">Countdowns</div>
+        <div class="desc">Live countdowns to Christmas, Easter, Halloween, Mother's Day and more.</div>
+      </a>
+      <a class="hub-card" href="/birthday/">
+        <span class="icon">🎂</span>
+        <div class="title">Age Calculator</div>
+        <div class="desc">Your exact age, day of the week born, and days until your next birthday.</div>
+      </a>
+      <a class="hub-card" href="/pace/">
+        <span class="icon">🏃</span>
+        <div class="title">Running Pace</div>
+        <div class="desc">Any two of distance, time and pace → the third, plus speed and splits.</div>
+      </a>
+      <a class="hub-card" href="/everyday/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Everyday calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/sleep.js"></script>
+</body>
+</html>
