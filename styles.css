@@ -1596,3 +1596,8 @@ hr.divider {
   .out-table th, .out-table td, .page-title, .page-subtitle, .r-label, .r-value, .value, .label, .tool-section-title, .tool-hint, .about-text { color: #000 !important; }
   .sc-done td { opacity: 1; }
 }
+
+/* Job offer comparison: the two offers side by side, stacked on a phone */
+.jo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.jo-side { min-width: 0; }
+@media (max-width: 720px) { .jo-grid { grid-template-columns: 1fr; } }
