@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hourly to Salary Converter — Hourly, Weekly, Monthly and Yearly Pay</title>
+<meta name="description" content="Convert hourly pay to a yearly salary and back, before tax — with weekly, biweekly, monthly and daily figures, your own hours and unpaid weeks.">
+<link rel="canonical" href="https://lotsofcalcs.com/hourly-to-salary/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Hourly to Salary Converter — Hourly, Weekly, Monthly and Yearly Pay">
+<meta property="og:description" content="Convert hourly pay to a yearly salary and back, before tax — with weekly, biweekly, monthly and daily figures, your own hours and unpaid weeks.">
+<meta property="og:url" content="https://lotsofcalcs.com/hourly-to-salary/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hourly to Salary Converter — Hourly, Weekly, Monthly and Yearly Pay">
+<meta name="twitter:description" content="Convert hourly pay to a yearly salary and back, before tax — with weekly, biweekly, monthly and daily figures, your own hours and unpaid weeks.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Hourly to Salary Converter — Hourly, Weekly, Monthly and Yearly Pay",
+    "description": "Convert hourly pay to a yearly salary and back, before tax — with weekly, biweekly, monthly and daily figures, your own hours and unpaid weeks.",
+    "url": "https://lotsofcalcs.com/hourly-to-salary/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Hourly to Salary Converter",
+        "item": "https://lotsofcalcs.com/hourly-to-salary/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Hourly to Salary Converter",
+    "url": "https://lotsofcalcs.com/hourly-to-salary/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert an hourly wage to a yearly salary?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply the hourly rate by the hours you work a week, then by 52. At 40 hours a week that's the hourly rate × 2,080; at 37.5 hours it's × 1,950."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert a salary to an hourly rate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Divide the yearly salary by 52, then by your weekly hours. At 40 hours a week, divide by 2,080: $50,000 is $24.04 an hour."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many working hours are in a year?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "2,080 at 40 hours a week for 52 weeks, or 1,950 at 37.5 hours. Paid holiday is included, because you're paid for it; if it's unpaid, use fewer weeks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this before or after tax?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Before tax. For take-home pay, use the salary calculator or the after-tax pages linked from each rate."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Hourly to salary converter</h1>
+      <p class="page-subtitle">Hourly, daily, weekly, monthly and yearly pay, before tax — enter any one and see the rest.</p>
+    </header>
+
+    <main class="tool" id="pc-tool" data-switch="1" data-currency="USD" data-locale="en-US" data-sym="$" data-day="8">
+      <div class="field-row">
+        <div class="field"><label for="pc-amount">Pay</label><input type="number" id="pc-amount" value="25" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="pc-cur">Currency</label><select id="pc-cur"><option value="USD" data-sym="$" data-locale="en-US" data-hours="40" data-day="8">$ (40-hour week)</option><option value="GBP" data-sym="£" data-locale="en-GB" data-hours="37.5" data-day="7.5">£ (37.5-hour week)</option><option value="EUR" data-sym="€" data-locale="en-IE" data-hours="40" data-day="8">€ (40-hour week)</option></select></div>
+        <div class="field"><label for="pc-per">Per</label><select id="pc-per"><option value="hour" selected>Hour</option><option value="day">Day</option><option value="week">Week</option><option value="month">Month</option><option value="year">Year</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="pc-hours">Hours a week</label><input type="number" id="pc-hours" value="40" min="1" max="168" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="pc-weeks">Paid weeks a year</label><input type="number" id="pc-weeks" value="52" min="1" max="52" step="any" inputmode="decimal"></div>
+      </div>
+      <p class="tool-hint" id="pc-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <div class="result-box" aria-live="polite">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">A year</span><span class="r-value" data-pc="year"></span></div>
+          <div class="result-row"><span class="r-label">A month</span><span class="r-value" data-pc="month"></span></div>
+          <div class="result-row"><span class="r-label">Every two weeks</span><span class="r-value" data-pc="biweekly"></span></div>
+          <div class="result-row"><span class="r-label">A week</span><span class="r-value" data-pc="week"></span></div>
+          <div class="result-row"><span class="r-label">A day (8 hours)</span><span class="r-value" data-pc="day"></span></div>
+          <div class="result-row"><span class="r-label">An hour</span><span class="r-value" data-pc="hour"></span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Before tax. Set paid weeks below 52 if your holidays are unpaid (50 for two weeks off).</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Hourly rates and salaries worked out</p>
+      <p class="salary-links"><strong>$ an hour → a year:</strong> <a href="/hourly-to-salary/10-dollars-an-hour/">$10</a> <a href="/hourly-to-salary/11-dollars-an-hour/">$11</a> <a href="/hourly-to-salary/12-dollars-an-hour/">$12</a> <a href="/hourly-to-salary/13-dollars-an-hour/">$13</a> <a href="/hourly-to-salary/14-dollars-an-hour/">$14</a> <a href="/hourly-to-salary/15-dollars-an-hour/">$15</a> <a href="/hourly-to-salary/16-dollars-an-hour/">$16</a> <a href="/hourly-to-salary/17-dollars-an-hour/">$17</a> <a href="/hourly-to-salary/18-dollars-an-hour/">$18</a> <a href="/hourly-to-salary/19-dollars-an-hour/">$19</a> <a href="/hourly-to-salary/20-dollars-an-hour/">$20</a> <a href="/hourly-to-salary/21-dollars-an-hour/">$21</a> <a href="/hourly-to-salary/22-dollars-an-hour/">$22</a> <a href="/hourly-to-salary/23-dollars-an-hour/">$23</a> <a href="/hourly-to-salary/24-dollars-an-hour/">$24</a> <a href="/hourly-to-salary/25-dollars-an-hour/">$25</a> <a href="/hourly-to-salary/26-dollars-an-hour/">$26</a> <a href="/hourly-to-salary/27-dollars-an-hour/">$27</a> <a href="/hourly-to-salary/28-dollars-an-hour/">$28</a> <a href="/hourly-to-salary/29-dollars-an-hour/">$29</a> <a href="/hourly-to-salary/30-dollars-an-hour/">$30</a> <a href="/hourly-to-salary/31-dollars-an-hour/">$31</a> <a href="/hourly-to-salary/32-dollars-an-hour/">$32</a> <a href="/hourly-to-salary/33-dollars-an-hour/">$33</a> <a href="/hourly-to-salary/34-dollars-an-hour/">$34</a> <a href="/hourly-to-salary/35-dollars-an-hour/">$35</a> <a href="/hourly-to-salary/36-dollars-an-hour/">$36</a> <a href="/hourly-to-salary/37-dollars-an-hour/">$37</a> <a href="/hourly-to-salary/38-dollars-an-hour/">$38</a> <a href="/hourly-to-salary/39-dollars-an-hour/">$39</a> <a href="/hourly-to-salary/40-dollars-an-hour/">$40</a> <a href="/hourly-to-salary/41-dollars-an-hour/">$41</a> <a href="/hourly-to-salary/42-dollars-an-hour/">$42</a> <a href="/hourly-to-salary/43-dollars-an-hour/">$43</a> <a href="/hourly-to-salary/44-dollars-an-hour/">$44</a> <a href="/hourly-to-salary/45-dollars-an-hour/">$45</a> <a href="/hourly-to-salary/46-dollars-an-hour/">$46</a> <a href="/hourly-to-salary/47-dollars-an-hour/">$47</a> <a href="/hourly-to-salary/48-dollars-an-hour/">$48</a> <a href="/hourly-to-salary/49-dollars-an-hour/">$49</a> <a href="/hourly-to-salary/50-dollars-an-hour/">$50</a> <a href="/hourly-to-salary/55-dollars-an-hour/">$55</a> <a href="/hourly-to-salary/60-dollars-an-hour/">$60</a> <a href="/hourly-to-salary/65-dollars-an-hour/">$65</a> <a href="/hourly-to-salary/70-dollars-an-hour/">$70</a> <a href="/hourly-to-salary/75-dollars-an-hour/">$75</a> <a href="/hourly-to-salary/80-dollars-an-hour/">$80</a> <a href="/hourly-to-salary/85-dollars-an-hour/">$85</a> <a href="/hourly-to-salary/90-dollars-an-hour/">$90</a> <a href="/hourly-to-salary/95-dollars-an-hour/">$95</a> <a href="/hourly-to-salary/100-dollars-an-hour/">$100</a></p>
+      <p class="salary-links"><strong>$ a year → an hour:</strong> <a href="/salary-to-hourly/20000-dollars-a-year/">$20k</a> <a href="/salary-to-hourly/25000-dollars-a-year/">$25k</a> <a href="/salary-to-hourly/30000-dollars-a-year/">$30k</a> <a href="/salary-to-hourly/35000-dollars-a-year/">$35k</a> <a href="/salary-to-hourly/40000-dollars-a-year/">$40k</a> <a href="/salary-to-hourly/45000-dollars-a-year/">$45k</a> <a href="/salary-to-hourly/50000-dollars-a-year/">$50k</a> <a href="/salary-to-hourly/55000-dollars-a-year/">$55k</a> <a href="/salary-to-hourly/60000-dollars-a-year/">$60k</a> <a href="/salary-to-hourly/65000-dollars-a-year/">$65k</a> <a href="/salary-to-hourly/70000-dollars-a-year/">$70k</a> <a href="/salary-to-hourly/75000-dollars-a-year/">$75k</a> <a href="/salary-to-hourly/80000-dollars-a-year/">$80k</a> <a href="/salary-to-hourly/85000-dollars-a-year/">$85k</a> <a href="/salary-to-hourly/90000-dollars-a-year/">$90k</a> <a href="/salary-to-hourly/95000-dollars-a-year/">$95k</a> <a href="/salary-to-hourly/100000-dollars-a-year/">$100k</a> <a href="/salary-to-hourly/110000-dollars-a-year/">$110k</a> <a href="/salary-to-hourly/120000-dollars-a-year/">$120k</a> <a href="/salary-to-hourly/125000-dollars-a-year/">$125k</a> <a href="/salary-to-hourly/130000-dollars-a-year/">$130k</a> <a href="/salary-to-hourly/140000-dollars-a-year/">$140k</a> <a href="/salary-to-hourly/150000-dollars-a-year/">$150k</a> <a href="/salary-to-hourly/175000-dollars-a-year/">$175k</a> <a href="/salary-to-hourly/200000-dollars-a-year/">$200k</a> <a href="/salary-to-hourly/250000-dollars-a-year/">$250k</a></p>
+      <p class="salary-links"><strong>£ an hour → a year:</strong> <a href="/hourly-to-salary/10-pounds-an-hour/">£10</a> <a href="/hourly-to-salary/11-pounds-an-hour/">£11</a> <a href="/hourly-to-salary/12-pounds-an-hour/">£12</a> <a href="/hourly-to-salary/13-pounds-an-hour/">£13</a> <a href="/hourly-to-salary/14-pounds-an-hour/">£14</a> <a href="/hourly-to-salary/15-pounds-an-hour/">£15</a> <a href="/hourly-to-salary/16-pounds-an-hour/">£16</a> <a href="/hourly-to-salary/17-pounds-an-hour/">£17</a> <a href="/hourly-to-salary/18-pounds-an-hour/">£18</a> <a href="/hourly-to-salary/19-pounds-an-hour/">£19</a> <a href="/hourly-to-salary/20-pounds-an-hour/">£20</a> <a href="/hourly-to-salary/21-pounds-an-hour/">£21</a> <a href="/hourly-to-salary/22-pounds-an-hour/">£22</a> <a href="/hourly-to-salary/23-pounds-an-hour/">£23</a> <a href="/hourly-to-salary/24-pounds-an-hour/">£24</a> <a href="/hourly-to-salary/25-pounds-an-hour/">£25</a> <a href="/hourly-to-salary/26-pounds-an-hour/">£26</a> <a href="/hourly-to-salary/27-pounds-an-hour/">£27</a> <a href="/hourly-to-salary/28-pounds-an-hour/">£28</a> <a href="/hourly-to-salary/29-pounds-an-hour/">£29</a> <a href="/hourly-to-salary/30-pounds-an-hour/">£30</a> <a href="/hourly-to-salary/32-pounds-an-hour/">£32</a> <a href="/hourly-to-salary/35-pounds-an-hour/">£35</a> <a href="/hourly-to-salary/40-pounds-an-hour/">£40</a> <a href="/hourly-to-salary/45-pounds-an-hour/">£45</a> <a href="/hourly-to-salary/50-pounds-an-hour/">£50</a> <a href="/hourly-to-salary/60-pounds-an-hour/">£60</a> <a href="/hourly-to-salary/75-pounds-an-hour/">£75</a> <a href="/hourly-to-salary/100-pounds-an-hour/">£100</a></p>
+      <p class="salary-links"><strong>£ a year → an hour:</strong> <a href="/salary-to-hourly/15000-pounds-a-year/">£15k</a> <a href="/salary-to-hourly/16000-pounds-a-year/">£16k</a> <a href="/salary-to-hourly/17000-pounds-a-year/">£17k</a> <a href="/salary-to-hourly/18000-pounds-a-year/">£18k</a> <a href="/salary-to-hourly/19000-pounds-a-year/">£19k</a> <a href="/salary-to-hourly/20000-pounds-a-year/">£20k</a> <a href="/salary-to-hourly/21000-pounds-a-year/">£21k</a> <a href="/salary-to-hourly/22000-pounds-a-year/">£22k</a> <a href="/salary-to-hourly/23000-pounds-a-year/">£23k</a> <a href="/salary-to-hourly/24000-pounds-a-year/">£24k</a> <a href="/salary-to-hourly/25000-pounds-a-year/">£25k</a> <a href="/salary-to-hourly/26000-pounds-a-year/">£26k</a> <a href="/salary-to-hourly/27000-pounds-a-year/">£27k</a> <a href="/salary-to-hourly/28000-pounds-a-year/">£28k</a> <a href="/salary-to-hourly/29000-pounds-a-year/">£29k</a> <a href="/salary-to-hourly/30000-pounds-a-year/">£30k</a> <a href="/salary-to-hourly/31000-pounds-a-year/">£31k</a> <a href="/salary-to-hourly/32000-pounds-a-year/">£32k</a> <a href="/salary-to-hourly/33000-pounds-a-year/">£33k</a> <a href="/salary-to-hourly/34000-pounds-a-year/">£34k</a> <a href="/salary-to-hourly/35000-pounds-a-year/">£35k</a> <a href="/salary-to-hourly/36000-pounds-a-year/">£36k</a> <a href="/salary-to-hourly/37000-pounds-a-year/">£37k</a> <a href="/salary-to-hourly/38000-pounds-a-year/">£38k</a> <a href="/salary-to-hourly/39000-pounds-a-year/">£39k</a> <a href="/salary-to-hourly/40000-pounds-a-year/">£40k</a> <a href="/salary-to-hourly/45000-pounds-a-year/">£45k</a> <a href="/salary-to-hourly/50000-pounds-a-year/">£50k</a> <a href="/salary-to-hourly/55000-pounds-a-year/">£55k</a> <a href="/salary-to-hourly/60000-pounds-a-year/">£60k</a> <a href="/salary-to-hourly/65000-pounds-a-year/">£65k</a> <a href="/salary-to-hourly/70000-pounds-a-year/">£70k</a> <a href="/salary-to-hourly/75000-pounds-a-year/">£75k</a> <a href="/salary-to-hourly/80000-pounds-a-year/">£80k</a> <a href="/salary-to-hourly/85000-pounds-a-year/">£85k</a> <a href="/salary-to-hourly/90000-pounds-a-year/">£90k</a> <a href="/salary-to-hourly/95000-pounds-a-year/">£95k</a> <a href="/salary-to-hourly/100000-pounds-a-year/">£100k</a> <a href="/salary-to-hourly/110000-pounds-a-year/">£110k</a> <a href="/salary-to-hourly/120000-pounds-a-year/">£120k</a> <a href="/salary-to-hourly/125000-pounds-a-year/">£125k</a> <a href="/salary-to-hourly/150000-pounds-a-year/">£150k</a> <a href="/salary-to-hourly/200000-pounds-a-year/">£200k</a></p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I convert an hourly wage to a yearly salary?</p>
+      <p class="about-text">Multiply the hourly rate by the hours you work a week, then by 52. At 40 hours a week that's the hourly rate × 2,080; at 37.5 hours it's × 1,950.</p>
+      <p class="faq-q">How do I convert a salary to an hourly rate?</p>
+      <p class="about-text">Divide the yearly salary by 52, then by your weekly hours. At 40 hours a week, divide by 2,080: $50,000 is $24.04 an hour.</p>
+      <p class="faq-q">How many working hours are in a year?</p>
+      <p class="about-text">2,080 at 40 hours a week for 52 weeks, or 1,950 at 37.5 hours. Paid holiday is included, because you're paid for it; if it's unpaid, use fewer weeks.</p>
+      <p class="faq-q">Is this before or after tax?</p>
+      <p class="about-text">Before tax. For take-home pay, use the salary calculator or the after-tax pages linked from each rate.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/salary/">
+        <span class="icon">💷</span>
+        <div class="title">Salary After Tax</div>
+        <div class="desc">Take-home pay in the UK, every US state and Canadian province, Europe, Australia, India and Japan.</div>
+      </a>
+      <a class="hub-card" href="/pay-rise-calculator/">
+        <span class="icon">📈</span>
+        <div class="title">Pay Rise Calculator</div>
+        <div class="desc">What a pay rise adds to your take-home pay after tax — UK, US, Canada, Europe and more.</div>
+      </a>
+      <a class="hub-card" href="/job-offer-comparison/">
+        <span class="icon">⚖️</span>
+        <div class="title">Job Offer Comparison</div>
+        <div class="desc">Two offers side by side after tax, pension, perks and commute.</div>
+      </a>
+      <a class="hub-card" href="/biweekly-pay-schedule/">
+        <span class="icon">📅</span>
+        <div class="title">Biweekly Pay Schedule</div>
+        <div class="desc">Every payday in the year, and which months bring three paychecks.</div>
+      </a>
+      <a class="hub-card" href="/working-days/">
+        <span class="icon">🗓️</span>
+        <div class="title">Working Days</div>
+        <div class="desc">Working days between two dates, less weekends and UK bank holidays.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/personal-finance/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Personal Finance calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/pay-convert.js"></script>
+</body>
+</html>
