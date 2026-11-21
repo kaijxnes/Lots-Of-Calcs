@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/cups-to-grams/": ["/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/", "/percent/", "/fractions/"],
   "/hourly-to-salary/": ["/salary/", "/pay-rise-calculator/", "/job-offer-comparison/", "/biweekly-pay-schedule/", "/working-days/", "/50-30-20-budget/"],
   "/beckham-law-calculator/": ["/salary/", "/30-percent-ruling-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
   "/30-percent-ruling-calculator/": ["/salary/", "/beckham-law-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],

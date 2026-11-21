@@ -1,0 +1,370 @@
+{
+  "_note": "Grams for a stated US volume, as King Arthur Baking's Ingredient Weight Chart gives them (its own figures, measured by its spoon-and-level method). 'volume' and 'grams' are copied from the chart unchanged; tools/build-cooking-pages.js works out grams per cup from them (1 cup = 16 tablespoons = 48 teaspoons). 'name' and 'alsoCalled' are the site's wording, with UK names.",
+  "source": {
+    "title": "King Arthur Baking — Ingredient Weight Chart",
+    "url": "https://www.kingarthurbaking.com/learn/ingredient-weight-chart"
+  },
+  "lastChecked": "2026-11-21",
+  "ingredients": [
+    {
+      "slug": "all-purpose-flour",
+      "name": "All-purpose flour",
+      "alsoCalled": "plain flour",
+      "chart": "All-Purpose Flour",
+      "volume": "1 cup",
+      "grams": 120
+    },
+    {
+      "slug": "bread-flour",
+      "name": "Bread flour",
+      "alsoCalled": "strong white flour",
+      "chart": "Bread Flour",
+      "volume": "1 cup",
+      "grams": 120
+    },
+    {
+      "slug": "whole-wheat-flour",
+      "name": "Whole wheat flour",
+      "alsoCalled": "wholemeal flour",
+      "chart": "Whole Wheat Flour (Premium 100%)",
+      "volume": "1 cup",
+      "grams": 113
+    },
+    {
+      "slug": "self-rising-flour",
+      "name": "Self-rising flour",
+      "alsoCalled": "self-raising flour",
+      "chart": "Self-Rising Flour",
+      "volume": "1 cup",
+      "grams": 113
+    },
+    {
+      "slug": "cake-flour",
+      "name": "Cake flour",
+      "alsoCalled": null,
+      "chart": "Unbleached Cake Flour",
+      "volume": "1 cup",
+      "grams": 120
+    },
+    {
+      "slug": "almond-flour",
+      "name": "Almond flour",
+      "alsoCalled": "ground almonds",
+      "chart": "Almond Flour",
+      "volume": "1 cup",
+      "grams": 96
+    },
+    {
+      "slug": "cornstarch",
+      "name": "Cornstarch",
+      "alsoCalled": "cornflour",
+      "chart": "Cornstarch",
+      "volume": "1/4 cup",
+      "grams": 28
+    },
+    {
+      "slug": "cocoa-powder",
+      "name": "Cocoa powder",
+      "alsoCalled": null,
+      "chart": "Cocoa (unsweetened)",
+      "volume": "1/2 cup",
+      "grams": 42
+    },
+    {
+      "slug": "granulated-sugar",
+      "name": "Granulated sugar",
+      "alsoCalled": null,
+      "chart": "Sugar (granulated white)",
+      "volume": "1 cup",
+      "grams": 198
+    },
+    {
+      "slug": "caster-sugar",
+      "name": "Caster sugar",
+      "alsoCalled": "superfine sugar",
+      "chart": "Baker's Special Sugar (superfine sugar, castor sugar)",
+      "volume": "1 cup",
+      "grams": 190
+    },
+    {
+      "slug": "brown-sugar",
+      "name": "Brown sugar (packed)",
+      "alsoCalled": null,
+      "chart": "Brown sugar (dark or light, packed)",
+      "volume": "1 cup",
+      "grams": 213
+    },
+    {
+      "slug": "powdered-sugar",
+      "name": "Powdered sugar",
+      "alsoCalled": "icing sugar, confectioners' sugar",
+      "chart": "Confectioners' sugar (unsifted)",
+      "volume": "1 cup",
+      "grams": 113
+    },
+    {
+      "slug": "butter",
+      "name": "Butter",
+      "alsoCalled": null,
+      "chart": "Butter",
+      "volume": "8 tablespoons (1/2 cup)",
+      "grams": 113
+    },
+    {
+      "slug": "honey",
+      "name": "Honey",
+      "alsoCalled": null,
+      "chart": "Honey",
+      "volume": "1 tablespoon",
+      "grams": 21
+    },
+    {
+      "slug": "maple-syrup",
+      "name": "Maple syrup",
+      "alsoCalled": null,
+      "chart": "Maple syrup",
+      "volume": "1/2 cup",
+      "grams": 156
+    },
+    {
+      "slug": "molasses",
+      "name": "Molasses",
+      "alsoCalled": "treacle",
+      "chart": "Molasses",
+      "volume": "1/4 cup",
+      "grams": 85
+    },
+    {
+      "slug": "corn-syrup",
+      "name": "Corn syrup",
+      "alsoCalled": null,
+      "chart": "Corn syrup",
+      "volume": "1 cup",
+      "grams": 312
+    },
+    {
+      "slug": "milk",
+      "name": "Milk",
+      "alsoCalled": null,
+      "chart": "Milk (fresh)",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "heavy-cream",
+      "name": "Heavy cream",
+      "alsoCalled": "double cream",
+      "chart": "Cream (heavy cream, light cream, or half & half)",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "sour-cream",
+      "name": "Sour cream",
+      "alsoCalled": null,
+      "chart": "Sour cream",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "yogurt",
+      "name": "Yogurt",
+      "alsoCalled": null,
+      "chart": "Yogurt",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "buttermilk",
+      "name": "Buttermilk",
+      "alsoCalled": null,
+      "chart": "Buttermilk",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "water",
+      "name": "Water",
+      "alsoCalled": null,
+      "chart": "Water",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "vegetable-oil",
+      "name": "Vegetable oil",
+      "alsoCalled": null,
+      "chart": "Vegetable oil",
+      "volume": "1 cup",
+      "grams": 198
+    },
+    {
+      "slug": "olive-oil",
+      "name": "Olive oil",
+      "alsoCalled": null,
+      "chart": "Olive oil",
+      "volume": "1/4 cup",
+      "grams": 50
+    },
+    {
+      "slug": "rolled-oats",
+      "name": "Rolled oats",
+      "alsoCalled": "porridge oats",
+      "chart": "Oats (old-fashioned or quick-cooking)",
+      "volume": "1 cup",
+      "grams": 89
+    },
+    {
+      "slug": "rice",
+      "name": "Rice (long grain, uncooked)",
+      "alsoCalled": null,
+      "chart": "Rice (long grain, dry)",
+      "volume": "1/2 cup",
+      "grams": 99
+    },
+    {
+      "slug": "chocolate-chips",
+      "name": "Chocolate chips",
+      "alsoCalled": null,
+      "chart": "Chocolate Chips",
+      "volume": "1 cup",
+      "grams": 170
+    },
+    {
+      "slug": "raisins",
+      "name": "Raisins",
+      "alsoCalled": null,
+      "chart": "Raisins (loose)",
+      "volume": "1 cup",
+      "grams": 149
+    },
+    {
+      "slug": "walnuts",
+      "name": "Walnuts (chopped)",
+      "alsoCalled": null,
+      "chart": "Walnuts (chopped)",
+      "volume": "1 cup",
+      "grams": 113
+    },
+    {
+      "slug": "pecans",
+      "name": "Pecans (whole)",
+      "alsoCalled": null,
+      "chart": "Pecans (whole)",
+      "volume": "1 cup",
+      "grams": 105
+    },
+    {
+      "slug": "peanut-butter",
+      "name": "Peanut butter",
+      "alsoCalled": null,
+      "chart": "Peanut butter",
+      "volume": "1/2 cup",
+      "grams": 135
+    },
+    {
+      "slug": "cream-cheese",
+      "name": "Cream cheese",
+      "alsoCalled": null,
+      "chart": "Cream cheese",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "parmesan",
+      "name": "Parmesan (grated)",
+      "alsoCalled": null,
+      "chart": "Cheese (grated Parmesan)",
+      "volume": "1/2 cup",
+      "grams": 50
+    },
+    {
+      "slug": "cheddar",
+      "name": "Cheddar (grated)",
+      "alsoCalled": "grated cheese",
+      "chart": "Cheese (grated cheddar, jack, mozzarella, or Swiss)",
+      "volume": "1 cup",
+      "grams": 113
+    },
+    {
+      "slug": "ricotta",
+      "name": "Ricotta",
+      "alsoCalled": null,
+      "chart": "Cheese (Ricotta)",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "mascarpone",
+      "name": "Mascarpone",
+      "alsoCalled": null,
+      "chart": "Mascarpone cheese",
+      "volume": "1 cup",
+      "grams": 227
+    },
+    {
+      "slug": "cornmeal",
+      "name": "Cornmeal (yellow)",
+      "alsoCalled": "polenta",
+      "chart": "Cornmeal (yellow, Quaker)",
+      "volume": "1 cup",
+      "grams": 156
+    },
+    {
+      "slug": "coconut",
+      "name": "Desiccated coconut (unsweetened)",
+      "alsoCalled": "shredded coconut",
+      "chart": "Coconut (unsweetened, shredded)",
+      "volume": "1 cup",
+      "grams": 53
+    },
+    {
+      "slug": "condensed-milk",
+      "name": "Sweetened condensed milk",
+      "alsoCalled": null,
+      "chart": "Sweetened condensed milk",
+      "volume": "1/4 cup",
+      "grams": 78
+    },
+    {
+      "slug": "salt",
+      "name": "Table salt",
+      "alsoCalled": null,
+      "chart": "Salt (table)",
+      "volume": "1 tablespoon",
+      "grams": 18
+    },
+    {
+      "slug": "baking-soda",
+      "name": "Baking soda",
+      "alsoCalled": "bicarbonate of soda",
+      "chart": "Baking soda",
+      "volume": "1/2 teaspoon",
+      "grams": 3
+    },
+    {
+      "slug": "baking-powder",
+      "name": "Baking powder",
+      "alsoCalled": null,
+      "chart": "Baking powder",
+      "volume": "1 teaspoon",
+      "grams": 4
+    },
+    {
+      "slug": "instant-yeast",
+      "name": "Instant yeast",
+      "alsoCalled": null,
+      "chart": "Yeast (instant)",
+      "volume": "1 tablespoon",
+      "grams": 9
+    },
+    {
+      "slug": "vanilla-extract",
+      "name": "Vanilla extract",
+      "alsoCalled": null,
+      "chart": "Vanilla Extract",
+      "volume": "1 tablespoon",
+      "grams": 14
+    }
+  ]
+}
