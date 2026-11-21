@@ -70,8 +70,11 @@ function fitTitle(...cands) {
 
 /* The share image for a page: its calculator's image (og/<first path
    segment>.jpg, made by tools/build-og-images.py), or the site's own. */
+/* Sections without a share image of their own that borrow a parent's */
+const OG_ALIAS = { "salary-comparison": "salary" };
 function ogImage(url) {
-  const seg = String(url).replace(SITE, "").split("/").filter(Boolean)[0];
+  let seg = String(url).replace(SITE, "").split("/").filter(Boolean)[0];
+  seg = OG_ALIAS[seg] || seg;
   return seg && fs.existsSync(path.join(ROOT, "og", seg + ".jpg")) ? `${SITE}/og/${seg}.jpg` : `${SITE}/og-image.jpg`;
 }
 

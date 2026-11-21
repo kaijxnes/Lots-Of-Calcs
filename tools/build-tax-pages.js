@@ -52,6 +52,8 @@ const PROPER = new Set(["Medicare", "Medicaid", "Social", "Canada", "Quebec", "E
 function inSentence(label) {
   const words = label.split(" ");
   if (words.length > 1 && /^[A-Z]/.test(words[1])) return label;
+  /* acronyms (AHV/IV/EO, CPP, RSZ) keep their capitals */
+  if (/^[A-Z0-9]{2,}/.test(words[0])) return label;
   if (PROPER.has(words[0]) || PLACE_WORDS.has(words[0])) return label;
   return lowerFirst(label);
 }
@@ -576,7 +578,7 @@ function salaryPage(p, gross) {
     });
   }
   const notModelled = Array.from(new Set(p.chain.flatMap((d) => d.notModelled || [])));
-  q.push([`What does this leave out?`, notModelled.length ? notModelled.join("; ") + "." : "Nothing beyond the assumptions listed on this page."]);
+  q.push(leavesOutFaq(p));
   const verified = p.chain.every((d) => d.lastVerified);
   q.push([`How accurate are these ${inName} figures?`,
     `They apply the ${year} rates and thresholds to a ${m0} salary${assumptionsLine ? " for " + assumptionsLine : ""}. ` +
@@ -612,7 +614,7 @@ ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
     const bu = country === "GB" ? links.budgetUk(gross) : null;
     const hrRate = p.hourly.length && p.hours ? p.hourly.reduce((a, h) => Math.abs(h * p.hours * 52 - gross) < Math.abs(a * p.hours * 52 - gross) ? h : a) : null;
     const hr = hrRate && Math.abs(hrRate * p.hours * 52 - gross) / gross <= 0.1 ? hrRate : null;
-    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", hr ? `<a href="${hourUrl(p, hr)}">${esc(p.money0(hr))} an hour after tax (${esc(p.money0(hr * p.hours * 52))} a year)</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : "", EXPAT[country] ? `<a href="${EXPAT[country][0]}">${esc(m0)} ${EXPAT[country][1]}</a>` : ""].filter(Boolean);
+    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", hr ? `<a href="${hourUrl(p, hr)}">${esc(p.money0(hr))} an hour after tax (${esc(p.money0(hr * p.hours * 52))} a year)</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : "", EXPAT[country] ? `<a href="${EXPAT[country][0]}">${esc(m0)} ${EXPAT[country][1]}</a>` : ""].concat(config.comparisonsFor(p.id).map(([u, t]) => `<a href="${u}">${esc(t)} take-home pay</a>`)).filter(Boolean);
     return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 
@@ -649,14 +651,33 @@ function crumbs(p) {
 
 // ---------------------------------------------------------------- place hub
 
+/* Questions for a place's hub: worked out from the tax file, plus any
+   written for the place in data/salary-faq.json for the same tax year */
+const HUB_FAQ = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/salary-faq.json"), "utf8")).places;
+function hubFaq(p, gross, r) {
+  const m0 = p.money0(gross), inName = p.place.inName;
+  const lines = r.charges.filter((c) => Math.abs(c.amount) >= 0.005).map((c) => `${inSentence(c.label)} ${p.money(c.amount)}`);
+  const q = [[`How much is ${m0} after tax in ${inName}?`,
+    `${p.money(r.net)} a year, or ${p.money(r.perMonth)} a month, after ${deductionPhrase(p)}. ` +
+    (lines.length ? `The deductions are ${lines.join(", ")} — ${pct1(r.deductionRate)} of the gross in all, and the next ${p.currency === "JPY" ? "yen" : "unit"} earned is taxed at ${Math.round(r.marginalRate)}%.` : "Nothing is deducted at this salary.")]];
+  const extra = HUB_FAQ[p.id];
+  if (extra && extra.taxYear === p.doc.taxYear.label) q.push(...extra.q);
+  else if (extra) console.warn(`data/salary-faq.json: ${p.id} questions are for ${extra.taxYear}, the tax file is ${p.doc.taxYear.label} — left out until rewritten`);
+  q.push(leavesOutFaq(p), accuracyFaq(p, `a ${m0} salary`));
+  return q;
+}
+
 function placeHub(p) {
   const gross = config.HEADLINE[p.currency];
   const r = TaxEngine.compute(p.chain, gross, p.defaults);
   const url = SITE + hubUrl(p);
   const inName = p.place.inName;
   const year = p.doc.taxYear.label;
-  const title = site.fitTitle(`Salary After Tax in ${inName} (${year}) — Take-Home Pay Calculator`, `Salary After Tax in ${inName} (${year}) — Calculator`, `Salary After Tax in ${inName} (${year})`);
+  const own = (p.place.hubTitle || []).map((t) => t.replace("{year}", year));
+  const title = site.fitTitle(...own, `Salary After Tax in ${inName} (${year}) — Take-Home Pay Calculator`, `Salary After Tax in ${inName} (${year}) — Calculator`, `Salary After Tax in ${inName} (${year})`);
   const desc = `Take-home pay in ${inName} for the ${year} tax year: ${p.money0(gross)} leaves ${p.money(r.net)}. Calculator and tables for every salary from ${p.money0(p.salaries[0])} to ${p.money0(p.salaries[p.salaries.length - 1])}.`;
+  const q = hubFaq(p, gross, r);
+  const vs = config.comparisonsFor(p.id);
   const opts = optionSummary(p, p.defaults);
   const status = statusLabel(p, p.defaults);
   const assumptionsLine = [status ? lowerFirst(status) : null, opts].filter(Boolean).join("; ");
@@ -669,7 +690,7 @@ function placeHub(p) {
   const ld = [webPage(title, desc, url, checkedDate(p)), breadcrumb(crumbs(p)), {
     "@context": "https://schema.org", "@type": "ItemList",
     itemListElement: p.salaries.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: `${p.money0(s)} after tax in ${inName}`, url: SITE + pageUrl(p, s) }))
-  }];
+  }, faqLd(q)];
 
   return head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${p.root.country === "US" ? "/salary/us/" : p.root.country === "CA" ? "/salary/canada/" : "/salary/"}">← ${p.root.country === "US" ? "All states" : p.root.country === "CA" ? "All provinces" : "Salary after tax"}</a>
@@ -688,12 +709,18 @@ ${toolBlock(p, gross, r, `Where ${p.money0(gross)} goes`)}
           </table>
         </div>
       </div>
-${payLinks(p)}${comparison(p, gross)}    </main>
+${payLinks(p)}${comparison(p, gross)}${vs.length ? `      <p class="tool-section-title" style="margin-top:22px;">Compared with other countries</p>
+      <p class="salary-links">${vs.map(([u, t]) => `<a href="${u}">${esc(t)}</a>`).join(" ")}</p>
+` : ""}    </main>
 
     <main class="tool">
       <p class="tool-section-title">What comes out of pay in ${esc(inName)}</p>
 ${explanation(p, r)}
     </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+${q.map(([a, b]) => `      <p class="faq-q">${esc(a)}</p>\n      <p class="about-text">${esc(b)}</p>\n`).join("")}    </main>
 
 ${aboutTheFigures(p)}
 ${FOOTER}
