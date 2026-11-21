@@ -249,11 +249,11 @@ function build(gross, chain, cfg, allSalaries) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(site.clipDesc(desc))}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta property="og:image" content="https://lotsofcalcs.com/og/salary.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(site.clipDesc(desc))}">
-<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og/salary.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
