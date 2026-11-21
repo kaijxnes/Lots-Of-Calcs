@@ -466,7 +466,7 @@ function card(href, icon, title, desc) {
 `;
 }
 
-const ICON = { US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", FR: "🇫🇷", ES: "🇪🇸", IT: "🇮🇹", NL: "🇳🇱", IE: "🇮🇪", PT: "🇵🇹", AT: "🇦🇹", NO: "🇳🇴", DK: "🇩🇰", SE: "🇸🇪", AU: "🇦🇺", NZ: "🇳🇿", IN: "🇮🇳", JP: "🇯🇵", CA: "🇨🇦", FI: "🇫🇮" };
+const ICON = { US: "🇺🇸", GB: "🇬🇧", DE: "🇩🇪", FR: "🇫🇷", ES: "🇪🇸", IT: "🇮🇹", NL: "🇳🇱", IE: "🇮🇪", PT: "🇵🇹", AT: "🇦🇹", NO: "🇳🇴", DK: "🇩🇰", SE: "🇸🇪", AU: "🇦🇺", NZ: "🇳🇿", IN: "🇮🇳", JP: "🇯🇵", CA: "🇨🇦", FI: "🇫🇮", BE: "🇧🇪", LU: "🇱🇺", CH: "🇨🇭" };
 function iconFor(p) {
   return p.id === "gb-sct" ? "🏴󠁧󠁢󠁳󠁣󠁴󠁿" : (ICON[p.root.country] || "💷");
 }
@@ -1091,7 +1091,7 @@ ${FOOTER}
    list at the bottom rather than being the page. */
 
 const REGIONS = {
-  Europe: ["DE", "FR", "ES", "IT", "NL", "IE", "PT", "AT", "FI", "NO", "DK", "SE"],
+  Europe: ["DE", "FR", "ES", "IT", "NL", "BE", "LU", "CH", "IE", "PT", "AT", "FI", "NO", "DK", "SE"],
   "Asia-Pacific": ["AU", "NZ", "IN", "JP"]
 };
 
@@ -1167,7 +1167,7 @@ ${site.table(["Where", "Salary", "Take-home a year", "A month", "Effective rate"
       ...(gbW ? [[`How much is ${gbW.p.money0(gbW.g)} after tax in the UK?`, `${gbW.p.money(gbW.rr.net)} a year, or ${gbW.p.money(gbW.rr.perMonth)} a month, in England, Wales and Northern Ireland after income tax and National Insurance, with no pension or student loan.`]] : []),
       ...(usT && usC ? [["How much is $75,000 after tax in the US?", `It depends on the state: ${usT.p.money(usT.rr.net)} a year in Texas, which has no state income tax, and ${usC.p.money(usC.rr.net)} in California, after federal tax, Social Security, Medicare and state taxes, filing single.`]] : []),
       ...(de ? [["How much is €50,000 after tax in Germany?", `${de.p.money(de.rr.net)} a year (${de.p.money(de.rr.perMonth)} a month) for a single person with no children, after income tax, the solidarity surcharge where it applies, and social insurance.`]] : []),
-      ["Which countries does it cover?", "The UK (with Scotland's own bands), every US state and Washington DC, every Canadian province and territory, Ireland, Germany, France, Spain, Italy, the Netherlands, Portugal, Austria, Finland, Sweden, Norway, Denmark, Australia, New Zealand, India and Japan."],
+      ["Which countries does it cover?", "The UK (with Scotland's own bands), every US state and Washington DC, every Canadian province and territory, Ireland, Germany, France, Spain, Italy, the Netherlands, Belgium, Luxembourg, Switzerland (Zurich), Portugal, Austria, Finland, Sweden, Norway, Denmark, Australia, New Zealand, India and Japan."],
       ["What's the difference between the effective and marginal rate?", "The effective rate is the share of your whole salary that goes in deductions. The marginal rate is what's taken from the next unit you earn — the one that matters for a pay rise or overtime, and always the higher of the two."],
       ["How up to date are the rates?", "Each place's rates are for its current tax year and are checked against published sources every month; the tax rates page lists when each was last checked."]
     ]

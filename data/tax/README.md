@@ -157,12 +157,11 @@ Unknown keys are an error, so a typo fails the check instead of being ignored.
   transcribed from PolicyEngine US and compared against PolicyEngine's own
   calculator from $30k to $1M (each state's tests record the result).
 - **Europe**: Germany, France, Spain (Madrid, Catalonia), Italy, Netherlands,
-  Ireland, Portugal, Austria, Norway, Denmark, Sweden.
+  Belgium, Luxembourg, Ireland, Portugal, Austria, Finland, Norway, Denmark,
+  Sweden, and Switzerland for the city of Zurich (federal, cantonal and city
+  tax; the occupational pension share is an option, 0 by default). Belgium
+  has the Flemish average municipal surcharge and four cities as options.
 - **Asia-Pacific**: Australia, New Zealand, India, Japan.
-
-Not yet added: Belgium, Switzerland, Luxembourg, Finland — key 2026 figures
-could not be confirmed from reachable sources; see the commit history for
-what was missing.
 
 No file has `lastVerified` set: none has yet been checked by a person against
 its primary source.

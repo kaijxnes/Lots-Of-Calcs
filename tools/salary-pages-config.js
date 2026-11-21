@@ -29,7 +29,9 @@ const SALARIES = {
   INR: [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 22, 24, 25, 28, 30, 35, 40, 45, 50, 60, 75, 100].map((l) => l * 100000),
   AUD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000]),
   NZD: range(50000, 100000, 5000).concat([110000, 120000, 130000, 150000, 180000, 200000]),
-  CAD: range(40000, 100000, 5000).concat([110000, 120000, 130000, 150000, 175000, 200000, 250000])
+  CAD: range(40000, 100000, 5000).concat([110000, 120000, 130000, 150000, 175000, 200000, 250000]),
+  /* Swiss salaries run high: CHF 50k–150k in 5k steps covers most of them */
+  CHF: range(50000, 150000, 5000).concat([160000, 175000, 200000, 250000])
 };
 
 /* Hourly-rate pages. `hours` is the full-time week the annual figure assumes
@@ -57,11 +59,11 @@ const MONTHLY = {
   DKK: [25000, 30000, 35000, 40000, 45000, 50000, 60000],
   CAD: [3000, 3500, 4000, 4500, 5000, 5500, 6000, 7000, 8000, 10000]
 };
-const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi",
+const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi", "lu",
   "ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"];
 
 /* The salary each hub uses for its headline comparison */
-const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000, CAD: 75000 };
+const HEADLINE = { GBP: 35000, USD: 75000, EUR: 50000, NOK: 600000, SEK: 500000, DKK: 600000, JPY: 5000000, INR: 1200000, AUD: 90000, NZD: 80000, CAD: 75000, CHF: 100000 };
 
 /* Where each jurisdiction's pages live, and how its name reads in a sentence.
    The UK's pages sit directly under /salary/ (its annual pages come from
@@ -72,7 +74,8 @@ const PLACES = {
   "de": { path: "germany" }, "fr": { path: "france" }, "es": { path: "spain" }, "it": { path: "italy" },
   "nl": { path: "netherlands", inName: "the Netherlands" }, "ie": { path: "ireland" }, "pt": { path: "portugal" },
   "at": { path: "austria" }, "no": { path: "norway" }, "dk": { path: "denmark" }, "se": { path: "sweden" },
-  "fi": { path: "finland" }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
+  "fi": { path: "finland" }, "be": { path: "belgium" }, "lu": { path: "luxembourg" },
+  "ch": { path: "switzerland", inName: "Zurich, Switzerland", shortName: "Switzerland (Zurich)" }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
   "us-dc": { path: "us/washington-dc", inName: "Washington, DC", shortName: "Washington, DC" },
   "us-ny-nyc": { path: "us/new-york-city" }
 };
@@ -93,7 +96,7 @@ function placeFor(id, doc) {
 /* Comparison sets shown on salary pages: places people weigh against each other */
 const COMPARE = {
   US: ["us-tx", "us-fl", "us-wa", "us-ca", "us-ny", "us-ny-nyc", "us-il", "us-pa", "us-ma", "us-nj", "us-ga", "us-nc", "us-co", "us-az", "us-oh"],
-  EUR: ["de", "fr", "es", "it", "nl", "ie", "pt", "at", "fi"],
+  EUR: ["de", "fr", "es", "it", "nl", "be", "lu", "ie", "pt", "at", "fi"],
   GBP: ["gb", "gb-sct"],
   CA: ["ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"]
 };

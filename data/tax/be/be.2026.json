@@ -1,0 +1,341 @@
+{
+  "id": "be",
+  "name": "Belgium",
+  "kind": "country",
+  "country": "BE",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "nl-BE",
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {
+    "municipality": {
+      "label": "Municipal surcharge",
+      "default": "avg",
+      "inSummary": true,
+      "choices": {
+        "avg": "Flemish average (7.22%)",
+        "antwerpen": "Antwerp (7%)",
+        "gent": "Ghent (6.5%)",
+        "leuven": "Leuven (6.7%)",
+        "brugge": "Bruges (6.9%)"
+      }
+    }
+  },
+  "items": [
+    {
+      "id": "be-rsz",
+      "label": "Social security (RSZ/ONSS)",
+      "group": "social",
+      "note": "13.07% of gross pay, with no ceiling.",
+      "charge": {
+        "pct": 13.07,
+        "of": "gross"
+      }
+    },
+    {
+      "id": "be-expenses",
+      "label": "Professional expenses (lump sum)",
+      "show": true,
+      "note": "30% of pay after social security, up to €6,070.",
+      "value": {
+        "min": [
+          {
+            "pct": 30,
+            "of": {
+              "sub": [
+                "gross",
+                "be-rsz"
+              ]
+            }
+          },
+          6070
+        ]
+      }
+    },
+    {
+      "id": "be-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              "be-rsz",
+              "be-expenses"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "be-income-tax",
+      "label": "Income tax (federal and regional)",
+      "group": "tax",
+      "note": "25% to €16,720, 40% to €29,510, 45% to €51,070 and 50% above, less 25% of the €11,550 tax-free amount (€2,887.50).",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    25
+                  ],
+                  [
+                    16720,
+                    40
+                  ],
+                  [
+                    29510,
+                    45
+                  ],
+                  [
+                    51070,
+                    50
+                  ]
+                ],
+                "of": "be-taxable"
+              },
+              2887.5
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "be-municipal",
+      "label": "Municipal surcharge",
+      "group": "tax",
+      "note": "A percentage of the income tax set by each municipality: 7.22% on average in Flanders for 2026.",
+      "charge": {
+        "mul": [
+          "be-income-tax",
+          {
+            "option": "municipality",
+            "cases": {
+              "avg": 0.0722,
+              "antwerpen": 0.07,
+              "gent": 0.065,
+              "leuven": 0.067,
+              "brugge": 0.069
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "be-bbsz",
+      "label": "Special social security contribution (BBSZ)",
+      "group": "social",
+      "note": "The withholding scale for someone taxed alone: nothing on pay up to €1,945.38 a month, then a set amount plus 4.22%, 1.10%, 3.38% and 1.10% bands, at most €182.82 a quarter (€731.28 a year).",
+      "charge": {
+        "sum": [
+          {
+            "lookup": [
+              [
+                0,
+                0
+              ],
+              [
+                23344.56,
+                0
+              ],
+              [
+                26282.16,
+                123.96
+              ],
+              [
+                44844,
+                328.2
+              ],
+              [
+                49200,
+                475.32
+              ],
+              [
+                72465.84,
+                731.28
+              ]
+            ],
+            "of": "gross"
+          },
+          {
+            "mul": [
+              {
+                "sub": [
+                  "gross",
+                  {
+                    "lookup": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        23344.56,
+                        23344.56
+                      ],
+                      [
+                        26282.16,
+                        26282.16
+                      ],
+                      [
+                        44844,
+                        44844
+                      ],
+                      [
+                        49200,
+                        49200
+                      ],
+                      [
+                        72465.84,
+                        72465.84
+                      ]
+                    ],
+                    "of": "gross"
+                  }
+                ]
+              },
+              {
+                "div": [
+                  {
+                    "lookup": [
+                      [
+                        0,
+                        0
+                      ],
+                      [
+                        23344.56,
+                        4.22
+                      ],
+                      [
+                        26282.16,
+                        1.1
+                      ],
+                      [
+                        44844,
+                        3.38
+                      ],
+                      [
+                        49200,
+                        1.1
+                      ],
+                      [
+                        72465.84,
+                        0
+                      ]
+                    ],
+                    "of": "gross"
+                  },
+                  100
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Single white-collar employee, no children, taxed alone; 2026 income, assessed in 2027 (aanslagjaar 2027)",
+    "Gross is the annual pay subject to social security; holiday pay and 13th month are treated like ordinary pay",
+    "Municipal surcharge at the Flemish average unless you pick a municipality",
+    "Special social security contribution at the employer's withholding scale, spread evenly over the year"
+  ],
+  "notModelled": [
+    "Werkbonus and the low-wage tax credit, which cut tax and contributions on lower salaries",
+    "Tax-free supplements for children and dependants",
+    "Meal vouchers, company cars and other benefits",
+    "Brussels and Walloon municipalities",
+    "The final settlement of the special social security contribution on the tax assessment, which uses household income",
+    "Pension savings, service vouchers and other tax reductions"
+  ],
+  "provisional": [
+    "The 13.07% employee social security rate comes from secondary sources",
+    "The 2026 tax bands and €6,070 lump-sum cap come from tax publishers (Practicali, Plutus), not an official page; Plutus gives a different tax-free amount (€11,180) from Wikifin's €11,550"
+  ],
+  "sources": [
+    {
+      "title": "Wikifin (FSMA) — belastingvrije som, aanslagjaar 2027",
+      "url": "https://www.wikifin.be/nl/belasting-werk-en-inkomen/belastingaangifte/je-beroepsinkomen/je-bent-werknemer"
+    },
+    {
+      "title": "Practicali — geïndexeerde bedragen aanslagjaar 2027",
+      "url": "https://www.practicali.be/blog/geindexeerde-bedragen-aj-2027"
+    },
+    {
+      "title": "Plutus — fiscale kerncijfers aanslagjaar 2027",
+      "url": "https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027"
+    },
+    {
+      "title": "RSZ — administratieve instructies 2026/1: bijzondere bijdrage voor de sociale zekerheid",
+      "url": "https://www.socialsecurity.be/employer/instructions/dmfa/nl/2026-1/instructions/special_contributions/other_specialcontributions/specialsocialsecuritycontribution.html"
+    },
+    {
+      "title": "Vlaanderen — aanslagvoeten aanvullende personenbelasting per gemeente 2008–2026 (csv)",
+      "url": "https://assets.vlaanderen.be/raw/upload/v1770295328/repositories-prd/APB_2008_2026_exbo2t.csv"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Official and publisher sources, Nov 2026",
+      "note": "Tax bands and lump-sum cap from Practicali and Plutus (AJ 2027); €11,550 tax-free amount from Wikifin; BBSZ withholding scale from the RSZ 2026/1 instructions; municipal rates and the 7.22% Flemish average from the Flemish government's 2026 dataset."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": null,
+  "verifyAt": "https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027",
+  "tests": [
+    {
+      "gross": 50000,
+      "note": "RSZ 13.07% = 6,535; 30% of 43,465 = 13,039.50, capped at 6,070. Taxable 37,395: 4,180 + 12,790 × 40% (5,116) + 7,885 × 45% (3,548.25) = 12,844.25 − 2,887.50 = 9,956.75. Municipal 7.22% = 718.88. BBSZ: monthly 4,166.67 is in the €4,100–6,038.82 band: 4 × 118.83 + 12 × 1.10% × 66.67 = 475.32 + 8.80 = 484.12.",
+      "expect": {
+        "be-rsz": 6535,
+        "be-expenses": 6070,
+        "be-taxable": 37395,
+        "be-income-tax": 9956.75,
+        "be-municipal": 718.88,
+        "be-bbsz": 484.12,
+        "net": 32305.25
+      }
+    },
+    {
+      "gross": 30000,
+      "note": "RSZ 3,921; taxable 30,000 − 3,921 − 6,070 = 20,009: 4,180 + 3,289 × 40% = 5,495.60 − 2,887.50 = 2,608.10; municipal 188.30. BBSZ: monthly 2,500 is in the €2,190.18–3,737 band: 4 × 30.99 + 12 × 1.10% × 309.82 = 123.96 + 40.90 = 164.86.",
+      "expect": {
+        "be-income-tax": 2608.1,
+        "be-municipal": 188.3,
+        "be-bbsz": 164.86,
+        "net": 23117.74
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "RSZ 13,070; taxable 80,860: 4,180 + 5,116 + 21,560 × 45% (9,702) + 29,790 × 50% (14,895) = 33,893 − 2,887.50 = 31,005.50; municipal 2,238.60; BBSZ at the €731.28 maximum.",
+      "expect": {
+        "be-income-tax": 31005.5,
+        "be-bbsz": 731.28,
+        "net": 52954.62
+      }
+    },
+    {
+      "gross": 50000,
+      "options": {
+        "municipality": "gent"
+      },
+      "note": "As the first case with Ghent's 6.5%: 9,956.75 × 6.5% = 647.19.",
+      "expect": {
+        "be-municipal": 647.19,
+        "net": 32376.94
+      }
+    }
+  ]
+}
