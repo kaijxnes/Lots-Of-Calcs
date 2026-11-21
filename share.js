@@ -88,6 +88,46 @@
   }
   bar.appendChild(note);
   tool.appendChild(bar);
+
+  /* ---------- save on this device ----------
+     Keeps the link to these numbers (the same one "Copy a link" makes) in
+     localStorage, listed under the calculator with the date, to reopen or
+     delete later. Nothing leaves the device. */
+  var KEY = "loc-saved";
+  function readSaved() { try { return JSON.parse(localStorage.getItem(KEY) || "[]"); } catch (e) { return null; } }
+  if (readSaved() !== null) {
+    var sv = document.createElement("button");
+    sv.type = "button";
+    sv.className = "btn btn-ghost share-btn no-print";
+    sv.textContent = "☆ Save on this device";
+    sv.style.marginLeft = "8px";
+    bar.insertBefore(sv, note);
+    var listBox = document.createElement("div");
+    listBox.className = "saved-calcs no-print";
+    tool.appendChild(listBox);
+    var here = window.location.pathname;
+    function draw() {
+      var all = readSaved() || [], mine = all.filter(function (x) { return x.path === here; });
+      if (!mine.length) { listBox.innerHTML = ""; return; }
+      listBox.innerHTML = '<p class="tool-section-title">Saved on this device</p><ul>' + mine.map(function (x) {
+        return '<li><a href="' + x.url.replace(/"/g, "&quot;") + '">' + x.label.replace(/</g, "&lt;") + '</a> <button type="button" class="saved-del" data-t="' + x.t + '" aria-label="Delete saved calculation">✕</button></li>';
+      }).join("") + "</ul>";
+    }
+    sv.addEventListener("click", function () {
+      var all = readSaved() || [], url = link(), when = new Date();
+      var label = when.toLocaleDateString(undefined, { day: "numeric", month: "short" }) + " " + when.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+      all.unshift({ path: here, url: url, label: label, t: when.getTime() });
+      try { localStorage.setItem(KEY, JSON.stringify(all.slice(0, 100))); note.textContent = "Saved — find it below, on this device."; } catch (e) { note.textContent = "Couldn't save (private browsing?)."; }
+      draw();
+    });
+    listBox.addEventListener("click", function (e) {
+      var t = e.target.getAttribute && e.target.getAttribute("data-t");
+      if (!t) return;
+      try { localStorage.setItem(KEY, JSON.stringify((readSaved() || []).filter(function (x) { return String(x.t) !== t; }))); } catch (err) { /* ignore */ }
+      draw();
+    });
+    draw();
+  }
   if (applied) note.textContent = "Showing the numbers from a shared link.";
 })();
 
