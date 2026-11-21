@@ -1670,3 +1670,9 @@ hr.divider {
 .embed-box { margin: 20px 0 0; }
 .embed-box summary { cursor: pointer; color: var(--text-muted); font-size: 0.9rem; }
 .embed-box textarea { width: 100%; box-sizing: border-box; margin-top: 8px; font: 0.8rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 10px; border-radius: 10px; border: 1px solid rgba(127,127,127,0.35); background: transparent; color: inherit; resize: vertical; }
+
+/* Homepage search: matching pages beyond the calculator cards (hub-search.js) */
+.page-results { margin: 8px 0 20px; }
+.page-results-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.page-results-list a { display: block; padding: 10px 14px; border-radius: 12px; background: var(--calc-bg); border: 1px solid var(--border); text-decoration: none; color: var(--text-main); }
+.page-results-list a:hover { border-color: var(--accent); }

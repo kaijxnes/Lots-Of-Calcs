@@ -34,3 +34,38 @@ function filterCards() {
 }
 
 searchInput.addEventListener("input", filterCards);
+
+/* ---------- pages beyond the calculator cards ----------
+   After a few letters, search every page's title (/search-index.json, built
+   by tools/build-search-index.js and loaded on first use): "45000 after tax",
+   "20% off 50", "gmt to est". Numbers match with or without commas and £/$/€,
+   and "45k" means 45000. */
+(function () {
+  if (!searchInput) return;
+  let index = null, loading = null;
+  const box = document.createElement("div");
+  box.className = "page-results";
+  box.hidden = true;
+  (noResults || searchInput).insertAdjacentElement("afterend", box);
+  const norm = (s) => s.toLowerCase().replace(/(\d+(?:\.\d+)?)k\b/g, (m, n) => String(Math.round(parseFloat(n) * 1000))).replace(/[£$€,]/g, "").replace(/\s+/g, " ").trim();
+  function load() {
+    if (!loading) loading = fetch("/search-index.json").then((r) => r.json()).then((d) => { index = d.map(([u, t]) => [u, t, norm(t + " " + u.replace(/[/-]/g, " "))]); }).catch(() => { index = []; });
+    return loading;
+  }
+  function esc(s) { return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
+  function show() {
+    const q = norm(searchInput.value);
+    if (q.length < 3) { box.hidden = true; return; }
+    if (!index) { load().then(show); return; }
+    const words = q.split(" ");
+    const hits = index.filter((p) => words.every((w) => p[2].includes(w)))
+      .map((p) => [p, (p[2].startsWith(q) ? 0 : p[2].includes(q) ? 1 : 2)])
+      .sort((a, b) => a[1] - b[1] || a[0][1].length - b[0][1].length).map((x) => x[0]).slice(0, 12);
+    if (!hits.length) { box.hidden = true; return; }
+    box.innerHTML = `<div class="hub-group-title">Pages</div><ul class="page-results-list">${hits.map((p) => `<li><a href="${p[0]}">${esc(p[1])}</a></li>`).join("")}</ul>`;
+    box.hidden = false;
+    if (noResults) noResults.hidden = true;
+  }
+  searchInput.addEventListener("focus", load, { once: true });
+  searchInput.addEventListener("input", show);
+})();
