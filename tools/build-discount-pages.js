@@ -43,7 +43,7 @@ function page(x, y) {
   const mult = Math.round((100 - x)) / 100;
   /* a further 10% off at the till, the usual Black Friday "extra" */
   const extra = cents(p * 0.9), total = cents(y - extra), totalPct = Math.round((1 - extra / y) * 1000) / 10;
-  const title = site.fitTitle(`${x}% Off £${y} — Sale Price ${g(p)}, You Save ${g(s)}`, `${x}% Off £${y} = ${g(p)} (Save ${g(s)})`);
+  const title = site.fitTitle(`${x}% Off ${g(y)} — Sale Price ${g(p)}, You Save ${g(s)}`, `${x}% Off ${g(y)} = ${g(p)} (Save ${g(s)})`);
   const desc = `${x}% off ${g(y)} is ${g(p)}: you save ${g(s)}. Multiply ${g(y)} by ${mult} to get the sale price. With a quick way to work it out in the shop, and what an extra 10% off makes it.`;
   const q = [
     [`What is ${x}% off ${g(y)}?`, `${g(p)}. ${x}% of ${g(y)} is ${g(s)}, and ${g(y)} − ${g(s)} = ${g(p)}. Or in one step: ${g(y)} × ${mult} = ${g(p)}.`],
@@ -51,13 +51,13 @@ function page(x, y) {
     [`How do I work out ${x}% off in my head?`, shortcut(x, y)],
     [`Is ${x}% off and then 10% off the same as ${x + 10}% off?`, `No — the second discount comes off the already-reduced price. ${x}% off ${g(y)} is ${g(p)}; another 10% off that is ${g(extra)}, a total saving of ${g(total)} or ${totalPct}% — ${x + 10 >= 100 ? "not" : "a little less than"} ${x + 10}% off${x + 10 < 100 ? ` (${g(sale(x + 10, y))})` : ""}.`]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Discount Calculator", SITE + BASE], [`${x}% off £${y}`, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Discount Calculator", SITE + BASE], [`${x}% off ${g(y)}`, url]]), site.faqLd(q)];
   const otherPcts = PCTS.map((pc) => [pc === x ? `<strong>${pc}% off</strong>` : `<a href="${BASE}${slug(pc, y)}/">${pc}% off ${g(y)}</a>`, g(sale(pc, y)), g(saving(pc, y))]);
   const otherPrices = site.neighbours(PRICES, y, 5).concat([y]).sort((a, b) => a - b)
     .map((m) => [m === y ? `<strong>${x}% off ${g(m)}</strong>` : `<a href="${BASE}${slug(x, m)}/">${x}% off ${g(m)}</a>`, g(sale(x, m)), g(saving(x, m))]);
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Discount calculator</a>
-      <h1 class="page-title">${x}% off £${y}</h1>
+      <h1 class="page-title">${x}% off ${g(y)}</h1>
       <p class="page-subtitle">${x}% off ${g(y)} is <strong>${g(p)}</strong> — you save ${g(s)}.</p>
     </header>
 
