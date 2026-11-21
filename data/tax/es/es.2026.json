@@ -80,6 +80,15 @@
         5000
       ],
       "inSummary": false
+    },
+    "regime": {
+      "label": "Tax regime",
+      "default": "standard",
+      "inSummary": false,
+      "choices": {
+        "standard": "Standard (resident IRPF)",
+        "beckham": "Beckham law (special regime for workers moving to Spain)"
+      }
     }
   },
   "items": [
@@ -204,24 +213,30 @@
       "id": "es-base",
       "label": "Taxable base (base liquidable)",
       "show": true,
-      "note": "Net earnings less the reduction for employment income and any pension plan reduction. Married couples filing jointly take a further €3,400 off.",
+      "note": "Net earnings less the reduction for employment income and any pension plan reduction. Married couples filing jointly take a further €3,400 off. Under the Beckham law it is simply your gross pay: no allowances or reductions.",
       "value": {
-        "max": [
-          0,
-          {
-            "sub": [
-              "es-net-earnings",
-              "es-earnings-reduction",
-              "es-pension-reduction",
+        "option": "regime",
+        "cases": {
+          "standard": {
+            "max": [
+              0,
               {
-                "status": {
-                  "single": 0,
-                  "married": 3400
-                }
+                "sub": [
+                  "es-net-earnings",
+                  "es-earnings-reduction",
+                  "es-pension-reduction",
+                  {
+                    "status": {
+                      "single": 0,
+                      "married": 3400
+                    }
+                  }
+                ]
               }
             ]
-          }
-        ]
+          },
+          "beckham": "gross"
+        }
       }
     },
     {
@@ -247,88 +262,93 @@
       "show": true,
       "note": "€5,550 for you, plus €2,400, €2,700, €4,000 and €4,500 for the first, second, third and each further child, and €2,800 more for each child under 3 (arts. 57 and 58).",
       "value": {
-        "sum": [
-          5550,
-          {
-            "mul": [
-              "es-child-share",
+        "option": "regime",
+        "cases": {
+          "standard": {
+            "sum": [
+              5550,
               {
-                "sum": [
+                "mul": [
+                  "es-child-share",
                   {
-                    "mul": [
-                      2400,
+                    "sum": [
                       {
-                        "min": [
+                        "mul": [
+                          2400,
                           {
-                            "input": "children"
-                          },
-                          1
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "mul": [
-                      2700,
-                      {
-                        "clamp": {
-                          "sub": [
-                            {
-                              "input": "children"
-                            },
-                            1
-                          ]
-                        },
-                        "min": 0,
-                        "max": 1
-                      }
-                    ]
-                  },
-                  {
-                    "mul": [
-                      4000,
-                      {
-                        "clamp": {
-                          "sub": [
-                            {
-                              "input": "children"
-                            },
-                            2
-                          ]
-                        },
-                        "min": 0,
-                        "max": 1
-                      }
-                    ]
-                  },
-                  {
-                    "mul": [
-                      4500,
-                      {
-                        "max": [
-                          0,
-                          {
-                            "sub": [
+                            "min": [
                               {
                                 "input": "children"
                               },
-                              3
+                              1
                             ]
                           }
                         ]
-                      }
-                    ]
-                  },
-                  {
-                    "mul": [
-                      2800,
+                      },
                       {
-                        "min": [
+                        "mul": [
+                          2700,
                           {
-                            "input": "childrenUnder3"
-                          },
+                            "clamp": {
+                              "sub": [
+                                {
+                                  "input": "children"
+                                },
+                                1
+                              ]
+                            },
+                            "min": 0,
+                            "max": 1
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          4000,
                           {
-                            "input": "children"
+                            "clamp": {
+                              "sub": [
+                                {
+                                  "input": "children"
+                                },
+                                2
+                              ]
+                            },
+                            "min": 0,
+                            "max": 1
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          4500,
+                          {
+                            "max": [
+                              0,
+                              {
+                                "sub": [
+                                  {
+                                    "input": "children"
+                                  },
+                                  3
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      },
+                      {
+                        "mul": [
+                          2800,
+                          {
+                            "min": [
+                              {
+                                "input": "childrenUnder3"
+                              },
+                              {
+                                "input": "children"
+                              }
+                            ]
                           }
                         ]
                       }
@@ -337,8 +357,9 @@
                 ]
               }
             ]
-          }
-        ]
+          },
+          "beckham": 0
+        }
       }
     },
     {
@@ -638,415 +659,457 @@
       "id": "es-state-tax",
       "label": "Income tax — state share (IRPF estatal)",
       "group": "tax",
-      "note": "The state scale on the base, less the same scale applied to the personal and family minimum.",
+      "note": "The state scale on the base, less the same scale applied to the personal and family minimum. Under the Beckham law the whole tax is 24% of gross pay up to €600,000 and 47% above, with half shown as the state share and half as the regional share, as the Modelo 151 return splits it.",
       "charge": {
-        "max": [
-          0,
-          {
-            "sub": [
+        "option": "regime",
+        "cases": {
+          "standard": {
+            "max": [
+              0,
               {
-                "brackets": [
-                  [
-                    0,
-                    9.5
-                  ],
-                  [
-                    12450,
-                    12
-                  ],
-                  [
-                    20200,
-                    15
-                  ],
-                  [
-                    35200,
-                    18.5
-                  ],
-                  [
-                    60000,
-                    22.5
-                  ],
-                  [
-                    300000,
-                    24.5
-                  ]
-                ],
-                "of": "es-base"
-              },
-              {
-                "brackets": [
-                  [
-                    0,
-                    9.5
-                  ],
-                  [
-                    12450,
-                    12
-                  ],
-                  [
-                    20200,
-                    15
-                  ],
-                  [
-                    35200,
-                    18.5
-                  ],
-                  [
-                    60000,
-                    22.5
-                  ],
-                  [
-                    300000,
-                    24.5
-                  ]
-                ],
-                "of": {
-                  "min": [
-                    "es-minimum-state",
-                    "es-base"
-                  ]
-                }
+                "sub": [
+                  {
+                    "brackets": [
+                      [
+                        0,
+                        9.5
+                      ],
+                      [
+                        12450,
+                        12
+                      ],
+                      [
+                        20200,
+                        15
+                      ],
+                      [
+                        35200,
+                        18.5
+                      ],
+                      [
+                        60000,
+                        22.5
+                      ],
+                      [
+                        300000,
+                        24.5
+                      ]
+                    ],
+                    "of": "es-base"
+                  },
+                  {
+                    "brackets": [
+                      [
+                        0,
+                        9.5
+                      ],
+                      [
+                        12450,
+                        12
+                      ],
+                      [
+                        20200,
+                        15
+                      ],
+                      [
+                        35200,
+                        18.5
+                      ],
+                      [
+                        60000,
+                        22.5
+                      ],
+                      [
+                        300000,
+                        24.5
+                      ]
+                    ],
+                    "of": {
+                      "min": [
+                        "es-minimum-state",
+                        "es-base"
+                      ]
+                    }
+                  }
+                ]
               }
             ]
+          },
+          "beckham": {
+            "pct": 50,
+            "of": {
+              "brackets": [
+                [
+                  0,
+                  24
+                ],
+                [
+                  600000,
+                  47
+                ]
+              ],
+              "of": "gross"
+            }
           }
-        ]
+        }
       }
     },
     {
       "id": "es-regional-tax",
       "label": "Income tax — regional share (IRPF autonómico)",
       "group": "tax",
-      "note": "Each autonomous community sets its own scale for its half of IRPF. Valencia's 2026 scale is the one cut in July 2026 with effect from January (Ley 5/2026).",
+      "note": "Each autonomous community sets its own scale for its half of IRPF. Valencia's 2026 scale is the one cut in July 2026 with effect from January (Ley 5/2026). Under the Beckham law the regional scale doesn't apply: this is the other half of the flat 24% / 47%.",
       "charge": {
-        "option": "region",
+        "option": "regime",
         "cases": {
-          "madrid": {
-            "max": [
-              0,
-              {
-                "sub": [
+          "standard": {
+            "option": "region",
+            "cases": {
+              "madrid": {
+                "max": [
+                  0,
                   {
-                    "brackets": [
-                      [
-                        0,
-                        8.5
-                      ],
-                      [
-                        13362.22,
-                        10.7
-                      ],
-                      [
-                        19004.63,
-                        12.8
-                      ],
-                      [
-                        35425.68,
-                        17.4
-                      ],
-                      [
-                        57320.4,
-                        20.5
-                      ]
-                    ],
-                    "of": "es-base"
-                  },
+                    "sub": [
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            8.5
+                          ],
+                          [
+                            13362.22,
+                            10.7
+                          ],
+                          [
+                            19004.63,
+                            12.8
+                          ],
+                          [
+                            35425.68,
+                            17.4
+                          ],
+                          [
+                            57320.4,
+                            20.5
+                          ]
+                        ],
+                        "of": "es-base"
+                      },
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            8.5
+                          ],
+                          [
+                            13362.22,
+                            10.7
+                          ],
+                          [
+                            19004.63,
+                            12.8
+                          ],
+                          [
+                            35425.68,
+                            17.4
+                          ],
+                          [
+                            57320.4,
+                            20.5
+                          ]
+                        ],
+                        "of": {
+                          "min": [
+                            "es-minimum-regional",
+                            "es-base"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "catalonia": {
+                "max": [
+                  0,
                   {
-                    "brackets": [
-                      [
-                        0,
-                        8.5
-                      ],
-                      [
-                        13362.22,
-                        10.7
-                      ],
-                      [
-                        19004.63,
-                        12.8
-                      ],
-                      [
-                        35425.68,
-                        17.4
-                      ],
-                      [
-                        57320.4,
-                        20.5
-                      ]
-                    ],
-                    "of": {
-                      "min": [
-                        "es-minimum-regional",
-                        "es-base"
-                      ]
-                    }
+                    "sub": [
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            9.5
+                          ],
+                          [
+                            12500,
+                            12.5
+                          ],
+                          [
+                            22000,
+                            16
+                          ],
+                          [
+                            33000,
+                            19
+                          ],
+                          [
+                            53000,
+                            21.5
+                          ],
+                          [
+                            90000,
+                            23.5
+                          ],
+                          [
+                            120000,
+                            24.5
+                          ],
+                          [
+                            175000,
+                            25.5
+                          ]
+                        ],
+                        "of": "es-base"
+                      },
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            9.5
+                          ],
+                          [
+                            12500,
+                            12.5
+                          ],
+                          [
+                            22000,
+                            16
+                          ],
+                          [
+                            33000,
+                            19
+                          ],
+                          [
+                            53000,
+                            21.5
+                          ],
+                          [
+                            90000,
+                            23.5
+                          ],
+                          [
+                            120000,
+                            24.5
+                          ],
+                          [
+                            175000,
+                            25.5
+                          ]
+                        ],
+                        "of": {
+                          "min": [
+                            "es-minimum-regional",
+                            "es-base"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "andalusia": {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            9.5
+                          ],
+                          [
+                            13000,
+                            12
+                          ],
+                          [
+                            21100,
+                            15
+                          ],
+                          [
+                            35200,
+                            18.5
+                          ],
+                          [
+                            60000,
+                            22.5
+                          ]
+                        ],
+                        "of": "es-base"
+                      },
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            9.5
+                          ],
+                          [
+                            13000,
+                            12
+                          ],
+                          [
+                            21100,
+                            15
+                          ],
+                          [
+                            35200,
+                            18.5
+                          ],
+                          [
+                            60000,
+                            22.5
+                          ]
+                        ],
+                        "of": {
+                          "min": [
+                            "es-minimum-regional",
+                            "es-base"
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              "valencia": {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            8.8
+                          ],
+                          [
+                            12000,
+                            11.7
+                          ],
+                          [
+                            22000,
+                            14.6
+                          ],
+                          [
+                            32000,
+                            17
+                          ],
+                          [
+                            42000,
+                            19.4
+                          ],
+                          [
+                            52000,
+                            21.9
+                          ],
+                          [
+                            62000,
+                            24.4
+                          ],
+                          [
+                            72000,
+                            26.1
+                          ],
+                          [
+                            100000,
+                            27.35
+                          ],
+                          [
+                            150000,
+                            28.35
+                          ],
+                          [
+                            200000,
+                            29.35
+                          ]
+                        ],
+                        "of": "es-base"
+                      },
+                      {
+                        "brackets": [
+                          [
+                            0,
+                            8.8
+                          ],
+                          [
+                            12000,
+                            11.7
+                          ],
+                          [
+                            22000,
+                            14.6
+                          ],
+                          [
+                            32000,
+                            17
+                          ],
+                          [
+                            42000,
+                            19.4
+                          ],
+                          [
+                            52000,
+                            21.9
+                          ],
+                          [
+                            62000,
+                            24.4
+                          ],
+                          [
+                            72000,
+                            26.1
+                          ],
+                          [
+                            100000,
+                            27.35
+                          ],
+                          [
+                            150000,
+                            28.35
+                          ],
+                          [
+                            200000,
+                            29.35
+                          ]
+                        ],
+                        "of": {
+                          "min": [
+                            "es-minimum-regional",
+                            "es-base"
+                          ]
+                        }
+                      }
+                    ]
                   }
                 ]
               }
-            ]
+            }
           },
-          "catalonia": {
-            "max": [
-              0,
-              {
-                "sub": [
-                  {
-                    "brackets": [
-                      [
-                        0,
-                        9.5
-                      ],
-                      [
-                        12500,
-                        12.5
-                      ],
-                      [
-                        22000,
-                        16
-                      ],
-                      [
-                        33000,
-                        19
-                      ],
-                      [
-                        53000,
-                        21.5
-                      ],
-                      [
-                        90000,
-                        23.5
-                      ],
-                      [
-                        120000,
-                        24.5
-                      ],
-                      [
-                        175000,
-                        25.5
-                      ]
-                    ],
-                    "of": "es-base"
-                  },
-                  {
-                    "brackets": [
-                      [
-                        0,
-                        9.5
-                      ],
-                      [
-                        12500,
-                        12.5
-                      ],
-                      [
-                        22000,
-                        16
-                      ],
-                      [
-                        33000,
-                        19
-                      ],
-                      [
-                        53000,
-                        21.5
-                      ],
-                      [
-                        90000,
-                        23.5
-                      ],
-                      [
-                        120000,
-                        24.5
-                      ],
-                      [
-                        175000,
-                        25.5
-                      ]
-                    ],
-                    "of": {
-                      "min": [
-                        "es-minimum-regional",
-                        "es-base"
-                      ]
-                    }
-                  }
+          "beckham": {
+            "pct": 50,
+            "of": {
+              "brackets": [
+                [
+                  0,
+                  24
+                ],
+                [
+                  600000,
+                  47
                 ]
-              }
-            ]
-          },
-          "andalusia": {
-            "max": [
-              0,
-              {
-                "sub": [
-                  {
-                    "brackets": [
-                      [
-                        0,
-                        9.5
-                      ],
-                      [
-                        13000,
-                        12
-                      ],
-                      [
-                        21100,
-                        15
-                      ],
-                      [
-                        35200,
-                        18.5
-                      ],
-                      [
-                        60000,
-                        22.5
-                      ]
-                    ],
-                    "of": "es-base"
-                  },
-                  {
-                    "brackets": [
-                      [
-                        0,
-                        9.5
-                      ],
-                      [
-                        13000,
-                        12
-                      ],
-                      [
-                        21100,
-                        15
-                      ],
-                      [
-                        35200,
-                        18.5
-                      ],
-                      [
-                        60000,
-                        22.5
-                      ]
-                    ],
-                    "of": {
-                      "min": [
-                        "es-minimum-regional",
-                        "es-base"
-                      ]
-                    }
-                  }
-                ]
-              }
-            ]
-          },
-          "valencia": {
-            "max": [
-              0,
-              {
-                "sub": [
-                  {
-                    "brackets": [
-                      [
-                        0,
-                        8.8
-                      ],
-                      [
-                        12000,
-                        11.7
-                      ],
-                      [
-                        22000,
-                        14.6
-                      ],
-                      [
-                        32000,
-                        17
-                      ],
-                      [
-                        42000,
-                        19.4
-                      ],
-                      [
-                        52000,
-                        21.9
-                      ],
-                      [
-                        62000,
-                        24.4
-                      ],
-                      [
-                        72000,
-                        26.1
-                      ],
-                      [
-                        100000,
-                        27.35
-                      ],
-                      [
-                        150000,
-                        28.35
-                      ],
-                      [
-                        200000,
-                        29.35
-                      ]
-                    ],
-                    "of": "es-base"
-                  },
-                  {
-                    "brackets": [
-                      [
-                        0,
-                        8.8
-                      ],
-                      [
-                        12000,
-                        11.7
-                      ],
-                      [
-                        22000,
-                        14.6
-                      ],
-                      [
-                        32000,
-                        17
-                      ],
-                      [
-                        42000,
-                        19.4
-                      ],
-                      [
-                        52000,
-                        21.9
-                      ],
-                      [
-                        62000,
-                        24.4
-                      ],
-                      [
-                        72000,
-                        26.1
-                      ],
-                      [
-                        100000,
-                        27.35
-                      ],
-                      [
-                        150000,
-                        28.35
-                      ],
-                      [
-                        200000,
-                        29.35
-                      ]
-                    ],
-                    "of": {
-                      "min": [
-                        "es-minimum-regional",
-                        "es-base"
-                      ]
-                    }
-                  }
-                ]
-              }
-            ]
+              ],
+              "of": "gross"
+            }
           }
         }
       }
@@ -1064,14 +1127,16 @@
   "assumptions": [
     "A permanent (indefinite) contract under the general social security scheme",
     "Children only if entered; under 65",
-    "Employment income only"
+    "Employment income only",
+    "Under the Beckham law: Spanish social security is paid as usual (not if you stay in your home country's system under a posting certificate)"
   ],
   "notModelled": [
     "Regions other than Madrid, Catalonia, Andalusia and Valencia, and the separate Basque and Navarre systems",
     "Regional and state deductions (rent, family, donations) and higher regional personal minimums",
     "The solidarity contribution on pay above the maximum base (a fraction of 1% for the employee)",
     "Employer pension contributions and the higher €8,500 limit for company plans",
-    "Regional deductions for children (e.g. Madrid's birth and childcare deductions)"
+    "Regional deductions for children (e.g. Madrid's birth and childcare deductions)",
+    "Beckham law: savings income (taxed at 19%–30%), foreign income, and the deductions for donations and double taxation"
   ],
   "provisional": [
     "The Catalan scale (eight bands from 9.5% to 25.5%, Decree-law 5/2025) comes from secondary sources that agree with each other; older tables starting at 10.5% are still in circulation"
@@ -1120,6 +1185,18 @@
     {
       "title": "Comunitat Valenciana: Ley 5/2026, de 31 de julio (2026 scale cut)",
       "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2026-19331"
+    },
+    {
+      "title": "BOE — Ley 35/2006 del IRPF, artículo 93 (régimen especial para trabajadores desplazados)",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"
+    },
+    {
+      "title": "Agencia Tributaria — Modelo 151, instrucciones de cumplimentación (ejercicio 2023 y siguientes)",
+      "url": "https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-151-decla_____los-trabajadores-desplazados-espanol_/instrucciones-cumplimentacion-ejercicio-2023-siguientes.html"
+    },
+    {
+      "title": "BOE — Reglamento del IRPF (RD 439/2007), artículos 113–120",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2007-6820"
     }
   ],
   "obtainedFrom": [
@@ -1134,6 +1211,10 @@
     {
       "title": "Text extracted from the BOE consolidated PDFs, 11 Nov 2026",
       "note": "Andalusian scale and minimums (Ley 5/2021 arts. 23, 23 bis, updated 31 Dec 2025); Valencian 2026 scale and minimums (Ley 13/1997 arts. 2, 2 bis, consolidated 10 Aug 2026 incl. Ley 5/2026)."
+    },
+    {
+      "title": "BOE and Agencia Tributaria, read 21 Nov 2026",
+      "note": "Beckham law: art. 93.2.e Ley 35/2006 — 'Hasta 600.000 euros' 24, 'Desde 600.000,01 euros en adelante' 47; the year of the move and the five following; not resident in the previous five years (art. 93.1). Modelo 151: employment income entered as 'Rendimiento íntegro' with no deduction lines; cuota split 50% state [22] and 50% autonómica [23]. Reglamento art. 116.1.a: opt in within six months of the start of activity shown in the Social Security registration."
     }
   ],
   "lastVerified": null,
@@ -1331,6 +1412,32 @@
         "es-state-tax": 3758.5,
         "es-regional-tax": 3689.73,
         "net": 29951.78
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "regime": "beckham"
+      },
+      "note": "24% × 60,000 = 14,400, half state and half regional (7,200 each). Social security 6.5% × 60,000 = 3,900. Net 60,000 − 3,900 − 14,400 = 41,700.",
+      "expect": {
+        "es-state-tax": 7200,
+        "es-regional-tax": 7200,
+        "es-base": 60000,
+        "net": 41700
+      }
+    },
+    {
+      "gross": 700000,
+      "options": {
+        "regime": "beckham",
+        "region": "catalonia"
+      },
+      "note": "24% × 600,000 = 144,000 + 47% × 100,000 = 47,000 → 191,000, 95,500 each half. Social security capped: 6.5% × 61,214.40 = 3,978.94.",
+      "expect": {
+        "es-state-tax": 95500,
+        "es-regional-tax": 95500,
+        "es-social-security": 3978.94
       }
     }
   ]

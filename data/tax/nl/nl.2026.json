@@ -25,6 +25,17 @@
         8
       ],
       "inSummary": false
+    },
+    "ruling30": {
+      "label": "30% ruling (expat scheme)",
+      "default": "no",
+      "inSummary": false,
+      "choices": {
+        "no": "No",
+        "yes": "Yes — salary norm €48,013",
+        "young": "Yes — under 30 with a master's, norm €36,497",
+        "research": "Yes — scientific researcher, no salary norm"
+      }
     }
   },
   "items": [
@@ -40,17 +51,87 @@
       }
     },
     {
+      "id": "nl-30-allowance",
+      "label": "30% ruling tax-free allowance",
+      "show": true,
+      "note": "Under the 30% ruling (expatregeling) up to 30% of pay, including the allowance, is paid tax-free, on pay up to €262,000 (a maximum of €78,600 for a full year). The pay left after the allowance must stay above the salary norm — €48,013 in 2026, or €36,497 if you're under 30 with a master's degree — so near the norm the allowance is cut back to keep it there. It lasts up to 5 years.",
+      "value": {
+        "option": "ruling30",
+        "cases": {
+          "no": 0,
+          "yes": {
+            "min": [
+              {
+                "pct": 30,
+                "of": {
+                  "min": [
+                    "gross",
+                    262000
+                  ]
+                }
+              },
+              {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      "gross",
+                      48013
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "young": {
+            "min": [
+              {
+                "pct": 30,
+                "of": {
+                  "min": [
+                    "gross",
+                    262000
+                  ]
+                }
+              },
+              {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      "gross",
+                      36497
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          "research": {
+            "pct": 30,
+            "of": {
+              "min": [
+                "gross",
+                262000
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "nl-taxable",
       "label": "Taxable wage",
       "show": true,
-      "note": "Employee pension premiums come off pay before wage tax and the tax credits are worked out.",
+      "note": "Employee pension premiums, and the tax-free allowance under the 30% ruling, come off pay before wage tax and the tax credits are worked out.",
       "value": {
         "max": [
           0,
           {
             "sub": [
               "gross",
-              "nl-pension-amount"
+              "nl-pension-amount",
+              "nl-30-allowance"
             ]
           }
         ]
@@ -182,9 +263,9 @@
   ],
   "notModelled": [
     "The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay)",
-    "The 30% ruling for incoming employees",
     "Other credits (income-dependent combination credit for parents) and benefits (toeslagen)",
-    "Box 2 and Box 3 income"
+    "Box 2 and Box 3 income",
+    "The 30% ruling for part of a year (the allowance and its €78,600 maximum are pro rata), its transitional rules, and the cut to 27% planned from 2027"
   ],
   "provisional": [],
   "sources": [
@@ -203,12 +284,24 @@
     {
       "title": "Belastingdienst — pensioenpremie: aftrekbaar van het loon",
       "url": "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/werk_en_inkomen/pensioen_en_andere_uitkeringen/"
+    },
+    {
+      "title": "Rijksoverheid — Expatregeling hoogopgeleide buitenlandse werknemers",
+      "url": "https://www.rijksoverheid.nl/themas/werk/inkomstenbelasting/belastingvoordeel-buitenlandse-werknemers"
+    },
+    {
+      "title": "Belastingdienst — Kan ik de expatregeling aanvragen als ik in Nederland kom werken?",
+      "url": "https://www.belastingdienst.nl/wps/wcm/connect/nl/buitenland/content/ik-kom-in-nederland-werken-30-procent-regeling-aanvragen"
     }
   ],
   "obtainedFrom": [
     {
       "title": "Web search, 24 Oct 2026",
       "note": "Box 1 bands (Belastingdienst page excerpt, onderneming.nl and mkbservicedesk agree); general credit €3,115 / 6.398% from €29,736 (Deloitte); labour credit build-up and phase-out (Belastingdienst 2026 table excerpt, Grant Thornton)."
+    },
+    {
+      "title": "Rijksoverheid and Belastingdienst pages, read 21 Nov 2026",
+      "note": "30% ruling: 'In 2025 en 2026 blijft de belastingvrije vergoeding maximaal 30%' and 27% from 2027 (Rijksoverheid); salary norms €48,013 and €36,497 for 2026, none for researchers; maximum €78,600 at a salary of €262,000 or more for a full year (Belastingdienst); €262,000 is the WNT norm and applies to all expats from 1 January 2026 (Rijksoverheid). The government.nl English page still describes the 30/20/10 tiering and 2024 figures, which Rijksoverheid no longer lists."
     }
   ],
   "lastVerified": null,
@@ -280,6 +373,61 @@
         "nl-labour-credit": 5357.64,
         "nl-income-tax": 1823.36,
         "net": 26976.64
+      }
+    },
+    {
+      "gross": 100000,
+      "options": {
+        "ruling30": "yes"
+      },
+      "note": "Allowance 30% × 100,000 = 30,000 (pay left 70,000, above the norm). Taxable 70,000. Box 1: 13,900.67 + 31,117 × 37.56% = 11,687.55 → 25,588.22. General credit 3,115 − 6.398% × 40,264 = 538.91. Labour credit 5,685 − 6.51% × 24,408 = 4,096.04. Tax 20,953.27.",
+      "expect": {
+        "nl-30-allowance": 30000,
+        "nl-taxable": 70000,
+        "nl-income-tax": 20953.27,
+        "net": 79046.73
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "ruling30": "yes"
+      },
+      "note": "30% would be 18,000, but pay left must stay at €48,013 or more, so the allowance is 60,000 − 48,013 = 11,987.",
+      "expect": {
+        "nl-30-allowance": 11987,
+        "nl-taxable": 48013
+      }
+    },
+    {
+      "gross": 45000,
+      "options": {
+        "ruling30": "yes"
+      },
+      "note": "Below the norm: no allowance.",
+      "expect": {
+        "nl-30-allowance": 0
+      }
+    },
+    {
+      "gross": 45000,
+      "options": {
+        "ruling30": "young"
+      },
+      "note": "Under-30 norm €36,497: 30% is 13,500 but 45,000 − 36,497 = 8,503, so 8,503.",
+      "expect": {
+        "nl-30-allowance": 8503
+      }
+    },
+    {
+      "gross": 300000,
+      "options": {
+        "ruling30": "research"
+      },
+      "note": "Capped at 30% × 262,000 = 78,600.",
+      "expect": {
+        "nl-30-allowance": 78600,
+        "nl-taxable": 221400
       }
     }
   ]

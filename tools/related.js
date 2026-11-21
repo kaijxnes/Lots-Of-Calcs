@@ -21,6 +21,8 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/beckham-law-calculator/": ["/salary/", "/30-percent-ruling-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
+  "/30-percent-ruling-calculator/": ["/salary/", "/beckham-law-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
   "/student-loan-calculator/": ["/salary/", "/50-30-20-budget/", "/pay-rise-calculator/", "/loan-repayment/", "/savings-goal/", "/job-offer-comparison/"],
   "/job-offer-comparison/": ["/salary/", "/pay-rise-calculator/", "/50-30-20-budget/", "/fuel-cost/", "/self-employed-tax-calculator/", "/biweekly-pay-schedule/"],
   "/biweekly-pay-schedule/": ["/salary/", "/50-30-20-budget/", "/pay-rise-calculator/", "/working-days/", "/savings-goal/", "/date-diff/"],

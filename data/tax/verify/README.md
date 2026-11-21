@@ -35,14 +35,14 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Saskatchewan | [ca-sk](ca-sk.md) | 2026 | 10 | 2026-11-11 | — |
 | Yukon | [ca-yt](ca-yt.md) | 2026 | 12 | 2026-11-11 | — |
 | Denmark | [dk](dk.md) | 2026 | 25 | — | — |
-| Spain | [es](es.md) | 2026 | 112 | — | — |
+| Spain | [es](es.md) | 2026 | 120 | — | — |
 | Finland | [fi](fi.md) | 2026 | 29 | 2026-11-11 | — |
 | Self-employed (Scotland) | [gb-sct-se](gb-sct-se.md) | 2026/27 | 4 | 2026-11-16 | — |
 | Self-employed (England, Wales & Northern Ireland) | [gb-se](gb-se.md) | 2026/27 | 6 | 2026-11-16 | — |
 | India | [in](in.md) | 2026-27 | 40 | — | — |
 | Italy | [it](it.md) | 2026 | 46 | — | — |
 | Japan | [jp](jp.md) | 2026 | 86 | — | — |
-| Netherlands | [nl](nl.md) | 2026 | 19 | — | — |
+| Netherlands | [nl](nl.md) | 2026 | 32 | — | — |
 | Norway | [no](no.md) | 2026 | 19 | — | — |
 | Portugal | [pt](pt.md) | 2026 | 37 | — | — |
 | Sweden | [se](se.md) | 2026 | 36 | — | — |
