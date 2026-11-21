@@ -1,0 +1,579 @@
+{
+  "_note": "Driving distances (fastest route, city centre to city centre) from the OSRM demo server, which routes on OpenStreetMap road data. Fetched by tools/fetch-route-distances.js.",
+  "source": {
+    "title": "OSRM routing on OpenStreetMap data (© OpenStreetMap contributors)",
+    "url": "https://project-osrm.org/"
+  },
+  "fetched": "2026-11-21",
+  "places": {
+    "london": {
+      "name": "London",
+      "lat": 51.5072,
+      "lon": -0.1276
+    },
+    "manchester": {
+      "name": "Manchester",
+      "lat": 53.4808,
+      "lon": -2.2426
+    },
+    "birmingham": {
+      "name": "Birmingham",
+      "lat": 52.4862,
+      "lon": -1.8904
+    },
+    "leeds": {
+      "name": "Leeds",
+      "lat": 53.8008,
+      "lon": -1.5491
+    },
+    "liverpool": {
+      "name": "Liverpool",
+      "lat": 53.4084,
+      "lon": -2.9916
+    },
+    "glasgow": {
+      "name": "Glasgow",
+      "lat": 55.8642,
+      "lon": -4.2518
+    },
+    "edinburgh": {
+      "name": "Edinburgh",
+      "lat": 55.9533,
+      "lon": -3.1883
+    },
+    "bristol": {
+      "name": "Bristol",
+      "lat": 51.4545,
+      "lon": -2.5879
+    },
+    "cardiff": {
+      "name": "Cardiff",
+      "lat": 51.4816,
+      "lon": -3.1791
+    },
+    "newcastle": {
+      "name": "Newcastle",
+      "lat": 54.9783,
+      "lon": -1.6178
+    },
+    "sheffield": {
+      "name": "Sheffield",
+      "lat": 53.3811,
+      "lon": -1.4701
+    },
+    "nottingham": {
+      "name": "Nottingham",
+      "lat": 52.9548,
+      "lon": -1.1581
+    },
+    "brighton": {
+      "name": "Brighton",
+      "lat": 50.8225,
+      "lon": -0.1372
+    },
+    "southampton": {
+      "name": "Southampton",
+      "lat": 50.9097,
+      "lon": -1.4044
+    },
+    "oxford": {
+      "name": "Oxford",
+      "lat": 51.752,
+      "lon": -1.2577
+    },
+    "cambridge": {
+      "name": "Cambridge",
+      "lat": 52.2053,
+      "lon": 0.1218
+    },
+    "york": {
+      "name": "York",
+      "lat": 53.96,
+      "lon": -1.0873
+    },
+    "norwich": {
+      "name": "Norwich",
+      "lat": 52.6309,
+      "lon": 1.2974
+    },
+    "plymouth": {
+      "name": "Plymouth",
+      "lat": 50.3755,
+      "lon": -4.1427
+    },
+    "exeter": {
+      "name": "Exeter",
+      "lat": 50.7184,
+      "lon": -3.5339
+    },
+    "newquay": {
+      "name": "Newquay",
+      "lat": 50.4155,
+      "lon": -5.0737
+    },
+    "aberdeen": {
+      "name": "Aberdeen",
+      "lat": 57.1497,
+      "lon": -2.0943
+    },
+    "inverness": {
+      "name": "Inverness",
+      "lat": 57.4778,
+      "lon": -4.2247
+    },
+    "swansea": {
+      "name": "Swansea",
+      "lat": 51.6214,
+      "lon": -3.9436
+    },
+    "bath": {
+      "name": "Bath",
+      "lat": 51.3811,
+      "lon": -2.359
+    },
+    "blackpool": {
+      "name": "Blackpool",
+      "lat": 53.8175,
+      "lon": -3.0357
+    },
+    "bournemouth": {
+      "name": "Bournemouth",
+      "lat": 50.7192,
+      "lon": -1.8808
+    },
+    "dover": {
+      "name": "Dover",
+      "lat": 51.1279,
+      "lon": 1.3134
+    },
+    "keswick": {
+      "name": "Keswick",
+      "lat": 54.6013,
+      "lon": -3.1347
+    },
+    "leicester": {
+      "name": "Leicester",
+      "lat": 52.6369,
+      "lon": -1.1398
+    },
+    "portsmouth": {
+      "name": "Portsmouth",
+      "lat": 50.8198,
+      "lon": -1.088
+    },
+    "hull": {
+      "name": "Hull",
+      "lat": 53.7676,
+      "lon": -0.3274
+    },
+    "coventry": {
+      "name": "Coventry",
+      "lat": 52.4068,
+      "lon": -1.5197
+    }
+  },
+  "routes": [
+    {
+      "from": "london",
+      "to": "manchester",
+      "km": 320.9,
+      "minutes": 244
+    },
+    {
+      "from": "london",
+      "to": "birmingham",
+      "km": 189.4,
+      "minutes": 147
+    },
+    {
+      "from": "london",
+      "to": "leeds",
+      "km": 316,
+      "minutes": 234
+    },
+    {
+      "from": "london",
+      "to": "liverpool",
+      "km": 340.1,
+      "minutes": 253
+    },
+    {
+      "from": "london",
+      "to": "glasgow",
+      "km": 648.6,
+      "minutes": 454
+    },
+    {
+      "from": "london",
+      "to": "edinburgh",
+      "km": 648.8,
+      "minutes": 472
+    },
+    {
+      "from": "london",
+      "to": "bristol",
+      "km": 189.9,
+      "minutes": 146
+    },
+    {
+      "from": "london",
+      "to": "cardiff",
+      "km": 241.4,
+      "minutes": 187
+    },
+    {
+      "from": "london",
+      "to": "newcastle",
+      "km": 455.1,
+      "minutes": 328
+    },
+    {
+      "from": "london",
+      "to": "brighton",
+      "km": 85.8,
+      "minutes": 99
+    },
+    {
+      "from": "london",
+      "to": "newquay",
+      "km": 414.5,
+      "minutes": 308
+    },
+    {
+      "from": "london",
+      "to": "plymouth",
+      "km": 347.4,
+      "minutes": 264
+    },
+    {
+      "from": "london",
+      "to": "exeter",
+      "km": 280.2,
+      "minutes": 222
+    },
+    {
+      "from": "london",
+      "to": "bath",
+      "km": 179.1,
+      "minutes": 149
+    },
+    {
+      "from": "london",
+      "to": "york",
+      "km": 336.1,
+      "minutes": 248
+    },
+    {
+      "from": "london",
+      "to": "oxford",
+      "km": 96.2,
+      "minutes": 91
+    },
+    {
+      "from": "london",
+      "to": "cambridge",
+      "km": 94.4,
+      "minutes": 91
+    },
+    {
+      "from": "london",
+      "to": "norwich",
+      "km": 183,
+      "minutes": 153
+    },
+    {
+      "from": "london",
+      "to": "southampton",
+      "km": 128.8,
+      "minutes": 110
+    },
+    {
+      "from": "london",
+      "to": "bournemouth",
+      "km": 173.7,
+      "minutes": 137
+    },
+    {
+      "from": "london",
+      "to": "dover",
+      "km": 126.4,
+      "minutes": 109
+    },
+    {
+      "from": "london",
+      "to": "nottingham",
+      "km": 205,
+      "minutes": 161
+    },
+    {
+      "from": "london",
+      "to": "sheffield",
+      "km": 259.1,
+      "minutes": 202
+    },
+    {
+      "from": "london",
+      "to": "aberdeen",
+      "km": 863.8,
+      "minutes": 603
+    },
+    {
+      "from": "london",
+      "to": "inverness",
+      "km": 901.7,
+      "minutes": 645
+    },
+    {
+      "from": "london",
+      "to": "swansea",
+      "km": 300.6,
+      "minutes": 228
+    },
+    {
+      "from": "london",
+      "to": "blackpool",
+      "km": 384.1,
+      "minutes": 279
+    },
+    {
+      "from": "london",
+      "to": "keswick",
+      "km": 469,
+      "minutes": 348
+    },
+    {
+      "from": "london",
+      "to": "leicester",
+      "km": 163.3,
+      "minutes": 132
+    },
+    {
+      "from": "london",
+      "to": "portsmouth",
+      "km": 120.1,
+      "minutes": 104
+    },
+    {
+      "from": "london",
+      "to": "hull",
+      "km": 307.6,
+      "minutes": 244
+    },
+    {
+      "from": "london",
+      "to": "coventry",
+      "km": 154.8,
+      "minutes": 128
+    },
+    {
+      "from": "manchester",
+      "to": "birmingham",
+      "km": 139.5,
+      "minutes": 106
+    },
+    {
+      "from": "manchester",
+      "to": "leeds",
+      "km": 70.1,
+      "minutes": 59
+    },
+    {
+      "from": "manchester",
+      "to": "liverpool",
+      "km": 54.8,
+      "minutes": 48
+    },
+    {
+      "from": "manchester",
+      "to": "glasgow",
+      "km": 348.1,
+      "minutes": 240
+    },
+    {
+      "from": "manchester",
+      "to": "edinburgh",
+      "km": 342.2,
+      "minutes": 262
+    },
+    {
+      "from": "manchester",
+      "to": "newcastle",
+      "km": 232.9,
+      "minutes": 170
+    },
+    {
+      "from": "manchester",
+      "to": "blackpool",
+      "km": 83.7,
+      "minutes": 65
+    },
+    {
+      "from": "manchester",
+      "to": "keswick",
+      "km": 168.5,
+      "minutes": 133
+    },
+    {
+      "from": "manchester",
+      "to": "sheffield",
+      "km": 61.2,
+      "minutes": 72
+    },
+    {
+      "from": "manchester",
+      "to": "york",
+      "km": 113.9,
+      "minutes": 90
+    },
+    {
+      "from": "manchester",
+      "to": "bristol",
+      "km": 270.3,
+      "minutes": 194
+    },
+    {
+      "from": "manchester",
+      "to": "cardiff",
+      "km": 301.7,
+      "minutes": 223
+    },
+    {
+      "from": "manchester",
+      "to": "newquay",
+      "km": 520.6,
+      "minutes": 362
+    },
+    {
+      "from": "birmingham",
+      "to": "bristol",
+      "km": 141.8,
+      "minutes": 107
+    },
+    {
+      "from": "birmingham",
+      "to": "leeds",
+      "km": 193.2,
+      "minutes": 135
+    },
+    {
+      "from": "birmingham",
+      "to": "liverpool",
+      "km": 158.2,
+      "minutes": 115
+    },
+    {
+      "from": "birmingham",
+      "to": "cardiff",
+      "km": 173.2,
+      "minutes": 136
+    },
+    {
+      "from": "birmingham",
+      "to": "newcastle",
+      "km": 332.3,
+      "minutes": 229
+    },
+    {
+      "from": "birmingham",
+      "to": "glasgow",
+      "km": 466.7,
+      "minutes": 316
+    },
+    {
+      "from": "birmingham",
+      "to": "edinburgh",
+      "km": 460.8,
+      "minutes": 338
+    },
+    {
+      "from": "birmingham",
+      "to": "newquay",
+      "km": 392.1,
+      "minutes": 275
+    },
+    {
+      "from": "birmingham",
+      "to": "nottingham",
+      "km": 82.2,
+      "minutes": 62
+    },
+    {
+      "from": "edinburgh",
+      "to": "glasgow",
+      "km": 74.1,
+      "minutes": 64
+    },
+    {
+      "from": "edinburgh",
+      "to": "aberdeen",
+      "km": 204.8,
+      "minutes": 158
+    },
+    {
+      "from": "edinburgh",
+      "to": "inverness",
+      "km": 252,
+      "minutes": 206
+    },
+    {
+      "from": "edinburgh",
+      "to": "newcastle",
+      "km": 194.6,
+      "minutes": 151
+    },
+    {
+      "from": "glasgow",
+      "to": "inverness",
+      "km": 272.3,
+      "minutes": 210
+    },
+    {
+      "from": "glasgow",
+      "to": "aberdeen",
+      "km": 234.3,
+      "minutes": 168
+    },
+    {
+      "from": "leeds",
+      "to": "newcastle",
+      "km": 158,
+      "minutes": 120
+    },
+    {
+      "from": "leeds",
+      "to": "york",
+      "km": 39.5,
+      "minutes": 41
+    },
+    {
+      "from": "leeds",
+      "to": "liverpool",
+      "km": 117.8,
+      "minutes": 89
+    },
+    {
+      "from": "leeds",
+      "to": "sheffield",
+      "km": 57.7,
+      "minutes": 51
+    },
+    {
+      "from": "bristol",
+      "to": "cardiff",
+      "km": 68.7,
+      "minutes": 58
+    },
+    {
+      "from": "bristol",
+      "to": "newquay",
+      "km": 261.7,
+      "minutes": 188
+    },
+    {
+      "from": "bristol",
+      "to": "exeter",
+      "km": 127.3,
+      "minutes": 101
+    }
+  ]
+}
