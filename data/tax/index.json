@@ -23,6 +23,17 @@
       "lastVerified": null,
       "lastChecked": null
     },
+    "be": {
+      "file": "be/be.2026.json",
+      "name": "Belgium",
+      "kind": "country",
+      "country": "BE",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null,
+      "lastChecked": null
+    },
     "ca": {
       "file": "ca/ca.2026.json",
       "name": "Canada (federal)",
@@ -177,6 +188,17 @@
       "lastVerified": null,
       "lastChecked": "2026-11-11"
     },
+    "ch": {
+      "file": "ch/ch.2026.json",
+      "name": "Switzerland (Zurich)",
+      "kind": "country",
+      "country": "CH",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null,
+      "lastChecked": null
+    },
     "de": {
       "file": "de/de.2026.json",
       "name": "Germany",
@@ -314,6 +336,17 @@
       "name": "Japan",
       "kind": "country",
       "country": "JP",
+      "parent": null,
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null,
+      "lastChecked": null
+    },
+    "lu": {
+      "file": "lu/lu.2026.json",
+      "name": "Luxembourg",
+      "kind": "country",
+      "country": "LU",
       "parent": null,
       "standalone": true,
       "taxYear": "2026",

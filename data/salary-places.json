@@ -428,6 +428,12 @@
           "gross": 50000
         },
         {
+          "id": "be",
+          "name": "Belgium",
+          "currency": "EUR",
+          "gross": 50000
+        },
+        {
           "id": "dk",
           "name": "Denmark",
           "currency": "DKK",
@@ -464,6 +470,12 @@
           "gross": 50000
         },
         {
+          "id": "lu",
+          "name": "Luxembourg",
+          "currency": "EUR",
+          "gross": 50000
+        },
+        {
           "id": "nl",
           "name": "Netherlands",
           "currency": "EUR",
@@ -492,6 +504,12 @@
           "name": "Sweden",
           "currency": "SEK",
           "gross": 500000
+        },
+        {
+          "id": "ch",
+          "name": "Switzerland (Zurich)",
+          "currency": "CHF",
+          "gross": 100000
         }
       ]
     },

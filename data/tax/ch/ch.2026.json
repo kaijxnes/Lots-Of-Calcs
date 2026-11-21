@@ -1,0 +1,536 @@
+{
+  "id": "ch",
+  "name": "Switzerland (Zurich)",
+  "kind": "country",
+  "country": "CH",
+  "parent": null,
+  "standalone": true,
+  "currency": "CHF",
+  "locale": "de-CH",
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "options": {
+    "bvgPct": {
+      "label": "Occupational pension (BVG), your share as % of coordinated salary",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 20,
+      "step": 0.5,
+      "samples": [
+        5
+      ],
+      "inSummary": false
+    }
+  },
+  "items": [
+    {
+      "id": "ch-ahv",
+      "label": "AHV/IV/EO (old age, disability, loss of earnings)",
+      "group": "social",
+      "note": "5.3% of all salary, with no ceiling (the employer pays another 5.3%).",
+      "charge": {
+        "pct": 5.3,
+        "of": "gross"
+      }
+    },
+    {
+      "id": "ch-alv",
+      "label": "Unemployment insurance (ALV)",
+      "group": "social",
+      "note": "1.1% of salary up to CHF 148,200; nothing on salary above that.",
+      "charge": {
+        "pct": 1.1,
+        "of": {
+          "min": [
+            "gross",
+            148200
+          ]
+        }
+      }
+    },
+    {
+      "id": "ch-coordinated",
+      "label": "Coordinated salary (BVG)",
+      "show": false,
+      "note": "Salary up to CHF 90,720 less the CHF 26,460 coordination deduction, at least CHF 3,780; nothing below the CHF 22,680 entry threshold.",
+      "value": {
+        "if": {
+          "lt": [
+            "gross",
+            22680
+          ]
+        },
+        "then": 0,
+        "else": {
+          "clamp": {
+            "sub": [
+              {
+                "min": [
+                  "gross",
+                  90720
+                ]
+              },
+              26460
+            ]
+          },
+          "min": 3780,
+          "max": 64260
+        }
+      }
+    },
+    {
+      "id": "ch-bvg",
+      "label": "Occupational pension (BVG)",
+      "group": "pension",
+      "note": "Your share of the pension fund contribution, if you enter one. The rate depends on your age and your employer's fund, so it is 0 unless you set it.",
+      "charge": {
+        "mul": [
+          {
+            "div": [
+              {
+                "input": "bvgPct"
+              },
+              100
+            ]
+          },
+          "ch-coordinated"
+        ]
+      }
+    },
+    {
+      "id": "ch-net-salary",
+      "label": "Net salary",
+      "show": false,
+      "value": {
+        "sub": [
+          "gross",
+          "ch-ahv",
+          "ch-alv",
+          "ch-bvg"
+        ]
+      }
+    },
+    {
+      "id": "ch-prof-costs",
+      "label": "Other professional costs (lump sum)",
+      "show": true,
+      "note": "3% of net salary, at least CHF 2,000 and at most CHF 4,000 — the same for federal and Zurich tax.",
+      "value": {
+        "clamp": {
+          "pct": 3,
+          "of": "ch-net-salary"
+        },
+        "min": 2000,
+        "max": 4000
+      }
+    },
+    {
+      "id": "ch-fed-taxable",
+      "label": "Taxable income (federal)",
+      "show": true,
+      "note": "Net salary less the professional costs lump sum and the CHF 1,800 insurance premiums deduction, rounded down to CHF 100.",
+      "value": {
+        "max": [
+          0,
+          {
+            "round": {
+              "sub": [
+                "ch-net-salary",
+                "ch-prof-costs",
+                1800
+              ]
+            },
+            "to": 100,
+            "mode": "down"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-federal-tax",
+      "label": "Federal income tax (direkte Bundessteuer)",
+      "group": "tax",
+      "note": "2026 single tariff: nothing up to CHF 15,200, then a set amount plus a rate per CHF 100 in each band, rising to 13.2%; from CHF 794,000 a flat 11.5% of all taxable income.",
+      "charge": {
+        "if": {
+          "gte": [
+            "ch-fed-taxable",
+            794000
+          ]
+        },
+        "then": {
+          "pct": 11.5,
+          "of": "ch-fed-taxable"
+        },
+        "else": {
+          "sum": [
+            {
+              "lookup": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  15200,
+                  0
+                ],
+                [
+                  33200,
+                  138.6
+                ],
+                [
+                  43500,
+                  229.2
+                ],
+                [
+                  58000,
+                  612.0
+                ],
+                [
+                  76200,
+                  1152.5
+                ],
+                [
+                  82100,
+                  1502.95
+                ],
+                [
+                  108900,
+                  3271.75
+                ],
+                [
+                  141500,
+                  6140.55
+                ],
+                [
+                  185100,
+                  10936.55
+                ]
+              ],
+              "of": "ch-fed-taxable"
+            },
+            {
+              "mul": [
+                {
+                  "sub": [
+                    "ch-fed-taxable",
+                    {
+                      "lookup": [
+                        [
+                          0,
+                          0
+                        ],
+                        [
+                          15200,
+                          15200
+                        ],
+                        [
+                          33200,
+                          33200
+                        ],
+                        [
+                          43500,
+                          43500
+                        ],
+                        [
+                          58000,
+                          58000
+                        ],
+                        [
+                          76200,
+                          76200
+                        ],
+                        [
+                          82100,
+                          82100
+                        ],
+                        [
+                          108900,
+                          108900
+                        ],
+                        [
+                          141500,
+                          141500
+                        ],
+                        [
+                          185100,
+                          185100
+                        ]
+                      ],
+                      "of": "ch-fed-taxable"
+                    }
+                  ]
+                },
+                {
+                  "div": [
+                    {
+                      "lookup": [
+                        [
+                          0,
+                          0
+                        ],
+                        [
+                          15200,
+                          0.77
+                        ],
+                        [
+                          33200,
+                          0.88
+                        ],
+                        [
+                          43500,
+                          2.64
+                        ],
+                        [
+                          58000,
+                          2.97
+                        ],
+                        [
+                          76200,
+                          5.94
+                        ],
+                        [
+                          82100,
+                          6.6
+                        ],
+                        [
+                          108900,
+                          8.8
+                        ],
+                        [
+                          141500,
+                          11.0
+                        ],
+                        [
+                          185100,
+                          13.2
+                        ]
+                      ],
+                      "of": "ch-fed-taxable"
+                    },
+                    100
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ch-zh-taxable",
+      "label": "Taxable income (Zurich)",
+      "show": true,
+      "note": "Net salary less the professional costs lump sum and the CHF 2,900 insurance premiums deduction, rounded down to CHF 100.",
+      "value": {
+        "max": [
+          0,
+          {
+            "round": {
+              "sub": [
+                "ch-net-salary",
+                "ch-prof-costs",
+                2900
+              ]
+            },
+            "to": 100,
+            "mode": "down"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-zh-simple",
+      "label": "Simple state tax (einfache Staatssteuer)",
+      "show": true,
+      "note": "Zurich's 2026 single tariff: nothing on the first CHF 7,000, then 2% rising in steps to 13% above CHF 266,700.",
+      "value": {
+        "brackets": [
+          [
+            0,
+            0
+          ],
+          [
+            7000,
+            2
+          ],
+          [
+            12000,
+            3
+          ],
+          [
+            16800,
+            4
+          ],
+          [
+            24800,
+            5
+          ],
+          [
+            34500,
+            6
+          ],
+          [
+            45700,
+            7
+          ],
+          [
+            58800,
+            8
+          ],
+          [
+            76400,
+            9
+          ],
+          [
+            110400,
+            10
+          ],
+          [
+            144100,
+            11
+          ],
+          [
+            197400,
+            12
+          ],
+          [
+            266700,
+            13
+          ]
+        ],
+        "of": "ch-zh-taxable"
+      }
+    },
+    {
+      "id": "ch-zh-tax",
+      "label": "Cantonal and city tax (Zurich)",
+      "group": "tax",
+      "note": "The simple state tax times the 2026 multipliers: 95% for the canton and 119% for the city of Zurich (214% in all). No church tax.",
+      "charge": {
+        "mul": [
+          "ch-zh-simple",
+          2.14
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Single, no children, living and working in the city of Zurich",
+    "No church tax (members of a recognised church pay about 10% of the simple state tax more)",
+    "No commuting or meal costs claimed; only the lump sum for other professional costs",
+    "No occupational pension contribution unless you enter one, though most employees earning over CHF 22,680 pay one",
+    "Taxed through an ordinary assessment, as Swiss nationals and C-permit holders are (most other foreign employees pay tax at source, which works out similarly)"
+  ],
+  "notModelled": [
+    "Pillar 3a contributions and other personal deductions",
+    "Commuting and meal cost deductions",
+    "Non-occupational accident insurance (NBU), which depends on the employer's insurer",
+    "Daily sickness benefit insurance",
+    "Zurich's personal tax and church tax",
+    "Tax at source (Quellensteuer) tables",
+    "Other cantons and municipalities"
+  ],
+  "provisional": [
+    "Zurich taxable income is assumed to be rounded down to CHF 100, as federal taxable income is",
+    "The unemployment insurance rate comes from AHV/IV leaflet 2.08 dated 1 January 2025, the current edition"
+  ],
+  "sources": [
+    {
+      "title": "Kanton Basel-Landschaft — Tarife für die direkte Bundessteuer, gültig ab 2026",
+      "url": "https://bl-api.webcloud7.ch/politik-und-behorden/direktionen/finanz-und-kirchendirektion/steuerverwaltung/steuerzahlungen/tarife-1/tarife-pdf/tarife-direkte-bundessteuer-2026.pdf/@@download/file/Tarife%20Direkte%20Bundessteuer%202026.pdf"
+    },
+    {
+      "title": "ESTV — Kreisschreiben 2-220-D-2026 (federal deductions)",
+      "url": "https://www.estv.admin.ch/dam/de/sd-web/sqbIsYvx0tZg/2-220-D-2026-de.pdf"
+    },
+    {
+      "title": "ESTV — Kantonsblatt Zürich (Steuerinformationen)",
+      "url": "https://www.estv2.admin.ch/stp/kb/zh-de.pdf"
+    },
+    {
+      "title": "Kanton Zürich — aktuelle Gemeindesteuerfüsse",
+      "url": "https://www.zh.ch/de/steuern-finanzen/steuern/steuerstatistiken/aktuelle-gemeinde-steuerfuesse.html"
+    },
+    {
+      "title": "Stadt Zürich — Steuerberechnung",
+      "url": "https://www.stadt-zuerich.ch/de/lebenslagen/steuern/natuerliche-personen/steuerberechnung.html"
+    },
+    {
+      "title": "AHV/IV — Merkblatt 2.01 Beiträge an die AHV, IV und EO",
+      "url": "https://www.ahv-iv.ch/p/2.01.d"
+    },
+    {
+      "title": "AHV/IV — Merkblatt 2.08 Beiträge an die Arbeitslosenversicherung",
+      "url": "https://www.ahv-iv.ch/p/2.08.d"
+    },
+    {
+      "title": "BSV — Beträge berufliche Vorsorge 2026",
+      "url": "https://www.bsv.admin.ch/dam/de/sd-web/sAgdISSXenMT/d_Betr%C3%A4ge%202026.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Official documents, Nov 2026",
+      "note": "Federal 2026 tariff from the Basel-Landschaft tariff tables; federal deductions from ESTV circular 2-220 (2026 column); Zurich tariff and deductions from the ESTV Kantonsblatt; canton multiplier 95% for 2026 (zh.ch) and city 119% (stadt-zuerich.ch); AHV 5.3% and ALV 1.1% to CHF 148,200 from AHV/IV leaflets; BVG thresholds from BSV."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": null,
+  "verifyAt": "https://swisstaxcalculator.estv.admin.ch/#/home",
+  "tests": [
+    {
+      "gross": 100000,
+      "note": "AHV 5,300 + ALV 1,100. Net salary 93,600; professional costs 3% = 2,808. Federal taxable 93,600 − 2,808 − 1,800 = 88,992 → 88,900: 1,502.95 + 68 × 6.60 = 1,951.75. Zurich taxable 87,892 → 87,800; simple tax 100 + 144 + 320 + 485 + 672 + 917 + 1,408 + 11,400 × 9% (1,026) = 5,072; × 2.14 = 10,854.08.",
+      "expect": {
+        "ch-ahv": 5300,
+        "ch-alv": 1100,
+        "ch-prof-costs": 2808,
+        "ch-fed-taxable": 88900,
+        "ch-federal-tax": 1951.75,
+        "ch-zh-taxable": 87800,
+        "ch-zh-simple": 5072,
+        "ch-zh-tax": 10854.08,
+        "net": 80794.17
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "AHV 3,180 + ALV 660; net 56,160; 3% = 1,684.80 so the CHF 2,000 minimum applies. Federal taxable 52,360 → 52,300: 229.20 + 88 × 2.64 = 461.52. Zurich taxable 51,260 → 51,200; simple tax 100 + 144 + 320 + 485 + 672 + 5,500 × 7% = 2,106; × 2.14 = 4,506.84.",
+      "expect": {
+        "ch-prof-costs": 2000,
+        "ch-federal-tax": 461.52,
+        "ch-zh-simple": 2106,
+        "net": 51191.64
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "ALV capped: 1.1% × 148,200 = 1,630.20. Net 140,419.80; professional costs capped at 4,000. Federal taxable 134,619.80 → 134,600: 3,271.75 + 257 × 8.80 = 5,533.35. Zurich taxable 133,519.80 → 133,500; simple tax 7,066 + 23,100 × 10% = 9,416; × 2.14 = 20,150.24.",
+      "expect": {
+        "ch-alv": 1630.2,
+        "ch-prof-costs": 4000,
+        "ch-federal-tax": 5533.35,
+        "ch-zh-tax": 20150.24,
+        "net": 114736.21
+      }
+    },
+    {
+      "gross": 100000,
+      "options": {
+        "bvgPct": 5
+      },
+      "note": "Coordinated salary 90,720 − 26,460 = 64,260; 5% = 3,213. Net salary 90,387; 3% = 2,711.61. Federal taxable 85,875.39 → 85,800: 1,502.95 + 37 × 6.60 = 1,747.15. Zurich taxable 84,775.39 → 84,700: simple tax 4,046 + 8,300 × 9% = 4,793; × 2.14 = 10,257.02.",
+      "expect": {
+        "ch-bvg": 3213,
+        "ch-federal-tax": 1747.15,
+        "ch-zh-tax": 10257.02,
+        "net": 78382.83
+      }
+    }
+  ]
+}
