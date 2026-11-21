@@ -110,7 +110,7 @@
         "name": "What does this leave out?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay); The 30% ruling for incoming employees; Other credits (income-dependent combination credit for parents) and benefits (toeslagen); Box 2 and Box 3 income."
+          "text": "The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay); Other credits (income-dependent combination credit for parents) and benefits (toeslagen); Box 2 and Box 3 income; The 30% ruling for part of a year (the allowance and its €78,600 maximum are pro rata), its transitional rules, and the cut to 27% planned from 2027."
         }
       },
       {
@@ -153,6 +153,7 @@
       <div class="result-box">
         <div class="result-grid">
           <div class="result-row"><span class="r-label">Gross salary</span><span class="r-value" data-out="gross">€55,000</span></div>
+          <div class="result-row"><span class="r-label">30% ruling tax-free allowance</span><span class="r-value" data-item="nl-30-allowance">€0.00</span></div>
           <div class="result-row"><span class="r-label">Taxable wage</span><span class="r-value" data-item="nl-taxable">€55,000.00</span></div>
           <div class="result-row"><span class="r-label">General tax credit (algemene heffingskorting)</span><span class="r-value" data-item="nl-general-credit">€1,498.61</span></div>
           <div class="result-row"><span class="r-label">Labour tax credit (arbeidskorting)</span><span class="r-value" data-item="nl-labour-credit">€5,072.54</span></div>
@@ -173,6 +174,10 @@
       <div class="field" style="max-width:320px;">
         <label for="opt-pensionPct">Pension contribution (% of pay)</label>
         <input type="number" id="opt-pensionPct" data-option="pensionPct" value="0" min="0" max="50" step="0.5" inputmode="decimal">
+      </div>
+      <div class="field" style="max-width:320px;">
+        <label for="opt-ruling30">30% ruling (expat scheme)</label>
+        <select id="opt-ruling30" data-option="ruling30"><option value="no" selected>No</option><option value="yes">Yes — salary norm €48,013</option><option value="young">Yes — under 30 with a master's, norm €36,497</option><option value="research">Yes — scientific researcher, no salary norm</option></select>
       </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</p>
@@ -219,13 +224,16 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (50% here), so you keep less of it than of your salary overall.</p>
+      <p class="tool-section-title" style="margin-top:22px;">More on €55,000</p>
+      <p class="salary-links"><a href="/30-percent-ruling-calculator/">€55,000 with the 30% ruling</a></p>
     </main>
 
     <main class="tool">
       <p class="tool-section-title">How €55,000 after tax is worked out</p>
       <p class="about-text"><strong>Labour tax credit (arbeidskorting): €5,072.54.</strong> Builds up to €5,685 at €45,592 of pay, then falls by 6.51% of pay above that, reaching nothing at €132,920.</p>
       <p class="about-text"><strong>General tax credit (algemene heffingskorting): €1,498.61.</strong> €3,115, reduced by 6.398% of income above €29,736.</p>
-      <p class="about-text"><strong>Taxable wage: €55,000.00.</strong> Employee pension premiums come off pay before wage tax and the tax credits are worked out.</p>
+      <p class="about-text"><strong>Taxable wage: €55,000.00.</strong> Employee pension premiums, and the tax-free allowance under the 30% ruling, come off pay before wage tax and the tax credits are worked out.</p>
+      <p class="about-text"><strong>30% ruling tax-free allowance: €0.00.</strong> Under the 30% ruling (expatregeling) up to 30% of pay, including the allowance, is paid tax-free, on pay up to €262,000 (a maximum of €78,600 for a full year). The pay left after the allowance must stay above the salary norm — €48,013 in 2026, or €36,497 if you're under 30 with a master's degree — so near the norm the allowance is cut back to keep it there. It lasts up to 5 years.</p>
       <p class="about-text"><strong>Income tax and national insurance (loonheffing): €13,383.07.</strong> The tax credits can only reduce the tax to zero.</p>
     </main>
 
@@ -240,7 +248,7 @@
       <p class="faq-q">What is a 3% pay rise on €55,000 worth after tax in the Netherlands?</p>
       <p class="about-text">A 3% rise takes €55,000 to €56,650 — €1,650 more before tax. After deductions you keep €817.28 a year, or €68.11 a month.</p>
       <p class="faq-q">What does this leave out?</p>
-      <p class="about-text">The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay); The 30% ruling for incoming employees; Other credits (income-dependent combination credit for parents) and benefits (toeslagen); Box 2 and Box 3 income.</p>
+      <p class="about-text">The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay); Other credits (income-dependent combination credit for parents) and benefits (toeslagen); Box 2 and Box 3 income; The 30% ruling for part of a year (the allowance and its €78,600 maximum are pro rata), its transitional rules, and the cut to 27% planned from 2027.</p>
       <p class="faq-q">How accurate are these the Netherlands figures?</p>
       <p class="about-text">They apply the 2026 rates and thresholds to a €55,000 salary. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
     </main>
@@ -251,9 +259,9 @@
       <p class="about-text"><strong>Assumes:</strong></p>
       <ul class="about-list"><li>Below state pension (AOW) age</li><li>The gross includes the 8% holiday allowance</li><li>Employment income only; each person is taxed individually</li></ul>
       <p class="about-text"><strong>Leaves out:</strong></p>
-      <ul class="about-list"><li>The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay)</li><li>The 30% ruling for incoming employees</li><li>Other credits (income-dependent combination credit for parents) and benefits (toeslagen)</li><li>Box 2 and Box 3 income</li></ul>
+      <ul class="about-list"><li>The franchise and pensionable-salary rules of individual schemes (the percentage here applies to all pay)</li><li>Other credits (income-dependent combination credit for parents) and benefits (toeslagen)</li><li>Box 2 and Box 3 income</li><li>The 30% ruling for part of a year (the allowance and its €78,600 maximum are pro rata), its transitional rules, and the cut to 27% planned from 2027</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
-      <ul class="about-list"><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen" rel="nofollow noopener" target="_blank">Belastingdienst — tarieven en heffingskortingen 2026</a></li><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/arbeidskorting/tabel-arbeidskorting-2026" rel="nofollow noopener" target="_blank">Belastingdienst — tabel arbeidskorting 2026</a></li><li><a href="https://www.deloitte.com/nl/nl/services/tax/blogs/pakket-belastingplan-2026-tarieven-heffingskortingen.html" rel="nofollow noopener" target="_blank">Deloitte — Pakket Belastingplan 2026, tarieven en heffingskortingen</a></li><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/werk_en_inkomen/pensioen_en_andere_uitkeringen/" rel="nofollow noopener" target="_blank">Belastingdienst — pensioenpremie: aftrekbaar van het loon</a></li></ul>
+      <ul class="about-list"><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen" rel="nofollow noopener" target="_blank">Belastingdienst — tarieven en heffingskortingen 2026</a></li><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/arbeidskorting/tabel-arbeidskorting-2026" rel="nofollow noopener" target="_blank">Belastingdienst — tabel arbeidskorting 2026</a></li><li><a href="https://www.deloitte.com/nl/nl/services/tax/blogs/pakket-belastingplan-2026-tarieven-heffingskortingen.html" rel="nofollow noopener" target="_blank">Deloitte — Pakket Belastingplan 2026, tarieven en heffingskortingen</a></li><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/werk_en_inkomen/pensioen_en_andere_uitkeringen/" rel="nofollow noopener" target="_blank">Belastingdienst — pensioenpremie: aftrekbaar van het loon</a></li><li><a href="https://www.rijksoverheid.nl/themas/werk/inkomstenbelasting/belastingvoordeel-buitenlandse-werknemers" rel="nofollow noopener" target="_blank">Rijksoverheid — Expatregeling hoogopgeleide buitenlandse werknemers</a></li><li><a href="https://www.belastingdienst.nl/wps/wcm/connect/nl/buitenland/content/ik-kom-in-nederland-werken-30-procent-regeling-aanvragen" rel="nofollow noopener" target="_blank">Belastingdienst — Kan ik de expatregeling aanvragen als ik in Nederland kom werken?</a></li></ul>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in the Netherlands</div>

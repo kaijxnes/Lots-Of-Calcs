@@ -286,6 +286,8 @@ ${uk ? `      <p class="tool-hint">More on pay rises: the <a href="/pay-rise-cal
 /* The US and Canada mostly pay every two weeks: show paychecks too */
 function paysBiweekly(p) { return p.root.country === "US" || p.root.country === "CA"; }
 const SCHEDULE_URL = "/biweekly-pay-schedule/";
+/* expat tax schemes, linked from every salary page in the country (tools/build-expat-pages.js) */
+const EXPAT = { NL: ["/30-percent-ruling-calculator/", "with the 30% ruling"], ES: ["/beckham-law-calculator/", "under the Beckham law"] };
 
 function toolBlock(p, gross, r, heading, mode) {
   const m = mode || { kind: "annual" };
@@ -609,7 +611,7 @@ ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
     const bu = country === "GB" ? links.budgetUk(gross) : null;
     const hrRate = p.hourly.length && p.hours ? p.hourly.reduce((a, h) => Math.abs(h * p.hours * 52 - gross) < Math.abs(a * p.hours * 52 - gross) ? h : a) : null;
     const hr = hrRate && Math.abs(hrRate * p.hours * 52 - gross) / gross <= 0.1 ? hrRate : null;
-    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", hr ? `<a href="${hourUrl(p, hr)}">${esc(p.money0(hr))} an hour after tax (${esc(p.money0(hr * p.hours * 52))} a year)</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : ""].filter(Boolean);
+    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", hr ? `<a href="${hourUrl(p, hr)}">${esc(p.money0(hr))} an hour after tax (${esc(p.money0(hr * p.hours * 52))} a year)</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : "", EXPAT[country] ? `<a href="${EXPAT[country][0]}">${esc(m0)} ${EXPAT[country][1]}</a>` : ""].filter(Boolean);
     return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 

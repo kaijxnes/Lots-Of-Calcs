@@ -22,6 +22,9 @@ Generated from `data/tax/es/es.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Andalucía: Ley 5/2021 de Tributos Cedidos (consolidated, BOE), arts. 23 and 23 bis: https://www.boe.es/buscar/pdf/2021/BOE-A-2021-17915-consolidado.pdf
 - Comunitat Valenciana: Ley 13/1997 (consolidated to 10 Aug 2026, BOE), arts. 2 and 2 bis: https://www.boe.es/buscar/pdf/1998/BOE-A-1998-8202-consolidado.pdf
 - Comunitat Valenciana: Ley 5/2026, de 31 de julio (2026 scale cut): https://www.boe.es/buscar/doc.php?id=BOE-A-2026-19331
+- BOE — Ley 35/2006 del IRPF, artículo 93 (régimen especial para trabajadores desplazados): https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764
+- Agencia Tributaria — Modelo 151, instrucciones de cumplimentación (ejercicio 2023 y siguientes): https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-151-decla_____los-trabajadores-desplazados-espanol_/instrucciones-cumplimentacion-ejercicio-2023-siguientes.html
+- BOE — Reglamento del IRPF (RD 439/2007), artículos 113–120: https://www.boe.es/buscar/act.php?id=BOE-A-2007-6820
 
 ## Figures
 
@@ -63,9 +66,9 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 
 ### Taxable base (base liquidable) (`es-base`)
 
-> Net earnings less the reduction for employment income and any pension plan reduction. Married couples filing jointly take a further €3,400 off.
+> Net earnings less the reduction for employment income and any pension plan reduction. Married couples filing jointly take a further €3,400 off. Under the Beckham law it is simply your gross pay: no allowances or reductions.
 
-- [ ] Married filing jointly — less 3,400
+- [ ] Standard (resident IRPF), Married filing jointly — less 3,400
 
 ### Share of the child allowance claimed (`es-child-share`)
 
@@ -79,17 +82,17 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 
 > €5,550 for you, plus €2,400, €2,700, €4,000 and €4,500 for the first, second, third and each further child, and €2,800 more for each child under 3 (arts. 57 and 58).
 
-- [ ] amount 5,550
-- [ ] factor 2,400
-- [ ] capped at 1
-- [ ] factor 2,700
-- [ ] less 1
-- [ ] at most 1
-- [ ] factor 4,000
-- [ ] less 2
-- [ ] factor 4,500
-- [ ] less 3
-- [ ] factor 2,800
+- [ ] Standard (resident IRPF) — amount 5,550
+- [ ] Standard (resident IRPF) — factor 2,400
+- [ ] Standard (resident IRPF) — capped at 1
+- [ ] Standard (resident IRPF) — factor 2,700
+- [ ] Standard (resident IRPF) — less 1
+- [ ] Standard (resident IRPF) — at most 1
+- [ ] Standard (resident IRPF) — factor 4,000
+- [ ] Standard (resident IRPF) — less 2
+- [ ] Standard (resident IRPF) — factor 4,500
+- [ ] Standard (resident IRPF) — less 3
+- [ ] Standard (resident IRPF) — factor 2,800
 
 ### Personal and family minimum (regional) (`es-minimum-regional`)
 
@@ -131,48 +134,54 @@ Tick each figure once it matches the official source. Amounts are yearly, in EUR
 
 ### Income tax — state share (IRPF estatal) (`es-state-tax`)
 
-> The state scale on the base, less the same scale applied to the personal and family minimum.
+> The state scale on the base, less the same scale applied to the personal and family minimum. Under the Beckham law the whole tax is 24% of gross pay up to €600,000 and 47% above, with half shown as the state share and half as the regional share, as the Modelo 151 return splits it.
 
-- [ ] from 0: 9.5%
-- [ ] from 12,450: 12%
-- [ ] from 20,200: 15%
-- [ ] from 35,200: 18.5%
-- [ ] from 60,000: 22.5%
-- [ ] from 300,000: 24.5%
+- [ ] Standard (resident IRPF) — from 0: 9.5%
+- [ ] Standard (resident IRPF) — from 12,450: 12%
+- [ ] Standard (resident IRPF) — from 20,200: 15%
+- [ ] Standard (resident IRPF) — from 35,200: 18.5%
+- [ ] Standard (resident IRPF) — from 60,000: 22.5%
+- [ ] Standard (resident IRPF) — from 300,000: 24.5%
+- [ ] Beckham law (special regime for workers moving to Spain) — rate 50%
+- [ ] Beckham law (special regime for workers moving to Spain) — from 0: 24%
+- [ ] Beckham law (special regime for workers moving to Spain) — from 600,000: 47%
 
 ### Income tax — regional share (IRPF autonómico) (`es-regional-tax`)
 
-> Each autonomous community sets its own scale for its half of IRPF. Valencia's 2026 scale is the one cut in July 2026 with effect from January (Ley 5/2026).
+> Each autonomous community sets its own scale for its half of IRPF. Valencia's 2026 scale is the one cut in July 2026 with effect from January (Ley 5/2026). Under the Beckham law the regional scale doesn't apply: this is the other half of the flat 24% / 47%.
 
-- [ ] Comunidad de Madrid — from 0: 8.5%
-- [ ] Comunidad de Madrid — from 13,362.22: 10.7%
-- [ ] Comunidad de Madrid — from 19,004.63: 12.8%
-- [ ] Comunidad de Madrid — from 35,425.68: 17.4%
-- [ ] Comunidad de Madrid — from 57,320.40: 20.5%
-- [ ] Catalonia — from 0: 9.5%
-- [ ] Catalonia — from 12,500: 12.5%
-- [ ] Catalonia — from 22,000: 16%
-- [ ] Catalonia — from 33,000: 19%
-- [ ] Catalonia — from 53,000: 21.5%
-- [ ] Catalonia — from 90,000: 23.5%
-- [ ] Catalonia — from 120,000: 24.5%
-- [ ] Catalonia — from 175,000: 25.5%
-- [ ] Andalusia — from 0: 9.5%
-- [ ] Andalusia — from 13,000: 12%
-- [ ] Andalusia — from 21,100: 15%
-- [ ] Andalusia — from 35,200: 18.5%
-- [ ] Andalusia — from 60,000: 22.5%
-- [ ] Valencian Community — from 0: 8.8%
-- [ ] Valencian Community — from 12,000: 11.7%
-- [ ] Valencian Community — from 22,000: 14.6%
-- [ ] Valencian Community — from 32,000: 17%
-- [ ] Valencian Community — from 42,000: 19.4%
-- [ ] Valencian Community — from 52,000: 21.9%
-- [ ] Valencian Community — from 62,000: 24.4%
-- [ ] Valencian Community — from 72,000: 26.1%
-- [ ] Valencian Community — from 100,000: 27.35%
-- [ ] Valencian Community — from 150,000: 28.35%
-- [ ] Valencian Community — from 200,000: 29.35%
+- [ ] Standard (resident IRPF), Comunidad de Madrid — from 0: 8.5%
+- [ ] Standard (resident IRPF), Comunidad de Madrid — from 13,362.22: 10.7%
+- [ ] Standard (resident IRPF), Comunidad de Madrid — from 19,004.63: 12.8%
+- [ ] Standard (resident IRPF), Comunidad de Madrid — from 35,425.68: 17.4%
+- [ ] Standard (resident IRPF), Comunidad de Madrid — from 57,320.40: 20.5%
+- [ ] Standard (resident IRPF), Catalonia — from 0: 9.5%
+- [ ] Standard (resident IRPF), Catalonia — from 12,500: 12.5%
+- [ ] Standard (resident IRPF), Catalonia — from 22,000: 16%
+- [ ] Standard (resident IRPF), Catalonia — from 33,000: 19%
+- [ ] Standard (resident IRPF), Catalonia — from 53,000: 21.5%
+- [ ] Standard (resident IRPF), Catalonia — from 90,000: 23.5%
+- [ ] Standard (resident IRPF), Catalonia — from 120,000: 24.5%
+- [ ] Standard (resident IRPF), Catalonia — from 175,000: 25.5%
+- [ ] Standard (resident IRPF), Andalusia — from 0: 9.5%
+- [ ] Standard (resident IRPF), Andalusia — from 13,000: 12%
+- [ ] Standard (resident IRPF), Andalusia — from 21,100: 15%
+- [ ] Standard (resident IRPF), Andalusia — from 35,200: 18.5%
+- [ ] Standard (resident IRPF), Andalusia — from 60,000: 22.5%
+- [ ] Standard (resident IRPF), Valencian Community — from 0: 8.8%
+- [ ] Standard (resident IRPF), Valencian Community — from 12,000: 11.7%
+- [ ] Standard (resident IRPF), Valencian Community — from 22,000: 14.6%
+- [ ] Standard (resident IRPF), Valencian Community — from 32,000: 17%
+- [ ] Standard (resident IRPF), Valencian Community — from 42,000: 19.4%
+- [ ] Standard (resident IRPF), Valencian Community — from 52,000: 21.9%
+- [ ] Standard (resident IRPF), Valencian Community — from 62,000: 24.4%
+- [ ] Standard (resident IRPF), Valencian Community — from 72,000: 26.1%
+- [ ] Standard (resident IRPF), Valencian Community — from 100,000: 27.35%
+- [ ] Standard (resident IRPF), Valencian Community — from 150,000: 28.35%
+- [ ] Standard (resident IRPF), Valencian Community — from 200,000: 29.35%
+- [ ] Beckham law (special regime for workers moving to Spain) — rate 50%
+- [ ] Beckham law (special regime for workers moving to Spain) — from 0: 24%
+- [ ] Beckham law (special regime for workers moving to Spain) — from 600,000: 47%
 
 ## Spot checks
 
@@ -193,6 +202,8 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - [ ] 45,000 with region = valencia, children = 2, childrenUnder3 = 1, childClaim = full: es-state-tax 3,961.88; es-regional-tax 3,675.74; net 34,437.39 — Base 40,075.00; regional minimum 14,795.00; scale from the region's law (BOE consolidated); separate implementation.
 - [ ] 250,000 with region = valencia: es-state-tax 49,828.24; es-regional-tax 59,496.94; net 136,695.88 — Base 244,021.06; regional minimum 6,105.00; scale from the region's law (BOE consolidated); separate implementation.
 - [ ] 40,000 with region = andalusia, children = 1: es-state-tax 3,758.50; es-regional-tax 3,689.73; net 29,951.78 — Base 35,400.00; regional minimum 7,045.00; scale from the region's law (BOE consolidated); separate implementation.
+- [ ] 60,000 with regime = beckham: es-state-tax 7,200; es-regional-tax 7,200; es-base 60,000; net 41,700 — 24% × 60,000 = 14,400, half state and half regional (7,200 each). Social security 6.5% × 60,000 = 3,900. Net 60,000 − 3,900 − 14,400 = 41,700.
+- [ ] 700,000 with regime = beckham, region = catalonia: es-state-tax 95,500; es-regional-tax 95,500; es-social-security 3,978.94 — 24% × 600,000 = 144,000 + 47% × 100,000 = 47,000 → 191,000, 95,500 each half. Social security capped: 6.5% × 61,214.40 = 3,978.94.
 
 ## Not modelled (confirm the page says so)
 
@@ -201,6 +212,7 @@ Worked results the data must reproduce (`node tools/tax/check.js` runs them). Co
 - The solidarity contribution on pay above the maximum base (a fraction of 1% for the employee)
 - Employer pension contributions and the higher €8,500 limit for company plans
 - Regional deductions for children (e.g. Madrid's birth and childcare deductions)
+- Beckham law: savings income (taxed at 19%–30%), foreign income, and the deductions for donations and double taxation
 
 ## Sign off
 
