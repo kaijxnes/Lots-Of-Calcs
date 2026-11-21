@@ -68,6 +68,13 @@ function fitTitle(...cands) {
   return cands.find((t) => t.length <= TITLE_MAX) || cands[cands.length - 1];
 }
 
+/* The share image for a page: its calculator's image (og/<first path
+   segment>.jpg, made by tools/build-og-images.py), or the site's own. */
+function ogImage(url) {
+  const seg = String(url).replace(SITE, "").split("/").filter(Boolean)[0];
+  return seg && fs.existsSync(path.join(ROOT, "og", seg + ".jpg")) ? `${SITE}/og/${seg}.jpg` : `${SITE}/og-image.jpg`;
+}
+
 function head({ title, desc, url, ld }) {
   desc = clipDesc(desc);
   const ldJson = JSON.stringify(ld, null, 2).replace(/</g, "\\u003C");
@@ -84,11 +91,11 @@ function head({ title, desc, url, ld }) {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:url" content="${url}">
-<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta property="og:image" content="${ogImage(url)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
-<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:image" content="${ogImage(url)}">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
@@ -261,5 +268,5 @@ function hubBlock(rel, name, generator, html) {
 module.exports = {
   ROOT, SITE, TODAY, FOOTER,
   esc, niceDate, clipDesc, fitTitle, head, breadcrumb, webPage, faqLd, faqHtml, card, table, neighbours,
-  write, prune, sitemapBlock, changed, hubBlock
+  write, prune, sitemapBlock, changed, hubBlock, ogImage
 };
