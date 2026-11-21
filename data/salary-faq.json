@@ -1,0 +1,35 @@
+{
+  "_note": "Extra questions for a place's salary hub (/salary/<place>/), on top of the ones worked out from the tax file. Each set names the tax year it was written for: when the place's tax file moves to a new year, tools/build-tax-pages.js leaves the set out and warns until it is rewritten. Figures must match the tax file and its sources.",
+  "places": {
+    "be": {
+      "taxYear": "2026",
+      "q": [
+        ["How much social security do employees pay in Belgium?", "13.07% of gross pay, with no ceiling. On top of that comes the special social security contribution (bijzondere bijdrage), withheld from pay above €1,945.38 a month and at most €182.82 a quarter — €731.28 a year — for someone taxed alone."],
+        ["How much can you earn tax-free in Belgium?", "The tax-free amount for 2026 income (assessment year 2027) is €11,550. It works as a reduction of tax: 25% of €11,550, or €2,887.50, comes off the tax worked out on the bands of 25%, 40%, 45% and 50%."],
+        ["What is the municipal surcharge?", "Each municipality adds a percentage of your income tax. For 2026 the average across Flemish municipalities is 7.22%; Antwerp charges 7%, Ghent 6.5%, Leuven 6.7% and Bruges 6.9%. Pick yours in the calculator's options."],
+        ["What are lump-sum professional expenses?", "Unless you claim actual costs, 30% of your pay after social security is deducted as professional expenses before tax, up to €6,070 for 2026 income. Most salaries above about €23,000 reach the cap."],
+        ["Are the 13th month and holiday pay included?", "Enter your whole year's gross pay, including any 13th month and holiday pay; here they're taxed like ordinary pay. Payslips withhold tax on them differently, and the annual tax assessment settles the difference."]
+      ]
+    },
+    "lu": {
+      "taxYear": "2026",
+      "q": [
+        ["How much social security do employees pay in Luxembourg?", "11.55% of pay: 8.50% for pension, 2.80% for health care and 0.25% for sickness cash benefits, on pay up to five times the minimum wage (€13,518.68 a month to May 2026, €13,856.63 from June). Dependency insurance adds 1.4% of all pay after an allowance of a quarter of the minimum wage each month."],
+        ["Which tax class does this use?", "Class 1: a resident who is single with no children. Single parents (class 1a) and married couples or civil partners taxed jointly (class 2) are taxed under their own classes, usually paying less on the same salary; those aren't modelled here."],
+        ["What tax credits do employees get?", "The employee tax credit (CIS) is €600 a year on pay from €11,266 to €40,000, less below that, and falls to nothing at €80,000. The CO2 credit (CI-CO2) is €216 up to €40,000 and also falls to nothing at €80,000. Both are paid even if there is no tax to set them against."],
+        ["What is the solidarity surcharge?", "A contribution to the employment fund of 7% of your income tax, rising to 9% when taxable income is over €150,000 in class 1."],
+        ["Does this work for cross-border workers?", "No — these figures are for residents. Cross-border workers are taxed as non-residents, which can change their tax class and the final bill, and the tax treaties with France, Belgium and Germany also apply."]
+      ]
+    },
+    "ch": {
+      "taxYear": "2026",
+      "q": [
+        ["Why are these figures for Zurich?", "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026."],
+        ["What social contributions come out of Swiss pay?", "5.3% for AHV/IV/EO (old age, disability and loss of earnings) on all salary, and 1.1% unemployment insurance (ALV) on salary up to CHF 148,200. Pension fund (BVG) contributions and non-occupational accident insurance also come off most payslips; their rates depend on your employer."],
+        ["Are pension fund (BVG) contributions included?", "Only if you enter your share in the options, as a percentage of your coordinated salary: salary up to CHF 90,720 less the CHF 26,460 coordination deduction (at least CHF 3,780). It is set to 0 by default because the rate depends on your age and your employer's fund. Contributions are deducted before tax."],
+        ["What deductions are allowed before tax?", "Here: the lump sum for professional costs (3% of net salary, between CHF 2,000 and CHF 4,000) and the insurance premiums deduction of CHF 1,800 for federal tax and CHF 2,900 for Zurich tax. Commuting, meals, pillar 3a contributions and other deductions you can claim would lower the tax further."],
+        ["Do foreign employees pay tax this way?", "Swiss citizens and C-permit holders are assessed like this. Most other foreign employees have tax deducted at source (Quellensteuer) using separate tables, which aren't modelled here."]
+      ]
+    }
+  }
+}

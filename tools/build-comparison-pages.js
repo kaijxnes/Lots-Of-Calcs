@@ -20,8 +20,8 @@ const all = registry.readAll(), current = registry.currentFiles(all);
 const E = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/currency/ecb.json"), "utf8"));
 const PLACES = {};
 JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/salary-places.json"), "utf8")).groups.forEach((g) => g.places.forEach((p) => (PLACES[p.id] = p)));
-const LABEL = { gb: ["UK", "the UK"], "gb-sct": ["Scotland", "Scotland"], ie: ["Ireland", "Ireland"], de: ["Germany", "Germany"], nl: ["Netherlands", "the Netherlands"], fr: ["France", "France"], es: ["Spain", "Spain"], pt: ["Portugal", "Portugal"], it: ["Italy", "Italy"], "us-tx": ["Texas", "Texas"], "us-ca": ["California", "California"], "us-ny-nyc": ["New York City", "New York City"], "us-fl": ["Florida", "Florida"], "ca-on": ["Ontario", "Ontario"], "ca-bc": ["British Columbia", "British Columbia"], au: ["Australia", "Australia"], nz: ["New Zealand", "New Zealand"], be: ["Belgium", "Belgium"], lu: ["Luxembourg", "Luxembourg"], ch: ["Switzerland", "Zurich, Switzerland"] };
-const PAIRS = [["gb", "ie"], ["gb", "de"], ["gb", "nl"], ["gb", "fr"], ["gb", "es"], ["gb", "pt"], ["gb", "us-ny-nyc"], ["gb", "us-tx"], ["gb", "us-ca"], ["gb", "ca-on"], ["gb", "au"], ["gb", "nz"], ["gb", "gb-sct"], ["ie", "de"], ["de", "nl"], ["us-ca", "us-tx"], ["us-ny-nyc", "us-fl"], ["us-tx", "ca-on"], ["ca-on", "ca-bc"], ["au", "nz"], ["gb", "ch"], ["gb", "be"], ["gb", "lu"], ["de", "ch"], ["be", "nl"], ["be", "fr"], ["fr", "lu"], ["de", "lu"]];
+const config = require("./salary-pages-config.js");
+const LABEL = config.COMPARISON_LABEL, PAIRS = config.COMPARISON_PAIRS;
 const LEVELS = { GBP: [25000, 30000, 40000, 50000, 60000, 80000, 100000, 150000], USD: [40000, 50000, 60000, 75000, 100000, 125000, 150000, 200000], EUR: [30000, 40000, 50000, 60000, 75000, 100000, 125000, 150000], CAD: [50000, 60000, 75000, 100000, 125000, 150000, 200000], AUD: [60000, 75000, 90000, 100000, 120000, 150000, 200000], CHF: [50000, 60000, 80000, 100000, 120000, 150000, 200000] };
 const SYM = { GBP: "£", EUR: "€", USD: "$", CAD: "C$", AUD: "A$", NZD: "NZ$", CHF: "CHF " };
 const DATE = new Date(E.date + "T00:00:00Z").toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
@@ -29,8 +29,7 @@ const DATE = new Date(E.date + "T00:00:00Z").toLocaleDateString("en-GB", { day: 
 const chain = (id) => registry.chainFor(current[id].doc, all);
 const fx = (a, b) => E.rates[b] / E.rates[a];
 const m0 = (c, v) => (SYM[c] || c + " ") + Math.round(v).toLocaleString("en-GB");
-const slugOf = (id) => LABEL[id][0].toLowerCase().replace(/\s+/g, "-");
-const slug = (a, b) => `${slugOf(a)}-vs-${slugOf(b)}`;
+const slug = config.comparisonSlug;
 
 function page(a, b) {
   const A = PLACES[a], B = PLACES[b], ca = A.currency, cb = B.currency, x = fx(ca, cb), url = SITE + `${BASE}${slug(a, b)}/`;

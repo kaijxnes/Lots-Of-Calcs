@@ -74,8 +74,11 @@ const PLACES = {
   "de": { path: "germany" }, "fr": { path: "france" }, "es": { path: "spain" }, "it": { path: "italy" },
   "nl": { path: "netherlands", inName: "the Netherlands" }, "ie": { path: "ireland" }, "pt": { path: "portugal" },
   "at": { path: "austria" }, "no": { path: "norway" }, "dk": { path: "denmark" }, "se": { path: "sweden" },
-  "fi": { path: "finland" }, "be": { path: "belgium" }, "lu": { path: "luxembourg" },
-  "ch": { path: "switzerland", inName: "Zurich, Switzerland", shortName: "Switzerland (Zurich)" }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
+  "fi": { path: "finland" }, 
+  "be": { path: "belgium", hubTitle: ["Belgium Salary After Tax Calculator ({year}) — Gross to Net", "Belgium Gross to Net Salary Calculator ({year})"] },
+  "lu": { path: "luxembourg", hubTitle: ["Luxembourg Salary After Tax Calculator ({year}) — Gross to Net", "Luxembourg Gross to Net Salary Calculator"] },
+  "ch": { path: "switzerland", inName: "Zurich, Switzerland", shortName: "Switzerland (Zurich)",
+    hubTitle: ["Swiss Salary After Tax Calculator ({year}) — Zurich Take-Home", "Swiss Salary Calculator — Take-Home Pay in Zurich"] }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
   "us-dc": { path: "us/washington-dc", inName: "Washington, DC", shortName: "Washington, DC" },
   "us-ny-nyc": { path: "us/new-york-city" }
 };
@@ -101,4 +104,13 @@ const COMPARE = {
   CA: ["ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"]
 };
 
-module.exports = { SALARIES, HOURLY, MONTHLY, MONTHLY_PLACES, HEADLINE, PLACES, COMPARE, placeFor };
+/* Country-against-country pages, /salary-comparison/<a>-vs-<b>/ (built by
+   tools/build-comparison-pages.js and linked from each place's salary pages).
+   Labels: [short name, how it reads in a sentence]. */
+const COMPARISON_LABEL = { gb: ["UK", "the UK"], "gb-sct": ["Scotland", "Scotland"], ie: ["Ireland", "Ireland"], de: ["Germany", "Germany"], nl: ["Netherlands", "the Netherlands"], fr: ["France", "France"], es: ["Spain", "Spain"], pt: ["Portugal", "Portugal"], it: ["Italy", "Italy"], "us-tx": ["Texas", "Texas"], "us-ca": ["California", "California"], "us-ny-nyc": ["New York City", "New York City"], "us-fl": ["Florida", "Florida"], "ca-on": ["Ontario", "Ontario"], "ca-bc": ["British Columbia", "British Columbia"], au: ["Australia", "Australia"], nz: ["New Zealand", "New Zealand"], be: ["Belgium", "Belgium"], lu: ["Luxembourg", "Luxembourg"], ch: ["Switzerland", "Zurich, Switzerland"] };
+const COMPARISON_PAIRS = [["gb", "ie"], ["gb", "de"], ["gb", "nl"], ["gb", "fr"], ["gb", "es"], ["gb", "pt"], ["gb", "us-ny-nyc"], ["gb", "us-tx"], ["gb", "us-ca"], ["gb", "ca-on"], ["gb", "au"], ["gb", "nz"], ["gb", "gb-sct"], ["ie", "de"], ["de", "nl"], ["us-ca", "us-tx"], ["us-ny-nyc", "us-fl"], ["us-tx", "ca-on"], ["ca-on", "ca-bc"], ["au", "nz"], ["gb", "ch"], ["gb", "be"], ["gb", "lu"], ["de", "ch"], ["be", "nl"], ["be", "fr"], ["fr", "lu"], ["de", "lu"]];
+const comparisonSlug = (a, b) => [a, b].map((id) => COMPARISON_LABEL[id][0].toLowerCase().replace(/\s+/g, "-")).join("-vs-");
+/* The comparison pages a place appears on, as [url, "A vs B"] */
+const comparisonsFor = (id) => COMPARISON_PAIRS.filter((pr) => pr.includes(id)).map(([a, b]) => [`/salary-comparison/${comparisonSlug(a, b)}/`, `${COMPARISON_LABEL[a][0]} vs ${COMPARISON_LABEL[b][0]}`]);
+
+module.exports = { SALARIES, HOURLY, MONTHLY, MONTHLY_PLACES, HEADLINE, PLACES, COMPARE, placeFor, COMPARISON_LABEL, COMPARISON_PAIRS, comparisonSlug, comparisonsFor };
