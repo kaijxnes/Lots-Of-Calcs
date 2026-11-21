@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/currency-converter/": ["/vat/", "/percent/", "/tip/", "/split-bill/", "/inflation/", "/fuel-cost/"],
   "/buy-to-let-calculator/": ["/stamp-duty-calculator/", "/mortgage-calculator/", "/capital-gains-tax-calculator/", "/rent-vs-buy/", "/mortgage-affordability/", "/loan-repayment/"],
   "/pension-drawdown-calculator/": ["/isa-vs-pension/", "/fire-calculator/", "/compound-interest/", "/inheritance-tax-calculator/", "/inflation/", "/savings-goal/"],
   "/inheritance-tax-calculator/": ["/capital-gains-tax-calculator/", "/pension-drawdown-calculator/", "/isa-vs-pension/", "/rent-vs-buy/", "/compound-interest/", "/savings-goal/"],
