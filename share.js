@@ -90,3 +90,31 @@
   tool.appendChild(bar);
   if (applied) note.textContent = "Showing the numbers from a shared link.";
 })();
+
+/* Accessibility touches shared by every calculator page:
+   - tab buttons in a role="tablist" get role="tab" and aria-selected, kept
+     in step with the "active" class each page's own script toggles;
+   - selects and inputs that calculators add in rows (accumulator legs,
+     savings items) get an aria-label from their placeholder or data-field
+     when they have no label of their own. */
+(function () {
+  "use strict";
+  function tabs() {
+    Array.prototype.forEach.call(document.querySelectorAll('[role="tablist"]'), function (list) {
+      var btns = list.querySelectorAll("button");
+      function sync() { Array.prototype.forEach.call(btns, function (b) { b.setAttribute("role", "tab"); b.setAttribute("aria-selected", b.classList.contains("active") ? "true" : "false"); }); }
+      sync();
+      if (window.MutationObserver) new MutationObserver(sync).observe(list, { subtree: true, attributes: true, attributeFilter: ["class"] });
+    });
+  }
+  function labels(root) {
+    Array.prototype.forEach.call((root || document).querySelectorAll("select, input, textarea"), function (el) {
+      if (el.type === "hidden" || el.getAttribute("aria-label") || el.getAttribute("aria-labelledby") || el.closest("label")) return;
+      if (el.id && document.querySelector('label[for="' + el.id + '"]')) return;
+      var name = el.getAttribute("placeholder") || (el.getAttribute("data-field") || "").replace(/[-_]/g, " ");
+      if (name) el.setAttribute("aria-label", name.charAt(0).toUpperCase() + name.slice(1));
+    });
+  }
+  tabs(); labels();
+  if (window.MutationObserver) new MutationObserver(function (m) { m.forEach(function (r) { Array.prototype.forEach.call(r.addedNodes, function (n) { if (n.nodeType === 1) labels(n); }); }); }).observe(document.body, { childList: true, subtree: true });
+})();
