@@ -14,6 +14,7 @@ const TAGS = {
   "/running-cost/": "UK",
   "/working-days/": "UK",
   "/dry-january-calculator/": "UK",
+  "/student-loan-calculator/": "UK",
   "/roth-vs-traditional/": "US",
   "/tfsa-vs-rrsp/": "Canada"
 };

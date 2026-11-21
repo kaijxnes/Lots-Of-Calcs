@@ -1,0 +1,16 @@
+{
+  "_note": "Interest rates and write-off rules for UK student loans, used by tools/build-student-loan-pages.js. Repayment thresholds and rates are NOT here: they are read from the UK tax file (data/tax/gb/), which the monthly check keeps current. Interest rates are as GOV.UK states them 'currently'; they change each September (RPI) and when caps are announced. Write-off assumes loans first paid on or after 1 September 2006 (Plan 1) or 1 August 2007 (Plan 4); earlier loans are written off at 65.",
+  "rpi": 4.1,
+  "plans": {
+    "plan1": { "name": "Plan 1", "who": "English and Welsh students who started before September 2012, and Northern Irish students", "interest": { "flat": 4.1 }, "writeOffYears": 25 },
+    "plan2": { "name": "Plan 2", "who": "English and Welsh students who started between September 2012 and July 2023", "interest": { "low": 4.1, "high": 6, "lower": 29385, "upper": 52885 }, "writeOffYears": 30 },
+    "plan4": { "name": "Plan 4", "who": "Scottish students", "interest": { "flat": 4.1 }, "writeOffYears": 30 },
+    "plan5": { "name": "Plan 5", "who": "English students who started on or after 1 August 2023", "interest": { "flat": 4.1 }, "writeOffYears": 40 },
+    "postgrad": { "name": "Postgraduate Loan", "who": "English and Welsh Master's and Doctoral loans", "interest": { "flat": 6 }, "writeOffYears": 30 }
+  },
+  "sources": [
+    { "title": "Repaying your student loan: what you pay (GOV.UK)", "url": "https://www.gov.uk/repaying-your-student-loan/what-you-pay", "note": "Thresholds (match the tax file), 9% / 6%; 'You're currently charged' 4.1% Plan 1, 4 and 5, 6% Postgraduate; Plan 2 sliding scale 4.1% at £29,385 or less, 4.1% plus up to 1.9% from £29,386 to £52,884, 6% at £52,885 or more (cap of 6%)." },
+    { "title": "When your student loan gets written off or cancelled (GOV.UK)", "url": "https://www.gov.uk/repaying-your-student-loan/when-your-student-loan-gets-written-off-or-cancelled", "note": "Plan 1 25 years after the April first due (loans from 1 Sep 2006); Plan 2 30 years; Plan 4 30 years (loans from 1 Aug 2007); Plan 5 40 years; Postgraduate 30 years." }
+  ],
+  "lastChecked": "2026-11-21"
+}
