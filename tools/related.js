@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/student-loan-calculator/": ["/salary/", "/50-30-20-budget/", "/pay-rise-calculator/", "/loan-repayment/", "/savings-goal/", "/job-offer-comparison/"],
   "/job-offer-comparison/": ["/salary/", "/pay-rise-calculator/", "/50-30-20-budget/", "/fuel-cost/", "/self-employed-tax-calculator/", "/biweekly-pay-schedule/"],
   "/biweekly-pay-schedule/": ["/salary/", "/50-30-20-budget/", "/pay-rise-calculator/", "/working-days/", "/savings-goal/", "/date-diff/"],
   "/christmas-savings-calculator/": ["/52-week-savings-challenge/", "/savings-goal/", "/50-30-20-budget/", "/days-until/", "/split-bill/", "/discount/"],
@@ -59,7 +60,7 @@ const RELATED = {
   "/inflation/": ["/pay-rise-calculator/", "/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
   "/mortgage-affordability/": ["/stamp-duty-calculator/", "/mortgage-calculator/", "/rent-vs-buy/", "/salary/", "/mortgage-overpayment/", "/loan-repayment/", "/savings-goal/", "/household-bills/"],
   "/rent-vs-buy/": ["/stamp-duty-calculator/", "/mortgage-affordability/", "/mortgage-overpayment/", "/salary/", "/compound-interest/", "/inflation/", "/savings-goal/", "/loan-repayment/"],
-  "/salary/": ["/self-employed-tax-calculator/", "/pay-rise-calculator/", "/job-offer-comparison/", "/50-30-20-budget/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
+  "/salary/": ["/self-employed-tax-calculator/", "/pay-rise-calculator/", "/job-offer-comparison/", "/student-loan-calculator/", "/50-30-20-budget/", "/vat/", "/savings-goal/", "/loan-repayment/", "/mortgage-overpayment/", "/compound-interest/", "/household-bills/"],
   "/cagr/": ["/compound-interest/", "/inflation/", "/growth/", "/fund-fees/", "/savings-goal/", "/percent/"],
   "/compound-interest/": ["/savings-goal/", "/52-week-savings-challenge/", "/inflation/", "/cagr/", "/fund-fees/", "/mortgage-overpayment/", "/salary/"],
   "/savings-goal/": ["/compound-interest/", "/52-week-savings-challenge/", "/emergency-fund-calculator/", "/salary/", "/inflation/", "/fund-fees/", "/rent-vs-buy/", "/household-bills/"],
