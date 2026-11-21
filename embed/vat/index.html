@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VAT calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/vat/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/vat/">VAT calculator</a></p>
+<main class="tool">
+      <div class="field" style="max-width:280px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="vat">VAT</button>
+        <button class="tab" data-tab="income-tax">Income tax bands</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="vat">
+        <div class="field">
+          <label for="vat-rate">VAT rate (%)</label>
+          <input type="number" id="vat-rate" value="20" step="any">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="vat-net">Net price (excl. VAT)</label>
+            <input type="number" id="vat-net" placeholder="0.00" step="any">
+          </div>
+          <div class="field">
+            <label for="vat-gross">Gross price (incl. VAT)</label>
+            <input type="number" id="vat-gross" placeholder="0.00" step="any">
+          </div>
+        </div>
+        <p class="tool-hint">Enter either the net or the gross price — the other field and the VAT amount update automatically. UK rates: 20% standard, 5% reduced, 0% zero-rated.</p>
+        <div class="result-box">
+          <div class="result-grid">
+            <div class="result-row highlight"><span class="r-label">VAT amount</span><span class="r-value" id="vat-amount">£0.00</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="income-tax">
+        <p class="tool-hint">Default bands are the UK's 2026/27 income tax bands (England, Wales and Northern Ireland). Edit thresholds and rates to model any scheme.</p>
+        <div class="dyn-table-head">
+          <span class="grow">Band up to</span>
+          <span class="fixed-sm">Rate %</span>
+          <span style="width:34px"></span>
+        </div>
+        <div class="dyn-list" id="band-rows"></div>
+        <button class="btn btn-ghost" id="add-band" type="button">+ Add band</button>
+
+        <div class="field" style="margin-top:16px;">
+          <label for="income">Annual income</label>
+          <input type="number" id="income" placeholder="0.00" step="any">
+        </div>
+
+        <div class="result-box">
+          <div class="result-grid" id="band-breakdown"></div>
+          <hr class="divider">
+          <div class="result-row highlight"><span class="r-label">Total tax</span><span class="r-value" id="total-tax">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Take-home</span><span class="r-value" id="take-home">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value" id="effective-rate">0%</span></div>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/vat/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/vat.js"></script>
+</body>
+</html>

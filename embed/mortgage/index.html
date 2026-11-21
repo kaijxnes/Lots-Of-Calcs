@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mortgage calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/mortgage-calculator/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/mortgage-calculator/">Mortgage calculator</a></p>
+<main class="tool" id="mc-tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="mc-currency">Currency</label>
+          <select id="mc-currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="A$">A$ Australian Dollar</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="mc-type">Mortgage type</label>
+          <select id="mc-type">
+            <option value="repayment" selected>Repayment (capital and interest)</option>
+            <option value="interest">Interest only</option>
+          </select>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="mc-price">Property price</label>
+          <input type="number" id="mc-price" value="300000" step="any" min="0" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="mc-deposit">Deposit</label>
+          <input type="number" id="mc-deposit" value="30000" step="any" min="0" inputmode="decimal">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="mc-rate">Interest rate (% a year)</label>
+          <input type="number" id="mc-rate" value="4.5" step="any" min="0" inputmode="decimal">
+          <p class="tool-hint" style="margin-top:4px;">An example — use the rate you've been offered</p>
+        </div>
+        <div class="field">
+          <label for="mc-years">Term (years)</label>
+          <input type="number" id="mc-years" value="25" step="any" min="0" inputmode="decimal">
+        </div>
+      </div>
+      <p class="tool-hint" id="mc-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="mc-monthly">£1,500.75</div>
+          <div class="label" id="mc-label">a month on a £270,000 mortgage</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Loan</span><span class="r-value" id="mc-loan">£270,000</span></div>
+          <div class="result-row"><span class="r-label">Loan to value</span><span class="r-value" id="mc-ltv">90%</span></div>
+          <div class="result-row"><span class="r-label">Total interest</span><span class="r-value" id="mc-interest">£180,224</span></div>
+          <div class="result-row highlight"><span class="r-label">Total repaid</span><span class="r-value" id="mc-total">£450,224</span></div>
+          <div class="result-row"><span class="r-label">Still owed at the end</span><span class="r-value" id="mc-end">£0</span></div>
+        </div>
+      </div>
+
+      <p class="tool-section-title" style="margin-top:22px;">Year by year</p>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Year</th><th>Interest paid</th><th>Loan repaid</th><th>Still owed</th></tr></thead>
+            <tbody id="mc-body">
+<tr><td>1</td><td>£12,028</td><td>£5,981</td><td>£264,019</td></tr>
+<tr><td>2</td><td>£11,753</td><td>£6,256</td><td>£257,763</td></tr>
+<tr><td>3</td><td>£11,465</td><td>£6,544</td><td>£251,219</td></tr>
+<tr><td>4</td><td>£11,165</td><td>£6,844</td><td>£244,375</td></tr>
+<tr><td>5</td><td>£10,850</td><td>£7,159</td><td>£237,216</td></tr>
+<tr><td>6</td><td>£10,522</td><td>£7,487</td><td>£229,729</td></tr>
+<tr><td>7</td><td>£10,178</td><td>£7,831</td><td>£221,898</td></tr>
+<tr><td>8</td><td>£9,818</td><td>£8,191</td><td>£213,706</td></tr>
+<tr><td>9</td><td>£9,442</td><td>£8,567</td><td>£205,139</td></tr>
+<tr><td>10</td><td>£9,048</td><td>£8,961</td><td>£196,178</td></tr>
+<tr><td>11</td><td>£8,636</td><td>£9,373</td><td>£186,805</td></tr>
+<tr><td>12</td><td>£8,206</td><td>£9,803</td><td>£177,002</td></tr>
+<tr><td>13</td><td>£7,755</td><td>£10,254</td><td>£166,748</td></tr>
+<tr><td>14</td><td>£7,284</td><td>£10,725</td><td>£156,024</td></tr>
+<tr><td>15</td><td>£6,792</td><td>£11,217</td><td>£144,806</td></tr>
+<tr><td>16</td><td>£6,276</td><td>£11,733</td><td>£133,073</td></tr>
+<tr><td>17</td><td>£5,737</td><td>£12,272</td><td>£120,802</td></tr>
+<tr><td>18</td><td>£5,173</td><td>£12,835</td><td>£107,966</td></tr>
+<tr><td>19</td><td>£4,584</td><td>£13,425</td><td>£94,541</td></tr>
+<tr><td>20</td><td>£3,967</td><td>£14,042</td><td>£80,499</td></tr>
+<tr><td>21</td><td>£3,322</td><td>£14,687</td><td>£65,812</td></tr>
+<tr><td>22</td><td>£2,647</td><td>£15,362</td><td>£50,451</td></tr>
+<tr><td>23</td><td>£1,942</td><td>£16,067</td><td>£34,383</td></tr>
+<tr><td>24</td><td>£1,203</td><td>£16,806</td><td>£17,578</td></tr>
+<tr><td>25</td><td>£431</td><td>£17,578</td><td>£0</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/mortgage-calculator/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/mortgage-calculator.js"></script>
+</body>
+</html>

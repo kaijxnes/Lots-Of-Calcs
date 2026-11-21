@@ -29,3 +29,8 @@
 
 /*.ico
   Cache-Control: public, max-age=2592000
+
+# Embeddable calculators: other sites may show these in an iframe
+/embed/*
+  ! X-Frame-Options
+  Content-Security-Policy: frame-ancestors *

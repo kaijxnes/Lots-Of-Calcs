@@ -1601,3 +1601,17 @@ hr.divider {
 .jo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 .jo-side { min-width: 0; }
 @media (max-width: 720px) { .jo-grid { grid-template-columns: 1fr; } }
+
+/* "Copy a link to these numbers", under each calculator */
+.share-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 16px 0 0; }
+.share-note { font-size: 0.85rem; color: var(--text-muted); word-break: break-all; }
+@media print { .share-bar, .embed-box { display: none !important; } }
+
+/* Embedded calculators (/embed/…) and the "Embed this calculator" box */
+.embed-page { padding-top: 8px; padding-bottom: 8px; }
+.embed-head { margin: 0 0 10px; font-weight: 700; font-size: 1.05rem; }
+.embed-head a { color: inherit; text-decoration: none; }
+.embed-foot { margin: 12px 0 0; font-size: 0.85rem; color: var(--text-muted); text-align: center; }
+.embed-box { margin: 20px 0 0; }
+.embed-box summary { cursor: pointer; color: var(--text-muted); font-size: 0.9rem; }
+.embed-box textarea { width: 100%; box-sizing: border-box; margin-top: 8px; font: 0.8rem/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 10px; border-radius: 10px; border: 1px solid rgba(127,127,127,0.35); background: transparent; color: inherit; resize: vertical; }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discount calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/discount/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/discount/">Discount calculator</a></p>
+<main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="original-price">Original price</label>
+          <input type="number" id="original-price" placeholder="0.00" step="any">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="dyn-table-head">
+        <span class="row-index">#</span>
+        <span class="grow">Discount</span>
+        <span class="fixed-sm">% off</span>
+        <span style="width:34px"></span>
+      </div>
+      <div class="dyn-list" id="rows"></div>
+      <button class="btn btn-ghost" id="add-row" type="button">+ Add discount</button>
+
+      <div class="result-box" style="margin-top:18px;">
+        <div class="result-hero">
+          <div class="value" id="final-price">£0.00</div>
+          <div class="label">Final price</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total saved</span><span class="r-value" id="total-saved">£0.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Effective discount</span><span class="r-value" id="effective-discount">0%</span></div>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/discount/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/discount.js"></script>
+</body>
+</html>

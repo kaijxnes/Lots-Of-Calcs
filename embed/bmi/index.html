@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BMI calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/bmi/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/bmi/">BMI calculator</a></p>
+<main class="tool">
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="metric">Metric</button>
+        <button class="tab" data-tab="imperial">Imperial</button>
+      </div>
+
+      <div class="tab-panel active" data-panel="metric">
+        <div class="field-row">
+          <div class="field">
+            <label for="m-height">Height (cm)</label>
+            <input type="number" id="m-height" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="m-weight">Weight (kg)</label>
+            <input type="number" id="m-weight" placeholder="0" step="any">
+          </div>
+        </div>
+      </div>
+
+      <div class="tab-panel" data-panel="imperial">
+        <div class="field-row">
+          <div class="field">
+            <label for="i-feet">Height (ft)</label>
+            <input type="number" id="i-feet" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="i-inches">Height (in)</label>
+            <input type="number" id="i-inches" placeholder="0" step="any">
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="i-stone">Weight (st)</label>
+            <input type="number" id="i-stone" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="i-weight">Weight (lb)</label>
+            <input type="number" id="i-weight" placeholder="0" step="any">
+          </div>
+        </div>
+        <p class="tool-hint">Weigh yourself in pounds only? Leave stone blank and put the whole weight in pounds.</p>
+      </div>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="bmi-value">—</div>
+          <div class="label" id="bmi-category">Enter your height and weight</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Healthy weight for your height</span><span class="r-value" id="bmi-range">—</span></div>
+          <div class="result-row"><span class="r-label">Underweight</span><span class="r-value">below 18.5</span></div>
+          <div class="result-row"><span class="r-label">Normal weight</span><span class="r-value">18.5 – 24.9</span></div>
+          <div class="result-row"><span class="r-label">Overweight</span><span class="r-value">25 – 29.9</span></div>
+          <div class="result-row"><span class="r-label">Obese</span><span class="r-value">30 and above</span></div>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/bmi/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/bmi.js"></script>
+</body>
+</html>

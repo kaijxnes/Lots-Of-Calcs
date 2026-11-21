@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Savings goal calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/savings-goal/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/savings-goal/">Savings goal calculator</a></p>
+<main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="goal-amount">Savings goal</label>
+          <input type="number" id="goal-amount" placeholder="0.00" step="any">
+        </div>
+        <div class="field">
+          <label for="current-savings">Current savings</label>
+          <input type="number" id="current-savings" placeholder="0.00" step="any">
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="tf-years">Time frame — years</label>
+          <input type="number" id="tf-years" placeholder="0" step="any">
+        </div>
+        <div class="field">
+          <label for="tf-months">Time frame — months</label>
+          <input type="number" id="tf-months" placeholder="0" step="any">
+        </div>
+      </div>
+
+      <div class="field" style="max-width:280px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
+      <p class="tool-section-title">Interest</p>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-mode="compound" type="button">Include interest</button>
+        <button class="tab" data-mode="simple" type="button">Simple (no interest)</button>
+      </div>
+
+      <div id="interest-fields" style="margin-top:16px;">
+        <div class="field-row">
+          <div class="field">
+            <label for="annual-rate">Expected annual interest rate (%)</label>
+            <input type="number" id="annual-rate" placeholder="0" step="any">
+          </div>
+          <div class="field">
+            <label for="compounding">Compounding frequency</label>
+            <select id="compounding">
+              <option value="monthly" selected>Monthly</option>
+              <option value="annual">Annually</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <p class="tool-hint" id="goal-error" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" id="goal-note" style="color: var(--good); display: none;"></p>
+
+      <div class="result-box">
+        <div class="result-hero">
+          <div class="value" id="monthly-contribution">£0.00</div>
+          <div class="label">Required monthly contribution</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total contributed</span><span class="r-value" id="total-contributed">£0.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Total interest earned</span><span class="r-value" id="total-interest-earned">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Projected balance at target date</span><span class="r-value" id="projected-balance">£0.00</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Assumes contributions are made at the end of each month, and (when included) interest compounds on both your starting balance and your contributions.</p>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/savings-goal/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/savings-goal.js"></script>
+</body>
+</html>

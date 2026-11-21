@@ -262,6 +262,7 @@ function build(gross, chain, cfg, allSalaries) {
 <link rel="stylesheet" href="/styles.css">
 <script src="/consent.js" defer></script>
 <script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
 <script type="application/ld+json">
 ${ldJson}
 </script>
