@@ -21,6 +21,13 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/word-counter/": ["/random-number-generator/", "/number-to-words/", "/basic/", "/percent/", "/grade/", "/roman-numerals/"],
+  "/random-number-generator/": ["/basic/", "/percent/", "/word-counter/", "/scientific/", "/fractions/", "/roman-numerals/"],
+  "/sleep-calculator/": ["/calorie-calculator/", "/bmi/", "/days-until/", "/birthday/", "/pace/", "/timezone/"],
+  "/fire-calculator/": ["/compound-interest/", "/savings-goal/", "/isa-vs-pension/", "/fund-fees/", "/inflation/", "/salary/"],
+  "/credit-card-payoff/": ["/debt-snowball-vs-avalanche/", "/loan-repayment/", "/50-30-20-budget/", "/emergency-fund-calculator/", "/salary/", "/savings-goal/"],
+  "/wedding-budget/": ["/50-30-20-budget/", "/savings-goal/", "/split-bill/", "/days-until/", "/emergency-fund-calculator/", "/discount/"],
+  "/overtime-calculator/": ["/salary/", "/hourly-to-salary/", "/pay-rise-calculator/", "/job-offer-comparison/", "/working-days/", "/biweekly-pay-schedule/"],
   "/cups-to-grams/": ["/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/", "/percent/", "/fractions/"],
   "/hourly-to-salary/": ["/salary/", "/pay-rise-calculator/", "/job-offer-comparison/", "/biweekly-pay-schedule/", "/working-days/", "/50-30-20-budget/"],
   "/beckham-law-calculator/": ["/salary/", "/30-percent-ruling-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],

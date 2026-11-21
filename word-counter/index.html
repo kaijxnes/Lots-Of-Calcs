@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter — Words, Characters, Sentences and Reading Time</title>
+<meta name="description" content="Count words, characters (with and without spaces), sentences and paragraphs as you type, with reading and speaking time.">
+<link rel="canonical" href="https://lotsofcalcs.com/word-counter/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Word Counter — Words, Characters, Sentences and Reading Time">
+<meta property="og:description" content="Count words, characters (with and without spaces), sentences and paragraphs as you type, with reading and speaking time.">
+<meta property="og:url" content="https://lotsofcalcs.com/word-counter/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Word Counter — Words, Characters, Sentences and Reading Time">
+<meta name="twitter:description" content="Count words, characters (with and without spaces), sentences and paragraphs as you type, with reading and speaking time.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Word Counter — Words, Characters, Sentences and Reading Time",
+    "description": "Count words, characters (with and without spaces), sentences and paragraphs as you type, with reading and speaking time.",
+    "url": "https://lotsofcalcs.com/word-counter/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Word Counter",
+        "item": "https://lotsofcalcs.com/word-counter/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Word Counter",
+    "url": "https://lotsofcalcs.com/word-counter/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the word counter count words?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Anything separated by spaces or line breaks counts as a word, including numbers; hyphenated words like 'well-known' count once. Most word processors count the same way, though a few treat dashes and symbols differently."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is reading time worked out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Words ÷ reading speed. It uses 200 words a minute for reading and 130 for speaking aloud, round figures often used for estimates; change them to your own pace."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my text saved or sent anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. It's counted in your browser and never leaves your device."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Word counter</h1>
+      <p class="page-subtitle">Words, characters, sentences and reading time, counted as you type. Your text stays on your device.</p>
+    </header>
+
+    <main class="tool" id="wc-tool">
+      <div class="field no-share"><label for="wc-text">Your text</label><textarea id="wc-text" rows="10" placeholder="Type or paste your text here"></textarea></div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Words</span><span class="r-value" id="wc-words">0</span></div>
+          <div class="result-row"><span class="r-label">Characters</span><span class="r-value" id="wc-chars">0</span></div>
+          <div class="result-row"><span class="r-label">Characters without spaces</span><span class="r-value" id="wc-nospace">0</span></div>
+          <div class="result-row"><span class="r-label">Sentences</span><span class="r-value" id="wc-sentences">0</span></div>
+          <div class="result-row"><span class="r-label">Paragraphs</span><span class="r-value" id="wc-paras">0</span></div>
+          <div class="result-row"><span class="r-label">Reading time</span><span class="r-value" id="wc-read">0 min</span></div>
+          <div class="result-row"><span class="r-label">Speaking time</span><span class="r-value" id="wc-speak">0 min</span></div>
+        </div>
+      </div>
+      <div class="field-row" style="margin-top:12px;">
+        <div class="field"><label for="wc-rwpm">Reading speed (words a minute)</label><input type="number" id="wc-rwpm" value="200" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="wc-swpm">Speaking speed (words a minute)</label><input type="number" id="wc-swpm" value="130" min="0" step="any" inputmode="decimal"></div>
+      </div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How does the word counter count words?</p>
+      <p class="about-text">Anything separated by spaces or line breaks counts as a word, including numbers; hyphenated words like 'well-known' count once. Most word processors count the same way, though a few treat dashes and symbols differently.</p>
+      <p class="faq-q">How is reading time worked out?</p>
+      <p class="about-text">Words ÷ reading speed. It uses 200 words a minute for reading and 130 for speaking aloud, round figures often used for estimates; change them to your own pace.</p>
+      <p class="faq-q">Is my text saved or sent anywhere?</p>
+      <p class="about-text">No. It's counted in your browser and never leaves your device.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/random-number-generator/">
+        <span class="icon">🎲</span>
+        <div class="title">Random Number Generator</div>
+        <div class="desc">Random numbers, dice, coin flips and pick-a-winner draws.</div>
+      </a>
+      <a class="hub-card" href="/number-to-words/">
+        <span class="icon">🔤</span>
+        <div class="title">Number to Words</div>
+        <div class="desc">Numbers written out in British English, plus ordinal and cheque wording.</div>
+      </a>
+      <a class="hub-card" href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+      <a class="hub-card" href="/grade/">
+        <span class="icon">🎓</span>
+        <div class="title">Grade / Score</div>
+        <div class="desc">Score out of total → % and letter grade, plus weighted averages.</div>
+      </a>
+      <a class="hub-card" href="/general/">
+        <span class="icon">🗂️</span>
+        <div class="title">All General calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/word-counter.js"></script>
+</body>
+</html>

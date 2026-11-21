@@ -26,6 +26,8 @@ function easter(y) {
 const fixed = (m, d) => (y) => new Date(Date.UTC(y, m - 1, d));
 const shift = (fn, days) => (y) => new Date(fn(y).getTime() + days * 86400000);
 /* nth weekday (0 = Sunday) of a month */
+/* last weekday of a month */
+const last = (m, weekday) => (y) => { const end = new Date(Date.UTC(y, m, 0)); return new Date(Date.UTC(y, m - 1, end.getUTCDate() - ((end.getUTCDay() - weekday + 7) % 7))); };
 const nth = (m, weekday, n) => (y) => { const first = new Date(Date.UTC(y, m - 1, 1)); return new Date(Date.UTC(y, m - 1, 1 + ((weekday - first.getUTCDay() + 7) % 7) + (n - 1) * 7)); };
 
 const EVENTS = [
@@ -43,7 +45,21 @@ const EVENTS = [
   { slug: "halloween", name: "Halloween", day: "Halloween", date: fixed(10, 31), note: "Halloween is always 31 October." },
   { slug: "bonfire-night", name: "Bonfire Night", day: "Bonfire Night", date: fixed(11, 5), note: "Bonfire Night (Guy Fawkes Night) is 5 November." },
   { slug: "thanksgiving", name: "Thanksgiving", day: "Thanksgiving in the US", date: nth(11, 4, 4), note: "US Thanksgiving is the fourth Thursday in November." },
-  { slug: "black-friday", name: "Black Friday", day: "Black Friday", date: shift(nth(11, 4, 4), 1), note: "Black Friday is the day after US Thanksgiving." }
+  { slug: "black-friday", name: "Black Friday", day: "Black Friday", date: shift(nth(11, 4, 4), 1), note: "Black Friday is the day after US Thanksgiving." },
+  { slug: "cyber-monday", name: "Cyber Monday", day: "Cyber Monday", date: shift(nth(11, 4, 4), 4), note: "Cyber Monday is the Monday after US Thanksgiving, four days after it." },
+  { slug: "boxing-day", name: "Boxing Day", day: "Boxing Day", date: fixed(12, 26), note: "Boxing Day is always 26 December." },
+  { slug: "new-years-eve", name: "New Year's Eve", day: "New Year's Eve", date: fixed(12, 31), note: "New Year's Eve is always 31 December." },
+  { slug: "burns-night", name: "Burns Night", day: "Burns Night", date: fixed(1, 25), note: "Burns Night is 25 January, Robert Burns's birthday." },
+  { slug: "st-davids-day", name: "St David's Day", day: "St David's Day", date: fixed(3, 1), note: "St David's Day, the national day of Wales, is 1 March." },
+  { slug: "st-georges-day", name: "St George's Day", day: "St George's Day", date: fixed(4, 23), note: "St George's Day, England's national day, is 23 April." },
+  { slug: "st-andrews-day", name: "St Andrew's Day", day: "St Andrew's Day", date: fixed(11, 30), note: "St Andrew's Day, Scotland's national day, is 30 November." },
+  { slug: "april-fools-day", name: "April Fools' Day", day: "April Fools' Day", date: fixed(4, 1), note: "April Fools' Day is always 1 April." },
+  { slug: "easter-monday", name: "Easter Monday", day: "Easter Monday", date: shift(easter, 1), note: "Easter Monday is the day after Easter Sunday." },
+  { slug: "ash-wednesday", name: "Ash Wednesday", day: "Ash Wednesday", date: shift(easter, -46), note: "Ash Wednesday, the first day of Lent, is 46 days before Easter Sunday." },
+  { slug: "remembrance-sunday", name: "Remembrance Sunday", day: "Remembrance Sunday", date: nth(11, 0, 2), note: "Remembrance Sunday is the second Sunday in November." },
+  { slug: "fourth-of-july", name: "the Fourth of July", day: "Independence Day (US)", date: fixed(7, 4), note: "US Independence Day is always 4 July." },
+  { slug: "memorial-day", name: "Memorial Day", day: "Memorial Day (US)", date: last(5, 1), note: "Memorial Day is the last Monday in May." },
+  { slug: "labor-day", name: "Labor Day", day: "Labor Day (US)", date: nth(9, 1, 1), note: "US Labor Day is the first Monday in September." }
 ];
 
 const iso = (d) => d.toISOString().slice(0, 10);

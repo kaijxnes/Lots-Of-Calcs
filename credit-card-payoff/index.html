@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Credit Card Payoff Calculator — Minimum Payments vs a Fixed Amount</title>
+<meta name="description" content="How long it takes to clear a credit card and the interest it costs. £3,000 at 24.9% on minimum payments takes 15 years 5 months…">
+<link rel="canonical" href="https://lotsofcalcs.com/credit-card-payoff/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Credit Card Payoff Calculator — Minimum Payments vs a Fixed Amount">
+<meta property="og:description" content="How long it takes to clear a credit card and the interest it costs. £3,000 at 24.9% on minimum payments takes 15 years 5 months…">
+<meta property="og:url" content="https://lotsofcalcs.com/credit-card-payoff/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Credit Card Payoff Calculator — Minimum Payments vs a Fixed Amount">
+<meta name="twitter:description" content="How long it takes to clear a credit card and the interest it costs. £3,000 at 24.9% on minimum payments takes 15 years 5 months…">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Credit Card Payoff Calculator — Minimum Payments vs a Fixed Amount",
+    "description": "How long it takes to clear a credit card and the interest it costs. £3,000 at 24.9% on minimum payments takes 15 years 5 months…",
+    "url": "https://lotsofcalcs.com/credit-card-payoff/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Credit Card Payoff Calculator",
+        "item": "https://lotsofcalcs.com/credit-card-payoff/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Credit Card Payoff Calculator",
+    "url": "https://lotsofcalcs.com/credit-card-payoff/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long will it take to pay off my credit card with minimum payments?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It depends on how your card works out the minimum. A £3,000 balance at 24.9% APR, paying 1% of the balance plus interest (at least £25), takes 15 years 5 months and costs £5,092 in interest. Paying a fixed £150 a month clears it in 2 years 3 months for £916."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do minimum payments take so long?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Because the minimum shrinks as the balance does: most of each payment goes on interest, and as the balance falls the minimum falls with it. Paying a fixed amount — even the first month's minimum, kept the same — clears it far sooner."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How is credit card interest worked out?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Roughly the APR ÷ 12 on the balance each month. Card companies work it out daily and the APR includes some fees, so your statement will differ slightly; this is close enough to compare plans."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Should I move the balance to a 0% card?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A 0% balance transfer can save a lot if you can clear the balance before the offer ends — set the APR to 0 here to see the monthly payment that does it, and remember the transfer fee."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Credit card payoff calculator</h1>
+      <p class="page-subtitle">How long your card takes to clear, and how much interest you pay, on minimum payments or a fixed amount.</p>
+    </header>
+
+    <main class="tool" id="cc-tool">
+      <div class="field-row">
+        <div class="field"><label for="cc-balance">Balance</label><input type="number" id="cc-balance" value="3000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="cc-apr">Interest rate (APR %)</label><input type="number" id="cc-apr" value="24.9" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="cc-amount">Fixed payment a month</label><input type="number" id="cc-amount" value="150" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="cc-cur">Currency</label><select id="cc-cur"><option value="£" selected>£</option><option value="$">$</option><option value="€">€</option></select></div>
+      </div>
+      <p class="tool-section-title">Your card's minimum payment</p>
+      <div class="field-row">
+        <div class="field"><label for="cc-pct">% of the balance, plus that month's interest</label><input type="number" id="cc-pct" value="1" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="cc-floor">Or at least</label><input type="number" id="cc-floor" value="25" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <p class="tool-hint">Your statement or card terms say how your minimum is worked out; the figures here are an example.</p>
+      <p class="error-msg" id="cc-error" style="display:none;"></p>
+      <div class="jo-grid">
+        <div class="jo-side"><p class="tool-section-title" style="margin-top:0;">Minimum payments</p><div class="result-box"><div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Time to clear</span><span class="r-value" id="cc-min-time">15 years 5 months</span></div>
+          <div class="result-row"><span class="r-label">Interest paid</span><span class="r-value" id="cc-min-int">£5,092</span></div>
+          <div class="result-row"><span class="r-label">First payment</span><span class="r-value" id="cc-min-first">£92.25</span></div>
+        </div></div></div>
+        <div class="jo-side"><p class="tool-section-title" style="margin-top:0;">Fixed payment</p><div class="result-box"><div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Time to clear</span><span class="r-value" id="cc-fx-time">2 years 3 months</span></div>
+          <div class="result-row"><span class="r-label">Interest paid</span><span class="r-value" id="cc-fx-int">£916</span></div>
+          <div class="result-row"><span class="r-label">Interest saved</span><span class="r-value" id="cc-saved">£4,176</span></div>
+        </div></div></div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Interest is the APR ÷ 12 on the balance each month, with no new spending. Card issuers calculate it daily, so your statement will differ a little.</p>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How long will it take to pay off my credit card with minimum payments?</p>
+      <p class="about-text">It depends on how your card works out the minimum. A £3,000 balance at 24.9% APR, paying 1% of the balance plus interest (at least £25), takes 15 years 5 months and costs £5,092 in interest. Paying a fixed £150 a month clears it in 2 years 3 months for £916.</p>
+      <p class="faq-q">Why do minimum payments take so long?</p>
+      <p class="about-text">Because the minimum shrinks as the balance does: most of each payment goes on interest, and as the balance falls the minimum falls with it. Paying a fixed amount — even the first month's minimum, kept the same — clears it far sooner.</p>
+      <p class="faq-q">How is credit card interest worked out?</p>
+      <p class="about-text">Roughly the APR ÷ 12 on the balance each month. Card companies work it out daily and the APR includes some fees, so your statement will differ slightly; this is close enough to compare plans.</p>
+      <p class="faq-q">Should I move the balance to a 0% card?</p>
+      <p class="about-text">A 0% balance transfer can save a lot if you can clear the balance before the offer ends — set the APR to 0 here to see the monthly payment that does it, and remember the transfer fee.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/debt-snowball-vs-avalanche/">
+        <span class="icon">❄️</span>
+        <div class="title">Debt Snowball vs Avalanche</div>
+        <div class="desc">Both strategies on your debts — interest, months and payoff order.</div>
+      </a>
+      <a class="hub-card" href="/loan-repayment/">
+        <span class="icon">🏦</span>
+        <div class="title">Loan / APR Repayment</div>
+        <div class="desc">Loan amount + APR + term → monthly payment, total interest and amortisation.</div>
+      </a>
+      <a class="hub-card" href="/50-30-20-budget/">
+        <span class="icon">📊</span>
+        <div class="title">50/30/20 Budget</div>
+        <div class="desc">Split take-home pay into needs, wants and savings.</div>
+      </a>
+      <a class="hub-card" href="/emergency-fund-calculator/">
+        <span class="icon">🛟</span>
+        <div class="title">Emergency Fund</div>
+        <div class="desc">How much to keep for a rainy day, and how long to save it.</div>
+      </a>
+      <a class="hub-card" href="/salary/">
+        <span class="icon">💷</span>
+        <div class="title">Salary After Tax</div>
+        <div class="desc">Take-home pay in the UK, every US state and Canadian province, Europe, Australia, India and Japan.</div>
+      </a>
+      <a class="hub-card" href="/mortgages-loans/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Mortgages &amp; Loans calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/credit-card.js"></script>
+</body>
+</html>

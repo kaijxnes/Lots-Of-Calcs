@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Number Generator — Numbers, Dice, Coin Flip and Pick a Winner</title>
+<meta name="description" content="Generate random numbers in any range (with or without repeats), roll dice, flip a coin or pick a random winner from a list.">
+<link rel="canonical" href="https://lotsofcalcs.com/random-number-generator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Random Number Generator — Numbers, Dice, Coin Flip and Pick a Winner">
+<meta property="og:description" content="Generate random numbers in any range (with or without repeats), roll dice, flip a coin or pick a random winner from a list.">
+<meta property="og:url" content="https://lotsofcalcs.com/random-number-generator/">
+<meta property="og:image" content="https://lotsofcalcs.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Random Number Generator — Numbers, Dice, Coin Flip and Pick a Winner">
+<meta name="twitter:description" content="Generate random numbers in any range (with or without repeats), roll dice, flip a coin or pick a random winner from a list.">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og-image.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Random Number Generator — Numbers, Dice, Coin Flip and Pick a Winner",
+    "description": "Generate random numbers in any range (with or without repeats), roll dice, flip a coin or pick a random winner from a list.",
+    "url": "https://lotsofcalcs.com/random-number-generator/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Random Number Generator",
+        "item": "https://lotsofcalcs.com/random-number-generator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Random Number Generator",
+    "url": "https://lotsofcalcs.com/random-number-generator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is this random number generator really random?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It uses your browser's cryptographic random number generator (crypto.getRandomValues), the same source used for security keys, and avoids the small bias that simple methods introduce. Nothing is sent anywhere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I pick a random winner?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Paste the names or entries into the box, one per line, and press Pick. Each entry has the same chance; tick 'no repeats' to draw several different winners."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I generate numbers without duplicates?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes — tick 'no repeats' and it draws each number at most once, like drawing raffle tickets from a hat."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Random number generator</h1>
+      <p class="page-subtitle">Random numbers, dice rolls, coin flips and prize-draw winners — fair, and nothing leaves your browser.</p>
+    </header>
+
+    <main class="tool" id="rn-tool">
+      <p class="tool-section-title" style="margin-top:0;">Random numbers</p>
+      <div class="field-row">
+        <div class="field"><label for="rn-min">From</label><input type="number" id="rn-min" value="1" min="0" step="any" inputmode="decimal" step="1"></div>
+        <div class="field"><label for="rn-max">To</label><input type="number" id="rn-max" value="100" min="0" step="any" inputmode="decimal" step="1"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="rn-count">How many</label><input type="number" id="rn-count" value="1" min="0" step="any" inputmode="decimal" step="1" max="1000"></div>
+        <div class="field"><label><input type="checkbox" id="rn-unique"> No repeats</label></div>
+      </div>
+      <p><button class="btn" type="button" id="rn-go">Generate</button></p>
+      <div class="result-box"><div class="result-hero"><div class="value" id="rn-out" style="word-break:break-word;">—</div></div></div>
+
+      <p class="tool-section-title">Dice and coin</p>
+      <div class="field-row">
+        <div class="field"><label for="rn-dice">Dice</label><input type="number" id="rn-dice" value="2" min="0" step="any" inputmode="decimal" step="1" max="100"></div>
+        <div class="field"><label for="rn-sides">Sides</label><select id="rn-sides"><option>4</option><option selected>6</option><option>8</option><option>10</option><option>12</option><option>20</option><option>100</option></select></div>
+      </div>
+      <p><button class="btn" type="button" id="rn-roll">Roll</button> <button class="btn btn-ghost" type="button" id="rn-flip">Flip a coin</button></p>
+      <div class="result-box"><div class="result-hero"><div class="value" id="rn-dice-out">—</div><div class="label" id="rn-dice-total"></div></div></div>
+
+      <p class="tool-section-title">Pick a winner</p>
+      <div class="field no-share"><label for="rn-list">Entries, one per line</label><textarea id="rn-list" rows="6" placeholder="Alice&#10;Bob&#10;Charlie"></textarea></div>
+      <div class="field-row">
+        <div class="field"><label for="rn-winners">Winners to pick</label><input type="number" id="rn-winners" value="1" min="0" step="any" inputmode="decimal" step="1"></div>
+        <div class="field"><label><input type="checkbox" id="rn-wunique" checked> No repeats</label></div>
+      </div>
+      <p><button class="btn" type="button" id="rn-pick">Pick</button></p>
+      <div class="result-box"><div class="result-hero"><div class="value" id="rn-pick-out" style="word-break:break-word;">—</div><div class="label" id="rn-pick-note"></div></div></div>
+    </main>
+
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">Is this random number generator really random?</p>
+      <p class="about-text">It uses your browser's cryptographic random number generator (crypto.getRandomValues), the same source used for security keys, and avoids the small bias that simple methods introduce. Nothing is sent anywhere.</p>
+      <p class="faq-q">How do I pick a random winner?</p>
+      <p class="about-text">Paste the names or entries into the box, one per line, and press Pick. Each entry has the same chance; tick 'no repeats' to draw several different winners.</p>
+      <p class="faq-q">Can I generate numbers without duplicates?</p>
+      <p class="about-text">Yes — tick 'no repeats' and it draws each number at most once, like drawing raffle tickets from a hat.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/basic/">
+        <span class="icon">🔢</span>
+        <div class="title">Basic Calculator</div>
+        <div class="desc">Standard arithmetic with keyboard support.</div>
+      </a>
+      <a class="hub-card" href="/percent/">
+        <span class="icon">💯</span>
+        <div class="title">Percentage Calculator</div>
+        <div class="desc">X% of Y, X as a % of Y, or the % change between two values.</div>
+      </a>
+      <a class="hub-card" href="/word-counter/">
+        <span class="icon">📝</span>
+        <div class="title">Word Counter</div>
+        <div class="desc">Words, characters, sentences and reading time as you type.</div>
+      </a>
+      <a class="hub-card" href="/scientific/">
+        <span class="icon">🧑‍🔬</span>
+        <div class="title">Scientific Calculator</div>
+        <div class="desc">Trig, logs, powers and roots, with a DEG/RAD toggle.</div>
+      </a>
+      <a class="hub-card" href="/fractions/">
+        <span class="icon">➗</span>
+        <div class="title">Fraction Calculator</div>
+        <div class="desc">Add, subtract, multiply and divide fractions, with the working shown.</div>
+      </a>
+      <a class="hub-card" href="/general/">
+        <span class="icon">🗂️</span>
+        <div class="title">All General calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/random.js"></script>
+</body>
+</html>
