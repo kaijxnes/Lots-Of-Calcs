@@ -606,7 +606,9 @@ ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
     const b = country === "GB" ? links.borrowUk(gross) : country === "US" ? links.borrowUs(gross) : country === "IE" ? links.borrowIe(gross) : country === "FR" ? links.borrowFr(gross) : null;
     const se = p.id === "gb-sct" ? links.selfEmployed(gross) : null;
     const bu = country === "GB" ? links.budgetUk(gross) : null;
-    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : ""].filter(Boolean);
+    const hrRate = p.hourly.length && p.hours ? p.hourly.reduce((a, h) => Math.abs(h * p.hours * 52 - gross) < Math.abs(a * p.hours * 52 - gross) ? h : a) : null;
+    const hr = hrRate && Math.abs(hrRate * p.hours * 52 - gross) / gross <= 0.1 ? hrRate : null;
+    const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", hr ? `<a href="${hourUrl(p, hr)}">${esc(p.money0(hr))} an hour after tax (${esc(p.money0(hr * p.hours * 52))} a year)</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : ""].filter(Boolean);
     return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 
@@ -757,7 +759,7 @@ function hourlyPage(p, rate) {
   const mr = p.money0(rate);
   const line = assumptionsFor(p);
   const phrase = deductionPhrase(p);
-  const title = site.fitTitle(`${mr} an Hour After Tax in ${inName} (${year}) — Take-Home Pay`, `${mr} an Hour After Tax in ${inName} (${year}) — ${p.money0(r.perMonth)} a Month`, `${mr} an Hour After Tax in ${inName} — ${p.money0(r.perMonth)} a Month`, `${mr} an Hour After Tax in ${inName}`);
+  const title = site.fitTitle(`${mr} an Hour in ${inName}: ${p.money0(gross)} a Year, ${p.money0(r.net)} After Tax (${year})`, `${mr} an Hour in ${inName}: ${p.money0(gross)} a Year, ${p.money0(r.net)} After Tax`, `${mr} an Hour After Tax in ${inName} — ${p.money0(gross)} a Year (${year})`, `${mr} an Hour After Tax in ${inName} (${year}) — Take-Home Pay`, `${mr} an Hour After Tax in ${inName} (${year}) — ${p.money0(r.perMonth)} a Month`, `${mr} an Hour After Tax in ${inName} — ${p.money0(r.perMonth)} a Month`, `${mr} an Hour After Tax in ${inName}`);
   const desc = paysBiweekly(p)
     ? `${mr} an hour at ${hrs} hours a week is ${p.money0(gross)} a year. In ${inName} that leaves ${p.money(r.net)} after tax — ${p.money(r.net / 26)} biweekly or ${p.money(r.perMonth)} a month.`
     : `${mr} an hour at ${hrs} hours a week is ${p.money0(gross)} a year. In ${inName} that leaves ${p.money(r.net)} after tax — ${p.money(r.perMonth)} a month, or ${p.money(perHour)} for each hour worked.`;
@@ -810,7 +812,12 @@ ${toolBlock(p, gross, r, "Where it goes", { kind: "hourly", value: rate, hours: 
     <main class="tool">
       <p class="about-text">Paid <strong>${esc(mr)} an hour</strong> for ${hrs} hours a week, you earn ${esc(p.money0(gross))} a year. Once ${esc(phrase)} are taken off in ${esc(inName)}, you take home <strong>${p.money(r.net)}</strong> a year &mdash; <strong>${p.money(r.perMonth)}</strong> a month, or ${p.money(perHour)} for every hour worked.</p>
 ${ukNote(p, scot)}      <p class="tool-section-title" style="margin-top:22px;">${esc(mr)} an hour at different hours</p>
-${site.table(["Hours a week", "Gross a year", "Take-home a year", "A month", "Per hour"], hoursRows, 480)}      <p class="tool-hint" style="margin-top:12px;">Assumes you're paid for all 52 weeks, including paid holiday. If some weeks are unpaid, enter your average weekly hours across the year in the calculator above.</p>
+${site.table(["Hours a week", "Gross a year", "Take-home a year", "A month", "Per hour"], hoursRows, 480)}      <p class="tool-hint" style="margin-top:12px;">Assumes you're paid for all 52 weeks, including paid holiday. If some weeks are unpaid, enter your average weekly hours across the year in the calculator above.${(() => {
+        /* the yearly salary pages either side of this rate's annual pay */
+        const below = p.salaries.filter((x) => x <= gross).pop(), above = p.salaries.find((x) => x > gross);
+        const ann = [below, above].filter((x) => x && Math.abs(x - gross) / gross <= 0.15).map((x) => `<a href="${pageUrl(p, x)}">${esc(p.money0(x))} a year after tax</a>`);
+        return ann.length ? ` Salary pages near ${esc(p.money0(gross))} a year: ${ann.join(" · ")}.` : "";
+      })()}</p>
 ${bandTables(p, r)}${comparison(p, gross, { label: `${mr} an hour`, link: (o) => (o.hourly.includes(rate) ? hourUrl(o, rate) : null) })}    </main>
 
     <main class="tool">
@@ -931,7 +938,7 @@ function usHourly(rate) {
   const best = rows[0], worst = rows[rows.length - 1];
   const median = rows[Math.floor(rows.length / 2)];
   const url = SITE + `/salary/us/${rate}-an-hour-after-tax/`;
-  const title = site.fitTitle(`${mr} an Hour After Tax in Every State (2026) — Take-Home Pay by State`, `${mr} an Hour After Tax in Every State (2026) — Ranked`, `${mr} an Hour After Tax by State (2026)`);
+  const title = site.fitTitle(`${mr} an Hour Is How Much a Year? ${TaxEngine.money(gross, "USD", true)} — After Tax by State`, `${mr} an Hour After Tax in Every State (2026) — Take-Home Pay by State`, `${mr} an Hour After Tax in Every State (2026) — Ranked`, `${mr} an Hour After Tax by State (2026)`);
   const desc = `${mr} an hour full-time is ${TaxEngine.money(gross, "USD", true)} a year. After tax it leaves ${usd(best.r.net)} in ${best.p.place.shortName} and ${usd(worst.r.net)} in ${worst.p.place.shortName}. All 50 states and DC, ranked.`;
 
   const body = rows.map(({ p, r }, i) => {

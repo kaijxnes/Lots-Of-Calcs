@@ -37,7 +37,7 @@ const SALARIES = {
    each place gets; `national` adds the rates that only get an all-states
    comparison page in the US. */
 const HOURLY = {
-  USD: { hours: 40, rates: [15, 18, 20, 22, 25, 30, 35, 40, 50], national: [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32, 35, 40, 45, 50] },
+  USD: { hours: 40, rates: [15, 18, 20, 22, 25, 30, 35, 40, 50], national: [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32, 35, 40, 45, 50] },
   GBP: { hours: 37.5, rates: [12, 13, 14, 15, 16, 17, 18, 19, 20, 22, 25, 30, 35, 40, 50] },
   AUD: { hours: 38, rates: [25, 28, 30, 32, 35, 38, 40, 45, 50, 60] },
   NZD: { hours: 40, rates: [24, 25, 28, 30, 32, 35, 40, 45, 50] },
