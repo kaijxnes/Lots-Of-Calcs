@@ -22,7 +22,62 @@
   --bad: #ff5e62;
   --link: #8fb4ee;
   --link-hover: #b7d0f5;
+  --text-strong: #ffffff;
+  --hover-bg: #2d3149;
+  --overlay-1: rgba(255, 255, 255, 0.06);
+  --overlay-2: rgba(255, 255, 255, 0.12);
+  --overlay-3: rgba(255, 255, 255, 0.04);
+  --overlay-4: rgba(255, 255, 255, 0.08);
+  color-scheme: dark;
 }
+
+/* Light theme: chosen with the toggle in the footer (theme.js), remembered
+   on the device. Only the colour variables change. */
+:root[data-theme="light"] {
+  --bg-1: #f7f8fc;
+  --bg-2: #e8ebf3;
+  --calc-bg: #ffffff;
+  --display-bg: #f1f3f9;
+  --key-num-bg: #e7eaf2;
+  --key-num-bg-hover: #dde1ec;
+  --key-fn-bg: #d4d9e6;
+  --key-fn-bg-hover: #c7cddd;
+  --key-op-bg: #f08a24;
+  --key-op-bg-hover: #f59c45;
+  --key-eq-bg: #e5484d;
+  --key-eq-bg-hover: #ec6468;
+  --text-main: #1b1d29;
+  --text-muted: #555b74;
+  --shadow: rgba(20, 24, 40, 0.12);
+  --input-bg: #ffffff;
+  --border: #cdd2e0;
+  --accent: #e07b14;
+  --accent-hover: #f08a24;
+  --good: #177a40;
+  --bad: #c9302c;
+  --link: #1f56b0;
+  --link-hover: #143d80;
+  --text-strong: #1b1d29;
+  --hover-bg: #eef0f7;
+  --overlay-1: rgba(20, 24, 40, 0.04);
+  --overlay-2: rgba(20, 24, 40, 0.12);
+  --overlay-3: rgba(20, 24, 40, 0.03);
+  --overlay-4: rgba(20, 24, 40, 0.08);
+  color-scheme: light;
+}
+
+.theme-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: 999px;
+  padding: 4px 12px;
+  font: inherit;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.theme-toggle:hover { color: var(--text-main); border-color: var(--accent); }
 
 * {
   box-sizing: border-box;
@@ -121,7 +176,7 @@ body:has(> .page) {
 }
 
 .about-text {
-  color: #ffffff;
+  color: var(--text-strong);
   font-size: 0.95rem;
   line-height: 1.65;
   margin: 0 0 14px;
@@ -133,7 +188,7 @@ body:has(> .page) {
 
 /* Bulleted notes under an about-text lead-in (assumptions, sources) */
 .about-list {
-  color: #ffffff;
+  color: var(--text-strong);
   font-size: 0.92rem;
   line-height: 1.6;
   margin: -6px 0 14px;
@@ -1015,7 +1070,7 @@ hr.divider {
 
 .hub-card:hover {
   transform: translateY(-3px);
-  background: #2d3149;
+  background: var(--hover-bg);
 }
 
 .hub-card .icon {
@@ -1061,7 +1116,7 @@ hr.divider {
 }
 
 .category-pill:hover {
-  background: #2d3149;
+  background: var(--hover-bg);
   transform: translateY(-1px);
 }
 
@@ -1116,7 +1171,7 @@ hr.divider {
 .cat-tile:hover {
   transform: translateY(-3px);
   border-color: var(--accent);
-  background: #2d3149;
+  background: var(--hover-bg);
 }
 
 .cat-tile:focus-visible {
@@ -1293,7 +1348,7 @@ hr.divider {
   gap: 10px 28px;
   font-size: 0.9rem;
   line-height: 1.55;
-  color: #ffffff;
+  color: var(--text-strong);
 }
 
 @media (max-width: 700px) {
@@ -1518,8 +1573,8 @@ hr.divider {
   padding: 4px 7px;
   border-radius: 999px;
   color: var(--text-muted);
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--overlay-1);
+  border: 1px solid var(--overlay-2);
 }
 
 /* "Your recent calculators" on the homepage and the bookmark hint (visits.js) */
@@ -1546,8 +1601,8 @@ hr.divider {
   margin: 12px 0;
   padding: 10px 12px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--overlay-3);
+  border: 1px solid var(--overlay-4);
   color: var(--text-muted);
   font-size: 0.85rem;
   line-height: 1.4;
