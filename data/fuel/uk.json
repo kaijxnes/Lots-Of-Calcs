@@ -1,0 +1,8 @@
+{
+  "_note": "UK average pump prices, pence per litre including duty and VAT, from the weekly road fuel prices published by the Department for Energy Security and Net Zero. Used by the fuel cost route pages (tools/build-fuel-route-pages.js). The monthly check updates them to the latest week.",
+  "week": "2026-11-16",
+  "petrol": 167.07,
+  "diesel": 196.77,
+  "source": { "title": "Weekly road fuel prices (GOV.UK, Department for Energy Security and Net Zero)", "url": "https://www.gov.uk/government/statistics/weekly-road-fuel-prices", "note": "CSV 2018 to 2026, row 16/11/2026: ULSP 167.07, ULSD 196.77 pence/litre." },
+  "lastChecked": "2026-11-21"
+}
