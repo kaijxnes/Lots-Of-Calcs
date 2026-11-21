@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Accumulator calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/accumulator/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/accumulator/">Accumulator calculator</a></p>
+<main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="stake">Stake</label>
+          <input type="number" id="stake" placeholder="10.00" step="any" value="10">
+        </div>
+        <div class="field">
+          <label for="bonus">Acca bonus (%)</label>
+          <input type="number" id="bonus" placeholder="0" step="any">
+        </div>
+      </div>
+      <div class="field" style="max-width:280px;">
+        <label for="currency">Currency</label>
+        <select id="currency">
+          <option value="£" selected>£ British Pound</option>
+          <option value="$">$ US Dollar</option>
+          <option value="€">€ Euro</option>
+          <option value="¥">¥ Japanese Yen</option>
+          <option value="₹">₹ Indian Rupee</option>
+          <option value="A$">A$ Australian Dollar</option>
+          <option value="C$">C$ Canadian Dollar</option>
+          <option value="Fr">Fr Swiss Franc</option>
+        </select>
+      </div>
+
+      <p class="tool-section-title">Legs</p>
+      <p class="tool-hint">Odds accept fractional (5/2) or decimal (3.5). A void leg is settled at odds of 1.00; any losing leg loses the whole accumulator.</p>
+      <div class="table-scroll">
+        <div style="min-width:460px;">
+          <div class="dyn-table-head">
+            <span class="row-index">#</span>
+            <span class="grow">Leg</span>
+            <span class="fixed-sm">Odds</span>
+            <span class="fixed-sm">Result</span>
+            <span style="width:34px"></span>
+          </div>
+          <div class="dyn-list" id="leg-rows"></div>
+        </div>
+      </div>
+      <button class="btn btn-ghost" id="add-leg" type="button">+ Add leg</button>
+
+      <p class="tool-hint" id="acca-error" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" style="margin-top:16px;">
+        <div class="result-hero">
+          <div class="value" id="profit">£80.00</div>
+          <div class="label">Profit</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Combined odds</span><span class="r-value" id="combined-odds">9.00</span></div>
+          <div class="result-row"><span class="r-label">Stake</span><span class="r-value" id="stake-out">£10.00</span></div>
+          <div class="result-row"><span class="r-label">Acca bonus</span><span class="r-value" id="bonus-out">£0.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Total return</span><span class="r-value" id="total-return">£90.00</span></div>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/accumulator/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/accumulator.js"></script>
+</body>
+</html>

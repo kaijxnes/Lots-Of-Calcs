@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Each-way bet calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/each-way/">
+<link rel="stylesheet" href="/styles.css">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/each-way/">Each-way bet calculator</a></p>
+<main class="tool">
+      <div class="field-row">
+        <div class="field">
+          <label for="unit-stake">Unit stake (per part)</label>
+          <input type="number" id="unit-stake" placeholder="10.00" step="any" value="10">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+
+      <p class="tool-section-title">Selections</p>
+      <p class="tool-hint">Odds accept fractional (10/1), evens or decimal (11.0). Place terms are the fraction of the odds paid for placing, e.g. 1/5 or 1/4. Add a second selection for an each-way double, a third for a treble, and so on. A non-runner is Void.</p>
+      <div class="table-scroll">
+        <div style="min-width:400px;">
+          <div class="dyn-table-head">
+            <span class="row-index">#</span>
+            <span class="grow">Odds</span>
+            <span class="fixed-sm">Place terms</span>
+            <span class="fixed-sm">Result</span>
+            <span style="width:34px"></span>
+          </div>
+          <div class="dyn-list" id="ew-rows"></div>
+        </div>
+      </div>
+      <button class="btn btn-ghost" id="add-sel" type="button">+ Add a selection (each-way double)</button>
+
+      <p class="tool-hint" id="ew-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box" style="margin-top:16px;" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="total-profit">£120.00</div>
+          <div class="label"><span id="bet-type">Each-way single</span>: profit / loss</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Total staked (2 &times; unit)</span><span class="r-value" id="total-staked">£20.00</span></div>
+          <div class="result-row"><span class="r-label">Win odds (decimal)</span><span class="r-value" id="win-odds-out">11.00</span></div>
+          <div class="result-row"><span class="r-label">Place odds (decimal)</span><span class="r-value" id="place-odds-out">3.00</span></div>
+          <div class="result-row"><span class="r-label">Win part returns</span><span class="r-value" id="win-return">£110.00</span></div>
+          <div class="result-row"><span class="r-label">Place part returns</span><span class="r-value" id="place-return">£30.00</span></div>
+          <div class="result-row highlight"><span class="r-label">Total return</span><span class="r-value" id="total-return">£140.00</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:16px;">Place odds are 1 + (odds &minus; 1) &times; the place terms for each selection; with several selections the win and place odds are each multiplied together.</p>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/each-way/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/each-way.js"></script>
+</body>
+</html>
