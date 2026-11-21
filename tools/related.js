@@ -21,6 +21,16 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/buy-to-let-calculator/": ["/stamp-duty-calculator/", "/mortgage-calculator/", "/capital-gains-tax-calculator/", "/rent-vs-buy/", "/mortgage-affordability/", "/loan-repayment/"],
+  "/pension-drawdown-calculator/": ["/isa-vs-pension/", "/fire-calculator/", "/compound-interest/", "/inheritance-tax-calculator/", "/inflation/", "/savings-goal/"],
+  "/inheritance-tax-calculator/": ["/capital-gains-tax-calculator/", "/pension-drawdown-calculator/", "/isa-vs-pension/", "/rent-vs-buy/", "/compound-interest/", "/savings-goal/"],
+  "/capital-gains-tax-calculator/": ["/dividend-tax-calculator/", "/isa-vs-pension/", "/compound-interest/", "/inheritance-tax-calculator/", "/buy-to-let-calculator/", "/fund-fees/"],
+  "/holiday-entitlement-calculator/": ["/working-days/", "/salary/", "/maternity-pay-calculator/", "/redundancy-pay-calculator/", "/days-until/", "/hourly-to-salary/"],
+  "/redundancy-pay-calculator/": ["/salary/", "/holiday-entitlement-calculator/", "/emergency-fund-calculator/", "/maternity-pay-calculator/", "/50-30-20-budget/", "/job-offer-comparison/"],
+  "/maternity-pay-calculator/": ["/salary/", "/holiday-entitlement-calculator/", "/50-30-20-budget/", "/redundancy-pay-calculator/", "/savings-goal/", "/working-days/"],
+  "/contractor-calculator/": ["/salary-vs-dividends/", "/dividend-tax-calculator/", "/salary/", "/self-employed-tax-calculator/", "/hourly-to-salary/", "/working-days/"],
+  "/salary-vs-dividends/": ["/dividend-tax-calculator/", "/contractor-calculator/", "/salary/", "/self-employed-tax-calculator/", "/vat/", "/pay-rise-calculator/"],
+  "/dividend-tax-calculator/": ["/salary-vs-dividends/", "/contractor-calculator/", "/salary/", "/self-employed-tax-calculator/", "/capital-gains-tax-calculator/", "/isa-vs-pension/"],
   "/word-counter/": ["/random-number-generator/", "/number-to-words/", "/basic/", "/percent/", "/grade/", "/roman-numerals/"],
   "/random-number-generator/": ["/basic/", "/percent/", "/word-counter/", "/scientific/", "/fractions/", "/roman-numerals/"],
   "/sleep-calculator/": ["/calorie-calculator/", "/bmi/", "/days-until/", "/birthday/", "/pace/", "/timezone/"],
