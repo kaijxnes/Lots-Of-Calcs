@@ -20,8 +20,8 @@ const DEF_SPEED = "by-car";
 const dur = (km, v) => S.duration(S.hours(km, v.kmh));
 const titleCase = (t) => t.replace(/\b([a-z])/g, (m) => m.toUpperCase());
 const Cap = (t) => t[0].toUpperCase() + t.slice(1);
-const where = (d) => (d.star ? "Proxima Centauri, the nearest star" : d.name);
-const distWord = (d) => (d.star ? "" : d.def === "closest" ? " at its closest" : " on average");
+const where = (d) => (d.where || d.name);
+const distWord = (d) => (d.single ? "" : d.def === "closest" ? " at its closest" : " on average");
 
 /* Question wording for each speed: "How long would it take to drive to Mars?" */
 const ASK = {
@@ -42,13 +42,13 @@ const STRAIGHT = "These are straight-line times at a steady speed, as if the pla
    HTML are the ones space-travel.js shows for the same settings. */
 function tool(d, v) {
   const km = d.d[d.def];
-  const dests = S.DEST.map((x) => `<option value="${x.slug}"${x === d ? " selected" : ""}>${esc(Cap(x.star ? "Proxima Centauri (nearest star)" : x.name))}</option>`).join("");
-  const dists = ["closest", "average", "farthest"].filter((k) => d.d[k] != null).map((k) => `<option value="${k}"${k === d.def ? " selected" : ""}>${d.star ? "4.2465 light-years" : `${S.DIST_LABEL[k]} — ${S.bigNum(d.d[k])} km`}</option>`).join("");
+  const dests = S.DEST.map((x) => `<option value="${x.slug}"${x === d ? " selected" : ""}>${esc(Cap(x.option || x.name))}</option>`).join("");
+  const dists = ["closest", "average", "farthest"].filter((k) => d.d[k] != null).map((k) => `<option value="${k}"${k === d.def ? " selected" : ""}>${d.single ? d.farText : `${S.DIST_LABEL[k]} — ${S.bigNum(d.d[k])} km`}</option>`).join("");
   const speeds = S.SPEEDS.map((x) => `<option value="${x.slug}"${x === v ? " selected" : ""}>${esc(x.name)} — ${esc(x.label)}</option>`).join("") + `<option value="custom">Your own speed</option>`;
   return `    <main class="tool" id="st-tool">
       <div class="field-row">
         <div class="field"><label for="st-dest">Going to</label><select id="st-dest">${dests}</select></div>
-        <div class="field"><label for="st-dist">Distance</label><select id="st-dist"${d.star ? " disabled" : ""}>${dists}</select></div>
+        <div class="field"><label for="st-dist">Distance</label><select id="st-dist"${d.single ? " disabled" : ""}>${dists}</select></div>
       </div>
       <div class="field"><label for="st-speed">Speed</label><select id="st-speed">${speeds}</select></div>
       <div class="field-row" id="st-custom-row" style="display:none;">
@@ -77,7 +77,7 @@ function realTrip(d) {
 
 function destTable(d) {
   const keys = ["closest", "average", "farthest"].filter((k) => d.d[k] != null);
-  const head = ["Speed"].concat(keys.map((k) => (d.star ? "Time" : S.DIST_LABEL[k])));
+  const head = ["Speed"].concat(keys.map((k) => (d.single ? "Time" : S.DIST_LABEL[k])));
   const rows = S.SPEEDS.map((v) => [`<a href="${BASE}${d.slug}/${v.slug}/">${esc(v.name)}</a><br><span class="tool-hint">${esc(v.label)}</span>`].concat(keys.map((k) => esc(dur(d.d[k], v)))));
   return site.table(head, rows, keys.length > 2 ? 520 : 420);
 }
@@ -86,29 +86,29 @@ function destPage(d) {
   const url = SITE + `${BASE}${d.slug}/`;
   const km = d.d[d.def];
   const car = S.speed("by-car"), light = S.speed("speed-of-light"), apollo = S.speed("apollo-speed"), fast = S.speed("fastest-spacecraft");
-  const title = `How Long Would It Take to Get to ${d.star ? "Proxima Centauri (the Nearest Star)" : d.name}? — By Car, Plane, Rocket and Light`;
+  const title = `How Long Would It Take to Get to ${d.titleName || d.name}? — By Car, Plane, Rocket and Light`;
   const desc = `${Cap(where(d))} is ${S.distance(km)} away${distWord(d)}. Driving at 70 mph would take ${dur(km, car)}; light takes ${dur(km, light)}.${d.trip ? ` NASA's ${d.trip.craft} took ${d.trip.took}.` : ""}`;
   const q = [
     [`How long does it take to get to ${d.name}?`, d.trip
       ? `${Cap(d.trip.took)} for NASA's ${d.trip.craft}, which ${d.trip.detail}. Flying in a straight line at Apollo 10's top speed (24,791 mph) would take ${dur(km, apollo)}${distWord(d)}.`
       : `At the speed of the fastest spacecraft yet, Parker Solar Probe (430,000 mph), it would take ${dur(km, fast)}. Even light takes ${dur(km, light)}.`],
-    [`How far away is ${d.name}?`, d.star
-      ? `4.2465 light-years, or about ${S.distance(km)}. It is the closest star to the Sun.`
+    [`How far away is ${d.name}?`, d.single
+      ? d.about.replace("{km}", S.distance(km))
       : `${Cap(S.DIST_LABEL.closest.toLowerCase())}, ${S.distance(d.d.closest)}; at its farthest, ${S.distance(d.d.farthest)}${d.d.average ? `; on average ${S.distance(d.d.average)}` : ""}. ${d.slug === "moon" || d.slug === "sun" ? "The orbit isn't a perfect circle, so the distance changes through the " + (d.slug === "moon" ? "month." : "year.") : "The distance changes as Earth and " + d.name + " go round the Sun at different speeds."}`],
-    [ASK["by-car"](d.name), `${Cap(dur(km, car))} at 70 mph without stopping${distWord(d)}${d.star ? "" : `, or ${dur(d.d.farthest, car)} at its farthest`}.`],
-    [ASK["speed-of-light"](d.name), `${Cap(dur(km, light))}${distWord(d)}${d.star ? "" : ` and ${dur(d.d.farthest, light)} at its farthest`}. That is also how long a radio message takes${d.star ? " — and how old the starlight you see is" : ""}.`]
+    [ASK["by-car"](d.name), `${Cap(dur(km, car))} at 70 mph without stopping${distWord(d)}${d.single ? "" : `, or ${dur(d.d.farthest, car)} at its farthest`}.`],
+    [ASK["speed-of-light"](d.name), `${Cap(dur(km, light))}${distWord(d)}${d.single ? "" : ` and ${dur(d.d.farthest, light)} at its farthest`}.${d.ground ? "" : ` That is also how long a radio message takes${d.star ? " — and how old the starlight you see is" : ""}.`}`]
   ];
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["How Long to Get There", SITE + BASE], [`To ${d.star ? "Proxima Centauri" : d.name}`, url]]), site.faqLd(q)];
-  const others = S.DEST.filter((x) => x !== d).map((x) => `<a href="${BASE}${x.slug}/">${esc(Cap(x.star ? "the nearest star" : x.name))}</a>`).join(" ");
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["How Long to Get There", SITE + BASE], [`To ${d.shortTitle || d.name}`, url]]), site.faqLd(q)];
+  const others = S.DEST.filter((x) => x !== d).map((x) => `<a href="${BASE}${x.slug}/">${esc(Cap(x.linkName || x.name))}</a>`).join(" ");
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← How long to get there</a>
-      <h1 class="page-title">How long to get to ${esc(d.star ? "the nearest star" : d.name)}?</h1>
+      <h1 class="page-title">How long to get to ${esc(d.linkName || d.name)}?</h1>
       <p class="page-subtitle">${esc(Cap(where(d)))} is ${esc(S.distance(km))} away${distWord(d)}.</p>
     </header>
 
 ${tool(d, S.speed(DEF_SPEED))}
     <main class="tool">
-      <p class="tool-section-title">${esc(Cap(d.star ? "Proxima Centauri" : d.name))} at every speed</p>
+      <p class="tool-section-title">${esc(Cap(d.shortTitle || d.name))} at every speed</p>
 ${destTable(d)}      ${realTrip(d)}
       <p class="tool-hint" style="margin-top:12px;">${esc(STRAIGHT)}</p>
     </main>
@@ -139,7 +139,7 @@ const TITLE = {
   "speed-of-light": (n) => `How Long Does Light Take to Reach ${n}?`
 };
 function speedTitle(d, v, km) {
-  const q = TITLE[v.slug](d.star ? "Proxima Centauri" : d.name), t = titleCase(dur(km, v));
+  const q = TITLE[v.slug](d.inTitle || d.shortTitle || d.name), t = titleCase(dur(km, v));
   return site.fitTitle(`${q} — ${t}${v.slug === "by-car" ? " at 70 mph" : ""}`, `${q} — ${t}`, `${q.replace("the Fastest Spacecraft's Speed", "Record Spacecraft Speed")} — ${t}`, `${q.replace("the Fastest Spacecraft's Speed", "Top Probe Speed").replace("Would It Take to ", "to ").replace("How Long Does Light Take to Reach", "Light Time to")} — ${t}`);
 }
 
@@ -148,38 +148,38 @@ function speedPage(d, v) {
   const km = d.d[d.def];
   const light = v.slug === "speed-of-light";
   const title = speedTitle(d, v, km);
-  const desc = `${Cap(dur(km, v))} to reach ${where(d)}${distWord(d)}${d.star ? "" : `, ${dur(d.d.farthest, v)} at its farthest`}: ${v.name.toLowerCase()}, ${v.label}. With every planet at the same speed${light ? "" : " and the speed of light"}.`;
+  const desc = `${Cap(dur(km, v))} to reach ${where(d)}${distWord(d)}${d.single ? "" : `, ${dur(d.d.farthest, v)} at its farthest`}: ${v.name.toLowerCase()}, ${v.label}. With every planet at the same speed${light ? "" : " and the speed of light"}.`;
   const ask = ASK[v.slug](d.name);
   const q = [
-    [ask, `${Cap(dur(km, v))}${distWord(d)}, covering ${S.distance(km)} non-stop at ${v.label}${d.star ? "" : `. At its farthest, ${S.distance(d.d.farthest)}, it would take ${dur(d.d.farthest, v)}`}.`],
+    [ask, `${Cap(dur(km, v))}${distWord(d)}, covering ${S.distance(km)} non-stop at ${v.label}${d.single ? "" : `. At its farthest, ${S.distance(d.d.farthest)}, it would take ${dur(d.d.farthest, v)}`}.`],
     [`How is that worked out?`, `Distance divided by speed: ${S.bigNum(km)} km ÷ ${v.kmh.toLocaleString("en-GB", { maximumFractionDigits: 2 })} km/h = ${Math.round(S.hours(km, v.kmh)).toLocaleString("en-GB")} hours. ${STRAIGHT}`]
   ];
   if (d.trip) q.push([`How long did it actually take to get to ${d.name}?`, `${Cap(d.trip.took)} for NASA's ${d.trip.craft}, which ${d.trip.detail}.`]);
   if (!light) q.push([`How long does light take to get to ${d.name}?`, `${Cap(dur(km, S.speed("speed-of-light")))}${distWord(d)}.`]);
-  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["How Long to Get There", SITE + BASE], [`To ${d.star ? "Proxima Centauri" : d.name}`, SITE + `${BASE}${d.slug}/`], [v.name, url]]), site.faqLd(q)];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["How Long to Get There", SITE + BASE], [`To ${d.shortTitle || d.name}`, SITE + `${BASE}${d.slug}/`], [v.name, url]]), site.faqLd(q)];
   const keys = ["closest", "average", "farthest"].filter((k) => d.d[k] != null);
-  const distRows = keys.map((k) => [d.star ? "Distance" : S.DIST_LABEL[k], esc(S.distance(d.d[k])), esc(dur(d.d[k], v))]);
-  const everyRows = S.DEST.map((x) => [x === d ? `<strong>${esc(Cap(x.star ? "Proxima Centauri" : x.name))}</strong>` : `<a href="${BASE}${x.slug}/${v.slug}/">${esc(Cap(x.star ? "Proxima Centauri" : x.name))}</a>`, esc(dur(x.d[x.def], v))]);
+  const distRows = keys.map((k) => [d.single ? "Distance" : S.DIST_LABEL[k], esc(S.distance(d.d[k])), esc(dur(d.d[k], v))]);
+  const everyRows = S.DEST.map((x) => [x === d ? `<strong>${esc(Cap(x.shortTitle || x.name))}</strong>` : `<a href="${BASE}${x.slug}/${v.slug}/">${esc(Cap(x.shortTitle || x.name))}</a>`, esc(dur(x.d[x.def], v))]);
   const speeds = S.SPEEDS.filter((x) => x !== v).map((x) => `<a href="${BASE}${d.slug}/${x.slug}/">${esc(SHORT[x.slug])}</a>`).join(" ");
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
-      <a class="back-link" href="${BASE}${d.slug}/">← How long to get to ${esc(d.star ? "the nearest star" : d.name)}</a>
+      <a class="back-link" href="${BASE}${d.slug}/">← How long to get to ${esc(d.linkName || d.name)}</a>
       <h1 class="page-title">${esc(ask)}</h1>
       <p class="page-subtitle">${esc(Cap(dur(km, v)))}${esc(distWord(d))}. ${esc(v.name)}: ${esc(v.label)}, ${esc(v.note)}.</p>
     </header>
 
 ${tool(d, v)}
     <main class="tool">
-      <p class="tool-section-title">${esc(Cap(d.star ? "Proxima Centauri" : d.name))} ${esc(v.name.toLowerCase())}</p>
+      <p class="tool-section-title">${esc(Cap(d.shortTitle || d.name))} ${esc(v.name.toLowerCase())}</p>
 ${site.table(["", "Distance", "Time"], distRows, 420)}      ${realTrip(d)}
       <p class="tool-section-title" style="margin-top:22px;">Every destination ${esc(v.name.toLowerCase())}</p>
-${site.table(["Destination", "Time"], everyRows.map((r, i) => [r[0] + (S.DEST[i].star ? "" : `<br><span class="tool-hint">${esc(S.DIST_LABEL[S.DEST[i].def].toLowerCase())}</span>`), r[1]]), 360)}      <p class="tool-hint" style="margin-top:12px;">${esc(STRAIGHT)} Distances from NASA's planetary fact sheets.</p>
+${site.table(["Destination", "Time"], everyRows.map((r, i) => [r[0] + (S.DEST[i].single ? "" : `<br><span class="tool-hint">${esc(S.DIST_LABEL[S.DEST[i].def].toLowerCase())}</span>`), r[1]]), 360)}      <p class="tool-hint" style="margin-top:12px;">${esc(STRAIGHT)} Distances from NASA's planetary fact sheets.</p>
     </main>
 
     <main class="tool">
       <p class="tool-section-title">Frequently asked questions</p>
 ${site.faqHtml(q)}    </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">${esc(Cap(d.star ? "Proxima Centauri" : d.name))} at other speeds</div>
+    <div class="hub-group-title" style="margin-top:28px;">${esc(Cap(d.shortTitle || d.name))} at other speeds</div>
     <p class="salary-links">${speeds}</p>
 
 ${site.FOOTER}
@@ -196,7 +196,7 @@ function hub() {
   const title = "How Long Would It Take to Get to Mars? — Space Travel Time Calculator";
   const desc = `How long to reach the Moon, Mars, every planet or the nearest star by car, plane, rocket or at the speed of light. Mars at its closest: ${dur(mars.d.closest, S.speed("by-car"))} by car, ${dur(mars.d.closest, S.speed("speed-of-light"))} for light.`;
   const cols = ["by-car", "by-plane", "apollo-speed", "speed-of-light"].map(S.speed);
-  const rows = S.DEST.map((d) => [`<a href="${BASE}${d.slug}/">${esc(Cap(d.star ? "Proxima Centauri" : d.name))}</a>`].concat(cols.map((v) => `<a href="${BASE}${d.slug}/${v.slug}/">${esc(dur(d.d[d.def], v))}</a>`)));
+  const rows = S.DEST.map((d) => [`<a href="${BASE}${d.slug}/">${esc(Cap(d.shortTitle || d.name))}</a>`].concat(cols.map((v) => `<a href="${BASE}${d.slug}/${v.slug}/">${esc(dur(d.d[d.def], v))}</a>`)));
   const q = [
     ["How long would it take to get to Mars?", `NASA's Perseverance rover took ${mars.trip.took}. In a straight line at its closest, ${S.distance(mars.d.closest)}, it would take ${dur(mars.d.closest, S.speed("by-car"))} by car, ${dur(mars.d.closest, S.speed("apollo-speed"))} at Apollo 10's top speed, and ${dur(mars.d.closest, S.speed("speed-of-light"))} for light.`],
     ["Why don't spacecraft go in a straight line?", STRAIGHT],
