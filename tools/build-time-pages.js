@@ -259,7 +259,9 @@ function dateHub(k) {
     body: dateTool(k, n) + `    <main class="tool">
       <p class="tool-section-title">Common searches</p>
       <p class="salary-links">${links}</p>
-    </main>
+${k === KIND.from ? Object.values(KIND).filter((x) => x !== k).map((x) => `      <p class="tool-section-title" style="margin-top:18px;">${x.title}</p>
+      <p class="salary-links"><a href="${x.base}">${x.title} calculator</a> ${x.counts.map((n) => `<a href="${x.base}${n}/">${n} ${x.unit} ${x.word}</a>`).join(" ")}</p>
+`).join("") : ""}    </main>
 ` });
 }
 
