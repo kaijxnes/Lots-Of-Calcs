@@ -95,7 +95,7 @@ const FOOTER = `    <footer class="site-footer">
         <a href="/other/">Other</a>
       </p>
       <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
-      <p><a href="/about/">About this site</a></p>
+      <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
     </footer>`;
 
 function head({ title, desc, url, ld }) {
@@ -446,7 +446,7 @@ function aboutTheFigures(p) {
       <p class="tool-section-title">About these figures</p>
       <p class="about-text">They use the <strong>${esc(leaf.taxYear.label)}</strong> tax year, which runs from ${niceDate(leaf.taxYear.start)} to ${niceDate(leaf.taxYear.end)}. ${verified
         ? "The rates were last checked against the official sources on " + niceDate(p.chain.map((d) => d.lastVerified).sort()[0]) + "."
-        : `The rates have not yet been checked by a person against the official sources — <a href="${esc(verifyAt)}" rel="nofollow noopener" target="_blank">check them here</a> before relying on them.`} This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a>.</p>
+        : `The rates have not yet been checked by a person against the official sources — <a href="${esc(verifyAt)}" rel="nofollow noopener" target="_blank">check them here</a> before relying on them.`} This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
       <ul class="about-list">${li(assumptions)}</ul>
       <p class="about-text"><strong>Leaves out:</strong></p>

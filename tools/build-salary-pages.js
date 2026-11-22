@@ -92,7 +92,7 @@ const FOOTER = `    <footer class="site-footer">
         <a href="/other/">Other</a>
       </p>
       <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
-      <p><a href="/about/">About this site</a></p>
+      <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
     </footer>`;
 
 /* Each plan's repayment on this salary, from the registry */
