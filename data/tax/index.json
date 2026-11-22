@@ -199,6 +199,17 @@
       "lastVerified": null,
       "lastChecked": null
     },
+    "ch-be": {
+      "file": "ch/ch-be.2026.json",
+      "name": "Bern",
+      "kind": "city",
+      "country": "CH",
+      "parent": "ch",
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null,
+      "lastChecked": null
+    },
     "ch-bs": {
       "file": "ch/ch-bs.2026.json",
       "name": "Basel",

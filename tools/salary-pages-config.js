@@ -83,7 +83,9 @@ const PLACES = {
   "ch-zg": { path: "switzerland/zug", inName: "Zug, Switzerland", shortName: "Switzerland (Zug)",
     hubTitle: ["Zug Salary After Tax Calculator ({year}) — Take-Home Pay in Zug", "Zug Salary After Tax Calculator ({year})"] },
   "ch-bs": { path: "switzerland/basel", inName: "Basel, Switzerland", shortName: "Switzerland (Basel)",
-    hubTitle: ["Basel Salary After Tax Calculator ({year}) — Take-Home Pay in Basel", "Basel Salary After Tax Calculator ({year})"] }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
+    hubTitle: ["Basel Salary After Tax Calculator ({year}) — Take-Home Pay in Basel", "Basel Salary After Tax Calculator ({year})"] },
+  "ch-be": { path: "switzerland/bern", inName: "Bern, Switzerland", shortName: "Switzerland (Bern)",
+    hubTitle: ["Bern Salary After Tax Calculator ({year}) — Take-Home Pay in Bern", "Bern Salary After Tax Calculator ({year})"] }, "au": { path: "australia" }, "nz": { path: "new-zealand" }, "in": { path: "india" }, "jp": { path: "japan" },
   "us-dc": { path: "us/washington-dc", inName: "Washington, DC", shortName: "Washington, DC" },
   "us-ny-nyc": { path: "us/new-york-city" }
 };
@@ -106,15 +108,15 @@ const COMPARE = {
   US: ["us-tx", "us-fl", "us-wa", "us-ca", "us-ny", "us-ny-nyc", "us-il", "us-pa", "us-ma", "us-nj", "us-ga", "us-nc", "us-co", "us-az", "us-oh"],
   EUR: ["de", "fr", "es", "it", "nl", "be", "lu", "ie", "pt", "at", "fi"],
   GBP: ["gb", "gb-sct"],
-  CHF: ["ch", "ch-zg", "ch-bs"],
+  CHF: ["ch", "ch-zg", "ch-bs", "ch-be"],
   CA: ["ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"]
 };
 
 /* Country-against-country pages, /salary-comparison/<a>-vs-<b>/ (built by
    tools/build-comparison-pages.js and linked from each place's salary pages).
    Labels: [short name, how it reads in a sentence]. */
-const COMPARISON_LABEL = { gb: ["UK", "the UK"], "gb-sct": ["Scotland", "Scotland"], ie: ["Ireland", "Ireland"], de: ["Germany", "Germany"], nl: ["Netherlands", "the Netherlands"], fr: ["France", "France"], es: ["Spain", "Spain"], pt: ["Portugal", "Portugal"], it: ["Italy", "Italy"], "us-tx": ["Texas", "Texas"], "us-ca": ["California", "California"], "us-ny-nyc": ["New York City", "New York City"], "us-fl": ["Florida", "Florida"], "ca-on": ["Ontario", "Ontario"], "ca-bc": ["British Columbia", "British Columbia"], au: ["Australia", "Australia"], nz: ["New Zealand", "New Zealand"], be: ["Belgium", "Belgium"], lu: ["Luxembourg", "Luxembourg"], ch: ["Switzerland", "Zurich, Switzerland"], "ch-zg": ["Zug", "Zug, Switzerland"], "ch-bs": ["Basel", "Basel, Switzerland"] };
-const COMPARISON_PAIRS = [["gb", "ie"], ["gb", "de"], ["gb", "nl"], ["gb", "fr"], ["gb", "es"], ["gb", "pt"], ["gb", "us-ny-nyc"], ["gb", "us-tx"], ["gb", "us-ca"], ["gb", "ca-on"], ["gb", "au"], ["gb", "nz"], ["gb", "gb-sct"], ["ie", "de"], ["de", "nl"], ["us-ca", "us-tx"], ["us-ny-nyc", "us-fl"], ["us-tx", "ca-on"], ["ca-on", "ca-bc"], ["au", "nz"], ["gb", "ch"], ["gb", "be"], ["gb", "lu"], ["de", "ch"], ["be", "nl"], ["be", "fr"], ["fr", "lu"], ["de", "lu"], ["gb", "ch-zg"], ["de", "ch-zg"], ["gb", "ch-bs"], ["de", "ch-bs"]];
+const COMPARISON_LABEL = { gb: ["UK", "the UK"], "gb-sct": ["Scotland", "Scotland"], ie: ["Ireland", "Ireland"], de: ["Germany", "Germany"], nl: ["Netherlands", "the Netherlands"], fr: ["France", "France"], es: ["Spain", "Spain"], pt: ["Portugal", "Portugal"], it: ["Italy", "Italy"], "us-tx": ["Texas", "Texas"], "us-ca": ["California", "California"], "us-ny-nyc": ["New York City", "New York City"], "us-fl": ["Florida", "Florida"], "ca-on": ["Ontario", "Ontario"], "ca-bc": ["British Columbia", "British Columbia"], au: ["Australia", "Australia"], nz: ["New Zealand", "New Zealand"], be: ["Belgium", "Belgium"], lu: ["Luxembourg", "Luxembourg"], ch: ["Switzerland", "Zurich, Switzerland"], "ch-zg": ["Zug", "Zug, Switzerland"], "ch-bs": ["Basel", "Basel, Switzerland"], "ch-be": ["Bern", "Bern, Switzerland"] };
+const COMPARISON_PAIRS = [["gb", "ie"], ["gb", "de"], ["gb", "nl"], ["gb", "fr"], ["gb", "es"], ["gb", "pt"], ["gb", "us-ny-nyc"], ["gb", "us-tx"], ["gb", "us-ca"], ["gb", "ca-on"], ["gb", "au"], ["gb", "nz"], ["gb", "gb-sct"], ["ie", "de"], ["de", "nl"], ["us-ca", "us-tx"], ["us-ny-nyc", "us-fl"], ["us-tx", "ca-on"], ["ca-on", "ca-bc"], ["au", "nz"], ["gb", "ch"], ["gb", "be"], ["gb", "lu"], ["de", "ch"], ["be", "nl"], ["be", "fr"], ["fr", "lu"], ["de", "lu"], ["gb", "ch-zg"], ["de", "ch-zg"], ["gb", "ch-bs"], ["de", "ch-bs"], ["gb", "ch-be"]];
 const comparisonSlug = (a, b) => [a, b].map((id) => COMPARISON_LABEL[id][0].toLowerCase().replace(/\s+/g, "-")).join("-vs-");
 /* The comparison pages a place appears on, as [url, "A vs B"] */
 const comparisonsFor = (id) => COMPARISON_PAIRS.filter((pr) => pr.includes(id)).map(([a, b]) => [`/salary-comparison/${comparisonSlug(a, b)}/`, `${COMPARISON_LABEL[a][0]} vs ${COMPARISON_LABEL[b][0]}`]);
