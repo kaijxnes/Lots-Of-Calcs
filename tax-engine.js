@@ -324,9 +324,9 @@ const TaxEngine = (function () {
 
   function getJSON(url) {
     if (!cache[url]) {
-      /* Normal HTTP caching: GitHub Pages lets a file be reused for 10
-         minutes, so a visitor sees new rates within minutes of an update
-         without re-checking every file on every page view. */
+      /* Normal HTTP caching: _headers lets data files be reused for an
+         hour and then refreshed in the background, so a visitor sees new
+         rates soon after an update without re-fetching them on every page. */
       cache[url] = fetch(url).then((res) => {
         if (!res.ok) throw new Error("HTTP " + res.status + " for " + url);
         return res.json();
