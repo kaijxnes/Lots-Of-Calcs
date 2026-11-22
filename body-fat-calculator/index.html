@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Body Fat Calculator — US Navy Tape Measure Method</title>
+<meta name="description" content="Estimate your body fat percentage from your height, neck, waist and hip measurements with the US Navy formula, in centimetres or inches…">
+<link rel="canonical" href="https://lotsofcalcs.com/body-fat-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Body Fat Calculator — US Navy Tape Measure Method">
+<meta property="og:description" content="Estimate your body fat percentage from your height, neck, waist and hip measurements with the US Navy formula, in centimetres or inches…">
+<meta property="og:url" content="https://lotsofcalcs.com/body-fat-calculator/">
+<meta property="og:image" content="https://lotsofcalcs.com/og/body-fat-calculator.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Body Fat Calculator — US Navy Tape Measure Method">
+<meta name="twitter:description" content="Estimate your body fat percentage from your height, neck, waist and hip measurements with the US Navy formula, in centimetres or inches…">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og/body-fat-calculator.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/theme.js"></script>
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Body Fat Calculator — US Navy Tape Measure Method",
+    "description": "Estimate your body fat percentage from your height, neck, waist and hip measurements with the US Navy formula, in centimetres or inches…",
+    "url": "https://lotsofcalcs.com/body-fat-calculator/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Body Fat Calculator",
+        "item": "https://lotsofcalcs.com/body-fat-calculator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Body Fat Calculator",
+    "url": "https://lotsofcalcs.com/body-fat-calculator/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How does the US Navy body fat method work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It estimates body fat from tape measurements: neck and waist (and hips for women) and height, using equations published by the Naval Health Research Center (Hodgdon and Beckett, 1984). Measurements go into the formula in inches; the calculator converts centimetres for you."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Where do I measure?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Neck just below the larynx; waist at the navel for men, at the narrowest point for women; hips at the widest point. Keep the tape flat and snug without squeezing, and measure two or three times."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How accurate is it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "It's an estimate from a few measurements — useful for tracking change over time with the same method, less so as an exact figure for one person."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What does an example give?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A man 5 ft 10 in (70 in) tall with a 34 in waist and 15 in neck comes out at about 17.5% body fat."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Body fat calculator</h1>
+      <p class="page-subtitle">Your estimated body fat percentage from a few tape measurements (US Navy method).</p>
+    </header>
+
+    <main class="tool" id="bf-tool" data-navy='{"men":[86.01,70.041,36.76],"women":[163.205,97.684,78.387]}'>
+      <div class="field-row">
+        <div class="field"><label for="bf-sex">Sex</label><select id="bf-sex"><option value="m" selected>Male</option><option value="f">Female</option></select></div>
+        <div class="field"><label for="bf-unit">Measurements in</label><select id="bf-unit"><option value="cm" selected>Centimetres</option><option value="in">Inches</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="bf-h">Height</label><input type="number" id="bf-h" value="178" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="bf-neck">Neck</label><input type="number" id="bf-neck" value="38" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="bf-waist">Waist</label><input type="number" id="bf-waist" value="86" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="bf-hip">Hips (women)</label><input type="number" id="bf-hip" value="100" min="0" step="any" inputmode="decimal"></div>
+      </div>
+        <div class="field"><label for="bf-wt">Weight in kg (optional, for fat and lean mass)</label><input type="number" id="bf-wt" value="" min="0" step="any" inputmode="decimal"></div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero"><div class="value" id="bf-pct">—</div><div class="label">estimated body fat</div></div>
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Fat mass</span><span class="r-value" id="bf-fat">—</span></div>
+          <div class="result-row"><span class="r-label">Lean mass</span><span class="r-value" id="bf-lean">—</span></div>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How does the US Navy body fat method work?</p>
+      <p class="about-text">It estimates body fat from tape measurements: neck and waist (and hips for women) and height, using equations published by the Naval Health Research Center (Hodgdon and Beckett, 1984). Measurements go into the formula in inches; the calculator converts centimetres for you.</p>
+      <p class="faq-q">Where do I measure?</p>
+      <p class="about-text">Neck just below the larynx; waist at the navel for men, at the narrowest point for women; hips at the widest point. Keep the tape flat and snug without squeezing, and measure two or three times.</p>
+      <p class="faq-q">How accurate is it?</p>
+      <p class="about-text">It's an estimate from a few measurements — useful for tracking change over time with the same method, less so as an exact figure for one person.</p>
+      <p class="faq-q">What does an example give?</p>
+      <p class="about-text">A man 5 ft 10 in (70 in) tall with a 34 in waist and 15 in neck comes out at about 17.5% body fat.</p>
+      <p class="tool-hint" style="margin-top:12px;">An estimate for general information, not medical advice. Source: <a href="https://apps.dtic.mil/sti/html/tr/ADA146456/index.html" rel="nofollow noopener" target="_blank">Hodgdon &amp; Beckett — Prediction of percent body fat for U.S. Navy women from body circumferences and height (Naval Health Research Center, 1984)</a>; <a href="https://med.libretexts.org/Courses/Irvine_Valley_College/Physiology_Labs_at_Home/03:_Anthropometrics/3.02:_Part_B-_Circumference_Measures/3.2.04:_Part_B4-_The_U.S._Navy_body_fat_estimation_formula" rel="nofollow noopener" target="_blank">LibreTexts — The U.S. Navy body fat estimation formula</a>.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/bmi/">
+        <span class="icon">⚖️</span>
+        <div class="title">BMI Calculator</div>
+        <div class="desc">Height + weight → Body Mass Index and category.</div>
+      </a>
+      <a class="hub-card" href="/calorie-calculator/">
+        <span class="icon">🥗</span>
+        <div class="title">Calorie Calculator</div>
+        <div class="desc">Calories a day to stay the same weight or lose weight, and how long it'll take.</div>
+      </a>
+      <a class="hub-card" href="/protein-calculator/">
+        <span class="icon">🥚</span>
+        <div class="title">Protein Calculator</div>
+        <div class="desc">How much protein you need a day, from your body weight.</div>
+      </a>
+      <a class="hub-card" href="/heart-rate-zones/">
+        <span class="icon">❤️</span>
+        <div class="title">Target Heart Rate</div>
+        <div class="desc">Your maximum heart rate and exercise zones by age (CDC ranges).</div>
+      </a>
+      <a class="hub-card" href="/one-rep-max/">
+        <span class="icon">🏋️</span>
+        <div class="title">One Rep Max</div>
+        <div class="desc">Estimate your 1RM from any set, with training percentages.</div>
+      </a>
+      <a class="hub-card" href="/everyday/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Everyday calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/fitness.js"></script>
+</body>
+</html>
