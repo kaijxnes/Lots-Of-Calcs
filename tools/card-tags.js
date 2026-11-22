@@ -15,6 +15,7 @@ const TAGS = {
   "/working-days/": "UK",
   "/dry-january-calculator/": "UK",
   "/student-loan-calculator/": "UK",
+  "/degree-classification-calculator/": "UK",
   "/pension-drawdown-calculator/": "UK",
   "/buy-to-let-calculator/": "UK",
   "/inheritance-tax-calculator/": "UK",

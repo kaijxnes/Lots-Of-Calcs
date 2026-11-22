@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/degree-classification-calculator/": ["/grade/", "/student-loan-calculator/", "/percent/", "/weighted-average/", "/salary/", "/days-until/"],
   "/protein-calculator/": ["/calorie-calculator/", "/one-rep-max/", "/bmi/", "/body-fat-calculator/", "/cups-to-grams/", "/heart-rate-zones/"],
   "/one-rep-max/": ["/protein-calculator/", "/body-fat-calculator/", "/calorie-calculator/", "/heart-rate-zones/", "/bmi/", "/pace/"],
   "/body-fat-calculator/": ["/bmi/", "/calorie-calculator/", "/protein-calculator/", "/heart-rate-zones/", "/one-rep-max/", "/pace/"],
@@ -92,7 +93,7 @@ const RELATED = {
   "/growth/": ["/cagr/", "/percent/", "/ab-test-significance/", "/compound-interest/", "/margin-markup/", "/weighted-average/"],
   "/vat/": ["/self-employed-tax-calculator/", "/salary/", "/margin-markup/", "/discount/", "/percent/", "/marketplace-fees/", "/split-bill/"],
   "/ab-test-significance/": ["/growth/", "/weighted-average/", "/percent/", "/cagr/", "/ai-cost/", "/margin-markup/"],
-  "/weighted-average/": ["/grade/", "/percent/", "/ab-test-significance/", "/growth/", "/fractions/", "/basic/"],
+  "/weighted-average/": ["/degree-classification-calculator/", "/grade/", "/percent/", "/ab-test-significance/", "/growth/", "/fractions/", "/basic/"],
   "/ai-cost/": ["/margin-markup/", "/growth/", "/ab-test-significance/", "/percent/", "/running-cost/", "/marketplace-fees/"],
   "/marketplace-fees/": ["/margin-markup/", "/vat/", "/discount/", "/cashback/", "/percent/", "/growth/"],
   "/inflation/": ["/pay-rise-calculator/", "/compound-interest/", "/savings-goal/", "/salary/", "/cagr/", "/rent-vs-buy/", "/fund-fees/"],
@@ -111,7 +112,7 @@ const RELATED = {
   "/tip/": ["/split-bill/", "/discount/", "/percent/", "/household-bills/", "/vat/", "/basic/"],
   "/discount/": ["/percent/", "/vat/", "/cashback/", "/tip/", "/margin-markup/", "/split-bill/"],
   "/split-bill/": ["/tip/", "/household-bills/", "/discount/", "/percent/", "/vat/", "/fuel-cost/"],
-  "/grade/": ["/weighted-average/", "/percent/", "/fractions/", "/basic/", "/date-diff/", "/scientific/"],
+  "/grade/": ["/degree-classification-calculator/", "/weighted-average/", "/percent/", "/fractions/", "/basic/", "/date-diff/", "/scientific/"],
   "/unit-converter/": ["/pace/", "/fuel-cost/", "/watts-amps-volts/", "/btu/", "/coverage/", "/scientific/"],
   "/bmi/": ["/body-fat-calculator/", "/heart-rate-zones/", "/calorie-calculator/", "/pace/", "/unit-converter/", "/weight-on-other-planets/", "/birthday/", "/date-diff/", "/percent/"],
   "/fuel-cost/": ["/speed-distance-time/", "/ev-charging-cost/", "/car-finance/", "/unit-converter/", "/split-bill/", "/running-cost/", "/pace/"],
