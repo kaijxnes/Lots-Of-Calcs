@@ -199,6 +199,17 @@
       "lastVerified": null,
       "lastChecked": null
     },
+    "ch-zg": {
+      "file": "ch/ch-zg.2026.json",
+      "name": "Zug",
+      "kind": "city",
+      "country": "CH",
+      "parent": "ch",
+      "standalone": true,
+      "taxYear": "2026",
+      "lastVerified": null,
+      "lastChecked": null
+    },
     "de": {
       "file": "de/de.2026.json",
       "name": "Germany",

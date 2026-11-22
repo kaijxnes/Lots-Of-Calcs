@@ -506,6 +506,12 @@
           "gross": 500000
         },
         {
+          "id": "ch-zg",
+          "name": "Switzerland (Zug)",
+          "currency": "CHF",
+          "gross": 100000
+        },
+        {
           "id": "ch",
           "name": "Switzerland (Zurich)",
           "currency": "CHF",
