@@ -158,7 +158,7 @@ Unknown keys are an error, so a typo fails the check instead of being ignored.
   calculator from $30k to $1M (each state's tests record the result).
 - **Europe**: Germany, France, Spain (Madrid, Catalonia), Italy, Netherlands,
   Belgium, Luxembourg, Ireland, Portugal, Austria, Finland, Norway, Denmark,
-  Sweden, and Switzerland for the city of Zurich (federal, cantonal and city
+  Sweden, and Switzerland for the cities of Zurich and Zug (federal, cantonal and city
   tax; the occupational pension share is an option, 0 by default). Belgium
   has the Flemish average municipal surcharge and four cities as options.
 - **Asia-Pacific**: Australia, New Zealand, India, Japan.

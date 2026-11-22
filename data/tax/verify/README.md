@@ -36,6 +36,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Saskatchewan | [ca-sk](ca-sk.md) | 2026 | 10 | 2026-11-11 | — |
 | Yukon | [ca-yt](ca-yt.md) | 2026 | 12 | 2026-11-11 | — |
 | Switzerland (Zurich) | [ch](ch.md) | 2026 | 63 | — | — |
+| Zug | [ch-zg](ch-zg.md) | 2026 | 23 | — | — |
 | Denmark | [dk](dk.md) | 2026 | 25 | — | — |
 | Spain | [es](es.md) | 2026 | 120 | — | — |
 | Finland | [fi](fi.md) | 2026 | 29 | 2026-11-11 | — |

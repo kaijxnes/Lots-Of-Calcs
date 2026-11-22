@@ -1,0 +1,184 @@
+{
+  "id": "ch-zg",
+  "name": "Zug",
+  "kind": "city",
+  "country": "CH",
+  "parent": "ch",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "remove": [
+    "ch-zh-taxable",
+    "ch-zh-simple",
+    "ch-zh-tax"
+  ],
+  "items": [
+    {
+      "id": "ch-zg-taxable",
+      "label": "Taxable income (Zug)",
+      "show": true,
+      "note": "Net salary less the professional costs lump sum, the CHF 4,600 insurance premiums deduction and the CHF 12,000 personal deduction for a single person.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "ch-net-salary",
+              "ch-prof-costs",
+              4600,
+              12000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-zg-simple",
+      "label": "Simple cantonal tax (Zug)",
+      "show": true,
+      "note": "Zug's single tariff: 0.5% on the first CHF 1,100, rising in steps to 10%, then 9% and 8% on income over CHF 149,900.",
+      "value": {
+        "brackets": [
+          [
+            0,
+            0.5
+          ],
+          [
+            1100,
+            1
+          ],
+          [
+            3300,
+            2
+          ],
+          [
+            6100,
+            3
+          ],
+          [
+            10100,
+            3.25
+          ],
+          [
+            15300,
+            3.5
+          ],
+          [
+            21100,
+            4
+          ],
+          [
+            26900,
+            4.5
+          ],
+          [
+            34900,
+            5.5
+          ],
+          [
+            46400,
+            5.5
+          ],
+          [
+            59700,
+            6.5
+          ],
+          [
+            74700,
+            8
+          ],
+          [
+            94800,
+            10
+          ],
+          [
+            120100,
+            9
+          ],
+          [
+            149900,
+            8
+          ]
+        ],
+        "of": "ch-zg-taxable"
+      }
+    },
+    {
+      "id": "ch-zg-tax",
+      "label": "Cantonal and city tax (Zug)",
+      "group": "tax",
+      "note": "The simple tax times the 2026 multipliers: 78% for the canton and 52% for the city of Zug (130% in all). No church tax.",
+      "charge": {
+        "mul": [
+          "ch-zg-simple",
+          1.3
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Pillar 3a contributions and other personal deductions",
+    "Commuting and meal cost deductions",
+    "Zug's tenant deduction (30% of rent, up to CHF 10,800)",
+    "Church tax",
+    "Tax at source (Quellensteuer) tables",
+    "Other Zug municipalities"
+  ],
+  "provisional": [
+    "The professional costs lump sum (3% of net salary, CHF 2,000–4,000) is from Zug's 2025 tax return guide, assumed unchanged for 2026",
+    "Zug taxable income is not rounded here"
+  ],
+  "sources": [
+    {
+      "title": "ESTV — Kantonsblatt Zug (Steuerinformationen, Stand Februar 2026)",
+      "url": "https://www.estv2.admin.ch/stp/kb/zg-de.pdf"
+    },
+    {
+      "title": "Kanton Zug — Steuerfüsse der Gemeinden 2023–2026",
+      "url": "https://cdn.zg.ch/dam/jcr:24fb8832-3383-4718-9a48-9461bc7501fc/Steuerf%C3%BCsse%202026_effektiv%2021.1.26.pdf"
+    },
+    {
+      "title": "Kanton Zug — Steuergesetzänderung «Mehrwert für alle» angenommen (30.11.2025)",
+      "url": "https://zg.ch/de/news/2025/November/steuergesetzaenderung-mehrwert-fuer-alle-angenommen"
+    },
+    {
+      "title": "Kanton Zug — Wegleitung zur Steuererklärung 2025",
+      "url": "https://cdn.zg.ch/dam/jcr:17c572af-908f-43a5-96b0-0fd25983f924/Wegleitung_2025_StKtZug_A4_20251119.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Official documents, Nov 2026",
+      "note": "Zug tariff (values valid from 2025), CHF 12,000 personal deduction and CHF 4,600 insurance premiums deduction (from 2026) from the ESTV Kantonsblatt; canton multiplier 78% for 2026–2029 (Zug press release, Steuerfüsse table) and city of Zug 52% for 2026 (Steuerfüsse table); professional costs lump sum from the 2025 Wegleitung."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": null,
+  "verifyAt": "https://swisstaxcalculator.estv.admin.ch/#/home",
+  "tests": [
+    {
+      "gross": 100000,
+      "note": "Federal and social as in Zurich: AHV 5,300, ALV 1,100, federal tax 1,951.75. Zug taxable 93,600 − 2,808 − 4,600 − 12,000 = 74,192; simple tax 2,531.50 to CHF 59,700 + 14,492 × 6.5% (941.98) = 3,473.48; × 1.30 = 4,515.52.",
+      "expect": {
+        "ch-zg-taxable": 74192,
+        "ch-zg-simple": 3473.48,
+        "ch-zg-tax": 4515.52,
+        "ch-federal-tax": 1951.75,
+        "net": 87132.73
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "AHV 10,600; ALV 1,630.20; net 187,769.80; professional costs capped at 4,000. Federal taxable 181,969.80 → 181,900: 6,140.55 + 404 × 11 = 10,584.55. Zug taxable 187,769.80 − 4,000 − 4,600 − 12,000 = 167,169.80; simple tax 10,326.50 to CHF 149,900 + 17,269.80 × 8% (1,381.58) = 11,708.08; × 1.30 = 15,220.51.",
+      "expect": {
+        "ch-federal-tax": 10584.55,
+        "ch-zg-simple": 11708.08,
+        "ch-zg-tax": 15220.51,
+        "net": 161964.74
+      }
+    }
+  ]
+}

@@ -485,6 +485,7 @@ function comparison(p, gross, opts) {
   else if (p.root.country === "CA") ids = config.COMPARE.CA;
   else if (p.currency === "EUR") ids = config.COMPARE.EUR;
   else if (p.currency === "GBP") ids = config.COMPARE.GBP;
+  else if (p.currency === "CHF") ids = config.COMPARE.CHF;
   else return "";
   ids = Array.from(new Set([p.id].concat(ids))).filter((id) => byId[id]);
   const rows = ids.map((id) => {
@@ -497,7 +498,7 @@ function comparison(p, gross, opts) {
     const name = q.id === p.id ? `<strong>${esc(q.place.shortName)}</strong>` : href ? `<a href="${href}">${esc(q.place.shortName)}</a>` : esc(q.place.shortName);
     return `<tr><td>${name}</td><td>${p.money(r.net)}</td><td>${p.money(r.perMonth)}</td><td>${pct1(r.deductionRate)}</td></tr>`;
   }).join("");
-  const what = p.root.country === "US" ? "in other states" : p.root.country === "CA" ? "across Canada" : p.currency === "GBP" ? "across the UK" : "in other euro countries";
+  const what = p.root.country === "US" ? "in other states" : p.root.country === "CA" ? "across Canada" : p.currency === "GBP" ? "across the UK" : p.currency === "CHF" ? "in other Swiss cities" : "in other euro countries";
   return `      <p class="tool-section-title" style="margin-top:22px;">${esc(o.label || p.money0(gross))} ${what}</p>
       <div class="table-scroll">
         <div style="min-width:420px;">
