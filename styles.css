@@ -279,7 +279,8 @@ body:has(> .page) {
 }
 
 .field input,
-.field select {
+.field select,
+.field textarea {
   width: 100%;
   background: var(--input-bg);
   border: 1px solid var(--border);
@@ -290,9 +291,11 @@ body:has(> .page) {
   font-family: inherit;
   transition: border-color 0.15s ease;
 }
+.field textarea { line-height: 1.5; resize: vertical; box-sizing: border-box; }
 
 .field input:focus,
-.field select:focus {
+.field select:focus,
+.field textarea:focus {
   outline: none;
   border-color: var(--accent-text);
 }

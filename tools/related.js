@@ -21,6 +21,9 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/recipe-scaler/": ["/cups-to-grams/", "/oven-temperature-converter/", "/air-fryer-conversion/", "/split-bill/", "/fractions/", "/unit-converter/"],
+  "/tile-calculator/": ["/coverage/", "/concrete-calculator/", "/unit-converter/", "/btu/", "/household-bills/", "/percent/"],
+  "/concrete-calculator/": ["/tile-calculator/", "/coverage/", "/unit-converter/", "/btu/", "/watts-amps-volts/", "/household-bills/"],
   "/due-date-calculator/": ["/maternity-pay-calculator/", "/days-from-today/", "/calorie-calculator/", "/bmi/", "/sleep-calculator/", "/date-diff/"],
   "/air-fryer-conversion/": ["/oven-temperature-converter/", "/cups-to-grams/", "/turkey-cooking-time/", "/running-cost/", "/calorie-calculator/", "/unit-converter/"],
   "/oven-temperature-converter/": ["/air-fryer-conversion/", "/cups-to-grams/", "/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/"],
@@ -46,7 +49,7 @@ const RELATED = {
   "/credit-card-payoff/": ["/debt-snowball-vs-avalanche/", "/loan-repayment/", "/50-30-20-budget/", "/emergency-fund-calculator/", "/salary/", "/savings-goal/"],
   "/wedding-budget/": ["/50-30-20-budget/", "/savings-goal/", "/split-bill/", "/days-until/", "/emergency-fund-calculator/", "/discount/"],
   "/overtime-calculator/": ["/salary/", "/hours-calculator/", "/hourly-to-salary/", "/pay-rise-calculator/", "/job-offer-comparison/", "/working-days/", "/biweekly-pay-schedule/"],
-  "/cups-to-grams/": ["/oven-temperature-converter/", "/air-fryer-conversion/", "/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/", "/percent/", "/fractions/"],
+  "/cups-to-grams/": ["/recipe-scaler/", "/oven-temperature-converter/", "/air-fryer-conversion/", "/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/", "/percent/", "/fractions/"],
   "/hourly-to-salary/": ["/salary/", "/hours-calculator/", "/pay-rise-calculator/", "/job-offer-comparison/", "/biweekly-pay-schedule/", "/working-days/", "/50-30-20-budget/"],
   "/beckham-law-calculator/": ["/salary/", "/30-percent-ruling-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
   "/30-percent-ruling-calculator/": ["/salary/", "/beckham-law-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
@@ -110,7 +113,7 @@ const RELATED = {
   "/pace/": ["/calorie-calculator/", "/unit-converter/", "/bmi/", "/date-diff/", "/fuel-cost/", "/timezone/", "/percent/"],
   "/household-bills/": ["/split-bill/", "/50-30-20-budget/", "/running-cost/", "/salary/", "/savings-goal/", "/tip/", "/percent/"],
   "/running-cost/": ["/heating-cost/", "/ev-charging-cost/", "/watts-amps-volts/", "/household-bills/", "/btu/", "/fuel-cost/", "/unit-converter/"],
-  "/coverage/": ["/btu/", "/unit-converter/", "/running-cost/", "/household-bills/", "/discount/", "/percent/"],
+  "/coverage/": ["/tile-calculator/", "/concrete-calculator/", "/btu/", "/unit-converter/", "/running-cost/", "/household-bills/", "/discount/", "/percent/"],
   "/btu/": ["/heating-cost/", "/coverage/", "/running-cost/", "/watts-amps-volts/", "/unit-converter/", "/household-bills/", "/ev-charging-cost/"],
   "/watts-amps-volts/": ["/running-cost/", "/ev-charging-cost/", "/btu/", "/unit-converter/", "/scientific/", "/basic/"],
   "/odds-converter/": ["/each-way/", "/accumulator/", "/lay/", "/dutching/", "/full-cover-bets/", "/percent/"],
