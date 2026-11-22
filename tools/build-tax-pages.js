@@ -937,7 +937,8 @@ ${site.table(["Gross a month", "Take-home a month", "Deductions a month", "Effec
 
     <main class="tool">
       <p class="tool-section-title">How ${esc(mm)} a month after tax is worked out</p>
-      <p class="about-text">Tax is worked out on the year, so the monthly figure is multiplied by twelve &mdash; ${esc(p.money0(gross))} &mdash; the deductions are worked out on that, and the take-home is divided back by twelve. The yearly amounts below are for the whole year.</p>
+      <p class="about-text">Tax is worked out on the year, so the monthly figure is multiplied by twelve &mdash; ${esc(p.money0(gross))} &mdash; the deductions are worked out on that, and the take-home is divided back by twelve. The yearly amounts below are for the whole year.</p>${p.root.country === "BE" ? `
+      <p class="tool-hint">If your pay includes a 13th month or holiday pay on top of twelve monthly salaries, these figures leave them out: add them to the yearly salary in the calculator above for the full picture.</p>` : ""}
 ${explanation(p, r)}
     </main>
 

@@ -50,7 +50,8 @@ const HOURLY = {
    where a salary is normally quoted and paid in twelve equal months. Places
    that pay 13 or 14 instalments (Austria, Spain, Italy, Portugal) or add a
    holiday allowance on top (the Netherlands) are left out, because "a month"
-   means something different there. */
+   means something different there. Belgium is included because pay is quoted
+   monthly there; its pages say the 13th month and holiday pay are left out. */
 const MONTHLY = {
   GBP: [1500, 1750, 2000, 2250, 2500, 2750, 3000, 3500, 4000, 4500, 5000, 6000, 7000, 8000, 10000],
   EUR: [1500, 1750, 2000, 2250, 2500, 2750, 3000, 3250, 3500, 3750, 4000, 4500, 5000, 5500, 6000, 7000, 8000, 9000, 10000],
@@ -59,7 +60,7 @@ const MONTHLY = {
   DKK: [25000, 30000, 35000, 40000, 45000, 50000, 60000],
   CAD: [3000, 3500, 4000, 4500, 5000, 5500, 6000, 7000, 8000, 10000]
 };
-const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi", "lu",
+const MONTHLY_PLACES = ["gb", "gb-sct", "de", "fr", "ie", "se", "no", "dk", "fi", "lu", "be",
   "ca-ab", "ca-bc", "ca-mb", "ca-nb", "ca-nl", "ca-ns", "ca-nt", "ca-nu", "ca-on", "ca-pe", "ca-qc", "ca-sk", "ca-yt"];
 
 /* The salary each hub uses for its headline comparison */
