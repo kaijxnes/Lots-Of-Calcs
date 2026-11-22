@@ -21,6 +21,10 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/protein-calculator/": ["/calorie-calculator/", "/one-rep-max/", "/bmi/", "/body-fat-calculator/", "/cups-to-grams/", "/heart-rate-zones/"],
+  "/one-rep-max/": ["/protein-calculator/", "/body-fat-calculator/", "/calorie-calculator/", "/heart-rate-zones/", "/bmi/", "/pace/"],
+  "/body-fat-calculator/": ["/bmi/", "/calorie-calculator/", "/protein-calculator/", "/heart-rate-zones/", "/one-rep-max/", "/pace/"],
+  "/heart-rate-zones/": ["/calorie-calculator/", "/pace/", "/bmi/", "/body-fat-calculator/", "/one-rep-max/", "/sleep-calculator/"],
   "/speed-distance-time/": ["/fuel-cost/", "/pace/", "/unit-converter/", "/how-long-to-get-to/", "/ev-charging-cost/", "/timezone/"],
   "/square-footage-calculator/": ["/tile-calculator/", "/coverage/", "/concrete-calculator/", "/unit-converter/", "/btu/", "/percent/"],
   "/recipe-scaler/": ["/cups-to-grams/", "/oven-temperature-converter/", "/air-fryer-conversion/", "/split-bill/", "/fractions/", "/unit-converter/"],
@@ -66,7 +70,7 @@ const RELATED = {
   "/self-employed-tax-calculator/": ["/salary/", "/pay-rise-calculator/", "/vat/", "/isa-vs-pension/", "/working-days/", "/savings-goal/"],
   "/dry-january-calculator/": ["/calorie-calculator/", "/52-week-savings-challenge/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
   "/pay-rise-calculator/": ["/salary/", "/job-offer-comparison/", "/50-30-20-budget/", "/inflation/", "/percent/", "/savings-goal/", "/isa-vs-pension/", "/mortgage-affordability/"],
-  "/calorie-calculator/": ["/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
+  "/calorie-calculator/": ["/protein-calculator/", "/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
   "/working-days/": ["/date-diff/", "/days-from-today/", "/week-number/", "/days-until/", "/salary/", "/timezone/", "/birthday/", "/percent/"],
   "/heating-cost/": ["/running-cost/", "/btu/", "/household-bills/", "/watts-amps-volts/", "/ev-charging-cost/", "/split-bill/"],
   "/turkey-cooking-time/": ["/oven-temperature-converter/", "/days-until/", "/unit-converter/", "/split-bill/", "/running-cost/", "/tip/", "/timezone/"],
@@ -109,10 +113,10 @@ const RELATED = {
   "/split-bill/": ["/tip/", "/household-bills/", "/discount/", "/percent/", "/vat/", "/fuel-cost/"],
   "/grade/": ["/weighted-average/", "/percent/", "/fractions/", "/basic/", "/date-diff/", "/scientific/"],
   "/unit-converter/": ["/pace/", "/fuel-cost/", "/watts-amps-volts/", "/btu/", "/coverage/", "/scientific/"],
-  "/bmi/": ["/calorie-calculator/", "/pace/", "/unit-converter/", "/weight-on-other-planets/", "/birthday/", "/date-diff/", "/percent/"],
+  "/bmi/": ["/body-fat-calculator/", "/heart-rate-zones/", "/calorie-calculator/", "/pace/", "/unit-converter/", "/weight-on-other-planets/", "/birthday/", "/date-diff/", "/percent/"],
   "/fuel-cost/": ["/speed-distance-time/", "/ev-charging-cost/", "/car-finance/", "/unit-converter/", "/split-bill/", "/running-cost/", "/pace/"],
   "/ev-charging-cost/": ["/fuel-cost/", "/running-cost/", "/car-finance/", "/watts-amps-volts/", "/unit-converter/", "/household-bills/"],
-  "/pace/": ["/speed-distance-time/", "/calorie-calculator/", "/unit-converter/", "/bmi/", "/date-diff/", "/fuel-cost/", "/timezone/", "/percent/"],
+  "/pace/": ["/heart-rate-zones/", "/speed-distance-time/", "/calorie-calculator/", "/unit-converter/", "/bmi/", "/date-diff/", "/fuel-cost/", "/timezone/", "/percent/"],
   "/household-bills/": ["/split-bill/", "/50-30-20-budget/", "/running-cost/", "/salary/", "/savings-goal/", "/tip/", "/percent/"],
   "/running-cost/": ["/heating-cost/", "/ev-charging-cost/", "/watts-amps-volts/", "/household-bills/", "/btu/", "/fuel-cost/", "/unit-converter/"],
   "/coverage/": ["/square-footage-calculator/", "/tile-calculator/", "/concrete-calculator/", "/btu/", "/unit-converter/", "/running-cost/", "/household-bills/", "/discount/", "/percent/"],
