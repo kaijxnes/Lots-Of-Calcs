@@ -56,7 +56,7 @@
       "q": [
         [
           "Why are these figures for Zurich?",
-          "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026. Zug, with much lower cantonal and city tax, has its own pages."
+          "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026. Zug and Basel have their own pages."
         ],
         [
           "What social contributions come out of Swiss pay?",
@@ -94,6 +94,27 @@
         [
           "What social contributions come out of pay?",
           "The same as anywhere in Switzerland: 5.3% for AHV/IV/EO and 1.1% unemployment insurance (ALV) on salary up to CHF 148,200, plus pension fund (BVG) contributions and accident insurance that depend on your employer."
+        ]
+      ]
+    },
+    "ch-bs": {
+      "taxYear": "2026",
+      "q": [
+        [
+          "How is income tax worked out in Basel?",
+          "Federal tax is the same everywhere in Switzerland. Basel-Stadt then charges its own income tax: 21% of taxable income up to CHF 212,500, 27.25% up to CHF 316,300 and 28.25% above. The city of Basel levies no income tax of its own, so that's the whole cantonal and local bill."
+        ],
+        [
+          "What deductions are allowed in Basel-Stadt?",
+          "Here: a CHF 4,200 lump sum for professional costs, a CHF 4,200 lump sum for insurance premiums and a CHF 19,500 social deduction for a single person. Federal tax uses its own deductions."
+        ],
+        [
+          "Did the amounts change for 2026?",
+          "No — the Basel-Stadt government decided there would be no inflation adjustment for 2026, so the tariff and deductions are the ones in force from 2025."
+        ],
+        [
+          "Does this apply to Riehen and Bettingen?",
+          "No — those two communes add their own communal income tax. These figures are for the city of Basel."
         ]
       ]
     }

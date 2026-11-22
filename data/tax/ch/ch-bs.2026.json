@@ -1,0 +1,116 @@
+{
+  "id": "ch-bs",
+  "name": "Basel",
+  "kind": "city",
+  "country": "CH",
+  "parent": "ch",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "remove": [
+    "ch-zh-taxable",
+    "ch-zh-simple",
+    "ch-zh-tax"
+  ],
+  "items": [
+    {
+      "id": "ch-bs-taxable",
+      "label": "Taxable income (Basel-Stadt)",
+      "show": true,
+      "note": "Net salary less the CHF 4,200 professional costs lump sum, the CHF 4,200 insurance premiums lump sum and the CHF 19,500 social deduction for a single person, rounded down to CHF 100.",
+      "value": {
+        "max": [
+          0,
+          {
+            "round": {
+              "sub": [
+                "ch-net-salary",
+                4200,
+                4200,
+                19500
+              ]
+            },
+            "to": 100,
+            "mode": "down"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-bs-tax",
+      "label": "Cantonal income tax (Basel-Stadt)",
+      "group": "tax",
+      "note": "Tariff A: 21% up to CHF 212,500, 27.25% up to CHF 316,300 and 28.25% above, charged at 100%. The city of Basel levies no income tax of its own. No church tax.",
+      "charge": {
+        "brackets": [
+          [
+            0,
+            21
+          ],
+          [
+            212500,
+            27.25
+          ],
+          [
+            316300,
+            28.25
+          ]
+        ],
+        "of": "ch-bs-taxable"
+      }
+    }
+  ],
+  "notModelled": [
+    "Pillar 3a contributions and other personal deductions",
+    "Commuting and meal cost deductions",
+    "Actual professional costs above the lump sum",
+    "Church tax",
+    "Tax at source (Quellensteuer) tables",
+    "Riehen and Bettingen, which add their own communal tax"
+  ],
+  "provisional": [
+    "The amounts are those indexed from 2025, which the Basel-Stadt government decided to keep for 2026 (no cold-progression adjustment)"
+  ],
+  "sources": [
+    {
+      "title": "ESTV — Kantonsblatt Basel-Stadt (Steuerinformationen, Stand Februar 2026)",
+      "url": "https://www.estv2.admin.ch/stp/kb/bs-de.pdf"
+    },
+    {
+      "title": "Basel-Stadt Regierungsrat — Kein Ausgleich der kalten Progression ab Steuerperiode 2026",
+      "url": "https://www.bs.ch/api/government-resolutions/document/1781aa56efd544d1b99204dcce7f031d-332/3/Dokument"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Official documents, Nov 2026",
+      "note": "Tariff A, social deduction (19,500), insurance lump sum (4,200), professional costs lump sum (4,200) and the 100% multiplier from the ESTV Kantonsblatt (indexed amounts from 2025); no adjustment for 2026 per the Regierungsrat decision of 28 October 2025; no communal income tax in the city of Basel (§ 2 StG)."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": null,
+  "verifyAt": "https://swisstaxcalculator.estv.admin.ch/#/home",
+  "tests": [
+    {
+      "gross": 100000,
+      "note": "Federal and social as in Zurich (AHV 5,300, ALV 1,100, federal tax 1,951.75). Basel taxable 93,600 − 4,200 − 4,200 − 19,500 = 65,700; tax 21% = 13,797.",
+      "expect": {
+        "ch-bs-taxable": 65700,
+        "ch-bs-tax": 13797,
+        "net": 77851.25
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "AHV 15,900; ALV 1,630.20; net 282,469.80. Federal taxable 276,669.80 → 276,600: 10,936.55 + 915 × 13.20 = 23,014.55. Basel taxable 254,569.80 → 254,500: 212,500 × 21% (44,625) + 42,000 × 27.25% (11,445) = 56,070.",
+      "expect": {
+        "ch-federal-tax": 23014.55,
+        "ch-bs-tax": 56070,
+        "net": 203385.25
+      }
+    }
+  ]
+}
