@@ -21,6 +21,7 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/due-date-calculator/": ["/maternity-pay-calculator/", "/days-from-today/", "/calorie-calculator/", "/bmi/", "/sleep-calculator/", "/date-diff/"],
   "/air-fryer-conversion/": ["/oven-temperature-converter/", "/cups-to-grams/", "/turkey-cooking-time/", "/running-cost/", "/calorie-calculator/", "/unit-converter/"],
   "/oven-temperature-converter/": ["/air-fryer-conversion/", "/cups-to-grams/", "/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/"],
   "/day-of-the-week/": ["/birthday/", "/date-diff/", "/days-from-today/", "/week-number/", "/days-until/", "/working-days/"],
@@ -34,7 +35,7 @@ const RELATED = {
   "/capital-gains-tax-calculator/": ["/dividend-tax-calculator/", "/isa-vs-pension/", "/compound-interest/", "/inheritance-tax-calculator/", "/buy-to-let-calculator/", "/fund-fees/"],
   "/holiday-entitlement-calculator/": ["/working-days/", "/salary/", "/maternity-pay-calculator/", "/redundancy-pay-calculator/", "/days-until/", "/hourly-to-salary/"],
   "/redundancy-pay-calculator/": ["/salary/", "/holiday-entitlement-calculator/", "/emergency-fund-calculator/", "/maternity-pay-calculator/", "/50-30-20-budget/", "/job-offer-comparison/"],
-  "/maternity-pay-calculator/": ["/salary/", "/holiday-entitlement-calculator/", "/50-30-20-budget/", "/redundancy-pay-calculator/", "/savings-goal/", "/working-days/"],
+  "/maternity-pay-calculator/": ["/due-date-calculator/", "/salary/", "/holiday-entitlement-calculator/", "/50-30-20-budget/", "/redundancy-pay-calculator/", "/savings-goal/", "/working-days/"],
   "/contractor-calculator/": ["/salary-vs-dividends/", "/dividend-tax-calculator/", "/salary/", "/self-employed-tax-calculator/", "/hourly-to-salary/", "/working-days/"],
   "/salary-vs-dividends/": ["/dividend-tax-calculator/", "/contractor-calculator/", "/salary/", "/self-employed-tax-calculator/", "/vat/", "/pay-rise-calculator/"],
   "/dividend-tax-calculator/": ["/salary-vs-dividends/", "/contractor-calculator/", "/salary/", "/self-employed-tax-calculator/", "/capital-gains-tax-calculator/", "/isa-vs-pension/"],
