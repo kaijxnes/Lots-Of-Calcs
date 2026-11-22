@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Square Footage Calculator — Area in sq ft, m², Yards &amp; Acres</title>
+<meta name="description" content="Work out the area of a room, floor or plot in square feet, square metres, square yards and acres, from feet, inches, yards, metres or centimetres…">
+<link rel="canonical" href="https://lotsofcalcs.com/square-footage-calculator/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Square Footage Calculator — Area in sq ft, m², Yards &amp; Acres">
+<meta property="og:description" content="Work out the area of a room, floor or plot in square feet, square metres, square yards and acres, from feet, inches, yards, metres or centimetres…">
+<meta property="og:url" content="https://lotsofcalcs.com/square-footage-calculator/">
+<meta property="og:image" content="https://lotsofcalcs.com/og/square-footage-calculator.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Square Footage Calculator — Area in sq ft, m², Yards &amp; Acres">
+<meta name="twitter:description" content="Work out the area of a room, floor or plot in square feet, square metres, square yards and acres, from feet, inches, yards, metres or centimetres…">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og/square-footage-calculator.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/theme.js"></script>
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Square Footage Calculator — Area in sq ft, m², Yards & Acres",
+    "description": "Work out the area of a room, floor or plot in square feet, square metres, square yards and acres, from feet, inches, yards, metres or centimetres…",
+    "url": "https://lotsofcalcs.com/square-footage-calculator/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Square Footage Calculator",
+        "item": "https://lotsofcalcs.com/square-footage-calculator/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Square Footage Calculator",
+    "url": "https://lotsofcalcs.com/square-footage-calculator/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I calculate square footage?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Measure the length and width in feet and multiply them: a 12 × 14 ft room is 168 square feet. For a circle, π × radius²; for a triangle, half the base × the height."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I convert square feet to square metres?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Multiply by 0.0929 (exactly 0.09290304): 100 sq ft is 9.29 m². The other way, multiply square metres by 10.764."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I measure an L-shaped room?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Split it into two rectangles, work out each, and add them together. Set 'How many of these areas' to add up several the same size."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How many square feet in an acre?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "43,560 square feet, or about 4,047 square metres."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Square footage calculator</h1>
+      <p class="page-subtitle">The area of a room, floor or plot in square feet and square metres — rectangles, circles and triangles.</p>
+    </header>
+
+    <main class="tool" id="ar-tool">
+      <div class="field-row">
+        <div class="field"><label for="ar-shape">Shape</label><select id="ar-shape"><option value="rect" selected>Rectangle or square</option><option value="circle">Circle</option><option value="tri">Triangle</option></select></div>
+        <div class="field"><label for="ar-unit">Measured in</label><select id="ar-unit"><option value="ft" selected>Feet</option><option value="in">Inches</option><option value="yd">Yards</option><option value="m">Metres</option><option value="cm">Centimetres</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="ar-a"><span id="ar-al">Length</span></label><input type="number" id="ar-a" value="12" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ar-b"><span id="ar-bl">Width</span></label><input type="number" id="ar-b" value="14" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="ar-n">How many of these areas</label><input type="number" id="ar-n" value="1" min="0" step="any" inputmode="decimal" step="1"></div>
+        <div class="field"><label for="ar-price">Price per sq ft or m² (optional)</label><input type="number" id="ar-price" value="" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="ar-sqft">168 sq ft</div>
+          <div class="label">square feet</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Square metres</span><span class="r-value" id="ar-sqm">15.61 m²</span></div>
+          <div class="result-row"><span class="r-label">Square yards</span><span class="r-value" id="ar-sqyd">18.67 sq yd</span></div>
+          <div class="result-row"><span class="r-label">Acres</span><span class="r-value" id="ar-acre">0.0039</span></div>
+          <div class="result-row"><span class="r-label">Cost</span><span class="r-value" id="ar-cost">—</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">For an L-shaped room, split it into two rectangles and add them up. Cost uses the price per square foot if you measured in feet, inches or yards, and per square metre if you measured in metres.</p>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">Common room sizes</p>
+      <p class="salary-links"><a href="/square-footage-calculator/10x10-room/">10x10 room</a> <a href="/square-footage-calculator/10x12-room/">10x12 room</a> <a href="/square-footage-calculator/12x12-room/">12x12 room</a> <a href="/square-footage-calculator/12x14-room/">12x14 room</a> <a href="/square-footage-calculator/12x15-room/">12x15 room</a> <a href="/square-footage-calculator/14x14-room/">14x14 room</a> <a href="/square-footage-calculator/15x15-room/">15x15 room</a> <a href="/square-footage-calculator/16x16-room/">16x16 room</a> <a href="/square-footage-calculator/10x20-room/">10x20 room</a> <a href="/square-footage-calculator/12x20-room/">12x20 room</a> <a href="/square-footage-calculator/20x20-room/">20x20 room</a> <a href="/square-footage-calculator/24x24-room/">24x24 room</a> <a href="/square-footage-calculator/20x30-room/">20x30 room</a> <a href="/square-footage-calculator/30x40-room/">30x40 room</a> <a href="/square-footage-calculator/40x60-room/">40x60 room</a> <a href="/square-footage-calculator/3x3-metres/">3m × 3m</a> <a href="/square-footage-calculator/3x4-metres/">3m × 4m</a> <a href="/square-footage-calculator/4x4-metres/">4m × 4m</a> <a href="/square-footage-calculator/3x5-metres/">3m × 5m</a> <a href="/square-footage-calculator/4x5-metres/">4m × 5m</a> <a href="/square-footage-calculator/5x5-metres/">5m × 5m</a> <a href="/square-footage-calculator/5x6-metres/">5m × 6m</a> <a href="/square-footage-calculator/6x6-metres/">6m × 6m</a> <a href="/square-footage-calculator/10x10-metres/">10m × 10m</a></p>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I calculate square footage?</p>
+      <p class="about-text">Measure the length and width in feet and multiply them: a 12 × 14 ft room is 168 square feet. For a circle, π × radius²; for a triangle, half the base × the height.</p>
+      <p class="faq-q">How do I convert square feet to square metres?</p>
+      <p class="about-text">Multiply by 0.0929 (exactly 0.09290304): 100 sq ft is 9.29 m². The other way, multiply square metres by 10.764.</p>
+      <p class="faq-q">How do I measure an L-shaped room?</p>
+      <p class="about-text">Split it into two rectangles, work out each, and add them together. Set 'How many of these areas' to add up several the same size.</p>
+      <p class="faq-q">How many square feet in an acre?</p>
+      <p class="about-text">43,560 square feet, or about 4,047 square metres.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/tile-calculator/">
+        <span class="icon">🔲</span>
+        <div class="title">Tile Calculator</div>
+        <div class="desc">How many tiles and boxes for a floor or wall, and tiles per m².</div>
+      </a>
+      <a class="hub-card" href="/coverage/">
+        <span class="icon">🎨</span>
+        <div class="title">Paint &amp; Flooring Coverage</div>
+        <div class="desc">Room dimensions → how much paint or flooring you'll need.</div>
+      </a>
+      <a class="hub-card" href="/concrete-calculator/">
+        <span class="icon">🧱</span>
+        <div class="title">Concrete Calculator</div>
+        <div class="desc">How much concrete for a slab, path or post holes, and how many bags.</div>
+      </a>
+      <a class="hub-card" href="/unit-converter/">
+        <span class="icon">📐</span>
+        <div class="title">Unit Converter</div>
+        <div class="desc">Length, weight, temperature and volume conversions.</div>
+      </a>
+      <a class="hub-card" href="/btu/">
+        <span class="icon">🌡️</span>
+        <div class="title">BTU / Radiator Sizing</div>
+        <div class="desc">Room dimensions → the heat output you need, in BTU and watts.</div>
+      </a>
+      <a class="hub-card" href="/home-diy/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Home &amp; DIY calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/measure.js"></script>
+</body>
+</html>
