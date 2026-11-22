@@ -71,7 +71,7 @@ function fitTitle(...cands) {
 /* The share image for a page: its calculator's image (og/<first path
    segment>.jpg, made by tools/build-og-images.py), or the site's own. */
 /* Sections without a share image of their own that borrow a parent's */
-const OG_ALIAS = { "salary-comparison": "salary" };
+const OG_ALIAS = { "salary-comparison": "salary", "days-ago": "days-from-today", "weeks-from-today": "days-from-today" };
 function ogImage(url) {
   let seg = String(url).replace(SITE, "").split("/").filter(Boolean)[0];
   seg = OG_ALIAS[seg] || seg;
