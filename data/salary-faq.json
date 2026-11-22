@@ -56,7 +56,7 @@
       "q": [
         [
           "Why are these figures for Zurich?",
-          "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026. Zug and Basel have their own pages."
+          "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026. Zug, Basel and Bern have their own pages."
         ],
         [
           "What social contributions come out of Swiss pay?",
@@ -115,6 +115,27 @@
         [
           "Does this apply to Riehen and Bettingen?",
           "No — those two communes add their own communal income tax. These figures are for the city of Basel."
+        ]
+      ]
+    },
+    "ch-be": {
+      "taxYear": "2026",
+      "q": [
+        [
+          "How is income tax worked out in Bern?",
+          "Federal tax is the same everywhere in Switzerland. Bern then works out a simple tax — for a single person 1.95% on the first CHF 3,300, rising in steps to 6.5% above CHF 470,600 — and multiplies it by the 2026 rates: 2.975 for the canton and 1.54 for the city of Bern, 4.515 in all."
+        ],
+        [
+          "What deductions are allowed in Bern?",
+          "Here: the professional costs lump sum (3% of net salary, between CHF 2,000 and CHF 4,000), CHF 2,450 for insurance premiums, the CHF 5,300 general deduction and CHF 2,400 for someone living alone in their own household. Federal tax uses its own deductions."
+        ],
+        [
+          "Is tax lower in Bern than in Zurich?",
+          "Not on these figures: the cantonal and city tax on the same salary is higher in the city of Bern than in the city of Zurich, and much higher than in Zug. The 'in other Swiss cities' table on each page compares them at the same salary."
+        ],
+        [
+          "Does this apply elsewhere in the canton?",
+          "No — each municipality sets its own multiplier, so these figures are for the city of Bern."
         ]
       ]
     }

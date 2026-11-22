@@ -1,0 +1,162 @@
+{
+  "id": "ch-be",
+  "name": "Bern",
+  "kind": "city",
+  "country": "CH",
+  "parent": "ch",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "remove": [
+    "ch-zh-taxable",
+    "ch-zh-simple",
+    "ch-zh-tax"
+  ],
+  "items": [
+    {
+      "id": "ch-be-taxable",
+      "label": "Taxable income (Bern)",
+      "show": true,
+      "note": "Net salary less the professional costs lump sum, the CHF 2,450 insurance premiums deduction, the CHF 5,300 general deduction and CHF 2,400 for someone living alone in their own household.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "ch-net-salary",
+              "ch-prof-costs",
+              2450,
+              5300,
+              2400
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-be-simple",
+      "label": "Simple tax (Bern)",
+      "show": true,
+      "note": "Bern's 2026 tariff for single people: 1.95% on the first CHF 3,300, rising in steps to 6.5% on income above CHF 470,600.",
+      "value": {
+        "brackets": [
+          [
+            0,
+            1.95
+          ],
+          [
+            3300,
+            2.9
+          ],
+          [
+            6600,
+            3.6
+          ],
+          [
+            16400,
+            4.15
+          ],
+          [
+            32500,
+            4.45
+          ],
+          [
+            59400,
+            5.0
+          ],
+          [
+            86300,
+            5.6
+          ],
+          [
+            113200,
+            5.75
+          ],
+          [
+            140100,
+            5.9
+          ],
+          [
+            167000,
+            6.05
+          ],
+          [
+            193900,
+            6.15
+          ],
+          [
+            231600,
+            6.3
+          ],
+          [
+            318500,
+            6.4
+          ],
+          [
+            470600,
+            6.5
+          ]
+        ],
+        "of": "ch-be-taxable"
+      }
+    },
+    {
+      "id": "ch-be-tax",
+      "label": "Cantonal and city tax (Bern)",
+      "group": "tax",
+      "note": "The simple tax times the 2026 multipliers: 2.975 for the canton and 1.54 for the city of Bern (4.515 in all). No church tax.",
+      "charge": {
+        "mul": [
+          "ch-be-simple",
+          4.515
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Pillar 3a contributions and other personal deductions",
+    "Commuting and meal cost deductions",
+    "The deduction for small and middle incomes (up to CHF 1,100 for single people, phasing out above CHF 16,700)",
+    "Church tax",
+    "Tax at source (Quellensteuer) tables",
+    "Other Bern municipalities"
+  ],
+  "provisional": [
+    "Assumes a single person living alone in their own household (the CHF 2,400 deduction)",
+    "Bern taxable income is not rounded here"
+  ],
+  "sources": [
+    {
+      "title": "ESTV — Kantonsblatt Bern (Steuerinformationen, Stand Februar 2026)",
+      "url": "https://www.estv2.admin.ch/stp/kb/be-de.pdf"
+    },
+    {
+      "title": "Finanzverwaltung des Kantons Bern — Steueranlagen der Gemeinden 2026",
+      "url": "https://www.fin.be.ch/content/dam/fin/dokumente/de/finanzverwaltung/finanzausgleich/publikationen/fv-stat-steueranlage_2026_1.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Official documents, Nov 2026",
+      "note": "2026 single tariff, general (5,300) and single-household (2,400) deductions, insurance deduction (2,450) and professional costs (3% of net salary, 2,000–4,000) from the ESTV Kantonsblatt; 2026 multipliers canton 2.975 and city of Bern 1.54 (total 4.515) from the Finanzverwaltung's table, Stand 1 February 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": null,
+  "verifyAt": "https://swisstaxcalculator.estv.admin.ch/#/home",
+  "tests": [
+    {
+      "gross": 100000,
+      "note": "Federal and social as in Zurich (AHV 5,300, ALV 1,100, federal 1,951.75). Bern taxable 93,600 − 2,808 − 2,450 − 5,300 − 2,400 = 80,642; simple tax 2,378.05 to CHF 59,400 + 21,242 × 5% (1,062.10) = 3,440.15; × 4.515 = 15,532.28.",
+      "expect": {
+        "ch-be-taxable": 80642,
+        "ch-be-simple": 3440.15,
+        "ch-be-tax": 15532.28,
+        "net": 76115.97
+      }
+    }
+  ]
+}
