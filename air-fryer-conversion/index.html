@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oven to Air Fryer Conversion Calculator — Temperature &amp; Time</title>
+<meta name="description" content="Convert oven temperatures and cooking times for an air fryer: 20°C lower and 20–25% less time for fresh food…">
+<link rel="canonical" href="https://lotsofcalcs.com/air-fryer-conversion/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Lots Of Calcs">
+<meta property="og:title" content="Oven to Air Fryer Conversion Calculator — Temperature &amp; Time">
+<meta property="og:description" content="Convert oven temperatures and cooking times for an air fryer: 20°C lower and 20–25% less time for fresh food…">
+<meta property="og:url" content="https://lotsofcalcs.com/air-fryer-conversion/">
+<meta property="og:image" content="https://lotsofcalcs.com/og/air-fryer-conversion.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Oven to Air Fryer Conversion Calculator — Temperature &amp; Time">
+<meta name="twitter:description" content="Convert oven temperatures and cooking times for an air fryer: 20°C lower and 20–25% less time for fresh food…">
+<meta name="twitter:image" content="https://lotsofcalcs.com/og/air-fryer-conversion.jpg">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#1f2233">
+<link rel="stylesheet" href="/styles.css">
+<script src="/theme.js"></script>
+<script src="/consent.js" defer></script>
+<script src="/visits.js" defer></script>
+<script src="/share.js" defer></script>
+<script type="application/ld+json">
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Oven to Air Fryer Conversion Calculator — Temperature & Time",
+    "description": "Convert oven temperatures and cooking times for an air fryer: 20°C lower and 20–25% less time for fresh food…",
+    "url": "https://lotsofcalcs.com/air-fryer-conversion/",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Lots Of Calcs",
+      "url": "https://lotsofcalcs.com/"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://lotsofcalcs.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Air Fryer Conversion",
+        "item": "https://lotsofcalcs.com/air-fryer-conversion/"
+      }
+    ]
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Air Fryer Conversion Calculator",
+    "url": "https://lotsofcalcs.com/air-fryer-conversion/",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "GBP"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I convert an oven recipe to an air fryer?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "For fresh food, set the air fryer 20°C lower than the oven temperature in the recipe and cut the time by 20–25%: 200°C for 30 minutes becomes 180°C for 22–24 minutes. The same starting point works whether the recipe gives a conventional or a fan temperature."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What about frozen food?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Keep the temperature the same and cook for about half the time — 200°C for 20 minutes becomes 200°C for about 10 minutes — then check. Frozen food's own packet instructions for an air fryer come first if it has them."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Why do air fryers cook faster?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "An air fryer is a small, powerful fan oven: the hot air moves fast around a small space, so food cooks and browns more quickly than in a full-size oven."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I know it's cooked?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Check it early, shake or turn it halfway through, and make sure it's piping hot all the way through before serving. A food thermometer in the thickest part is the surest check for meat and poultry."
+        }
+      }
+    ]
+  }
+]
+</script>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <a class="back-link" href="/">← All calculators</a>
+      <h1 class="page-title">Oven to air fryer conversion</h1>
+      <p class="page-subtitle">The air fryer temperature and time for any oven recipe — fresh or frozen.</p>
+    </header>
+
+    <main class="tool" id="af-tool" data-less="20" data-pct="20,25" data-frozen="50">
+      <div class="field-row">
+        <div class="field"><label for="af-temp">Oven temperature in the recipe</label><input type="number" id="af-temp" value="200" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="af-unit">In</label><select id="af-unit"><option value="c" selected>°C (conventional or fan)</option><option value="f">°F</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="af-time">Oven time (minutes)</label><input type="number" id="af-time" value="30" min="0" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="af-food">Food</label><select id="af-food"><option value="fresh" selected>Fresh</option><option value="frozen">Frozen</option></select></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">Air fryer temperature</span><span class="r-value" id="af-out-temp">180°C</span></div>
+          <div class="result-row highlight"><span class="r-label">Air fryer time</span><span class="r-value" id="af-out-time">22–24 minutes</span></div>
+        </div>
+      </div>
+      <p class="tool-hint" id="af-hint" style="margin-top:12px;">Fresh food: 20°C lower and 20–25% less time. Frozen food: the same temperature for about half the time. Check early, shake or turn halfway, and make sure food is piping hot all the way through.</p>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">200°C oven times in an air fryer</p>
+      <div class="table-scroll">
+        <div style="min-width:460px;">
+          <table class="out-table">
+            <thead><tr><th>Oven</th><th>Air fryer, fresh food</th><th>Air fryer, frozen food</th></tr></thead>
+            <tbody>
+<tr><td>200°C for 10 minutes</td><td>180°C for 7–8 minutes</td><td>200°C for about 5 minutes</td></tr>
+<tr><td>200°C for 15 minutes</td><td>180°C for 11–12 minutes</td><td>200°C for about 8 minutes</td></tr>
+<tr><td>200°C for 20 minutes</td><td>180°C for 15–16 minutes</td><td>200°C for about 10 minutes</td></tr>
+<tr><td>200°C for 25 minutes</td><td>180°C for 18–20 minutes</td><td>200°C for about 13 minutes</td></tr>
+<tr><td>200°C for 30 minutes</td><td>180°C for 22–24 minutes</td><td>200°C for about 15 minutes</td></tr>
+<tr><td>200°C for 35 minutes</td><td>180°C for 26–28 minutes</td><td>200°C for about 18 minutes</td></tr>
+<tr><td>200°C for 40 minutes</td><td>180°C for 30–32 minutes</td><td>200°C for about 20 minutes</td></tr>
+<tr><td>200°C for 45 minutes</td><td>180°C for 33–36 minutes</td><td>200°C for about 23 minutes</td></tr>
+<tr><td>200°C for 50 minutes</td><td>180°C for 37–40 minutes</td><td>200°C for about 25 minutes</td></tr>
+<tr><td>200°C for 60 minutes</td><td>180°C for 45–48 minutes</td><td>200°C for about 30 minutes</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">By oven temperature</p>
+      <p class="salary-links"><a href="/air-fryer-conversion/160c/">160°C oven in an air fryer</a> <a href="/air-fryer-conversion/170c/">170°C oven in an air fryer</a> <a href="/air-fryer-conversion/180c/">180°C oven in an air fryer</a> <a href="/air-fryer-conversion/190c/">190°C oven in an air fryer</a> <a href="/air-fryer-conversion/200c/">200°C oven in an air fryer</a> <a href="/air-fryer-conversion/210c/">210°C oven in an air fryer</a> <a href="/air-fryer-conversion/220c/">220°C oven in an air fryer</a> <a href="/air-fryer-conversion/230c/">230°C oven in an air fryer</a> <a href="/air-fryer-conversion/240c/">240°C oven in an air fryer</a></p>
+      <p class="tool-hint" style="margin-top:8px;">Converting between °C, fan, °F and gas mark? Use the <a href="/oven-temperature-converter/">oven temperature converter</a>.</p>
+    </main>
+    <main class="tool">
+      <p class="tool-section-title">Frequently asked questions</p>
+      <p class="faq-q">How do I convert an oven recipe to an air fryer?</p>
+      <p class="about-text">For fresh food, set the air fryer 20°C lower than the oven temperature in the recipe and cut the time by 20–25%: 200°C for 30 minutes becomes 180°C for 22–24 minutes. The same starting point works whether the recipe gives a conventional or a fan temperature.</p>
+      <p class="faq-q">What about frozen food?</p>
+      <p class="about-text">Keep the temperature the same and cook for about half the time — 200°C for 20 minutes becomes 200°C for about 10 minutes — then check. Frozen food's own packet instructions for an air fryer come first if it has them.</p>
+      <p class="faq-q">Why do air fryers cook faster?</p>
+      <p class="about-text">An air fryer is a small, powerful fan oven: the hot air moves fast around a small space, so food cooks and browns more quickly than in a full-size oven.</p>
+      <p class="faq-q">How do I know it's cooked?</p>
+      <p class="about-text">Check it early, shake or turn it halfway through, and make sure it's piping hot all the way through before serving. A food thermometer in the thickest part is the surest check for meat and poultry.</p>
+      <p class="tool-hint" style="margin-top:12px;">Sources: <a href="https://www.which.co.uk/reviews/built-in-ovens/article/oven-temperature-conversion-degrees-celsius-to-fahrenheit-gas-mark-and-fan-aA5Ol9b157On" rel="nofollow noopener" target="_blank">Which?</a>, <a href="https://instantpot.co.uk/air-frying-101-how-to-convert-oven-cooking-times-to-your-air-fryer/" rel="nofollow noopener" target="_blank">Instant Pot UK</a>, <a href="https://lianaskitchen.co.uk/oven-to-air-fryer-conversion/" rel="nofollow noopener" target="_blank">Liana's Kitchen</a>. Ovens vary, so check your oven's manual — and check food is piping hot all the way through before serving.</p>
+    </main>
+
+    <!-- related calculators: generated by tools/related.js -->
+    <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
+    <div class="hub-grid">
+      <a class="hub-card" href="/oven-temperature-converter/">
+        <span class="icon">🌡️</span>
+        <div class="title">Oven Temperature Converter</div>
+        <div class="desc">Celsius, fan, Fahrenheit and gas mark, with the full chart.</div>
+      </a>
+      <a class="hub-card" href="/cups-to-grams/">
+        <span class="icon">🥣</span>
+        <div class="title">Cups to Grams</div>
+        <div class="desc">Flour, sugar, butter and 40 more ingredients, cups to grams and back.</div>
+      </a>
+      <a class="hub-card" href="/turkey-cooking-time/">
+        <span class="icon">🦃</span>
+        <div class="title">Turkey Cooking Time</div>
+        <div class="desc">How long to roast and defrost a turkey by weight, and when to put it in.</div>
+      </a>
+      <a class="hub-card" href="/running-cost/">
+        <span class="icon">💡</span>
+        <div class="title">Electricity Running Cost</div>
+        <div class="desc">Appliance wattage and hours → what it costs to run per day, month and year.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/calorie-calculator/">
+        <span class="icon">🥗</span>
+        <div class="title">Calorie Calculator</div>
+        <div class="desc">Calories a day to stay the same weight or lose weight, and how long it'll take.</div>
+      </a>
+      <a class="hub-card" href="/everyday/">
+        <span class="icon">🗂️</span>
+        <div class="title">All Everyday calculators</div>
+        <div class="desc">Every calculator in the category, on one page.</div>
+      </a>
+    </div>
+    <!-- end related calculators -->
+
+    <footer class="site-footer">
+      <p class="footer-categories">
+        <a href="/general/">General</a>
+        <a href="/business-analysis/">Business &amp; Analysis</a>
+        <a href="/personal-finance/">Personal Finance</a>
+        <a href="/savings/">Savings</a>
+        <a href="/mortgages-loans/">Mortgages &amp; Loans</a>
+        <a href="/investing-pensions/">Investing &amp; Pensions</a>
+        <a href="/everyday/">Everyday</a>
+        <a href="/home-diy/">Home &amp; DIY</a>
+        <a href="/betting-odds/">Betting &amp; Odds</a>
+        <a href="/other/">Other</a>
+      </p>
+      <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
+      <p><a href="/about/">About this site</a></p>
+    </footer>
+  </div>
+  <script src="/oven.js"></script>
+</body>
+</html>

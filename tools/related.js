@@ -21,6 +21,8 @@ const ROOT = path.join(__dirname, "..");
 const tags = require("./card-tags.js");
 
 const RELATED = {
+  "/air-fryer-conversion/": ["/oven-temperature-converter/", "/cups-to-grams/", "/turkey-cooking-time/", "/running-cost/", "/calorie-calculator/", "/unit-converter/"],
+  "/oven-temperature-converter/": ["/air-fryer-conversion/", "/cups-to-grams/", "/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/"],
   "/day-of-the-week/": ["/birthday/", "/date-diff/", "/days-from-today/", "/week-number/", "/days-until/", "/working-days/"],
   "/week-number/": ["/days-from-today/", "/working-days/", "/date-diff/", "/day-of-the-week/", "/days-until/", "/biweekly-pay-schedule/"],
   "/days-from-today/": ["/date-diff/", "/working-days/", "/days-until/", "/week-number/", "/birthday/", "/day-of-the-week/"],
@@ -43,7 +45,7 @@ const RELATED = {
   "/credit-card-payoff/": ["/debt-snowball-vs-avalanche/", "/loan-repayment/", "/50-30-20-budget/", "/emergency-fund-calculator/", "/salary/", "/savings-goal/"],
   "/wedding-budget/": ["/50-30-20-budget/", "/savings-goal/", "/split-bill/", "/days-until/", "/emergency-fund-calculator/", "/discount/"],
   "/overtime-calculator/": ["/salary/", "/hours-calculator/", "/hourly-to-salary/", "/pay-rise-calculator/", "/job-offer-comparison/", "/working-days/", "/biweekly-pay-schedule/"],
-  "/cups-to-grams/": ["/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/", "/percent/", "/fractions/"],
+  "/cups-to-grams/": ["/oven-temperature-converter/", "/air-fryer-conversion/", "/turkey-cooking-time/", "/unit-converter/", "/calorie-calculator/", "/split-bill/", "/percent/", "/fractions/"],
   "/hourly-to-salary/": ["/salary/", "/hours-calculator/", "/pay-rise-calculator/", "/job-offer-comparison/", "/biweekly-pay-schedule/", "/working-days/", "/50-30-20-budget/"],
   "/beckham-law-calculator/": ["/salary/", "/30-percent-ruling-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
   "/30-percent-ruling-calculator/": ["/salary/", "/beckham-law-calculator/", "/job-offer-comparison/", "/pay-rise-calculator/", "/50-30-20-budget/", "/savings-goal/"],
@@ -61,7 +63,7 @@ const RELATED = {
   "/calorie-calculator/": ["/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
   "/working-days/": ["/date-diff/", "/days-from-today/", "/week-number/", "/days-until/", "/salary/", "/timezone/", "/birthday/", "/percent/"],
   "/heating-cost/": ["/running-cost/", "/btu/", "/household-bills/", "/watts-amps-volts/", "/ev-charging-cost/", "/split-bill/"],
-  "/turkey-cooking-time/": ["/days-until/", "/unit-converter/", "/split-bill/", "/running-cost/", "/tip/", "/timezone/"],
+  "/turkey-cooking-time/": ["/oven-temperature-converter/", "/days-until/", "/unit-converter/", "/split-bill/", "/running-cost/", "/tip/", "/timezone/"],
   "/how-long-to-get-to/": ["/weight-on-other-planets/", "/age-on-other-planets/", "/unit-converter/", "/pace/", "/fuel-cost/", "/timezone/"],
   "/days-until/": ["/working-days/", "/days-from-today/", "/turkey-cooking-time/", "/date-diff/", "/birthday/", "/age-on-other-planets/", "/timezone/", "/roman-numerals/", "/number-to-words/"],
   "/age-on-other-planets/": ["/weight-on-other-planets/", "/how-long-to-get-to/", "/birthday/", "/date-diff/", "/dog-age/", "/cat-age/", "/unit-converter/"],

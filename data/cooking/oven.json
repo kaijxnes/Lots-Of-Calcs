@@ -1,0 +1,21 @@
+{
+  "_note": "Oven and air fryer conversions for tools/build-oven-pages.js. Gas marks: the Which? conversion table (gas marks 1-9 only: charts disagree below gas mark 1, so none is given). Fan: 'typically around 20°C less than conventional ovens' (Which?). Air fryer: 20°C below the recipe's oven temperature (conventional or fan) and 20-25% less time for fresh food; frozen food at the same temperature for about half the time (Instant Pot UK, Liana's Kitchen).",
+  "gasMarks": [
+    { "mark": 1, "c": 140, "fan": 120, "f": 275, "word": "Cool" },
+    { "mark": 2, "c": 150, "fan": 130, "f": 300, "word": "Cool" },
+    { "mark": 3, "c": 160, "fan": 140, "f": 325, "word": "Moderate" },
+    { "mark": 4, "c": 180, "fan": 160, "f": 350, "word": "Moderate" },
+    { "mark": 5, "c": 190, "fan": 170, "f": 375, "word": "Moderately hot" },
+    { "mark": 6, "c": 200, "fan": 180, "f": 400, "word": "Moderately hot" },
+    { "mark": 7, "c": 220, "fan": 200, "f": 425, "word": "Hot" },
+    { "mark": 8, "c": 230, "fan": 210, "f": 450, "word": "Hot" },
+    { "mark": 9, "c": 240, "fan": 220, "f": 475, "word": "Very hot" }
+  ],
+  "fanLessC": 20,
+  "airFryer": { "lessC": 20, "timeLessPct": [20, 25], "frozenTimePct": 50 },
+  "sources": [
+    { "title": "Which? — Oven temperature conversion: Celsius to Fahrenheit, gas mark and fan", "url": "https://www.which.co.uk/reviews/built-in-ovens/article/oven-temperature-conversion-degrees-celsius-to-fahrenheit-gas-mark-and-fan-aA5Ol9b157On" },
+    { "title": "Instant Pot UK — Air frying 101: how to convert oven cooking times to your air fryer", "url": "https://instantpot.co.uk/air-frying-101-how-to-convert-oven-cooking-times-to-your-air-fryer/" },
+    { "title": "Liana's Kitchen — Oven to air fryer conversion", "url": "https://lianaskitchen.co.uk/oven-to-air-fryer-conversion/" }
+  ]
+}
