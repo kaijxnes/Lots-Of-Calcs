@@ -5,7 +5,10 @@
    Distances from Earth are NASA NSSDCA fact sheets: for the planets the
    minimum and maximum distance from Earth; for the Moon its mean perigee,
    mean distance and mean apogee; for the Sun Earth's perihelion, semimajor
-   axis and aphelion. Proxima Centauri is 4.2465 light-years (NASA).
+   axis and aphelion. Proxima Centauri is 4.2465 light-years (NASA); the
+   centre of the Earth is Earth's volumetric mean radius, 6,371 km (NASA Earth
+   fact sheet); the Andromeda Galaxy is 2.5 million light-years (NASA,
+   Hubble's Messier 31 page). Destinations with one distance are "single".
    The pages (tools/build-space-travel-pages.js) use this same module. */
 var SpaceTravel = (function () {
   "use strict";
@@ -35,7 +38,15 @@ var SpaceTravel = (function () {
       trip: { craft: "Voyager 2", took: "about 12 years", detail: "launched 20 August 1977 and flew past Neptune on 25 August 1989 (the only visit so far)" } },
     { slug: "pluto", name: "Pluto", short: "Pluto", d: { closest: 4284700000, farthest: 7528000000 }, def: "closest",
       trip: { craft: "New Horizons", took: "about 9 years 6 months", detail: "launched 19 January 2006 and flew past Pluto on 14 July 2015, with a speed boost from Jupiter on the way" } },
-    { slug: "proxima-centauri", name: "Proxima Centauri", short: "the nearest star", d: { average: 4.2465 * LY }, def: "average", star: true, trip: null }
+    { slug: "proxima-centauri", name: "Proxima Centauri", short: "the nearest star", d: { average: 4.2465 * LY }, def: "average", star: true, single: true, trip: null,
+      farText: "4.2465 light-years", where: "Proxima Centauri, the nearest star", option: "Proxima Centauri (nearest star)", titleName: "Proxima Centauri (the Nearest Star)", shortTitle: "Proxima Centauri", linkName: "the nearest star",
+      about: "4.2465 light-years, or about {km}. It is the closest star to the Sun." },
+    { slug: "centre-of-the-earth", name: "the centre of the Earth", short: "the Earth's core", d: { average: 6371 }, def: "average", single: true, ground: true, trip: null,
+      farText: "6,371 km down", where: "the centre of the Earth, 6,371 km below your feet", option: "The centre of the Earth", titleName: "the Centre of the Earth", inTitle: "the Centre of the Earth", shortTitle: "The centre of the Earth", linkName: "the centre of the Earth",
+      about: "6,371 km (3,959 miles) straight down — Earth's mean radius (NASA)." },
+    { slug: "andromeda", name: "the Andromeda Galaxy", short: "Andromeda", d: { average: 2.5e6 * LY }, def: "average", single: true, trip: null,
+      farText: "2.5 million light-years", where: "the Andromeda Galaxy, the nearest large galaxy", option: "The Andromeda Galaxy", titleName: "the Andromeda Galaxy", inTitle: "the Andromeda Galaxy", shortTitle: "The Andromeda Galaxy", linkName: "the Andromeda Galaxy",
+      about: "About 2.5 million light-years (NASA), or about {km}. It is the nearest large galaxy to our own." }
   ];
 
   /* kmh: speed in km/h. note says where the figure comes from */
@@ -63,6 +74,7 @@ var SpaceTravel = (function () {
   /* A trip length in hours, in words: "3 minutes 2 seconds", "55.3 years" */
   function duration(h) {
     var s = h * 3600;
+    if (s < 1) { var ms = Math.round(s * 1000); return ms + (ms === 1 ? " millisecond" : " milliseconds"); }
     if (s < 10) { var t = Math.round(s * 10) / 10; return t + (t === 1 ? " second" : " seconds"); }
     if (s < 60) return plural(Math.round(s), "second");
     if (s < 3600) { var m = Math.floor(s / 60), r = Math.round(s - m * 60); if (r === 60) { m++; r = 0; } return plural(m, "minute") + (r ? " " + plural(r, "second") : ""); }
@@ -74,11 +86,14 @@ var SpaceTravel = (function () {
     if (y < 100) return (Math.round(y * 10) / 10).toLocaleString("en-GB") + " years";
     if (y < 1e6) return n0(y) + " years";
     if (y < 1e9) return (Math.round(y / 1e5) / 10).toLocaleString("en-GB") + " million years";
-    return (Math.round(y / 1e8) / 10).toLocaleString("en-GB") + " billion years";
+    if (y < 1e12) return (Math.round(y / 1e8) / 10).toLocaleString("en-GB") + " billion years";
+    return (Math.round(y / 1e11) / 10).toLocaleString("en-GB") + " trillion years";
   }
 
   /* "54.6 million km (33.9 million miles)" */
   function bigNum(v) {
+    if (v >= 1e18) return (Math.round(v / 1e17) / 10).toLocaleString("en-GB") + " quintillion";
+    if (v >= 1e15) return (Math.round(v / 1e14) / 10).toLocaleString("en-GB") + " quadrillion";
     if (v >= 1e12) return (Math.round(v / 1e11) / 10).toLocaleString("en-GB") + " trillion";
     if (v >= 1e9) return (Math.round(v / 1e8) / 10).toLocaleString("en-GB") + " billion";
     if (v >= 1e6) return (Math.round(v / 1e5) / 10).toLocaleString("en-GB") + " million";
@@ -105,7 +120,7 @@ if (typeof module !== "undefined" && module.exports) {
         if (d.d[k] == null) return;
         var o = document.createElement("option");
         o.value = k;
-        o.textContent = d.star ? "4.2465 light-years" : S.DIST_LABEL[k] + " — " + S.bigNum(d.d[k]) + " km";
+        o.textContent = d.single ? d.farText : S.DIST_LABEL[k] + " — " + S.bigNum(d.d[k]) + " km";
         sel.appendChild(o);
       });
       sel.value = d.d[keep] != null ? keep : d.def;
