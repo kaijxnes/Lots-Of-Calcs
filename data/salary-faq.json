@@ -56,7 +56,7 @@
       "q": [
         [
           "Why are these figures for Zurich?",
-          "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026. Zug, Basel and Bern have their own pages."
+          "Swiss income tax is charged three times — by the federal government, the canton and the municipality — and cantonal and municipal rates vary a lot across the country. These figures are for the city of Zurich: federal tax, plus Zurich's simple state tax multiplied by 95% for the canton and 119% for the city in 2026. Zug, Basel, Bern and Lausanne have their own pages."
         ],
         [
           "What social contributions come out of Swiss pay?",
@@ -136,6 +136,27 @@
         [
           "Does this apply elsewhere in the canton?",
           "No — each municipality sets its own multiplier, so these figures are for the city of Bern."
+        ]
+      ]
+    },
+    "ch-vd": {
+      "taxYear": "2026",
+      "q": [
+        [
+          "How is income tax worked out in Lausanne?",
+          "Federal tax is the same everywhere in Switzerland. Vaud works out a base tax — 1% on the first CHF 1,600, rising in steps to 15.5% above CHF 291,700 for 2026 — then charges 155% of it for the canton, less a 5% reduction for 2026, and Lausanne adds 78.5% of the base tax."
+        ],
+        [
+          "What deductions are allowed in Vaud?",
+          "Here: the professional costs lump sum (3% of net income, between CHF 2,000 and CHF 4,000) and up to CHF 5,000 of health and accident insurance premiums for a single person, within an overall CHF 6,600 limit that also covers life insurance and savings interest."
+        ],
+        [
+          "Is tax higher in Lausanne than in Zurich?",
+          "Yes, on these figures: the cantonal and city tax on the same salary is higher in Lausanne than in the city of Zurich. The 'in other Swiss cities' table on each page compares them at the same salary."
+        ],
+        [
+          "What about cross-border workers from France?",
+          "Workers who live in France and work in Vaud are usually taxed under the France–Switzerland cross-border arrangements, not like this. These figures are for residents of Lausanne."
         ]
       ]
     }

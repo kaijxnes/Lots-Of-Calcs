@@ -38,6 +38,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Switzerland (Zurich) | [ch](ch.md) | 2026 | 63 | — | — |
 | Bern | [ch-be](ch-be.md) | 2026 | 22 | — | — |
 | Basel | [ch-bs](ch-bs.md) | 2026 | 10 | — | — |
+| Lausanne | [ch-vd](ch-vd.md) | 2026 | 27 | — | — |
 | Zug | [ch-zg](ch-zg.md) | 2026 | 23 | — | — |
 | Denmark | [dk](dk.md) | 2026 | 25 | — | — |
 | Spain | [es](es.md) | 2026 | 120 | — | — |

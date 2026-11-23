@@ -1,0 +1,195 @@
+{
+  "id": "ch-vd",
+  "name": "Lausanne",
+  "kind": "city",
+  "country": "CH",
+  "parent": "ch",
+  "standalone": true,
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
+  "remove": [
+    "ch-zh-taxable",
+    "ch-zh-simple",
+    "ch-zh-tax"
+  ],
+  "items": [
+    {
+      "id": "ch-vd-taxable",
+      "label": "Taxable income (Vaud)",
+      "show": true,
+      "note": "Net salary less the professional costs lump sum and CHF 5,000 for health and accident insurance premiums.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "ch-net-salary",
+              "ch-prof-costs",
+              5000
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ch-vd-base",
+      "label": "Cantonal base tax (Vaud)",
+      "show": true,
+      "note": "Vaud's 2026 tariff: 1% on the first CHF 1,600, rising in steps to 15.5% above CHF 291,700.",
+      "value": {
+        "brackets": [
+          [
+            0,
+            1
+          ],
+          [
+            1600,
+            2
+          ],
+          [
+            3400,
+            3
+          ],
+          [
+            5100,
+            4
+          ],
+          [
+            8300,
+            5
+          ],
+          [
+            11900,
+            6
+          ],
+          [
+            15100,
+            7
+          ],
+          [
+            23600,
+            8
+          ],
+          [
+            40500,
+            9
+          ],
+          [
+            57200,
+            10
+          ],
+          [
+            74400,
+            11
+          ],
+          [
+            91200,
+            12
+          ],
+          [
+            108100,
+            12.5
+          ],
+          [
+            135000,
+            13
+          ],
+          [
+            162000,
+            13.5
+          ],
+          [
+            192500,
+            14
+          ],
+          [
+            223000,
+            14.5
+          ],
+          [
+            256000,
+            15
+          ],
+          [
+            291700,
+            15.5
+          ]
+        ],
+        "of": "ch-vd-taxable"
+      }
+    },
+    {
+      "id": "ch-vd-canton",
+      "label": "Cantonal tax (Vaud)",
+      "group": "tax",
+      "note": "The base tax times the 155% cantonal coefficient, less the 5% reduction for 2026.",
+      "charge": {
+        "mul": [
+          "ch-vd-base",
+          1.55,
+          0.95
+        ]
+      }
+    },
+    {
+      "id": "ch-vd-commune",
+      "label": "City tax (Lausanne)",
+      "group": "tax",
+      "note": "78.5% of the cantonal base tax, Lausanne's rate for 2026. No church tax in Vaud.",
+      "charge": {
+        "mul": [
+          "ch-vd-base",
+          0.785
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Pillar 3a contributions and other personal deductions",
+    "Commuting and meal cost deductions",
+    "Vaud's deduction for people on modest incomes",
+    "Family quotient (quotient familial) for couples and parents",
+    "Tax at source (Quellensteuer / impôt à la source) tables",
+    "Other Vaud municipalities"
+  ],
+  "provisional": [
+    "Assumes health and accident insurance premiums of at least CHF 5,000 a year, the most a single person can deduct",
+    "The 5% reduction for 2026 is applied to the cantonal tax only, not Lausanne's",
+    "Vaud taxable income is not rounded here"
+  ],
+  "sources": [
+    {
+      "title": "ESTV — Feuille cantonale Vaud (Informations fiscales, état février 2026)",
+      "url": "https://www.estv2.admin.ch/stp/kb/vd-fr.pdf"
+    },
+    {
+      "title": "Ville de Lausanne — Coefficient, taux et arrêté d'imposition",
+      "url": "https://www.lausanne.ch/officiel/administration/finances-et-mobilite/finances/impots/coefficient-taux-arrete-imposition.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Official documents, Nov 2026",
+      "note": "2026 indexed tariff (art. 47 LI), insurance deduction limits (6,600 total, 5,000 for insurance premiums, single, 2026), professional costs (3% of net income, 2,000–4,000, 2026 table of deductions), cantonal coefficient 155% (LA 2026) and the 5% reduction for 2026 (art. 4 LRIPP) from the ESTV feuille cantonale; Lausanne's communal coefficient 78.5% for 2026 from the city's page."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": null,
+  "verifyAt": "https://swisstaxcalculator.estv.admin.ch/#/home",
+  "tests": [
+    {
+      "gross": 100000,
+      "note": "Federal and social as in Zurich (AHV 5,300, ALV 1,100, federal 1,951.75). Vaud taxable 93,600 − 2,808 − 5,000 = 85,792; base tax 5,773 to CHF 74,400 + 11,392 × 11% (1,253.12) = 7,026.12. Cantonal 7,026.12 × 1.55 × 0.95 = 10,345.96; Lausanne 7,026.12 × 0.785 = 5,515.50.",
+      "expect": {
+        "ch-vd-taxable": 85792,
+        "ch-vd-base": 7026.12,
+        "ch-vd-canton": 10345.96,
+        "ch-vd-commune": 5515.5,
+        "net": 75786.79
+      }
+    }
+  ]
+}

@@ -518,6 +518,12 @@
           "gross": 100000
         },
         {
+          "id": "ch-vd",
+          "name": "Switzerland (Lausanne)",
+          "currency": "CHF",
+          "gross": 100000
+        },
+        {
           "id": "ch-zg",
           "name": "Switzerland (Zug)",
           "currency": "CHF",
