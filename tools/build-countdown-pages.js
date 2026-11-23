@@ -13,6 +13,11 @@
    after an event passes so titles name the next year (the monthly check does). */
 const site = require("./lib/site.js");
 const related = require("./related.js");
+const { load } = require("./lib/load-script.js");
+const { UK_BANK_HOLIDAYS: BH } = load("bank-holidays.js", ["UK_BANK_HOLIDAYS"]);
+/* the Christmas and New Year pages list that season's UK bank holidays */
+const FESTIVE = ["christmas", "christmas-eve", "boxing-day", "new-years-eve", "new-year"];
+const REGIONS = [["england-and-wales", "England and Wales"], ["scotland", "Scotland"], ["northern-ireland", "Northern Ireland"]];
 const { esc, SITE } = site;
 
 /* Gregorian Easter Sunday (anonymous / Meeus-Jones-Butcher algorithm) */
@@ -31,7 +36,7 @@ const last = (m, weekday) => (y) => { const end = new Date(Date.UTC(y, m, 0)); r
 const nth = (m, weekday, n) => (y) => { const first = new Date(Date.UTC(y, m - 1, 1)); return new Date(Date.UTC(y, m - 1, 1 + ((weekday - first.getUTCDay() + 7) % 7) + (n - 1) * 7)); };
 
 const EVENTS = [
-  { slug: "christmas", name: "Christmas", day: "Christmas Day", date: fixed(12, 25), note: "Christmas Day is always 25 December.", extra: 'Cooking the dinner? The <a href="/turkey-cooking-time/">turkey cooking time calculator</a> works out when to put the bird in.' },
+  { slug: "christmas", name: "Christmas", day: "Christmas Day", date: fixed(12, 25), note: "Christmas Day is always 25 December.", extra: 'Cooking the dinner? The <a href="/turkey-cooking-time/">turkey cooking time calculator</a> works out when to put the bird in and when to start defrosting it. Saving up for next year? Try the <a href="/christmas-savings-calculator/">Christmas savings calculator</a>.' },
   { slug: "christmas-eve", name: "Christmas Eve", day: "Christmas Eve", date: fixed(12, 24), note: "Christmas Eve is always 24 December." },
   { slug: "new-year", name: "New Year", day: "New Year's Day", date: fixed(1, 1), note: "New Year's Day is 1 January; New Year's Eve is the night before." },
   { slug: "easter", name: "Easter", day: "Easter Sunday", date: easter, note: "Easter Sunday is the first Sunday after the first full moon on or after 21 March (by the church's calculation), so it falls between 22 March and 25 April. Good Friday is two days before." },
@@ -87,6 +92,34 @@ function page(e) {
     [`How many sleeps until ${e.name}?`, `The countdown at the top shows days, hours, minutes and sleeps, worked out from your device's clock, so it is right wherever you are.`],
     [`When is ${e.name} in ${yr + 1}?`, `${long(dates[1])}.`]
   ];
+  q.splice(1, 0, [`What day of the week is ${e.name} ${yr}?`, `${DAYS[next.getUTCDay()]}: ${e.day} ${yr} is on ${long(next)}.${dates[1] ? ` In ${yr + 1} it's a ${DAYS[dates[1].getUTCDay()]}.` : ""}`]);
+  /* the festive season's bank holidays, from GOV.UK */
+  let festive = "";
+  const festive0 = FESTIVE.includes(e.slug);
+  if (festive0) {
+    const sy = e.slug === "new-year" ? yr - 1 : yr;
+    const from = `${sy}-12-20`, to = `${sy + 1}-01-06`;
+    const byDate = {};
+    REGIONS.forEach(([k, name]) => (BH[k] || []).filter((h) => h.date >= from && h.date <= to).forEach((h) => { (byDate[h.date] = byDate[h.date] || { title: h.title, where: [] }).where.push(name); }));
+    const ds = Object.keys(byDate).sort();
+    if (ds.length) {
+      const where = (w) => (w.length === 3 ? "All of the UK" : w.join(", "));
+      const tidy = (t) => t.replace(/ \((substitute day)\)/i, ", $1");
+      const rows = ds.map((d) => [esc(long(new Date(d + "T00:00:00Z"))), esc(tidy(byDate[d].title)), esc(where(byDate[d].where))]);
+      const subs = ds.filter((d) => /substitute/i.test(byDate[d].title));
+      const box = ds.find((d) => /^Boxing Day/.test(byDate[d].title));
+      if (box) q.push([`Is Boxing Day a bank holiday in ${sy}?`, /substitute/i.test(byDate[box].title)
+        ? `Boxing Day ${sy} falls on a ${DAYS[new Date(sy + "-12-26T00:00:00Z").getUTCDay()]}, so the bank holiday moves to ${long(new Date(box + "T00:00:00Z"))}, a substitute day, in ${where(byDate[box].where).replace("All of the UK", "the whole UK")}, according to GOV.UK.`
+        : `Yes — ${long(new Date(box + "T00:00:00Z"))} is a bank holiday in ${where(byDate[box].where).replace("All of the UK", "the whole UK")}, according to GOV.UK.`]);
+      q.push([`What are the Christmas bank holidays for ${sy}?`, ds.map((d) => `${long(new Date(d + "T00:00:00Z"))} (${tidy(byDate[d].title)}${byDate[d].where.length === 3 ? "" : ", " + byDate[d].where.join(" and ")})`).join("; ") + ". From GOV.UK's bank holiday list."]);
+      festive = `    <main class="tool">
+      <h2 class="tool-section-title">Christmas and New Year bank holidays ${sy}–${String(sy + 1).slice(2)}</h2>
+${site.table(["Date", "Bank holiday", "Where"], rows, 420)}      <p class="tool-hint" style="margin-top:12px;">${subs.length ? "When a holiday falls at a weekend, a weekday is given in its place (a substitute day). " : ""}From <a href="https://www.gov.uk/bank-holidays" rel="nofollow noopener" target="_blank">GOV.UK's bank holidays</a>. The <a href="/working-days/">working days calculator</a> counts the working days left before any date.</p>
+    </main>
+
+`;
+    }
+  }
   const others = EVENTS.filter((x) => x !== e).map((x) => `<a href="/days-until/${x.slug}/">${esc(x.name)}</a>`).join(" ");
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Countdowns", SITE + "/days-until/"], [`Days until ${e.name}`, url]]), site.faqLd(q)];
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
@@ -102,6 +135,13 @@ function page(e) {
           <div class="label" id="cd-label">${esc(e.day)} ${yr}</div>
         </div>
         <p class="tool-hint" id="cd-detail" style="text-align:center; margin-top:8px;"></p>
+        <div class="result-grid" id="cd-grid" hidden>
+          <div class="result-row"><span class="r-label">Weeks</span><span class="r-value" id="cd-weeks">—</span></div>
+          <div class="result-row"><span class="r-label">Weekdays in between (Mon–Fri)</span><span class="r-value" id="cd-weekdays">—</span></div>${festive0 ? `
+          <div class="result-row"><span class="r-label">Working days in between (England and Wales)</span><span class="r-value" id="cd-working">—</span></div>` : ""}
+          <div class="result-row"><span class="r-label">Weekends in between</span><span class="r-value" id="cd-weekends">—</span></div>
+          <div class="result-row"><span class="r-label">Hours</span><span class="r-value" id="cd-hours">—</span></div>
+        </div>
       </div>
       <p class="about-text" style="margin-top:14px;">${esc(e.note)}</p>${e.extra ? `
       <p class="tool-hint" style="margin-top:8px;">${e.extra}</p>` : ""}
@@ -112,7 +152,7 @@ function page(e) {
 ${site.table(["Year", "Date"], dates.map((d) => [String(d.getUTCFullYear()), long(d)]), 300)}      <p class="tool-hint" style="margin-top:12px;">To count the days between any two dates, use the <a href="/date-diff/">date difference calculator</a>.</p>
     </main>
 
-    <main class="tool">
+${festive}    <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
@@ -121,7 +161,7 @@ ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
   </div>
-  <script src="/countdown-page.js"></script>
+${festive0 ? `  <script src="/bank-holidays.js"></script>\n` : ""}  <script src="/countdown-page.js"></script>
 </body>
 </html>
 `;

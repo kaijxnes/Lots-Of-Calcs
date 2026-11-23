@@ -78,6 +78,14 @@
       },
       {
         "@type": "Question",
+        "name": "What day of the week is Christmas Eve 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Thursday: Christmas Eve 2026 is on Thursday 24 December 2026. In 2027 it's a Friday."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "How many sleeps until Christmas Eve?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -90,6 +98,22 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "Friday 24 December 2027."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Boxing Day a bank holiday in 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Boxing Day 2026 falls on a Saturday, so the bank holiday moves to Monday 28 December 2026, a substitute day, in the whole UK, according to GOV.UK."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are the Christmas bank holidays for 2026?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Friday 25 December 2026 (Christmas Day); Monday 28 December 2026 (Boxing Day, substitute day); Friday 1 January 2027 (New Year's Day); Monday 4 January 2027 (2nd January, substitute day, Scotland). From GOV.UK's bank holiday list."
         }
       }
     ]
@@ -112,6 +136,13 @@
           <div class="label" id="cd-label">Christmas Eve 2026</div>
         </div>
         <p class="tool-hint" id="cd-detail" style="text-align:center; margin-top:8px;"></p>
+        <div class="result-grid" id="cd-grid" hidden>
+          <div class="result-row"><span class="r-label">Weeks</span><span class="r-value" id="cd-weeks">—</span></div>
+          <div class="result-row"><span class="r-label">Weekdays in between (Mon–Fri)</span><span class="r-value" id="cd-weekdays">—</span></div>
+          <div class="result-row"><span class="r-label">Working days in between (England and Wales)</span><span class="r-value" id="cd-working">—</span></div>
+          <div class="result-row"><span class="r-label">Weekends in between</span><span class="r-value" id="cd-weekends">—</span></div>
+          <div class="result-row"><span class="r-label">Hours</span><span class="r-value" id="cd-hours">—</span></div>
+        </div>
       </div>
       <p class="about-text" style="margin-top:14px;">Christmas Eve is always 24 December.</p>
     </main>
@@ -137,13 +168,37 @@
     </main>
 
     <main class="tool">
+      <h2 class="tool-section-title">Christmas and New Year bank holidays 2026–27</h2>
+      <div class="table-scroll">
+        <div style="min-width:420px;">
+          <table class="out-table">
+            <thead><tr><th>Date</th><th>Bank holiday</th><th>Where</th></tr></thead>
+            <tbody>
+<tr><td>Friday 25 December 2026</td><td>Christmas Day</td><td>All of the UK</td></tr>
+<tr><td>Monday 28 December 2026</td><td>Boxing Day, substitute day</td><td>All of the UK</td></tr>
+<tr><td>Friday 1 January 2027</td><td>New Year's Day</td><td>All of the UK</td></tr>
+<tr><td>Monday 4 January 2027</td><td>2nd January, substitute day</td><td>Scotland</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">When a holiday falls at a weekend, a weekday is given in its place (a substitute day). From <a href="https://www.gov.uk/bank-holidays" rel="nofollow noopener" target="_blank">GOV.UK's bank holidays</a>. The <a href="/working-days/">working days calculator</a> counts the working days left before any date.</p>
+    </main>
+
+    <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">When is Christmas Eve 2026?</h3>
       <p class="about-text">Thursday 24 December 2026. Christmas Eve is always 24 December.</p>
+      <h3 class="faq-q">What day of the week is Christmas Eve 2026?</h3>
+      <p class="about-text">Thursday: Christmas Eve 2026 is on Thursday 24 December 2026. In 2027 it's a Friday.</p>
       <h3 class="faq-q">How many sleeps until Christmas Eve?</h3>
       <p class="about-text">The countdown at the top shows days, hours, minutes and sleeps, worked out from your device's clock, so it is right wherever you are.</p>
       <h3 class="faq-q">When is Christmas Eve in 2027?</h3>
       <p class="about-text">Friday 24 December 2027.</p>
+      <h3 class="faq-q">Is Boxing Day a bank holiday in 2026?</h3>
+      <p class="about-text">Boxing Day 2026 falls on a Saturday, so the bank holiday moves to Monday 28 December 2026, a substitute day, in the whole UK, according to GOV.UK.</p>
+      <h3 class="faq-q">What are the Christmas bank holidays for 2026?</h3>
+      <p class="about-text">Friday 25 December 2026 (Christmas Day); Monday 28 December 2026 (Boxing Day, substitute day); Friday 1 January 2027 (New Year's Day); Monday 4 January 2027 (2nd January, substitute day, Scotland). From GOV.UK's bank holiday list.</p>
     </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other countdowns</div>
@@ -166,6 +221,7 @@
       <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
     </footer>
   </div>
+  <script src="/bank-holidays.js"></script>
   <script src="/countdown-page.js"></script>
 </body>
 </html>

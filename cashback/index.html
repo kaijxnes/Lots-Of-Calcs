@@ -139,13 +139,45 @@
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">Cashback Calculator</h1>
-      <p class="page-subtitle">What a cashback card actually earns you across your real spending, after the fee.</p>
+      <p class="page-subtitle">Work out the cashback on a purchase, the cashback percentage, or what a card really earns across your spending after the fee.</p>
     </header>
 
+    <main class="tool" id="cbq-tool">
+      <h2 class="tool-section-title">Quick cashback calculator</h2>
+      <div class="field-row">
+        <div class="field"><label for="cbq-spend">Amount spent</label><input type="number" id="cbq-spend" value="250" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="cbq-rate">Cashback rate (%)</label><input type="number" id="cbq-rate" value="1" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="cbq-back">£2.50</div>
+          <div class="label" id="cbq-back-label">cashback on £250 at 1%</div>
+        </div>
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Cost after cashback</span><span class="r-value" id="cbq-net">£247.50</span></div>
+          <div class="result-row"><span class="r-label">Cashback per £100 spent</span><span class="r-value" id="cbq-per100">£1.00</span></div>
+        </div>
+      </div>
+
+      <h2 class="tool-section-title" style="margin-top:22px;">What cashback percentage did I get?</h2>
+      <div class="field-row">
+        <div class="field"><label for="cbq-got">Cashback received</label><input type="number" id="cbq-got" value="12" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="cbq-on">On spending of</label><input type="number" id="cbq-on" value="800" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="result-box" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="cbq-pct">1.5%</div>
+          <div class="label" id="cbq-pct-label">cashback percentage: £12 ÷ £800 × 100</div>
+        </div>
+      </div>
+      <p class="tool-hint" style="margin-top:12px;">Cashback = spend × rate ÷ 100. Cashback percentage = cashback ÷ spend × 100. For a card that pays different rates on different spending, use the full calculator below.</p>
+    </main>
+
     <main class="tool">
+      <h2 class="tool-section-title">Cashback card calculator</h2>
       <p class="about-text" style="margin-bottom:18px;">Cashback cards rarely pay one flat rate. There is usually a headline rate on a couple of categories &mdash; travel, supermarkets, fuel &mdash; and a much thinner one on everything else. Put your own spending against the card's own rates and you get the number that matters, rather than the one on the advert.</p>
 
-      <h2 class="tool-section-title">Your spending and the card's rates</h2>
+      <h3 class="tool-section-title">Your spending and the card's rates</h3>
       <div class="dyn-table-head">
         <span class="row-index">#</span>
         <span class="grow">Category</span>
