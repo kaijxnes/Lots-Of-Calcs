@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Grade Calculator — Score to %, Letter Grade &amp; Weighted Grade</title>
-<meta name="description" content="Turn a test score into a percentage and letter grade using your own grade boundaries, or work out a weighted average grade across assignments and exams.">
+<title>Grade Calculator — Score to %, Weighted &amp; Letter Grade Average</title>
+<meta name="description" content="Turn a test score into a percentage and letter grade, work out a weighted average across assignments and exams, or average letter grades on a 4.0 scale.">
 <link rel="canonical" href="https://lotsofcalcs.com/grade/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="Grade Calculator — Score to %, Letter Grade &amp; Weighted Grade">
-<meta property="og:description" content="Turn a test score into a percentage and letter grade using your own grade boundaries, or work out a weighted average grade across assignments and exams.">
+<meta property="og:title" content="Grade Calculator — Score to %, Weighted &amp; Letter Grade Average">
+<meta property="og:description" content="Turn a test score into a percentage and letter grade, work out a weighted average across assignments and exams, or average letter grades on a 4.0 scale.">
 <meta property="og:url" content="https://lotsofcalcs.com/grade/">
 <meta property="og:image" content="https://lotsofcalcs.com/og/grade.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Grade Calculator — Score to %, Letter Grade &amp; Weighted Grade">
-<meta name="twitter:description" content="Turn a test score into a percentage and letter grade using your own grade boundaries, or work out a weighted average grade across assignments and exams.">
+<meta name="twitter:title" content="Grade Calculator — Score to %, Weighted &amp; Letter Grade Average">
+<meta name="twitter:description" content="Turn a test score into a percentage and letter grade, work out a weighted average across assignments and exams, or average letter grades on a 4.0 scale.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og/grade.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -65,6 +65,14 @@
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I average letter grades?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Turn each letter into grade points — on the College Board's 4.0 scale A is 4, B is 3, C is 2, D is 1 and F is 0 — add them up and divide by the number of grades. A, B, B and C make 4 + 3 + 3 + 2 = 12, and 12 ÷ 4 = 3.0, a B average. If classes carry different credits, multiply each grade's points by its credits and divide by the total credits. The Letter grade average tab does this for you."
+        }
+      },
       {
         "@type": "Question",
         "name": "How do I calculate a weighted average grade?",
@@ -123,13 +131,14 @@
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">Grade / Score Calculator</h1>
-      <p class="page-subtitle">Score out of total → % and letter grade, plus a weighted average across multiple assignments.</p>
+      <p class="page-subtitle">Score out of total → % and letter grade, a weighted average across assignments, or the average of your letter grades.</p>
     </header>
 
     <main class="tool">
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="single">Single score</button>
         <button class="tab" data-tab="weighted">Weighted average</button>
+        <button class="tab" data-tab="letters">Letter grade average</button>
       </div>
 
       <div class="tab-panel active" data-panel="single">
@@ -184,6 +193,34 @@
           </div>
         </div>
       </div>
+
+      <div class="tab-panel" data-panel="letters">
+        <div class="table-scroll">
+          <div style="min-width:460px;">
+            <div class="dyn-table-head">
+              <span class="row-index">#</span>
+              <span class="grow">Class or assignment</span>
+              <span class="fixed-sm">Grade</span>
+              <span class="fixed-sm">Points</span>
+              <span class="fixed-sm">Credits</span>
+              <span style="width:34px"></span>
+            </div>
+            <div class="dyn-list" id="lg-rows"></div>
+          </div>
+        </div>
+        <button class="btn btn-ghost" id="lg-add-row" type="button">+ Add grade</button>
+
+        <div class="result-box" style="margin-top:16px;" aria-live="polite">
+          <div class="result-hero">
+            <div class="value" id="lg-gpa">—</div>
+            <div class="label" id="lg-letter">average grade points on a 4.0 scale</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-row"><span class="r-label">Credits counted</span><span class="r-value" id="lg-credits">—</span></div>
+          </div>
+        </div>
+        <p class="tool-hint" style="margin-top:12px;">Each grade's points come from the <a href="https://bigfuture.collegeboard.org/plan-for-college/college-basics/how-to-convert-gpa-4.0-scale" rel="nofollow noopener" target="_blank">College Board's 4.0 scale</a>: A = 4, B = 3, C = 2, D = 1, F = 0. Schools that use plus and minus grades give them their own points (often a few tenths either side) — type your school's figure into Points. The average weights each grade by its credits; leave credits at 1 for a plain average.</p>
+      </div>
     </main>
     <main class="tool">
       <h2 class="tool-section-title">From a score to a grade</h2>
@@ -231,6 +268,8 @@
 
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
+      <h3 class="faq-q">How do I average letter grades?</h3>
+      <p class="about-text">Turn each letter into grade points — on the College Board's 4.0 scale A is 4, B is 3, C is 2, D is 1 and F is 0 — add them up and divide by the number of grades. A, B, B and C make 4 + 3 + 3 + 2 = 12, and 12 ÷ 4 = 3.0, a B average. If classes carry different credits, multiply each grade's points by its credits and divide by the total credits. The Letter grade average tab does this for you.</p>
       <h3 class="faq-q">How do I calculate a weighted average grade?</h3>
       <p class="about-text">Multiply each score by its weight, add those together, then divide by the total of the weights. A piece worth 60% of the module counts three times as heavily as one worth 20%.</p>
       <h3 class="faq-q">What score do I need on the final to reach a target grade?</h3>

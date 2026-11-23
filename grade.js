@@ -129,5 +129,63 @@ wtRowsEl.addEventListener("input", calcWeighted);
 addWtRow("Assignment 1", "", "100", "50");
 addWtRow("Assignment 2", "", "100", "50");
 
+/* ---------- Letter grade average (4.0 scale, College Board) ---------- */
+const LG_POINTS = { A: 4, B: 3, C: 2, D: 1, F: 0 };
+const lgRowsEl = document.getElementById("lg-rows");
+
+function addLgRow(name = "", letter = "A", credits = "1") {
+  const row = document.createElement("div");
+  row.className = "dyn-row";
+  row.innerHTML = `
+    <span class="row-index">${lgRowsEl.children.length + 1}</span>
+    <input class="grow" type="text" placeholder="Class" value="${name}" data-field="name">
+    <select class="fixed-sm" data-field="letter">${Object.keys(LG_POINTS).map((l) => `<option${l === letter ? " selected" : ""}>${l}</option>`).join("")}</select>
+    <input class="fixed-sm" type="number" step="any" min="0" value="${LG_POINTS[letter]}" data-field="points" aria-label="Grade points">
+    <input class="fixed-sm" type="number" step="any" min="0" value="${credits}" data-field="credits" aria-label="Credits">
+    <button class="btn-remove" type="button" title="Remove">✕</button>
+  `;
+  row.querySelector('[data-field="letter"]').addEventListener("change", (e) => {
+    row.querySelector('[data-field="points"]').value = LG_POINTS[e.target.value];
+    calcLetters();
+  });
+  row.querySelector(".btn-remove").addEventListener("click", () => {
+    row.remove();
+    [...lgRowsEl.children].forEach((r, i) => { r.querySelector(".row-index").textContent = i + 1; });
+    calcLetters();
+  });
+  lgRowsEl.appendChild(row);
+}
+
+function calcLetters() {
+  let credits = 0, sum = 0;
+  [...lgRowsEl.children].forEach((row) => {
+    const pts = parseFloat(row.querySelector('[data-field="points"]').value);
+    const cr = parseFloat(row.querySelector('[data-field="credits"]').value);
+    if (isFinite(pts) && cr > 0) { credits += cr; sum += pts * cr; }
+  });
+  if (!credits) {
+    document.getElementById("lg-gpa").textContent = "—";
+    document.getElementById("lg-letter").textContent = "add a grade to see the average";
+    document.getElementById("lg-credits").textContent = "—";
+    return;
+  }
+  const gpa = sum / credits;
+  const scale = Object.keys(LG_POINTS).map((l) => [l, LG_POINTS[l]]);
+  const exact = scale.find(([, p]) => Math.abs(p - gpa) < 0.005);
+  const below = scale.filter(([, p]) => p <= gpa)[0], above = scale.filter(([, p]) => p > gpa).pop();
+  document.getElementById("lg-gpa").textContent = gpa.toFixed(2);
+  document.getElementById("lg-letter").textContent = exact ? `a straight ${exact[0]} average on a 4.0 scale`
+    : below && above ? `between ${below[0]} (${below[1]}) and ${above[0]} (${above[1]}) on a 4.0 scale` : "on a 4.0 scale";
+  document.getElementById("lg-credits").textContent = credits.toLocaleString("en-GB");
+}
+
+document.getElementById("lg-add-row").addEventListener("click", () => { addLgRow(); calcLetters(); });
+lgRowsEl.addEventListener("input", calcLetters);
+addLgRow("English", "A", "1");
+addLgRow("Maths", "B", "1");
+addLgRow("Science", "B", "1");
+addLgRow("History", "C", "1");
+
 calcSingle();
 calcWeighted();
+calcLetters();

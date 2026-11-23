@@ -3,18 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Number to Words Converter — British English, Cheques &amp; Ordinals</title>
-<meta name="description" content="Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.">
+<title>Number to Words Converter — Write Numbers in Words (UK &amp; US)</title>
+<meta name="description" content="Write any number out in words, in British or American English, with ordinals, cheque and check wording, decimals and negatives — plus words back to digits.">
 <link rel="canonical" href="https://lotsofcalcs.com/number-to-words/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Lots Of Calcs">
-<meta property="og:title" content="Number to Words Converter — British English, Cheques &amp; Ordinals">
-<meta property="og:description" content="Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.">
+<meta property="og:title" content="Number to Words Converter — Write Numbers in Words (UK &amp; US)">
+<meta property="og:description" content="Write any number out in words, in British or American English, with ordinals, cheque and check wording, decimals and negatives — plus words back to digits.">
 <meta property="og:url" content="https://lotsofcalcs.com/number-to-words/">
 <meta property="og:image" content="https://lotsofcalcs.com/og/number-to-words.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Number to Words Converter — British English, Cheques &amp; Ordinals">
-<meta name="twitter:description" content="Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.">
+<meta name="twitter:title" content="Number to Words Converter — Write Numbers in Words (UK &amp; US)">
+<meta name="twitter:description" content="Write any number out in words, in British or American English, with ordinals, cheque and check wording, decimals and negatives — plus words back to digits.">
 <meta name="twitter:image" content="https://lotsofcalcs.com/og/number-to-words.jpg">
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -32,7 +32,7 @@
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Number to Words Converter",
-    "description": "Write any number out in words using British English, with ordinal and cheque wording, decimals and negatives — plus words back to digits.",
+    "description": "Write any number out in words, in British or American English, with ordinals, cheque and check wording, decimals and negatives — plus words back to digits.",
     "url": "https://lotsofcalcs.com/number-to-words/",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Any",
@@ -70,7 +70,7 @@
         "name": "Is it \"one hundred and twenty-three\" or \"one hundred twenty-three\"?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Both are correct, in different places. British English uses the \"and\" and always has; American English drops it. This converter follows the British convention throughout, which is also what you want on a UK cheque or in a formal UK document."
+          "text": "Both are correct, in different places. British English uses the \"and\" and always has; American English drops it. This converter uses the British form unless you pick American English in the Style menu — the British form is what you want on a UK cheque or in a formal UK document."
         }
       },
       {
@@ -127,11 +127,20 @@
     </header>
 
     <main class="tool">
-      <p class="about-text" style="margin-bottom:18px;">Type a number and get it written out properly, with the &ldquo;and&rdquo; where British English puts it: <strong>one hundred and twenty-three</strong>, not <em>one hundred twenty-three</em>. Negatives, decimals and numbers far beyond the trillions all work.</p>
+      <p class="about-text" style="margin-bottom:18px;">Type a number and get it written out in words: <strong>one hundred and twenty-three</strong> in British English, or <strong>one hundred twenty-three</strong> in American English. Negatives, decimals and numbers far beyond the trillions all work, with ordinals and cheque or check wording.</p>
 
-      <div class="field" style="max-width:320px;">
-        <label for="number-in">Number</label>
-        <input type="text" id="number-in" value="1234.5" inputmode="decimal" autocomplete="off" spellcheck="false">
+      <div class="field-row">
+        <div class="field">
+          <label for="number-in">Number</label>
+          <input type="text" id="number-in" value="1234.5" inputmode="decimal" autocomplete="off" spellcheck="false">
+        </div>
+        <div class="field">
+          <label for="word-style">Style</label>
+          <select id="word-style">
+            <option value="uk" selected>British English (one hundred and five)</option>
+            <option value="us">American English (one hundred five)</option>
+          </select>
+        </div>
       </div>
       <p class="tool-hint">Commas and spaces are ignored, so 1,234.5 and 1234.5 are the same.</p>
 
@@ -242,7 +251,7 @@
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Is it "one hundred and twenty-three" or "one hundred twenty-three"?</h3>
-      <p class="about-text">Both are correct, in different places. British English uses the "and" and always has; American English drops it. This converter follows the British convention throughout, which is also what you want on a UK cheque or in a formal UK document.</p>
+      <p class="about-text">Both are correct, in different places. British English uses the "and" and always has; American English drops it. This converter uses the British form unless you pick American English in the Style menu — the British form is what you want on a UK cheque or in a formal UK document.</p>
       <h3 class="faq-q">How do I write an amount in words on a cheque?</h3>
       <p class="about-text">Capitalise the first letter, write the pounds out in full, add the pence, and finish with "only" — for example "One thousand two hundred and thirty-four pounds and fifty pence only". Rule a line through any leftover space so nothing can be added. If the words and the figures disagree, the written amount is normally the one the bank honours.</p>
       <h3 class="faq-q">How are decimals read out?</h3>

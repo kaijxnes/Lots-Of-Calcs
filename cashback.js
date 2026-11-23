@@ -199,3 +199,31 @@ els.currency.addEventListener("change", calculate);
 
 DEFAULT_ROWS.forEach(([n, s, r]) => addRow(n, s, r));
 calculate();
+
+/* Quick calculator: cashback on one purchase, and the percentage from an amount received */
+(function () {
+  const $ = (id) => document.getElementById(id);
+  if (!$("cbq-tool")) return;
+  const sym = () => (els.currency ? els.currency.value : "£");
+  const money = (v) => sym() + v.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const short = (v) => sym() + v.toLocaleString("en-GB", { maximumFractionDigits: 2 });
+  const pct = (v) => v.toLocaleString("en-GB", { maximumFractionDigits: 3 }) + "%";
+  function quick() {
+    const spend = parseFloat($("cbq-spend").value), rate = parseFloat($("cbq-rate").value);
+    if (spend >= 0 && rate >= 0) {
+      const back = spend * rate / 100;
+      $("cbq-back").textContent = money(back);
+      $("cbq-back-label").textContent = "cashback on " + short(spend) + " at " + pct(rate);
+      $("cbq-net").textContent = money(spend - back);
+      $("cbq-per100").textContent = money(rate);
+    } else { $("cbq-back").textContent = "—"; $("cbq-net").textContent = "—"; $("cbq-per100").textContent = "—"; }
+    const got = parseFloat($("cbq-got").value), on = parseFloat($("cbq-on").value);
+    if (got >= 0 && on > 0) {
+      $("cbq-pct").textContent = pct(got / on * 100);
+      $("cbq-pct-label").textContent = "cashback percentage: " + short(got) + " ÷ " + short(on) + " × 100";
+    } else { $("cbq-pct").textContent = "—"; $("cbq-pct-label").textContent = "enter the cashback and what you spent"; }
+  }
+  ["cbq-spend", "cbq-rate", "cbq-got", "cbq-on"].forEach((id) => $(id).addEventListener("input", quick));
+  if (els.currency) els.currency.addEventListener("change", quick);
+  quick();
+})();

@@ -40,13 +40,17 @@ function twoDigits(n) {
   return TENS[t] + (u ? "-" + ONES[u] : "");
 }
 
+/* British English puts "and" in (one hundred and five); American English
+   leaves it out. Set from the style menu on the page. */
+let BRITISH = true;
+
 function threeDigits(n) {
   const h = Math.floor(n / 100);
   const r = n % 100;
   let out = "";
   if (h) out += ONES[h] + " hundred";
   /* The British "and" inside a group: three hundred AND five */
-  if (r) out += (h ? " and " : "") + twoDigits(r);
+  if (r) out += (h ? (BRITISH ? " and " : " ") : "") + twoDigits(r);
   return out;
 }
 
@@ -69,7 +73,7 @@ function integerToWords(digits) {
     if (i > 0) text += " " + SCALES[i];
     /* The other British "and": one thousand AND five, but not
        one thousand AND one hundred and five */
-    if (i === 0 && g < 100 && parts.length) text = "and " + text;
+    if (BRITISH && i === 0 && g < 100 && parts.length) text = "and " + text;
     parts.push(text);
   }
   return parts.join(" ");
@@ -255,6 +259,9 @@ function chequeLine(parsed) {
   if (pounds === "0" && pence > 0) {
     /* An amount under a pound is written as pence alone, not "zero pounds and…" */
     line = capitalise(minorWords) + " only";
+  } else if (!BRITISH) {
+    /* the usual US check form: "One hundred twenty-three and 45/100 dollars" */
+    line = capitalise(integerToWords(pounds)) + " and " + String(pence).padStart(2, "0") + "/100 " + c.majorPlural;
   } else {
     line = capitalise(integerToWords(pounds)) + " " + (pounds === "1" ? c.major : c.majorPlural);
     if (pence > 0) line += " and " + minorWords;
@@ -264,7 +271,8 @@ function chequeLine(parsed) {
   const notes = [];
   if (parsed.negative) notes.push("Cheques can't be written for a negative amount, so the minus sign is ignored here.");
   if (rounded) notes.push("Rounded to the nearest " + c.minor + ".");
-  if (pence === 0) notes.push('With no ' + c.minorPlural + ', many people write "' + line.replace(" only", "") + " and no " + c.minorPlural + ' only" instead — both are accepted.');
+  if (!BRITISH) notes.push("Written the American way, with the cents as a fraction of 100; draw a line through the space after it.");
+  else if (pence === 0) notes.push('With no ' + c.minorPlural + ', many people write "' + line.replace(" only", "") + " and no " + c.minorPlural + ' only" instead — both are accepted.');
   return { line: line, note: notes.join(" ") };
 }
 
@@ -316,6 +324,15 @@ function convertWords() {
   outGrouped.textContent = (parsed.negative ? "−" : "") + groupDigits(parsed.integer) + (parsed.decimals ? "." + parsed.decimals : "");
 }
 
+const styleSelect = document.getElementById("word-style");
+if (styleSelect) {
+  styleSelect.addEventListener("change", () => {
+    BRITISH = styleSelect.value !== "us";
+    if (!BRITISH && currencySelect.value === "GBP") currencySelect.value = "USD";
+    if (BRITISH && currencySelect.value === "USD") currencySelect.value = "GBP";
+    convertNumber();
+  });
+}
 numInput.addEventListener("input", convertNumber);
 currencySelect.addEventListener("change", convertNumber);
 wordsInput.addEventListener("input", convertWords);
