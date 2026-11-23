@@ -160,7 +160,8 @@ Unknown keys are an error, so a typo fails the check instead of being ignored.
   Belgium, Luxembourg, Ireland, Portugal, Austria, Finland, Norway, Denmark,
   Sweden, and Switzerland for the cities of Zurich, Zug, Basel, Bern and Lausanne (federal, cantonal and city
   tax; the occupational pension share is an option, 0 by default). Belgium
-  has the Flemish average municipal surcharge and four cities as options.
+  has the Flemish average municipal surcharge and four cities as options;
+  Luxembourg has tax classes 1, 1a (with the single-parent credit) and 2.
 - **Asia-Pacific**: Australia, New Zealand, India, Japan.
 
 No file has `lastVerified` set: none has yet been checked by a person against

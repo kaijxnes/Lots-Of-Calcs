@@ -48,7 +48,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | India | [in](in.md) | 2026-27 | 40 | — | — |
 | Italy | [it](it.md) | 2026 | 46 | — | — |
 | Japan | [jp](jp.md) | 2026 | 86 | — | — |
-| Luxembourg | [lu](lu.md) | 2026 | 49 | — | — |
+| Luxembourg | [lu](lu.md) | 2026 | 141 | — | — |
 | Netherlands | [nl](nl.md) | 2026 | 32 | — | — |
 | Norway | [no](no.md) | 2026 | 19 | — | — |
 | Portugal | [pt](pt.md) | 2026 | 37 | — | — |
