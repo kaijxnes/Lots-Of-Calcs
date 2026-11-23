@@ -25,6 +25,19 @@ const SITE = site.SITE;
 
 // ---------------------------------------------------------------- helpers
 
+
+/* The salary hub's option fields as salary-calculator.js draws them
+   (drawOptions), so the page doesn't jump when the script fills them in */
+function optionFields(spec) {
+  return Object.keys(spec).map((key) => {
+    const o = spec[key];
+    const ctl = o.type === "number"
+      ? `<input type="number" id="opt-${key}" value="${esc(String(o["default"]))}"${o.min !== undefined ? ` min="${o.min}"` : ""}${o.max !== undefined ? ` max="${o.max}"` : ""} step="${o.step || "any"}" inputmode="decimal">`
+      : `<select id="opt-${key}">${Object.keys(o.choices).map((c) => `<option value="${esc(c)}"${c === o["default"] ? " selected" : ""}>${esc(o.choices[c])}</option>`).join("")}</select>`;
+    return `        <div class="field"><label for="opt-${key}">${esc(o.label)}</label>${ctl}</div>\n`;
+  }).join("");
+}
+
 function esc(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
@@ -1222,7 +1235,8 @@ ${select}
           <input type="number" id="salary" value="${gross}" step="any" min="0" inputmode="decimal" placeholder="0">
         </div>
       </div>
-      <div class="field-row" id="salary-options"></div>
+      <div class="field-row" id="salary-options">
+${optionFields(TaxEngine.merge(chain).options)}      </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
 
       <div class="result-box" aria-live="polite">
