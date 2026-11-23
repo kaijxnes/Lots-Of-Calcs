@@ -35,7 +35,7 @@
         ],
         [
           "Which tax class does this use?",
-          "Class 1: a resident who is single with no children. Single parents (class 1a) and married couples or civil partners taxed jointly (class 2) are taxed under their own classes, usually paying less on the same salary; those aren't modelled here."
+          "Class 1 — single, no children — unless you pick another in the calculator. Class 2 (married or civil partners taxed jointly) pays twice the tax on half the income, which is much less on a single salary; class 1a (single parents, widowed, or 64 and over) also pays less, and single parents can add the single-parent credit of up to €3,504."
         ],
         [
           "What tax credits do employees get?",

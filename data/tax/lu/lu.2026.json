@@ -12,7 +12,19 @@
     "start": "2026-01-01",
     "end": "2026-12-31"
   },
-  "options": {},
+  "options": {
+    "taxClass": {
+      "label": "Tax class",
+      "default": "1",
+      "inSummary": true,
+      "choices": {
+        "1": "Class 1 — single",
+        "2": "Class 2 — married or civil partners, one income",
+        "1a": "Class 1a — widowed, or 64 or over",
+        "1a-parent": "Class 1a — single parent (with the single-parent credit)"
+      }
+    }
+  },
   "items": [
     {
       "id": "lu-social",
@@ -71,112 +83,524 @@
     },
     {
       "id": "lu-income-tax",
-      "label": "Income tax (class 1)",
+      "label": "Income tax",
       "group": "tax",
-      "note": "Nothing to €13,230, then 8% rising in steps of 1–2 points to 39% from €54,090, 40% from €117,450, 41% from €176,160 and 42% above €234,870.",
+      "note": "The tariff: nothing to €13,230, then 8% rising in steps to 39% from €54,090, 40% from €117,450, 41% from €176,160 and 42% above €234,870. Class 2 pays twice the tax on half the income; class 1a applies the tariff to income less a quarter of its shortfall from €79,380, with the rise above €51,804 capped at 39–42%.",
       "charge": {
-        "brackets": [
-          [
-            0,
-            0
-          ],
-          [
-            13230,
-            8
-          ],
-          [
-            15435,
-            9
-          ],
-          [
-            17640,
-            10
-          ],
-          [
-            19845,
-            11
-          ],
-          [
-            22050,
-            12
-          ],
-          [
-            24255,
-            14
-          ],
-          [
-            26550,
-            16
-          ],
-          [
-            28845,
-            18
-          ],
-          [
-            31140,
-            20
-          ],
-          [
-            33435,
-            22
-          ],
-          [
-            35730,
-            24
-          ],
-          [
-            38025,
-            26
-          ],
-          [
-            40320,
-            28
-          ],
-          [
-            42615,
-            30
-          ],
-          [
-            44910,
-            32
-          ],
-          [
-            47205,
-            34
-          ],
-          [
-            49500,
-            36
-          ],
-          [
-            51795,
-            38
-          ],
-          [
-            54090,
-            39
-          ],
-          [
-            117450,
-            40
-          ],
-          [
-            176160,
-            41
-          ],
-          [
-            234870,
-            42
-          ]
-        ],
-        "of": "lu-taxable"
+        "option": "taxClass",
+        "cases": {
+          "1": {
+            "brackets": [
+              [
+                0,
+                0
+              ],
+              [
+                13230,
+                8
+              ],
+              [
+                15435,
+                9
+              ],
+              [
+                17640,
+                10
+              ],
+              [
+                19845,
+                11
+              ],
+              [
+                22050,
+                12
+              ],
+              [
+                24255,
+                14
+              ],
+              [
+                26550,
+                16
+              ],
+              [
+                28845,
+                18
+              ],
+              [
+                31140,
+                20
+              ],
+              [
+                33435,
+                22
+              ],
+              [
+                35730,
+                24
+              ],
+              [
+                38025,
+                26
+              ],
+              [
+                40320,
+                28
+              ],
+              [
+                42615,
+                30
+              ],
+              [
+                44910,
+                32
+              ],
+              [
+                47205,
+                34
+              ],
+              [
+                49500,
+                36
+              ],
+              [
+                51795,
+                38
+              ],
+              [
+                54090,
+                39
+              ],
+              [
+                117450,
+                40
+              ],
+              [
+                176160,
+                41
+              ],
+              [
+                234870,
+                42
+              ]
+            ],
+            "of": "lu-taxable"
+          },
+          "2": {
+            "mul": [
+              2,
+              {
+                "brackets": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    13230,
+                    8
+                  ],
+                  [
+                    15435,
+                    9
+                  ],
+                  [
+                    17640,
+                    10
+                  ],
+                  [
+                    19845,
+                    11
+                  ],
+                  [
+                    22050,
+                    12
+                  ],
+                  [
+                    24255,
+                    14
+                  ],
+                  [
+                    26550,
+                    16
+                  ],
+                  [
+                    28845,
+                    18
+                  ],
+                  [
+                    31140,
+                    20
+                  ],
+                  [
+                    33435,
+                    22
+                  ],
+                  [
+                    35730,
+                    24
+                  ],
+                  [
+                    38025,
+                    26
+                  ],
+                  [
+                    40320,
+                    28
+                  ],
+                  [
+                    42615,
+                    30
+                  ],
+                  [
+                    44910,
+                    32
+                  ],
+                  [
+                    47205,
+                    34
+                  ],
+                  [
+                    49500,
+                    36
+                  ],
+                  [
+                    51795,
+                    38
+                  ],
+                  [
+                    54090,
+                    39
+                  ],
+                  [
+                    117450,
+                    40
+                  ],
+                  [
+                    176160,
+                    41
+                  ],
+                  [
+                    234870,
+                    42
+                  ]
+                ],
+                "of": {
+                  "div": [
+                    "lu-taxable",
+                    2
+                  ]
+                }
+              }
+            ]
+          },
+          "1a": {
+            "if": {
+              "lte": [
+                "lu-taxable",
+                51804
+              ]
+            },
+            "then": {
+              "brackets": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  13230,
+                  8
+                ],
+                [
+                  15435,
+                  9
+                ],
+                [
+                  17640,
+                  10
+                ],
+                [
+                  19845,
+                  11
+                ],
+                [
+                  22050,
+                  12
+                ],
+                [
+                  24255,
+                  14
+                ],
+                [
+                  26550,
+                  16
+                ],
+                [
+                  28845,
+                  18
+                ],
+                [
+                  31140,
+                  20
+                ],
+                [
+                  33435,
+                  22
+                ],
+                [
+                  35730,
+                  24
+                ],
+                [
+                  38025,
+                  26
+                ],
+                [
+                  40320,
+                  28
+                ],
+                [
+                  42615,
+                  30
+                ],
+                [
+                  44910,
+                  32
+                ],
+                [
+                  47205,
+                  34
+                ],
+                [
+                  49500,
+                  36
+                ],
+                [
+                  51795,
+                  38
+                ],
+                [
+                  54090,
+                  39
+                ],
+                [
+                  117450,
+                  40
+                ],
+                [
+                  176160,
+                  41
+                ],
+                [
+                  234870,
+                  42
+                ]
+              ],
+              "of": {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      {
+                        "mul": [
+                          "lu-taxable",
+                          1.25
+                        ]
+                      },
+                      19845
+                    ]
+                  }
+                ]
+              }
+            },
+            "else": {
+              "sum": [
+                5646.6,
+                {
+                  "brackets": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      51804,
+                      39
+                    ],
+                    [
+                      117450,
+                      40
+                    ],
+                    [
+                      176160,
+                      41
+                    ],
+                    [
+                      234870,
+                      42
+                    ]
+                  ],
+                  "of": "lu-taxable"
+                }
+              ]
+            }
+          },
+          "1a-parent": {
+            "if": {
+              "lte": [
+                "lu-taxable",
+                51804
+              ]
+            },
+            "then": {
+              "brackets": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  13230,
+                  8
+                ],
+                [
+                  15435,
+                  9
+                ],
+                [
+                  17640,
+                  10
+                ],
+                [
+                  19845,
+                  11
+                ],
+                [
+                  22050,
+                  12
+                ],
+                [
+                  24255,
+                  14
+                ],
+                [
+                  26550,
+                  16
+                ],
+                [
+                  28845,
+                  18
+                ],
+                [
+                  31140,
+                  20
+                ],
+                [
+                  33435,
+                  22
+                ],
+                [
+                  35730,
+                  24
+                ],
+                [
+                  38025,
+                  26
+                ],
+                [
+                  40320,
+                  28
+                ],
+                [
+                  42615,
+                  30
+                ],
+                [
+                  44910,
+                  32
+                ],
+                [
+                  47205,
+                  34
+                ],
+                [
+                  49500,
+                  36
+                ],
+                [
+                  51795,
+                  38
+                ],
+                [
+                  54090,
+                  39
+                ],
+                [
+                  117450,
+                  40
+                ],
+                [
+                  176160,
+                  41
+                ],
+                [
+                  234870,
+                  42
+                ]
+              ],
+              "of": {
+                "max": [
+                  0,
+                  {
+                    "sub": [
+                      {
+                        "mul": [
+                          "lu-taxable",
+                          1.25
+                        ]
+                      },
+                      19845
+                    ]
+                  }
+                ]
+              }
+            },
+            "else": {
+              "sum": [
+                5646.6,
+                {
+                  "brackets": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      51804,
+                      39
+                    ],
+                    [
+                      117450,
+                      40
+                    ],
+                    [
+                      176160,
+                      41
+                    ],
+                    [
+                      234870,
+                      42
+                    ]
+                  ],
+                  "of": "lu-taxable"
+                }
+              ]
+            }
+          }
+        }
       }
     },
     {
       "id": "lu-solidarity",
       "label": "Solidarity surcharge (employment fund)",
       "group": "tax",
-      "note": "7% of the income tax, or 9% when taxable income is over €150,000.",
+      "note": "7% of the income tax, or 9% when taxable income is over €150,000 (€300,000 in class 2).",
       "charge": {
         "mul": [
           "lu-income-tax",
@@ -184,7 +608,13 @@
             "if": {
               "gt": [
                 "lu-taxable",
-                150000
+                {
+                  "option": "taxClass",
+                  "cases": {
+                    "2": 300000,
+                    "default": 150000
+                  }
+                }
               ]
             },
             "then": 0.09,
@@ -318,23 +748,76 @@
           }
         ]
       }
+    },
+    {
+      "id": "lu-cim",
+      "label": "Single-parent tax credit (CIM)",
+      "group": "tax",
+      "mayBeNegative": true,
+      "note": "€3,504 for taxable income under €60,000, falling by 6.12 cents per euro to €750 at €105,000 and above. Paid even when there is no tax to set it against; reduced if the child receives maintenance or other allowances above €2,712 a year.",
+      "charge": {
+        "option": "taxClass",
+        "cases": {
+          "1a-parent": {
+            "sub": [
+              0,
+              {
+                "if": {
+                  "lt": [
+                    "lu-taxable",
+                    60000
+                  ]
+                },
+                "then": 3504,
+                "else": {
+                  "if": {
+                    "lte": [
+                      "lu-taxable",
+                      105000
+                    ]
+                  },
+                  "then": {
+                    "sub": [
+                      3504,
+                      {
+                        "mul": [
+                          {
+                            "sub": [
+                              "lu-taxable",
+                              60000
+                            ]
+                          },
+                          0.0612
+                        ]
+                      }
+                    ]
+                  },
+                  "else": 750
+                }
+              }
+            ]
+          },
+          "default": 0
+        }
+      }
     }
   ],
   "assumptions": [
-    "Resident, single, no children (tax class 1)",
-    "Paid in twelve equal months over 2026",
+    "Resident, paid in twelve equal months over 2026",
+    "Class 1 (single, no children) unless you choose another class; class 2 assumes the household has this one salary",
     "Only the minimum allowances for work and special expenses"
   ],
   "notModelled": [
-    "Tax classes 1a and 2 (single parents, married couples)",
+    "Child tax reductions (modération d'impôt pour enfants), given through family allowances",
+    "Reduction of the single-parent credit for maintenance or allowances the child receives above €2,712 a year",
+    "Couples where both partners earn (class 2 with two salaries)",
     "The temporary tax credit paid from June to December 2026 (crédit d'impôt conjoncture)",
     "Cross-border workers and non-resident tax",
     "Travel expense allowance (frais de déplacement) and actual expenses",
-    "Rounding in the official tax tables and any smoothing at the €150,000 surcharge threshold",
-    "Benefits in kind, bonuses taxed at special rates, and the single-parent credit"
+    "Rounding in the official tax tables and any smoothing at the solidarity surcharge threshold",
+    "Benefits in kind and bonuses taxed at special rates"
   ],
   "provisional": [
-    "The 2025 tax scale is assumed to apply unchanged in 2026",
     "The dependency contribution is treated as deductible like the other social contributions",
     "The ceiling and allowance from June are worked out from the €2,771.33 minimum wage"
   ],
@@ -346,6 +829,10 @@
     {
       "title": "CCSS — paramètres sociaux",
       "url": "https://ccss.public.lu/fr/parametres-sociaux/"
+    },
+    {
+      "title": "ACD — Loi concernant l'impôt sur le revenu, texte coordonné en vigueur au 1er janvier 2026 (art. 118–121, 154ter)",
+      "url": "https://impotsdirects.public.lu/dam-assets/fr/legislation/LIR/texte-coordonn-en-vigueur-au-1er-janvier-2026-ver-08052026.pdf"
     },
     {
       "title": "ACD — tarif de l'impôt sur le revenu des personnes physiques",
@@ -368,6 +855,10 @@
     {
       "title": "Official sources, Nov 2026",
       "note": "Employee contribution rates, the January ceiling and the dependency allowance from the CCSS notice of 16 January 2026; June ceiling and minimum wage from the CCSS social parameters; tax scale, solidarity surcharge, CIS/CI-CO2 and minimum allowances from the ACD pages."
+    },
+    {
+      "title": "Coordinated LIR in force 1 January 2026, Nov 2026",
+      "note": "Tariff (art. 118) confirmed for 2026; class rules: class 1 (art. 120), class 1a (art. 120bis: tariff on income less a quarter of its complement to €79,380, maximum marginal rates 39/40/41/42% above €51,804), class 2 splitting (art. 121); single-parent credit (art. 154ter: €3,504, tapering by 0.0612 between €60,000 and €105,000, €750 above). Solidarity surcharge thresholds €150,000 (classes 1, 1a) and €300,000 (class 2) from the ACD fonds pour l'emploi page."
     }
   ],
   "lastVerified": null,
@@ -408,6 +899,63 @@
         "lu-cis": 0,
         "lu-co2": 0,
         "net": 74453.61
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "taxClass": "2"
+      },
+      "note": "Taxable 51,325.21 as in class 1. Half is 25,662.61: tax 1,102.50 to €24,255 + 1,407.61 × 14% (197.06) = 1,299.56; doubled 2,599.13. Surcharge 7% = 181.94.",
+      "expect": {
+        "lu-income-tax": 2599.13,
+        "lu-solidarity": 181.94,
+        "net": 49972.14
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "taxClass": "1a"
+      },
+      "note": "Taxable 51,325.21 ≤ €51,804, so the tariff applies to 1.25 × 51,325.21 − 19,845 = 44,311.51: 4,958.10 to €42,615 + 1,696.51 × 30% (508.95) = 5,467.05. Surcharge 382.69.",
+      "expect": {
+        "lu-income-tax": 5467.05,
+        "lu-solidarity": 382.69,
+        "net": 46903.46
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "taxClass": "1a-parent"
+      },
+      "note": "As class 1a, plus the €3,504 single-parent credit (taxable income under €60,000).",
+      "expect": {
+        "lu-cim": -3504,
+        "net": 50407.46
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "taxClass": "1a"
+      },
+      "note": "Taxable 103,555.21 > €51,804: tax at €51,804 is the tariff on €44,910 (5,646.60), then 39% × 51,751.21 (20,182.97) = 25,829.57. Surcharge 7% = 1,808.07.",
+      "expect": {
+        "lu-income-tax": 25829.57,
+        "net": 76937.57
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "taxClass": "1a-parent"
+      },
+      "note": "Single-parent credit 3,504 − (103,555.21 − 60,000) × 0.0612 = 838.42.",
+      "expect": {
+        "lu-cim": -838.42,
+        "net": 77775.99
       }
     }
   ]
