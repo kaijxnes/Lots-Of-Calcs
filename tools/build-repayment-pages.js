@@ -45,9 +45,9 @@ const MORTGAGE = {
 
 const LOAN = {
   base: "/loan/", symbol: "£",
-  /* every thousand to £30,000 (people search "16k car loan", "25k loan"), then to £50,000 */
-  amounts: range(1000, 30000, 1000).concat([7500, 35000, 40000, 45000, 50000]).sort((a, b) => a - b),
-  terms: [1, 2, 3, 4, 5, 7],
+  /* every thousand to £40,000 (people search "16k car loan", "a 34000 loan"), then to £50,000 */
+  amounts: range(1000, 40000, 1000).concat([7500, 45000, 50000]).sort((a, b) => a - b),
+  terms: [1, 2, 3, 4, 5, 7, 10],
   rates: [5, 7, 9, 12, 15, 20, 25, 30],
   example: { rate: 7, years: 3 }
 };
@@ -122,7 +122,7 @@ function grid(cfg, amount, f, highlight) {
 function page({ title, desc, url, crumbs, faq, body, script }) {
   const ld = [site.webPage(title, desc, url), site.breadcrumb(crumbs), site.faqLd(faq)];
   return site.head({ title, desc, url, ld }) + body + `    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(faq)}    </main>
 ` + script + `
 ${site.FOOTER}
@@ -202,19 +202,19 @@ function mortgagePage(cfg, amount) {
 ${tool(cfg, amount, uk, `Starts on an example of ${pct(ex.rate)} over ${ex.years} years, not a quoted rate &mdash; put in the rate and term from your own offer.`)}
     <main class="tool">
       <p class="about-text">A <strong>${esc(a0)}</strong> repayment mortgage at ${pct(ex.rate)} over ${ex.years} years costs <strong>${esc(money(s, exPay))}</strong> a month, and ${esc(money(s, exInterest))} in interest over the whole term. Each extra percentage point on the rate adds about ${esc(money(s, plusOne))} a month.</p>
-      <p class="tool-section-title" style="margin-top:22px;">Monthly repayments on ${esc(a0)}</p>
-${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t)), ex)}      <p class="tool-section-title" style="margin-top:22px;">Total interest over the term</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Monthly repayments on ${esc(a0)}</h2>
+${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t)), ex)}      <h2 class="tool-section-title" style="margin-top:22px;">Total interest over the term</h2>
 ${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t) * t * 12 - amount, true), ex)}      <p class="tool-hint" style="margin-top:12px;">Assumes the same rate for the whole term. In practice ${uk ? "most UK deals fix the rate for two to five years, then move to the lender's variable rate unless you remortgage" : "an adjustable-rate mortgage changes after its fixed period; a fixed-rate loan doesn't"}.</p>
-${uk ? `      <p class="tool-section-title" style="margin-top:22px;">Interest-only</p>
+${uk ? `      <h2 class="tool-section-title" style="margin-top:22px;">Interest-only</h2>
 ${table(["Rate", "Interest-only a month", "Repayment over 25 years"], cfg.rates.map((r) => [pct(r), esc(money(s, (amount * r) / 100 / 12)), esc(money(s, payment(amount, r, 25)))]), 360)}` : ""}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Can you afford it?</p>
+      <h2 class="tool-section-title">Can you afford it?</h2>
       ${afford}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How the payment is worked out</p>
+      <h2 class="tool-section-title">How the payment is worked out</h2>
       <p class="about-text">A repayment mortgage charges interest each month on what you still owe, and the fixed monthly payment covers that interest plus a slice of the loan. Early on most of the payment is interest; by the end it is almost all capital. The payment is <strong>P &times; r &times; (1 + r)<sup>n</sup> &divide; ((1 + r)<sup>n</sup> &minus; 1)</strong>, where P is the amount borrowed, r is the annual rate divided by 12 and n is the number of monthly payments.</p>
       <p class="about-text">A longer term lowers the monthly payment but means paying interest for longer, so the total cost rises: compare the ${shorter}- and ${ex.years}-year columns in the interest table above.</p>
     </main>
@@ -248,11 +248,13 @@ function loanPage(cfg, amount) {
 
   const title = site.fitTitle(`${a0} Loan & Car Loan Repayments — Monthly Cost by APR`, `${a0} Loan Repayments — Monthly Cost by APR & Term`);
   const car4 = payment(amount, ex.rate, 4), car5 = payment(amount, ex.rate, 5);
-  const desc = `What a ${a0} personal or car loan costs each month at APRs from ${cfg.rates[0]}% to ${cfg.rates[cfg.rates.length - 1]}%, over 1 to 7 years. At ${ex.rate}% over ${ex.years} years it is ${money(s, exPay)} a month.`;
+  const desc = `What a ${a0} personal or car loan costs each month at APRs from ${cfg.rates[0]}% to ${cfg.rates[cfg.rates.length - 1]}%, over ${cfg.terms[0]} to ${cfg.terms[cfg.terms.length - 1]} years. At ${ex.rate}% over ${ex.years} years it is ${money(s, exPay)} a month.`;
 
   const faq = [
     [`What are the monthly repayments on a ${a0} loan?`,
       `At ${ex.rate}% APR over ${ex.years} years, ${money(s, exPay)} a month, ${money(s, exPay * ex.years * 12)} in total. At ${high}% APR the same loan costs ${money(s, highPay)} a month. The table on this page covers every common rate and term.`],
+    [`How much is a ${a0} loan over 3, 5 or 10 years?`,
+      `At ${ex.rate}% APR: ${[3, 5, 10].map((t) => `${money(s, payment(amount, ex.rate, t))} a month over ${t} years (${money(s, payment(amount, ex.rate, t) * t * 12 - amount, true)} interest)`).join("; ")}. A longer term lowers the payment but adds interest, so check which terms your lender offers.`],
     [`How much interest will I pay on ${a0}?`,
       `At ${ex.rate}% over ${ex.years} years, ${money(s, exInterest)}. Stretching it to ${longer} years cuts the monthly payment to ${money(s, longPay)} but raises the interest to ${money(s, longInterest)}.`],
     [`How much is a ${a0} car loan a month?`,
@@ -278,12 +280,12 @@ function loanPage(cfg, amount) {
 ${tool(cfg, amount, false, `Starts on an example of ${ex.rate}% over ${ex.years} years &mdash; put in the APR and term you've been offered.`)}
     <main class="tool">
       <p class="about-text">Borrowing <strong>${esc(a0)}</strong> at ${ex.rate}% APR over ${ex.years} years costs <strong>${esc(money(s, exPay))}</strong> a month, ${esc(money(s, exInterest))} in interest overall. At ${high}% APR, a rate more typical for smaller loans or a weaker credit record, the monthly payment would be ${esc(money(s, highPay))}.</p>
-      <p class="tool-section-title" style="margin-top:22px;">Monthly repayments on ${esc(a0)}</p>
-${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t)), ex)}      <p class="tool-section-title" style="margin-top:22px;">Total interest</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Monthly repayments on ${esc(a0)}</h2>
+${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t)), ex)}      <h2 class="tool-section-title" style="margin-top:22px;">Total interest</h2>
 ${grid(cfg, amount, (r, t) => money(s, payment(amount, r, t) * t * 12 - amount, true), ex)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">How the repayment is worked out</p>
+      <h2 class="tool-section-title">How the repayment is worked out</h2>
       <p class="about-text">Each month the lender charges interest on what you still owe, and your fixed payment covers that interest plus part of the loan, so the balance falls faster towards the end. The payment is <strong>P &times; r &times; (1 + r)<sup>n</sup> &divide; ((1 + r)<sup>n</sup> &minus; 1)</strong>, with P the amount borrowed, r the APR divided by 12 and n the number of months.</p>
       <p class="about-text">The <a href="/loan-repayment/">loan repayment calculator</a> shows the balance year by year, and the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a> compares ways of paying off several debts. Buying a car on dealer finance with a balloon payment? Use the <a href="/car-finance/">car finance calculator</a>.</p>
     </main>
@@ -315,7 +317,7 @@ function hub({ loc, title, desc, h1, sub, sections, intro, faq }) {
 ${sections}    </main>
 ${faq ? `
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(faq)}    </main>
 ` : ""}
 ${site.FOOTER}
@@ -350,8 +352,8 @@ function mortgageHub() {
       ["Does a longer term save money?", "It lowers the monthly payment but raises the total cost, because you pay interest for longer: compare the total interest columns on any amount's page."],
       ["How much can I borrow?", "UK lenders typically lend around 4 to 4.5 times income; US lenders look at how much of your gross income goes on housing and debts (the 28/36 rule). The mortgage affordability pages work it out by salary."]
     ],
-    sections: `      <p class="tool-section-title" style="margin-top:22px;">UK mortgages</p>
-${amountTable(uk, "Mortgage")}      <p class="tool-section-title" style="margin-top:22px;">US mortgages</p>
+    sections: `      <h2 class="tool-section-title" style="margin-top:22px;">UK mortgages</h2>
+${amountTable(uk, "Mortgage")}      <h2 class="tool-section-title" style="margin-top:22px;">US mortgages</h2>
 ${amountTable(us, "Mortgage")}      <p class="tool-hint" style="margin-top:12px;">US payments are principal and interest only, before property tax, insurance and any mortgage insurance.</p>
 `
   });
@@ -374,10 +376,10 @@ function loanHub() {
   return hub({
     loc: LOAN.base,
     title: "Loan Repayments by Amount — Monthly Cost Tables",
-    desc: "Monthly repayments and total interest on personal loans from £1,000 to £50,000, at APRs from 5% to 30% over 1 to 7 years.",
+    desc: "Monthly repayments and total interest on personal loans from £1,000 to £50,000, at APRs from 5% to 30% over 1 to 10 years.",
     h1: "Loan repayments by amount",
     sub: "Monthly cost and total interest for each common loan size.",
-    intro: `Pick an amount for its full table of repayments at APRs from ${LOAN.rates[0]}% to ${LOAN.rates[LOAN.rates.length - 1]}% over 1 to 7 years. The summary below uses an example rate. For any amount, APR and term, use the <a href="/loan-repayment/">loan repayment calculator</a>; to pay off several debts in the cheapest order, the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a>; for a car, the <a href="/car-finance/">car finance calculator</a>.`,
+    intro: `Pick an amount for its full table of repayments at APRs from ${LOAN.rates[0]}% to ${LOAN.rates[LOAN.rates.length - 1]}% over ${LOAN.terms[0]} to ${LOAN.terms[LOAN.terms.length - 1]} years. The summary below uses an example rate. For any amount, APR and term, use the <a href="/loan-repayment/">loan repayment calculator</a>; to pay off several debts in the cheapest order, the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a>; for a car, the <a href="/car-finance/">car finance calculator</a>.`,
     faq: [
       ["How are loan repayments worked out?", "A personal loan is repaid in equal monthly instalments: each covers the month's interest on the balance plus some of the loan, so the balance falls to zero at the end of the term. The APR includes the interest and any compulsory fees, so it's the figure to compare loans on."],
       [`What are the repayments on a £10,000 loan?`, `About ${money("£", payment(10000, LOAN.example.rate, LOAN.example.years))} a month at ${LOAN.example.rate}% APR over ${LOAN.example.years} years, ${money("£", payment(10000, LOAN.example.rate, LOAN.example.years) * LOAN.example.years * 12 - 10000)} in interest altogether. Over 5 years it's ${money("£", payment(10000, LOAN.example.rate, 5))} a month but more interest overall.`],
@@ -399,7 +401,7 @@ function linkBlock(file, html) {
   const END = "    <!-- end repayment links -->\n";
   const full = path.join(site.ROOT, file);
   let s = fs.readFileSync(full, "utf8");
-  if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length);
+  if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length).replace(/^\n/, "");
   const at = s.indexOf("    <!-- related calculators: generated by tools/related.js -->");
   if (at < 0) throw new Error(file + " has no related block to put the links above");
   s = s.slice(0, at) + START + html + END + "\n" + s.slice(at);
@@ -429,18 +431,18 @@ function main() {
   const pruned = site.prune("mortgage", amount) + site.prune("mortgage/us", amount) + site.prune("loan", amount);
 
   linkBlock("mortgage-overpayment/index.html", `    <main class="tool">
-      <p class="tool-section-title">Monthly payments by mortgage size</p>
+      <h2 class="tool-section-title">Monthly payments by mortgage size</h2>
       <p class="salary-links">${amountLinks(MORTGAGE.GBP, "mortgage", [100000, 150000, 200000, 250000, 300000, 400000, 500000])} <a href="/mortgage/">All amounts</a></p>
     </main>
 `);
   linkBlock("loan-repayment/index.html", `    <main class="tool">
-      <p class="tool-section-title">Repayments by loan size</p>
+      <h2 class="tool-section-title">Repayments by loan size</h2>
       <p class="salary-links">${amountLinks(LOAN, "loan", [3000, 5000, 10000, 15000, 20000, 25000])} <a href="/loan/">All amounts</a></p>
     </main>
 `);
 
   linkBlock("car-finance/index.html", `    <main class="tool">
-      <p class="tool-section-title">Car loan repayments by amount</p>
+      <h2 class="tool-section-title">Car loan repayments by amount</h2>
       <p class="tool-hint">Borrowing from a bank rather than the dealer? A personal loan has no balloon payment — these show the monthly cost at every APR and term.</p>
       <p class="salary-links">${amountLinks(LOAN, "car loan", [5000, 8000, 10000, 12000, 15000, 16000, 18000, 20000, 25000, 30000, 40000])} <a href="/loan/">All amounts</a></p>
     </main>

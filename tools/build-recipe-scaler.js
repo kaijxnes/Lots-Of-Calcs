@@ -41,7 +41,7 @@ const html = site.head({ title, desc, url, ld }) + `    <header class="site-head
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(path)}

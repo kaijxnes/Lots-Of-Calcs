@@ -60,7 +60,7 @@ function page() {
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">How it looks</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">How it looks</h2>
       <div style="${cq}" aria-label="Cheque preview">
         <div style="text-align:right;" id="cq-date"></div>
         <div style="margin-top:8px;"><span id="cq-pay">Pay</span> <strong id="cq-payee">Payee name</strong></div>
@@ -73,14 +73,14 @@ function page() {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">£1,250.50 four ways</p>
-${site.table(["Cheque", "In the box", "On the words line"], examples.map((e) => e.map(esc)), 460)}      <p class="tool-section-title" style="margin-top:22px;">Common amounts</p>
+      <h2 class="tool-section-title">£1,250.50 four ways</h2>
+${site.table(["Cheque", "In the box", "On the words line"], examples.map((e) => e.map(esc)), 460)}      <h2 class="tool-section-title" style="margin-top:22px;">Common amounts</h2>
       <p class="salary-links">${amounts.map((a) => `<a href="/number-to-words/${a}/">£${a.toLocaleString("en-GB")} in words</a>`).join(" ")}</p>
       <p class="tool-hint" style="margin-top:12px;">Each amount's page shows the UK, US and Indian cheque wording. For any number in words, decimals and ordinals, use the <a href="/number-to-words/">number to words converter</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/cheque-writer/")}

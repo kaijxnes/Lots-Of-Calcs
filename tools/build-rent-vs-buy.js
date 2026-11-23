@@ -78,7 +78,7 @@ function page() {
           <option value="C$">C$ Canadian Dollar</option>
         </select>
       </div>
-      <p class="tool-section-title">Buying</p>
+      <h2 class="tool-section-title">Buying</h2>
       <div class="field-row">
 ${field("price", "Home price", D.price)}
 ${field("depositPct", "Deposit (%)", D.depositPct)}
@@ -95,12 +95,12 @@ ${field("sellingPct", "Selling costs (% of price)", D.sellingPct, "Estate agent 
 ${field("runningPct", "Running costs (% of value a year)", D.runningPct, "Maintenance, insurance, service charge")}
 ${field("growth", "House prices rise (% a year)", D.growth)}
       </div>
-      <p class="tool-section-title">Renting</p>
+      <h2 class="tool-section-title">Renting</h2>
       <div class="field-row">
 ${field("rent", "Rent a month", D.rent)}
 ${field("rentRise", "Rent rises (% a year)", D.rentRise)}
       </div>
-      <p class="tool-section-title">Both</p>
+      <h2 class="tool-section-title">Both</h2>
       <div class="field-row">
 ${field("investReturn", "Savings could earn (% a year)", D.investReturn)}
 ${field("years", "Years you'd stay", D.years)}
@@ -121,7 +121,7 @@ ${field("years", "Years you'd stay", D.years)}
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">Year by year</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Year by year</h2>
       <div class="table-scroll">
         <div style="min-width:560px;">
           <table class="out-table">
@@ -136,20 +136,20 @@ ${yearRows}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How the comparison works</p>
+      <h2 class="tool-section-title">How the comparison works</h2>
       <p class="about-text">Comparing rent with a mortgage payment on its own misleads in both directions: part of each mortgage payment is building equity rather than being spent, but buying also ties up a deposit, costs thousands to get in and out of, and comes with repairs a landlord would otherwise pay for.</p>
       <p class="about-text">So the calculator follows two people from the same starting point. The buyer puts down the deposit and pays the buying costs; the renter invests that same money instead. Each month, whichever of them has the lower housing costs invests the difference. At the end, the buyer sells (paying selling costs) and both count what they have.</p>
       <p class="about-text"><strong>The example:</strong> a £300,000 home with a 10% deposit and a 4.5% mortgage over 25 years costs ${gbp(r.payment)} a month in repayments, against £1,200 a month in rent. With prices and rents rising 3% a year and savings earning 5%, after 10 years the buyer is worth ${gbp(r.buyer)} and the renter ${gbp(r.renter)} &mdash; ${ahead(r)}${r.breakEven ? `, with buying pulling ahead in year ${r.breakEven}` : ""}.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How long you stay changes the answer</p>
+      <h2 class="tool-section-title">How long you stay changes the answer</h2>
       <p class="about-text">The same example, stopping after different numbers of years:</p>
-${site.table(["Stay", "Worth if you buy", "Worth if you rent", "Better off"], stayRows, 480)}      <p class="tool-section-title" style="margin-top:22px;">And so do house prices</p>
+${site.table(["Stay", "Worth if you buy", "Worth if you rent", "Better off"], stayRows, 480)}      <h2 class="tool-section-title" style="margin-top:22px;">And so do house prices</h2>
 ${site.table(["House prices rise", "After 10 years", "Buying pulls ahead"], growthRows, 400)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/rent-vs-buy/")}

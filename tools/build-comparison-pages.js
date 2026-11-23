@@ -60,13 +60,13 @@ function page(a, b) {
 
     <main class="tool">
       <div class="jo-grid">
-        <div class="jo-side"><p class="tool-section-title" style="margin-top:0;">${esc(LA)}</p><div class="result-box"><div class="result-grid">
+        <div class="jo-side"><h2 class="tool-section-title" style="margin-top:0;">${esc(LA)}</h2><div class="result-box"><div class="result-grid">
           <div class="result-row"><span class="r-label">Salary</span><span class="r-value">${m0(ca, mid.g)}</span></div>
           <div class="result-row highlight"><span class="r-label">Take-home</span><span class="r-value">${m0(ca, mid.na)}</span></div>
           <div class="result-row"><span class="r-label">A month</span><span class="r-value">${m0(ca, mid.na / 12)}</span></div>
           <div class="result-row"><span class="r-label">Tax and contributions</span><span class="r-value">${(mid.ra * 100).toFixed(1)}%</span></div>
         </div></div></div>
-        <div class="jo-side"><p class="tool-section-title" style="margin-top:0;">${esc(LB)}</p><div class="result-box"><div class="result-grid">
+        <div class="jo-side"><h2 class="tool-section-title" style="margin-top:0;">${esc(LB)}</h2><div class="result-box"><div class="result-grid">
           <div class="result-row"><span class="r-label">Salary</span><span class="r-value">${m0(cb, mid.gb2)}</span></div>
           <div class="result-row highlight"><span class="r-label">Take-home</span><span class="r-value">${m0(cb, mid.nb)}</span></div>
           <div class="result-row"><span class="r-label">A month</span><span class="r-value">${m0(cb, mid.nb / 12)}</span></div>
@@ -77,16 +77,16 @@ function page(a, b) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">At other salaries</p>
+      <h2 class="tool-section-title">At other salaries</h2>
 ${site.table(["Salary", `Take-home in ${esc(LA)}`, `Take-home in ${esc(LB)}`, "Difference"], tableRows, 560)}      <p class="tool-hint" style="margin-top:12px;">Percentages are the share of salary going on tax and contributions. ${same ? "" : `Differences in ${ca} at the ECB rate for ${DATE}.`}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">More comparisons</p>
+      <h2 class="tool-section-title">More comparisons</h2>
       <p class="salary-links">${others.join(" ")}</p>
     </main>
 
@@ -103,7 +103,7 @@ site.prune("salary-comparison", /^[a-z-]+-vs-[a-z-]+$/);
 site.sitemapBlock("salary comparison pages", "tools/build-comparison-pages.js", urls);
 /* links from the salary calculator */
 site.hubBlock("/salary/", "salary comparisons", "tools/build-comparison-pages.js", `    <main class="tool">
-      <p class="tool-section-title">Take-home pay compared between countries</p>
+      <h2 class="tool-section-title">Take-home pay compared between countries</h2>
       <p class="salary-links">${PAIRS.map(([a, b]) => `<a href="${BASE}${slug(a, b)}/">${esc(LABEL[a][0])} vs ${esc(LABEL[b][0])}</a>`).join(" ")}</p>
     </main>
 

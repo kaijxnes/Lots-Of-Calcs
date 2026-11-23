@@ -108,13 +108,13 @@ function destPage(d) {
 
 ${tool(d, S.speed(DEF_SPEED))}
     <main class="tool">
-      <p class="tool-section-title">${esc(Cap(d.shortTitle || d.name))} at every speed</p>
+      <h2 class="tool-section-title">${esc(Cap(d.shortTitle || d.name))} at every speed</h2>
 ${destTable(d)}      ${realTrip(d)}
       <p class="tool-hint" style="margin-top:12px;">${esc(STRAIGHT)}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other destinations</div>
@@ -169,14 +169,14 @@ function speedPage(d, v) {
 
 ${tool(d, v)}
     <main class="tool">
-      <p class="tool-section-title">${esc(Cap(d.shortTitle || d.name))} ${esc(v.name.toLowerCase())}</p>
+      <h2 class="tool-section-title">${esc(Cap(d.shortTitle || d.name))} ${esc(v.name.toLowerCase())}</h2>
 ${site.table(["", "Distance", "Time"], distRows, 420)}      ${realTrip(d)}
-      <p class="tool-section-title" style="margin-top:22px;">Every destination ${esc(v.name.toLowerCase())}</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Every destination ${esc(v.name.toLowerCase())}</h2>
 ${site.table(["Destination", "Time"], everyRows.map((r, i) => [r[0] + (S.DEST[i].single ? "" : `<br><span class="tool-hint">${esc(S.DIST_LABEL[S.DEST[i].def].toLowerCase())}</span>`), r[1]]), 360)}      <p class="tool-hint" style="margin-top:12px;">${esc(STRAIGHT)} Distances from NASA's planetary fact sheets.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">${esc(Cap(d.shortTitle || d.name))} at other speeds</div>
@@ -213,13 +213,13 @@ function hub() {
 
 ${tool(mars, S.speed(DEF_SPEED))}
     <main class="tool">
-      <p class="tool-section-title">Every destination</p>
+      <h2 class="tool-section-title">Every destination</h2>
 ${site.table(["Destination", "By car", "By plane", "Apollo speed", "Light"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">Planets at their closest to Earth; the Moon and Sun at their average distance. Pick a destination for every speed, the farthest distances and how long real spacecraft took. ${esc(STRAIGHT)}</p>
-      <p class="tool-section-title" style="margin-top:22px;">Speeds used</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Speeds used</h2>
 ${site.table(["Speed", "", "Where it comes from"], S.SPEEDS.map((v) => [esc(v.name), esc(v.label), esc(Cap(v.note))]), 480)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

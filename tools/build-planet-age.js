@@ -53,12 +53,12 @@ ${body}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How long a year lasts</p>
+      <h2 class="tool-section-title">How long a year lasts</h2>
 ${site.table(["Planet", "One year (Earth days)", "One day (hours)"], Object.keys(PA.ORBIT).map((n) => [n, PA.ORBIT[n][0].toLocaleString("en-GB"), PA.ORBIT[n][1].toLocaleString("en-GB")]), 360)}      <p class="tool-hint" style="margin-top:12px;">Your weight is different on each world too: <a href="/weight-on-other-planets/">weight on other planets</a>, or one planet at a time: ${["mars", "moon", "jupiter", "venus"].map((s) => `<a href="/weight-on-other-planets/${s}/">${s === "moon" ? "the Moon" : s[0].toUpperCase() + s.slice(1)}</a>`).join(", ")}.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/age-on-other-planets/")}

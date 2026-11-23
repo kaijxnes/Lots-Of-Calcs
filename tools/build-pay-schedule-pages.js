@@ -96,14 +96,14 @@ function calculatorPage() {
 
 ${tool(DEFAULT_YEAR, "")}
     <main class="tool">
-      <p class="tool-section-title">Biweekly pay schedules by year</p>
+      <h2 class="tool-section-title">Biweekly pay schedules by year</h2>
       <p class="salary-links">${YEARS.map((y) => `<a href="${BASE}${y}/">${y} pay schedule</a>`).join(" ")}</p>
-      <p class="tool-section-title" style="margin-top:18px;">Which years have 27 Friday paydays?</p>
+      <h2 class="tool-section-title" style="margin-top:18px;">Which years have 27 Friday paydays?</h2>
 ${site.table(["Year", "First cycle", "Second cycle"], rows27, 340)}      <p class="tool-hint" style="margin-top:12px;">Friday paydays, the two cycles being the first and second Friday of January. If your employer pays a fixed salary over 26 paychecks, a 27-paycheck year either adds an extra paycheck or spreads the salary thinner — ask your payroll team which.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}
@@ -134,18 +134,18 @@ function yearPage(y) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">Paid every other Friday from ${P.niceLong(a.first)}</p>
+      <h2 class="tool-section-title">Paid every other Friday from ${P.niceLong(a.first)}</h2>
       <p class="about-text"><strong>${a.days.length} paydays.</strong> Three-paycheck months: <strong>${list(a.three)}</strong>.</p>
 ${monthTable(a)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Paid every other Friday from ${P.niceLong(b.first)}</p>
+      <h2 class="tool-section-title">Paid every other Friday from ${P.niceLong(b.first)}</h2>
       <p class="about-text"><strong>${b.days.length} paydays.</strong> Three-paycheck months: <strong>${list(b.three)}</strong>.</p>
 ${monthTable(b)}      <p class="tool-hint no-print" style="margin-top:12px;">Paid on another day, or want the total for your paycheck? Use the <a href="${BASE}?payday=${a.first}">biweekly pay schedule calculator</a>. If a payday falls on a public holiday, many employers pay the working day before.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title no-print" style="margin-top:28px;">Other years</div>

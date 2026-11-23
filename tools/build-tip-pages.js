@@ -63,23 +63,23 @@ function page(x, y) {
           <div class="result-row highlight"><span class="r-label">Total to pay</span><span class="r-value">${d2(total)}</span></div>
         </div>
       </div>
-      <p class="tool-section-title" style="margin-top:20px;">Splitting it</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Splitting it</h2>
 ${site.table(["Split between", "Tip each", "Total each"], split, 300)}      <p class="tool-hint" style="margin-top:12px;">Rounded to the cent, so one person may pay a cent more or less. Other amounts, currencies and splits: use the <a href="${BASE}">tip calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How to work it out</p>
+      <h2 class="tool-section-title">How to work it out</h2>
       <p class="about-text"><strong>The formula:</strong> bill × tip % ÷ 100 = ${d(y)} × ${x} ÷ 100 = <strong>${d(t)}</strong>. Add it to the bill for ${d(total)}, or multiply the bill by ${1 + x / 100} in one step.</p>
       <p class="about-text"><strong>At the table:</strong> ${shortcut(x, y)}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Other tips on ${d(y)}</p>
-${site.table(["Tip", "Tip amount", "Total"], others, 300)}      <p class="tool-section-title" style="margin-top:20px;">${x}% on nearby bills</p>
+      <h2 class="tool-section-title">Other tips on ${d(y)}</h2>
+${site.table(["Tip", "Tip amount", "Total"], others, 300)}      <h2 class="tool-section-title" style="margin-top:20px;">${x}% on nearby bills</h2>
 ${site.table(["Bill", "Tip amount", "Total"], nearby, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -95,7 +95,7 @@ function hubBlock() {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length).replace(/^\n+/, "");
   const html = `    <main class="tool">
-      <p class="tool-section-title">Tips on common bills</p>
+      <h2 class="tool-section-title">Tips on common bills</h2>
 ${PCTS.map((x) => `      <p class="salary-links"><strong>${x}% tip on:</strong> ${BILLS.map((y) => `<a href="${BASE}${slug(x, y)}/">$${y}</a>`).join(" ")}</p>`).join("\n")}
     </main>
 

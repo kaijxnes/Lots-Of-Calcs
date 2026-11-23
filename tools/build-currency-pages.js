@@ -64,12 +64,12 @@ function page(n, a, b) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">${a} to ${b}</p>
-${site.table([a, b], table, 260)}      <p class="tool-section-title" style="margin-top:20px;">${b} to ${a}</p>
+      <h2 class="tool-section-title">${a} to ${b}</h2>
+${site.table([a, b], table, 260)}      <h2 class="tool-section-title" style="margin-top:20px;">${b} to ${a}</h2>
 ${site.table([b, a], back, 260)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -112,13 +112,13 @@ function hub() {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">The pound against other currencies (${DATE})</p>
-${site.table(["", "", "", ""], gbpTable, 360)}      <p class="tool-section-title" style="margin-top:20px;">Common conversions</p>
+      <h2 class="tool-section-title">The pound against other currencies (${DATE})</h2>
+${site.table(["", "", "", ""], gbpTable, 360)}      <h2 class="tool-section-title" style="margin-top:20px;">Common conversions</h2>
 ${PAIRS.map(([a, b]) => `      <p class="salary-links"><strong>${a} to ${b}:</strong> ${AMOUNTS.map((n) => `<a href="${BASE}${slug(n, a, b)}/">${n.toLocaleString("en-GB")}</a>`).join(" ")}</p>`).join("\n")}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(HUB)}

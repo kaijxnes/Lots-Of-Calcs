@@ -66,7 +66,7 @@ const PAGES = {
           const x = t.run(g), y = t.run(g, { ruling30: "yes" });
           return [m0(g), m0(y.values["nl-30-allowance"]), m0(x.net), m0(y.net), m0(y.net - x.net), m(( y.net - x.net) / 12)];
         },
-        explain: `      <p class="tool-section-title">How the 30% ruling works</p>
+        explain: `      <h2 class="tool-section-title">How the 30% ruling works</h2>
       <p class="about-text">If you're recruited from abroad for a job in the Netherlands, your employer can pay up to ${f.pct}% of your salary as a tax-free allowance for the extra costs of living away from home (the <em>expatregeling</em>). The ${f.pct}% is of your pay <em>including</em> the allowance: on ${m0(ex)}, ${m0(allowance)} is paid tax-free and income tax is worked out on the other ${m0(ex - allowance)}.</p>
       <p class="about-text"><strong>The salary norm.</strong> What's left after the allowance must still be more than ${m0(f.norm)} a year in ${t.year} (${m0(f.normYoung)} if you're under 30 and have a master's degree; there's no minimum for scientific researchers). Close to the norm the allowance is cut back to keep you above it — on €60,000 it's ${m0(atNorm)}, not ${m0(60000 * f.pct / 100)}.</p>
       <p class="about-text"><strong>The cap.</strong> The allowance is only paid on salary up to ${m0(f.cap)} — the top-salary limit (WNT norm) — so the most it can be is ${m0(f.cap * f.pct / 100)} for a full year.</p>
@@ -115,7 +115,7 @@ const PAGES = {
           return [m0(g), m0(taxOf(x)), m0(taxOf(y)), m0(x.net), m0(y.net), (dd >= 0 ? "+" : "−") + m0(Math.abs(dd))];
         },
         tableNote: `Normal income tax for ${esc(regionName)}, single, no children. Social security is the same either way.`,
-        explain: `      <p class="tool-section-title">How the Beckham law works</p>
+        explain: `      <h2 class="tool-section-title">How the Beckham law works</h2>
       <p class="about-text">Spain's special regime for workers moving there (<em>régimen especial para trabajadores desplazados</em>, article 93 of the income tax law — nicknamed after David Beckham, one of the first to use it) taxes your Spanish employment income at a flat <strong>${f.low}% up to ${m0(f.band)}</strong> and <strong>${f.high}% above</strong>, instead of the normal progressive IRPF scales.</p>
       <p class="about-text"><strong>It's on gross pay.</strong> The ${f.low}% is charged on your whole salary: there's no personal allowance, no reduction for employment income and no deduction for social security, and the regional scales don't apply (the tax is split half to the state and half to your region on the return, but the rate is the same everywhere). That's why it only pays off above about ${m0(breakEven)} in ${esc(regionName)} — below that, normal income tax with its allowances comes out lower.</p>
       <p class="about-text"><strong>Who can use it.</strong> You mustn't have been resident in Spain in the previous 5 tax years, and you must be moving for a job with a Spanish employer (or one that posts you there, or remote work for a foreign company under Spain's international teleworking (digital nomad) visa), to become a company director, or for some entrepreneurial and highly qualified roles. You opt in on form 149 within six months of the start date on your Spanish social security registration.</p>
@@ -158,13 +158,13 @@ ${p.fields}
       <p class="error-msg" id="ex-error" style="display:none;"></p>
 ${p.allowanceRow ? `      <div class="result-box" style="margin-bottom:16px;">\n        <div class="result-grid">\n${p.allowanceRow}        </div>\n      </div>\n` : ""}      <div class="jo-grid">
         <div class="jo-side">
-          <p class="tool-section-title" style="margin-top:0;">${esc(cfg.offLabel)}</p>
+          <h2 class="tool-section-title" style="margin-top:0;">${esc(cfg.offLabel)}</h2>
           <div class="result-box"><div class="result-grid">
 ${side("off", p.a)}
           </div></div>
         </div>
         <div class="jo-side">
-          <p class="tool-section-title" style="margin-top:0;">With ${esc(cfg.name.replace(/^The /, "the "))}</p>
+          <h2 class="tool-section-title" style="margin-top:0;">With ${esc(cfg.name.replace(/^The /, "the "))}</h2>
           <div class="result-box"><div class="result-grid">
 ${side("on", p.b)}
           </div></div>
@@ -175,7 +175,7 @@ ${side("on", p.b)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">${esc(cfg.name)} at common salaries (${t.year})</p>
+      <h2 class="tool-section-title">${esc(cfg.name)} at common salaries (${t.year})</h2>
 ${site.table(p.tableHead, rows, 680)}      <p class="tool-hint" style="margin-top:12px;">${p.tableNote ? p.tableNote + " " : ""}A full year on the scheme.</p>
     </main>
 
@@ -185,7 +185,7 @@ ${p.explain}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(p.faq)}    </main>
 
 ${related.block(cfg.path)}

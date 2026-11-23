@@ -133,13 +133,13 @@ function page(pct, salary) {
 
 ${tool(salary, pct)}
     <main class="tool">
-      <p class="tool-section-title">Before and after (${ENG})</p>
+      <h2 class="tool-section-title">Before and after (${ENG})</h2>
 ${site.table(["", "Now", `After ${pct}%`, "Change"], rows, 460)}      <p class="tool-hint" style="margin-top:12px;">Take-home on £${salary.toLocaleString("en-GB")} line by line: <a href="/salary/${salary}-after-tax/">£${salary.toLocaleString("en-GB")} after tax</a>. In Scotland, take-home goes from ${m(sa.net / 12)} to ${m(sb.net / 12)} a month (+${m((sb.net - sa.net) / 12)}). No student loan or pension. See the full breakdown on the <a href="/salary/uk/">UK salary calculator</a>.</p>
-      <p class="tool-section-title" style="margin-top:22px;">Other rises on £${salary.toLocaleString("en-GB")}</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Other rises on £${salary.toLocaleString("en-GB")}</h2>
 ${site.table(["Rise", "Before tax", "After tax, a year", "A month"], riseRows, 420)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${(() => { const b = links.borrowUkNear(next); return b ? `    <p class="salary-links"><a href="${b.url}">How much can I borrow on ${m0(b.value)}?</a> <a href="/salary/${salary}-after-tax/">${m0(salary)} after tax</a></p>\n` : ""; })()}
@@ -179,14 +179,14 @@ function hub() {
 
 ${tool(30000, 5, true)}
     <main class="tool">
-      <p class="tool-section-title">A 5% rise around the world</p>
+      <h2 class="tool-section-title">A 5% rise around the world</h2>
 ${worldTable(5)}      <p class="tool-hint" style="margin-top:12px;">A typical salary in each place, single, with the default options. US states include federal tax and FICA. Pick your own place and salary above.</p>
-      <p class="tool-section-title" style="margin-top:22px;">UK: extra take-home a month, by salary and rise</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">UK: extra take-home a month, by salary and rise</h2>
 ${site.table(["Salary"].concat(PCTS.map((p) => `<a href="${PR.pctUrl(p)}">${p}%</a>`)), grid, 520)}      <p class="tool-hint" style="margin-top:12px;">${esc(YEAR)}, ${ENG}, no student loan or pension. Pick a figure for the full breakdown, or a percentage for every salary from £15,000 to £200,000.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}
@@ -224,14 +224,14 @@ function pctPage(pct) {
 
 ${tool(30000, pct, true)}
     <main class="tool">
-      <p class="tool-section-title">A ${pct}% rise around the world</p>
+      <h2 class="tool-section-title">A ${pct}% rise around the world</h2>
 ${worldTable(pct)}      <p class="tool-hint" style="margin-top:12px;">A typical salary in each place, with the default options; US states include federal tax and FICA. Pick your own place and salary in the calculator.</p>
-      <p class="tool-section-title" style="margin-top:22px;">UK: a ${pct}% rise on each salary</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">UK: a ${pct}% rise on each salary</h2>
 ${site.table(["Salary", "Rise before tax", "Extra a month (Eng, Wales, NI)", "Extra a month (Scotland)", "You keep"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">After income tax and National Insurance, with no student loan or pension. Pick a salary for the full before-and-after breakdown.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q).replace("The inflation calculator", 'The <a href="/inflation/">inflation calculator</a>')}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other pay rises</div>

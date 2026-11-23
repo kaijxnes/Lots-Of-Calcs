@@ -54,12 +54,12 @@ ${inputs}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Units and calories in common drinks</p>
+      <h2 class="tool-section-title">Units and calories in common drinks</h2>
 ${site.table(["Drink", "Units", "Calories from alcohol"], unitRows, 420)}      <p class="tool-hint" style="margin-top:12px;">Units are ABV × ml ÷ 1,000, as the NHS works them out; the NHS advises no more than 14 a week. Put the money towards something with the <a href="/savings-goal/">savings goal calculator</a>, or see what the calories mean with the <a href="/calorie-calculator/">calorie calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/dry-january-calculator/")}

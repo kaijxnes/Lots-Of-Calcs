@@ -83,19 +83,19 @@ function calculatorPage() {
 
 ${toolHtml(500, "", "")}
     <main class="tool">
-      <p class="tool-section-title">Starting in ${monthLabel(START)}, for 1 December ${XMAS}</p>
+      <h2 class="tool-section-title">Starting in ${monthLabel(START)}, for 1 December ${XMAS}</h2>
 ${site.table(["Budget", "A week", "Each payday", "A day"], rows, 380)}      <p class="tool-hint" style="margin-top:12px;">${r.weeks} weekly deposits from ${C.nice(START)} and ${r.paydays.length} paydays on the 28th. Each budget has its own page with the cost of starting later.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Making it easy</p>
+      <h2 class="tool-section-title">Making it easy</h2>
       <p class="about-text"><strong>Set a budget first.</strong> Add up presents, food and drink, travel, cards and wrapping, and going out — then save for that figure rather than for "as much as possible".</p>
       <p class="about-text"><strong>Automate it.</strong> A weekly or payday standing order into a separate pot does the saving for you. If smaller, rising steps suit you better, the <a href="/52-week-savings-challenge/">52-week savings challenge</a> started in January reaches £1,378 by Christmas Eve.</p>
       <p class="about-text"><strong>Keep the rest of the year in view.</strong> The <a href="/50-30-20-budget/">50/30/20 budget calculator</a> shows how Christmas fits in your monthly pay, and an <a href="/emergency-fund-calculator/">emergency fund</a> stops January's bills going on a credit card.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}
@@ -127,12 +127,12 @@ function budgetPage(b) {
 
 ${toolHtml(b, START, END)}
     <main class="tool">
-      <p class="tool-section-title">If you start later</p>
+      <h2 class="tool-section-title">If you start later</h2>
 ${site.table(["Start", "Weeks", "A week", "Each payday"], lr, 340)}      <p class="tool-hint" style="margin-top:12px;">For ${g(b)} by 1 December ${XMAS}, paydays on the 28th.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other budgets</div>

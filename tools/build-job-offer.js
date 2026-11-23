@@ -34,7 +34,7 @@ function side(s, o, w) {
   const options = PLACES.map((g) => `<optgroup label="${esc(g.label)}">${g.places.map((x) => `<option value="${esc(x.id)}" data-currency="${x.currency}" data-gross="${x.gross}"${x.id === "gb" ? " selected" : ""}>${esc(x.name)}</option>`).join("")}</optgroup>`).join("");
   const f = (id, label, v, extra) => `        <div class="field"><label for="jo-${s}-${id}">${label}</label><input type="number" id="jo-${s}-${id}" value="${v}" min="0" step="any" inputmode="decimal"${extra || ""}></div>`;
   return `    <div class="jo-side">
-      <p class="tool-section-title" style="margin-top:0;">Offer ${s.toUpperCase()}</p>
+      <h2 class="tool-section-title" style="margin-top:0;">Offer ${s.toUpperCase()}</h2>
       <div class="field"><label for="jo-${s}-place">Where</label><select id="jo-${s}-place">${options}</select></div>
       <div class="field-row">
 ${f("salary", `Salary a year <span class="tool-hint" id="jo-${s}-cur">GBP</span>`, o.salary)}
@@ -91,15 +91,15 @@ ${side("b", EX.b, b)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">The example: £35,000 or £38,000?</p>
+      <h2 class="tool-section-title">The example: £35,000 or £38,000?</h2>
       <p class="about-text"><strong>Offer A</strong> pays £35,000 with a 5% employer pension and £120 a month in travel. <strong>Offer B</strong> pays £38,000 with 3% pension, £320 a month in travel and a 40-hour week instead of 37.5.</p>
       <p class="about-text">After tax and National Insurance the £3,000 gap shrinks to ${m0(b.net - a.net)}. Offer A's pension is worth ${m0(a.pension - b.pension)} more and its commute costs ${m0(b.commute - a.commute)} less, so <strong>Offer A comes out ${m0(Math.abs(d))} a year ahead</strong> — and ${m(a.perHour - b.perHour)} more per hour worked.</p>
-      <p class="tool-section-title" style="margin-top:20px;">Things that don't show up in the numbers</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Things that don't show up in the numbers</h2>
       <p class="about-text">Holiday allowance, flexible or remote working, bonus history (a "target" bonus isn't guaranteed), share schemes, sick pay, career prospects and how secure the job is. A useful check: how much would you need to be paid to take the job you like less?</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

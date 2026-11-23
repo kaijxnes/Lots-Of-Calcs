@@ -4,7 +4,7 @@
        node tools/sync-faq-ld.js            rewrite any page whose data differs
        node tools/sync-faq-ld.js --check    report differences, change nothing
 
-   The visible FAQ is the source: every <p class="faq-q"> question and the
+   The visible FAQ is the source: every faq-q question (an h3) and the
    <p class="about-text"> paragraphs after it, up to the next question or the
    end of the section. Those become the FAQPage entry in the page's JSON-LD,
    as plain text. Edit the FAQ in the HTML and run this; never edit the JSON-LD
@@ -38,7 +38,7 @@ function visibleFaq(html) {
   if (at < 0) return null;
   const section = html.slice(at, html.indexOf("</main>", at));
   const out = [];
-  const re = /<p class="(faq-q|about-text)">([\s\S]*?)<\/p>/g;
+  const re = /<(?:p|h3) class="(faq-q|about-text)">([\s\S]*?)<\/(?:p|h3)>/g;
   let m;
   while ((m = re.exec(section))) {
     if (m[1] === "faq-q") out.push({ q: text(m[2]), a: [] });

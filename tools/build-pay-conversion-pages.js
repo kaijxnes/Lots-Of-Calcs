@@ -122,19 +122,19 @@ function hourPage(c, rate) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">${fmt(c, rate)} an hour at ${C.hours} hours a week</p>
+      <h2 class="tool-section-title">${fmt(c, rate)} an hour at ${C.hours} hours a week</h2>
 ${site.table(["Per", "Before tax"], breakdownRows(c, p), 260)}${after ? `      <p class="about-text" style="margin-top:12px;"><strong>After tax:</strong> see <a href="${after}">${fmt(c, rate)} an hour after tax</a>${c === "USD" ? " in every state" : ""}.</p>\n` : `      <p class="about-text" style="margin-top:12px;"><strong>After tax:</strong> put ${yr} into the <a href="/salary/">salary calculator</a>.</p>\n`}    </main>
 
 ${tool(c, "hour", rate)}
     <main class="tool">
-      <p class="tool-section-title">${fmt(c, rate)} an hour by hours worked</p>
-${site.table(["Hours a week", "A week", "A month", "A year"], hoursTable(c, rate), 420)}      <p class="tool-section-title" style="margin-top:20px;">How it's worked out</p>
+      <h2 class="tool-section-title">${fmt(c, rate)} an hour by hours worked</h2>
+${site.table(["Hours a week", "A week", "A month", "A year"], hoursTable(c, rate), 420)}      <h2 class="tool-section-title" style="margin-top:20px;">How it's worked out</h2>
       <p class="about-text">Hourly rate × hours a week × 52 weeks: ${fmt(c, rate)} × ${C.hours} × 52 = <strong>${yr}</strong>. A quick check: ${c === "USD" ? `at 40 hours a week, double the hourly rate and add three zeros (${fmt(c, rate)} → about ${fmt(c, rate * 2000)}).` : `at 37.5 hours a week, multiply the hourly rate by 1,950.`}</p>
-      <p class="tool-section-title" style="margin-top:20px;">Nearby hourly rates</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Nearby hourly rates</h2>
 ${site.table(["Hourly", "A year"], nb, 260)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -167,20 +167,20 @@ function yearPage(c, year) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">${fmt(c, year)} a year broken down</p>
+      <h2 class="tool-section-title">${fmt(c, year)} a year broken down</h2>
 ${site.table(["Per", "Before tax"], breakdownRows(c, p), 260)}      <p class="about-text" style="margin-top:12px;"><strong>After tax:</strong> ${after ? `see <a href="${after}">${fmt(c, year)} after tax</a>.` : c === "USD" ? `pick your state on the <a href="/salary/us/">US salary after tax</a> pages.` : `use the <a href="/salary/">salary calculator</a>.`}${hourLink}</p>
     </main>
 
 ${tool(c, "year", year)}
     <main class="tool">
-      <p class="tool-section-title">${fmt(c, year)} a year by hours worked</p>
-${site.table(["Hours a week", "An hour"], hoursRows, 260)}      <p class="tool-section-title" style="margin-top:20px;">How it's worked out</p>
+      <h2 class="tool-section-title">${fmt(c, year)} a year by hours worked</h2>
+${site.table(["Hours a week", "An hour"], hoursRows, 260)}      <h2 class="tool-section-title" style="margin-top:20px;">How it's worked out</h2>
       <p class="about-text">Salary ÷ 52 weeks ÷ hours a week: ${fmt(c, year)} ÷ 52 ÷ ${C.hours} = <strong>${hr}</strong>. ${c === "USD" ? `A quick check at 40 hours: halve the salary and drop three zeros (${fmt(c, year)} → about ${fmt(c, year / 2000, 2)}).` : `At 37.5 hours a week that's the salary divided by 1,950.`}</p>
-      <p class="tool-section-title" style="margin-top:20px;">Nearby salaries</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Nearby salaries</h2>
 ${site.table(["Salary", "An hour"], nb, 260)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -213,13 +213,13 @@ function hub() {
 
 ${tool("USD", "hour", 25).replace('id="pc-tool" data-currency="USD"', 'id="pc-tool" data-switch="1" data-currency="USD"').replace('<label for="pc-amount">Pay ($)</label>', '<label for="pc-amount">Pay</label>').replace('<div class="field"><label for="pc-per">', '<div class="field"><label for="pc-cur">Currency</label><select id="pc-cur"><option value="USD" data-sym="$" data-locale="en-US" data-hours="40" data-day="8">$ (40-hour week)</option><option value="GBP" data-sym="£" data-locale="en-GB" data-hours="37.5" data-day="7.5">£ (37.5-hour week)</option><option value="EUR" data-sym="€" data-locale="en-IE" data-hours="40" data-day="8">€ (40-hour week)</option></select></div>\n        <div class="field"><label for="pc-per">')}
     <main class="tool">
-      <p class="tool-section-title">Hourly rates and salaries worked out</p>
+      <h2 class="tool-section-title">Hourly rates and salaries worked out</h2>
 ${links("USD")}
 ${links("GBP")}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(H)}

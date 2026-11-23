@@ -54,12 +54,12 @@ function page(o) {
     </header>
 
 ${o.body}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}      <p class="tool-hint" style="margin-top:12px;">Sources: ${SRC.join(", ")}. Ovens vary, so check your oven's manual — and check food is piping hot all the way through before serving.</p>
     </main>
 
 ${o.related ? related.block(o.path) : `    <main class="tool">
-      <p class="tool-section-title">${esc(o.moreTitle)}</p>
+      <h2 class="tool-section-title">${esc(o.moreTitle)}</h2>
       <p class="salary-links">${o.more}</p>
     </main>
 `}
@@ -96,7 +96,7 @@ ${row("Recipe chart equivalent", "ov-chart", g ? `Gas ${g.mark} · ${g.c}°C · 
 }
 function chart(highlight) {
   return `    <main class="tool">
-      <p class="tool-section-title">Oven temperature chart</p>
+      <h2 class="tool-section-title">Oven temperature chart</h2>
 ${site.table(["Gas mark", "°C", "Fan °C", "°F", "Heat"], GAS.map((g) => [g.mark === highlight ? `<strong>${g.mark}</strong>` : String(g.mark), `${g.c}°C`, `${g.fan}°C`, `${g.f}°F`, g.word]), 400)}      <p class="tool-hint" style="margin-top:12px;">From the Which? conversion table. Charts disagree below gas mark 1, so no figures are given for gas ¼ and ½.</p>
     </main>
 `;
@@ -118,11 +118,11 @@ function hub() {
     desc: "Convert oven temperatures between Celsius, fan, Fahrenheit and gas mark, with a full chart: gas mark 4 is 180°C, 160°C fan or 350°F. Plus oven to air fryer conversion.",
     h1: "Oven temperature converter", sub: "Celsius, fan, Fahrenheit and gas mark, both ways — with the full chart and an air fryer converter.", q,
     body: ovenTool(180, "c") + chart(4) + `    <main class="tool">
-      <p class="tool-section-title">Air fryer</p>
+      <h2 class="tool-section-title">Air fryer</h2>
       <p class="about-text">Cooking an oven recipe in an air fryer? The <a href="${AFB}">air fryer conversion calculator</a> gives the temperature and time: ${AF.lessC}°C lower and ${AF.timeLessPct[0]}–${AF.timeLessPct[1]}% less time for fresh food.</p>
     </main>
     <main class="tool">
-      <p class="tool-section-title">Common conversions</p>
+      <h2 class="tool-section-title">Common conversions</h2>
       <p class="salary-links">${allLinks()}</p>
     </main>
 ` });
@@ -204,7 +204,7 @@ ${row("Air fryer time", "af-out-time", `${afTimes(t).join("–")} minutes`, "hig
 const TIMES = [10, 15, 20, 25, 30, 35, 40, 45, 50, 60];
 function afTable(c) {
   return `    <main class="tool">
-      <p class="tool-section-title">${c}°C oven times in an air fryer</p>
+      <h2 class="tool-section-title">${c}°C oven times in an air fryer</h2>
 ${site.table(["Oven", "Air fryer, fresh food", "Air fryer, frozen food"], TIMES.map((t) => [`${c}°C for ${t} minutes`, `${c - AF.lessC}°C for ${afTimes(t).join("–")} minutes`, `${c}°C for about ${r0(t * AF.frozenTimePct / 100)} minutes`]), 460)}    </main>
 `;
 }
@@ -220,7 +220,7 @@ function afHub() {
     desc: `Convert oven temperatures and cooking times for an air fryer: ${AF.lessC}°C lower and ${AF.timeLessPct[0]}–${AF.timeLessPct[1]}% less time for fresh food, so 200°C for 30 minutes becomes ${200 - AF.lessC}°C for ${afTimes(30).join("–")} minutes.`,
     h1: "Oven to air fryer conversion", sub: "The air fryer temperature and time for any oven recipe — fresh or frozen.", q,
     body: afTool(200, 30) + afTable(200) + `    <main class="tool">
-      <p class="tool-section-title">By oven temperature</p>
+      <h2 class="tool-section-title">By oven temperature</h2>
       <p class="salary-links">${AF_PAGES.map((c) => `<a href="${afSlug(c)}">${c}°C oven in an air fryer</a>`).join(" ")}</p>
       <p class="tool-hint" style="margin-top:8px;">Converting between °C, fan, °F and gas mark? Use the <a href="${BASE}">oven temperature converter</a>.</p>
     </main>

@@ -105,14 +105,14 @@ function kgPage(kg) {
 
 ${tool(kg, "kg")}
     <main class="tool">
-      <p class="tool-section-title">Turkey cooking times by weight</p>
+      <h2 class="tool-section-title">Turkey cooking times by weight</h2>
 ${ukTable(kg)}      <p class="tool-hint" style="margin-top:12px;">From ${esc(SRC_UK)}, for an unstuffed turkey in an oven preheated to 180°C (350°F, Gas Mark 4). ${esc(CHECK)}</p>
-      <p class="tool-section-title" style="margin-top:22px;">Nearby weights</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Nearby weights</h2>
       <p class="salary-links">${near}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -144,14 +144,14 @@ function lbPage(lb) {
 
 ${tool(lb, "lb")}
     <main class="tool">
-      <p class="tool-section-title">USDA roasting timetable at 325°F</p>
+      <h2 class="tool-section-title">USDA roasting timetable at 325°F</h2>
 ${usTable()}      <p class="tool-hint" style="margin-top:12px;">Fresh or thawed whole turkey, from ${esc(SRC_US)}. The times are approximate: use a food thermometer. A boneless breast or crown cooks more quickly.</p>
-      <p class="tool-section-title" style="margin-top:22px;">Nearby weights</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Nearby weights</h2>
       <p class="salary-links">${near}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -184,14 +184,14 @@ function hub() {
 
 ${tool(5, "kg")}
     <main class="tool">
-      <p class="tool-section-title">UK cooking times by weight (180°C)</p>
+      <h2 class="tool-section-title">UK cooking times by weight (180°C)</h2>
 ${ukTable()}      <p class="tool-hint" style="margin-top:12px;">From ${esc(SRC_UK)}, unstuffed, in an oven preheated to 180°C (350°F, Gas Mark 4). Cover with foil and uncover for the last 30 minutes. The guide's bands give a slightly shorter time just above 4.5 kg than just below it, so check with a thermometer either side of that weight.</p>
-      <p class="tool-section-title" style="margin-top:22px;">US roasting timetable (325°F)</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">US roasting timetable (325°F)</h2>
 ${usTable()}      <p class="tool-hint" style="margin-top:12px;">From ${esc(SRC_US)}, fresh or thawed whole turkey. By pound: ${LBS.map((l) => `<a href="${BASE}${l}lb/">${l} lb</a>`).join(" ")}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

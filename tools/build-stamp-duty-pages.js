@@ -92,19 +92,19 @@ function page(price) {
 
 ${tool(price)}
     <main class="tool">
-      <p class="tool-section-title">${p0(price)} for every buyer, in every nation</p>
+      <h2 class="tool-section-title">${p0(price)} for every buyer, in every nation</h2>
 ${site.table(["", "England &amp; NI (SDLT)", "Scotland (LBTT)", "Wales (LTT)"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">Scotland and Wales set their own taxes in place of stamp duty. The non-UK resident surcharge applies in England and Northern Ireland only.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${(() => {
     const mt = links.mortgageUkNear(price * 0.9), b = links.borrowUkNear(price * 0.9 / 4.5);
     const items = [mt ? `<a href="${mt.url}">Payments on a ${p0(mt.value)} mortgage</a>` : "", b ? `<a href="${b.url}">How much can I borrow on ${p0(b.value)}?</a>` : ""].filter(Boolean);
     return items.length ? `    <main class="tool">
-      <p class="tool-section-title">Buying at ${p0(price)}</p>
+      <h2 class="tool-section-title">Buying at ${p0(price)}</h2>
       <p class="about-text">With a 10% deposit you'd borrow about ${p0(price * 0.9)}, which most lenders would want an income of around ${p0(price * 0.9 / 4.5)} or more for (4.5 times income).</p>
       <p class="salary-links">${items.join(" ")}</p>
     </main>
@@ -145,12 +145,12 @@ function hub() {
 
 ${tool(300000)}
     <main class="tool">
-      <p class="tool-section-title">Stamp duty by price</p>
+      <h2 class="tool-section-title">Stamp duty by price</h2>
 ${site.table(["Price", "England &amp; NI", "First-time buyer", "Second home", "Scotland", "Wales"], grid, 600)}      <p class="tool-hint" style="margin-top:12px;">England and NI columns are SDLT; Scotland is LBTT for someone moving home; Wales is LTT at the main rates. Pick a price for every buyer type in every nation.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">The rates</p>
+      <h2 class="tool-section-title">The rates</h2>
       <p class="salary-links-title">England and Northern Ireland (SDLT)</p>
 ${site.table(["Part of the price", "Rate"], bandTable(E.bands), 300)}      <p class="tool-hint">First-time buyers: 0% to £300,000, 5% to £500,000 (no relief above £500,000). Additional properties: +5% on every band. Non-UK residents: +2%.</p>
       <p class="salary-links-title" style="margin-top:18px;">Scotland (LBTT)</p>
@@ -160,7 +160,7 @@ ${site.table(["Part of the price", "Main rate", "Higher rate"], (() => { const c
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

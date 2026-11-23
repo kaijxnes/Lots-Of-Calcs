@@ -52,17 +52,17 @@ function wattPage(w) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">${kw(w)} at different voltages</p>
+      <h2 class="tool-section-title">${kw(w)} at different voltages</h2>
 ${site.table(["Voltage", "Used for", "Current"], rows, 360)}      <p class="about-text" style="margin-top:12px;"><strong>Formula:</strong> amps = watts ÷ volts, so ${n(w, 0)} ÷ 230 = ${n(a230)} A. ${plugNote(w)}</p>
       <p class="tool-hint">Single-phase, power factor 1. For three-phase, DC or a power factor, use the <a href="${BASE}">watts, amps and volts calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Nearby powers</p>
+      <h2 class="tool-section-title">Nearby powers</h2>
 ${site.table(["Power", "At 230 V", "At 120 V"], near, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -89,17 +89,17 @@ function ampPage(a) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">${a} amps at different voltages</p>
+      <h2 class="tool-section-title">${a} amps at different voltages</h2>
 ${site.table(["Voltage", "Used for", "Power"], rows, 360)}      <p class="about-text" style="margin-top:12px;"><strong>Formula:</strong> watts = amps × volts, so ${a} × 230 = ${n(w230, 0)} W.</p>
       <p class="tool-hint">Single-phase, power factor 1. For three-phase or DC, use the <a href="${BASE}">watts, amps and volts calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Nearby currents</p>
+      <h2 class="tool-section-title">Nearby currents</h2>
 ${site.table(["Current", "At 230 V", "At 120 V"], near, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -116,7 +116,7 @@ const urls = [];
 WATTS.forEach((w) => { site.write(`watts-amps-volts/${wSlug(w)}`, wattPage(w)); urls.push([`${BASE}${wSlug(w)}/`, "0.4"]); });
 AMPS.forEach((a) => { site.write(`watts-amps-volts/${aSlug(a)}`, ampPage(a)); urls.push([`${BASE}${aSlug(a)}/`, "0.4"]); });
 site.hubBlock(BASE, "electrical pages", "tools/build-electrical-pages.js", `    <main class="tool">
-      <p class="tool-section-title">Common conversions</p>
+      <h2 class="tool-section-title">Common conversions</h2>
       <p class="salary-links"><strong>Watts to amps:</strong> ${WATTS.map((w) => `<a href="${BASE}${wSlug(w)}/">${kw(w)}</a>`).join(" ")}</p>
       <p class="salary-links"><strong>Amps to watts:</strong> ${AMPS.map((a) => `<a href="${BASE}${aSlug(a)}/">${a} A</a>`).join(" ")}</p>
     </main>

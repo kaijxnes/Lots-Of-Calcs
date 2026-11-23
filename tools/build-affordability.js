@@ -150,25 +150,25 @@ ${field("us-hoa", "HOA fees ($ a month)", US.hoa)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How much can I borrow on my salary? (UK)</p>
+      <h2 class="tool-section-title">How much can I borrow on my salary? (UK)</h2>
       <p class="about-text">At 4 to 4.5 times a single salary, with the repayment at 4.5% over 25 years on the higher figure and its share of take-home pay after income tax and National Insurance:</p>
 ${site.table(["Salary", "Borrowing (4x – 4.5x)", "Repayment a month", "Of take-home pay"], ukRows, 480)}      <p class="tool-hint" style="margin-top:12px;">Take-home pay from the <a href="/salary/uk/">UK salary calculator</a> for 2026/27, with no pension or student loan. Add your deposit to the borrowing for the price of home it buys.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How much house can I afford? (US)</p>
+      <h2 class="tool-section-title">How much house can I afford? (US)</h2>
       <p class="about-text">The home price that fits the 28/36 rule with 20% down, at 6.5% over 30 years, 1.1% property tax and $1,800 a year insurance, with no other debts:</p>
 ${site.table(["Household income", "Home price", "Monthly housing cost"], usRows, 400)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">How lenders decide</p>
+      <h2 class="tool-section-title">How lenders decide</h2>
       <p class="about-text"><strong>In the UK</strong>, lenders start from a multiple of income &mdash; usually 4 to 4.5 times, and up to 5 or 5.5 times for some higher earners &mdash; then run an affordability check on your spending, debts and dependants, and test whether you could still pay at a higher rate. The deposit sets your loan to value (LTV): the bigger the deposit, the lower the LTV and usually the better the rate, with steps at 60%, 75%, 85% and 90%.</p>
       <p class="about-text"><strong>In the US</strong>, lenders look at your debt-to-income ratio. The traditional guideline keeps housing costs to 28% of gross monthly income and all debts to 36%; many loan programmes allow higher. Putting down less than 20% usually means paying private mortgage insurance on top.</p>
       <p class="about-text">For the cost of a particular loan size, see <a href="/mortgage/">mortgage payments by amount</a>; to compare buying with carrying on renting, the <a href="/rent-vs-buy/">rent vs buy calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/mortgage-affordability/")}

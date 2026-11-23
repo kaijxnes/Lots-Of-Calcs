@@ -108,12 +108,12 @@ function page(e) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">${esc(e.name)} dates</p>
+      <h2 class="tool-section-title">${esc(e.name)} dates</h2>
 ${site.table(["Year", "Date"], dates.map((d) => [String(d.getUTCFullYear()), long(d)]), 300)}      <p class="tool-hint" style="margin-top:12px;">To count the days between any two dates, use the <a href="/date-diff/">date difference calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other countdowns</div>
@@ -151,7 +151,7 @@ ${site.table(["Event", "Next date"], rows, 320)}      <p class="tool-hint" style
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(faq)}    </main>
 
 ${related.block("/days-until/")}

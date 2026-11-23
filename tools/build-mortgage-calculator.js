@@ -111,7 +111,7 @@ ${field("years", "Term (years)", D.years)}
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">Year by year</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Year by year</h2>
       <div class="table-scroll">
         <div style="min-width:420px;">
           <table class="out-table">
@@ -125,14 +125,14 @@ ${yearRows}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How the rate changes the payment</p>
+      <h2 class="tool-section-title">How the rate changes the payment</h2>
       <p class="about-text">The same ${g0(loan)} over ${D.years} years at different rates:</p>
-${site.table(["Rate", "Monthly payment", "Total interest", "Against " + D.rate + "%"], rateRows, 440)}      <p class="tool-section-title" style="margin-top:22px;">And how the term changes it</p>
+${site.table(["Rate", "Monthly payment", "Total interest", "Against " + D.rate + "%"], rateRows, 440)}      <h2 class="tool-section-title" style="margin-top:22px;">And how the term changes it</h2>
 ${site.table(["Term", "Monthly payment", "Total interest", "Total repaid"], termRows, 440)}      <p class="tool-hint" style="margin-top:12px;">Monthly interest is the annual rate divided by 12. Lenders' figures can differ by a few pence or cents depending on how they charge interest. For a particular loan size see <a href="/mortgage/">mortgage payments by amount</a> (<a href="/mortgage/us/">US</a>), and to see what paying extra saves, the <a href="/mortgage-overpayment/">overpayment calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/mortgage-calculator/")}

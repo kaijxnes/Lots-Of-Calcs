@@ -55,7 +55,7 @@ ${row("…for a third (40%)", "dg-n40", "—")}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">Sources: ${SRC.map(([t, u]) => `<a href="${u}" rel="nofollow noopener" target="_blank">${esc(t)}</a>`).join("; ")}.</p>
     </main>
 

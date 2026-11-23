@@ -79,7 +79,7 @@ function page(x, y) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How to work out ${x}% off ${g(y)}</p>
+      <h2 class="tool-section-title">How to work out ${x}% off ${g(y)}</h2>
       <p class="about-text"><strong>Step 1, the saving:</strong> ${g(y)} × ${x} ÷ 100 = <strong>${g(s)}</strong>.</p>
       <p class="about-text"><strong>Step 2, the sale price:</strong> ${g(y)} − ${g(s)} = <strong>${g(p)}</strong>.</p>
       <p class="about-text"><strong>In one go:</strong> with ${x}% off you pay ${100 - x}% of the price, so multiply by ${mult}: ${g(y)} × ${mult} = ${g(p)}.</p>
@@ -87,12 +87,12 @@ function page(x, y) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Other discounts on ${g(y)}</p>
-${site.table(["Discount", "You pay", "You save"], otherPcts, 300)}      <p class="tool-section-title" style="margin-top:20px;">${x}% off other prices</p>
+      <h2 class="tool-section-title">Other discounts on ${g(y)}</h2>
+${site.table(["Discount", "You pay", "You save"], otherPcts, 300)}      <h2 class="tool-section-title" style="margin-top:20px;">${x}% off other prices</h2>
 ${site.table(["Price", "You pay", "You save"], otherPrices, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -109,7 +109,7 @@ function hubBlock() {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length).replace(/^\n+/, "");
   const html = `    <main class="tool">
-      <p class="tool-section-title">Common discounts worked out</p>
+      <h2 class="tool-section-title">Common discounts worked out</h2>
 ${PCTS.map((x) => `      <p class="salary-links"><strong>${x}% off:</strong> ${PRICES.map((y) => `<a href="${BASE}${slug(x, y)}/">£${y}</a>`).join(" ")}</p>`).join("\n")}
     </main>
 
