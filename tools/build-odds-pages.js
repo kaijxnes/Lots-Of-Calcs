@@ -46,14 +46,15 @@ function facts(f) {
 function page(f, i) {
   const x = facts(f), nm = name(f), nml = f === "1/1" ? "evens" : f, url = SITE + `${BASE}${slug(f)}/`;
   const ten = 10 * (x.dec - 1);
-  const title = site.fitTitle(`${nm} Odds — ${decStr(x.dec)} Decimal, ${x.us} American, ${trim(x.prob, 1)}% Chance`, `${nm} Odds — ${decStr(x.dec)} Decimal, ${x.us}, ${trim(x.prob, 1)}% Implied`, `${nm} Odds in Decimal and American`);
+  const to = f === "1/1" ? "1 to 1" : `${x.n} to ${x.d}`;
+  const title = site.fitTitle(`${nm} Odds (${to}) — ${decStr(x.dec)} Decimal, ${x.us} American, ${trim(x.prob, 1)}% Chance`, `${nm} Odds (${to}) — ${decStr(x.dec)} Decimal, ${x.us}, ${trim(x.prob, 1)}%`, `${nm} Odds — ${decStr(x.dec)} Decimal, ${x.us} American, ${trim(x.prob, 1)}% Chance`, `${nm} Odds — ${decStr(x.dec)} Decimal, ${x.us}, ${trim(x.prob, 1)}% Implied`, `${nm} Odds in Decimal and American`);
   const what = f === "1/1"
     ? "Evens (1/1) means you win the same as you stake: £10 on at evens makes £10 profit and returns £20."
     : `${f} means you win £${x.n} for every £${x.d} you stake${x.n < x.d ? " — less than your stake, which is what odds-on means" : ""}. £10 at ${f} makes ${money(ten)} profit and returns ${money(ten + 10)} with your stake.`;
   const desc = `${nm} is ${decStr(x.dec)} in decimal odds, ${x.us} American and a ${trim(x.prob, 1)}% implied chance. £10 at ${nml} makes ${money(ten)} profit and returns ${money(ten + 10)}.`;
   const ew = x.dec >= 2;
   const q = [
-    [`What does ${nm} mean in betting?`, what + ` It's said "${spoken(f)}".`],
+    [`What does ${nm} (${to}) mean in betting?`, what + ` It's said "${spoken(f)}".`],
     [`What is ${nm} in decimal odds?`, `${decStr(x.dec)}: divide ${x.n} by ${x.d} and add 1 for your stake. Decimal odds are the total return for each £1 staked.`],
     [`What is ${nm} in American odds?`, x.dec >= 2 ? `${x.us}: the profit on a 100 stake.` : `${x.us}: the stake needed to win 100 profit.`],
     [`What chance of winning does ${nm} imply?`, `${trim(x.prob, 1)}% — ${x.d} ÷ (${x.n} + ${x.d}). That's the chance the price corresponds to, including the bookmaker's margin, so the real chance is usually a little lower.`]
@@ -68,7 +69,7 @@ function page(f, i) {
 
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Odds converter</a>
-      <h1 class="page-title">${nm} odds explained</h1>
+      <h1 class="page-title">${nm} odds (${to}) explained</h1>
       <p class="page-subtitle">${what}</p>
     </header>
 
