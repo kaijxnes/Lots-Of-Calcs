@@ -146,7 +146,7 @@ function faqLd(q) {
 }
 
 function faqHtml(q) {
-  return q.map(([a, b]) => `      <p class="faq-q">${esc(a)}</p>\n      <p class="about-text">${esc(b)}</p>\n`).join("");
+  return q.map(([a, b]) => `      <h3 class="faq-q">${esc(a)}</h3>\n      <p class="about-text">${esc(b)}</p>\n`).join("");
 }
 
 function card(href, icon, title, desc) {

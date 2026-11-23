@@ -103,7 +103,7 @@ function calculatorPage() {
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:20px;">Your chart</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Your chart</h2>
       <p class="tool-hint" id="sc-progress">Tick each week as you save it. Your ticks stay in this browser.</p>
       <div class="no-print" style="display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 12px;">
         <button class="btn btn-ghost" id="sc-print" type="button">🖨️ Print the chart</button>
@@ -119,7 +119,7 @@ ${staticRows}
           </table>
         </div>
       </div>
-      <p class="tool-section-title" style="margin-top:20px;">Month by month</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Month by month</h2>
       <div class="table-scroll">
         <div style="min-width:300px;">
           <table class="out-table">
@@ -133,12 +133,12 @@ ${staticMonths}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Which version?</p>
+      <h2 class="tool-section-title">Which version?</h2>
 ${site.table(["Challenge", "First deposit", "Last deposit", "Total"], versions, 420)}      <p class="tool-hint" style="margin-top:12px;">Each has its full dated chart for ${YEAR}, starting 1 January. Any start date works in the calculator.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How it works</p>
+      <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">In week 1 you save the starting amount, in week 2 twice it, and so on up to 52 times it in week 52. Add those up and you get <strong>1,378 × the starting amount</strong>: £1,378 from £1, £2,756 from £2, £689 from 50p.</p>
       <p class="about-text"><strong>The catch is the end of the year.</strong> Starting on 1 January, the classic version asks for ${M(dec1)} in December, just when Christmas costs land. The reverse version front-loads it, so December needs only ${M(decR)}; it's the same £1,378 either way.</p>
       <p class="about-text"><strong>The 365-day version</strong> goes up a little every day instead: 1p on day 1, 2p on day 2 and £3.65 on day 365, for £667.95. Smaller steps, but you have to remember daily.</p>
@@ -146,7 +146,7 @@ ${site.table(["Challenge", "First deposit", "Last deposit", "Total"], versions, 
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}
@@ -206,18 +206,18 @@ ${env ? `          <div class="result-row"><span class="r-label">Smallest and bi
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Month by month</p>
+      <h2 class="tool-section-title">Month by month</h2>
 ${monthTable(rows)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">The full chart, starting 1 January ${YEAR}</p>
+      <h2 class="tool-section-title">The full chart, starting 1 January ${YEAR}</h2>
       <div class="sc-chart">
 ${chartTable(rows, m.unit)}      </div>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
-${q.map(([a, b]) => `      <p class="faq-q">${a}</p>\n      <p class="about-text">${b}</p>\n`).join("")}    </main>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${q.map(([a, b]) => `      <h3 class="faq-q">${a}</h3>\n      <p class="about-text">${b}</p>\n`).join("")}    </main>
 
     <div class="hub-group-title no-print" style="margin-top:28px;">Other versions</div>
     <p class="salary-links no-print">${others}</p>

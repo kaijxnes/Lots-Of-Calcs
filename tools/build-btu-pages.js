@@ -59,18 +59,18 @@ function page(sz) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">By room type</p>
+      <h2 class="tool-section-title">By room type</h2>
 ${site.table(["Room", "Heat needed", "In watts"], rows, 320)}      <p class="tool-hint" style="margin-top:12px;">${area} m² floor, ${CEILING} m ceiling, one outside wall, double glazing. For your exact room, ceiling height and windows, use the <a href="${BASE}">BTU calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Living room: outside walls and glazing</p>
+      <h2 class="tool-section-title">Living room: outside walls and glazing</h2>
 ${site.table(["Outside walls", ...GLAZE.map((g) => g.label)], walls, 460)}      <p class="about-text" style="margin-top:12px;">North-facing: add 15%. French windows or patio doors: add 20%.</p>
-      <p class="tool-section-title" style="margin-top:20px;">Other room sizes (living room)</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Other room sizes (living room)</h2>
 ${site.table(["Room", "BTU", "Watts"], near, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -83,7 +83,7 @@ ${site.FOOTER}
 const urls = [];
 SIZES.forEach((sz) => { site.write(`btu/${slug(sz)}`, page(sz)); urls.push([`${BASE}${slug(sz)}/`, "0.4"]); });
 site.hubBlock(BASE, "btu pages", "tools/build-btu-pages.js", `    <main class="tool">
-      <p class="tool-section-title">BTU by room size</p>
+      <h2 class="tool-section-title">BTU by room size</h2>
       <p class="salary-links">${SIZES.map((sz) => `<a href="${BASE}${slug(sz)}/">${sz[0]}m × ${sz[1]}m</a>`).join(" ")}</p>
     </main>
 

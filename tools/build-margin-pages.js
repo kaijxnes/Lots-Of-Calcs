@@ -54,24 +54,24 @@ function page(m, c) {
           <div class="result-row"><span class="r-label">The markup that is</span><span class="r-value">${p1(markupFor(m))}</span></div>
         </div>
       </div>
-      <p class="tool-section-title" style="margin-top:20px;">Careful: ${m}% markup is different</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Careful: ${m}% markup is different</h2>
       <p class="about-text">Adding ${m}% to the cost (a ${m}% <em>markup</em>) gives ${g(mk)} — a profit of ${g(mkProfit)}, which is only a <strong>${p1(marginFor(m))} margin</strong>. If you meant a ${m}% markup, that's your price; if you need ${m}% of the selling price as profit, it's ${g(sell)}.</p>
       <p class="tool-hint">Prices before VAT. Work out any cost and price in the <a href="${BASE}">margin vs markup calculator</a>; the sums are the same in any currency.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How to work it out</p>
+      <h2 class="tool-section-title">How to work it out</h2>
       <p class="about-text"><strong>Margin:</strong> price = cost ÷ (1 − margin) = ${g(c)} ÷ ${c2(1 - m / 100)} = <strong>${g(sell)}</strong>. Check: ${g(profit)} profit ÷ ${g(sell)} = ${m}%.</p>
       <p class="about-text"><strong>Markup:</strong> price = cost × (1 + markup) = ${g(c)} × ${1 + m / 100} = ${g(mk)}.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Other margins on ${g(c)}</p>
-${site.table(["Margin", "Sell at", "Same % as markup", "Markup needed"], others, 420)}      <p class="tool-section-title" style="margin-top:20px;">${m}% margin on other costs</p>
+      <h2 class="tool-section-title">Other margins on ${g(c)}</h2>
+${site.table(["Margin", "Sell at", "Same % as markup", "Markup needed"], others, 420)}      <h2 class="tool-section-title" style="margin-top:20px;">${m}% margin on other costs</h2>
 ${site.table(["Cost", "Sell at", "Profit"], nearby, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -88,8 +88,8 @@ function hubBlock() {
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length).replace(/^\n+/, "");
   const conv = PCTS.map((m) => [`${m}%`, p1(markupFor(m)), p1(marginFor(m))]);
   const html = `    <main class="tool">
-      <p class="tool-section-title">Margin and markup conversion</p>
-${site.table(["Percentage", "Markup needed for this margin", "Margin this markup gives"], conv, 420)}      <p class="tool-section-title" style="margin-top:20px;">Selling prices for common margins</p>
+      <h2 class="tool-section-title">Margin and markup conversion</h2>
+${site.table(["Percentage", "Markup needed for this margin", "Margin this markup gives"], conv, 420)}      <h2 class="tool-section-title" style="margin-top:20px;">Selling prices for common margins</h2>
 ${PCTS.map((m) => `      <p class="salary-links"><strong>${m}% margin on:</strong> ${COSTS.map((c) => `<a href="${BASE}${slug(m, c)}/">${g(c)}</a>`).join(" ")}</p>`).join("\n")}
     </main>
 

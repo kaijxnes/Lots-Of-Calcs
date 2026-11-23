@@ -71,7 +71,7 @@ function page(x, y) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How to work it out</p>
+      <h2 class="tool-section-title">How to work it out</h2>
       <p class="about-text"><strong>The formula:</strong> multiply the number by the percentage and divide by 100. ${n(y)} × ${x} ÷ 100 = <strong>${n(a)}</strong>.</p>
       <p class="about-text"><strong>As a decimal:</strong> ${x}% is ${x / 100}, so ${n(y)} × ${x / 100} = ${n(a)}.</p>
       <p class="about-text"><strong>In your head:</strong> ${shortcut(x, y)}</p>
@@ -79,12 +79,12 @@ function page(x, y) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Other percentages of ${n(y)}</p>
-${site.table(["Percentage", "Answer"], otherPcts, 260)}      <p class="tool-section-title" style="margin-top:20px;">${x}% of other numbers</p>
+      <h2 class="tool-section-title">Other percentages of ${n(y)}</h2>
+${site.table(["Percentage", "Answer"], otherPcts, 260)}      <h2 class="tool-section-title" style="margin-top:20px;">${x}% of other numbers</h2>
 ${site.table(["Sum", "Answer"], otherNums, 260)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -101,7 +101,7 @@ function hubBlock() {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length);
   const html = `    <main class="tool">
-      <p class="tool-section-title">Percentages of common numbers</p>
+      <h2 class="tool-section-title">Percentages of common numbers</h2>
 ${PCTS.map((x) => `      <p class="salary-links"><strong>${x}% of:</strong> ${NUMS.map((y) => `<a href="${BASE}${slug(x, y)}/">${n(y)}</a>`).join(" ")}</p>`).join("\n")}
     </main>
 

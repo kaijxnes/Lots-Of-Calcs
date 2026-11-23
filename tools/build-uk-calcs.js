@@ -48,7 +48,7 @@ ${o.results}
     </main>
 
 ${o.more || ""}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}    </main>
 
 ${related.block(o.path)}
@@ -75,9 +75,9 @@ function dividends() {
     hint: "England, Wales and Northern Ireland income tax bands (dividends are taxed the same in Scotland, but Scottish wages use different bands). Income tax only — no National Insurance is due on dividends.",
     sources: src(d.source, "tax on dividends"),
     more: `    <main class="tool">
-      <p class="tool-section-title">How dividends are taxed (${Y})</p>
+      <h2 class="tool-section-title">How dividends are taxed (${Y})</h2>
       <p class="about-text">Dividends are added on top of your other income. The first £${d.allowance} is tax-free (the dividend allowance), but it still uses up part of your tax band. The rest is taxed at <strong>${d.basic}%</strong> in the basic rate band, <strong>${d.higher}%</strong> in the higher rate band and <strong>${d.additional}%</strong> above £125,140. Any personal allowance your salary doesn't use covers dividends first.</p>
-      <p class="tool-section-title" style="margin-top:20px;">Tax on dividends with a ${g0(sal)} salary</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Tax on dividends with a ${g0(sal)} salary</h2>
 ${site.table(["Dividends", "Dividend tax", "You keep"], table, 300)}    </main>
 
 `,
@@ -104,7 +104,7 @@ function salaryVsDividends() {
     hint: "All profit paid out in the year; no other income, pension contributions or student loan. England, Wales and NI income tax bands.",
     sources: [src(R.corporationTax.source, "corporation tax"), src(R.employerNI.source, "employer rates"), src(R.dividends.source, "dividend tax")].join(", "),
     more: `    <main class="tool">
-      <p class="tool-section-title">Common salary choices compared</p>
+      <h2 class="tool-section-title">Common salary choices compared</h2>
       <div class="table-scroll"><div style="min-width:520px;"><table class="out-table"><thead><tr><th>Salary</th><th>Salary paid</th><th>Dividends</th><th>All taxes</th><th>Take-home</th></tr></thead><tbody id="sd-table">
 ${rows.map((r) => `<tr>${r.map((c) => `<td>${c}</td>`).join("")}</tr>`).join("\n")}
       </tbody></table></div></div>
@@ -238,7 +238,7 @@ function holiday() {
     hint: `5.6 weeks a year, capped at ${h.capDays} days; bank holidays can be included in it. Irregular-hours and part-year workers earn ${h.irregularPct}% of the hours they work in each pay period (leave years from April 2024). Your contract may give more.`,
     sources: src(h.source, "Holiday entitlement"),
     more: `    <main class="tool">
-      <p class="tool-section-title">Statutory holiday by days worked</p>
+      <h2 class="tool-section-title">Statutory holiday by days worked</h2>
 ${site.table(["Days a week", "Holiday a year"], table, 260)}    </main>
 
 `,

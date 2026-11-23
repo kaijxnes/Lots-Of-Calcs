@@ -235,32 +235,32 @@ function page(series) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">What £100 is worth today, by year (UK CPI)</p>
+      <h2 class="tool-section-title">What £100 is worth today, by year (UK CPI)</h2>
       <p class="about-text">£100 in each year, in ${esc(cpi.latest.label)} money, with that year's average inflation rate. CPI inflation was <strong>${cpi.latest.rate12}%</strong> in the 12 months to ${esc(cpi.latest.label)}.</p>
 ${site.table(["Year", "£100 then is worth now", "Inflation that year"], cpiRows, 360)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Further back: the long-run series</p>
+      <h2 class="tool-section-title">Further back: the long-run series</h2>
       <p class="about-text">CPI only goes back to 1988. For older years the ONS publishes a long-run price index back to 1800, built on the Retail Prices Index. It shows higher inflation than CPI in recent decades, so use CPI where it's available.</p>
 ${site.table(["Year", "£100 then is worth now", "Average a year since"], rpiRows, 360)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">United States: what $100 is worth today</p>
+      <h2 class="tool-section-title">United States: what $100 is worth today</h2>
       <p class="about-text">Using the Bureau of Labor Statistics' CPI-U, up to ${esc(us.latest.label)}. US inflation was <strong>${us.latest.rate12}%</strong> in the 12 months to ${esc(us.latest.label)}.</p>
 ${site.table(["Year", "$100 then is worth now", "Inflation that year"], usRows, 360)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">How the calculator works</p>
+      <h2 class="tool-section-title">How the calculator works</h2>
       <p class="about-text">A price index tracks what a fixed basket of everyday goods and services costs over time. Dividing the index at the later date by the index at the earlier one gives how much prices rose: an index of ${esc(String(cpi.annual[from]))} in ${from} and ${esc(String(cpi.latest.value))} in ${esc(cpi.latest.label)} means prices are ${(cpi.latest.value / cpi.annual[from]).toFixed(2)} times higher, so £100 then buys what costs ${esc(money(cpi, w))} now.</p>
       <p class="about-text">The figure is an average across the whole basket. Some things have risen far faster than inflation &mdash; house prices, rent, university fees &mdash; and others, like electronics, have got cheaper. For your own savings, the <a href="/compound-interest/">compound interest calculator</a> shows whether a rate of return beats inflation.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">What money from a given year is worth today</p>
+      <h2 class="tool-section-title">What money from a given year is worth today</h2>
       <p class="tool-hint">Each year has its own page: every amount from £1 or $1 to 10,000, then and now, and how it grew decade by decade.</p>
 <!-- year pages -->
     </main>
@@ -334,13 +334,13 @@ ${other ? `          <div class="result-row"><span class="r-label">By RPI instea
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">${y} money in today's money</p>
-${site.table([`In ${y}`, `In ${esc(now)}`, `${esc(now)} money in ${y}`], rows, 380)}      <p class="tool-section-title" style="margin-top:20px;">How ${sym}100 from ${y} has grown</p>
+      <h2 class="tool-section-title">${y} money in today's money</h2>
+${site.table([`In ${y}`, `In ${esc(now)}`, `${esc(now)} money in ${y}`], rows, 380)}      <h2 class="tool-section-title" style="margin-top:20px;">How ${sym}100 from ${y} has grown</h2>
 ${site.table(["Year", `${sym}100 from ${y}`, "Rise since " + y], markRows, 320)}      <p class="tool-hint" style="margin-top:12px;">Using each year's average index and the latest month published (${esc(now)}). Source: <a href="${s.url}" rel="noopener">${esc(s.source)}</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other years</div>
@@ -373,7 +373,7 @@ function yearLinks() {
     const byDecade = {};
     YEAR_PAGES[country].list.forEach((y) => { (byDecade[Math.floor(y / 10) * 10] = byDecade[Math.floor(y / 10) * 10] || []).push(y); });
     const sym = country === "uk" ? "£" : "$";
-    return `      <p class="tool-section-title" style="margin-top:16px;">${YEAR_PAGES[country].label}: what ${sym}100 from a year is worth today</p>
+    return `      <h2 class="tool-section-title" style="margin-top:16px;">${YEAR_PAGES[country].label}: what ${sym}100 from a year is worth today</h2>
 ${Object.keys(byDecade).map((d) => `      <p class="salary-links"><strong>${d}s:</strong> ${byDecade[d].map((y) => `<a href="/inflation/${country}/${y}/">${y}</a>`).join(" ")}</p>`).join("\n")}`;
   }).join("\n");
 }

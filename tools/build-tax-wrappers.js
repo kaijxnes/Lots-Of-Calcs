@@ -154,17 +154,17 @@ ${field("taxLater", P.laterLabel, D.taxLater, P.laterHint)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Which wins at different tax rates</p>
+      <h2 class="tool-section-title">Which wins at different tax rates</h2>
       <p class="about-text">${m(D.monthly)} a month for ${D.years} years at ${D.rate}%, by your tax rate now (rows) and when the money comes out (columns)${P.taxFree ? ", with 25% of the pension taken tax-free" : ""}:</p>
-${site.table(["Tax rate"].concat(P.laterRates.map((l) => `${l}% later`)), matrix, 460)}      <p class="tool-section-title" style="margin-top:22px;">How it works</p>
+${site.table(["Tax rate"].concat(P.laterRates.map((l) => `${l}% later`)), matrix, 460)}      <h2 class="tool-section-title" style="margin-top:22px;">How it works</h2>
       <p class="about-text">${esc(P.extra)}</p>
-      <p class="tool-section-title" style="margin-top:22px;">Limits for 2026</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Limits for 2026</h2>
 ${P.limits.map((l) => `      <p class="about-text">${esc(l)}</p>`).join("\n")}
       <p class="tool-hint" style="margin-top:12px;">Sources: ${P.sources.map(([t, u]) => `<a href="${u}" rel="noopener">${esc(t)}</a>`).join("; ")}. See also <a href="${P.investing}">what monthly investing could grow to</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block("/" + P.path + "/")}

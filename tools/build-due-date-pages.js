@@ -57,12 +57,12 @@ function page(o) {
     </header>
 
 ${o.body}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}      <p class="tool-hint" style="margin-top:12px;">An estimate only, not medical advice. Your midwife or GP will confirm your due date, usually at the dating scan. Sources: ${srcLinks}.</p>
     </main>
 
 ${o.related ? related.block(o.path) : `    <main class="tool">
-      <p class="tool-section-title">${esc(o.moreTitle)}</p>
+      <h2 class="tool-section-title">${esc(o.moreTitle)}</h2>
       <p class="salary-links">${o.more}</p>
     </main>
 `}
@@ -109,7 +109,7 @@ function hub() {
     desc: "Work out your baby's due date from the first day of your last period, how many weeks pregnant you are today, and the 37- to 42-week window — using the standard 280-day method.",
     h1: "Pregnancy due date calculator", sub: "Your estimated due date from the first day of your last period, and how many weeks pregnant you are today.", q,
     body: tool(lmp) + `    <main class="tool">
-      <p class="tool-section-title">Due dates by the month of your last period</p>
+      <h2 class="tool-section-title">Due dates by the month of your last period</h2>
       <p class="salary-links">${MONTH_PAGES.slice().reverse().map((m) => `<a href="${mSlug(m)}">Last period in ${mName(m)}</a>`).join(" ")}</p>
     </main>
 ` });
@@ -132,7 +132,7 @@ function monthPage(ym) {
     desc: `If your last period started in ${mName(ym)}, your baby is due between ${dm(a)} and ${dm(b)}. The due date for every day of the month, with 37- and 42-week dates.`,
     h1: `Last period in ${mName(ym)}: when is my baby due?`, sub: `A last period starting in ${esc(mName(ym))} gives a due date between <strong>${esc(dm(a))}</strong> and <strong>${esc(dm(b))}</strong>.`, q,
     body: tool(mid) + `    <main class="tool">
-      <p class="tool-section-title">Due dates for a last period in ${esc(mName(ym))}</p>
+      <h2 class="tool-section-title">Due dates for a last period in ${esc(mName(ym))}</h2>
 ${site.table(["First day of last period", "Due date (40 weeks)", "37 weeks", "42 weeks"], rows, 520)}    </main>
 `, moreTitle: "Other months", more: others });
 }

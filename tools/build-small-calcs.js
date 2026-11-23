@@ -39,7 +39,7 @@ function shell(o) {
 
 ${o.body}
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}    </main>
 
 ${related.block(o.path)}
@@ -122,7 +122,7 @@ ${f("cc-apr", "Interest rate (APR %)", apr)}
 ${f("cc-amount", "Fixed payment a month", fixed)}
         <div class="field"><label for="cc-cur">Currency</label><select id="cc-cur"><option value="£" selected>£</option><option value="$">$</option><option value="€">€</option></select></div>
       </div>
-      <p class="tool-section-title">Your card's minimum payment</p>
+      <h2 class="tool-section-title">Your card's minimum payment</h2>
       <div class="field-row">
 ${f("cc-pct", "% of the balance, plus that month's interest", 1)}
 ${f("cc-floor", "Or at least", 25)}
@@ -130,12 +130,12 @@ ${f("cc-floor", "Or at least", 25)}
       <p class="tool-hint">Your statement or card terms say how your minimum is worked out; the figures here are an example.</p>
       <p class="error-msg" id="cc-error" style="display:none;"></p>
       <div class="jo-grid">
-        <div class="jo-side"><p class="tool-section-title" style="margin-top:0;">Minimum payments</p><div class="result-box"><div class="result-grid">
+        <div class="jo-side"><h2 class="tool-section-title" style="margin-top:0;">Minimum payments</h2><div class="result-box"><div class="result-grid">
 ${row("Time to clear", "cc-min-time", yrs(min.months), "highlight")}
 ${row("Interest paid", "cc-min-int", gbp0(min.interest))}
 ${row("First payment", "cc-min-first", gbp(min.first))}
         </div></div></div>
-        <div class="jo-side"><p class="tool-section-title" style="margin-top:0;">Fixed payment</p><div class="result-box"><div class="result-grid">
+        <div class="jo-side"><h2 class="tool-section-title" style="margin-top:0;">Fixed payment</h2><div class="result-box"><div class="result-grid">
 ${row("Time to clear", "cc-fx-time", yrs(fx.months), "highlight")}
 ${row("Interest paid", "cc-fx-int", gbp0(fx.interest))}
 ${row("Interest saved", "cc-saved", gbp0(min.interest - fx.interest))}
@@ -184,7 +184,7 @@ ${row("Paid in by then", "fire-paid", gbp0(r.paid))}
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">In today's money: returns are after inflation and added monthly. Before tax and fees.</p>
-      <p class="tool-section-title" style="margin-top:20px;">At other withdrawal rates</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">At other withdrawal rates</h2>
       <div class="table-scroll"><div style="min-width:320px;"><table class="out-table"><thead><tr><th>Withdrawal rate</th><th>Target</th><th>Years</th></tr></thead><tbody id="fire-table"></tbody></table></div></div>
     </main>
 ` });
@@ -228,7 +228,7 @@ ${row("Bedtime for 9 hours' sleep", "sl2-c", "9:45pm")}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How much sleep you need, by age (CDC)</p>
+      <h2 class="tool-section-title">How much sleep you need, by age (CDC)</h2>
 ${site.table(["Age group", "Age", "Recommended a day"], table, 380)}    </main>
 ` });
 }
@@ -245,7 +245,7 @@ function random() {
     desc: "Generate random numbers in any range (with or without repeats), roll dice, flip a coin or pick a random winner from a list. Fair, using your browser's cryptographic randomness.",
     h1: "Random number generator", sub: "Random numbers, dice rolls, coin flips and prize-draw winners — fair, and nothing leaves your browser.", q, scripts: ["/random.js"],
     body: `    <main class="tool" id="rn-tool">
-      <p class="tool-section-title" style="margin-top:0;">Random numbers</p>
+      <h2 class="tool-section-title" style="margin-top:0;">Random numbers</h2>
       <div class="field-row">
 ${f("rn-min", "From", 1, ' step="1"')}
 ${f("rn-max", "To", 100, ' step="1"')}
@@ -257,7 +257,7 @@ ${f("rn-count", "How many", 1, ' step="1" max="1000"')}
       <p><button class="btn" type="button" id="rn-go">Generate</button></p>
       <div class="result-box"><div class="result-hero"><div class="value" id="rn-out" style="word-break:break-word;">—</div></div></div>
 
-      <p class="tool-section-title">Dice and coin</p>
+      <h2 class="tool-section-title">Dice and coin</h2>
       <div class="field-row">
 ${f("rn-dice", "Dice", 2, ' step="1" max="100"')}
         <div class="field"><label for="rn-sides">Sides</label><select id="rn-sides"><option>4</option><option selected>6</option><option>8</option><option>10</option><option>12</option><option>20</option><option>100</option></select></div>
@@ -265,7 +265,7 @@ ${f("rn-dice", "Dice", 2, ' step="1" max="100"')}
       <p><button class="btn" type="button" id="rn-roll">Roll</button> <button class="btn btn-ghost" type="button" id="rn-flip">Flip a coin</button></p>
       <div class="result-box"><div class="result-hero"><div class="value" id="rn-dice-out">—</div><div class="label" id="rn-dice-total"></div></div></div>
 
-      <p class="tool-section-title">Pick a winner</p>
+      <h2 class="tool-section-title">Pick a winner</h2>
       <div class="field no-share"><label for="rn-list">Entries, one per line</label><textarea id="rn-list" rows="6" placeholder="Alice&#10;Bob&#10;Charlie"></textarea></div>
       <div class="field-row">
 ${f("rn-winners", "Winners to pick", 1, ' step="1"')}

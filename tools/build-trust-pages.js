@@ -34,29 +34,29 @@ const html = site.head({ title, desc, url, ld }) + `    <header class="site-head
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">Official sources first</p>
+      <h2 class="tool-section-title">Official sources first</h2>
       <p class="about-text">Calculators that depend on rules set by someone else — tax, National Insurance, student loans, stamp duty, the energy price cap, statutory pay — use the figures published by the body that sets them: GOV.UK and HMRC, Ofgem, the IRS and state revenue departments, the Canada Revenue Agency, and the tax authorities of each European country covered. Where an official source doesn't publish a figure in usable form, we use payroll and accounting publications that cite it, and say so.</p>
       <p class="about-text">Each salary page lists its sources, what it assumes (for example a single employee with no pension contributions), and what it leaves out. Health and fitness calculators name the formula and the body behind it — the NHS, the CDC, the British Nutrition Foundation — and are estimates, not medical advice.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Checked every month</p>
+      <h2 class="tool-section-title">Checked every month</h2>
       <p class="about-text">The site covers income tax and social contributions in ${n(live.length)} jurisdictions across ${n(countries)} countries. Every month each one is compared with its published sources. When a rate changes, it's updated with the new source recorded alongside it; when it hasn't, the file gets a new "last checked" date. Next year's rates are prepared as drafts as soon as they're announced and switched on when the tax year starts.</p>
       <p class="about-text">Other figures that move — inflation, the energy price cap, fuel prices, exchange rates, bank holidays — are downloaded from their official publishers each month too. <a href="/tax-rates/">The tax rates page</a> shows when every country, state and province was last checked.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Tested before anything goes live</p>
+      <h2 class="tool-section-title">Tested before anything goes live</h2>
       <p class="about-text">Every tax file carries worked examples: a salary, worked through by hand from the official rules, with the result it must produce. There are ${n(tests)} of them, and every change to the rates or the code has to reproduce all of them exactly before it's published. The same calculation code runs on the pages and in the tests, so what's tested is what you use.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Being clear about limits</p>
+      <h2 class="tool-section-title">Being clear about limits</h2>
       <p class="about-text">A calculator is only as good as its assumptions, so each page states them. Tax pages also say whether a person has yet checked the figures line by line against the official source — a stricter mark than the monthly check — and link to the official calculator so you can compare. If something doesn't match your payslip, the assumptions are the first place to look.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}

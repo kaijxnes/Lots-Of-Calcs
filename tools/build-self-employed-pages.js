@@ -107,15 +107,15 @@ function page(profit) {
 
 ${tool(profit)}
     <main class="tool">
-      <p class="tool-section-title">${m0(profit)} profit, side by side</p>
+      <h2 class="tool-section-title">${m0(profit)} profit, side by side</h2>
 ${site.table(["", "Self-employed (Eng, Wales, NI)", "Self-employed (Scotland)", "Employee (Eng, Wales, NI)"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">The employee column is the same figure as a salary${salaryLink}.</p>
-      <p class="tool-section-title" style="margin-top:22px;">Paying the bill</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Paying the bill</h2>
       <p class="about-text">The ${esc(YEAR)} tax year ends on 5 April ${END_YEAR}; the return and the bill of <strong>${m(b.total)}</strong> are due by <strong>${DUE}</strong>. ${b.poa ? `As it's over £1,000 you'll also pay <strong>${m(b.poa)}</strong> on account on 31 January and again on 31 July, towards the following year. In your first year that makes <strong>${m(b.firstJanuary)}</strong> due on ${DUE}.` : "As it's under £1,000, there are no payments on account."}</p>
       <p class="tool-hint">${esc(POA_TEXT)}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${(() => { const b = links.borrowUk(profit); return b ? `    <p class="salary-links"><a href="${b}">How much can I borrow on ${m0(profit)}?</a> (lenders usually want two years' accounts or tax calculations from the self-employed)</p>\n` : ""; })()}
@@ -154,12 +154,12 @@ function hub() {
 
 ${tool(30000)}
     <main class="tool">
-      <p class="tool-section-title">Tax and take-home by profit (${esc(YEAR)})</p>
+      <h2 class="tool-section-title">Tax and take-home by profit (${esc(YEAR)})</h2>
 ${site.table(["Profit", "Income tax", "Class 4 NI", "Take-home", "Each payment on account"], rows, 520)}      <p class="tool-hint" style="margin-top:12px;">${ENG}, no student loan or pension. Pick a profit for the full breakdown, Scotland and the employee comparison.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

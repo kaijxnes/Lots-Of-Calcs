@@ -254,7 +254,7 @@ function page(kind, v) {
     for (let i = 0; i < 10; i++) dec.push(r1(start + i / 10));
     const drows = dec.map((x) => [x === v ? `<strong>${esc(K.label(x))}</strong>` : esc(K.label(x)), esc(K.answer(x))]);
     extraBlocks += `    <main class="tool">
-      <p class="tool-section-title">From ${esc(K.label(dec[0]))} to ${esc(K.label(dec[9]))}</p>
+      <h2 class="tool-section-title">From ${esc(K.label(dec[0]))} to ${esc(K.label(dec[9]))}</h2>
 ${site.table([K.from, K.to].map((n) => (n.length > 2 && /^[a-z]/.test(n) ? n.charAt(0).toUpperCase() + n.slice(1) : n)), drows, 300)}    </main>
 
 `;
@@ -265,7 +265,7 @@ ${site.table([K.from, K.to].map((n) => (n.length > 2 && /^[a-z]/.test(n) ? n.cha
     const trows = SPEEDS[u].map(([mode, sp, unit]) => [esc(mode), `${sp} ${unit}`, esc(dur(v / sp))]);
     q.push([`How long does it take to walk ${num(v, 1)} ${word}?`, `About ${dur(v / SPEEDS[u][0][1])} at a steady ${SPEEDS[u][0][1]} ${SPEEDS[u][0][2]}. Driving at ${SPEEDS[u][4][1]} ${SPEEDS[u][4][2]}, it takes about ${dur(v / SPEEDS[u][4][1])}.`]);
     extraBlocks += `    <main class="tool">
-      <p class="tool-section-title">How long ${esc(num(v, 1))} ${word} takes</p>
+      <h2 class="tool-section-title">How long ${esc(num(v, 1))} ${word} takes</h2>
 ${site.table(["", "Steady speed", "Time"], trows, 300)}      <p class="tool-hint" style="margin-top:12px;">At a constant speed with no stops. For your own speed, use the <a href="/speed-distance-time/">speed, distance and time calculator</a>.</p>
     </main>
 
@@ -290,7 +290,7 @@ ${K.extra(v).map(([a, b]) => `          <div class="result-row"><span class="r-l
         </div>
       </div>
       <p class="about-text" style="margin-top:14px;"><strong>How:</strong> ${esc(K.how())} ${esc(K.work(v))}</p>
-${more}      <p class="tool-section-title" style="margin-top:18px;">Convert another value</p>
+${more}      <h2 class="tool-section-title" style="margin-top:18px;">Convert another value</h2>
       <div class="field-row">
 ${inputs.map(([lab, val], j) => `        <div class="field"><label for="cv-in${j ? "2" : ""}">${esc(lab)}</label><input type="number" id="cv-in${j ? "2" : ""}" value="${val}" step="any" inputmode="decimal"></div>`).join("\n")}
         <div class="field"><label>Result</label><p class="r-value" id="cv-out" style="font-size:1.2rem; margin:8px 0 0;">${esc(answer)}</p></div>
@@ -298,12 +298,12 @@ ${inputs.map(([lab, val], j) => `        <div class="field"><label for="cv-in${j
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Nearby values</p>
+      <h2 class="tool-section-title">Nearby values</h2>
 ${site.table([K.from, K.to].map((n) => (n.length > 2 && /^[a-z]/.test(n) ? n.charAt(0).toUpperCase() + n.slice(1) : n)), rows, 300)}      <p class="tool-hint" style="margin-top:12px;">${revLink ? `The other way: ${revLink}. ` : ""}Every unit at once: the <a href="/unit-converter/">unit converter</a>.</p>
     </main>
 
 ${extraBlocks}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -352,7 +352,7 @@ function converterBlock() {
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length).replace(/^\n/, "");
   const pick = { "ftin-cm": [60, 64, 66, 68, 70, 72], "kg-stlb": [50, 60, 70, 80, 90, 100], "c-f": [-10, 0, 20, 37, 100, 180, 200], "f-c": [32, 70, 98, 350, 400], "km-mi": [5, 10, 21.1, 42.2, 100], "cm-ftin": [160, 170, 180] };
   const html = `    <main class="tool">
-      <p class="tool-section-title">Popular conversions</p>
+      <h2 class="tool-section-title">Popular conversions</h2>
       <p class="salary-links">${Object.keys(pick).map((k) => pick[k].filter((v) => has(k, v)).map((v) => `<a href="${href(k, v)}">${esc(KINDS[k].label(v))} → ${esc(KINDS[k].answer(v))}</a>`).join(" ")).join(" ")} <a href="/convert/">All conversions →</a></p>
     </main>
 

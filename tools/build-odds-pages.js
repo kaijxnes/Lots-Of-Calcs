@@ -74,7 +74,7 @@ function page(f, i) {
 
     <main class="tool" id="op-tool" data-dec="${x.dec}">
 ${site.table(["Format", nm], conv.map(([a, b]) => [a, `<strong>${b}</strong>`]), 260)}
-      <p class="tool-section-title" style="margin-top:20px;">Your stake at ${nml}</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Your stake at ${nml}</h2>
       <div class="field-row">
         <div class="field"><label for="op-stake">Stake</label><input type="number" id="op-stake" value="10" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="op-cur">Currency</label><select id="op-cur"><option value="£" selected>£</option><option value="$">$</option><option value="€">€</option></select></div>
@@ -90,13 +90,13 @@ ${site.table(["Format", nm], conv.map(([a, b]) => [a, `<strong>${b}</strong>`]),
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Returns at ${nml}</p>
-${site.table(["Stake", "Profit", "Total return"], stakeRows, 260)}${ew ? `      <p class="tool-section-title" style="margin-top:20px;">£10 each-way at ${nml} (£20 total)</p>
+      <h2 class="tool-section-title">Returns at ${nml}</h2>
+${site.table(["Stake", "Profit", "Total return"], stakeRows, 260)}${ew ? `      <h2 class="tool-section-title" style="margin-top:20px;">£10 each-way at ${nml} (£20 total)</h2>
 ${site.table(["Terms", "Places: return", "Wins: return", "Places: profit"], ewRows, 290)}      <p class="tool-hint" style="margin-top:12px;">The place part pays a fraction of the win odds: at 1/4 terms, ${nm} places at ${decStr(Odds.placeOdds(x.dec, 1 / 4))}. If it wins, both parts pay. More in the <a href="/each-way/">each-way calculator</a>.</p>
 ` : ""}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">${SAFER}</p>
     </main>
 
@@ -119,11 +119,11 @@ function hubBlock() {
   const link = (f) => `<a href="${BASE}${slug(f)}/">${name(f)}</a>`;
   const on = LADDER.filter((f) => facts(f).dec < 2), against = LADDER.filter((f) => facts(f).dec >= 2);
   const html = `    <main class="tool">
-      <p class="tool-section-title">Common odds explained</p>
+      <h2 class="tool-section-title">Common odds explained</h2>
       <p class="tool-hint">Each price in decimal, American and implied probability, with returns and each-way payouts.</p>
-      <p class="tool-section-title" style="margin-top:16px;">Odds-on and evens</p>
+      <h2 class="tool-section-title" style="margin-top:16px;">Odds-on and evens</h2>
       <p class="salary-links">${on.map(link).join(" ")}</p>
-      <p class="tool-section-title" style="margin-top:16px;">Odds-against</p>
+      <h2 class="tool-section-title" style="margin-top:16px;">Odds-against</h2>
       <p class="salary-links">${against.map(link).join(" ")}</p>
     </main>
 

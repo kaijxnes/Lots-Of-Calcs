@@ -169,23 +169,23 @@ ${tool(set, kind, n)}
       <p class="about-text">${monthly
         ? `Investing <strong>${esc(a0)} a month</strong> for 10 years at ${EXAMPLE.rate}% a year grows to about <strong>${money(set, r10.value)}</strong>: ${money(set, r10.paid)} paid in and ${money(set, r10.growth)} of growth. Leave it for 30 years and it is about ${money(set, r30.value)}, of which ${money(set, r30.growth)} is growth.`
         : `A lump sum of <strong>${esc(a0)}</strong> left for 10 years at ${EXAMPLE.rate}% a year grows to about <strong>${money(set, r10.value)}</strong>. After 30 years it is about ${money(set, r30.value)} &mdash; ${(r30.value / n).toFixed(1)} times what you started with.`}</p>
-      <p class="tool-section-title" style="margin-top:22px;">What ${esc(what)} grows to</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">What ${esc(what)} grows to</h2>
 ${table(["Return a year"].concat(YEARS.map((y) => `${y} years`)), (paidRow ? [paidRow.map((c, i) => (i === 0 ? c : `<em>${c}</em>`))] : []).concat(grid), 120 + YEARS.length * 95)}      <p class="tool-hint" style="margin-top:12px;">Before fees, tax and inflation. ${monthly ? "Contributions are paid at the end of each month. " : ""}Each year grows by exactly the return shown. ${set.wrapperLink}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Year by year at ${EXAMPLE.rate}%</p>
+      <h2 class="tool-section-title">Year by year at ${EXAMPLE.rate}%</h2>
 ${table(["Year", "Paid in", "Value", "Growth", "In today's money"], yearRows, 460)}      <p class="tool-hint" style="margin-top:12px;">&ldquo;Today's money&rdquo; takes off ${EXAMPLE.inflation}% inflation a year, so it shows what the pot would buy at today's prices. The <a href="/inflation/">inflation calculator</a> shows how prices have actually moved.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">What fees cost over 30 years</p>
+      <h2 class="tool-section-title">What fees cost over 30 years</h2>
       <p class="about-text">A yearly charge comes off the return every year, so a small percentage adds up. At ${EXAMPLE.rate}% a year before fees:</p>
 ${table(["Fees a year", "Value after 30 years", "Lost to fees"], feeRows, 360)}      <p class="tool-hint" style="margin-top:12px;">The <a href="/fund-fees/">fund fee calculator</a> works this out for your own platform and fund charges.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">${monthly ? "Other monthly amounts" : "Other lump sums"}</div>
@@ -227,13 +227,13 @@ function hub(set, isMain) {
 
     <main class="tool">
       <p class="about-text">Pick an amount for its full table over 5 to 40 years, the effect of fees and inflation, and a calculator for your own figures. The summary below uses an example ${EXAMPLE.rate}% a year &mdash; an example, not a forecast. ${isMain ? `<a href="${other.base}">See the figures in dollars</a>.` : `<a href="${other.base}">See the figures in pounds</a>.`}</p>
-      <p class="tool-section-title" style="margin-top:22px;">Investing every month</p>
-${table(["Each month", `After 10 years at ${EXAMPLE.rate}%`, "After 30 years"], mRows, 420)}      <p class="tool-section-title" style="margin-top:22px;">A lump sum</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Investing every month</h2>
+${table(["Each month", `After 10 years at ${EXAMPLE.rate}%`, "After 30 years"], mRows, 420)}      <h2 class="tool-section-title" style="margin-top:22px;">A lump sum</h2>
 ${table(["Invested", `After 10 years at ${EXAMPLE.rate}%`, "After 30 years"], lRows, 420)}      <p class="tool-hint" style="margin-top:12px;">Before fees, tax and inflation. For other amounts, rising contributions and monthly compounding, use the <a href="/compound-interest/">compound interest calculator</a>; for a target, the <a href="/savings-goal/">savings goal calculator</a>; for what fees cost, the <a href="/fund-fees/">fund fee drag calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(faq)}    </main>
 
 ${site.FOOTER}
@@ -276,7 +276,7 @@ function main() {
 
   const gbp = SETS.GBP;
   const links = `    <main class="tool">
-      <p class="tool-section-title">What regular investing grows to</p>
+      <h2 class="tool-section-title">What regular investing grows to</h2>
       <p class="salary-links">${[50, 100, 200, 300, 500, 1000].map((n) => `<a href="${url(gbp, "monthly", n)}">£${n.toLocaleString("en-GB")} a month</a>`).join(" ")} ${[10000, 50000].map((n) => `<a href="${url(gbp, "lump", n)}">£${n.toLocaleString("en-GB")} invested</a>`).join(" ")} <a href="/investing/">All amounts</a> <a href="/investing/us/">In dollars</a></p>
     </main>
 `;

@@ -93,7 +93,7 @@ function page(a, b) {
     </header>
 
     <main class="tool" id="tzp-tool" data-a="${A.tz}" data-b="${B.tz}" data-an="${esc(A.search)}" data-bn="${esc(B.search)}">
-      <p class="tool-section-title" style="margin-top:0;">Convert a time</p>
+      <h2 class="tool-section-title" style="margin-top:0;">Convert a time</h2>
       <div class="field-row">
         <div class="field"><label for="tzp-date">Date</label><input type="date" id="tzp-date"></div>
         <div class="field"><label for="tzp-time">Time in ${esc(A.search)}</label><input type="time" id="tzp-time" value="15:00"></div>
@@ -108,16 +108,16 @@ function page(a, b) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Every hour, ${esc(A.search)} to ${esc(B.search)}</p>
+      <h2 class="tool-section-title">Every hour, ${esc(A.search)} to ${esc(B.search)}</h2>
 ${site.table([esc(A.short), dJan !== dJul ? `${esc(B.short)} in January` : esc(B.short)].concat(dJan !== dJul ? [`${esc(B.short)} in July`] : []), rows, 300)}    </main>
 
 ${multi ? `    <main class="tool">
-      <p class="tool-section-title">When the time difference changes (${YEAR}–${YEAR + 1})</p>
+      <h2 class="tool-section-title">When the time difference changes (${YEAR}–${YEAR + 1})</h2>
 ${site.table(["Dates", "Difference"], perRows, 360)}      <p class="tool-hint" style="margin-top:12px;">Clocks change on different dates in different countries, so for a few weeks in spring and autumn the gap is an hour different from usual.</p>
     </main>
 
 ` : ""}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -134,7 +134,7 @@ PAIRS.forEach(([a, b]) => [[a, b], [b, a]].forEach(([x, y]) => {
   links.push(`<a href="${BASE}${slug(x, y)}/">${esc(ZONES[x].search)} to ${esc(ZONES[y].search)}</a>`);
 }));
 site.hubBlock(BASE, "timezone pages", "tools/build-timezone-pages.js", `    <main class="tool">
-      <p class="tool-section-title">Popular time differences</p>
+      <h2 class="tool-section-title">Popular time differences</h2>
       <p class="salary-links">${links.join(" ")}</p>
     </main>
 

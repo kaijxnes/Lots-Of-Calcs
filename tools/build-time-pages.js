@@ -53,7 +53,7 @@ function weeksOf(y) {
 if (weeksOf(2026).length !== 53 || weeksOf(2025).length !== 52) throw new Error("weeks in year");
 
 const faqBlock = (q) => `    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 `;
 function page(o) {
@@ -69,7 +69,7 @@ function page(o) {
 
 ${o.body}${faqBlock(o.q)}
 ${o.related ? related.block(o.path) : `    <main class="tool">
-      <p class="tool-section-title">${esc(o.moreTitle)}</p>
+      <h2 class="tool-section-title">${esc(o.moreTitle)}</h2>
       <p class="salary-links">${o.more}</p>
     </main>
 `}
@@ -131,7 +131,7 @@ const TIMESHEET_DAYS = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 function timesheet() {
   const rows = TIMESHEET_DAYS.map((d, i) => `            <tr><td>${d}</td><td><input type="time" id="ts-s${i}" aria-label="${d} start"${i < 5 ? ' value="09:00"' : ""}></td><td><input type="time" id="ts-e${i}" aria-label="${d} end"${i < 5 ? ' value="17:00"' : ""}></td><td><input type="number" id="ts-b${i}" aria-label="${d} break in minutes" min="0" step="1" inputmode="numeric" style="width:70px;"${i < 5 ? ' value="30"' : ""}></td><td id="ts-t${i}">${i < 5 ? "7:30" : "—"}</td></tr>`).join("\n");
   return `    <main class="tool" id="ts-tool">
-      <p class="tool-section-title" style="margin-top:0;">Weekly timesheet</p>
+      <h2 class="tool-section-title" style="margin-top:0;">Weekly timesheet</h2>
       <div class="table-scroll">
         <div style="min-width:440px;">
           <table class="out-table">
@@ -167,7 +167,7 @@ function hoursHub() {
     desc: "Work out the hours between two times, less breaks, in hours and minutes and decimal hours — with a weekly timesheet and pay. 9am to 5pm with a 30-minute break is 7.5 hours.",
     h1: "Hours calculator", sub: "Hours worked between two times, less breaks — and a weekly timesheet with the total and pay.", q,
     body: hoursTool(T(9), T(17), 30) + timesheet() + `    <main class="tool">
-      <p class="tool-section-title">Common shifts</p>
+      <h2 class="tool-section-title">Common shifts</h2>
       <p class="salary-links">${links}</p>
     </main>
 ` });
@@ -186,7 +186,7 @@ function shiftPage(s) {
     desc: `${a} to ${b} is ${hm(L)}. Less a 30-minute break it's ${hm(L - 30)} (${dec(L - 30)} hours), and ${dec((L - 30) * 5)} hours over a five-day week.`,
     h1: `${a} to ${b}: how many hours?`, sub: `${esc(a)} to ${esc(b)} is <strong>${esc(hm(L))}</strong>${night ? " (an overnight shift)" : ""}. Change the times or the break below.`, q,
     body: hoursTool(s[0], s[1], 0) + `    <main class="tool">
-      <p class="tool-section-title">${esc(a)} to ${esc(b)} with breaks</p>
+      <h2 class="tool-section-title">${esc(a)} to ${esc(b)} with breaks</h2>
 ${site.table(["Unpaid break", "Hours worked", "Decimal hours", "Five days a week"], rows, 460)}    </main>
 `, moreTitle: "Other shifts", more: others });
 }
@@ -237,7 +237,7 @@ function datePage(k, n) {
     desc: `Find the date ${what}, worked out live from today's date — plus the date ${n} ${k.unit} ${k.sign > 0 ? "after" : "before"} the 1st of every month in ${YEAR}, and a calculator for any number of days, weeks or months.`,
     h1: k.sign > 0 ? `What date is ${what}?` : `What date was ${what}?`, sub: `${esc(n + " " + k.unit)} ${k.sign > 0 ? "after" : "before"} today, worked out from your device's date. Change the number or the starting date below.`, q,
     body: dateTool(k, n) + `    <main class="tool">
-      <p class="tool-section-title">${esc(n + " " + k.unit)} ${k.sign > 0 ? "after" : "before"} the 1st of each month, ${YEAR}</p>
+      <h2 class="tool-section-title">${esc(n + " " + k.unit)} ${k.sign > 0 ? "after" : "before"} the 1st of each month, ${YEAR}</h2>
 ${site.table(["Starting date", `${n} ${k.unit} ${k.sign > 0 ? "later" : "earlier"}`], table, 360)}      <p class="tool-hint" style="margin-top:12px;">${cross ? cross + ". " : ""}To count the days between two dates, use the <a href="/date-diff/">date difference calculator</a>.</p>
     </main>
 `, moreTitle: `Other ${k.title.toLowerCase()}`, more: others });
@@ -257,9 +257,9 @@ function dateHub(k) {
     desc: `Find the date any number of ${k.unit} ${k.word} — ${n} ${k.unit} ${k.word}, ${k.counts[k.counts.length - 1]} ${k.unit} ${k.word} or any other — or before or after any date. Worked out live from today's date.`,
     h1: `${what} calculator`, sub: `The date any number of days, weeks, months or years ${k.sign > 0 ? "from" : "before"} today — or from any date you choose.`, q,
     body: dateTool(k, n) + `    <main class="tool">
-      <p class="tool-section-title">Common searches</p>
+      <h2 class="tool-section-title">Common searches</h2>
       <p class="salary-links">${links}</p>
-${k === KIND.from ? Object.values(KIND).filter((x) => x !== k).map((x) => `      <p class="tool-section-title" style="margin-top:18px;">${x.title}</p>
+${k === KIND.from ? Object.values(KIND).filter((x) => x !== k).map((x) => `      <h2 class="tool-section-title" style="margin-top:18px;">${x.title}</h2>
       <p class="salary-links"><a href="${x.base}">${x.title} calculator</a> ${x.counts.map((n) => `<a href="${x.base}${n}/">${n} ${x.unit} ${x.word}</a>`).join(" ")}</p>
 `).join("") : ""}    </main>
 ` });
@@ -307,7 +307,7 @@ function weekHub() {
     desc: `This week's ISO week number, worked out live, the week number of any date, and every week of ${YEAR} with its start and end dates.`,
     h1: "What week number is it?", sub: "This week's number, the week of any date, and the dates of every week in the year (ISO 8601, Monday to Sunday).", q,
     body: weekTool() + `    <main class="tool">
-      <p class="tool-section-title">Week numbers ${YEAR}</p>
+      <h2 class="tool-section-title">Week numbers ${YEAR}</h2>
 ${weekTable(YEAR)}      <p class="salary-links" style="margin-top:12px;">${WEEK_YEARS.map((y) => `<a href="/week-number/${y}/">Week numbers ${y}</a>`).join(" ")}</p>
     </main>
 ` });
@@ -319,7 +319,7 @@ function weekYear(y) {
     desc: `Every ISO week number in ${y} with its Monday start and Sunday end: week 1 starts ${short(w[0].start)} and week ${w.length} ends ${short(w[w.length - 1].end)}.`,
     h1: `Week numbers ${y}`, sub: `All ${w.length} weeks of ${y}, Monday to Sunday (ISO 8601).`, q: weekQ(y),
     body: weekTool() + `    <main class="tool">
-      <p class="tool-section-title">Weeks of ${y}</p>
+      <h2 class="tool-section-title">Weeks of ${y}</h2>
 ${weekTable(y)}    </main>
 `, moreTitle: "Other years", more: WEEK_YEARS.filter((x) => x !== y).map((x) => `<a href="/week-number/${x}/">Week numbers ${x}</a>`).join(" ") + ` <a href="/week-number/">This week's number</a>` });
 }

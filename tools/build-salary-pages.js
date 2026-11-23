@@ -226,7 +226,7 @@ function build(gross, chain, cfg, allSalaries) {
       "      </a>\n";
   }).join("");
 
-  const faqHtml = q.map(([a, b]) => `      <p class="faq-q">${esc(a)}</p>\n      <p class="about-text">${esc(b)}</p>\n`).join("");
+  const faqHtml = q.map(([a, b]) => `      <h3 class="faq-q">${esc(a)}</h3>\n      <p class="about-text">${esc(b)}</p>\n`).join("");
 
   const ratesLine = `Figures use the <strong>${cfg.taxYear}</strong> tax year, which runs from ${niceDate(cfg.taxYearStart)} to ${niceDate(cfg.taxYearEnd)}, ` +
     `for <strong>${esc(cfg.appliesTo)}</strong>. ` +
@@ -293,7 +293,7 @@ ${ldJson}
 
       <p class="about-text" style="margin-top:18px;">A salary of <strong>${money0(gross)}</strong> leaves <strong>${money(r.net)}</strong> a year once income tax and National Insurance are taken off &mdash; <strong>${money(r.per_month)}</strong> a month. The deductions come to ${money(r.deductions)}, or ${oneDp(r.deduction_rate)}% of the gross.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Where it goes</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Where it goes</h2>
       <div class="result-box">
         <div class="result-grid">
           <div class="result-row"><span class="r-label">Gross salary</span><span class="r-value" id="out-gross">${money0(gross)}</span></div>
@@ -308,7 +308,7 @@ ${ldJson}
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">Try a different salary</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Try a different salary</h2>
       <div class="field" style="max-width:320px;">
         <label for="salary">Gross annual salary</label>
         <input type="number" id="salary" value="${gross}" step="any" min="0" placeholder="0">
@@ -336,7 +336,7 @@ ${ldJson}
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint" id="salary-note">Change the figure and everything above updates. The page itself still describes ${money0(gross)}.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</h2>
       <div class="field" style="max-width:200px;">
         <label for="rise-pct">Pay rise (%)</label>
         <input type="number" id="rise-pct" value="3" min="0" step="any" inputmode="decimal">
@@ -369,9 +369,9 @@ ${(() => {
           const h = H.rates.reduce((a, x) => Math.abs(yr(x) - gross) < Math.abs(yr(a) - gross) ? x : a);
           return Math.abs(yr(h) - gross) / gross <= 0.1 ? `<a href="/salary/${h}-an-hour-after-tax/">£${h} an hour after tax (${money0(yr(h))} a year)</a>` : "";
         })()].filter(Boolean);
-        return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${money0(gross)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
+        return items.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">More on ${money0(gross)}</h2>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
       })()}
-      <p class="tool-section-title" style="margin-top:22px;">The bands, line by line</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">The bands, line by line</h2>
       <div class="table-scroll">
         <div style="min-width:420px;">
           <table class="out-table">
@@ -392,7 +392,7 @@ ${(() => {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How ${money0(gross)} after tax is worked out</p>
+      <h2 class="tool-section-title">How ${money0(gross)} after tax is worked out</h2>
       <p class="about-text">Two separate deductions come out of a salary, and they work differently enough that adding them into a single percentage would be misleading.</p>
       <p class="about-text"><strong>Income tax</strong> ignores the first ${money0(r.allowance)} entirely &mdash; the personal allowance. On ${money0(gross)} that leaves ${money0(r.taxable)} of taxable income, charged at ${firstRate}%, giving ${money(r.income_tax)}. The allowance is the reason the headline rate overstates what you actually pay: the effective rate across the whole salary is lower than the band rate, because a chunk of your income was never taxed.</p>
       <p class="about-text"><strong>National Insurance</strong> is charged on gross pay rather than taxable income, with its own threshold at ${money0(cfg.niThreshold)}. On this salary it comes to ${money(r.ni)}. It happens to share a threshold with the personal allowance at the moment, which makes the two look like one deduction — they are not, and they have diverged before.</p>
@@ -402,7 +402,7 @@ ${(() => {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${faqHtml}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>

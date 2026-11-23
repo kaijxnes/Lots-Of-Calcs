@@ -98,14 +98,14 @@ function ukPage(salary) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">By income multiple</p>
+      <h2 class="tool-section-title">By income multiple</h2>
 ${site.table(["Lender's multiple", "Borrowing", "Home (10% deposit)", "A month", "Stress-tested", "Of take-home"], rows, 600)}      <p class="tool-hint" style="margin-top:12px;">${esc(ASSUME_UK)} Take-home pay is after income tax and National Insurance (${esc(chain[0].taxYear.label)}, England, Wales and Northern Ireland), with no pension or student loan.</p>
-      <p class="tool-section-title" style="margin-top:22px;">More on ${gbp(salary)}</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">More on ${gbp(salary)}</h2>
       <p class="salary-links">${more}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
@@ -157,14 +157,14 @@ function usPage(salary) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">With other monthly debts</p>
+      <h2 class="tool-section-title">With other monthly debts</h2>
 ${site.table(["Other debts", "Home price", "Loan", "Housing a month"], debtRows, 460)}      <p class="tool-hint" style="margin-top:12px;">${esc(ASSUME_US)}</p>
-      <p class="tool-section-title" style="margin-top:22px;">More on ${usd(salary)}</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">More on ${usd(salary)}</h2>
       <p class="salary-links"><a href="/salary/us/">${usd(salary)} after tax in every state</a>${mort ? ` <a href="${mort.url}">Payments on a ${usd(mort.value)} mortgage</a>` : ""} <a href="/pay-rise-calculator/">What a raise adds</a></p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
@@ -245,7 +245,7 @@ ${site.table(["Buyer", "Maximum loan", "Home (10% deposit)", "A month", "Of take
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
@@ -303,7 +303,7 @@ ${site.table(["Term", "Loan", "Home (10% deposit)", "A month"], rows, 440)}     
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>
@@ -322,7 +322,7 @@ function hubBlock() {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length);
   const html = `    <main class="tool">
-      <p class="tool-section-title">By salary</p>
+      <h2 class="tool-section-title">By salary</h2>
       <p class="salary-links-title">UK: how much can I borrow on…</p>
       <p class="salary-links">${UK_SALARIES.map((x) => `<a href="${BASE}uk/${x}/">${gbp(x)}</a>`).join(" ")}</p>
       <p class="salary-links-title">US: how much house can I afford on…</p>

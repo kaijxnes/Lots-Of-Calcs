@@ -53,12 +53,12 @@ function page(o) {
     </header>
 
 ${o.body}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}      <p class="tool-hint" style="margin-top:12px;">An estimate for general information, not medical advice. Source: ${o.sources}.</p>
     </main>
 
 ${o.related ? related.block(o.path) : `    <main class="tool">
-      <p class="tool-section-title">${esc(o.moreTitle)}</p>
+      <h2 class="tool-section-title">${esc(o.moreTitle)}</h2>
       <p class="salary-links">${o.more}</p>
     </main>
 `}
@@ -96,7 +96,7 @@ function hrHub() {
     desc: `Your estimated maximum heart rate and target heart rate for moderate and vigorous exercise, by age, using the CDC's ranges. At 40: ${zone(40, FIT.hr.moderate).join("–")} bpm moderate, ${zone(40, FIT.hr.vigorous).join("–")} bpm vigorous.`,
     h1: "Target heart rate calculator", sub: "Your estimated maximum heart rate and the target ranges for moderate and vigorous exercise.", q,
     body: hrTool(40) + `    <main class="tool">
-      <p class="tool-section-title">Target heart rate by age</p>
+      <h2 class="tool-section-title">Target heart rate by age</h2>
 ${site.table(["Age", "Maximum", "Moderate", "Vigorous"], AGES.map((a) => [`<a href="${HB}age-${a}/">${a}</a>`, `${maxHr(a)} bpm`, `${zone(a, FIT.hr.moderate).join("–")} bpm`, `${zone(a, FIT.hr.vigorous).join("–")} bpm`]), 420)}    </main>
 ` });
 }
@@ -205,7 +205,7 @@ function protHub() {
     desc: `How much protein you need a day from your weight, using the UK Reference Nutrient Intake of ${FIT.protein.perKg} g per kg — with pregnancy, breastfeeding and over-65 figures.`,
     h1: "Protein calculator", sub: "How much protein you need a day, from your body weight.", q,
     body: protTool(70) + `    <main class="tool">
-      <p class="tool-section-title">Protein by body weight</p>
+      <h2 class="tool-section-title">Protein by body weight</h2>
 ${site.table(["Body weight", "Protein a day"], WEIGHTS.map((w) => [`<a href="${PB}${w}kg/">${w} kg</a>`, `${n1(w * FIT.protein.perKg)} g`]), 280)}    </main>
 ` });
 }

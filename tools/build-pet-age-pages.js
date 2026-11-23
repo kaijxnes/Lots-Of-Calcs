@@ -75,7 +75,7 @@ ${body}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other ages</div>
@@ -95,7 +95,7 @@ function hubBlock(kind, ages, label) {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length);
   const html = `    <main class="tool">
-      <p class="tool-section-title">${label}</p>
+      <h2 class="tool-section-title">${label}</h2>
       <p class="salary-links">${ages.map((a) => `<a href="/${kind}-age/${slug(a)}/">${a} ${a === 1 ? "year" : "years"}</a>`).join(" ")}</p>
     </main>
 

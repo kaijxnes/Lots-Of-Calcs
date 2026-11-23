@@ -42,9 +42,9 @@ function page() {
     </header>
 
     <main class="tool" id="ef-tool">
-      <p class="tool-section-title">Essential spending a month</p>
+      <h2 class="tool-section-title">Essential spending a month</h2>
 ${rowsOf2.join("\n")}
-      <p class="tool-section-title">Your fund</p>
+      <h2 class="tool-section-title">Your fund</h2>
       <div class="field-row">
         <div class="field"><label for="ef-months">Months of cover</label><select id="ef-months"><option value="3" selected>3 months</option><option value="4">4 months</option><option value="6">6 months</option><option value="9">9 months</option><option value="12">12 months</option></select></div>
         <div class="field"><label for="ef-cur">Currency</label><select id="ef-cur"><option value="£" selected>£</option><option value="$">$</option><option value="€">€</option></select></div>
@@ -63,7 +63,7 @@ ${rowsOf2.join("\n")}
           <div class="result-row highlight"><span class="r-label">Time to get there</span><span class="r-value" id="ef-when">${n3} months</span></div>
         </div>
       </div>
-      <p class="tool-section-title" style="margin-top:20px;">More cover</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">More cover</h2>
       <div class="table-scroll">
         <div style="min-width:320px;">
           <table class="out-table">
@@ -78,14 +78,14 @@ ${staticRows}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How much is enough?</p>
+      <h2 class="tool-section-title">How much is enough?</h2>
       <p class="about-text"><strong>Three months</strong> of essential spending is the common starting point, and covers most surprise bills and a short gap between jobs. <strong>Six months or more</strong> makes sense if you're self-employed, on a variable income, the only earner in your home, or in work that would take a while to replace.</p>
       <p class="about-text"><strong>Count essentials, not everything.</strong> In an emergency you'd stop eating out and pause subscriptions, so the fund only needs to cover what you couldn't cut. That makes the target smaller and quicker to reach than it first seems.</p>
       <p class="about-text"><strong>Finding the money:</strong> the <a href="/50-30-20-budget/">50/30/20 budget calculator</a> sets aside 20% of take-home pay for savings, and the <a href="/52-week-savings-challenge/">52-week challenge</a> builds £1,378 a year in small steps. To save for a set date instead, use the <a href="/savings-goal/">savings goal calculator</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

@@ -155,7 +155,7 @@
       </div>
     </main>
     <main class="tool">
-      <p class="tool-section-title">The CAGR formula</p>
+      <h2 class="tool-section-title">The CAGR formula</h2>
       <p class="about-text">Compound annual growth rate answers &ldquo;what steady yearly growth rate would take the start value to the end value?&rdquo;</p>
       <p class="about-text"><strong>CAGR = (end value &divide; start value)<sup>1 &divide; years</sup> &minus; 1</strong></p>
       <p class="about-text"><strong>Worked example:</strong> an investment grows from &pound;10,000 to &pound;16,000 over 5 years. 16,000 &divide; 10,000 = 1.6. Raising 1.6 to the power of 1/5 (0.2) gives 1.0986, and taking away 1 leaves 0.0986 &mdash; a CAGR of <strong>9.86%</strong>. Check it: &pound;10,000 growing 9.86% a year for five years comes to &pound;16,000.</p>
@@ -163,13 +163,13 @@
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Why CAGR beats an average</p>
+      <h2 class="tool-section-title">Why CAGR beats an average</h2>
       <p class="about-text">A simple average of yearly returns ignores the order and size of the swings. If a fund rises 50% one year and falls 50% the next, the average return is 0% &mdash; but &pound;1,000 becomes &pound;1,500 and then &pound;750, a 25% loss. CAGR reports that correctly as <strong>&minus;13.4%</strong> a year.</p>
       <p class="about-text">That makes CAGR the fair way to compare investments, revenue or anything else that grows over several years, even when the periods have very different ups and downs.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How long to double?</p>
+      <h2 class="tool-section-title">How long to double?</h2>
       <p class="about-text">A rough rule: divide 72 by the annual growth rate to get the years it takes to double. At 6% a year, 72 &divide; 6 = 12 years. It works the other way too &mdash; something that doubled in 10 years grew at roughly 7.2% a year (the exact CAGR is 7.18%).</p>
       <div class="table-scroll">
         <div style="min-width:420px;">
@@ -189,18 +189,18 @@
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
-      <p class="faq-q">How do I calculate CAGR in Excel or Google Sheets?</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+      <h3 class="faq-q">How do I calculate CAGR in Excel or Google Sheets?</h3>
       <p class="about-text">Use =(end/start)^(1/years)-1 and format the cell as a percentage. With the start value in A1, the end value in B1 and the number of years in C1, that is =(B1/A1)^(1/C1)-1. Excel's RRI function gives the same answer: =RRI(C1, A1, B1).</p>
-      <p class="faq-q">What counts as a good CAGR?</p>
+      <h3 class="faq-q">What counts as a good CAGR?</h3>
       <p class="about-text">It depends entirely on context — a savings account, a stock index and an early-stage company all have very different norms. CAGR is most useful as a like-for-like comparison between options over the same period, not as an absolute score.</p>
-      <p class="faq-q">Why not just average the yearly growth rates?</p>
+      <h3 class="faq-q">Why not just average the yearly growth rates?</h3>
       <p class="about-text">A simple average ignores compounding and flatters volatile results. Gaining 50% then losing 50% averages to zero, but you actually end down 25% — CAGR captures that correctly.</p>
-      <p class="faq-q">Can I use CAGR for periods that aren't whole years?</p>
+      <h3 class="faq-q">Can I use CAGR for periods that aren't whole years?</h3>
       <p class="about-text">Yes. Enter the period as a decimal &mdash; 30 months is 2.5 years &mdash; and the formula still gives an annual rate. For periods under a year the result is annualised, which can make a short burst of growth look dramatic.</p>
-      <p class="faq-q">Can CAGR be negative?</p>
+      <h3 class="faq-q">Can CAGR be negative?</h3>
       <p class="about-text">Yes. If the end value is below the start value, CAGR is negative and shows the steady yearly decline that would have produced the same loss. It can't be worked out if the start value is zero or the two values have different signs.</p>
-      <p class="faq-q">Does CAGR include money I added along the way?</p>
+      <h3 class="faq-q">Does CAGR include money I added along the way?</h3>
       <p class="about-text">No. CAGR only looks at a start and end value, so deposits or withdrawals in between distort it. For savings with regular contributions, the <a href="/compound-interest/">compound interest calculator</a> models the payments properly.</p>
     </main>
 

@@ -98,13 +98,13 @@ function sizePage(w) {
 
 ${tool(w)}
     <main class="tool">
-      <p class="tool-section-title">${sizeName(w)} heater: cost by hours used</p>
-${site.table(["Use", "A day", "A week", "A month", "Oct–Mar"], hoursRows, 480)}      <p class="tool-section-title" style="margin-top:22px;">Other heater sizes</p>
+      <h2 class="tool-section-title">${sizeName(w)} heater: cost by hours used</h2>
+${site.table(["Use", "A day", "A week", "A month", "Oct–Mar"], hoursRows, 480)}      <h2 class="tool-section-title" style="margin-top:22px;">Other heater sizes</h2>
 ${sizeTable(w)}      <p class="tool-hint" style="margin-top:12px;">${EFF_NOTE}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -136,12 +136,12 @@ function hub() {
 
 ${tool(2000)}
     <main class="tool">
-      <p class="tool-section-title">Heater running costs by size</p>
+      <h2 class="tool-section-title">Heater running costs by size</h2>
 ${sizeTable()}      <p class="tool-hint" style="margin-top:12px;">On full power at ${ER}p per kWh; a month is 4 hours a day, 7 days a week. ${EFF_NOTE} For other appliances, see the <a href="/running-cost/">electricity running cost calculator</a>: <a href="/running-cost/oil-filled-radiator/">oil-filled radiator</a>, <a href="/running-cost/electric-blanket/">electric blanket</a>, <a href="/running-cost/heated-airer/">heated airer</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

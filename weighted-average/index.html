@@ -129,20 +129,20 @@
     <main class="tool">
       <p class="about-text" style="margin-bottom:18px;">A weighted average lets some values count for more than others. Enter your values and weights below, or <strong>paste a two-column block straight from Excel, Google Sheets or a CSV</strong> into any Value box and the rows will fill themselves in.</p>
 
-      <p class="tool-section-title">Weights are</p>
+      <h2 class="tool-section-title">Weights are</h2>
       <div class="tabs" role="tablist">
         <button class="tab active" data-wmode="raw" type="button">Raw numbers</button>
         <button class="tab" data-wmode="pct" type="button">Percentages</button>
       </div>
 
-      <p class="tool-section-title" style="margin-top:20px;">Normalise weights to sum to 1</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Normalise weights to sum to 1</h2>
       <div class="tabs" role="tablist">
         <button class="tab active" data-norm="on" type="button">On (weighted average)</button>
         <button class="tab" data-norm="off" type="button">Off (weighted total)</button>
       </div>
       <p class="tool-hint" id="norm-hint" style="margin-top:10px;">Weights are scaled so they add up to 1, which is what almost everyone means by a weighted average.</p>
 
-      <p class="tool-section-title" style="margin-top:20px;">Values and weights</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Values and weights</h2>
       <div class="table-scroll">
         <div style="min-width:460px;">
           <div class="dyn-table-head">
@@ -174,7 +174,7 @@
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:20px;">Per-row breakdown</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Per-row breakdown</h2>
       <div class="table-scroll">
         <div style="min-width:520px;">
           <table class="out-table">
@@ -208,40 +208,40 @@
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How it works</p>
+      <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">The weighted average multiplies each value by its weight, adds those products up, then divides by the total weight:</p>
       <p class="about-text"><strong>Weighted average = &Sigma;(value &times; weight) &divide; &Sigma;(weight)</strong></p>
       <p class="about-text">Dividing by the total weight is what normalising does, so the weights you type never have to add up to anything in particular &mdash; 3, 1, 1 gives exactly the same answer as 60%, 20%, 20%. If you switch normalising off, the tool skips that division and returns &Sigma;(value &times; weight) instead, which is a weighted total rather than an average.</p>
       <p class="about-text">Each row's <em>contribution</em> is its normalised weight multiplied by its value. The contributions always add up to the weighted average, which makes it easy to see which rows are actually moving the number.</p>
       <p class="about-text">The weighted standard deviation uses &radic;(&Sigma;w(value &minus; mean)&sup2; &divide; &Sigma;w), treating the weights as reliability weights rather than frequency counts.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Worked example: a course grade</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Worked example: a course grade</h2>
       <p class="about-text">Coursework 72% weighted 30%, exam 65% weighted 70%. The weighted average is (72 &times; 0.3) + (65 &times; 0.7) = 21.6 + 45.5 = <strong>67.1%</strong>. The plain mean of 72 and 65 is 68.5%, so ignoring the weights would flatter the result by 1.4 percentage points &mdash; the exam simply counts for more.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Worked example: a blended portfolio return</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Worked example: a blended portfolio return</h2>
       <p class="about-text">&pound;60,000 in equities returning 9%, &pound;30,000 in bonds returning 4%, &pound;10,000 in cash returning 1%. Weighting each return by the amount invested gives (9 &times; 0.6) + (4 &times; 0.3) + (1 &times; 0.1) = 5.4 + 1.2 + 0.1 = <strong>6.7%</strong>. Averaging the three headline returns instead gives 4.67%, which badly understates the portfolio because most of the money is in the best-performing asset.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Worked example: blended cost per acquisition</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Worked example: blended cost per acquisition</h2>
       <p class="about-text">Search delivers 500 customers at &pound;20 CPA, social delivers 100 at &pound;45, and affiliates deliver 400 at &pound;12. Weighting by customer volume gives (500 &times; 20 + 100 &times; 45 + 400 &times; 12) &divide; 1,000 = a blended CPA of &pound;<strong>19.30</strong>. The plain average of &pound;20, &pound;45 and &pound;12 is &pound;25.67 &mdash; wildly wrong, because it lets the small, expensive social channel count as much as the two big cheap ones.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">When averaging the averages misleads you</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">When averaging the averages misleads you</h2>
       <p class="about-text">Use a weighted average whenever the things you are averaging represent different amounts of something &mdash; different numbers of people, pounds, hours or units. The classic mistake is taking a plain mean of figures that are themselves averages: average the conversion rates of two campaigns and you treat a campaign with 50 visitors as equal to one with 50,000. Weight by the underlying volume and you get the real combined figure.</p>
       <p class="about-text">A plain mean is the right tool only when every item genuinely counts the same &mdash; and in that case the weighted average returns exactly the same answer anyway.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
-      <p class="faq-q">Do my weights have to add up to 100?</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+      <h3 class="faq-q">Do my weights have to add up to 100?</h3>
       <p class="about-text">No. With normalising on, the calculator divides by the total weight for you, so 3, 1, 1 gives the same answer as 60%, 20%, 20%. The only time it matters is in percentage mode, where a total well away from 100% usually means a row is missing or mistyped — so the tool flags it.</p>
-      <p class="faq-q">Can I paste data in from a spreadsheet?</p>
+      <h3 class="faq-q">Can I paste data in from a spreadsheet?</h3>
       <p class="about-text">Yes, and it is the fastest way to use this page. Copy a two-column block of values and weights from Excel, Google Sheets or a CSV, click into any Value box and paste. Tab, comma and newline separated data all work, header rows are skipped automatically, and a third column is read as a label. Rows are created as needed.</p>
-      <p class="faq-q">What is the difference between a weighted average and a plain average?</p>
+      <h3 class="faq-q">What is the difference between a weighted average and a plain average?</h3>
       <p class="about-text">A plain average treats every value as equally important. A weighted average lets each value carry an amount of influence you choose, which is what you want whenever the underlying quantities differ in size. The calculator shows both, plus the gap between them, so you can see how much the weighting is actually doing.</p>
-      <p class="faq-q">Can I use negative weights?</p>
+      <h3 class="faq-q">Can I use negative weights?</h3>
       <p class="about-text">The calculator allows them, because they are occasionally legitimate — a short position in a portfolio, for instance. It flags them though, since a negative weight is far more often a typo, and mixing signs can push the total weight near zero and produce a wildly unstable result.</p>
-      <p class="faq-q">What happens if my weights add up to zero?</p>
+      <h3 class="faq-q">What happens if my weights add up to zero?</h3>
       <p class="about-text">You get a clear message rather than a broken result. Dividing by a zero total weight is undefined, so the calculator stops and tells you instead of showing NaN or infinity.</p>
-      <p class="faq-q">Which weighted standard deviation does this use?</p>
+      <h3 class="faq-q">Which weighted standard deviation does this use?</h3>
       <p class="about-text">The reliability-weight version: the square root of Σw(value − mean)² ÷ Σw. It describes the spread of the values you entered around their weighted mean. It is not the frequency-weight form, which would assume each weight is a repeat count and apply a Bessel-style correction.</p>
     </main>
 

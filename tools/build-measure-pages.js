@@ -32,11 +32,11 @@ function page(o) {
     </header>
 
 ${o.body}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}    </main>
 
 ${o.related ? related.block(o.path) : `    <main class="tool">
-      <p class="tool-section-title">${esc(o.moreTitle)}</p>
+      <h2 class="tool-section-title">${esc(o.moreTitle)}</h2>
       <p class="salary-links">${o.more}</p>
     </main>
 `}
@@ -128,7 +128,7 @@ function areaHub() {
     desc: "Work out the area of a room, floor or plot in square feet, square metres, square yards and acres, from feet, inches, yards, metres or centimetres — and the cost at a price per square foot.",
     h1: "Square footage calculator", sub: "The area of a room, floor or plot in square feet and square metres — rectangles, circles and triangles.", q,
     body: areaTool("ft", 12, 14) + `    <main class="tool">
-      <p class="tool-section-title">Common room sizes</p>
+      <h2 class="tool-section-title">Common room sizes</h2>
       <p class="salary-links">${links}</p>
     </main>
 ` });

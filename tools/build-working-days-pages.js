@@ -90,13 +90,13 @@ function paydayPage(y) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">If you're paid on the…</p>
+      <h2 class="tool-section-title">If you're paid on the…</h2>
 ${site.table(["Month"].concat(RULES.map((x) => x[0])), rows, 640)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or bank holiday. England and Wales bank holidays.${diffs.length ? " In Scotland and Northern Ireland: " + esc(diffs.join("; ")) + "." : " Scotland and Northern Ireland are the same."} ${SRC}</p>
       <p class="tool-hint">${esc(PAY_NOTE)}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other years</div>
@@ -174,17 +174,17 @@ function yearPage(y) {
     </header>
 
     <main class="tool">
-      <p class="tool-section-title">Bank holidays in ${y}</p>
+      <h2 class="tool-section-title">Bank holidays in ${y}</h2>
 ${holidayTable(y)}      <p class="tool-hint" style="margin-top:12px;">When a bank holiday falls on a weekend, a substitute weekday is usually given. ${SRC}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Working days in each month of ${y}</p>
+      <h2 class="tool-section-title">Working days in each month of ${y}</h2>
 ${monthGrid(y, true)}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays. Count any dates with the <a href="${BASE}">working days calculator</a>. When you'll be paid each month: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other years</div>
@@ -226,13 +226,13 @@ function monthPage(y, m) {
     </header>
 
     <main class="tool">
-${site.table(["", "Working days", "Bank holidays", "First working day", "Last working day"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), dm(firstWorking(y, m, r)), dm(lastWorking(y, m, r))]), 520)}${holRows.length ? `      <p class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</p>
+${site.table(["", "Working days", "Bank holidays", "First working day", "Last working day"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), dm(firstWorking(y, m, r)), dm(lastWorking(y, m, r))]), 520)}${holRows.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</h2>
 ${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>. ${SRC}</p>
     </main>
 
 ${tool(W.first(y, m), W.lastDay(y, m), "england-and-wales", false)}
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other months in ${y}</div>
@@ -273,13 +273,13 @@ function hub() {
 
 ${tool(from, to, "england-and-wales", true)}
     <main class="tool">
-      <p class="tool-section-title">Working days in each month of ${nextY}</p>
-${monthGrid(nextY, true)}      <p class="tool-section-title" style="margin-top:22px;">By year</p>
+      <h2 class="tool-section-title">Working days in each month of ${nextY}</h2>
+${monthGrid(nextY, true)}      <h2 class="tool-section-title" style="margin-top:22px;">By year</h2>
       <p class="salary-links">${years}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}

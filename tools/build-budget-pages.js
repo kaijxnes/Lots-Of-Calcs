@@ -39,7 +39,7 @@ function tool(amount, remember) {
         <div class="field"><label for="bg-location">Where you're paid</label><select id="bg-location">${options}</select></div>
         <div class="field"><label for="bg-amount"><span id="bg-amount-label">Salary a year, before tax</span> <span id="bg-cur-note" class="tool-hint">in GBP</span></label><input type="number" id="bg-amount" value="${amount}" min="0" step="any" inputmode="decimal"></div>
       </div>
-      <p class="tool-section-title">The split</p>
+      <h2 class="tool-section-title">The split</h2>
       <div class="field-row">
         <div class="field"><label for="bg-needs">Needs %</label><input type="number" id="bg-needs" value="50" min="0" max="100" step="any" inputmode="decimal"></div>
         <div class="field"><label for="bg-wants">Wants %</label><input type="number" id="bg-wants" value="30" min="0" max="100" step="any" inputmode="decimal"></div>
@@ -74,7 +74,7 @@ ${row("save", "Savings", 20)}
 
 function explain() {
   return `    <main class="tool">
-      <p class="tool-section-title">How the 50/30/20 rule works</p>
+      <h2 class="tool-section-title">How the 50/30/20 rule works</h2>
       <p class="about-text">The 50/30/20 rule splits what you take home, after tax, into three:</p>
       <p class="about-text"><strong>50% for needs</strong> — what you'd have to pay whatever happened: rent or mortgage, council tax, energy and water, food shopping, insurance, getting to work, minimum debt repayments and childcare.</p>
       <p class="about-text"><strong>30% for wants</strong> — everything you choose: eating out, takeaways, holidays, subscriptions, clothes beyond the basics, hobbies and nights out.</p>
@@ -109,13 +109,13 @@ function calculatorPage() {
 ${tool(30000, true)}
 ${explain()}
     <main class="tool">
-      <p class="tool-section-title">50/30/20 on UK salaries (${YEAR})</p>
+      <h2 class="tool-section-title">50/30/20 on UK salaries (${YEAR})</h2>
 ${site.table(["Salary", "Take-home a month", "Needs 50%", "Wants 30%", "Savings 20%"], gridRows, 480)}      <p class="tool-hint" style="margin-top:12px;">England, Wales and Northern Ireland, after income tax and National Insurance. Every salary from £15,000 to £200,000 has its own page:</p>
       <p class="salary-links">${SALARIES.map((s) => `<a href="${BASE}${s}/">${m0(s)}</a>`).join(" ")}</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}
@@ -152,13 +152,13 @@ function salaryPage(s) {
 
 ${tool(s, false)}
     <main class="tool">
-      <p class="tool-section-title">Other splits on ${m0(s)}</p>
+      <h2 class="tool-section-title">Other splits on ${m0(s)}</h2>
 ${site.table(["Split", "Needs", "Wants", "Savings"], splitRows, 340)}      <p class="tool-hint" style="margin-top:12px;">A month, from ${m(x)} take-home in England, Wales and Northern Ireland. In Scotland it's ${m(sct)} a month.${sal ? ` The full breakdown of tax and National Insurance is on the <a href="${sal}">${m0(s)} after tax</a> page.` : ""}</p>
     </main>
 
 ${explain()}
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries</div>

@@ -105,12 +105,12 @@ function calculatorPage() {
 
 ${tool("plan2", { balance: 45000, salary: 30000, firstDue: 2024 })}
     <main class="tool">
-      <p class="tool-section-title">The plans (${YEAR})</p>
+      <h2 class="tool-section-title">The plans (${YEAR})</h2>
 ${site.table(["Plan", "Who's on it", "Threshold", "Rate", "Interest", "Written off after"], rows, 640)}      <p class="tool-hint" style="margin-top:12px;">From ${SOURCES}, checked ${DATA.lastChecked}. Write-off is counted from the April you were first due to repay; older Plan 1 and Plan 4 loans (before September 2006 and August 2007) are written off at 65 instead.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${related.block(BASE)}
@@ -145,12 +145,12 @@ function planPage(p) {
 
 ${tool(p.key, { balance: p.key === "plan5" ? 50000 : p.key === "postgrad" ? 12000 : p.key === "plan1" ? 15000 : 45000, salary: 35000, firstDue: p.key === "plan1" ? 2012 : p.key === "plan5" ? 2027 : 2022 })}
     <main class="tool">
-      <p class="tool-section-title">${esc(p.name)} repayments by salary</p>
+      <h2 class="tool-section-title">${esc(p.name)} repayments by salary</h2>
 ${planTable(p)}      <p class="tool-hint" style="margin-top:12px;">${p.pct}% of earnings over ${g(p.threshold)}, before any other plan. From ${SOURCES}, checked ${DATA.lastChecked}.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other plans</div>

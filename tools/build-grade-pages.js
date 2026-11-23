@@ -59,11 +59,11 @@ function page(s, t) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Every score out of ${t}</p>
+      <h2 class="tool-section-title">Every score out of ${t}</h2>
 ${site.table(["Score", "Percentage", "Grade"], rows, 300)}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -79,7 +79,7 @@ function hubBlock() {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length).replace(/^\n+/, "");
   const html = `    <main class="tool">
-      <p class="tool-section-title">Test scores as percentages</p>
+      <h2 class="tool-section-title">Test scores as percentages</h2>
 ${TOTALS.map((t) => { const l = []; for (let k = t; k >= 1; k--) l.push(`<a href="${BASE}${slug(k, t)}/">${k}</a>`); return `      <p class="salary-links"><strong>Out of ${t}:</strong> ${l.join(" ")}</p>`; }).join("\n")}
     </main>
 

@@ -254,7 +254,7 @@
 
       <p class="tool-hint" id="verdict" style="margin-top:12px; display:none;"></p>
 
-      <p class="tool-section-title" style="margin-top:22px;">The same workload on every model</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">The same workload on every model</h2>
       <div class="table-scroll">
         <div style="min-width:520px;">
           <table class="out-table">
@@ -269,7 +269,7 @@
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Words to tokens</p>
+      <h2 class="tool-section-title">Words to tokens</h2>
       <p class="about-text">If you know roughly how long your prompt is but not how many tokens that is, start here.</p>
       <div class="field-row">
         <div class="field">
@@ -289,46 +289,46 @@
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">How it works</p>
+      <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">Every provider on this page charges the same way: so much per million tokens going in, more per million coming out. So one request costs</p>
       <p class="about-text"><strong>cost = (input tokens × input price + output tokens × output price) ÷ 1,000,000</strong></p>
       <p class="about-text">Prompt caching adds a third rate. Tokens the provider already has cached are charged at roughly a tenth of the normal input price, so the input side splits in two:</p>
       <p class="about-text"><strong>input cost = (fresh tokens × input price + cached tokens × cached price) ÷ 1,000,000</strong></p>
       <p class="about-text">Everything after that is multiplication. The monthly figure is the per-request cost times your request volume, with a day taken as 1&frasl;365 of a year and a month as 1&frasl;12, so the day, month and year lines always agree with each other. Choosing the Batch API halves the lot.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Worked example</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Worked example</h2>
       <p class="about-text">A support-triage tool on <strong>Claude Opus 5</strong>: a <strong>1,500 token</strong> prompt, a <strong>500 token</strong> reply, <strong>1,000 requests a day</strong>.</p>
       <p class="about-text">Input is 1,500 × $5 ÷ 1,000,000 = <strong>$0.0075</strong>. Output is 500 × $25 ÷ 1,000,000 = <strong>$0.0125</strong>. That is <strong>$0.02 a request</strong> &mdash; $20 a day, or <strong>$608.33 a month</strong>. Note that <strong>62%</strong> of it is the reply, even though the prompt is three times longer.</p>
       <p class="about-text">Now suppose 1,200 of those input tokens are a fixed system prompt you can cache. The cached portion drops to $0.50 per million, so a request costs (300 × $5 + 1,200 × $0.50 + 500 × $25) ÷ 1,000,000 = <strong>$0.0146</strong>, and the month falls to <strong>$444.08</strong>. That is <strong>$164.25 a month</strong> saved for a change that touches one field in your request.</p>
       <p class="about-text">Send the same work through the Batch API overnight instead of live, and it halves again to <strong>$222.04</strong>.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Why output costs more than input</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Why output costs more than input</h2>
       <p class="about-text">Input tokens are processed in parallel &mdash; the model reads the whole prompt in one pass. Output tokens have to be generated one at a time, each one needing a full pass through the model, so they are far more expensive to produce. Every provider prices output at somewhere between four and six times input, which has a practical consequence: a verbose prompt is cheap, a verbose answer is not.</p>
       <p class="about-text">If a bill is coming in higher than expected, look at the reply length first. Capping the maximum output, or asking for a structured answer rather than an explained one, usually moves the number more than anything you can do to the prompt.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">Caching, batching and the two things this misses</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Caching, batching and the two things this misses</h2>
       <p class="about-text"><strong>Prompt caching</strong> is the biggest lever for anything with a long fixed prefix &mdash; a system prompt, a document, a code base. Reads come in at about a tenth of the input price. There is a catch this calculator does not model: <em>writing</em> to the cache costs more than a normal input token, typically 1.25× for a short-lived cache and up to 2× for a long-lived one. That means caching only pays once the same prefix is reused, from the second or third request onwards. For a fixed system prompt hit thousands of times a day it is a rounding error; for a prefix used once it is a loss.</p>
       <p class="about-text"><strong>The Batch API</strong> is half price at every provider, in exchange for results arriving within a processing window rather than immediately. Anything that is not a user waiting on a screen &mdash; overnight classification, backfills, evaluation runs &mdash; is a candidate.</p>
       <p class="about-text">Two other things the figures here leave out. <strong>Thinking or reasoning tokens</strong> are billed as output on models that produce them, and they do not appear in the visible reply, so a 500 token answer can carry several thousand tokens of billing behind it. And <strong>retries and failures</strong> cost full price: a request that comes back malformed and gets sent again has been paid for twice. If you are budgeting rather than estimating, add a margin for both.</p>
 
-      <p class="tool-section-title" style="margin-top:22px;">About the prices</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">About the prices</h2>
       <p class="about-text">The presets are list prices for the standard first-party API of each provider, in US dollars, checked on <strong>14 August 2026</strong>. They move often, and two in the list are introductory rates with published end dates, so treat them as a starting point rather than a quote &mdash; the price fields are editable for exactly that reason.</p>
       <p class="about-text">They also do not cover every route to a model. Buying through a cloud marketplace such as Amazon Bedrock or Google Vertex AI is priced by that provider and can differ. Enterprise agreements, committed-spend discounts and free tiers are all outside this. And long-context tiers, where several models charge a higher rate above a token threshold, are not modelled here at all &mdash; if your prompts run to hundreds of thousands of tokens, check whether a second rate card applies to you.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
-      <p class="faq-q">What is a token?</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+      <h3 class="faq-q">What is a token?</h3>
       <p class="about-text">The unit a model reads and writes in. A token is roughly three-quarters of an English word, or about four characters — common words are usually a single token, while rarer ones, names and code get split into several. Providers bill per million tokens, counting both what you send and what comes back. It matters that a token is not a word: a 750 word prompt is about 1,000 tokens, so estimating in words will understate your bill by about a third.</p>
-      <p class="faq-q">Why are output tokens more expensive than input tokens?</p>
+      <h3 class="faq-q">Why are output tokens more expensive than input tokens?</h3>
       <p class="about-text">Because they are generated one at a time. The model reads your whole prompt in a single parallel pass, but it has to produce each output token in sequence, each one requiring another pass through the model. Output typically costs four to six times input across every provider. In practice that means the length of the answer drives the bill far more than the length of the question — capping the maximum output is usually the fastest saving available.</p>
-      <p class="faq-q">How much does prompt caching actually save?</p>
+      <h3 class="faq-q">How much does prompt caching actually save?</h3>
       <p class="about-text">Cache reads cost about a tenth of a normal input token, so the saving is roughly 90% of whatever share of your prompt is cacheable. On a workload with a 1,200 token fixed system prompt and a 300 token variable part, caching cuts the total bill by around 27% — the saving is capped by the fact that output tokens are untouched by it. The catch is that writing to the cache costs more than a normal token, 1.25× to 2× depending on how long you want it to live, so it only pays from the second or third use of the same prefix onwards.</p>
-      <p class="faq-q">Can I use tiktoken to estimate Claude token counts?</p>
+      <h3 class="faq-q">Can I use tiktoken to estimate Claude token counts?</h3>
       <p class="about-text">No — it will undercount by roughly 15 to 20%. tiktoken implements OpenAI's tokenisers, and Claude uses a different one, so the numbers are not interchangeable. Anthropic publishes a token counting endpoint that returns the exact figure for a given request, and Google does the same for Gemini. If the number is going into a budget rather than a rough estimate, use the provider's own counter for the provider's own model.</p>
-      <p class="faq-q">Are the prices in this calculator up to date?</p>
+      <h3 class="faq-q">Are the prices in this calculator up to date?</h3>
       <p class="about-text">They were checked on 14 August 2026 and are the standard first-party list prices for each provider. Model pricing moves frequently — there were several cuts across the industry in the first half of 2026 alone — and two entries in the list are introductory rates with published end dates. Always confirm against the provider's own pricing page before committing to a figure. Every price field on this page is editable, so you can put current numbers in without waiting for this page to catch up.</p>
-      <p class="faq-q">Why is my real bill higher than this calculator says?</p>
+      <h3 class="faq-q">Why is my real bill higher than this calculator says?</h3>
       <p class="about-text">Usually one of four things. Thinking or reasoning tokens are billed as output but never appear in the reply, so the visible answer understates what you were charged. Retries cost full price, and a request that fails validation and gets resent has been paid for twice. Long-context tiers charge a higher rate above a token threshold on several models. And real traffic is spikier than an average — the mean request is rarely the one that costs the most. Budget with a margin on top of the figure here.</p>
     </main>
 

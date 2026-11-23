@@ -109,7 +109,7 @@
     function draw() {
       var all = readSaved() || [], mine = all.filter(function (x) { return x.path === here; });
       if (!mine.length) { listBox.innerHTML = ""; return; }
-      listBox.innerHTML = '<p class="tool-section-title">Saved on this device</p><ul>' + mine.map(function (x) {
+      listBox.innerHTML = '<h2 class="tool-section-title">Saved on this device</h2><ul>' + mine.map(function (x) {
         return '<li><a href="' + x.url.replace(/"/g, "&quot;") + '">' + x.label.replace(/</g, "&lt;") + '</a> <button type="button" class="saved-del" data-t="' + x.t + '" aria-label="Delete saved calculation">✕</button></li>';
       }).join("") + "</ul>";
     }

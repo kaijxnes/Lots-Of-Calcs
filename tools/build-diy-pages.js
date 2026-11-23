@@ -33,11 +33,11 @@ function page(o) {
     </header>
 
 ${o.body}    <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}    </main>
 
 ${o.related ? related.block(o.path) : `    <main class="tool">
-      <p class="tool-section-title">${esc(o.moreTitle)}</p>
+      <h2 class="tool-section-title">${esc(o.moreTitle)}</h2>
       <p class="salary-links">${o.more}</p>
     </main>
 `}
@@ -137,7 +137,7 @@ function concreteHub() {
     desc: "Work out how much concrete you need for a slab, path, footing or post holes, in cubic metres, litres, cubic feet or cubic yards — and how many bags. A 3m × 3m slab 100mm deep needs 0.9 m³.",
     h1: "Concrete calculator", sub: "How much concrete for a slab, path, footing or post holes — in m³, litres, cubic feet or cubic yards, and bags.", q,
     body: concreteTool("metric", 3, 3, 100) + `    <main class="tool">
-      <p class="tool-section-title">Common slab sizes</p>
+      <h2 class="tool-section-title">Common slab sizes</h2>
       <p class="salary-links">${links}</p>
     </main>
 ` });
@@ -207,7 +207,7 @@ function tileHub() {
     desc: "Work out how many tiles and boxes you need for a floor or wall, with extra for cuts and breakages, and how many tiles of any size are in a square metre.",
     h1: "Tile calculator", sub: "How many tiles and boxes for a floor or wall, with extra for cuts — for any tile size.", q,
     body: tileTool(600, 600, 10) + `    <main class="tool">
-      <p class="tool-section-title">Tiles per square metre</p>
+      <h2 class="tool-section-title">Tiles per square metre</h2>
 ${site.table(["Tile size", "Tiles per m²"], TILES.map((t) => [`<a href="${tSlug(t)}">${t[0]} × ${t[1]}mm</a>`, n2(perM2(t))]), 300)}    </main>
 ` });
 }

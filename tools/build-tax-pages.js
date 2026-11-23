@@ -270,7 +270,7 @@ function riseBox(p, gross, outAttr) {
   const extra = n.net - r.net, more = gross * RISE_DEFAULT / 100;
   const row = (label, key, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${label}</span><span class="r-value" ${outAttr(key)}>${value}</span></div>`;
   const uk = p.id === "gb" || p.id === "gb-sct";
-  return `      <p class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</p>
+  return `      <h2 class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</h2>
       <div class="field" style="max-width:200px;">
         <label for="rise-pct">Pay rise (%)</label>
         <input type="number" id="rise-pct" value="${RISE_DEFAULT}" min="0" step="any" inputmode="decimal">
@@ -344,7 +344,7 @@ ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
 
   let inputs;
   if (m.kind === "hourly") {
-    inputs = `      <p class="tool-section-title" style="margin-top:22px;">Try a different rate</p>
+    inputs = `      <h2 class="tool-section-title" style="margin-top:22px;">Try a different rate</h2>
       <div class="field-row" style="max-width:480px;">
         <div class="field">
           <label for="salary">Hourly rate (${p.currency})</label>
@@ -356,13 +356,13 @@ ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
         </div>
       </div>`;
   } else if (m.kind === "monthly") {
-    inputs = `      <p class="tool-section-title" style="margin-top:22px;">Try different pay</p>
+    inputs = `      <h2 class="tool-section-title" style="margin-top:22px;">Try different pay</h2>
       <div class="field" style="max-width:320px;">
         <label for="salary">Gross monthly pay (${p.currency})</label>
         <input type="number" id="salary" value="${m.value}" step="any" min="0" placeholder="0">
       </div>`;
   } else {
-    inputs = `      <p class="tool-section-title" style="margin-top:22px;">Try a different salary</p>
+    inputs = `      <h2 class="tool-section-title" style="margin-top:22px;">Try a different salary</h2>
       <div class="field" style="max-width:320px;">
         <label for="salary">Gross annual salary (${p.currency})</label>
         <input type="number" id="salary" value="${gross}" step="any" min="0" placeholder="0">
@@ -374,7 +374,7 @@ ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
 ${hero}
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">${esc(heading)}</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">${esc(heading)}</h2>
       <div class="result-box">
         <div class="result-grid">
           <div class="result-row"><span class="r-label">${m.kind === "annual" ? "Gross salary" : "Gross pay, a year"}</span><span class="r-value" data-out="gross">${p.money0(gross)}</span></div>
@@ -403,7 +403,7 @@ function bandTables(p, r) {
       const label = x.label || (x.to === Infinity ? "Over " + p.money0(x.from) : p.money0(x.from) + " – " + p.money0(x.to));
       return `<tr><td>${esc(label)}</td><td>${x.rate}%</td><td>${p.money0(x.amount)}</td><td>${p.money(x.charged)}</td></tr>`;
     }).join("");
-    return `      <p class="tool-section-title" style="margin-top:22px;">${esc(c.label)}, band by band</p>
+    return `      <h2 class="tool-section-title" style="margin-top:22px;">${esc(c.label)}, band by band</h2>
       <div class="table-scroll">
         <div style="min-width:420px;">
           <table class="out-table">
@@ -443,7 +443,7 @@ function aboutTheFigures(p) {
   const verifyAt = leaf.verifyAt || (sources[0] && sources[0].url);
   const li = (xs) => xs.map((x) => `<li>${esc(x)}</li>`).join("");
   return `    <main class="tool">
-      <p class="tool-section-title">About these figures</p>
+      <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>${esc(leaf.taxYear.label)}</strong> tax year, which runs from ${niceDate(leaf.taxYear.start)} to ${niceDate(leaf.taxYear.end)}. ${verified
         ? "The rates were last checked against the official sources on " + niceDate(p.chain.map((d) => d.lastVerified).sort()[0]) + "."
         : `The rates have not yet been checked by a person against the official sources — <a href="${esc(verifyAt)}" rel="nofollow noopener" target="_blank">check them here</a> before relying on them.`} This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
@@ -499,7 +499,7 @@ function comparison(p, gross, opts) {
     return `<tr><td>${name}</td><td>${p.money(r.net)}</td><td>${p.money(r.perMonth)}</td><td>${pct1(r.deductionRate)}</td></tr>`;
   }).join("");
   const what = p.root.country === "US" ? "in other states" : p.root.country === "CA" ? "across Canada" : p.currency === "GBP" ? "across the UK" : p.currency === "CHF" ? "in other Swiss cities" : "in other euro countries";
-  return `      <p class="tool-section-title" style="margin-top:22px;">${esc(o.label || p.money0(gross))} ${what}</p>
+  return `      <h2 class="tool-section-title" style="margin-top:22px;">${esc(o.label || p.money0(gross))} ${what}</h2>
       <div class="table-scroll">
         <div style="min-width:420px;">
           <table class="out-table">
@@ -522,7 +522,7 @@ function riseTable(p, gross, r) {
     const label = p.id === "gb" && payRise.has(x, gross) ? `<a href="${payRise.url(x, gross)}">${x}%</a>` : `${x}%`;
     return [label, p.money0(gross * (1 + x / 100)), p.money(extra), p.money(extra / 12), `${Math.round(extra / (gross * x / 100) * 100)}%`];
   });
-  return `      <p class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on ${esc(m0)}</p>
+  return `      <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on ${esc(m0)}</h2>
 ${site.table(["Rise", "New salary", "Extra a year", "Extra a month", "You keep"], rows, 480)}      <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (${Math.round(r.marginalRate)}% here), so you keep less of it than of your salary overall.</p>
 `;
 }
@@ -597,7 +597,7 @@ function salaryPage(p, gross) {
     return card(pageUrl(p, s), iconFor(p), `${p.money0(s)} after tax`, `${p.money0(o.net)} a year, ${p.money0(o.perMonth)} a month.`);
   }).join("");
 
-  const faqHtml = q.map(([a, b]) => `      <p class="faq-q">${esc(a)}</p>\n      <p class="about-text">${esc(b)}</p>\n`).join("");
+  const faqHtml = q.map(([a, b]) => `      <h3 class="faq-q">${esc(a)}</h3>\n      <p class="about-text">${esc(b)}</p>\n`).join("");
 
   return head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${hubUrl(p)}">← Salary after tax in ${esc(inName)}</a>
@@ -616,16 +616,16 @@ ${bandTables(p, r)}${comparison(p, gross)}${riseTable(p, gross, r)}${(() => {
     const hrRate = p.hourly.length && p.hours ? p.hourly.reduce((a, h) => Math.abs(h * p.hours * 52 - gross) < Math.abs(a * p.hours * 52 - gross) ? h : a) : null;
     const hr = hrRate && Math.abs(hrRate * p.hours * 52 - gross) / gross <= 0.1 ? hrRate : null;
     const items = [b ? `<a href="${b}">${country === "US" ? `How much house can I afford on ${esc(m0)}?` : country === "IE" || country === "FR" ? `How much can I borrow on ${esc(m0)} in ${esc(p.doc.name)}?` : `How much can I borrow on ${esc(m0)}?`}</a>` : "", se ? `<a href="${se}">${esc(m0)} self-employed</a>` : "", bu ? `<a href="${bu}">50/30/20 budget on ${esc(m0)}</a>` : "", hr ? `<a href="${hourUrl(p, hr)}">${esc(p.money0(hr))} an hour after tax (${esc(p.money0(hr * p.hours * 52))} a year)</a>` : "", paysBiweekly(p) ? `<a href="${SCHEDULE_URL}">Biweekly pay schedule and 3-paycheck months</a>` : "", EXPAT[country] ? `<a href="${EXPAT[country][0]}">${esc(m0)} ${EXPAT[country][1]}</a>` : ""].concat(config.comparisonsFor(p.id).map(([u, t]) => `<a href="${u}">${esc(t)} take-home pay</a>`)).filter(Boolean);
-    return items.length ? `      <p class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</p>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
+    return items.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">More on ${esc(m0)}</h2>\n      <p class="salary-links">${items.join(" ")}</p>\n` : "";
   })()}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">How ${esc(m0)} after tax is worked out</p>
+      <h2 class="tool-section-title">How ${esc(m0)} after tax is worked out</h2>
 ${explanation(p, r)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${faqHtml}    </main>
 
 ${aboutTheFigures(p)}
@@ -701,7 +701,7 @@ function placeHub(p) {
 
 ${toolBlock(p, gross, r, `Where ${p.money0(gross)} goes`)}
     <main class="tool">
-      <p class="tool-section-title">Take-home pay by salary</p>
+      <h2 class="tool-section-title">Take-home pay by salary</h2>
       <div class="table-scroll">
         <div style="min-width:480px;">
           <table class="out-table">
@@ -710,18 +710,18 @@ ${toolBlock(p, gross, r, `Where ${p.money0(gross)} goes`)}
           </table>
         </div>
       </div>
-${payLinks(p)}${comparison(p, gross)}${vs.length ? `      <p class="tool-section-title" style="margin-top:22px;">Compared with other countries</p>
+${payLinks(p)}${comparison(p, gross)}${vs.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">Compared with other countries</h2>
       <p class="salary-links">${vs.map(([u, t]) => `<a href="${u}">${esc(t)}</a>`).join(" ")}</p>
 ` : ""}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">What comes out of pay in ${esc(inName)}</p>
+      <h2 class="tool-section-title">What comes out of pay in ${esc(inName)}</h2>
 ${explanation(p, r)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
-${q.map(([a, b]) => `      <p class="faq-q">${esc(a)}</p>\n      <p class="about-text">${esc(b)}</p>\n`).join("")}    </main>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${q.map(([a, b]) => `      <h3 class="faq-q">${esc(a)}</h3>\n      <p class="about-text">${esc(b)}</p>\n`).join("")}    </main>
 
 ${aboutTheFigures(p)}
 ${FOOTER}
@@ -739,12 +739,12 @@ ${FOOTER}
 function payLinks(p) {
   const parts = [];
   if (p.hourly.length) {
-    parts.push(`      <p class="tool-section-title" style="margin-top:22px;">By hourly rate</p>
+    parts.push(`      <h2 class="tool-section-title" style="margin-top:22px;">By hourly rate</h2>
       <p class="salary-links">${p.hourly.map((h) => `<a href="${hourUrl(p, h)}">${esc(p.money0(h))} an hour</a>`).join(" ")}</p>
 `);
   }
   if (p.monthly.length) {
-    parts.push(`      <p class="tool-section-title" style="margin-top:22px;">By monthly pay</p>
+    parts.push(`      <h2 class="tool-section-title" style="margin-top:22px;">By monthly pay</h2>
       <p class="salary-links">${p.monthly.map((m) => `<a href="${monthUrl(p, m)}">${esc(p.money0(m))} a month</a>`).join(" ")}</p>
 `);
   }
@@ -843,7 +843,7 @@ function hourlyPage(p, rate) {
 ${toolBlock(p, gross, r, "Where it goes", { kind: "hourly", value: rate, hours: hrs })}
     <main class="tool">
       <p class="about-text">Paid <strong>${esc(mr)} an hour</strong> for ${hrs} hours a week, you earn ${esc(p.money0(gross))} a year. Once ${esc(phrase)} are taken off in ${esc(inName)}, you take home <strong>${p.money(r.net)}</strong> a year &mdash; <strong>${p.money(r.perMonth)}</strong> a month, or ${p.money(perHour)} for every hour worked.</p>
-${ukNote(p, scot)}      <p class="tool-section-title" style="margin-top:22px;">${esc(mr)} an hour at different hours</p>
+${ukNote(p, scot)}      <h2 class="tool-section-title" style="margin-top:22px;">${esc(mr)} an hour at different hours</h2>
 ${site.table(["Hours a week", "Gross a year", "Take-home a year", "A month", "Per hour"], hoursRows, 480)}      <p class="tool-hint" style="margin-top:12px;">Assumes you're paid for all 52 weeks, including paid holiday. If some weeks are unpaid, enter your average weekly hours across the year in the calculator above.${(() => {
         /* the yearly salary pages either side of this rate's annual pay */
         const below = p.salaries.filter((x) => x <= gross).pop(), above = p.salaries.find((x) => x > gross);
@@ -853,13 +853,13 @@ ${site.table(["Hours a week", "Gross a year", "Take-home a year", "A month", "Pe
 ${bandTables(p, r)}${comparison(p, gross, { label: `${mr} an hour`, link: (o) => (o.hourly.includes(rate) ? hourUrl(o, rate) : null) })}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">How ${esc(mr)} an hour after tax is worked out</p>
+      <h2 class="tool-section-title">How ${esc(mr)} an hour after tax is worked out</h2>
       <p class="about-text">The hourly rate is turned into a yearly salary first &mdash; ${esc(mr)} &times; ${hrs} hours &times; 52 weeks = ${esc(p.money0(gross))} &mdash; because tax is worked out on yearly income. The take-home is then spread back over the year.</p>
 ${explanation(p, r)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${aboutTheFigures(p)}
@@ -932,18 +932,18 @@ function monthlyPage(p, monthly) {
 ${toolBlock(p, gross, r, "Where it goes, over a year", { kind: "monthly", value: monthly })}
     <main class="tool">
       <p class="about-text">Gross pay of <strong>${esc(mm)} a month</strong> is ${esc(p.money0(gross))} a year. Once ${esc(phrase)} are taken off in ${esc(inName)}, you take home <strong>${p.money(r.perMonth)}</strong> a month &mdash; ${p.money(r.net)} a year. About ${p.money(monthTax)} a month, ${pct1(r.deductionRate)} of your pay, goes in deductions.</p>
-${ukNote(p, scot)}      <p class="tool-section-title" style="margin-top:22px;">Nearby monthly pay</p>
+${ukNote(p, scot)}      <h2 class="tool-section-title" style="margin-top:22px;">Nearby monthly pay</h2>
 ${site.table(["Gross a month", "Take-home a month", "Deductions a month", "Effective rate"], rows, 420)}${bandTables(p, r)}${comparison(p, gross, { label: `${mm} a month`, link: (o) => (o.monthly.includes(monthly) ? monthUrl(o, monthly) : null) })}    </main>
 
     <main class="tool">
-      <p class="tool-section-title">How ${esc(mm)} a month after tax is worked out</p>
+      <h2 class="tool-section-title">How ${esc(mm)} a month after tax is worked out</h2>
       <p class="about-text">Tax is worked out on the year, so the monthly figure is multiplied by twelve &mdash; ${esc(p.money0(gross))} &mdash; the deductions are worked out on that, and the take-home is divided back by twelve. The yearly amounts below are for the whole year.</p>${p.root.country === "BE" ? `
       <p class="tool-hint">If your pay includes a 13th month or holiday pay on top of twelve monthly salaries, these figures leave them out: add them to the yearly salary in the calculator above for the full picture.</p>` : ""}
 ${explanation(p, r)}
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${aboutTheFigures(p)}
@@ -1003,7 +1003,7 @@ ${site.table(["#", "State", "Take-home a year", "A month", "Per hour", "Effectiv
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other hourly rates</div>
@@ -1048,7 +1048,7 @@ function usHub() {
           </table>
         </div>
       </div>
-      <p class="tool-section-title" style="margin-top:22px;">Hourly pay in every state</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Hourly pay in every state</h2>
       <p class="salary-links">${config.HOURLY.USD.national.map((h) => `<a href="/salary/us/${h}-an-hour-after-tax/">$${h} an hour</a>`).join(" ")}</p>
       <p class="tool-hint" style="margin-top:12px;">Ranked by take-home pay at $75,000. Indiana and Maryland include a county income tax at their most populous county's rate; local taxes elsewhere (Ohio and Michigan cities, Pennsylvania's earned income tax) are not included &mdash; each state's page says what it leaves out. Indexed figures some states had not yet published for 2026 use the 2025 amounts.</p>
     </main>
@@ -1102,7 +1102,7 @@ function caHub() {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${FOOTER}
@@ -1187,7 +1187,7 @@ function salaryIndex() {
   const usT = w("us-tx"), usC = w("us-ca"), de = w("de"), gbW = w("gb");
   const hubWorld = {
     html: `    <main class="tool">
-      <p class="tool-section-title">Take-home pay on a typical salary</p>
+      <h2 class="tool-section-title">Take-home pay on a typical salary</h2>
 ${site.table(["Where", "Salary", "Take-home a year", "A month", "Effective rate"], worldRows.map((x) => x.row), 520)}      <p class="tool-hint" style="margin-top:12px;">Single, with the default options, for the current tax year in each place. Pick one for every salary, hourly rate and monthly figure.</p>
     </main>
 `,
@@ -1239,7 +1239,7 @@ ${select}
         </div>
       </div>
 
-      <p class="tool-section-title" style="margin-top:22px;">Where it goes</p>
+      <h2 class="tool-section-title" style="margin-top:22px;">Where it goes</h2>
       <div class="result-box">
         <div class="result-grid" id="breakdown">
 ${breakdown}
@@ -1250,14 +1250,14 @@ ${riseBox(ctxHub, gross, (k) => `id="out-${k}"`)}      <p class="tool-hint" id="
 
 ${hubWorld.html}
     <main class="tool">
-      <p class="tool-section-title">How it works</p>
+      <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">Pick where you're paid and type your salary before any deductions. The calculator applies that place's current tax year &mdash; income tax, social contributions and the local taxes most employees pay &mdash; and shows each one. Some places have options, such as filing status in the US or region in Spain; they appear under the salary when they apply.</p>
       <p class="about-text">The rates come from published sources listed on each location's own page. They have not yet been checked by a person against the official tax authority, so treat the figures as estimates and confirm them before relying on them.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
-${hubWorld.q.map(([a, b]) => `      <p class="faq-q">${esc(a)}</p>\n      <p class="about-text">${esc(b)}</p>\n`).join("")}    </main>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${hubWorld.q.map(([a, b]) => `      <h3 class="faq-q">${esc(a)}</h3>\n      <p class="about-text">${esc(b)}</p>\n`).join("")}    </main>
 
     <details class="fold-group salary-tables">
       <summary><span class="fold-name">Salary tables by location</span></summary>

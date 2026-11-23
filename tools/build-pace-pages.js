@@ -87,7 +87,7 @@ function page(r, t) {
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Splits</p>
+      <h2 class="tool-section-title">Splits</h2>
       <div class="jo-grid">
         <div class="jo-side">
 ${site.table(["Kilometre", "Time"], kmRows, 200)}        </div>
@@ -97,13 +97,13 @@ ${site.table(["Mile", "Time"], mileRows, 200)}        </div>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Other ${R.name} times</p>
-${site.table(["Finish time", "Per km", "Per mile"], R.times.length > 14 ? near : others, 300)}      <p class="tool-section-title" style="margin-top:20px;">Equivalent times at other distances</p>
+      <h2 class="tool-section-title">Other ${R.name} times</h2>
+${site.table(["Finish time", "Per km", "Per mile"], R.times.length > 14 ? near : others, 300)}      <h2 class="tool-section-title" style="margin-top:20px;">Equivalent times at other distances</h2>
 ${site.table(["Race", "Predicted time"], equiv, 260)}      <p class="tool-hint" style="margin-top:12px;">Predicted with Riegel's formula (time × (distance ratio)<sup>1.06</sup>), a widely used rule of thumb.</p>
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
 ${site.FOOTER}
@@ -119,7 +119,7 @@ if (hms(14400 / 42.195) !== "5:41" || hms(14400 / 42.195 * MILE) !== "9:09" || h
 const urls = [];
 Object.keys(RACES).forEach((r) => RACES[r].times.forEach((t) => { site.write(`pace/${slug(r, t)}`, page(r, t)); urls.push([`${BASE}${slug(r, t)}/`, "0.4"]); }));
 site.hubBlock(BASE, "pace pages", "tools/build-pace-pages.js", `    <main class="tool">
-      <p class="tool-section-title">Pace for common finish times</p>
+      <h2 class="tool-section-title">Pace for common finish times</h2>
 ${Object.keys(RACES).map((r) => `      <p class="salary-links"><strong>${label(r)}:</strong> ${RACES[r].times.map((t) => `<a href="${BASE}${slug(r, t)}/">${hms(t)}</a>`).join(" ")}</p>`).join("\n")}
     </main>
 

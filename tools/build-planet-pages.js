@@ -61,7 +61,7 @@ function page(b, all) {
   if (orb) q.splice(1, 0, [`How old would I be on ${where}?`, `A year on ${where} lasts ${orb[0].toLocaleString("en-GB")} Earth days, so divide your age by ${(orb[0] / ORBIT.Earth[0]).toFixed(orb[0] < 365 ? 3 : 2)}${orb[0] < 365 ? " — you'd be older there" : ""}. At 30 you would be ${ageFmt(ageOn(30))} ${b.name} years old.`]);
   const ageSection = orb ? `
     <main class="tool">
-      <p class="tool-section-title">Your age on ${esc(where)}</p>
+      <h2 class="tool-section-title">Your age on ${esc(where)}</h2>
       <p class="about-text">One ${esc(b.name)} year — a full trip round the Sun — takes ${orb[0].toLocaleString("en-GB")} Earth days${orb[0] > 3650 ? ` (${(orb[0] / ORBIT.Earth[0]).toFixed(1)} Earth years)` : ""}, and a day there, sunrise to sunrise, lasts ${orb[1].toLocaleString("en-GB")} hours${orb[1] > 48 ? ` (about ${Math.round(orb[1] / 24)} Earth days)` : ""}.</p>
 ${site.table(["Your age on Earth", `On ${b.name}`], [10, 18, 21, 30, 40, 50, 60, 70, 80].map((a) => [`${a}`, `${ageFmt(ageOn(a))} ${b.name} year${ageOn(a) >= 1 && ageOn(a) < 2 ? "" : "s"}`]), 300)}      <p class="tool-hint" style="margin-top:12px;">Orbital period and day length from NASA's Planetary Fact Sheet. Put in your birthday on the <a href="/age-on-other-planets/">age on other planets calculator</a>.</p>
     </main>
@@ -94,15 +94,15 @@ ${site.table(["Your age on Earth", `On ${b.name}`], [10, 18, 21, 30, 40, 50, 60,
     </main>
 
     <main class="tool">
-      <p class="tool-section-title">Weight on ${esc(where)} in kilograms</p>
-${site.table(["On Earth", `On ${Where}`], kgRows, 300)}      <p class="tool-section-title" style="margin-top:22px;">In pounds and stone</p>
+      <h2 class="tool-section-title">Weight on ${esc(where)} in kilograms</h2>
+${site.table(["On Earth", `On ${Where}`], kgRows, 300)}      <h2 class="tool-section-title" style="margin-top:22px;">In pounds and stone</h2>
 ${site.table(["On Earth", `On ${Where}`], lbRows, 360)}      <p class="tool-hint" style="margin-top:12px;">Gravity factor ${b.g} — NASA's ratio-to-Earth surface gravity from the NSSDCA Planetary Fact Sheet${/Titan|Ganymede/.test(b.name) ? ", worked out from the measured surface gravity" : ""}. Compare every world at once on the <a href="/weight-on-other-planets/">weight on other planets calculator</a>.</p>${Travel.dest(slug(b)) ? `
       <p class="tool-hint" style="margin-top:8px;">How long would it take to get there? ${esc(Travel.distance(Travel.dest(slug(b)).d[Travel.dest(slug(b)).def]))} away${Travel.dest(slug(b)).def === "closest" ? " at its closest" : " on average"}: <a href="/how-long-to-get-to/${slug(b)}/">travel time to ${esc(where)}</a> by car, plane, rocket and light.</p>` : ""}
     </main>
 
 ${ageSection}
     <main class="tool">
-      <p class="tool-section-title">Frequently asked questions</p>
+      <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Your weight elsewhere</div>
@@ -123,7 +123,7 @@ function hubBlock(all) {
   let s = fs.readFileSync(file, "utf8");
   if (s.includes(START)) s = s.slice(0, s.indexOf(START)) + s.slice(s.indexOf(END) + END.length);
   const html = `    <main class="tool">
-      <p class="tool-section-title">Your weight on each world</p>
+      <h2 class="tool-section-title">Your weight on each world</h2>
       <p class="salary-links">${all.filter((b) => !b.home).map((b) => `<a href="/weight-on-other-planets/${slug(b)}/">Weight on ${esc(b.name.replace(/^The /, "the "))}</a>`).join(" ")}</p>
     </main>
 
