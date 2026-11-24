@@ -13,7 +13,7 @@ Generated from `data/tax/us/us-ks.2026.json` by `tools/tax/checklist.js`. Do not
 - **Start here:** https://www.ksrevenue.gov/pdf/ip25.pdf#page=2
 - 2025 Form K-40 instructions: https://www.ksrevenue.gov/pdf/ip25.pdf#page=2
 - 2025 Form K-40 instructions - Line 4, Worksheet: https://www.ksrevenue.gov/pdf/ip25.pdf#page=6
-- K.S.A. 2024 HB 2231 79-32,121 (b)(1): https://kslegislature.gov/li/b2025_26/measures/documents/hb2231_01_0000.pdf?#page=1
+- K.S.A. 2024 HB 2231 79-32,121 (b)(1): https://kslegislature.gov/b2025_26/bills/download/?apn=b2025_26/year1/ready_for_publication/hb_2231/hb2231_01_0000.pdf#page=1
 - 2025 Form K-40 instructions: https://www.ksrevenue.gov/pdf/ip25.pdf#page=3
 - 2025 Form K-40 instructions: https://www.ksrevenue.gov/pdf/ip25.pdf#page=34
 - 2022 Form K-40 instructions: https://www.ksrevenue.gov/pdf/ip22.pdf#page=6

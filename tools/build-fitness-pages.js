@@ -24,7 +24,7 @@ const SRC = {
   navy2: ["LibreTexts — The U.S. Navy body fat estimation formula", "https://med.libretexts.org/Courses/Irvine_Valley_College/Physiology_Labs_at_Home/03:_Anthropometrics/3.02:_Part_B-_Circumference_Measures/3.2.04:_Part_B4-_The_U.S._Navy_body_fat_estimation_formula"],
   orm: ["One-repetition maximum (Epley and Brzycki formulas)", "https://en.wikipedia.org/wiki/One-repetition_maximum"],
   bnf: ["British Nutrition Foundation — Nutrition requirements", "https://www.nutrition.org.uk/media/nmmewdug/nutrition-requirements.pdf"],
-  bhf: ["British Heart Foundation — Protein: how much do you need?", "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/nutrition/ask-the-expert/how-much-protein"]
+  bhf: ["British Heart Foundation — Protein: how much do you need?", "https://www.bhf.org.uk/informationsupport/heart-matters-magazine/nutrition/protein"]
 };
 const src = (...keys) => keys.map((k) => `<a href="${SRC[k][1]}" rel="nofollow noopener" target="_blank">${esc(SRC[k][0])}</a>`).join("; ");
 const n1 = (v, d) => v.toLocaleString("en-GB", { maximumFractionDigits: d === undefined ? 1 : d });

@@ -12,7 +12,7 @@ Generated from `data/tax/lu/lu.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - **Start here:** https://impotsdirects.public.lu/fr/baremes.html
 - CCSS — taux de cotisation au 01.01.2026 pour salariés: https://ccss.public.lu/dam-assets/publications/2026/ccss-20260116-avis-80-99-fr-de.pdf
-- CCSS — paramètres sociaux: https://ccss.public.lu/fr/parametres-sociaux/
+- CCSS — paramètres sociaux: https://ccss.public.lu/fr/parametres-sociaux.html
 - ACD — Loi concernant l'impôt sur le revenu, texte coordonné en vigueur au 1er janvier 2026 (art. 118–121, 154ter): https://impotsdirects.public.lu/dam-assets/fr/legislation/LIR/texte-coordonn-en-vigueur-au-1er-janvier-2026-ver-08052026.pdf
 - ACD — tarif de l'impôt sur le revenu des personnes physiques: https://impotsdirects.public.lu/fr/az/t/tarif_pers.html
 - ACD — crédit d'impôt pour salariés 2026: https://impotsdirects.public.lu/fr/az/c/credit-impot-salaries/cis2026.html

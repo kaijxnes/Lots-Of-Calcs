@@ -12,7 +12,7 @@ Generated from `data/tax/us/us-mt.2026.json` by `tools/tax/checklist.js`. Do not
 
 - **Start here:** https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025
 - 2025 Montana Tax Tables and Deductions: https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025
-- Montana Code Annotated 2023, TITLE 15, CHAPTER 30, Part 23, 15-30-2337 (11): https://leg.mt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html
+- Montana Code Annotated 2023, TITLE 15, CHAPTER 30, Part 23, 15-30-2337 (11): https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html
 - 2021 Montana Code Annotated, Title 15, Chapter 30, Part 23, 15-30-2337 (11): https://law.justia.com/codes/montana/2021/title-15/chapter-30/part-23/section-15-30-2337/
 - 2022 Form of Montana Individual Income Tax Return, Page 10, Line 17: https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2022_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10
 - 2021 Form of Montana Individual Income Tax Return, Page 10, Line 17: https://revenue.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2021_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10

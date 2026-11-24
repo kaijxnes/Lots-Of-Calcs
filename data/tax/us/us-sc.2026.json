@@ -91,7 +91,7 @@
   "sources": [
     {
       "title": "SC H.4216 Section 1 - Section 12-6-510(C) (2026+)",
-      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm"
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216"
     },
     {
       "title": "SC 1040 Instructions 2025",
@@ -123,7 +123,7 @@
   ],
   "lastVerified": null,
   "lastChecked": null,
-  "verifyAt": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm",
+  "verifyAt": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216",
   "tests": [
     {
       "gross": 40000,

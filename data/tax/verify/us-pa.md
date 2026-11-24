@@ -14,10 +14,10 @@ Generated from `data/tax/us/us-pa.2026.json` by `tools/tax/checklist.js`. Do not
 - 2025 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN): https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2025/2025_pa-40in.pdf#page=1
 - 2025 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN), PA Schedule SP Eligibility Income Tables: https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2025/2025_pa-40in.pdf#page=39
 - Tax Reform Code of 1971, Article III, Section 302: https://www.legis.state.pa.us/WU01/LI/LI/US/PDF/1971/0/0002..PDF#page=118
-- The General Assembly of Pennsylvania House Bill No. 200, Section 302 (3), page 50, line 27: https://www.legis.state.pa.us/CFDOCS/Legis/PN/Public/btCheck.cfm?txtType=PDF&sessYr=2003&sessInd=0&billBody=H&billTyp=B&billNbr=0200&pn=3160#page=50
+- The General Assembly of Pennsylvania House Bill No. 200, Section 302 (3), page 50, line 27: https://www.palegis.us/legislation/bills/text/PDF/2003/0/HB0200/PN3160#page=50
 - PA Form PA-40 Instructions, page 1: https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2021/2021_pa-40in.pdf#page=1
 - 2024 Pennsylvania Personal Income Tax Return Instructions (PA-40 IN): https://www.pa.gov/content/dam/copapwp-pagov/en/revenue/documents/formsandpublications/formsforindividuals/pit/documents/2024/2024_pa-40in.pdf#page=1
-- City of Philadelphia — Earnings Tax (rates from 1 July 2025 and 1 July 2026): https://www.phila.gov/services/payments-assistance-taxes/income-taxes/earnings-tax-employees/
+- City of Philadelphia — Earnings Tax (rates from 1 July 2025 and 1 July 2026): https://www.phila.gov/services/payments-assistance-taxes/taxes/income-taxes/earnings-tax-employees/
 
 ## Figures
 

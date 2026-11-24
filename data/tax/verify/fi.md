@@ -9,8 +9,8 @@ Generated from `data/tax/fi/fi.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 ## Check against
 
-- **Start here:** https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/
-- Vero — Verotettavan tulon laskeminen henkilöverotuksessa 2026 (basic deduction, earned income credit): https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/
+- **Start here:** https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/verotettavan-tulon-laskeminen-henkiloverotuksessa9/
+- Vero — Verotettavan tulon laskeminen henkilöverotuksessa 2026 (basic deduction, earned income credit): https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/verotettavan-tulon-laskeminen-henkiloverotuksessa9/
 - Vero — Veroperusteet (health care and daily allowance contributions, Yle tax): https://vero.fi/henkiloasiakkaat/verokortti-ja-veroilmoitus/verokortti/veroprosentti-ja-tuloraja/veroperusteet/
 - Veronmaksajat — Valtion tulovero 2026: https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/ansiotulojen-verot-ja-maksut/valtion-tulovero/
 - Veronmaksajat — Ansiotulosta tehtävät vähennykset 2026: https://www.veronmaksajat.fi/neuvot/henkiloverotus/tyo-elake-ja-etuudet/verovahennykset/2026/ansiotulosta-tehtavat-vahennykset-2026/
