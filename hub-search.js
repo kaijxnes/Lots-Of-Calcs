@@ -71,3 +71,14 @@ searchInput.addEventListener("input", filterCards);
   searchInput.addEventListener("focus", load, { once: true });
   searchInput.addEventListener("input", show);
 })();
+
+/* Arriving from the search box in the top bar of another page (/?q=...):
+   put the words in and show the matches */
+(function () {
+  var q = "";
+  try { q = new URLSearchParams(window.location.search).get("q") || ""; } catch (e) { return; }
+  if (!q || !searchInput) return;
+  searchInput.value = q;
+  searchInput.dispatchEvent(new Event("input", { bubbles: true }));
+  searchInput.focus();
+})();

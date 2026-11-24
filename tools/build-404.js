@@ -44,7 +44,7 @@ function build() {
 </head>
 <body>
   <div class="page">
-    <header class="site-header">
+${site.TOPBAR}    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">Page not found</h1>
       <p class="page-subtitle">There's nothing at this address. It may have moved, or there's a typo in the link.</p>
