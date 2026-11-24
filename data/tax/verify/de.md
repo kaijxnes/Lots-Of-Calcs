@@ -15,7 +15,7 @@ Generated from `data/tax/de/de.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Solidaritätszuschlaggesetz 1995 § 3, § 4: https://www.gesetze-im-internet.de/solzg_1995/
 - Deutsche Rentenversicherung — Sozialversicherungs-Rechengrößen 2026: https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Meldungen/2025/250910-sv-rechengroessen-vo-2026.html
 - vdek — Neuerungen im Gesundheitswesen 2026 (contribution rates): https://www.vdek.com/politik/was-aendert-sich/gesundheitswesen-2026.html
-- Beitragszuschlag für Kinderlose (Techniker Krankenkasse): https://www.tk.de/tk/pflege/ueber-die-tk-pflegeversicherung/beitragszuschlag-kinderlose/346234
+- Beitragszuschlag für Kinderlose (Techniker Krankenkasse): https://www.tk.de/techniker/versicherung/beitrag-zusatztarife/beitraege-pflegeversicherung/beitragszuschlag-kinderlose-pflegeversicherung-2008718
 
 ## Figures
 

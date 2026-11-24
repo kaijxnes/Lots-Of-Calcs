@@ -348,7 +348,7 @@
   "sources": [
     {
       "title": "Vero — Verotettavan tulon laskeminen henkilöverotuksessa 2026 (basic deduction, earned income credit)",
-      "url": "https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/"
+      "url": "https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/verotettavan-tulon-laskeminen-henkiloverotuksessa9/"
     },
     {
       "title": "Vero — Veroperusteet (health care and daily allowance contributions, Yle tax)",
@@ -379,7 +379,7 @@
   ],
   "lastVerified": null,
   "lastChecked": "2026-11-11",
-  "verifyAt": "https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/",
+  "verifyAt": "https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/verotettavan-tulon-laskeminen-henkiloverotuksessa9/",
   "tests": [
     {
       "gross": 20000,

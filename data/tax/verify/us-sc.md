@@ -10,8 +10,8 @@ Generated from `data/tax/us/us-sc.2026.json` by `tools/tax/checklist.js`. Do not
 
 ## Check against
 
-- **Start here:** https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm
-- SC H.4216 Section 1 - Section 12-6-510(C) (2026+): https://www.scstatehouse.gov/sess126_2025-2026/bills/4216.htm
+- **Start here:** https://www.scstatehouse.gov/sess126_2025-2026/bills/4216
+- SC H.4216 Section 1 - Section 12-6-510(C) (2026+): https://www.scstatehouse.gov/sess126_2025-2026/bills/4216
 - SC 1040 Instructions 2025: https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=1
 - IRS Rev. Proc. 2024-40 § 3.15 (2025 inflation-adjusted values under pre-OBBBA rule): https://www.irs.gov/pub/irs-drop/rp-24-40.pdf#page=12
 - SC 1040 tax form instructions (2025): https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=17

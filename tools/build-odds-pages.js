@@ -22,7 +22,7 @@ const LADDER = ["1/10", "1/8", "1/7", "1/6", "1/5", "2/9", "1/4", "2/7", "1/3", 
   "11/10", "6/5", "5/4", "11/8", "6/4", "13/8", "7/4", "15/8", "2/1", "9/4", "5/2", "11/4", "3/1", "10/3", "7/2", "4/1", "9/2", "5/1", "11/2", "6/1", "13/2", "7/1", "15/2", "8/1",
   "9/1", "10/1", "11/1", "12/1", "14/1", "16/1", "18/1", "20/1", "25/1", "28/1", "33/1", "40/1", "50/1", "66/1", "80/1", "100/1"];
 const STAKES = [1, 2, 5, 10, 20, 50, 100];
-const SAFER = '18+. Odds are a price, not a prediction — the bookmaker\'s margin is built in. If gambling stops being fun, <a href="https://www.begambleaware.org/" rel="noopener">BeGambleAware</a> offers free, confidential help.';
+const SAFER = '18+. Odds are a price, not a prediction — the bookmaker\'s margin is built in. If gambling stops being fun, <a href="https://www.gambleaware.org/" rel="noopener">GambleAware</a> offers free, confidential help.';
 
 const slug = (f) => (f === "1/1" ? "evens" : f.replace("/", "-"));
 const name = (f) => (f === "1/1" ? "Evens" : f);

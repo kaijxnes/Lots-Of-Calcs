@@ -17,7 +17,7 @@ Generated from `data/tax/us/us-id.2026.json` by `tools/tax/checklist.js`. Do not
 - House Bill 40 (2025) Bill Text: https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2025/legislation/H0040.pdf#page=6
 - Idaho Statutes 63-3024B (3): https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3024b/
 - Idaho State Tax Comission - Individual Income Tax Rate Schedule: https://tax.idaho.gov/taxes/income-tax/individual-income/individual-income-tax-rate-schedule/
-- IDAPA 35.01.01.075 - Tax on individuals, estates, and trusts: https://adminrules.idaho.gov/rules/current/35/350101.pdf#page=17
+- IDAPA 35.01.01.075 - Tax on individuals, estates, and trusts: https://files.dfm.idaho.gov/dfm-admin-website/rules/current/35/350101.pdf#page=17
 
 ## Figures
 

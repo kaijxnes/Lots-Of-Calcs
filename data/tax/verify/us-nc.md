@@ -14,7 +14,7 @@ Generated from `data/tax/us/us-nc.2026.json` by `tools/tax/checklist.js`. Do not
 - 2025 North Carolina Individual Income Tax Instructions: https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8
 - 2025 North Carolina Tax Rate Schedule: https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules
 - 2025 North Carolina Standard Deduction: https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-standard-deduction-or-north-carolina-itemized-deductions
-- North Carolina Department of Revenue - Tax Rate Schedules: https://www.ncdor.gov/taxes-forms/tax-rate-schedules
+- North Carolina Department of Revenue - Tax Rate Schedules: https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules
 - 2022 North Carolina Form D-400, Line 15: https://www.ncdor.gov/2022-d-400-handwritten-version/open#page=2
 - 2023 North Carolina Form D-400, Line 15: https://www.ncdor.gov/2023-d-400-handwritten-version/open#page=2
 

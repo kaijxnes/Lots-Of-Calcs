@@ -15,7 +15,7 @@ Generated from `data/tax/us/us-al.2026.json` by `tools/tax/checklist.js`. Do not
 - 2025 Alabama Income Tax Instructions: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=10
 - 2025 Alabama Income Tax Instructions: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=6
 - 2025 Alabama Income Tax Instructions: https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=25
-- 2024 Schedule A (Form 1040): https://www.revenue.alabama.gov/ultraviewer/viewer/basic_viewer/index.html?form=2025/01/24f40schabdc_blk.pdf#page=20
+- 2024 Schedule A (Form 1040): https://www.revenue.alabama.gov/wp-content/uploads/2025/01/24f40schabdc_blk.pdf#page=20
 - 2024 Alabama Income Tax Instructions: https://www.revenue.alabama.gov/wp-content/uploads/2025/01/24f40bk.pdf#page=9
 
 ## Figures

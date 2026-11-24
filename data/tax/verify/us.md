@@ -14,7 +14,7 @@ Generated from `data/tax/us/us.2026.json` by `tools/tax/checklist.js`. Do not ed
 - SSA — Contribution and benefit base: https://www.ssa.gov/oact/cola/cbb.html
 - 26 U.S.C. § 3101 — FICA rates, including the additional Medicare tax: https://www.law.cornell.edu/uscode/text/26/3101
 - 401(k) limit increases to $24,500 for 2026 (IRS): https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500
-- Child Tax Credit (IRS): https://www.irs.gov/credits-deductions/individuals/child-tax-credit
+- Child Tax Credit (IRS): https://www.irs.gov/credits-deductions/individuals/child-tax-credit-and-credit-for-other-dependents
 
 ## Figures
 

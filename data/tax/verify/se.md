@@ -16,7 +16,7 @@ Generated from `data/tax/se/se.2026.json` by `tools/tax/checklist.js`. Do not ed
 - SCB — Kommunalskatterna 2026: https://www.scb.se/hitta-statistik/statistik-efter-amne/offentlig-ekonomi/finanser-for-den-kommunala-sektorn/kommunalskatterna/pong/statistiknyhet/kommunalskatterna-2026/
 - Skatteverket — Belopp och procent, inkomstår 2026: https://www.skatteverket.se/privat/skatter/beloppochprocent/2026
 - Skatteverket — Teknisk beskrivning SKV 433, 2026 (public service-avgiften): https://skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf
-- Svenska kyrkan — kyrkoavgiften (2026 national average 1.05%): https://www.svenskakyrkan.se/kyrkoavgiften
+- Svenska kyrkan — kyrkoavgiften (2026 national average 1.05%): https://www.svenskakyrkan.se/medlem/kyrkoavgiften
 
 ## Figures
 
