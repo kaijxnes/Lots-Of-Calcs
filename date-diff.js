@@ -54,6 +54,15 @@ function calculate() {
     (reversed ? "-" : "") + (diff.years * 12 + diff.months + diff.days / 30.44).toFixed(1);
 }
 
+/* Opens on an example: today to the next 1 January, the days left this year */
+(function () {
+  const s = document.getElementById("dd-start"), e = document.getElementById("dd-end");
+  if (s.value || e.value) return;
+  const t = new Date(), iso = (d) => d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  s.value = iso(t);
+  e.value = iso(new Date(t.getFullYear() + 1, 0, 1));
+})();
+
 document.getElementById("dd-start").addEventListener("input", calculate);
 document.getElementById("dd-end").addEventListener("input", calculate);
 calculate();

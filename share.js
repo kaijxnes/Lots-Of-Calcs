@@ -61,7 +61,9 @@
   var btn = document.createElement("button");
   btn.type = "button";
   btn.className = "btn btn-ghost share-btn";
-  btn.textContent = "🔗 Copy a link to these numbers";
+  btn.textContent = "🔗 Copy link";
+  btn.title = "Copy a link to these numbers";
+  btn.setAttribute("aria-label", "Copy a link to these numbers");
   var note = document.createElement("span");
   note.className = "share-note";
   note.setAttribute("aria-live", "polite");
@@ -81,8 +83,9 @@
     var pr = document.createElement("button");
     pr.type = "button";
     pr.className = "btn btn-ghost share-btn no-print";
-    pr.textContent = "🖨 Print or save as PDF";
-    pr.style.marginLeft = "8px";
+    pr.textContent = "🖨 Print";
+    pr.title = "Print or save as PDF";
+    pr.setAttribute("aria-label", "Print or save as PDF");
     pr.addEventListener("click", function () { window.print(); });
     bar.appendChild(pr);
   }
@@ -99,8 +102,9 @@
     var sv = document.createElement("button");
     sv.type = "button";
     sv.className = "btn btn-ghost share-btn no-print";
-    sv.textContent = "☆ Save on this device";
-    sv.style.marginLeft = "8px";
+    sv.textContent = "☆ Save";
+    sv.title = "Save these numbers on this device";
+    sv.setAttribute("aria-label", "Save these numbers on this device");
     bar.insertBefore(sv, note);
     var listBox = document.createElement("div");
     listBox.className = "saved-calcs no-print";

@@ -13,6 +13,8 @@ function filterCards() {
   /* Results should sit straight under the search box rather than below a row
      of category tiles that has nothing to do with what was typed */
   if (categoryBrowse) categoryBrowse.hidden = query !== "";
+  var popular = document.getElementById("hub-popular");
+  if (popular) popular.hidden = query !== "";
 
   groups.forEach(({ title, grid }) => {
     let groupHasVisible = false;

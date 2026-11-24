@@ -95,9 +95,14 @@
     els.taxable.textContent = money(r.values["gb-taxable"]);
     els.tax.textContent = money(r.values["gb-income-tax"]);
     els.ni.textContent = money(r.values["gb-ni"]);
-    if (els.loan) els.loan.textContent = money(r.values["gb-student-loan"]);
-    if (els.pgl) els.pgl.textContent = money(r.values["gb-postgrad-loan"]);
-    if (els.pension) els.pension.textContent = money(r.values["gb-pension"]);
+    /* deductions that come to nothing are hidden, and shown when they apply */
+    [["loan", "gb-student-loan"], ["pgl", "gb-postgrad-loan"], ["pension", "gb-pension"]].forEach(function (x) {
+      var el = els[x[0]];
+      if (!el) return;
+      var v = r.values[x[1]] || 0;
+      el.textContent = money(v);
+      el.parentNode.hidden = Math.abs(v) < 0.005;
+    });
     els.net.textContent = money(r.net);
 
     /* What would a pay rise be worth? */

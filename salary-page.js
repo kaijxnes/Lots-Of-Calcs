@@ -91,7 +91,11 @@
         return;
       }
       var item = el.getAttribute("data-item");
-      if (Object.prototype.hasOwnProperty.call(r.values, item)) el.textContent = money(r.values[item]);
+      if (Object.prototype.hasOwnProperty.call(r.values, item)) {
+        el.textContent = money(r.values[item]);
+        var rowEl = el.closest(".hide-if-zero");
+        if (rowEl) rowEl.hidden = Math.abs(r.values[item]) < 0.005;
+      }
     });
   }
 

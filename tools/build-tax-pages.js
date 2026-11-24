@@ -325,8 +325,10 @@ function toolBlock(p, gross, r, heading, mode) {
 
   const shown = r.shown.map((s) =>
     `          <div class="result-row"><span class="r-label">${esc(s.label)}</span><span class="r-value" data-item="${esc(s.id)}">${p.money(s.amount)}</span></div>`).join("\n");
+  /* a deduction that comes to nothing (no student loan, no pension) is hidden;
+     salary-page.js shows it again if an option makes it apply */
   const charges = r.charges.map((c) =>
-    `          <div class="result-row"><span class="r-label">${esc(c.label)}</span><span class="r-value" data-item="${esc(c.id)}">${p.money(c.amount)}</span></div>`).join("\n");
+    `          <div class="result-row hide-if-zero"${Math.abs(c.amount) < 0.005 ? " hidden" : ""}><span class="r-label">${esc(c.label)}</span><span class="r-value" data-item="${esc(c.id)}">${p.money(c.amount)}</span></div>`).join("\n");
 
   const heroRow = (label, key, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${label}</span><span class="r-value" data-out="${key}">${value}</span></div>`;
   let hero;
@@ -1165,7 +1167,7 @@ function salaryIndex() {
   const row = (label, value, cls) => `          <div class="result-row${cls ? " " + cls : ""}"><span class="r-label">${esc(label)}</span><span class="r-value">${value}</span></div>`;
   const breakdown = [row("Gross salary", TaxEngine.money(gross, "GBP", true))]
     .concat(r.shown.map((s) => row(s.label, m(s.amount))))
-    .concat(r.charges.map((c) => row(c.label, m(c.amount))))
+    .concat(r.charges.filter((c) => Math.abs(c.amount) >= 0.005).map((c) => row(c.label, m(c.amount))))
     .concat([row("Total deductions", m(r.totalDeductions)), row("Effective rate", pct1(r.deductionRate)),
       row("Marginal rate", Math.round(r.marginalRate) + "%"), row("Take-home pay", m(r.net), "highlight")]).join("\n");
 
