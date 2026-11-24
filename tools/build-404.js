@@ -69,7 +69,7 @@ ${site.FOOTER}
 </body>
 </html>
 `;
-  fs.writeFileSync(path.join(site.ROOT, "404.html"), html);
+  fs.writeFileSync(path.join(site.ROOT, "404.html"), require("./lib/assets.js").version(html));
   return cards.length;
 }
 

@@ -46,7 +46,8 @@ const BY = {};
 Object.keys(ICONS).forEach((k) => { BY[norm(k)] = ICONS[k]; });
 
 function svg(name) {
-  return `<svg class="ico" aria-hidden="true"><use href="/icons.svg#${name}"></use></svg>`;
+  const v = require("./assets.js").tag("icons.svg");
+  return `<svg class="ico" aria-hidden="true"><use href="/icons.svg${v ? "?v=" + v : ""}#${name}"></use></svg>`;
 }
 
 /* The inside of an icon span for an emoji, or null if it isn't one we know */
