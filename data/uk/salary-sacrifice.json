@@ -1,0 +1,15 @@
+{
+  "_note": "Salary sacrifice rules for tools/build-salary-sacrifice-pages.js, quoted from GOV.UK. Income tax, National Insurance and student loan figures come from the UK tax files (data/tax/gb); employer National Insurance from data/uk/rates-2026-27.json.",
+  "minimumWage": {
+    "note": "'A salary sacrifice arrangement must not reduce an employee's cash earnings below the National Minimum Wage (NMW) rates.'",
+    "source": { "title": "GOV.UK — Salary sacrifice for employers", "url": "https://www.gov.uk/guidance/salary-sacrifice-and-the-effects-on-paye" }
+  },
+  "cap2029": {
+    "from": "2029-04-06",
+    "cap": 2000,
+    "note": "'From April 2029, only the first £2,000 of employee pension contributions through salary sacrifice each year will be exempt from NICs. Contributions through salary sacrifice, like all pension contributions, will still be exempt from Income Tax (subject to the usual limits).' 'All employer pension contributions will continue to be free of NICs.' Announced at Autumn Budget 2025; not yet in force.",
+    "source": { "title": "GOV.UK — Changes to salary sacrifice for pensions from April 2029", "url": "https://www.gov.uk/government/publications/changes-to-salary-sacrifice-for-pensions-from-april-2029/changes-to-salary-sacrifice-for-pensions-from-april-2029" }
+  },
+  "lastChecked": "2026-11-24",
+  "lastVerified": null
+}
