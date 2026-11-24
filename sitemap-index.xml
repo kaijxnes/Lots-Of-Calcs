@@ -154,7 +154,7 @@
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/salary-comparison-pages.xml</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/salary-pages.xml</loc>
@@ -187,6 +187,10 @@
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/student-loan-pages.xml</loc>
     <lastmod>2026-11-21</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://lotsofcalcs.com/sitemaps/take-home-pay-by-country.xml</loc>
+    <lastmod>2026-11-24</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/time-and-date-pages.xml</loc>
