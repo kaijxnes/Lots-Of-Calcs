@@ -148,7 +148,7 @@ ${ldJson}
 </head>
 <body>
   <div class="page">
-`;
+${site.TOPBAR}`;
 }
 
 function breadcrumb(items) {

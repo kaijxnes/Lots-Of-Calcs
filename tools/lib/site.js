@@ -22,6 +22,14 @@ function niceDate(iso) {
   return d + " " + months[m - 1] + " " + y;
 }
 
+/* The bar at the top of every page: the site's name and a search box that
+   opens the homepage search with the words already typed in */
+const TOPBAR = `    <nav class="topbar" aria-label="Site">
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
+    </nav>
+`;
+
 const FOOTER = `    <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>
@@ -115,7 +123,7 @@ ${ldJson}
 </head>
 <body>
   <div class="page">
-`;
+${TOPBAR}`;
 }
 
 /* items: [[name, absolute url], ...] */
@@ -269,7 +277,7 @@ function hubBlock(rel, name, generator, html) {
 }
 
 module.exports = {
-  ROOT, SITE, TODAY, FOOTER,
+  ROOT, SITE, TODAY, FOOTER, TOPBAR,
   esc, niceDate, clipDesc, fitTitle, head, breadcrumb, webPage, faqLd, faqHtml, card, table, neighbours,
   write, prune, sitemapBlock, changed, hubBlock, ogImage
 };

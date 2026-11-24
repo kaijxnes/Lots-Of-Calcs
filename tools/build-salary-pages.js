@@ -270,7 +270,7 @@ ${ldJson}
 </head>
 <body>
   <div class="page">
-    <header class="site-header">
+${site.TOPBAR}    <header class="site-header">
       <a class="back-link" href="/salary/uk/">← Salary after tax in the UK</a>
       <h1 class="page-title">${money0(gross)} after tax</h1>
       <p class="page-subtitle">What a ${money0(gross)} salary actually leaves you, in the ${cfg.taxYear} tax year.</p>
