@@ -102,7 +102,7 @@
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/inflation-year-pages.xml</loc>
-    <lastmod>2026-11-21</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/investing-pages.xml</loc>
@@ -141,6 +141,10 @@
     <lastmod>2026-11-19</lastmod>
   </sitemap>
   <sitemap>
+    <loc>https://lotsofcalcs.com/sitemaps/pension-relief-pages.xml</loc>
+    <lastmod>2026-11-24</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/percent-pages.xml</loc>
     <lastmod>2026-11-23</lastmod>
   </sitemap>
@@ -154,7 +158,7 @@
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/repayment-pages.xml</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/roman-pages.xml</loc>
@@ -206,7 +210,7 @@
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/time-and-date-pages.xml</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/timezone-pages.xml</loc>

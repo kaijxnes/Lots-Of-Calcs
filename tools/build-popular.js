@@ -60,6 +60,7 @@ const SEASONAL = [
   ["/days-until/valentines-day/", "Days until Valentine's Day", md(1, 20), md(2, 14), 1, "❤️", null],
   ["/heating-cost/", "Heating cost calculator", md(10, 1), md(2, 28), 2, "🔥", "Running costs"],
   ["/isa-vs-pension/", "ISA or pension?", md(2, 15), md(4, 5), 2, "⚖️", "Which leaves you more"],
+  ["/pension-tax-relief-calculator/", "Pension tax relief", md(2, 15), md(4, 5), 2, "🏦", "Before the tax year ends"],
   ["/days-until/mothers-day-uk/", "Days until Mother's Day", shift(mothersDayUK, -28), mothersDayUK, 1, "📆", null],
   ["/days-until/easter/", "Days until Easter", shift(easter, -42), easter, 1, "📅", null],
   ["/salary/", "Salary after tax", md(3, 20), md(4, 30), 1, "💷", "Take-home pay"],

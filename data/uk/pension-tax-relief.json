@@ -1,0 +1,16 @@
+{
+  "_note": "Pension tax relief rules for tools/build-pension-relief-pages.js, quoted from GOV.UK. The extra relief higher rate taxpayers claim follows the income tax bands in the UK tax files (data/tax/gb), so only these rules live here.",
+  "basicRelief": 20,
+  "noEarningsNet": 2880,
+  "noEarningsGross": 3600,
+  "earningsLimitPct": 100,
+  "annualAllowance": 60000,
+  "taper": { "thresholdIncome": 200000, "adjustedIncome": 260000 },
+  "note": "'You can get tax relief on private pension contributions worth up to 100% of your annual earnings.' Relief at source: 'your pension provider claims tax relief from the government at the basic 20% rate and adds it to your pension pot'. 'If your rate of Income Tax in Scotland is 19% your pension provider will claim tax relief for you at a rate of 20%. You do not need to pay the difference.' Non-taxpayers: relief at 20% 'up to either: 80% of your earnings in that year [or] £2,880 if you have no earnings in that year'. England, Wales or Northern Ireland: claim '20% up to the amount of any income you have paid 40% tax on' and '25% up to the amount of any income you have paid 45% tax on'. Scotland: '1% ... 21% ... 22% ... 42% ... 25% ... 45% ... 28% ... 48%'. Example: 'You earn £60,270 ... You can claim an extra 20% tax relief on £10,000 (the same amount you paid 40% tax on)'. Annual allowance: 'This is £60,000 this tax year'; tapered if 'threshold income is over £200,000' and 'adjusted income is over £260,000'.",
+  "sources": [
+    { "title": "GOV.UK — Tax on your private pension contributions: tax relief", "url": "https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief" },
+    { "title": "GOV.UK — Tax on your private pension contributions: annual allowance", "url": "https://www.gov.uk/tax-on-your-private-pension/annual-allowance" }
+  ],
+  "lastChecked": "2026-11-24",
+  "lastVerified": null
+}
