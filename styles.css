@@ -1956,3 +1956,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .hub-card:focus-vi
 body.has-result-bar { padding-bottom: 84px; }
 @media (min-width: 1000px) { .result-bar { display: none !important; } }
 @media print { .result-bar { display: none !important; } }
+
+/* Guides (tools/build-guides.js) */
+.guide-toc-label { margin: 0 0 6px; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); }
+.guide-toc { margin: 0 0 12px; padding-left: 1.3em; line-height: 1.8; }
+.guide-toc a, .guide-tools a, .guide-callout a { color: var(--link); }
+.guide-tools { margin: 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.7; }
+.guide-formula { margin: 4px 0 16px; padding: 12px 14px; border-left: 3px solid var(--accent); background: color-mix(in srgb, var(--accent) 8%, transparent); border-radius: 6px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.92rem; overflow-x: auto; }
+.guide-callout { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 0; padding: 12px 16px; border: 1px solid var(--border); border-radius: 12px; font-size: 0.93rem; line-height: 1.55; color: var(--text-muted); }
+.guide-callout .ico { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--accent-text); }
+.guide-callout a { font-weight: 600; }
+.tool[id] { scroll-margin-top: 16px; }
