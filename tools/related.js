@@ -40,7 +40,7 @@ const RELATED = {
   "/hours-calculator/": ["/hourly-to-salary/", "/overtime-calculator/", "/working-days/", "/date-diff/", "/salary/", "/timezone/"],
   "/currency-converter/": ["/vat/", "/percent/", "/tip/", "/split-bill/", "/inflation/", "/fuel-cost/"],
   "/buy-to-let-calculator/": ["/stamp-duty-calculator/", "/mortgage-calculator/", "/capital-gains-tax-calculator/", "/rent-vs-buy/", "/mortgage-affordability/", "/loan-repayment/"],
-  "/pension-drawdown-calculator/": ["/isa-vs-pension/", "/fire-calculator/", "/compound-interest/", "/inheritance-tax-calculator/", "/inflation/", "/savings-goal/"],
+  "/pension-drawdown-calculator/": ["/pension-tax-relief-calculator/", "/isa-vs-pension/", "/fire-calculator/", "/compound-interest/", "/inheritance-tax-calculator/", "/inflation/", "/savings-goal/"],
   "/inheritance-tax-calculator/": ["/capital-gains-tax-calculator/", "/pension-drawdown-calculator/", "/isa-vs-pension/", "/rent-vs-buy/", "/compound-interest/", "/savings-goal/"],
   "/capital-gains-tax-calculator/": ["/dividend-tax-calculator/", "/isa-vs-pension/", "/compound-interest/", "/inheritance-tax-calculator/", "/buy-to-let-calculator/", "/fund-fees/"],
   "/holiday-entitlement-calculator/": ["/working-days/", "/salary/", "/maternity-pay-calculator/", "/redundancy-pay-calculator/", "/days-until/", "/hourly-to-salary/"],
@@ -72,7 +72,8 @@ const RELATED = {
   "/payments-on-account-calculator/": ["/self-employed-tax-calculator/", "/self-assessment-penalty-calculator/", "/salary/", "/dividend-tax-calculator/", "/vat/", "/savings-goal/"],
   "/self-assessment-penalty-calculator/": ["/payments-on-account-calculator/", "/self-employed-tax-calculator/", "/salary/", "/dividend-tax-calculator/", "/vat/", "/emergency-fund-calculator/"],
   "/child-benefit-tax-charge-calculator/": ["/salary/", "/salary-sacrifice-calculator/", "/isa-vs-pension/", "/pay-rise-calculator/", "/self-employed-tax-calculator/", "/student-loan-calculator/", "/50-30-20-budget/"],
-  "/salary-sacrifice-calculator/": ["/salary/", "/pay-rise-calculator/", "/isa-vs-pension/", "/child-benefit-tax-charge-calculator/", "/student-loan-calculator/", "/pension-drawdown-calculator/"],
+  "/salary-sacrifice-calculator/": ["/salary/", "/pension-tax-relief-calculator/", "/pay-rise-calculator/", "/isa-vs-pension/", "/child-benefit-tax-charge-calculator/", "/student-loan-calculator/", "/pension-drawdown-calculator/"],
+  "/pension-tax-relief-calculator/": ["/salary-sacrifice-calculator/", "/isa-vs-pension/", "/pension-drawdown-calculator/", "/salary/", "/self-employed-tax-calculator/", "/compound-interest/"],
   "/dry-january-calculator/": ["/calorie-calculator/", "/52-week-savings-challenge/", "/savings-goal/", "/bmi/", "/split-bill/", "/days-until/", "/compound-interest/"],
   "/pay-rise-calculator/": ["/salary/", "/job-offer-comparison/", "/50-30-20-budget/", "/inflation/", "/percent/", "/savings-goal/", "/isa-vs-pension/", "/mortgage-affordability/"],
   "/calorie-calculator/": ["/protein-calculator/", "/dry-january-calculator/", "/bmi/", "/pace/", "/unit-converter/", "/date-diff/", "/percent/", "/days-until/"],
@@ -85,7 +86,7 @@ const RELATED = {
   "/cheque-writer/": ["/number-to-words/", "/roman-numerals/", "/basic/", "/percent/", "/vat/", "/split-bill/"],
   "/tfsa-vs-rrsp/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/isa-vs-pension/"],
   "/roth-vs-traditional/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/isa-vs-pension/", "/tfsa-vs-rrsp/"],
-  "/isa-vs-pension/": ["/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/tfsa-vs-rrsp/"],
+  "/isa-vs-pension/": ["/pension-tax-relief-calculator/", "/compound-interest/", "/salary/", "/savings-goal/", "/fund-fees/", "/roth-vs-traditional/", "/tfsa-vs-rrsp/"],
   "/mortgage-calculator/": ["/stamp-duty-calculator/", "/mortgage-affordability/", "/mortgage-overpayment/", "/rent-vs-buy/", "/loan-repayment/", "/salary/", "/inflation/"],
   "/basic/": ["/scientific/", "/percent/", "/fractions/", "/decimal-to-fraction/", "/unit-converter/", "/number-to-words/"],
   "/scientific/": ["/basic/", "/fractions/", "/percent/", "/unit-converter/", "/watts-amps-volts/", "/decimal-to-fraction/"],
@@ -235,7 +236,17 @@ function main() {
     const k = fs.existsSync(hub) && (fs.readFileSync(hub, "utf8").match(/"numberOfItems": (\d+)/) || [])[1];
     return k ? a + k + b : m;
   });
-  if (counted !== homeHtml) { fs.writeFileSync(home, counted); console.log("category tile counts updated"); }
+  /* each homepage group's "+N / See all N" card: +N is how many cards the
+     collapsed group hides (it shows the first 5), N the hub page's own count */
+  const hubCount = (dir) => { const f = path.join(ROOT, dir, "index.html"); return fs.existsSync(f) && (fs.readFileSync(f, "utf8").match(/"numberOfItems": (\d+)/) || [])[1]; };
+  const grouped = counted.replace(/(<div class="hub-group-title" data-group><span>[^<]*<\/span><\/div>)([\s\S]*?)(<a class="hub-card hub-more" href="\/([^"/]+)\/">)([\s\S]*?<\/a>)/g, (m, title, cards, open, dir, inner) => {
+    const hidden = (cards.match(/<a class="hub-card" href=/g) || []).length - 5, n = hubCount(dir);
+    let out = inner.replace(/\n\s*<span class="hub-more-plus">\+\d+<\/span>/, "");
+    if (hidden > 0) out = out.replace(/(\n\s*)(<span class="hub-more-title">)/, `$1<span class="hub-more-plus">+${hidden}</span>$1$2`);
+    if (n) out = out.replace(/See all \d+/, "See all " + n);
+    return title + cards + open + out;
+  });
+  if (grouped !== homeHtml) { fs.writeFileSync(home, grouped); console.log("category counts updated"); }
   const missing = Object.keys(known).filter((href) => !RELATED[href]);
   if (missing.length) console.log("no related list for: " + missing.join(", "));
   console.log("updated " + n + " page(s)");

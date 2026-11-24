@@ -43,12 +43,18 @@ function trail(html) {
   return null;
 }
 
-/* add the category to a two-step trail, in the structured data too */
+/* add the category to a two-step trail, in the structured data too; a
+   three-step trail through a category the homepage no longer lists the page
+   under gets the right one */
 function withCategory(html, t) {
-  if (t.length !== 2) return [html, t];
-  const here = path(t[1][1]), c = cats()[here];
+  if (t.length !== 2 && t.length !== 3) return [html, t];
+  const last = t[t.length - 1], here = path(last[1]), c = cats()[here];
   if (!c || c[1] === here) return [html, t];
-  const t2 = [t[0], [c[0], SITE + c[1]], t[1]];
+  if (t.length === 3) {
+    const hubs = new Set(Object.values(cats()).map((x) => x[1]));
+    if (!hubs.has(path(t[1][1])) || path(t[1][1]) === c[1]) return [html, t];
+  }
+  const t2 = [t[0], [c[0], SITE + c[1]], last];
   LD.lastIndex = 0;
   const out = html.replace(LD, (all, body) => {
     let d;
