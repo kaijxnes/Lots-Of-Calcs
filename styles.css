@@ -1837,3 +1837,41 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .hub-card:focus-vi
 .saved-calcs li { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 12px; border: 1px solid var(--border); border-radius: 10px; }
 .saved-del { background: none; border: 0; color: var(--text-muted); cursor: pointer; font-size: 0.95rem; }
 .saved-del:hover { color: var(--bad); }
+
+/* ---------- Two columns on a wide screen ----------
+   A calculator opts in with class="split" on its <main class="tool"> and
+   "split-aside" on the result box that matters most. From 1000px wide that
+   box sits on the right and stays in view while the inputs and tables
+   scroll on the left; everything else on the page keeps a comfortable
+   reading width. Below 1000px, or in a browser without :has(), nothing
+   changes. */
+@media (min-width: 1000px) {
+  .page:has(> main.tool.split) {
+    max-width: 1000px;
+  }
+  .page:has(> main.tool.split) > :not(main.tool.split):not(.topbar) {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .page:has(> main.tool.split) > .hub-grid,
+  .page:has(> main.tool.split) > .hub-group-title {
+    max-width: 720px;
+  }
+  main.tool.split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+    column-gap: 32px;
+    align-items: start;
+  }
+  main.tool.split > * {
+    grid-column: 1;
+  }
+  main.tool.split > .split-aside {
+    grid-column: 2;
+    grid-row: 1 / span 40;
+    position: sticky;
+    top: 20px;
+    margin-top: 0;
+  }
+}

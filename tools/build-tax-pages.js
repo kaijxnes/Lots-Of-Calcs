@@ -384,8 +384,8 @@ ${heroRow("Effective tax rate", "rate", pct1(r.deductionRate))}
       </div>`;
   }
 
-  return `    <main class="tool" id="salary-tool" data-tax-id="${esc(p.id)}" data-currency="${p.currency}" data-gross="${gross}" data-mode="${m.kind}">
-      <div class="result-box" aria-live="polite">
+  return `    <main class="tool split" id="salary-tool" data-tax-id="${esc(p.id)}" data-currency="${p.currency}" data-gross="${gross}" data-mode="${m.kind}">
+      <div class="result-box split-aside" aria-live="polite">
 ${hero}
       </div>
 
@@ -1224,7 +1224,7 @@ ${site.table(["Where", "Salary", "Take-home a year", "A month", "Effective rate"
       <p class="page-subtitle">What your salary leaves you after tax, wherever you're paid.</p>
     </header>
 
-    <main class="tool" id="salary-calc">
+    <main class="tool split" id="salary-calc">
       <div class="field-row">
         <div class="field">
           <label for="location">Where you're paid</label>
@@ -1241,7 +1241,7 @@ ${select}
 ${optionFields(TaxEngine.merge(chain).options)}      </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
 
-      <div class="result-box" aria-live="polite">
+      <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="out-net">${m(r.net)}</div>
           <div class="label">Take-home pay, a year</div>

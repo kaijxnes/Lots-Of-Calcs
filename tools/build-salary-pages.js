@@ -276,8 +276,8 @@ ${site.TOPBAR}    <header class="site-header">
       <p class="page-subtitle">What a ${money0(gross)} salary actually leaves you, in the ${cfg.taxYear} tax year.</p>
     </header>
 
-    <main class="tool">
-      <div class="result-box" aria-live="polite">
+    <main class="tool split">
+      <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="hero-net">${money(r.net)}</div>
           <div class="label">Take-home pay, a year</div>

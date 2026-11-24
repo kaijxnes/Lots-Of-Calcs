@@ -66,7 +66,7 @@ function page() {
       <p class="page-subtitle">Your monthly repayment, the interest over the term and what you still owe each year.</p>
     </header>
 
-    <main class="tool" id="mc-tool">
+    <main class="tool split" id="mc-tool">
       <div class="field-row">
         <div class="field">
           <label for="mc-currency">Currency</label>
@@ -96,7 +96,7 @@ ${field("years", "Term (years)", D.years)}
       </div>
       <p class="tool-hint" id="mc-error" role="alert" style="color: var(--bad); display: none;"></p>
 
-      <div class="result-box" aria-live="polite">
+      <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="mc-monthly">${gbp(s.monthly)}</div>
           <div class="label" id="mc-label">a month on a ${g0(loan)} mortgage</div>
