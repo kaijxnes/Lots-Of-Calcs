@@ -271,11 +271,15 @@ body:has(> .page) {
 .field label {
   display: block;
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
   margin-bottom: 6px;
+}
+
+.field label.sub-label {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 10px 0 6px;
 }
 
 .field input,
@@ -499,9 +503,8 @@ hr.divider {
   gap: 8px;
   padding: 0 0 4px;
   color: var(--text-muted);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  font-size: 0.82rem;
+  font-weight: 600;
 }
 
 /* Match the column widths used inside .dyn-row so each heading sits directly
@@ -565,9 +568,8 @@ hr.divider {
 
 .out-table thead th {
   color: var(--text-muted);
-  text-transform: uppercase;
-  font-size: 0.7rem;
-  letter-spacing: 0.03em;
+  font-size: 0.8rem;
+  font-weight: 600;
 }
 
 .out-table .pos {
@@ -584,6 +586,28 @@ hr.divider {
   background: rgba(255, 159, 67, 0.12);
   color: var(--text-main);
   font-weight: 600;
+}
+
+/* Links in tables: plain until hovered, so a column of them reads as data,
+   not a wall of underlines */
+.result-row[hidden] {
+  display: none;
+}
+
+.out-table a {
+  color: var(--link);
+  text-decoration: none;
+}
+.out-table a:hover,
+.out-table a:focus-visible {
+  text-decoration: underline;
+}
+
+/* The row for this page's own value (its first cell is bold rather than a
+   link) is tinted, like a selected row */
+.out-table tbody tr:has(> td:first-child > strong) td {
+  background: rgba(255, 159, 67, 0.12);
+  color: var(--text-main);
 }
 
 .table-scroll {
@@ -1143,6 +1167,43 @@ hr.divider {
   margin: 0 0 40px;
 }
 
+/* ---------- Homepage: popular right now ---------- */
+
+.hub-popular {
+  margin: 0 0 28px;
+}
+
+.hub-popular[hidden] {
+  display: none;
+}
+
+.pill-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+}
+
+.pill-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--calc-bg);
+  color: var(--text-main);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.pill-links a:hover,
+.pill-links a:focus-visible {
+  border-color: var(--accent-text);
+  background: var(--hover-bg);
+}
+
 .cat-browse-label {
   color: var(--text-muted);
   font-size: 0.8rem;
@@ -1154,7 +1215,7 @@ hr.divider {
 
 .cat-tiles {
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -1207,8 +1268,8 @@ hr.divider {
   font-size: 0.72rem;
 }
 
-/* Seven tiles stop fitting comfortably below about 760px. Rather than wrap
-   into an uneven 4 + 3 or 2 + 2 + 2 + 1, they become a single scrolling row
+/* Ten tiles sit as two even rows of five on a wide screen. Below about
+   760px, rather than wrap into uneven rows, they become a single scrolling row
    that bleeds to the screen edge — the half-visible tile at the end is what
    tells you there is more to swipe to. */
 @media (max-width: 760px) {
@@ -1547,10 +1608,8 @@ hr.divider {
 
 .salary-links-title {
   color: var(--text-muted);
-  font-size: 0.8rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
   margin: 12px 0 6px;
 }
 
@@ -1670,8 +1729,11 @@ hr.divider {
 @media (max-width: 720px) { .jo-grid { grid-template-columns: 1fr; } }
 
 /* "Copy a link to these numbers", under each calculator */
-.share-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 16px 0 0; }
-.share-note { font-size: 0.85rem; color: var(--text-muted); word-break: break-all; }
+.share-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--border); }
+.share-bar .share-btn { padding: 7px 13px; font-size: 0.85rem; font-weight: 600; border-radius: 999px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
+.share-bar .share-btn:hover { background: var(--key-fn-bg); color: var(--text-main); }
+.share-note { flex-basis: 100%; font-size: 0.85rem; color: var(--text-muted); word-break: break-all; }
+.share-note:empty { display: none; }
 @media print { .share-bar, .embed-box { display: none !important; } }
 
 /* Embedded calculators (/embed/…) and the "Embed this calculator" box */

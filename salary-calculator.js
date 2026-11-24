@@ -73,7 +73,7 @@
     breakdownEl.textContent = "";
     breakdownEl.appendChild(row("Gross salary", money(r.gross, true)));
     r.shown.forEach(function (s) { breakdownEl.appendChild(row(s.label, money(s.amount))); });
-    r.charges.forEach(function (c) { breakdownEl.appendChild(row(c.label, money(c.amount))); });
+    r.charges.forEach(function (c) { if (Math.abs(c.amount) >= 0.005) breakdownEl.appendChild(row(c.label, money(c.amount))); });
     breakdownEl.appendChild(row("Total deductions", money(r.totalDeductions)));
     breakdownEl.appendChild(row("Effective rate", pct(r.deductionRate)));
     breakdownEl.appendChild(row("Marginal rate", Math.round(r.marginalRate) + "%"));

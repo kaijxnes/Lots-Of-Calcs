@@ -83,5 +83,5 @@ document.getElementById("add-row").addEventListener("click", () => {
 
 rowsEl.addEventListener("input", recalculate);
 
-["Jan", "Feb", "Mar", "Apr"].forEach((m) => addRow(m, ""));
+[["Jan", "1000"], ["Feb", "1100"], ["Mar", "1250"], ["Apr", "1400"]].forEach(([m, v]) => addRow(m, v));
 recalculate();

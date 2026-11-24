@@ -29,7 +29,12 @@
           <input type="number" id="salary" value="35000" step="any" min="0" inputmode="decimal" placeholder="0">
         </div>
       </div>
-      <div class="field-row" id="salary-options"></div>
+      <div class="field-row" id="salary-options">
+        <div class="field"><label for="opt-pensionPct">Pension contribution (% of salary)</label><input type="number" id="opt-pensionPct" value="0" min="0" max="100" step="0.5" inputmode="decimal"></div>
+        <div class="field"><label for="opt-pensionType">Pension type</label><select id="opt-pensionType"><option value="relief" selected>Relief at source (most personal and many workplace pensions)</option><option value="netpay">Net pay arrangement (taken before tax)</option><option value="sacrifice">Salary sacrifice</option></select></div>
+        <div class="field"><label for="opt-studentLoan">Student loan</label><select id="opt-studentLoan"><option value="none" selected>None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4 (Scotland)</option><option value="plan5">Plan 5</option></select></div>
+        <div class="field"><label for="opt-postgradLoan">Postgraduate loan</label><select id="opt-postgradLoan"><option value="no" selected>No</option><option value="yes">Yes</option></select></div>
+      </div>
       <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
 
       <div class="result-box" aria-live="polite">
@@ -54,9 +59,6 @@
           <div class="result-row"><span class="r-label">Taxable income</span><span class="r-value">£22,430.00</span></div>
           <div class="result-row"><span class="r-label">Income tax</span><span class="r-value">£4,486.00</span></div>
           <div class="result-row"><span class="r-label">National Insurance</span><span class="r-value">£1,794.40</span></div>
-          <div class="result-row"><span class="r-label">Student loan repayment</span><span class="r-value">£0.00</span></div>
-          <div class="result-row"><span class="r-label">Postgraduate loan repayment</span><span class="r-value">£0.00</span></div>
-          <div class="result-row"><span class="r-label">Pension contribution</span><span class="r-value">£0.00</span></div>
           <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value">£6,280.40</span></div>
           <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value">17.9%</span></div>
           <div class="result-row"><span class="r-label">Marginal rate</span><span class="r-value">28%</span></div>

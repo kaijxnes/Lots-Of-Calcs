@@ -130,7 +130,7 @@
       <div class="field-row">
         <div class="field">
           <label for="bill">Bill amount</label>
-          <input type="number" id="bill" placeholder="0.00" step="any">
+          <input type="number" id="bill" placeholder="0.00" step="any" value="50" inputmode="decimal">
         </div>
         <div class="field">
           <label for="currency">Currency</label>
@@ -148,13 +148,14 @@
       </div>
 
       <div class="field">
-        <label>Tip %</label>
-        <div class="tabs" id="tip-presets">
+        <label id="tip-label">Tip</label>
+        <div class="tabs" id="tip-presets" aria-labelledby="tip-label">
           <button class="tab" data-tip="10" type="button">10%</button>
           <button class="tab active" data-tip="15" type="button">15%</button>
           <button class="tab" data-tip="20" type="button">20%</button>
         </div>
-        <input type="number" id="tip-percent" placeholder="15" step="any" value="15" style="margin-top:8px;">
+        <label for="tip-percent" class="sub-label">Or your own tip (%)</label>
+        <input type="number" id="tip-percent" placeholder="15" step="any" value="15" inputmode="decimal">
       </div>
 
       <div class="field">
@@ -164,11 +165,11 @@
 
       <div class="result-box">
         <div class="result-grid">
-          <div class="result-row"><span class="r-label">Tip amount</span><span class="r-value" id="tip-amount">£0.00</span></div>
-          <div class="result-row highlight"><span class="r-label">Total (bill + tip)</span><span class="r-value" id="total">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Tip amount</span><span class="r-value" id="tip-amount">£7.50</span></div>
+          <div class="result-row highlight"><span class="r-label">Total (bill + tip)</span><span class="r-value" id="total">£57.50</span></div>
           <hr class="divider">
-          <div class="result-row"><span class="r-label">Tip per person</span><span class="r-value" id="tip-per-person">£0.00</span></div>
-          <div class="result-row highlight"><span class="r-label">Total per person</span><span class="r-value" id="total-per-person">£0.00</span></div>
+          <div class="result-row"><span class="r-label">Tip per person</span><span class="r-value" id="tip-per-person">£7.50</span></div>
+          <div class="result-row highlight"><span class="r-label">Total per person</span><span class="r-value" id="total-per-person">£57.50</span></div>
         </div>
       </div>
     </main>

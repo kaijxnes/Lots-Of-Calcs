@@ -156,6 +156,6 @@ document.getElementById("add-variant").addEventListener("click", () => {
 
 rowsEl.addEventListener("input", recalculate);
 
-addVariantRow("Control");
-addVariantRow("Variant B");
+addVariantRow("Control", "5000", "250");
+addVariantRow("Variant B", "5000", "300");
 recalculate();
