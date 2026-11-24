@@ -54,7 +54,7 @@ function tool(year, payday) {
           <div class="result-row"><span class="r-label">Extra paychecks</span><span class="r-value" id="ps-extra-pay">—</span></div>
         </div>
       </div>
-      <div class="no-print" style="margin:12px 0;"><button class="btn btn-ghost" id="ps-print" type="button">🖨️ Print the schedule</button></div>
+      <div class="no-print" style="margin:12px 0;"><button class="btn btn-ghost" id="ps-print" type="button"><svg class="ico" aria-hidden="true"><use href="/icons.svg#printer"></use></svg> Print the schedule</button></div>
       <div class="table-scroll">
         <div style="min-width:340px;">
           <table class="out-table">

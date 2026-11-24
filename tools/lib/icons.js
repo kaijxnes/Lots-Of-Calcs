@@ -61,12 +61,12 @@ function inner(emoji) {
 
 /* Turn every emoji icon in a page into its line icon or flag badge */
 const RE = /(<span class="(?:icon|cat-tile-icon)"(?: aria-hidden="true")?>)([^<]+)(<\/span>)/g;
+/* and the category links on category pages: <a class="category-pill" ...>🏠 Home & DIY</a> */
+const PILL = /(<a class="category-pill(?: current)?"[^>]*>)([^<\sA-Za-z0-9&]+)\s+/g;
 function convert(html, where) {
-  return html.replace(RE, (all, open, e, close) => {
-    const i = inner(e);
-    if (!i) throw new Error(`no icon for ${JSON.stringify(e)}${where ? " in " + where : ""}: add it to tools/lib/icons.js`);
-    return open + i + close;
-  });
+  const fail = (e) => { throw new Error(`no icon for ${JSON.stringify(e)}${where ? " in " + where : ""}: add it to tools/lib/icons.js`); };
+  return html.replace(RE, (all, open, e, close) => open + (inner(e) || fail(e)) + close)
+    .replace(PILL, (all, open, e) => open + (inner(e) || fail(e)) + " ");
 }
 
 module.exports = { ICONS, EXTRA, convert, inner, svg };
