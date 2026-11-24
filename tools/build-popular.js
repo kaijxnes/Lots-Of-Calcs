@@ -48,6 +48,7 @@ const SEASONAL = [
   ["/days-until/bonfire-night/", "Days until Bonfire Night", md(10, 20), md(11, 5), 2, "🔥", null],
   ["/days-until/new-year/", "Days until New Year", md(12, 1), md(12, 31), 2, "📆", null],
   ["/self-employed-tax-calculator/", "Self-employed tax", md(12, 1), md(1, 31), 1, "🧾", "Tax and NI on profits"],
+  ["/days-until/self-assessment-deadline/", "Self Assessment deadline", md(1, 1), md(1, 31), 1, "⏳", null],
   ["/payments-on-account-calculator/", "Payments on account", md(1, 1), md(1, 31), 1, "📆", "Due 31 January and 31 July"],
   ["/self-assessment-penalty-calculator/", "Late tax return penalties", md(2, 1), md(3, 31), 1, "⏰", "Penalties and interest"],
   ["/child-benefit-tax-charge-calculator/", "Child Benefit tax charge", md(1, 1), md(1, 31), 2, "👶", "Income over £60,000"],

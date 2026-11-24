@@ -47,7 +47,7 @@ function december(rows) { return S.byMonth(rows).filter((x) => x.month.endsWith(
 function calculatorPage() {
   const url = SITE + BASE;
   const rows = S.plan("classic", 1, START), rev = S.plan("reverse", 1, START);
-  const title = "52 Week Savings Challenge Calculator — Chart, Totals & Tracker";
+  const title = site.fitTitle(`52 Week Savings Challenge ${YEAR} — Calculator, Chart & Tracker`, `52 Week Savings Challenge ${YEAR} Calculator`);
   const desc = `Save £1 in week 1, £2 in week 2 and so on, and you'll have £1,378 after 52 weeks. Work out any version, print the chart and tick off each week as you go.`;
   const versions = VARIANTS.map((v) => {
     const r = S.plan(v.mode, v.amount, START), first = r[0].deposit, last = r[r.length - 1].deposit;

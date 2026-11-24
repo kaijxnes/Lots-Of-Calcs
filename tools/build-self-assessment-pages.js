@@ -107,7 +107,7 @@ function poaPage() {
     ["What if I earn less this year?", "Payments on account are based on last year, so if you earn less, you may have paid too much and be due a refund once the year's return is in."]
   ];
   return page({ path: "/payments-on-account-calculator/", crumb: "Payments on Account Calculator", q, tool, body, sources: SRC("paymentsOnAccount"),
-    title: site.fitTitle("Payments on Account Calculator — What's Due on 31 January and 31 July", "Payments on Account Calculator — 31 January and 31 July"),
+    title: site.fitTitle(`Payments on Account Calculator ${Y} — What's Due on 31 January and 31 July`, `Payments on Account Calculator ${Y} — 31 January & 31 July`),
     desc: `Work out your Self Assessment payments on account and balancing payment: what to pay by 31 January ${Y} and 31 July ${Y} for the ${YEAR} and ${NEXT} tax years, with GOV.UK's rules.`,
     h1: "Payments on account calculator", sub: `What you pay HMRC by <strong>31 January ${Y}</strong> and <strong>31 July ${Y}</strong>: the balancing payment for ${YEAR} and payments on account towards ${NEXT}.` });
 }
@@ -158,7 +158,7 @@ function penPage() {
     ["Can I appeal a Self Assessment penalty?", "Yes, if you have a reasonable excuse for filing or paying late. Penalties are otherwise due within 30 days of the date on the penalty notice."]
   ];
   return page({ path: "/self-assessment-penalty-calculator/", crumb: "Self Assessment Penalty Calculator", q, tool, body, sources: `${SRC("penalties")} and ${SRC("interest")}`,
-    title: site.fitTitle("Self Assessment Penalty Calculator — Late Filing & Payment", "Self Assessment Late Penalty Calculator"),
+    title: site.fitTitle(`Self Assessment Penalty Calculator ${Y} — Late Filing & Payment`, `Self Assessment Penalty Calculator ${Y}`),
     desc: `Work out HMRC's penalties and interest for a late Self Assessment return or payment: ${m0(f.initial)} late filing, daily penalties, 5% charges and interest at ${RATE}%.`,
     h1: "Self Assessment penalty calculator", sub: `What it costs to file your ${YEAR} return or pay the tax after <strong>31 January ${Y}</strong>: HMRC's late filing and late payment penalties, and interest.` });
 }
