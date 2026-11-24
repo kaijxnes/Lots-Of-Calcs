@@ -1929,3 +1929,15 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .hub-card:focus-vi
 .mc-area.mc-s0, .mc-dot.mc-s0 { fill: var(--accent); }
 .mc-line.mc-s1, .mc-key.mc-s1 { stroke: var(--link); background: var(--link); }
 .mc-area.mc-s1, .mc-dot.mc-s1 { fill: var(--link); }
+
+/* ---------- Breadcrumb trail (tools/lib/crumbs.js) ---------- */
+.crumbs { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 2px 6px; margin: 0 0 10px; color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; }
+.crumbs a { color: var(--text-muted); text-decoration: none; }
+.crumbs a:hover { color: var(--accent-text); text-decoration: underline; }
+.crumbs [aria-current] { color: var(--text-main); }
+.crumb-sep { opacity: 0.6; }
+@media print { .crumbs.no-print { display: none; } }
+/* on a phone the heading just below already names the page */
+@media (max-width: 600px) {
+  .crumbs [aria-current], .crumbs .crumb-sep:nth-last-child(2) { display: none; }
+}

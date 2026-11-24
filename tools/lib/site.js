@@ -203,7 +203,7 @@ const written = new Set();
 
 /* rel is the page's directory relative to the site root, e.g. "salary/us" */
 function write(rel, html) {
-  html = require("./assets.js").version(require("./icons.js").convert(html, rel));
+  html = require("./assets.js").version(require("./crumbs.js").crumbs(require("./icons.js").convert(html, rel)));
   const dir = path.join(ROOT, rel);
   const file = path.join(dir, "index.html");
   const loc = "/" + (rel ? rel.replace(/\/$/, "") + "/" : "");
