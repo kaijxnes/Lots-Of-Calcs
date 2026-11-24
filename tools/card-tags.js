@@ -9,6 +9,8 @@
 const TAGS = {
   "/stamp-duty-calculator/": "UK",
   "/self-employed-tax-calculator/": "UK",
+  "/payments-on-account-calculator/": "UK",
+  "/self-assessment-penalty-calculator/": "UK",
   "/isa-vs-pension/": "UK",
   "/heating-cost/": "UK",
   "/running-cost/": "UK",

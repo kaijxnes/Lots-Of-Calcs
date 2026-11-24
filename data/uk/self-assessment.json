@@ -1,0 +1,27 @@
+{
+  "_note": "Self Assessment payment and penalty rules for tools/build-self-assessment-pages.js. Every figure is quoted from the GOV.UK page in its source. The late payment interest rate follows the Bank of England base rate (base rate + 4% from 6 April 2025), so check it monthly.",
+  "paymentsOnAccount": {
+    "share": 0.5,
+    "minBill": 1000,
+    "atSourceShare": 0.8,
+    "includes": "income tax and Class 4 National Insurance",
+    "balancingAlsoIncludes": "capital gains tax and student loan repayments",
+    "note": "'Each payment is half of the tax you owed last year. These payments are due by midnight on 31 January and 31 July. You must make these 2 payments, unless either: the amount of tax you owed last year was less than £1,000; last year you paid more than 80% of the tax you owed outside of Self Assessment.' The balancing payment 'will also include anything you owe for capital gains or student loans (if you're self-employed).'",
+    "source": { "title": "GOV.UK — Understand your Self Assessment tax bill: Payments on account", "url": "https://www.gov.uk/understand-self-assessment-bill/payments-on-account" }
+  },
+  "penalties": {
+    "filing": { "initial": 100, "dailyAfterMonths": 3, "daily": 10, "dailyMax": 900, "sixMonthPct": 5, "sixMonthMin": 300, "twelveMonthPct": 5, "twelveMonthMin": 300 },
+    "payment": { "pct": 5, "after": ["30 days", "6 months", "12 months"] },
+    "note": "Late filing: 'an initial £100 penalty'; 'after 3 months, additional daily penalties of £10 per day, up to a maximum of £900'; 'after 6 months, a further penalty of 5% of the tax due or £300, whichever is greater'; 'after 12 months, another 5% or £300 charge, whichever is greater'. Late payment: 'penalties of 5% of the tax unpaid at: 30 days, 6 months, 12 months'. 'You'll also be charged interest on the amount owed.'",
+    "source": { "title": "GOV.UK — Self Assessment tax returns: Penalties", "url": "https://www.gov.uk/self-assessment-tax-returns/penalties" }
+  },
+  "interest": {
+    "latePaymentRate": 8.0,
+    "from": "2026-11-24",
+    "basis": "Bank of England base rate plus 4% (from 6 April 2025)",
+    "note": "'late payment interest rate — 8.00% from 24 November 2026' (page updated 6 November 2026).",
+    "source": { "title": "GOV.UK — HMRC interest rates for late and early payments", "url": "https://www.gov.uk/government/publications/rates-and-allowances-hmrc-interest-rates-for-late-and-early-payments/rates-and-allowances-hmrc-interest-rates" }
+  },
+  "lastChecked": "2026-11-24",
+  "lastVerified": null
+}
