@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -134,33 +134,35 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/guides/">Guides</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Matched Betting Explained</span></nav>
       <h1 class="page-title">Matched betting explained</h1>
       <p class="page-subtitle">How a back bet and a lay bet cancel out, how to size the lay stake, and what a free bet is really worth, worked through with real numbers.</p>
     </header>
 
-    <main class="tool guide">
+    <section class="tool guide">
       <p class="guide-toc-label">In this guide</p>
       <ol class="guide-toc"><li><a href="#idea">The idea</a></li><li><a href="#qualifying">The qualifying bet</a></li><li><a href="#free">The free bet</a></li><li><a href="#odds">Why free bets go on higher odds</a></li><li><a href="#risks">The risks and the catches</a></li></ol>
       <p class="guide-tools">Calculators: <a href="/lay/">Lay bet calculator</a> · <a href="/each-way/">Each-way</a> · <a href="/dutching/">Dutching</a> · <a href="/odds-converter/">Odds converter</a></p>
-    </main>
+    </section>
 
-    <main class="tool" id="idea">
+    <section class="tool" id="idea">
       <h2 class="tool-section-title">The idea</h2>
       <p class="about-text">Matched betting uses a bookmaker's free bet offers. You place a bet <strong>for</strong> an outcome at the bookmaker (a <em>back</em> bet) and a bet <strong>against</strong> the same outcome at a betting exchange (a <em>lay</em> bet), with stakes sized so that you end up with about the same amount whichever way the result goes. The two bets together cost a little, the <em>qualifying loss</em>; the free bet they unlock is worth much more.</p>
       <p class="about-text">A lay bet works the other way round from a normal bet: you're acting as the bookmaker. If the outcome loses, you win the lay stake (less the exchange's commission). If it wins, you pay the backer's winnings, the lay stake × (lay odds − 1): that's your <strong>liability</strong>, and the exchange holds it from your balance until the event is settled.</p>
-    </main>
-    <main class="tool" id="qualifying">
+    </section>
+    <section class="tool" id="qualifying">
       <h2 class="tool-section-title">Step 1: the qualifying bet</h2>
       <p class="about-text">To unlock a typical "bet £10, get a £10 free bet" offer you place £10 of your own money. The lay stake that balances it is:</p>
       <p class="guide-formula">lay stake = back odds × back stake ÷ (lay odds − commission)</p>
       <p class="about-text">Back £10 at 3.0 and lay at 3.1 with 2% commission: lay stake = 3.0 × £10 ÷ (3.1 − 0.02) = <strong>£9.74</strong>, with a liability of £20.45.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Step 1: the qualifying bet (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>If the outcome…</th><th>Bookmaker</th><th>Exchange</th><th>Overall</th></tr></thead>
@@ -172,17 +174,17 @@
         </div>
       </div>
       <p class="about-text">Either way you're down about £0.45: the qualifying loss. It comes from the gap between the back and lay odds, and the commission. The closer the two prices, the smaller it is. The <a href="/lay/">lay bet calculator</a> works out the stake for any odds and commission.</p>
-    </main>
-    <main class="tool" id="free">
+    </section>
+    <section class="tool" id="free">
       <h2 class="tool-section-title">Step 2: the free bet</h2>
       <p class="about-text">Most free bets are <em>stake not returned</em> (SNR): if the bet wins you get the winnings but not the £10 stake. So the lay stake is based on the winnings alone:</p>
       <p class="guide-formula">lay stake = (back odds − 1) × free bet ÷ (lay odds − commission)</p>
       <p class="about-text">A £10 free bet at 6.0, laid at 6.2 with 2% commission: lay stake = 5 × £10 ÷ 6.18 = <strong>£8.09</strong>. If the outcome wins, the bookmaker pays £50.00 and you pay the exchange £42.07: £7.93. If it loses, you keep the lay stake less commission: £7.93. About <strong>£7.93</strong> either way, 79.3% of the free bet, against a £0.45 qualifying loss.</p>
-    </main>
-    <main class="tool" id="odds">
+    </section>
+    <section class="tool" id="odds">
       <h2 class="tool-section-title">Why free bets go on higher odds</h2>
       <p class="about-text">With a stake not returned free bet, the share you keep rises with the odds, because the missing stake matters less the bigger the winnings are. A £10 free bet with 2% commission, at typical lay prices a little above the back odds:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Why free bets go on higher odds (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Back odds</th><th>Lay odds</th><th>Lay stake</th><th>Liability</th><th>Kept either way</th><th>Share kept</th></tr></thead>
@@ -198,16 +200,16 @@
         </div>
       </div>
       <p class="about-text">Higher odds also mean a bigger liability, so you need more money in your exchange account. Qualifying bets are the other way round: closer odds matter more than high ones, since you want the loss to be small. The <a href="/odds-converter/">odds converter</a> turns fractional odds into the decimal odds these formulas use.</p>
-    </main>
-    <main class="tool" id="risks">
+    </section>
+    <section class="tool" id="risks">
       <h2 class="tool-section-title">The risks and the catches</h2>
       <p class="about-text"><strong>Mistakes cost real money.</strong> Laying the wrong outcome, the wrong market, or at odds that moved before your lay was matched leaves you exposed. Check every bet before placing it, and place the lay as soon as the back bet is on.</p>
       <p class="about-text"><strong>Offers have terms.</strong> Minimum odds, which bets count, and when the free bet expires all vary. Bookmakers can also limit the stakes or offers available to accounts that only take promotions.</p>
       <p class="about-text"><strong>It's still gambling.</strong> The bets are real, and you need enough money in the exchange to cover liabilities. If it stops feeling like arithmetic, stop. You must be 18 or over; free, confidential help is at <a href="https://www.begambleaware.org/" rel="nofollow noopener" target="_blank">BeGambleAware</a>.</p>
       <p class="about-text">Other betting maths on the site: <a href="/each-way/">each-way bets</a>, <a href="/dutching/">dutching</a> across several selections and <a href="/accumulator/">accumulators</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is matched betting?</h3>
       <p class="about-text">Using bookmakers' free bet offers by backing an outcome at the bookmaker and laying the same outcome at a betting exchange, with stakes sized so the result doesn't matter. The small loss on the qualifying bet unlocks a free bet worth more.</p>
@@ -220,9 +222,9 @@
       <h3 class="faq-q">Why is there a qualifying loss?</h3>
       <p class="about-text">The lay odds at the exchange are almost always a little higher than the back odds, and the exchange charges commission on winnings. Together they make the matched bet cost a little.</p>
       <p class="tool-hint" style="margin-top:12px;">Worked out with the same formulas as the lay bet calculator. Odds and commission are examples; exchanges charge different rates. 18+ only. A guide, not betting advice.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">More guides</h2>
       <div class="hub-grid">
       <a class="hub-card" href="/guides/uk-income-tax/">
@@ -236,8 +238,9 @@
         <div class="desc">The repayment formula, why early payments are mostly interest, and what the rate, the term and overpaying do.</div>
       </a>
       </div>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

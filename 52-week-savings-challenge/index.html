@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -144,17 +144,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs no-print" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/savings/">Savings</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">52 Week Savings Challenge</span></nav>
       <h1 class="page-title">52 week savings challenge</h1>
       <p class="page-subtitle">Save a little more each week and finish the year with £1,378 — or pick your own amount, start date and version.</p>
     </header>
 
-    <main class="tool" id="sc-tool">
+    <section class="tool" id="sc-tool">
       <div class="no-print">
       <div class="field-row">
         <div class="field"><label for="sc-mode">Challenge</label><select id="sc-mode"><option value="classic" selected>Classic: a bit more each week</option><option value="reverse">Reverse: biggest week first</option><option value="daily">365 days: a bit more each day</option><option value="envelope">100 envelopes: one a day, any order</option></select></div>
@@ -252,7 +254,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:20px;">Month by month</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Month by month (table)">
         <div style="min-width:300px;">
           <table class="out-table">
             <thead><tr><th>Month</th><th>Deposits</th><th>Saved that month</th></tr></thead>
@@ -273,11 +275,11 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Which version?</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Which version? (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Challenge</th><th>First deposit</th><th>Last deposit</th><th>Total</th></tr></thead>
@@ -298,17 +300,17 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Each has its full dated chart for 2027, starting 1 January. Any start date works in the calculator.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">In week 1 you save the starting amount, in week 2 twice it, and so on up to 52 times it in week 52. Add those up and you get <strong>1,378 × the starting amount</strong>: £1,378 from £1, £2,756 from £2, £689 from 50p.</p>
       <p class="about-text"><strong>The catch is the end of the year.</strong> Starting on 1 January, the classic version asks for £202 in December, just when Christmas costs land. The reverse version front-loads it, so December needs only £10; it's the same £1,378 either way.</p>
       <p class="about-text"><strong>The 365-day version</strong> goes up a little every day instead: 1p on day 1, 2p on day 2 and £3.65 on day 365, for £667.95. Smaller steps, but you have to remember daily.</p>
       <p class="about-text"><strong>Making it stick:</strong> set up a weekly standing order into a separate savings account, print the chart for the fridge, or tick off each week here and the page remembers your progress. If you'd rather save the same amount every week, the <a href="/savings-goal/">savings goal calculator</a> works out what you need, and the <a href="/compound-interest/">compound interest calculator</a> shows what it grows to.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much do you save with the 52-week challenge?</h3>
       <p class="about-text">£1,378 if you start at £1 and add £1 each week: £1 + £2 + … + £52. Starting at £2 doubles it to £2,756, and £5 a week rising gives £6,890. The total is always the starting amount × 1,378.</p>
@@ -324,7 +326,7 @@
       <p class="about-text">Somewhere separate that you won't dip into but can reach if you need to, such as an easy-access savings account or a cash ISA. The interest is a bonus; add the rate to see roughly what it adds.</p>
       <h3 class="faq-q">What if I miss a week?</h3>
       <p class="about-text">Catch up the next week or spread it over the following few. The chart keeps a running total, so you can always see where you should be.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -363,6 +365,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -11,7 +11,7 @@
    aren't included: they don't exist until the calculator builds them. */
 (function () {
   "use strict";
-  var tool = document.querySelector("main.tool");
+  var tool = document.querySelector(".tool");
   if (!tool || !window.URLSearchParams) return;
 
   function fields() {
@@ -63,7 +63,7 @@
   btn.className = "btn btn-ghost share-btn";
   btn.innerHTML = '<svg class="ico" aria-hidden="true"><use href="/icons.svg#link"></use></svg>Copy link';
   btn.title = "Copy a link to these numbers";
-  btn.setAttribute("aria-label", "Copy a link to these numbers");
+  btn.setAttribute("aria-label", "Copy link to these numbers");
   var note = document.createElement("span");
   note.className = "share-note";
   note.setAttribute("aria-live", "polite");
@@ -218,9 +218,9 @@
    slim bar at the bottom shows it, and tapping the bar goes back to it. */
 (function () {
   "use strict";
-  var aside = document.querySelector("main.tool.split .split-aside");
+  var aside = document.querySelector(".tool.split .split-aside");
   if (!aside || !window.IntersectionObserver || !window.matchMedia) return;
-  var tool = aside.closest("main.tool");
+  var tool = aside.closest(".tool");
   var narrow = window.matchMedia("(max-width: 999px)");
   function source() {
     var v = aside.querySelector(".result-hero .value"), l = aside.querySelector(".result-hero .label");

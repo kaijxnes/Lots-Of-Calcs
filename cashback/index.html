@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -142,17 +142,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/personal-finance/">Personal Finance</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Cashback Calculator</span></nav>
       <h1 class="page-title">Cashback Calculator</h1>
       <p class="page-subtitle">Work out the cashback on a purchase, the cashback percentage, or what a card really earns across your spending after the fee.</p>
     </header>
 
-    <main class="tool" id="cbq-tool">
+    <section class="tool" id="cbq-tool">
       <h2 class="tool-section-title">Quick cashback calculator</h2>
       <div class="field-row">
         <div class="field"><label for="cbq-spend">Amount spent</label><input type="number" id="cbq-spend" value="250" min="0" step="any" inputmode="decimal"></div>
@@ -181,9 +183,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Cashback = spend × rate ÷ 100. Cashback percentage = cashback ÷ spend × 100. For a card that pays different rates on different spending, use the full calculator below.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Cashback card calculator</h2>
       <p class="about-text" style="margin-bottom:18px;">Cashback cards rarely pay one flat rate. There is usually a headline rate on a couple of categories &mdash; travel, supermarkets, fuel &mdash; and a much thinner one on everything else. Put your own spending against the card's own rates and you get the number that matters, rather than the one on the advert.</p>
 
@@ -237,7 +239,7 @@
       <p class="tool-hint" id="verdict" style="margin-top:12px; display:none;"></p>
 
       <h2 class="tool-section-title" style="margin-top:20px;">Where the cashback comes from</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Where the cashback comes from (table)">
         <div style="min-width:460px;">
           <table class="out-table">
             <thead>
@@ -247,9 +249,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">Each category earns at its own rate, and the total is simply the sum:</p>
       <p class="about-text"><strong>monthly cashback = Σ (spend × rate ÷ 100)</strong></p>
@@ -263,7 +265,7 @@
       <p class="about-text"><strong>Cashback amount</strong> = spend × cashback % ÷ 100. So 1% cashback on £250 is £250 × 1 ÷ 100 = <strong>£2.50</strong>, and 2.6% on £400 is <strong>£10.40</strong>.</p>
       <p class="about-text"><strong>Cashback percentage</strong> = cashback ÷ spend × 100. If £12 back on £800 of spending, that's 12 ÷ 800 × 100 = <strong>1.5%</strong>. The same sum on a whole year's cashback and spending gives a card's effective rate.</p>
       <p class="about-text"><strong>Spend needed</strong> for a target = cashback wanted ÷ (cashback % ÷ 100). To earn £50 at 2% you'd need to spend £50 ÷ 0.02 = <strong>£2,500</strong>.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How to calculate cashback percentage (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Spend</th><th>0.5%</th><th>1%</th><th>1.5%</th><th>2%</th><th>3%</th><th>5%</th></tr></thead>
@@ -290,9 +292,9 @@
       <p class="about-text"><strong>Excluded transactions.</strong> Cash withdrawals, balance transfers, gambling, foreign currency, council tax, and often anything paid to HMRC typically earn nothing. Some cards exclude utilities and insurance too.</p>
       <p class="about-text"><strong>Minimum spend.</strong> Some cards pay nothing at all below a monthly threshold.</p>
       <p class="about-text">And the big one: <strong>interest wipes out cashback instantly</strong>. At a typical 24% APR, carrying a £500 balance for a year costs roughly £120 in interest, which is most of a year's cashback on the example above. Cashback is only worth having if you clear the balance in full every month. If you do not, the rate on the card matters far more than the cashback on it.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I calculate a cashback percentage?</h3>
       <p class="about-text">Divide the cashback by what you spent and multiply by 100. £12 back on £800 is 12 ÷ 800 × 100 = 1.5%. To go the other way, multiply the spend by the percentage and divide by 100: 1.5% of £800 is £12.</p>
@@ -310,7 +312,7 @@
       <p class="about-text">Often dramatically. A card paying 5% for three months and 0.5% afterwards averages barely above 1.6% in year one and 0.5% thereafter. Caps bite the same way — 5% on the first £2,000 of annual spend is worth £100 at most, however much you spend beyond it. Model the ongoing rate rather than the promotional one, and treat the result as the realistic case.</p>
       <h3 class="faq-q">Is cashback still worth it if I carry a balance?</h3>
       <p class="about-text">No. At a typical 24% APR, interest on a carried balance costs several times what any cashback rate returns — roughly £120 a year on a £500 balance, against maybe £15 of cashback on the same amount of spending. Cashback only makes sense on a card cleared in full each month by direct debit.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -348,6 +350,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

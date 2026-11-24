@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -134,17 +134,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/everyday/">Everyday</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Grade / Score Calculator</span></nav>
       <h1 class="page-title">Grade / Score Calculator</h1>
       <p class="page-subtitle">Score out of total → % and letter grade, a weighted average across assignments, or the average of your letter grades.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="single">Single score</button>
         <button class="tab" data-tab="weighted">Weighted average</button>
@@ -181,7 +183,7 @@
       </div>
 
       <div class="tab-panel" data-panel="weighted">
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Grade boundaries (table)">
           <div style="min-width:520px;">
             <div class="dyn-table-head">
               <span class="row-index">#</span>
@@ -205,7 +207,7 @@
       </div>
 
       <div class="tab-panel" data-panel="letters">
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Grade boundaries (table) 2">
           <div style="min-width:460px;">
             <div class="dyn-table-head">
               <span class="row-index">#</span>
@@ -231,17 +233,17 @@
         </div>
         <p class="tool-hint" style="margin-top:12px;">Each grade's points come from the <a href="https://bigfuture.collegeboard.org/plan-for-college/college-basics/how-to-convert-gpa-4.0-scale" rel="nofollow noopener" target="_blank">College Board's 4.0 scale</a>: A = 4, B = 3, C = 2, D = 1, F = 0. Schools that use plus and minus grades give them their own points (often a few tenths either side) — type your school's figure into Points. The average weights each grade by its credits; leave credits at 1 for a plain average.</p>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">From a score to a grade</h2>
       <p class="about-text">A score becomes a percentage by dividing the marks you got by the marks available and multiplying by 100: 47 out of 60 is 47 &divide; 60 &times; 100 = <strong>78.3%</strong>. That percentage is then matched against the grade boundaries &mdash; the highest boundary it reaches is your grade.</p>
       <p class="about-text">The boundaries start as a common US-style scale (A from 90%, B from 80%, C from 70%, D from 60%). Edit, add or remove them to match your school, exam board or university.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Weighted grades, worked through</h2>
       <p class="about-text">When pieces of work count for different shares of the final mark, each score is multiplied by its weight before adding up. Suppose coursework is worth 20%, a mid-term 30% and the final exam 50%:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Weighted grades, worked through (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Assessment</th><th>Score</th><th>Weight</th><th>Counts for</th></tr></thead>
@@ -255,12 +257,12 @@
         </div>
       </div>
       <p class="about-text" style="margin-top:12px;">A plain average of the three scores would be 74.3%. The weighted figure is higher because the strongest score, the final, counts for half the grade.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">UK degree classifications</h2>
       <p class="about-text">UK universities usually class an honours degree by its weighted average mark:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="UK degree classifications (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Classification</th><th>Average mark</th></tr></thead>
@@ -274,9 +276,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">To use these, set the boundaries to 1st 70, 2:1 60, 2:2 50, 3rd 40 and Fail 0. Universities differ in which years count and how borderline marks are treated, so check your own regulations. GCSE and A-level grade boundaries change with every exam series and are published by each exam board.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I average letter grades?</h3>
       <p class="about-text">Turn each letter into grade points — on the College Board's 4.0 scale A is 4, B is 3, C is 2, D is 1 and F is 0 — add them up and divide by the number of grades. A, B, B and C make 4 + 3 + 3 + 2 = 12, and 12 ÷ 4 = 3.0, a B average. If classes carry different credits, multiply each grade's points by its credits and divide by the total credits. The Letter grade average tab does this for you.</p>
@@ -292,10 +294,10 @@
       <p class="about-text">An average of 70% or more at most UK universities. 60&ndash;69% is a 2:1, 50&ndash;59% a 2:2 and 40&ndash;49% a third.</p>
       <h3 class="faq-q">Can I use letter grades like A* or 9&ndash;1?</h3>
       <p class="about-text">Yes. Grade names are free text, so add a row for each grade with the minimum percentage for it &mdash; A* at 90, 9 at 85, or whatever your boundaries are &mdash; and the calculator matches your score against them.</p>
-    </main>
+    </section>
 
     <!-- grade pages: generated by tools/build-grade-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Test scores as percentages</h2>
       <p class="salary-links"><strong>Out of 10:</strong> <a href="/grade/10-out-of-10/">10</a> <a href="/grade/9-out-of-10/">9</a> <a href="/grade/8-out-of-10/">8</a> <a href="/grade/7-out-of-10/">7</a> <a href="/grade/6-out-of-10/">6</a> <a href="/grade/5-out-of-10/">5</a> <a href="/grade/4-out-of-10/">4</a> <a href="/grade/3-out-of-10/">3</a> <a href="/grade/2-out-of-10/">2</a> <a href="/grade/1-out-of-10/">1</a></p>
       <p class="salary-links"><strong>Out of 12:</strong> <a href="/grade/12-out-of-12/">12</a> <a href="/grade/11-out-of-12/">11</a> <a href="/grade/10-out-of-12/">10</a> <a href="/grade/9-out-of-12/">9</a> <a href="/grade/8-out-of-12/">8</a> <a href="/grade/7-out-of-12/">7</a> <a href="/grade/6-out-of-12/">6</a> <a href="/grade/5-out-of-12/">5</a> <a href="/grade/4-out-of-12/">4</a> <a href="/grade/3-out-of-12/">3</a> <a href="/grade/2-out-of-12/">2</a> <a href="/grade/1-out-of-12/">1</a></p>
@@ -307,7 +309,7 @@
       <p class="salary-links"><strong>Out of 50:</strong> <a href="/grade/50-out-of-50/">50</a> <a href="/grade/49-out-of-50/">49</a> <a href="/grade/48-out-of-50/">48</a> <a href="/grade/47-out-of-50/">47</a> <a href="/grade/46-out-of-50/">46</a> <a href="/grade/45-out-of-50/">45</a> <a href="/grade/44-out-of-50/">44</a> <a href="/grade/43-out-of-50/">43</a> <a href="/grade/42-out-of-50/">42</a> <a href="/grade/41-out-of-50/">41</a> <a href="/grade/40-out-of-50/">40</a> <a href="/grade/39-out-of-50/">39</a> <a href="/grade/38-out-of-50/">38</a> <a href="/grade/37-out-of-50/">37</a> <a href="/grade/36-out-of-50/">36</a> <a href="/grade/35-out-of-50/">35</a> <a href="/grade/34-out-of-50/">34</a> <a href="/grade/33-out-of-50/">33</a> <a href="/grade/32-out-of-50/">32</a> <a href="/grade/31-out-of-50/">31</a> <a href="/grade/30-out-of-50/">30</a> <a href="/grade/29-out-of-50/">29</a> <a href="/grade/28-out-of-50/">28</a> <a href="/grade/27-out-of-50/">27</a> <a href="/grade/26-out-of-50/">26</a> <a href="/grade/25-out-of-50/">25</a> <a href="/grade/24-out-of-50/">24</a> <a href="/grade/23-out-of-50/">23</a> <a href="/grade/22-out-of-50/">22</a> <a href="/grade/21-out-of-50/">21</a> <a href="/grade/20-out-of-50/">20</a> <a href="/grade/19-out-of-50/">19</a> <a href="/grade/18-out-of-50/">18</a> <a href="/grade/17-out-of-50/">17</a> <a href="/grade/16-out-of-50/">16</a> <a href="/grade/15-out-of-50/">15</a> <a href="/grade/14-out-of-50/">14</a> <a href="/grade/13-out-of-50/">13</a> <a href="/grade/12-out-of-50/">12</a> <a href="/grade/11-out-of-50/">11</a> <a href="/grade/10-out-of-50/">10</a> <a href="/grade/9-out-of-50/">9</a> <a href="/grade/8-out-of-50/">8</a> <a href="/grade/7-out-of-50/">7</a> <a href="/grade/6-out-of-50/">6</a> <a href="/grade/5-out-of-50/">5</a> <a href="/grade/4-out-of-50/">4</a> <a href="/grade/3-out-of-50/">3</a> <a href="/grade/2-out-of-50/">2</a> <a href="/grade/1-out-of-50/">1</a></p>
       <p class="salary-links"><strong>Out of 60:</strong> <a href="/grade/60-out-of-60/">60</a> <a href="/grade/59-out-of-60/">59</a> <a href="/grade/58-out-of-60/">58</a> <a href="/grade/57-out-of-60/">57</a> <a href="/grade/56-out-of-60/">56</a> <a href="/grade/55-out-of-60/">55</a> <a href="/grade/54-out-of-60/">54</a> <a href="/grade/53-out-of-60/">53</a> <a href="/grade/52-out-of-60/">52</a> <a href="/grade/51-out-of-60/">51</a> <a href="/grade/50-out-of-60/">50</a> <a href="/grade/49-out-of-60/">49</a> <a href="/grade/48-out-of-60/">48</a> <a href="/grade/47-out-of-60/">47</a> <a href="/grade/46-out-of-60/">46</a> <a href="/grade/45-out-of-60/">45</a> <a href="/grade/44-out-of-60/">44</a> <a href="/grade/43-out-of-60/">43</a> <a href="/grade/42-out-of-60/">42</a> <a href="/grade/41-out-of-60/">41</a> <a href="/grade/40-out-of-60/">40</a> <a href="/grade/39-out-of-60/">39</a> <a href="/grade/38-out-of-60/">38</a> <a href="/grade/37-out-of-60/">37</a> <a href="/grade/36-out-of-60/">36</a> <a href="/grade/35-out-of-60/">35</a> <a href="/grade/34-out-of-60/">34</a> <a href="/grade/33-out-of-60/">33</a> <a href="/grade/32-out-of-60/">32</a> <a href="/grade/31-out-of-60/">31</a> <a href="/grade/30-out-of-60/">30</a> <a href="/grade/29-out-of-60/">29</a> <a href="/grade/28-out-of-60/">28</a> <a href="/grade/27-out-of-60/">27</a> <a href="/grade/26-out-of-60/">26</a> <a href="/grade/25-out-of-60/">25</a> <a href="/grade/24-out-of-60/">24</a> <a href="/grade/23-out-of-60/">23</a> <a href="/grade/22-out-of-60/">22</a> <a href="/grade/21-out-of-60/">21</a> <a href="/grade/20-out-of-60/">20</a> <a href="/grade/19-out-of-60/">19</a> <a href="/grade/18-out-of-60/">18</a> <a href="/grade/17-out-of-60/">17</a> <a href="/grade/16-out-of-60/">16</a> <a href="/grade/15-out-of-60/">15</a> <a href="/grade/14-out-of-60/">14</a> <a href="/grade/13-out-of-60/">13</a> <a href="/grade/12-out-of-60/">12</a> <a href="/grade/11-out-of-60/">11</a> <a href="/grade/10-out-of-60/">10</a> <a href="/grade/9-out-of-60/">9</a> <a href="/grade/8-out-of-60/">8</a> <a href="/grade/7-out-of-60/">7</a> <a href="/grade/6-out-of-60/">6</a> <a href="/grade/5-out-of-60/">5</a> <a href="/grade/4-out-of-60/">4</a> <a href="/grade/3-out-of-60/">3</a> <a href="/grade/2-out-of-60/">2</a> <a href="/grade/1-out-of-60/">1</a></p>
       <p class="salary-links"><strong>Out of 80:</strong> <a href="/grade/80-out-of-80/">80</a> <a href="/grade/79-out-of-80/">79</a> <a href="/grade/78-out-of-80/">78</a> <a href="/grade/77-out-of-80/">77</a> <a href="/grade/76-out-of-80/">76</a> <a href="/grade/75-out-of-80/">75</a> <a href="/grade/74-out-of-80/">74</a> <a href="/grade/73-out-of-80/">73</a> <a href="/grade/72-out-of-80/">72</a> <a href="/grade/71-out-of-80/">71</a> <a href="/grade/70-out-of-80/">70</a> <a href="/grade/69-out-of-80/">69</a> <a href="/grade/68-out-of-80/">68</a> <a href="/grade/67-out-of-80/">67</a> <a href="/grade/66-out-of-80/">66</a> <a href="/grade/65-out-of-80/">65</a> <a href="/grade/64-out-of-80/">64</a> <a href="/grade/63-out-of-80/">63</a> <a href="/grade/62-out-of-80/">62</a> <a href="/grade/61-out-of-80/">61</a> <a href="/grade/60-out-of-80/">60</a> <a href="/grade/59-out-of-80/">59</a> <a href="/grade/58-out-of-80/">58</a> <a href="/grade/57-out-of-80/">57</a> <a href="/grade/56-out-of-80/">56</a> <a href="/grade/55-out-of-80/">55</a> <a href="/grade/54-out-of-80/">54</a> <a href="/grade/53-out-of-80/">53</a> <a href="/grade/52-out-of-80/">52</a> <a href="/grade/51-out-of-80/">51</a> <a href="/grade/50-out-of-80/">50</a> <a href="/grade/49-out-of-80/">49</a> <a href="/grade/48-out-of-80/">48</a> <a href="/grade/47-out-of-80/">47</a> <a href="/grade/46-out-of-80/">46</a> <a href="/grade/45-out-of-80/">45</a> <a href="/grade/44-out-of-80/">44</a> <a href="/grade/43-out-of-80/">43</a> <a href="/grade/42-out-of-80/">42</a> <a href="/grade/41-out-of-80/">41</a> <a href="/grade/40-out-of-80/">40</a> <a href="/grade/39-out-of-80/">39</a> <a href="/grade/38-out-of-80/">38</a> <a href="/grade/37-out-of-80/">37</a> <a href="/grade/36-out-of-80/">36</a> <a href="/grade/35-out-of-80/">35</a> <a href="/grade/34-out-of-80/">34</a> <a href="/grade/33-out-of-80/">33</a> <a href="/grade/32-out-of-80/">32</a> <a href="/grade/31-out-of-80/">31</a> <a href="/grade/30-out-of-80/">30</a> <a href="/grade/29-out-of-80/">29</a> <a href="/grade/28-out-of-80/">28</a> <a href="/grade/27-out-of-80/">27</a> <a href="/grade/26-out-of-80/">26</a> <a href="/grade/25-out-of-80/">25</a> <a href="/grade/24-out-of-80/">24</a> <a href="/grade/23-out-of-80/">23</a> <a href="/grade/22-out-of-80/">22</a> <a href="/grade/21-out-of-80/">21</a> <a href="/grade/20-out-of-80/">20</a> <a href="/grade/19-out-of-80/">19</a> <a href="/grade/18-out-of-80/">18</a> <a href="/grade/17-out-of-80/">17</a> <a href="/grade/16-out-of-80/">16</a> <a href="/grade/15-out-of-80/">15</a> <a href="/grade/14-out-of-80/">14</a> <a href="/grade/13-out-of-80/">13</a> <a href="/grade/12-out-of-80/">12</a> <a href="/grade/11-out-of-80/">11</a> <a href="/grade/10-out-of-80/">10</a> <a href="/grade/9-out-of-80/">9</a> <a href="/grade/8-out-of-80/">8</a> <a href="/grade/7-out-of-80/">7</a> <a href="/grade/6-out-of-80/">6</a> <a href="/grade/5-out-of-80/">5</a> <a href="/grade/4-out-of-80/">4</a> <a href="/grade/3-out-of-80/">3</a> <a href="/grade/2-out-of-80/">2</a> <a href="/grade/1-out-of-80/">1</a></p>
-    </main>
+    </section>
 
     <!-- end grade pages -->
 
@@ -348,6 +350,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

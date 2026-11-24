@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -142,17 +142,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/other/">Other</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Weight on Other Planets Calculator</span></nav>
       <h1 class="page-title">Weight on Other Planets</h1>
       <p class="page-subtitle">What the same body would weigh across the solar system, from Pluto to the Sun.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text" style="margin-bottom:18px;">Here's the one that catches people out: <strong>you would weigh slightly less on Saturn than you do on Earth</strong>. It has ninety-five times our mass, but it is so enormously spread out &mdash; less dense than water &mdash; that the pull at its cloud tops comes to about 0.92 of Earth's. Everything else on this page is more or less what you'd expect. Saturn isn't.</p>
 
       <div class="tabs" role="tablist">
@@ -197,9 +199,9 @@
 
       <button type="button" class="btn btn-ghost" id="copy-btn" style="margin-top:14px;">Copy results</button>
       <p class="tool-hint" style="margin-top:10px;">Bars are scaled against Earth's gravity. The Sun's runs off the end of the scale — at nearly twenty-eight times Earth's pull, it wouldn't fit.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">The sum itself is the easy part. Weight is the force gravity exerts on a mass:</p>
       <p class="about-text"><strong>weight = mass × surface gravity</strong></p>
@@ -226,7 +228,7 @@
       <p class="about-text">Everyday language blurs the two, and so do bathroom scales &mdash; they measure force and then display it in kilograms, quietly assuming Earth's gravity. This calculator follows the same convention, showing your results in whichever unit you entered, because "you'd be 11.6 kg on the Moon" is what people actually want to know. Strictly, that is the mass which <em>would</em> weigh the same on Earth as you do on the Moon.</p>
 
       <h2 class="tool-section-title" style="margin-top:22px;">Gravity factors used</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Gravity factors used (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead>
@@ -246,7 +248,7 @@
       </div>
       <p class="tool-hint" style="margin-top:14px;">Planetary figures are NASA's ratio-to-Earth surface gravity values from the NSSDCA Planetary Fact Sheet. Titan and Ganymede are worked out from their measured surface gravities of 1.352 and 1.428 m/s&sup2; against Earth's 9.807.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Quick reference: Earth weight on other worlds</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Quick reference: Earth weight on other worlds (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>On Earth</th><th>The Moon</th><th>Mars</th><th>Venus</th><th>Jupiter</th><th>Saturn</th></tr></thead>
@@ -263,9 +265,9 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Earth weight × the gravity factor above. Pounds work the same way: 150 lb is about 56.6 lb on Mars and 354 lb on Jupiter.</p>
 
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What would I weigh on Mars?</h3>
       <p class="about-text">Just over a third of your Earth weight: Mars's surface gravity is 0.377 of Earth's. 70 kg on Earth is about 26.4 kg on Mars, and 150 lb is about 56.6 lb.</p>
@@ -283,17 +285,17 @@
       <p class="about-text">Because gravity depends on density as well as size. Mercury is just under three-quarters of Mars's diameter but far denser, with an enormous iron core taking up most of its volume — it is the second densest body in the solar system after Earth. Those two effects very nearly cancel out. Mars then loses a fraction more to its own rotation, which is what tips the final order: Mercury 0.378, Mars 0.377.</p>
       <h3 class="faq-q">What would I weigh on the Moon?</h3>
       <p class="about-text">About a sixth of your Earth weight — the factor is 0.166. An 80 kg person comes out at roughly 13.3 kg, or 12 stone becomes just under 2 stone. That is why the Apollo astronauts bounced rather than walked, even wearing suits and life support that weighed more than they did on Earth.</p>
-    </main>
+    </section>
 
 
 
 
 
     <!-- planet pages: generated by tools/build-planet-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Your weight on each world</h2>
       <p class="salary-links"><a href="/weight-on-other-planets/pluto/">Weight on Pluto</a> <a href="/weight-on-other-planets/titan/">Weight on Titan</a> <a href="/weight-on-other-planets/ganymede/">Weight on Ganymede</a> <a href="/weight-on-other-planets/moon/">Weight on the Moon</a> <a href="/weight-on-other-planets/mars/">Weight on Mars</a> <a href="/weight-on-other-planets/mercury/">Weight on Mercury</a> <a href="/weight-on-other-planets/uranus/">Weight on Uranus</a> <a href="/weight-on-other-planets/venus/">Weight on Venus</a> <a href="/weight-on-other-planets/saturn/">Weight on Saturn</a> <a href="/weight-on-other-planets/neptune/">Weight on Neptune</a> <a href="/weight-on-other-planets/jupiter/">Weight on Jupiter</a> <a href="/weight-on-other-planets/sun/">Weight on the Sun</a></p>
-    </main>
+    </section>
 
     <!-- end planet pages -->
 
@@ -333,6 +335,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

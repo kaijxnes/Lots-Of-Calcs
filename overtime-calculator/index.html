@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -120,17 +120,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/personal-finance/">Personal Finance</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Overtime Calculator</span></nav>
       <h1 class="page-title">Overtime calculator</h1>
       <p class="page-subtitle">Overtime at time and a half, double time or any rate — before tax and what you keep after it.</p>
     </header>
 
-    <main class="tool" id="ot-tool">
+    <section class="tool" id="ot-tool">
       <div class="field"><label for="ot-place">Where you work</label><select id="ot-place"><optgroup label="United Kingdom"><option value="gb" data-currency="GBP" selected>England, Wales &amp; Northern Ireland</option><option value="gb-sct" data-currency="GBP">Scotland</option></optgroup><optgroup label="United States"><option value="us-al" data-currency="USD">Alabama</option><option value="us-ak" data-currency="USD">Alaska</option><option value="us-az" data-currency="USD">Arizona</option><option value="us-ar" data-currency="USD">Arkansas</option><option value="us-ca" data-currency="USD">California</option><option value="us-co" data-currency="USD">Colorado</option><option value="us-ct" data-currency="USD">Connecticut</option><option value="us-de" data-currency="USD">Delaware</option><option value="us-fl" data-currency="USD">Florida</option><option value="us-ga" data-currency="USD">Georgia</option><option value="us-hi" data-currency="USD">Hawaii</option><option value="us-id" data-currency="USD">Idaho</option><option value="us-il" data-currency="USD">Illinois</option><option value="us-in" data-currency="USD">Indiana</option><option value="us-ia" data-currency="USD">Iowa</option><option value="us-ks" data-currency="USD">Kansas</option><option value="us-ky" data-currency="USD">Kentucky</option><option value="us-la" data-currency="USD">Louisiana</option><option value="us-me" data-currency="USD">Maine</option><option value="us-md" data-currency="USD">Maryland</option><option value="us-ma" data-currency="USD">Massachusetts</option><option value="us-mi" data-currency="USD">Michigan</option><option value="us-mn" data-currency="USD">Minnesota</option><option value="us-ms" data-currency="USD">Mississippi</option><option value="us-mo" data-currency="USD">Missouri</option><option value="us-mt" data-currency="USD">Montana</option><option value="us-ne" data-currency="USD">Nebraska</option><option value="us-nv" data-currency="USD">Nevada</option><option value="us-nh" data-currency="USD">New Hampshire</option><option value="us-nj" data-currency="USD">New Jersey</option><option value="us-nm" data-currency="USD">New Mexico</option><option value="us-ny" data-currency="USD">New York</option><option value="us-ny-nyc" data-currency="USD">New York City</option><option value="us-nc" data-currency="USD">North Carolina</option><option value="us-nd" data-currency="USD">North Dakota</option><option value="us-oh" data-currency="USD">Ohio</option><option value="us-ok" data-currency="USD">Oklahoma</option><option value="us-or" data-currency="USD">Oregon</option><option value="us-pa" data-currency="USD">Pennsylvania</option><option value="us-ri" data-currency="USD">Rhode Island</option><option value="us-sc" data-currency="USD">South Carolina</option><option value="us-sd" data-currency="USD">South Dakota</option><option value="us-tn" data-currency="USD">Tennessee</option><option value="us-tx" data-currency="USD">Texas</option><option value="us-ut" data-currency="USD">Utah</option><option value="us-vt" data-currency="USD">Vermont</option><option value="us-va" data-currency="USD">Virginia</option><option value="us-wa" data-currency="USD">Washington</option><option value="us-dc" data-currency="USD">Washington, DC</option><option value="us-wv" data-currency="USD">West Virginia</option><option value="us-wi" data-currency="USD">Wisconsin</option><option value="us-wy" data-currency="USD">Wyoming</option></optgroup><optgroup label="Canada"><option value="ca-ab" data-currency="CAD">Alberta</option><option value="ca-bc" data-currency="CAD">British Columbia</option><option value="ca-mb" data-currency="CAD">Manitoba</option><option value="ca-nb" data-currency="CAD">New Brunswick</option><option value="ca-nl" data-currency="CAD">Newfoundland and Labrador</option><option value="ca-nt" data-currency="CAD">Northwest Territories</option><option value="ca-ns" data-currency="CAD">Nova Scotia</option><option value="ca-nu" data-currency="CAD">Nunavut</option><option value="ca-on" data-currency="CAD">Ontario</option><option value="ca-pe" data-currency="CAD">Prince Edward Island</option><option value="ca-qc" data-currency="CAD">Quebec</option><option value="ca-sk" data-currency="CAD">Saskatchewan</option><option value="ca-yt" data-currency="CAD">Yukon</option></optgroup><optgroup label="Europe"><option value="at" data-currency="EUR">Austria</option><option value="be" data-currency="EUR">Belgium</option><option value="dk" data-currency="DKK">Denmark</option><option value="fi" data-currency="EUR">Finland</option><option value="fr" data-currency="EUR">France</option><option value="de" data-currency="EUR">Germany</option><option value="ie" data-currency="EUR">Ireland</option><option value="it" data-currency="EUR">Italy</option><option value="lu" data-currency="EUR">Luxembourg</option><option value="nl" data-currency="EUR">Netherlands</option><option value="no" data-currency="NOK">Norway</option><option value="pt" data-currency="EUR">Portugal</option><option value="es" data-currency="EUR">Spain</option><option value="se" data-currency="SEK">Sweden</option><option value="ch-bs" data-currency="CHF">Switzerland (Basel)</option><option value="ch-be" data-currency="CHF">Switzerland (Bern)</option><option value="ch-vd" data-currency="CHF">Switzerland (Lausanne)</option><option value="ch-zg" data-currency="CHF">Switzerland (Zug)</option><option value="ch" data-currency="CHF">Switzerland (Zurich)</option></optgroup><optgroup label="Asia-Pacific"><option value="au" data-currency="AUD">Australia</option><option value="in" data-currency="INR">India</option><option value="jp" data-currency="JPY">Japan</option><option value="nz" data-currency="NZD">New Zealand</option></optgroup></select></div>
       <div class="field-row">
         <div class="field"><label for="ot-rate">Normal hourly rate <span class="tool-hint" id="ot-cur">GBP</span></label><input type="number" id="ot-rate" value="15" min="0" step="any" inputmode="decimal"></div>
@@ -155,9 +157,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">After income tax and National Insurance (or the local equivalent) on your yearly pay with and without the overtime, using the 2026/27 rates and each place's usual defaults (no pension or student loan). Weeks a year spreads occasional overtime over the year.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How is overtime pay worked out?</h3>
       <p class="about-text">Hourly rate × the overtime multiplier × overtime hours. At £15.00 an hour, time and a half is £22.50 an hour and double time £30.00.</p>
@@ -167,7 +169,7 @@
       <p class="about-text">No — it's taxed at the same rates as the rest of your pay. It can feel like more because it's all taxed at your highest rate, and a one-off big overtime month can put more through PAYE in that month, which usually evens out over the tax year.</p>
       <h3 class="faq-q">Do I have to be paid for overtime?</h3>
       <p class="about-text">In the UK employers don't have to pay for overtime, but your average pay for all the hours you work mustn't fall below the National Minimum Wage; your contract sets the rate (see GOV.UK's overtime rights page). In the US, the Fair Labor Standards Act requires at least time and a half over 40 hours a week for non-exempt employees.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -205,6 +207,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -108,17 +108,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/running-cost/">Electricity Running Cost</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Air fryer running cost</span></nav>
       <h1 class="page-title">How much does an air fryer cost to run?</h1>
       <p class="page-subtitle">At the energy price cap rate of 26.32p per kWh (1 October to 31 December 2026).</p>
     </header>
 
-    <main class="tool" id="app-tool" data-mode="power">
+    <section class="tool" id="app-tool" data-mode="power">
       <div class="field-row">
         <div class="field"><label for="app-watts">Power (watts)</label><input type="number" id="app-watts" value="1500" step="any" min="0" inputmode="decimal"></div>
         <div class="field"><label for="app-minutes">Minutes per use</label><input type="number" id="app-minutes" value="20" step="any" min="0" inputmode="decimal"></div>
@@ -141,11 +143,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Starts on a typical air fryer (1,500 W, 20 minutes per 20-minute cook) — change the figures to match yours. The standing charge isn't included.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">At different electricity prices</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="At different electricity prices (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Unit price</th><th>Per 20-minute cook</th><th>A year</th></tr></thead>
@@ -160,7 +162,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:22px;">Used more or less often</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Used more or less often (table)">
         <div style="min-width:320px;">
           <table class="out-table">
             <thead><tr><th>Uses</th><th>A month</th><th>A year</th></tr></thead>
@@ -174,9 +176,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Price cap rate from <a href="https://www.ofgem.gov.uk/information-consumers/energy-advice-households/get-energy-price-cap-standing-charges-and-unit-rates-region" rel="noopener">Ofgem</a>: Direct Debit, average for England, Scotland and Wales; no VAT on electricity from 1 October 2026 to 31 March 2027, 1 October to 31 December 2026. For any appliance, use the <a href="/running-cost/">electricity running cost calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much does an air fryer cost to run?</h3>
       <p class="about-text">About 13.2p per 20-minute cook, using 0.5 kWh at the energy price cap rate of 26.32p per kWh (1 October to 31 December 2026). Used 5 times a week, that's around £2.85 a month or £34.22 a year.</p>
@@ -186,11 +188,12 @@
       <p class="about-text">Air fryers heat a small space quickly, so for small portions they usually cost less than an oven.</p>
       <h3 class="faq-q">Does this include the standing charge?</h3>
       <p class="about-text">No. The standing charge (54.83p a day under the price cap) is paid whatever you use, so it doesn't change with any one appliance. Fixed tariffs and some regions charge a different unit rate — put yours in the calculator.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other appliances</div>
     <p class="salary-links"><a href="/running-cost/kettle/">Kettle</a> <a href="/running-cost/electric-shower/">Electric shower</a> <a href="/running-cost/electric-oven/">Electric oven</a> <a href="/running-cost/microwave/">Microwave</a> <a href="/running-cost/slow-cooker/">Slow cooker</a> <a href="/running-cost/toaster/">Toaster</a> <a href="/running-cost/induction-hob/">Induction hob ring</a> <a href="/running-cost/dishwasher/">Dishwasher</a> <a href="/running-cost/washing-machine/">Washing machine</a> <a href="/running-cost/tumble-dryer/">Tumble dryer</a> <a href="/running-cost/fridge-freezer/">Fridge freezer</a> <a href="/running-cost/electric-heater/">Electric heater</a> <a href="/running-cost/oil-filled-radiator/">Oil-filled radiator</a> <a href="/running-cost/electric-blanket/">Electric blanket</a> <a href="/running-cost/heated-airer/">Heated airer</a> <a href="/running-cost/dehumidifier/">Dehumidifier</a> <a href="/running-cost/immersion-heater/">Immersion heater</a> <a href="/running-cost/tv/">TV</a> <a href="/running-cost/games-console/">Games console</a> <a href="/running-cost/gaming-pc/">Gaming PC</a> <a href="/running-cost/laptop/">Laptop</a> <a href="/running-cost/wifi-router/">Wi-Fi router</a> <a href="/running-cost/phone-charger/">Phone charger</a> <a href="/running-cost/led-light-bulb/">LED light bulb</a> <a href="/running-cost/hair-dryer/">Hair dryer</a> <a href="/running-cost/vacuum-cleaner/">Vacuum cleaner</a> <a href="/running-cost/iron/">Iron</a> <a href="/running-cost/fan/">Electric fan</a> <a href="/running-cost/portable-air-conditioner/">Portable air conditioner</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

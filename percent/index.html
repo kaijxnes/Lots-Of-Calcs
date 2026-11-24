@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/general/">General</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Percentage Calculator</span></nav>
       <h1 class="page-title">Percentage Calculator</h1>
       <p class="page-subtitle">Three common percentage questions, answered directly.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="of">X% of Y</button>
         <button class="tab" data-tab="is-what">X is what % of Y</button>
@@ -202,24 +204,24 @@
           </div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">The three percentage formulas</h2>
       <p class="about-text">Each tab answers one of the three questions people most often ask about percentages.</p>
       <p class="about-text"><strong>X% of Y</strong> &mdash; multiply Y by X and divide by 100. 15% of 80 is 80 &times; 15 &divide; 100 = <strong>12</strong>.</p>
       <p class="about-text"><strong>X is what % of Y</strong> &mdash; divide X by Y and multiply by 100. 18 out of 24 is 18 &divide; 24 &times; 100 = <strong>75%</strong>.</p>
       <p class="about-text"><strong>Percentage change</strong> &mdash; take the old value from the new one, divide by the old value and multiply by 100. A price going from &pound;40 to &pound;50 is (50 &minus; 40) &divide; 40 &times; 100 = a <strong>25% increase</strong>. Going back from &pound;50 to &pound;40 is (40 &minus; 50) &divide; 50 &times; 100 = a <strong>20% decrease</strong> &mdash; the same &pound;10, but measured against a bigger starting figure.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Adding or taking off a percentage</h2>
       <p class="about-text">To increase a number by a percentage, multiply it by 1 plus the percentage as a decimal: &pound;60 plus 20% is 60 &times; 1.2 = <strong>&pound;72</strong>. To decrease it, multiply by 1 minus the percentage: &pound;60 less 15% is 60 &times; 0.85 = <strong>&pound;51</strong>.</p>
       <p class="about-text">Working backwards is where people go wrong. If &pound;72 already <em>includes</em> a 20% increase, the original is 72 &divide; 1.2 = &pound;60 &mdash; not 72 less 20%, which gives &pound;57.60. The same applies to removing VAT from a price; the <a href="/vat/">VAT calculator</a> does it for you.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Common percentages at a glance</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Common percentages at a glance (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Percentage</th><th>As a fraction</th><th>As a decimal</th><th>Of 250</th></tr></thead>
@@ -238,9 +240,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">A quick mental trick: 10% is the number with the decimal point moved one place left, so 10% of 250 is 25. Halve it for 5%, double it for 20%.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I work out what percentage one number is of another?</h3>
       <p class="about-text">Divide the part by the whole and multiply by 100. For example 30 out of 120 is 30 divided by 120, times 100 — which is 25%.</p>
@@ -254,10 +256,10 @@
       <p class="about-text">Because each percentage applies to a different base. 100 rising 50% is 150, and 50% of 150 is 75 — so you end at 75, not 100. Percentage falls are always taken from the larger, already-increased figure.</p>
       <h3 class="faq-q">Is X% of Y the same as Y% of X?</h3>
       <p class="about-text">Yes, always. 8% of 50 and 50% of 8 are both 4, because both are 8 &times; 50 &divide; 100. It is a handy shortcut when one way round is easier to do in your head.</p>
-    </main>
+    </section>
 
     <!-- percent pages: generated by tools/build-percent-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Percentages of common numbers</h2>
       <p class="salary-links"><strong>1% of:</strong> <a href="/percent/1-percent-of-10/">10</a> <a href="/percent/1-percent-of-20/">20</a> <a href="/percent/1-percent-of-25/">25</a> <a href="/percent/1-percent-of-30/">30</a> <a href="/percent/1-percent-of-40/">40</a> <a href="/percent/1-percent-of-50/">50</a> <a href="/percent/1-percent-of-75/">75</a> <a href="/percent/1-percent-of-80/">80</a> <a href="/percent/1-percent-of-100/">100</a> <a href="/percent/1-percent-of-150/">150</a> <a href="/percent/1-percent-of-200/">200</a> <a href="/percent/1-percent-of-250/">250</a> <a href="/percent/1-percent-of-300/">300</a> <a href="/percent/1-percent-of-400/">400</a> <a href="/percent/1-percent-of-500/">500</a> <a href="/percent/1-percent-of-600/">600</a> <a href="/percent/1-percent-of-750/">750</a> <a href="/percent/1-percent-of-800/">800</a> <a href="/percent/1-percent-of-1000/">1,000</a> <a href="/percent/1-percent-of-1500/">1,500</a> <a href="/percent/1-percent-of-2000/">2,000</a> <a href="/percent/1-percent-of-2500/">2,500</a> <a href="/percent/1-percent-of-5000/">5,000</a> <a href="/percent/1-percent-of-10000/">10,000</a></p>
       <p class="salary-links"><strong>2% of:</strong> <a href="/percent/2-percent-of-10/">10</a> <a href="/percent/2-percent-of-20/">20</a> <a href="/percent/2-percent-of-25/">25</a> <a href="/percent/2-percent-of-30/">30</a> <a href="/percent/2-percent-of-40/">40</a> <a href="/percent/2-percent-of-50/">50</a> <a href="/percent/2-percent-of-75/">75</a> <a href="/percent/2-percent-of-80/">80</a> <a href="/percent/2-percent-of-100/">100</a> <a href="/percent/2-percent-of-150/">150</a> <a href="/percent/2-percent-of-200/">200</a> <a href="/percent/2-percent-of-250/">250</a> <a href="/percent/2-percent-of-300/">300</a> <a href="/percent/2-percent-of-400/">400</a> <a href="/percent/2-percent-of-500/">500</a> <a href="/percent/2-percent-of-600/">600</a> <a href="/percent/2-percent-of-750/">750</a> <a href="/percent/2-percent-of-800/">800</a> <a href="/percent/2-percent-of-1000/">1,000</a> <a href="/percent/2-percent-of-1500/">1,500</a> <a href="/percent/2-percent-of-2000/">2,000</a> <a href="/percent/2-percent-of-2500/">2,500</a> <a href="/percent/2-percent-of-5000/">5,000</a> <a href="/percent/2-percent-of-10000/">10,000</a></p>
@@ -276,7 +278,7 @@
       <p class="salary-links"><strong>75% of:</strong> <a href="/percent/75-percent-of-10/">10</a> <a href="/percent/75-percent-of-20/">20</a> <a href="/percent/75-percent-of-25/">25</a> <a href="/percent/75-percent-of-30/">30</a> <a href="/percent/75-percent-of-40/">40</a> <a href="/percent/75-percent-of-50/">50</a> <a href="/percent/75-percent-of-75/">75</a> <a href="/percent/75-percent-of-80/">80</a> <a href="/percent/75-percent-of-100/">100</a> <a href="/percent/75-percent-of-150/">150</a> <a href="/percent/75-percent-of-200/">200</a> <a href="/percent/75-percent-of-250/">250</a> <a href="/percent/75-percent-of-300/">300</a> <a href="/percent/75-percent-of-400/">400</a> <a href="/percent/75-percent-of-500/">500</a> <a href="/percent/75-percent-of-600/">600</a> <a href="/percent/75-percent-of-750/">750</a> <a href="/percent/75-percent-of-800/">800</a> <a href="/percent/75-percent-of-1000/">1,000</a> <a href="/percent/75-percent-of-1500/">1,500</a> <a href="/percent/75-percent-of-2000/">2,000</a> <a href="/percent/75-percent-of-2500/">2,500</a> <a href="/percent/75-percent-of-5000/">5,000</a> <a href="/percent/75-percent-of-10000/">10,000</a></p>
       <p class="salary-links"><strong>80% of:</strong> <a href="/percent/80-percent-of-10/">10</a> <a href="/percent/80-percent-of-20/">20</a> <a href="/percent/80-percent-of-25/">25</a> <a href="/percent/80-percent-of-30/">30</a> <a href="/percent/80-percent-of-40/">40</a> <a href="/percent/80-percent-of-50/">50</a> <a href="/percent/80-percent-of-75/">75</a> <a href="/percent/80-percent-of-80/">80</a> <a href="/percent/80-percent-of-100/">100</a> <a href="/percent/80-percent-of-150/">150</a> <a href="/percent/80-percent-of-200/">200</a> <a href="/percent/80-percent-of-250/">250</a> <a href="/percent/80-percent-of-300/">300</a> <a href="/percent/80-percent-of-400/">400</a> <a href="/percent/80-percent-of-500/">500</a> <a href="/percent/80-percent-of-600/">600</a> <a href="/percent/80-percent-of-750/">750</a> <a href="/percent/80-percent-of-800/">800</a> <a href="/percent/80-percent-of-1000/">1,000</a> <a href="/percent/80-percent-of-1500/">1,500</a> <a href="/percent/80-percent-of-2000/">2,000</a> <a href="/percent/80-percent-of-2500/">2,500</a> <a href="/percent/80-percent-of-5000/">5,000</a> <a href="/percent/80-percent-of-10000/">10,000</a></p>
       <p class="salary-links"><strong>90% of:</strong> <a href="/percent/90-percent-of-10/">10</a> <a href="/percent/90-percent-of-20/">20</a> <a href="/percent/90-percent-of-25/">25</a> <a href="/percent/90-percent-of-30/">30</a> <a href="/percent/90-percent-of-40/">40</a> <a href="/percent/90-percent-of-50/">50</a> <a href="/percent/90-percent-of-75/">75</a> <a href="/percent/90-percent-of-80/">80</a> <a href="/percent/90-percent-of-100/">100</a> <a href="/percent/90-percent-of-150/">150</a> <a href="/percent/90-percent-of-200/">200</a> <a href="/percent/90-percent-of-250/">250</a> <a href="/percent/90-percent-of-300/">300</a> <a href="/percent/90-percent-of-400/">400</a> <a href="/percent/90-percent-of-500/">500</a> <a href="/percent/90-percent-of-600/">600</a> <a href="/percent/90-percent-of-750/">750</a> <a href="/percent/90-percent-of-800/">800</a> <a href="/percent/90-percent-of-1000/">1,000</a> <a href="/percent/90-percent-of-1500/">1,500</a> <a href="/percent/90-percent-of-2000/">2,000</a> <a href="/percent/90-percent-of-2500/">2,500</a> <a href="/percent/90-percent-of-5000/">5,000</a> <a href="/percent/90-percent-of-10000/">10,000</a></p>
-    </main>
+    </section>
 
     <!-- end percent pages -->
 
@@ -326,6 +328,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

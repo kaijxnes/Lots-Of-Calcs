@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/home-diy/">Home &amp; DIY</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Watts, Amps &amp; Volts Calculator</span></nav>
       <h1 class="page-title">Watts, Amps &amp; Volts Calculator</h1>
       <p class="page-subtitle">Convert between power, current and voltage — for DC, single phase and three phase.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text" style="margin-bottom:18px;">Pick what you want to work out, fill in the other two, and it does the rest. Most converters quietly assume a perfect power factor, which is fine for a kettle and wrong for a motor &mdash; this one asks.</p>
 
       <div class="tabs" role="tablist">
@@ -214,7 +216,7 @@
       <p class="tool-hint" id="fuse-note" style="display:none; color: var(--accent);"></p>
 
       <h2 class="tool-section-title" style="margin-top:20px;">What common appliances draw at <span id="table-volts">230 V</span></h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What common appliances draw at 230 V (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead>
@@ -225,9 +227,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:10px;">Typical figures for illustration — check the rating plate on your own appliance.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">Three quantities, one relationship. Power is what the appliance consumes, voltage is the push behind the supply, and current is the flow it draws:</p>
       <p class="about-text"><strong>P = V × I</strong> &nbsp;&middot;&nbsp; <strong>I = P ÷ V</strong> &nbsp;&middot;&nbsp; <strong>V = P ÷ I</strong></p>
@@ -248,9 +250,9 @@
 
       <h2 class="tool-section-title" style="margin-top:22px;">A word of caution</h2>
       <p class="about-text">These are the standard formulas and they are exact, but a calculation is not a design. Cable sizing, protective devices and circuit design depend on installation method, grouping, ambient temperature, cable run length, earthing arrangement and diversity &mdash; none of which a converter knows about. In the UK, most fixed electrical work is notifiable under Part P of the Building Regulations. Use these figures to understand a load; use a qualified electrician to install one.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I convert watts to amps?</h3>
       <p class="about-text">Divide the watts by the volts. On a UK 230 V supply, a 3,000 W kettle draws 3000 ÷ 230 = 13.04 A. On AC with a motor or similar inductive load, divide by the power factor as well: at 0.85, that same 3,000 W would draw 15.3 A rather than 13.04 A.</p>
@@ -264,14 +266,14 @@
       <p class="about-text">Because the three phases are 120° apart rather than aligned, so their contributions add vectorially rather than arithmetically, and the factor that falls out is the square root of three, about 1.732. Use the line-to-line voltage with it — 400 V on a UK three-phase supply, not the 230 V you would measure from a single line to neutral.</p>
       <h3 class="faq-q">How do I work out what an appliance costs to run?</h3>
       <p class="about-text">Convert to kilowatts, multiply by the hours used, then by your unit rate in pence per kWh. A 3 kW kettle for six minutes is 0.3 kWh, which at 25p a unit is about 7.5p. The <a href="/running-cost/">electricity running cost calculator</a> does the whole sum including daily standing charges.</p>
-    </main>
+    </section>
 
     <!-- electrical pages: generated by tools/build-electrical-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Common conversions</h2>
       <p class="salary-links"><strong>Watts to amps:</strong> <a href="/watts-amps-volts/100-watts-to-amps/">100 W</a> <a href="/watts-amps-volts/200-watts-to-amps/">200 W</a> <a href="/watts-amps-volts/300-watts-to-amps/">300 W</a> <a href="/watts-amps-volts/400-watts-to-amps/">400 W</a> <a href="/watts-amps-volts/500-watts-to-amps/">500 W</a> <a href="/watts-amps-volts/600-watts-to-amps/">600 W</a> <a href="/watts-amps-volts/700-watts-to-amps/">700 W</a> <a href="/watts-amps-volts/750-watts-to-amps/">750 W</a> <a href="/watts-amps-volts/800-watts-to-amps/">800 W</a> <a href="/watts-amps-volts/900-watts-to-amps/">900 W</a> <a href="/watts-amps-volts/1000-watts-to-amps/">1 kW</a> <a href="/watts-amps-volts/1100-watts-to-amps/">1.1 kW</a> <a href="/watts-amps-volts/1200-watts-to-amps/">1.2 kW</a> <a href="/watts-amps-volts/1300-watts-to-amps/">1.3 kW</a> <a href="/watts-amps-volts/1400-watts-to-amps/">1.4 kW</a> <a href="/watts-amps-volts/1500-watts-to-amps/">1.5 kW</a> <a href="/watts-amps-volts/1600-watts-to-amps/">1.6 kW</a> <a href="/watts-amps-volts/1700-watts-to-amps/">1.7 kW</a> <a href="/watts-amps-volts/1800-watts-to-amps/">1.8 kW</a> <a href="/watts-amps-volts/2000-watts-to-amps/">2 kW</a> <a href="/watts-amps-volts/2200-watts-to-amps/">2.2 kW</a> <a href="/watts-amps-volts/2400-watts-to-amps/">2.4 kW</a> <a href="/watts-amps-volts/2500-watts-to-amps/">2.5 kW</a> <a href="/watts-amps-volts/2800-watts-to-amps/">2.8 kW</a> <a href="/watts-amps-volts/3000-watts-to-amps/">3 kW</a> <a href="/watts-amps-volts/3500-watts-to-amps/">3.5 kW</a> <a href="/watts-amps-volts/4000-watts-to-amps/">4 kW</a> <a href="/watts-amps-volts/4500-watts-to-amps/">4.5 kW</a> <a href="/watts-amps-volts/5000-watts-to-amps/">5 kW</a> <a href="/watts-amps-volts/6000-watts-to-amps/">6 kW</a> <a href="/watts-amps-volts/7000-watts-to-amps/">7 kW</a> <a href="/watts-amps-volts/7200-watts-to-amps/">7.2 kW</a> <a href="/watts-amps-volts/7400-watts-to-amps/">7.4 kW</a> <a href="/watts-amps-volts/8000-watts-to-amps/">8 kW</a> <a href="/watts-amps-volts/9000-watts-to-amps/">9 kW</a> <a href="/watts-amps-volts/10000-watts-to-amps/">10 kW</a> <a href="/watts-amps-volts/11000-watts-to-amps/">11 kW</a> <a href="/watts-amps-volts/12000-watts-to-amps/">12 kW</a> <a href="/watts-amps-volts/15000-watts-to-amps/">15 kW</a></p>
       <p class="salary-links"><strong>Amps to watts:</strong> <a href="/watts-amps-volts/1-amps-to-watts/">1 A</a> <a href="/watts-amps-volts/2-amps-to-watts/">2 A</a> <a href="/watts-amps-volts/3-amps-to-watts/">3 A</a> <a href="/watts-amps-volts/5-amps-to-watts/">5 A</a> <a href="/watts-amps-volts/6-amps-to-watts/">6 A</a> <a href="/watts-amps-volts/10-amps-to-watts/">10 A</a> <a href="/watts-amps-volts/13-amps-to-watts/">13 A</a> <a href="/watts-amps-volts/15-amps-to-watts/">15 A</a> <a href="/watts-amps-volts/16-amps-to-watts/">16 A</a> <a href="/watts-amps-volts/20-amps-to-watts/">20 A</a> <a href="/watts-amps-volts/25-amps-to-watts/">25 A</a> <a href="/watts-amps-volts/30-amps-to-watts/">30 A</a> <a href="/watts-amps-volts/32-amps-to-watts/">32 A</a> <a href="/watts-amps-volts/40-amps-to-watts/">40 A</a> <a href="/watts-amps-volts/45-amps-to-watts/">45 A</a> <a href="/watts-amps-volts/50-amps-to-watts/">50 A</a> <a href="/watts-amps-volts/60-amps-to-watts/">60 A</a> <a href="/watts-amps-volts/63-amps-to-watts/">63 A</a> <a href="/watts-amps-volts/80-amps-to-watts/">80 A</a> <a href="/watts-amps-volts/100-amps-to-watts/">100 A</a></p>
-    </main>
+    </section>
 
     <!-- end electrical pages -->
 
@@ -312,6 +314,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

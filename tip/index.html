@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/everyday/">Everyday</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Tip Calculator</span></nav>
       <h1 class="page-title">Tip Calculator</h1>
       <p class="page-subtitle">Bill amount, tip%, and number of people → tip and per-person total.</p>
     </header>
 
-    <main class="tool split">
+    <section class="tool split">
       <div class="field-row">
         <div class="field">
           <label for="bill">Bill amount</label>
@@ -182,17 +184,17 @@
           <div class="result-row highlight"><span class="r-label">Total per person</span><span class="r-value" id="total-per-person">£57.50</span></div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How the tip is worked out</h2>
       <p class="about-text">The tip is the bill multiplied by the tip percentage and divided by 100; the total is the bill plus the tip. Split between several people, both are divided evenly.</p>
       <p class="about-text"><strong>Example:</strong> a &pound;86 dinner for four with a 12.5% tip. The tip is 86 &times; 0.125 = &pound;10.75, the total &pound;96.75, and each person pays <strong>&pound;24.19</strong> (&pound;24.1875, rounded). If people ordered very different amounts, the <a href="/split-bill/">itemised bill splitter</a> shares the tip by what each person spent.</p>
       <p class="about-text"><strong>Quick mental maths:</strong> 10% is the bill with the decimal point moved one place left. Add half of that again for 15%, or double it for 20%. On &pound;86: 10% is &pound;8.60, 15% is &pound;12.90, 20% is &pound;17.20.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Tip amounts at a glance</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Tip amounts at a glance (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Bill</th><th>10%</th><th>12.5%</th><th>15%</th><th>20%</th></tr></thead>
@@ -207,16 +209,16 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Tipping in the UK and elsewhere</h2>
       <p class="about-text"><strong>UK:</strong> 10&ndash;12.5% is usual in restaurants when service isn't included. Many restaurants add a discretionary service charge, often 12.5%, to the bill &mdash; if it's there, you don't need to tip on top, and because it is discretionary you can ask for it to be removed if the service was poor. Since October 2024 employers in Great Britain must pass all tips and service charges on to their staff in full.</p>
       <p class="about-text"><strong>US and Canada:</strong> tipping is expected and makes up a large part of servers' pay. 15&ndash;20% of the pre-tax bill is standard in restaurants, with 18&ndash;20% common in cities.</p>
       <p class="about-text"><strong>Much of Europe:</strong> service is usually included in the price, and rounding up or leaving 5&ndash;10% for good service is normal. <strong>Japan:</strong> tipping isn't customary and can cause confusion.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much should I tip?</h3>
       <p class="about-text">It varies by country and setting. Around 15-20% is customary in US restaurants, while in the UK 10-12.5% is typical and service is often already added to the bill — worth checking before adding more.</p>
@@ -230,10 +232,10 @@
       <p class="about-text">Set the number of people and the calculator divides the tip and the total evenly. If some people ordered much more than others, use the <a href="/split-bill/">split bill calculator's</a> itemised tab so each person's tip matches what they spent.</p>
       <h3 class="faq-q">Do staff get the tips I leave?</h3>
       <p class="about-text">In Great Britain, the Employment (Allocation of Tips) Act requires employers to pass on all tips, gratuities and service charges to workers without deductions, and to have a written policy on how they are shared. Cash tips given directly to a member of staff are theirs to keep or share as their workplace agrees.</p>
-    </main>
+    </section>
 
     <!-- tip pages: generated by tools/build-tip-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Tips on common bills</h2>
       <p class="salary-links"><strong>10% tip on:</strong> <a href="/tip/10-percent-tip-on-10/">$10</a> <a href="/tip/10-percent-tip-on-15/">$15</a> <a href="/tip/10-percent-tip-on-20/">$20</a> <a href="/tip/10-percent-tip-on-25/">$25</a> <a href="/tip/10-percent-tip-on-30/">$30</a> <a href="/tip/10-percent-tip-on-35/">$35</a> <a href="/tip/10-percent-tip-on-40/">$40</a> <a href="/tip/10-percent-tip-on-45/">$45</a> <a href="/tip/10-percent-tip-on-50/">$50</a> <a href="/tip/10-percent-tip-on-55/">$55</a> <a href="/tip/10-percent-tip-on-60/">$60</a> <a href="/tip/10-percent-tip-on-65/">$65</a> <a href="/tip/10-percent-tip-on-70/">$70</a> <a href="/tip/10-percent-tip-on-75/">$75</a> <a href="/tip/10-percent-tip-on-80/">$80</a> <a href="/tip/10-percent-tip-on-85/">$85</a> <a href="/tip/10-percent-tip-on-90/">$90</a> <a href="/tip/10-percent-tip-on-95/">$95</a> <a href="/tip/10-percent-tip-on-100/">$100</a> <a href="/tip/10-percent-tip-on-110/">$110</a> <a href="/tip/10-percent-tip-on-120/">$120</a> <a href="/tip/10-percent-tip-on-125/">$125</a> <a href="/tip/10-percent-tip-on-150/">$150</a> <a href="/tip/10-percent-tip-on-175/">$175</a> <a href="/tip/10-percent-tip-on-200/">$200</a> <a href="/tip/10-percent-tip-on-250/">$250</a> <a href="/tip/10-percent-tip-on-300/">$300</a></p>
       <p class="salary-links"><strong>12% tip on:</strong> <a href="/tip/12-percent-tip-on-10/">$10</a> <a href="/tip/12-percent-tip-on-15/">$15</a> <a href="/tip/12-percent-tip-on-20/">$20</a> <a href="/tip/12-percent-tip-on-25/">$25</a> <a href="/tip/12-percent-tip-on-30/">$30</a> <a href="/tip/12-percent-tip-on-35/">$35</a> <a href="/tip/12-percent-tip-on-40/">$40</a> <a href="/tip/12-percent-tip-on-45/">$45</a> <a href="/tip/12-percent-tip-on-50/">$50</a> <a href="/tip/12-percent-tip-on-55/">$55</a> <a href="/tip/12-percent-tip-on-60/">$60</a> <a href="/tip/12-percent-tip-on-65/">$65</a> <a href="/tip/12-percent-tip-on-70/">$70</a> <a href="/tip/12-percent-tip-on-75/">$75</a> <a href="/tip/12-percent-tip-on-80/">$80</a> <a href="/tip/12-percent-tip-on-85/">$85</a> <a href="/tip/12-percent-tip-on-90/">$90</a> <a href="/tip/12-percent-tip-on-95/">$95</a> <a href="/tip/12-percent-tip-on-100/">$100</a> <a href="/tip/12-percent-tip-on-110/">$110</a> <a href="/tip/12-percent-tip-on-120/">$120</a> <a href="/tip/12-percent-tip-on-125/">$125</a> <a href="/tip/12-percent-tip-on-150/">$150</a> <a href="/tip/12-percent-tip-on-175/">$175</a> <a href="/tip/12-percent-tip-on-200/">$200</a> <a href="/tip/12-percent-tip-on-250/">$250</a> <a href="/tip/12-percent-tip-on-300/">$300</a></p>
@@ -242,7 +244,7 @@
       <p class="salary-links"><strong>20% tip on:</strong> <a href="/tip/20-percent-tip-on-10/">$10</a> <a href="/tip/20-percent-tip-on-15/">$15</a> <a href="/tip/20-percent-tip-on-20/">$20</a> <a href="/tip/20-percent-tip-on-25/">$25</a> <a href="/tip/20-percent-tip-on-30/">$30</a> <a href="/tip/20-percent-tip-on-35/">$35</a> <a href="/tip/20-percent-tip-on-40/">$40</a> <a href="/tip/20-percent-tip-on-45/">$45</a> <a href="/tip/20-percent-tip-on-50/">$50</a> <a href="/tip/20-percent-tip-on-55/">$55</a> <a href="/tip/20-percent-tip-on-60/">$60</a> <a href="/tip/20-percent-tip-on-65/">$65</a> <a href="/tip/20-percent-tip-on-70/">$70</a> <a href="/tip/20-percent-tip-on-75/">$75</a> <a href="/tip/20-percent-tip-on-80/">$80</a> <a href="/tip/20-percent-tip-on-85/">$85</a> <a href="/tip/20-percent-tip-on-90/">$90</a> <a href="/tip/20-percent-tip-on-95/">$95</a> <a href="/tip/20-percent-tip-on-100/">$100</a> <a href="/tip/20-percent-tip-on-110/">$110</a> <a href="/tip/20-percent-tip-on-120/">$120</a> <a href="/tip/20-percent-tip-on-125/">$125</a> <a href="/tip/20-percent-tip-on-150/">$150</a> <a href="/tip/20-percent-tip-on-175/">$175</a> <a href="/tip/20-percent-tip-on-200/">$200</a> <a href="/tip/20-percent-tip-on-250/">$250</a> <a href="/tip/20-percent-tip-on-300/">$300</a></p>
       <p class="salary-links"><strong>22% tip on:</strong> <a href="/tip/22-percent-tip-on-10/">$10</a> <a href="/tip/22-percent-tip-on-15/">$15</a> <a href="/tip/22-percent-tip-on-20/">$20</a> <a href="/tip/22-percent-tip-on-25/">$25</a> <a href="/tip/22-percent-tip-on-30/">$30</a> <a href="/tip/22-percent-tip-on-35/">$35</a> <a href="/tip/22-percent-tip-on-40/">$40</a> <a href="/tip/22-percent-tip-on-45/">$45</a> <a href="/tip/22-percent-tip-on-50/">$50</a> <a href="/tip/22-percent-tip-on-55/">$55</a> <a href="/tip/22-percent-tip-on-60/">$60</a> <a href="/tip/22-percent-tip-on-65/">$65</a> <a href="/tip/22-percent-tip-on-70/">$70</a> <a href="/tip/22-percent-tip-on-75/">$75</a> <a href="/tip/22-percent-tip-on-80/">$80</a> <a href="/tip/22-percent-tip-on-85/">$85</a> <a href="/tip/22-percent-tip-on-90/">$90</a> <a href="/tip/22-percent-tip-on-95/">$95</a> <a href="/tip/22-percent-tip-on-100/">$100</a> <a href="/tip/22-percent-tip-on-110/">$110</a> <a href="/tip/22-percent-tip-on-120/">$120</a> <a href="/tip/22-percent-tip-on-125/">$125</a> <a href="/tip/22-percent-tip-on-150/">$150</a> <a href="/tip/22-percent-tip-on-175/">$175</a> <a href="/tip/22-percent-tip-on-200/">$200</a> <a href="/tip/22-percent-tip-on-250/">$250</a> <a href="/tip/22-percent-tip-on-300/">$300</a></p>
       <p class="salary-links"><strong>25% tip on:</strong> <a href="/tip/25-percent-tip-on-10/">$10</a> <a href="/tip/25-percent-tip-on-15/">$15</a> <a href="/tip/25-percent-tip-on-20/">$20</a> <a href="/tip/25-percent-tip-on-25/">$25</a> <a href="/tip/25-percent-tip-on-30/">$30</a> <a href="/tip/25-percent-tip-on-35/">$35</a> <a href="/tip/25-percent-tip-on-40/">$40</a> <a href="/tip/25-percent-tip-on-45/">$45</a> <a href="/tip/25-percent-tip-on-50/">$50</a> <a href="/tip/25-percent-tip-on-55/">$55</a> <a href="/tip/25-percent-tip-on-60/">$60</a> <a href="/tip/25-percent-tip-on-65/">$65</a> <a href="/tip/25-percent-tip-on-70/">$70</a> <a href="/tip/25-percent-tip-on-75/">$75</a> <a href="/tip/25-percent-tip-on-80/">$80</a> <a href="/tip/25-percent-tip-on-85/">$85</a> <a href="/tip/25-percent-tip-on-90/">$90</a> <a href="/tip/25-percent-tip-on-95/">$95</a> <a href="/tip/25-percent-tip-on-100/">$100</a> <a href="/tip/25-percent-tip-on-110/">$110</a> <a href="/tip/25-percent-tip-on-120/">$120</a> <a href="/tip/25-percent-tip-on-125/">$125</a> <a href="/tip/25-percent-tip-on-150/">$150</a> <a href="/tip/25-percent-tip-on-175/">$175</a> <a href="/tip/25-percent-tip-on-200/">$200</a> <a href="/tip/25-percent-tip-on-250/">$250</a> <a href="/tip/25-percent-tip-on-300/">$300</a></p>
-    </main>
+    </section>
 
     <!-- end tip pages -->
 
@@ -292,6 +294,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

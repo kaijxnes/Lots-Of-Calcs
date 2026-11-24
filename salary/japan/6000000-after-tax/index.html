@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -129,17 +129,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/japan/">Japan</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">¥6,000,000 after tax</span></nav>
       <h1 class="page-title">¥6,000,000 after tax in Japan</h1>
       <p class="page-subtitle">What a ¥6,000,000 salary leaves you in the 2026 tax year — Age: Under 40.</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="jp" data-currency="JPY" data-gross="6000000" data-mode="annual">
+    <section class="tool split" id="salary-tool" data-tax-id="jp" data-currency="JPY" data-gross="6000000" data-mode="annual">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">¥4,663,249</div>
@@ -217,12 +219,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">A salary of <strong>¥6,000,000</strong> in Japan leaves <strong>¥4,663,249</strong> a year once income tax and social contributions are taken off &mdash; <strong>¥388,604</strong> a month. The deductions come to ¥1,336,751, or 22.3% of the gross, and the next yen earned is taxed at 15%.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on ¥6,000,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What a pay rise is worth on ¥6,000,000 (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
@@ -236,9 +238,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (15% here), so you keep less of it than of your salary overall.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How ¥6,000,000 after tax is worked out</h2>
       <p class="about-text"><strong>Spouse and dependant deductions (income tax): ¥0.</strong> Spouse ¥380,000 (¥260,000 or ¥130,000 once your total income passes ¥9 million or ¥9.5 million, none above ¥10 million); ¥380,000 per general dependant and ¥630,000 per dependant aged 19–22.</p>
       <p class="about-text"><strong>Basic deduction: ¥1,040,000.</strong> ¥1,040,000 for total income up to ¥4.89 million, ¥670,000 up to ¥6.55 million, ¥620,000 up to ¥23.5 million, then tapering away.</p>
@@ -249,9 +251,9 @@
       <p class="about-text"><strong>Employment insurance: ¥30,000.</strong> 0.5% for general businesses in FY2026.</p>
       <p class="about-text"><strong>Income tax (including reconstruction tax): ¥149,576.</strong> 5% to ¥1.95 million, then 10%, 20%, 23%, 33%, 40% and 45% above ¥40 million, plus the 2.1% special reconstruction income tax.</p>
       <p class="about-text"><strong>Resident tax (jūminzei): ¥307,500.</strong> 10% of taxable income less the adjustment credit (5% of the gap between income tax and resident tax personal deductions, at least ¥2,500), plus the ¥5,000 per-capita levy (including the forest environment tax). It is charged in the following year; shown here as if the salary were the same both years.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is ¥6,000,000 after tax in Japan?</h3>
       <p class="about-text">A ¥6,000,000 salary in Japan leaves ¥4,663,249 a year after income tax and social contributions, which is ¥388,604 a month or about ¥89,678 a week. The deductions are health insurance ¥295,500, child and childcare support levy ¥5,175, employees' pension insurance ¥549,000, Employment insurance ¥30,000, income tax (including reconstruction tax) ¥149,576, resident tax (jūminzei) ¥307,500 — ¥1,336,751 in all, or 22.3% of the gross. That is for Age: Under 40.</p>
@@ -265,9 +267,9 @@
       <p class="about-text">Bonuses (social insurance and withholding work differently on them); Furusato nōzei and other deductions; Corporate health insurance societies, whose rates differ; The special spouse deduction (spouse earning more than ¥620,000) and the new special deduction for 19–22-year-olds earning over ¥580,000; Higher iDeCo limits for some workers and the 2027 increase.</p>
       <h3 class="faq-q">How accurate are these Japan figures?</h3>
       <p class="about-text">They apply the 2026 rates and thresholds to a ¥6,000,000 salary for Age: Under 40. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026</strong> tax year, which runs from 1 January 2026 to 31 December 2026. The rates have not yet been checked by a person against the official sources — <a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -278,7 +280,7 @@
       <ul class="about-list"><li>Tokyo's 2026 health insurance rate of 9.85% comes from a third-party summary; Kyōkai Kenpo's own table confirms only that it fell from 9.91%</li><li>Resident tax spouse amounts above ¥9 million of income (¥220,000 / ¥110,000) follow from the adjustment-credit gaps rather than a page stating them directly</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm" rel="nofollow noopener" target="_blank">National Tax Agency — income tax rates</a></li><li><a href="https://www.nta.go.jp/users/gensen/2025kiso/index.htm" rel="nofollow noopener" target="_blank">National Tax Agency — 2025 reform of the basic and employment income deductions</a></li><li><a href="https://www.kyoukaikenpo.or.jp/about/business/insurance_rate/rate_prefectures/r08" rel="nofollow noopener" target="_blank">Kyōkai Kenpo — 2026 contribution rates by prefecture</a></li><li><a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000108634.html" rel="nofollow noopener" target="_blank">MHLW — employment insurance rates FY2026</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1191.htm" rel="nofollow noopener" target="_blank">NTA Tax Answer No.1191 配偶者控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1180.htm" rel="nofollow noopener" target="_blank">NTA Tax Answer No.1180 扶養控除</a></li><li><a href="https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1135.htm" rel="nofollow noopener" target="_blank">NTA Tax Answer No.1135 小規模企業共済等掛金控除 (iDeCo)</a></li><li><a href="https://www.city.nerima.tokyo.jp/kurashi/zei/jyuminzei/zeigakukojo/choseikojo.html" rel="nofollow noopener" target="_blank">Nerima City — 調整控除 (adjustment credit)</a></li><li><a href="https://www.city.nagoya.jp/kurashi/zeikin/1037356/1011880/1011883/1011893.html" rel="nofollow noopener" target="_blank">Nagoya City — 調整控除</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in Japan</div>
     <div class="hub-grid">
@@ -329,6 +331,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

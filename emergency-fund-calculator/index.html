@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -128,17 +128,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/savings/">Savings</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Emergency Fund Calculator</span></nav>
       <h1 class="page-title">Emergency fund calculator</h1>
       <p class="page-subtitle">How much to keep for a rainy day — a few months of essential spending — and how long it takes to save it.</p>
     </header>
 
-    <main class="tool" id="ef-tool">
+    <section class="tool" id="ef-tool">
       <h2 class="tool-section-title">Essential spending a month</h2>
       <div class="field-row">
         <div class="field"><label for="ef-rent">Rent or mortgage</label><input type="number" id="ef-rent" data-ef-item value="900" placeholder="0" min="0" step="any" inputmode="decimal"></div>
@@ -176,7 +178,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:20px;">More cover</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="More cover (table)">
         <div style="min-width:320px;">
           <table class="out-table">
             <thead><tr><th>Cover</th><th>Fund</th><th>Time to save it</th></tr></thead>
@@ -190,16 +192,16 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">The figures filled in are an example — replace them with your own. Interest, if you add a rate, is added monthly at the annual rate ÷ 12.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How much is enough?</h2>
       <p class="about-text"><strong>Three months</strong> of essential spending is the common starting point, and covers most surprise bills and a short gap between jobs. <strong>Six months or more</strong> makes sense if you're self-employed, on a variable income, the only earner in your home, or in work that would take a while to replace.</p>
       <p class="about-text"><strong>Count essentials, not everything.</strong> In an emergency you'd stop eating out and pause subscriptions, so the fund only needs to cover what you couldn't cut. That makes the target smaller and quicker to reach than it first seems.</p>
       <p class="about-text"><strong>Finding the money:</strong> the <a href="/50-30-20-budget/">50/30/20 budget calculator</a> sets aside 20% of take-home pay for savings, and the <a href="/52-week-savings-challenge/">52-week challenge</a> builds £1,378 a year in small steps. To save for a set date instead, use the <a href="/savings-goal/">savings goal calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much should an emergency fund be?</h3>
       <p class="about-text">Three to six months of essential spending is the usual guide: enough to cover rent or mortgage, bills, food, transport and minimum debt payments if your income stopped or a big bill arrived. Lean towards six months or more if you're self-employed, the only earner, or your income varies.</p>
@@ -211,7 +213,7 @@
       <p class="about-text">Many people build a small buffer first — even one month of essentials — so an unexpected bill doesn't go on a credit card, then tackle expensive debt, then finish the fund.</p>
       <h3 class="faq-q">How long does it take to save £5,280?</h3>
       <p class="about-text">22 months at £250 a month, or 11 months at £500. Add the interest rate on your savings account to see how much sooner it gets there.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -249,6 +251,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

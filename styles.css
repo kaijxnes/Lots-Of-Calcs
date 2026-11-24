@@ -1814,7 +1814,7 @@ hr.divider {
 @media print {
   .no-print, .site-footer, .consent-banner, .consent-settings, .bookmark-hint, .hub-grid, .hub-group-title { display: none !important; }
   .sc-chart { max-height: none; overflow: visible; }
-  body, .page, main.tool { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+  body, .page, .tool { background: #fff !important; color: #000 !important; box-shadow: none !important; }
   .result-box, .result-row, .result-hero { background: #fff !important; border-color: #999 !important; }
   .out-table th, .out-table td, .page-title, .page-subtitle, .r-label, .r-value, .value, .label, .tool-section-title, .tool-hint, .about-text { color: #000 !important; }
   .sc-done td { opacity: 1; }
@@ -1864,35 +1864,36 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .hub-card:focus-vi
 .saved-del:hover { color: var(--bad); }
 
 /* ---------- Two columns on a wide screen ----------
-   A calculator opts in with class="split" on its <main class="tool"> and
+   A calculator opts in with class="split" on its <section class="tool"> and
    "split-aside" on the result box that matters most. From 1000px wide that
    box sits on the right and stays in view while the inputs and tables
    scroll on the left; everything else on the page keeps a comfortable
    reading width. Below 1000px, or in a browser without :has(), nothing
    changes. */
 @media (min-width: 1000px) {
-  .page:has(> main.tool.split) {
+  .page:has(.tool.split) {
     max-width: 1000px;
   }
-  .page:has(> main.tool.split) > :not(main.tool.split):not(.topbar) {
+  .page:has(.tool.split) > :not(.page-main):not(.topbar):not(.skip-link):not(.tool.split),
+  .page:has(.tool.split) .page-main > :not(.tool.split) {
     max-width: 720px;
     margin-left: auto;
     margin-right: auto;
   }
-  .page:has(> main.tool.split) > .hub-grid,
-  .page:has(> main.tool.split) > .hub-group-title {
+  .page:has(.tool.split) .page-main > .hub-grid,
+  .page:has(.tool.split) .page-main > .hub-group-title {
     max-width: 720px;
   }
-  main.tool.split {
+  .tool.split {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
     column-gap: 32px;
     align-items: start;
   }
-  main.tool.split > * {
+  .tool.split > * {
     grid-column: 1;
   }
-  main.tool.split > .split-aside {
+  .tool.split > .split-aside {
     grid-column: 2;
     grid-row: 1 / span 40;
     position: sticky;
@@ -1967,3 +1968,11 @@ body.has-result-bar { padding-bottom: 84px; }
 .guide-callout .ico { flex: none; width: 20px; height: 20px; margin-top: 1px; color: var(--accent-text); }
 .guide-callout a { font-weight: 600; }
 .tool[id] { scroll-margin-top: 16px; }
+
+/* ---------- One <main> per page (tools/lib/landmarks.js) ----------
+   The wrapper takes no box of its own, so the page lays out exactly as if
+   its parts sat straight inside .page. */
+.page-main { display: contents; }
+.skip-link { position: absolute; left: 12px; top: -48px; z-index: 100; padding: 8px 14px; border-radius: 8px; background: var(--calc-bg); color: var(--text-strong); border: 2px solid var(--accent); font-weight: 600; text-decoration: none; }
+.skip-link:focus { top: 12px; }
+.table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

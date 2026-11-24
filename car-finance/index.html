@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/mortgages-loans/">Mortgages &amp; Loans</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Car Finance Calculator</span></nav>
       <h1 class="page-title">Car Finance Calculator</h1>
       <p class="page-subtitle">Monthly payments, total interest and what the car really costs — HP or PCP.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text" style="margin-bottom:18px;">The monthly payment is the number dealers lead with, and it is the least useful one. This works out the whole picture: what you pay in total, how much of that is interest, and &mdash; if there is a balloon at the end &mdash; exactly what that lower monthly figure is costing you.</p>
 
       <div class="tabs" role="tablist">
@@ -205,7 +207,7 @@
 
       <div id="schedule-wrap" style="display:none;">
         <h2 class="tool-section-title" style="margin-top:20px;">Year by year</h2>
-        <div class="table-scroll">
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Year by year (table)">
           <div style="min-width:420px;">
             <table class="out-table">
               <thead>
@@ -217,9 +219,9 @@
         </div>
         <p class="tool-hint" style="margin-top:10px;">On a PCP the closing balance is the balloon — the amount still outstanding if you want to keep the car. Totals are worked out from the exact payment, so a lender's final instalment may differ by a few pence where the monthly figure rounds.</p>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">The amount you actually borrow is the cash price less anything you put down:</p>
       <p class="about-text"><strong>amount financed = cash price − deposit</strong></p>
@@ -243,9 +245,9 @@
       <h2 class="tool-section-title" style="margin-top:22px;">What this doesn't include</h2>
       <p class="about-text">Dealers add fees that rarely appear in the headline figure: arrangement or documentation fees at the start, and an option-to-purchase fee of typically £10 to £200 at the end of a PCP if you keep the car. Add those to the deposit and balloon respectively to see the true total. The figures here also exclude insurance, road tax, servicing and any add-ons such as GAP cover or paint protection.</p>
       <p class="about-text">Use this to compare deals and understand what you are signing. The lender's own illustration is the binding document.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is a balloon payment on car finance?</h3>
       <p class="about-text">A large final payment deferred to the end of a PCP agreement, set by the lender at the start as the car's Guaranteed Future Value. Because that slice is not spread across the monthly payments, the monthly figure is much lower — but interest still accrues on it throughout, so the total cost is higher. At the end you pay it to keep the car, hand the car back, or trade in against a new deal.</p>
@@ -259,14 +261,14 @@
       <p class="about-text">Yes, because you borrow less. Every pound of deposit is a pound not being charged interest for the whole term. It also often unlocks a better APR, since lenders price partly on how much of the car's value they are exposed to. Try changing the deposit above and watch the total interest move.</p>
       <h3 class="faq-q">What is 0% car finance actually costing me?</h3>
       <p class="about-text">Genuine 0% deals do exist, usually on specific models a manufacturer wants to shift, and this calculator handles them — enter 0 for the APR and the total payable equals the cash price. The catch is that a 0% deal often comes with a smaller discount than you would negotiate paying cash, so compare the total payable against the best cash price you can get, not against the list price.</p>
-    </main>
+    </section>
 
     <!-- repayment links: generated by tools/build-repayment-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Car loan repayments by amount</h2>
       <p class="tool-hint">Borrowing from a bank rather than the dealer? A personal loan has no balloon payment — these show the monthly cost at every APR and term.</p>
       <p class="salary-links"><a href="/loan/5000/">£5,000 car loan</a> <a href="/loan/8000/">£8,000 car loan</a> <a href="/loan/10000/">£10,000 car loan</a> <a href="/loan/12000/">£12,000 car loan</a> <a href="/loan/15000/">£15,000 car loan</a> <a href="/loan/16000/">£16,000 car loan</a> <a href="/loan/18000/">£18,000 car loan</a> <a href="/loan/20000/">£20,000 car loan</a> <a href="/loan/25000/">£25,000 car loan</a> <a href="/loan/30000/">£30,000 car loan</a> <a href="/loan/40000/">£40,000 car loan</a> <a href="/loan/">All amounts</a></p>
-    </main>
+    </section>
     <!-- end repayment links -->
 
     <!-- related calculators: generated by tools/related.js -->
@@ -305,6 +307,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

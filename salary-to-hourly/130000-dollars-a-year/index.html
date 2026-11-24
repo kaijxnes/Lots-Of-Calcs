@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -107,19 +107,21 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/hourly-to-salary/">Hourly to Salary Converter</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">$130k a year to hourly</span></nav>
       <h1 class="page-title">$130k a year is how much an hour?</h1>
       <p class="page-subtitle">$130,000 a year is <strong>$62.50 an hour</strong> before tax, at 40 hours a week for 52 weeks.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">$130,000 a year broken down</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="$130,000 a year broken down (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>Per</th><th>Before tax</th></tr></thead>
@@ -135,9 +137,9 @@
         </div>
       </div>
       <p class="about-text" style="margin-top:12px;"><strong>After tax:</strong> see <a href="/salary/us/">$130,000 after tax</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool" id="pc-tool" data-currency="USD" data-locale="en-US" data-sym="$" data-day="8">
+    <section class="tool" id="pc-tool" data-currency="USD" data-locale="en-US" data-sym="$" data-day="8">
       <div class="field-row">
         <div class="field"><label for="pc-amount">Pay ($)</label><input type="number" id="pc-amount" value="130000" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="pc-per">Per</label><select id="pc-per"><option value="hour">Hour</option><option value="day">Day</option><option value="week">Week</option><option value="month">Month</option><option value="year" selected>Year</option></select></div>
@@ -158,11 +160,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Before tax. Set paid weeks below 52 if your holidays are unpaid (50 for two weeks off).</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">$130,000 a year by hours worked</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="$130,000 a year by hours worked (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>Hours a week</th><th>An hour</th></tr></thead>
@@ -183,7 +185,7 @@
       <h2 class="tool-section-title" style="margin-top:20px;">How it's worked out</h2>
       <p class="about-text">Salary ÷ 52 weeks ÷ hours a week: $130,000 ÷ 52 ÷ 40 = <strong>$62.50</strong>. A quick check at 40 hours: halve the salary and drop three zeros ($130,000 → about $65.00).</p>
       <h2 class="tool-section-title" style="margin-top:20px;">Nearby salaries</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Nearby salaries (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>Salary</th><th>An hour</th></tr></thead>
@@ -203,9 +205,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">$130k a year is how much an hour?</h3>
       <p class="about-text">$62.50 before tax: $130,000 ÷ 52 weeks ÷ 40 hours.</p>
@@ -215,8 +217,9 @@
       <p class="about-text">$2,500.00 ($130,000 ÷ 52), or $5,000.00 every two weeks.</p>
       <h3 class="faq-q">Is $130k a year a good salary?</h3>
       <p class="about-text">It's $62.50 an hour full-time. Whether it's good depends on where you live — take-home pay varies by state, which the after-tax pages show.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

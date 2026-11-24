@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -115,17 +115,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/birthday/">Age Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Born in 1980</span></nav>
       <h1 class="page-title">Born in 1980: how old are you?</h1>
       <p class="page-subtitle">Your age now, your generation, and when you reach each milestone.</p>
     </header>
 
-    <main class="tool" id="born-tool" data-year="1980">
+    <section class="tool" id="born-tool" data-year="1980">
       <div class="result-box">
         <div class="result-hero">
           <div class="value" id="born-age">45 or 46</div>
@@ -140,11 +142,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">For your exact age in years, months and days, and the day of the week you were born, use the <a href="/birthday/">age calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How old you'll be in…</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How old you'll be in… (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>Year</th><th>Age that year</th></tr></thead>
@@ -163,10 +165,10 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">The lower age before your birthday that year, the higher one after it.</p>
       <h2 class="tool-section-title" style="margin-top:20px;">When you turn each age</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="When you turn each age (table)">
         <div style="min-width:300px;">
           <table class="out-table">
-            <thead><tr><th>Age</th><th>Year</th><th></th></tr></thead>
+            <thead><tr><th>Age</th><th>Year</th><td></td></tr></thead>
             <tbody>
 <tr><td>18</td><td>1998</td><td>Done</td></tr>
 <tr><td>21</td><td>2001</td><td>Done</td></tr>
@@ -183,9 +185,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How old will I be in 2030 if I was born in 1980?</h3>
       <p class="about-text">50 once your birthday has passed in 2030, or 49 before it. In 2027 you'll be 47 after your birthday.</p>
@@ -197,11 +199,12 @@
       <p class="about-text">Yes — 1980 had a 29 February.</p>
       <h3 class="faq-q">How do you write 1980 in words?</h3>
       <p class="about-text">As a year it's said &quot;nineteen eighty&quot;; in full, one thousand nine hundred and eighty. In Roman numerals it's MCMLXXX.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other birth years</div>
     <p class="salary-links"><a href="/birthday/born-in-1975/">Born in 1975</a> <a href="/birthday/born-in-1976/">Born in 1976</a> <a href="/birthday/born-in-1977/">Born in 1977</a> <a href="/birthday/born-in-1978/">Born in 1978</a> <a href="/birthday/born-in-1979/">Born in 1979</a> <a href="/birthday/born-in-1981/">Born in 1981</a> <a href="/birthday/born-in-1982/">Born in 1982</a> <a href="/birthday/born-in-1983/">Born in 1983</a> <a href="/birthday/born-in-1984/">Born in 1984</a> <a href="/birthday/born-in-1985/">Born in 1985</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

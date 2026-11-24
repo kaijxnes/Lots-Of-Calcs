@@ -36,7 +36,8 @@ function text(html) {
 function visibleFaq(html) {
   const at = html.indexOf(">Frequently asked questions<");
   if (at < 0) return null;
-  const section = html.slice(at, html.indexOf("</main>", at));
+  const rest = html.slice(at), end = rest.search(/<\/(main|section)>/);
+  const section = end < 0 ? rest : rest.slice(0, end);
   const out = [];
   const re = /<(?:p|h3) class="(faq-q|about-text)">([\s\S]*?)<\/(?:p|h3)>/g;
   let m;

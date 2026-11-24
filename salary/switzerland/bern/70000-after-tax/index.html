@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -129,17 +129,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/switzerland/bern/">Switzerland (Bern)</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">CHF 70,000 after tax</span></nav>
       <h1 class="page-title">CHF 70,000 after tax in Bern, Switzerland</h1>
       <p class="page-subtitle">What a CHF 70,000 salary leaves you in the 2026 tax year.</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="ch-be" data-currency="CHF" data-gross="70000" data-mode="annual">
+    <section class="tool split" id="salary-tool" data-tax-id="ch-be" data-currency="CHF" data-gross="70000" data-mode="annual">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">CHF 55,272.75</div>
@@ -199,12 +201,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">A salary of <strong>CHF 70,000</strong> in Bern, Switzerland leaves <strong>CHF 55,272.75</strong> a year once income tax and social contributions are taken off &mdash; <strong>CHF 4,606.06</strong> a month. The deductions come to CHF 14,727.25, or 21.0% of the gross, and the next unit earned is taxed at 25%.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">CHF 70,000 in other Swiss cities</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="CHF 70,000 in other Swiss cities (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
@@ -214,7 +216,7 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Each place on its own default assumptions. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on CHF 70,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What a pay rise is worth on CHF 70,000 (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
@@ -230,9 +232,9 @@
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (25% here), so you keep less of it than of your salary overall.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">More on CHF 70,000</h2>
       <p class="salary-links"><a href="/salary-comparison/uk-vs-bern/">UK vs Bern take-home pay</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How CHF 70,000 after tax is worked out</h2>
       <p class="about-text"><strong>Simple tax (Bern): CHF 2,109.72.</strong> Bern's 2026 tariff for single people: 1.95% on the first CHF 3,300, rising in steps to 6.5% on income above CHF 470,600.</p>
       <p class="about-text"><strong>Taxable income (Bern): CHF 53,370.00.</strong> Net salary less the professional costs lump sum, the CHF 2,450 insurance premiums deduction, the CHF 5,300 general deduction and CHF 2,400 for someone living alone in their own household.</p>
@@ -242,9 +244,9 @@
       <p class="about-text"><strong>Unemployment insurance (ALV): CHF 770.00.</strong> 1.1% of salary up to CHF 148,200; nothing on salary above that.</p>
       <p class="about-text"><strong>Federal income tax (direkte Bundessteuer): CHF 721.89.</strong> 2026 single tariff: nothing up to CHF 15,200, then a set amount plus a rate per CHF 100 in each band, rising to 13.2%; from CHF 794,000 a flat 11.5% of all taxable income.</p>
       <p class="about-text"><strong>Cantonal and city tax (Bern): CHF 9,525.36.</strong> The simple tax times the 2026 multipliers: 2.975 for the canton and 1.54 for the city of Bern (4.515 in all). No church tax.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is CHF 70,000 after tax in Bern, Switzerland?</h3>
       <p class="about-text">A CHF 70,000 salary in Bern, Switzerland leaves CHF 55,272.75 a year after income tax and social contributions, which is CHF 4,606.06 a month or about CHF 1,062.94 a week. The deductions are AHV/IV/EO (old age, disability, loss of earnings) CHF 3,710.00, unemployment insurance (ALV) CHF 770.00, federal income tax (direkte Bundessteuer) CHF 721.89, cantonal and city tax (Bern) CHF 9,525.36 — CHF 14,727.25 in all, or 21.0% of the gross.</p>
@@ -258,9 +260,9 @@
       <p class="about-text">Pillar 3a contributions and other personal deductions; Commuting and meal cost deductions; Non-occupational accident insurance (NBU), which depends on the employer's insurer; Daily sickness benefit insurance; Zurich's personal tax and church tax; Tax at source (Quellensteuer) tables; Other cantons and municipalities; The deduction for small and middle incomes (up to CHF 1,100 for single people, phasing out above CHF 16,700); Church tax; Other Bern municipalities.</p>
       <h3 class="faq-q">How accurate are these Bern, Switzerland figures?</h3>
       <p class="about-text">They apply the 2026 rates and thresholds to a CHF 70,000 salary. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026</strong> tax year, which runs from 1 January 2026 to 31 December 2026. The rates have not yet been checked by a person against the official sources — <a href="https://swisstaxcalculator.estv.admin.ch/#/home" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -271,7 +273,7 @@
       <ul class="about-list"><li>Zurich taxable income is assumed to be rounded down to CHF 100, as federal taxable income is</li><li>The unemployment insurance rate comes from AHV/IV leaflet 2.08 dated 1 January 2025, the current edition</li><li>Assumes a single person living alone in their own household (the CHF 2,400 deduction)</li><li>Bern taxable income is not rounded here</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://bl-api.webcloud7.ch/politik-und-behorden/direktionen/finanz-und-kirchendirektion/steuerverwaltung/steuerzahlungen/tarife-1/tarife-pdf/tarife-direkte-bundessteuer-2026.pdf/@@download/file/Tarife%20Direkte%20Bundessteuer%202026.pdf" rel="nofollow noopener" target="_blank">Kanton Basel-Landschaft — Tarife für die direkte Bundessteuer, gültig ab 2026</a></li><li><a href="https://www.estv.admin.ch/dam/de/sd-web/sqbIsYvx0tZg/2-220-D-2026-de.pdf" rel="nofollow noopener" target="_blank">ESTV — Kreisschreiben 2-220-D-2026 (federal deductions)</a></li><li><a href="https://www.estv2.admin.ch/stp/kb/zh-de.pdf" rel="nofollow noopener" target="_blank">ESTV — Kantonsblatt Zürich (Steuerinformationen)</a></li><li><a href="https://www.zh.ch/de/steuern-finanzen/steuern/steuerstatistiken/aktuelle-gemeinde-steuerfuesse.html" rel="nofollow noopener" target="_blank">Kanton Zürich — aktuelle Gemeindesteuerfüsse</a></li><li><a href="https://www.stadt-zuerich.ch/de/lebenslagen/steuern/natuerliche-personen/steuerberechnung.html" rel="nofollow noopener" target="_blank">Stadt Zürich — Steuerberechnung</a></li><li><a href="https://www.ahv-iv.ch/p/2.01.d" rel="nofollow noopener" target="_blank">AHV/IV — Merkblatt 2.01 Beiträge an die AHV, IV und EO</a></li><li><a href="https://www.ahv-iv.ch/p/2.08.d" rel="nofollow noopener" target="_blank">AHV/IV — Merkblatt 2.08 Beiträge an die Arbeitslosenversicherung</a></li><li><a href="https://www.bsv.admin.ch/dam/de/sd-web/sAgdISSXenMT/d_Betr%C3%A4ge%202026.pdf" rel="nofollow noopener" target="_blank">BSV — Beträge berufliche Vorsorge 2026</a></li><li><a href="https://www.estv2.admin.ch/stp/kb/be-de.pdf" rel="nofollow noopener" target="_blank">ESTV — Kantonsblatt Bern (Steuerinformationen, Stand Februar 2026)</a></li><li><a href="https://www.fin.be.ch/content/dam/fin/dokumente/de/finanzverwaltung/finanzausgleich/publikationen/fv-stat-steueranlage_2026_1.pdf" rel="nofollow noopener" target="_blank">Finanzverwaltung des Kantons Bern — Steueranlagen der Gemeinden 2026</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in Bern, Switzerland</div>
     <div class="hub-grid">
@@ -327,6 +329,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

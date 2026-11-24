@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -105,17 +105,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/how-long-to-get-to/">How Long to Get There</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/how-long-to-get-to/mercury/">To Mercury</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">At the speed of light</span></nav>
       <h1 class="page-title">How long does light take to get to Mercury?</h1>
       <p class="page-subtitle">4 minutes 18 seconds at its closest. At the speed of light: 299,792 km/s, nothing can go faster.</p>
     </header>
 
-    <main class="tool" id="st-tool">
+    <section class="tool" id="st-tool">
       <div class="field-row">
         <div class="field"><label for="st-dest">Going to</label><select id="st-dest"><option value="moon">The Moon</option><option value="sun">The Sun</option><option value="mercury" selected>Mercury</option><option value="venus">Venus</option><option value="mars">Mars</option><option value="jupiter">Jupiter</option><option value="saturn">Saturn</option><option value="uranus">Uranus</option><option value="neptune">Neptune</option><option value="pluto">Pluto</option><option value="proxima-centauri">Proxima Centauri (nearest star)</option><option value="centre-of-the-earth">The centre of the Earth</option><option value="andromeda">The Andromeda Galaxy</option></select></div>
         <div class="field"><label for="st-dist">Distance</label><select id="st-dist"><option value="closest" selected>At its closest — 77.3 million km</option><option value="farthest">At its farthest — 221.9 million km</option></select></div>
@@ -136,14 +138,14 @@
           <div class="result-row"><span class="r-label">Light takes</span><span class="r-value" id="st-light">4 minutes 18 seconds</span></div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Mercury at the speed of light</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Mercury at the speed of light (table)">
         <div style="min-width:420px;">
           <table class="out-table">
-            <thead><tr><th></th><th>Distance</th><th>Time</th></tr></thead>
+            <thead><tr><td></td><th>Distance</th><th>Time</th></tr></thead>
             <tbody>
 <tr><td>At its closest</td><td>77.3 million km (48 million miles)</td><td>4 minutes 18 seconds</td></tr>
 <tr><td>At its farthest</td><td>221.9 million km (137.9 million miles)</td><td>12 minutes 20 seconds</td></tr>
@@ -153,7 +155,7 @@
       </div>
       <p class="about-text"><strong>How long it really took:</strong> about 6 years 7 months. NASA's MESSENGER launched 3 August 2004 and went into orbit on 18 March 2011, after flybys of Earth, Venus and Mercury to slow it down.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Every destination at the speed of light</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Every destination at the speed of light (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Destination</th><th>Time</th></tr></thead>
@@ -176,9 +178,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">These are straight-line times at a steady speed, as if the planets stood still. Real spacecraft can't fly straight there: they launch into a curved path round the Sun that meets the planet where it will be, so the route is longer, and they coast most of the way. Distances from NASA's planetary fact sheets.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How long does light take to get to Mercury?</h3>
       <p class="about-text">4 minutes 18 seconds at its closest, covering 77.3 million km (48 million miles) non-stop at 299,792 km/s. At its farthest, 221.9 million km (137.9 million miles), it would take 12 minutes 20 seconds.</p>
@@ -186,11 +188,12 @@
       <p class="about-text">Distance divided by speed: 77.3 million km ÷ 1,079,252,848.8 km/h = 0 hours. These are straight-line times at a steady speed, as if the planets stood still. Real spacecraft can't fly straight there: they launch into a curved path round the Sun that meets the planet where it will be, so the route is longer, and they coast most of the way.</p>
       <h3 class="faq-q">How long did it actually take to get to Mercury?</h3>
       <p class="about-text">About 6 years 7 months for NASA's MESSENGER, which launched 3 August 2004 and went into orbit on 18 March 2011, after flybys of Earth, Venus and Mercury to slow it down.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Mercury at other speeds</div>
     <p class="salary-links"><a href="/how-long-to-get-to/mercury/walking/">Walk</a> <a href="/how-long-to-get-to/mercury/by-car/">Drive</a> <a href="/how-long-to-get-to/mercury/by-plane/">Fly by plane</a> <a href="/how-long-to-get-to/mercury/speed-of-sound/">Speed of sound</a> <a href="/how-long-to-get-to/mercury/space-station-speed/">Space station speed</a> <a href="/how-long-to-get-to/mercury/apollo-speed/">Apollo speed</a> <a href="/how-long-to-get-to/mercury/fastest-spacecraft/">Fastest spacecraft</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

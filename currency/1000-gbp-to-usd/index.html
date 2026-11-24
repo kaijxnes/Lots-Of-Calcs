@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -100,17 +100,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/currency-converter/">Currency Converter</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">1000 GBP to USD</span></nav>
       <h1 class="page-title">1,000 GBP to USD</h1>
       <p class="page-subtitle">£1,000.00 = <strong>$1,312.47</strong> at the ECB reference rate for 20 November 2026.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="result-box">
         <div class="result-grid">
           <div class="result-row highlight"><span class="r-label">£1,000.00 in US dollars</span><span class="r-value">$1,312.47</span></div>
@@ -120,11 +122,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">The <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" rel="noopener">European Central Bank's reference rate</a>, the mid-market rate with no fees. Any amount and 30 currencies: the <a href="/currency-converter/">currency converter</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">GBP to USD</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="GBP to USD (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>GBP</th><th>USD</th></tr></thead>
@@ -147,7 +149,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:20px;">USD to GBP</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="USD to GBP (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>USD</th><th>GBP</th></tr></thead>
@@ -166,9 +168,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is 1,000 pounds in US dollars?</h3>
       <p class="about-text">$1,312.47 at the ECB reference rate for 20 November 2026: 1 GBP = 1.3125 USD.</p>
@@ -176,8 +178,9 @@
       <p class="about-text">Not quite. This is the mid-market reference rate; banks, bureaux and card providers add a margin or fee, which can be anything from under 1% for some cards to 5% or more at airport kiosks. Compare what you'd actually receive.</p>
       <h3 class="faq-q">How often is the rate updated?</h3>
       <p class="about-text">The ECB publishes reference rates every working day; this page uses the rate for 20 November 2026 and is refreshed monthly, as is the currency converter.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -151,17 +151,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/us/">United States</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/us/illinois/">Illinois</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">$175,000 after tax</span></nav>
       <h1 class="page-title">$175,000 after tax in Illinois</h1>
       <p class="page-subtitle">What a $175,000 salary leaves you in the 2026 tax year — single.</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="us-il" data-currency="USD" data-gross="175000" data-mode="annual">
+    <section class="tool split" id="salary-tool" data-tax-id="us-il" data-currency="USD" data-gross="175000" data-mode="annual">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">$122,357.08</div>
@@ -237,12 +239,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">A salary of <strong>$175,000</strong> in Illinois leaves <strong>$122,357.08</strong> a year once federal and state taxes and payroll deductions are taken off &mdash; <strong>$10,196.42</strong> a month. The deductions come to $52,642.93, or 30.1% of the gross, and the next unit earned is taxed at 37%.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Federal income tax, band by band</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Federal income tax, band by band (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Band</th><th>Rate</th><th>Amount in band</th><th>Charged</th></tr></thead>
@@ -251,7 +253,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:22px;">$175,000 in other states</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="$175,000 in other states (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
@@ -261,7 +263,7 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Each place on its own default assumptions — single filer, standard deduction. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on $175,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What a pay rise is worth on $175,000 (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
@@ -277,9 +279,9 @@
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (37% here), so you keep less of it than of your salary overall.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">More on $175,000</h2>
       <p class="salary-links"><a href="/mortgage-affordability/us/175000/">How much house can I afford on $175,000?</a> <a href="/biweekly-pay-schedule/">Biweekly pay schedule and 3-paycheck months</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How $175,000 after tax is worked out</h2>
       <p class="about-text"><strong>Illinois personal exemption: $2,850.00.</strong> $2,850 per person, lost entirely above $250,000 of income ($500,000 married).</p>
       <p class="about-text"><strong>Federal income tax: $30,734.00.</strong> </p>
@@ -287,9 +289,9 @@
       <p class="about-text"><strong>Medicare: $2,537.50.</strong> </p>
       <p class="about-text"><strong>Additional Medicare tax: $0.00.</strong> 0.9% on wages above $200,000 ($250,000 married filing jointly). Employers withhold it from $200,000 whatever the status; the threshold here is the liability.</p>
       <p class="about-text"><strong>Illinois income tax: $8,521.43.</strong> </p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is $175,000 after tax in Illinois?</h3>
       <p class="about-text">A $175,000 salary in Illinois leaves $122,357.08 a year after federal and state taxes and payroll deductions, which is $10,196.42 a month or about $2,353.02 a week. The deductions are federal income tax $30,734.00, Social Security $10,850.00, Medicare $2,537.50, Illinois income tax $8,521.43 — $52,642.93 in all, or 30.1% of the gross. That is for single.</p>
@@ -307,9 +309,9 @@
       <p class="about-text">Pre-tax 401(k), HSA and health insurance contributions; Tax credits, including the child tax credit and earned income credit; Itemized deductions, including state and local taxes (SALT) — high earners in high-tax states may pay less federal tax by itemizing; The deductions for tips, overtime, car loan interest and seniors introduced for 2025–2028; Alternative minimum tax; Head of household, married filing separately and qualifying surviving spouse; Roth 401(k) (after-tax), HSA and FSA contributions; State child and dependent credits; Use tax that some filers pay on the income tax return.</p>
       <h3 class="faq-q">How accurate are these Illinois figures?</h3>
       <p class="about-text">They apply the 2026 rates and thresholds to a $175,000 salary for single. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026</strong> tax year, which runs from 1 January 2026 to 31 December 2026. The rates have not yet been checked by a person against the official sources — <a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf#page=1" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -320,7 +322,7 @@
       <ul class="about-list"><li>Personal exemption of $2,850 is the 2025 amount</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf" rel="nofollow noopener" target="_blank">IRS Rev. Proc. 2025-32 — 2026 inflation adjustments (brackets, standard deduction)</a></li><li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">SSA — Contribution and benefit base</a></li><li><a href="https://www.law.cornell.edu/uscode/text/26/3101" rel="nofollow noopener" target="_blank">26 U.S.C. § 3101 — FICA rates, including the additional Medicare tax</a></li><li><a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" rel="nofollow noopener" target="_blank">401(k) limit increases to $24,500 for 2026 (IRS)</a></li><li><a href="https://www.irs.gov/credits-deductions/individuals/child-tax-credit" rel="nofollow noopener" target="_blank">Child Tax Credit (IRS)</a></li><li><a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf#page=1" rel="nofollow noopener" target="_blank">Illinois Department of Revenue 2025 Form IL-1040 Instructions</a></li><li><a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-icr.pdf#page=1" rel="nofollow noopener" target="_blank">Illinois Department of Revenue 2025 Schedule ICR; Illinois Credits</a></li><li><a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040.pdf#page=1" rel="nofollow noopener" target="_blank">Illinois Department of Revenue 2025 Form IL-1040 Individual Income Tax Return</a></li><li><a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-schedule-il-e-eic.pdf#page=1" rel="nofollow noopener" target="_blank">2025 Schedule IL-E/EIC - Illinois Exemption and Earned Income Credit</a></li><li><a href="https://tax.illinois.gov/content/dam/soi/en/web/tax/forms/incometax/documents/currentyear/individual/il-1040-instr.pdf#page=8" rel="nofollow noopener" target="_blank">Illinois Department of Revenue 2025 Form IL-1040 Instructions; Step 4 - Exemptions</a></li><li><a href="https://tax.illinois.gov/research/taxrates/income.html" rel="nofollow noopener" target="_blank">Income Tax Rates</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in Illinois</div>
     <div class="hub-grid">
@@ -376,6 +378,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

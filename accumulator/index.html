@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/betting-odds/">Betting &amp; Odds</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Accumulator Calculator</span></nav>
       <h1 class="page-title">Accumulator Calculator</h1>
       <p class="page-subtitle">Add your legs, mark each one won, void or lost, and see the combined odds, return and profit.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="field-row">
         <div class="field">
           <label for="stake">Stake</label>
@@ -163,7 +165,7 @@
 
       <h2 class="tool-section-title">Legs</h2>
       <p class="tool-hint">Odds accept fractional (5/2) or decimal (3.5). A void leg is settled at odds of 1.00; any losing leg loses the whole accumulator.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Legs (table)">
         <div style="min-width:460px;">
           <div class="dyn-table-head">
             <span class="row-index">#</span>
@@ -192,24 +194,24 @@
           <div class="result-row highlight"><span class="r-label">Total return</span><span class="r-value" id="total-return">£90.00</span></div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About this calculator</h2>
       <p class="about-text">An accumulator rolls the return from each leg onto the next, so the combined odds are every leg's decimal odds multiplied together. Four legs at 2.00 give combined odds of 16.00, not 8.00 &mdash; which is why an acca pays so much more than the same selections backed separately, and why it is so much harder to land.</p>
       <p class="about-text">Every leg has to come in. A single losing leg loses the entire bet regardless of how the others went, so the calculator returns zero the moment any leg is marked lost.</p>
       <p class="about-text">A void leg &mdash; a postponed match, a non-runner, or a market settled as void &mdash; does not lose the bet. It is settled at odds of 1.00, which removes it from the multiplication and leaves the accumulator running on the remaining legs. A five-fold with one void leg simply pays out as a four-fold.</p>
       <p class="about-text">The acca bonus is applied to your winnings rather than the total return, which is the usual UK bookmaker convention: bonus = profit &times; the bonus percentage. Bookmakers normally require a minimum number of legs and a minimum price per leg before a bonus applies, and void legs often reduce the bonus tier &mdash; check the specific offer, as those rules are not modelled here.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How to work out accumulator odds</h2>
       <p class="about-text"><strong>1. Convert every leg to decimal odds.</strong> Divide the fraction and add 1: 1/2 is 1.50, evens is 2.00, 6/4 is 2.50 and 2/1 is 3.00.</p>
       <p class="about-text"><strong>2. Multiply them together.</strong> 1.50 &times; 2.00 &times; 2.50 &times; 3.00 = <strong>22.50</strong>, which is 43/2 as a fraction.</p>
       <p class="about-text"><strong>3. Multiply by your stake.</strong> &pound;10 &times; 22.50 = <strong>&pound;225</strong> returned if all four win, &pound;215 of it profit. If any one loses, the whole bet is lost.</p>
 
       <h2 class="tool-section-title" style="margin-top:22px;">How the odds grow, and the chance of landing it</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How the odds grow, and the chance of landing it (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Legs at evens (2.00)</th><th>Name</th><th>Combined odds</th><th>£10 returns</th><th>Chance if each is truly 50%</th></tr></thead>
@@ -228,12 +230,12 @@
       <h2 class="tool-section-title" style="margin-top:22px;">Each-way accumulators and acca insurance</h2>
       <p class="about-text"><strong>Each-way acca:</strong> two accumulators at the same unit stake, one on every selection winning and one on every selection placing, each place leg at its place odds. If one selection only places, the win acca loses but the place acca can still pay. The <a href="/each-way/">each-way calculator</a> shows how place odds are worked out.</p>
       <p class="about-text"><strong>Acca insurance:</strong> some bookmakers refund the stake, usually as a free bet, if exactly one leg lets you down. It doesn't change the odds or the return, only what happens when one leg loses.</p>
-    </main>
+    </section>
 
     <!-- reference tables: generated by tools/build-betting-tables.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Doubles, trebles and four-folds at common prices</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Doubles, trebles and four-folds at common prices (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Each leg at</th><th>Double: odds · £10 returns</th><th>Treble: odds · £10 returns</th><th>Four-fold: odds · £10 returns</th></tr></thead>
@@ -251,10 +253,10 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Decimal odds, with every leg at the same price; the combined odds are the legs' decimal odds multiplied together. Three evens shots make a treble at 8.00 (7/1): 2.00 × 2.00 × 2.00 = 8.00, so £10 returns £80.00. For legs at different prices, or a void leg, use the calculator above.</p>
-    </main>
+    </section>
     <!-- end reference tables -->
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do you work out accumulator odds?</h3>
       <p class="about-text">Convert each leg to decimal odds and multiply them together. 1/2, evens, 6/4 and 2/1 are 1.50, 2.00, 2.50 and 3.00, which multiply to 22.50, so £10 returns £225.</p>
@@ -269,7 +271,7 @@
       <h3 class="faq-q">Is the acca bonus applied to my stake or my winnings?</h3>
       <p class="about-text">Almost always to the winnings. A 10% bonus on £80 profit adds £8, not 10% of the full £90 return. Most bookmakers also set a minimum number of legs and a minimum price per leg before the bonus is paid.</p>
       <p class="tool-hint" style="margin-top:12px;">18+. A calculator shows what a bet pays, not whether it will win &mdash; the bookmaker's margin is built into every price. If gambling stops being fun, <a href="https://www.begambleaware.org/" rel="noopener">BeGambleAware</a> offers free, confidential help.</p>
-    </main>
+    </section>
 
     <!-- embed box: generated by tools/build-embeds.js -->
     <details class="embed-box">
@@ -317,6 +319,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -129,17 +129,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/new-zealand/">New Zealand</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">$35 an hour after tax</span></nav>
       <h1 class="page-title">$35 an hour after tax in New Zealand</h1>
       <p class="page-subtitle">40 hours a week, 52 weeks a year: $72,800 before tax in the 2026-27 tax year.</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="nz" data-currency="NZD" data-gross="72800" data-mode="hourly">
+    <section class="tool split" id="salary-tool" data-tax-id="nz" data-currency="NZD" data-gross="72800" data-mode="hourly">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">$57,465.50</div>
@@ -205,12 +207,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the rate, the hours or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026-27 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">Paid <strong>$35 an hour</strong> for 40 hours a week, you earn $72,800 a year. Once income tax and social contributions are taken off in New Zealand, you take home <strong>$57,465.50</strong> a year &mdash; <strong>$4,788.79</strong> a month, or $27.63 for every hour worked.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">$35 an hour at different hours</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="$35 an hour at different hours (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Hours a week</th><th>Gross a year</th><th>Take-home a year</th><th>A month</th><th>Per hour</th></tr></thead>
@@ -225,17 +227,17 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Assumes you're paid for all 52 weeks, including paid holiday. If some weeks are unpaid, enter your average weekly hours across the year in the calculator above. Salary pages near $72,800 a year: <a href="/salary/new-zealand/70000-after-tax/">$70,000 a year after tax</a> · <a href="/salary/new-zealand/75000-after-tax/">$75,000 a year after tax</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How $35 an hour after tax is worked out</h2>
       <p class="about-text">The hourly rate is turned into a yearly salary first &mdash; $35 &times; 40 hours &times; 52 weeks = $72,800 &mdash; because tax is worked out on yearly income. The take-home is then spread back over the year.</p>
       <p class="about-text"><strong>Independent earner tax credit: $0.00.</strong> $520 a year for incomes from $24,000 to $66,000, falling by 13 cents per dollar to nothing at $70,000.</p>
       <p class="about-text"><strong>Income tax (PAYE): $14,060.50.</strong> 10.5% to $15,600, 17.5% to $53,500, 30% to $78,100, 33% to $180,000, 39% above.</p>
       <p class="about-text"><strong>ACC earners' levy: $1,274.00.</strong> 1.75% of earnings up to $156,641 in 2026–27.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is $35 an hour a year?</h3>
       <p class="about-text">$35 an hour for 40 hours a week over 52 weeks is $72,800 a year before tax. After income tax and social contributions in New Zealand, that leaves $57,465.50 a year.</p>
@@ -249,9 +251,9 @@
       <p class="about-text">KiwiSaver contributions (employee default rate 3–4%); Student loan repayments (12% above the threshold); Secondary tax codes.</p>
       <h3 class="faq-q">How accurate are these figures?</h3>
       <p class="about-text">They apply the 2026-27 rates and thresholds to $35 an hour for 40 hours a week. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026-27</strong> tax year, which runs from 1 April 2026 to 31 March 2027. The rates have not yet been checked by a person against the official sources — <a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -262,7 +264,7 @@
       <ul class="about-list"><li>Figures are from secondary payroll and calculator sources that agree with each other; not checked against Inland Revenue or ACC directly</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals" rel="nofollow noopener" target="_blank">Inland Revenue — Tax rates for individuals</a></li><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc" rel="nofollow noopener" target="_blank">Inland Revenue — Independent earner tax credit</a></li><li><a href="https://www.acc.co.nz/for-business/understanding-levies-if-you-work/" rel="nofollow noopener" target="_blank">ACC — Levy rates</a></li><li><a href="https://www.ird.govt.nz/updates/news-folder/2026/taxation-bill-now-in-effect" rel="nofollow noopener" target="_blank">KiwiSaver and student loan changes (Inland Revenue)</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other hourly rates in New Zealand</div>
     <div class="hub-grid">
@@ -313,6 +315,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

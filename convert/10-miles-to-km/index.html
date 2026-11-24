@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -107,17 +107,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/unit-converter/">Unit Converter</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">10 Miles to km</span></nav>
       <h1 class="page-title">10 Miles to km</h1>
       <p class="page-subtitle">10 miles = 16.09 km</p>
     </header>
 
-    <main class="tool" id="cv-tool" data-kind="linear" data-factor="1.609344" data-unit="km">
+    <section class="tool" id="cv-tool" data-kind="linear" data-factor="1.609344" data-unit="km">
       <div class="result-box">
         <div class="result-hero">
           <div class="value">16.09 km</div>
@@ -135,11 +137,11 @@
         <div class="field"><label for="cv-in">Miles</label><input type="number" id="cv-in" value="10" step="any" inputmode="decimal"></div>
         <div class="field"><label>Result</label><p class="r-value" id="cv-out" style="font-size:1.2rem; margin:8px 0 0;">16.09 km</p></div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Nearby values</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Nearby values (table)">
         <div style="min-width:300px;">
           <table class="out-table">
             <thead><tr><th>Miles</th><th>km</th></tr></thead>
@@ -162,11 +164,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">The other way: <a href="/convert/16-km-to-miles/">16 km in miles</a>. Every unit at once: the <a href="/unit-converter/">unit converter</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">From 10 miles to 10.9 miles</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="From 10 miles to 10.9 miles (table)">
         <div style="min-width:300px;">
           <table class="out-table">
             <thead><tr><th>Miles</th><th>km</th></tr></thead>
@@ -185,14 +187,14 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How long 10 miles takes</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How long 10 miles takes (table)">
         <div style="min-width:300px;">
           <table class="out-table">
-            <thead><tr><th></th><th>Steady speed</th><th>Time</th></tr></thead>
+            <thead><tr><td></td><th>Steady speed</th><th>Time</th></tr></thead>
             <tbody>
 <tr><td>Walking</td><td>3 mph</td><td>3 hr 20 min</td></tr>
 <tr><td>Running</td><td>6 mph</td><td>1 hr 40 min</td></tr>
@@ -205,9 +207,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">At a constant speed with no stops. For your own speed, use the <a href="/speed-distance-time/">speed, distance and time calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is 10 miles in km?</h3>
       <p class="about-text">10 miles is 16.09 km. 10 × 1.609344 = 16.093 km.</p>
@@ -217,8 +219,9 @@
       <p class="about-text">Multiply by 1.6: that gives 16 km for 10 miles — 0.09 km under the exact 16.09 km.</p>
       <h3 class="faq-q">How long does it take to walk 10 miles?</h3>
       <p class="about-text">About 3 hr 20 min at a steady 3 mph. Driving at 60 mph, it takes about 10 min.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

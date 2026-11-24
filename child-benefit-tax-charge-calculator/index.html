@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -136,17 +136,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/personal-finance/">Personal Finance</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Child Benefit Tax Charge Calculator</span></nav>
       <h1 class="page-title">Child Benefit tax charge calculator</h1>
       <p class="page-subtitle">How much of your Child Benefit the <strong>High Income Child Benefit Charge</strong> takes back, and what it takes to keep it all.</p>
     </header>
 
-    <main class="tool split" id="cb-tool" data-rules="{&quot;rates&quot;:{&quot;eldest&quot;:27.05,&quot;additional&quot;:17.9,&quot;weeksInYear&quot;:52,&quot;note&quot;:&quot;'There are 2 Child Benefit rates. Eldest or only child £27.05 (weekly). Additional children £17.90 per child.' (GOV.UK, Child Benefit: What you'll get, as shown on 24 November 2026.)&quot;,&quot;source&quot;:{&quot;title&quot;:&quot;GOV.UK — Child Benefit: What you'll get&quot;,&quot;url&quot;:&quot;https://www.gov.uk/child-benefit/what-youll-get&quot;}},&quot;charge&quot;:{&quot;threshold&quot;:60000,&quot;step&quot;:200,&quot;full&quot;:80000,&quot;note&quot;:&quot;'An individual income is over the threshold if it's over £60,000 for tax years starting from 2024 to 2025.' 'You'll pay back 1% of your Child Benefit for every £200 you earn over £60,000. If you earn over £80,000 you'll pay it all back.' Income is 'adjusted net income': 'your total taxable income, which includes savings interest and dividends ... before any Personal Allowances and less certain tax reliefs, such as pension contributions and Gift Aid.' 'If your adjusted net income is over the threshold and so is your partner's, then whoever has the higher income is responsible for paying the tax charge.'&quot;,&quot;source&quot;:{&quot;title&quot;:&quot;GOV.UK — High Income Child Benefit Charge&quot;,&quot;url&quot;:&quot;https://www.gov.uk/child-benefit-tax-charge&quot;}}}">
+    <section class="tool split" id="cb-tool" data-rules="{&quot;rates&quot;:{&quot;eldest&quot;:27.05,&quot;additional&quot;:17.9,&quot;weeksInYear&quot;:52,&quot;note&quot;:&quot;'There are 2 Child Benefit rates. Eldest or only child £27.05 (weekly). Additional children £17.90 per child.' (GOV.UK, Child Benefit: What you'll get, as shown on 24 November 2026.)&quot;,&quot;source&quot;:{&quot;title&quot;:&quot;GOV.UK — Child Benefit: What you'll get&quot;,&quot;url&quot;:&quot;https://www.gov.uk/child-benefit/what-youll-get&quot;}},&quot;charge&quot;:{&quot;threshold&quot;:60000,&quot;step&quot;:200,&quot;full&quot;:80000,&quot;note&quot;:&quot;'An individual income is over the threshold if it's over £60,000 for tax years starting from 2024 to 2025.' 'You'll pay back 1% of your Child Benefit for every £200 you earn over £60,000. If you earn over £80,000 you'll pay it all back.' Income is 'adjusted net income': 'your total taxable income, which includes savings interest and dividends ... before any Personal Allowances and less certain tax reliefs, such as pension contributions and Gift Aid.' 'If your adjusted net income is over the threshold and so is your partner's, then whoever has the higher income is responsible for paying the tax charge.'&quot;,&quot;source&quot;:{&quot;title&quot;:&quot;GOV.UK — High Income Child Benefit Charge&quot;,&quot;url&quot;:&quot;https://www.gov.uk/child-benefit-tax-charge&quot;}}}">
       <div class="field"><label for="cb-income">Your income for the tax year</label><input type="number" id="cb-income" value="70000" min="0" step="any" inputmode="decimal"><p class="tool-hint" style="margin:6px 0 0;">Salary, profits, savings interest, dividends and rent, before tax. Leave out pension contributions your employer takes from your pay before tax.</p></div>
       <div class="field"><label for="cb-relief">Personal pension contributions and Gift Aid (gross)</label><input type="number" id="cb-relief" value="0" min="0" step="any" inputmode="decimal"><p class="tool-hint" style="margin:6px 0 0;">What goes into the pension or to charity with the basic rate tax relief added: £80 paid in counts as £100.</p></div>
       <div class="field-row">
@@ -167,13 +169,13 @@
         </div>
         <p class="tool-hint" id="cb-avoid" style="margin:10px 0 0;"></p>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How the charge works</h2>
       <p class="about-text">If you or your partner get Child Benefit and either of you has an <strong>adjusted net income over £60,000</strong>, the one with the higher income pays some of it back through the High Income Child Benefit Charge: <strong>1% of the Child Benefit for every £200</strong> of income over £60,000. At £80,000 or more, the charge is the whole of it.</p>
       <p class="about-text">Child Benefit is £27.05 a week for the eldest or only child and £17.90 a week for each other child: about £1,407 a year for one child, £2,337 for two and £3,268 for three.</p>
-            <div class="table-scroll">
+            <div class="table-scroll" tabindex="0" role="region" aria-label="How the charge works (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Adjusted net income</th><th>Share paid back</th><th>1 child</th><th>2 children</th><th>3 children</th></tr></thead>
@@ -190,9 +192,9 @@
       </div>
       <p class="about-text" style="margin-top:14px;"><strong>Adjusted net income</strong> is your taxable income, including savings interest and dividends, less personal pension contributions and Gift Aid donations (both gross). Paying more into a pension is the usual way to bring it back under £60,000: with an income of £70,000, an extra £10,000 gross into a pension clears the charge as well as saving higher rate tax. To see what that does to your take-home pay, use the <a href="/salary/">salary calculator</a>, or compare the options with <a href="/isa-vs-pension/">ISA or pension</a>.</p>
       <p class="about-text">The charge is paid through Self Assessment, or, if you register for PAYE by 31 January after the tax year ends, through your tax code. If your income is well over £80,000 you can opt out of the payments instead: you still claim Child Benefit, which keeps your National Insurance credits towards your State Pension.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the High Income Child Benefit Charge?</h3>
       <p class="about-text">A tax charge that takes back some or all of your family's Child Benefit if you or your partner has an adjusted net income over £60,000. It's paid by whichever of you has the higher income.</p>
@@ -207,7 +209,7 @@
       <h3 class="faq-q">Should I still claim Child Benefit if I earn over £80,000?</h3>
       <p class="about-text">It's worth claiming and opting out of the payments: you won't owe the charge, but the claim still gets you National Insurance credits towards your State Pension if you're not working, and gets your child a National Insurance number.</p>
       <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rates and rules from <a href="https://www.gov.uk/child-benefit/what-youll-get" rel="nofollow noopener" target="_blank">GOV.UK — Child Benefit: What you'll get</a> and <a href="https://www.gov.uk/child-benefit-tax-charge" rel="nofollow noopener" target="_blank">GOV.UK — High Income Child Benefit Charge</a>. Last checked 24 November 2026.</p>
-    </main>
+    </section>
 
     <!-- guide link: generated by tools/build-guides.js -->
     <p class="guide-callout"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=e437077b#book-open"></use></svg><span><a href="/guides/uk-income-tax/">UK income tax explained (2026/27)</a>: how the bands, the personal allowance and National Insurance work, with take-home pay at different salaries.</span></p>
@@ -252,6 +254,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

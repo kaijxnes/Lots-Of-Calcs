@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -120,17 +120,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/other/">Other</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Hours Calculator</span></nav>
       <h1 class="page-title">Hours calculator</h1>
       <p class="page-subtitle">Hours worked between two times, less breaks — and a weekly timesheet with the total and pay.</p>
     </header>
 
-    <main class="tool" id="hr-tool">
+    <section class="tool" id="hr-tool">
       <div class="field-row">
         <div class="field"><label for="hr-start">Start time</label><input type="time" id="hr-start" value="09:00"></div>
         <div class="field"><label for="hr-end">End time</label><input type="time" id="hr-end" value="17:00"></div>
@@ -152,10 +154,10 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">An end time earlier than the start counts as finishing the next day, for night shifts.</p>
-    </main>
-    <main class="tool" id="ts-tool">
+    </section>
+    <section class="tool" id="ts-tool">
       <h2 class="tool-section-title" style="margin-top:0;">Weekly timesheet</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Weekly timesheet (table)">
         <div style="min-width:440px;">
           <table class="out-table">
             <thead><tr><th>Day</th><th>Start</th><th>End</th><th>Break (min)</th><th>Hours</th></tr></thead>
@@ -179,12 +181,12 @@
           <div class="result-row"><span class="r-label">Pay for the week</span><span class="r-value" id="ts-pay">—</span></div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Common shifts</h2>
       <p class="salary-links"><a href="/hours-calculator/9am-to-5pm/">9am to 5pm</a> <a href="/hours-calculator/9am-to-530pm/">9am to 5:30pm</a> <a href="/hours-calculator/9am-to-6pm/">9am to 6pm</a> <a href="/hours-calculator/8am-to-4pm/">8am to 4pm</a> <a href="/hours-calculator/8am-to-430pm/">8am to 4:30pm</a> <a href="/hours-calculator/8am-to-5pm/">8am to 5pm</a> <a href="/hours-calculator/830am-to-5pm/">8:30am to 5pm</a> <a href="/hours-calculator/830am-to-530pm/">8:30am to 5:30pm</a> <a href="/hours-calculator/7am-to-3pm/">7am to 3pm</a> <a href="/hours-calculator/7am-to-330pm/">7am to 3:30pm</a> <a href="/hours-calculator/7am-to-7pm/">7am to 7pm</a> <a href="/hours-calculator/8am-to-8pm/">8am to 8pm</a> <a href="/hours-calculator/6am-to-2pm/">6am to 2pm</a> <a href="/hours-calculator/6am-to-6pm/">6am to 6pm</a> <a href="/hours-calculator/10am-to-6pm/">10am to 6pm</a> <a href="/hours-calculator/10am-to-7pm/">10am to 7pm</a> <a href="/hours-calculator/11am-to-7pm/">11am to 7pm</a> <a href="/hours-calculator/12pm-to-8pm/">12pm to 8pm</a> <a href="/hours-calculator/2pm-to-10pm/">2pm to 10pm</a> <a href="/hours-calculator/3pm-to-11pm/">3pm to 11pm</a> <a href="/hours-calculator/9am-to-1pm/">9am to 1pm</a> <a href="/hours-calculator/9am-to-3pm/">9am to 3pm</a> <a href="/hours-calculator/7pm-to-7am/">7pm to 7am</a> <a href="/hours-calculator/10pm-to-6am/">10pm to 6am</a> <a href="/hours-calculator/11pm-to-7am/">11pm to 7am</a> <a href="/hours-calculator/8pm-to-8am/">8pm to 8am</a></p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I work out hours worked?</h3>
       <p class="about-text">Take the start time from the end time, then take off any unpaid break. 8:30am to 5pm is 8 hours 30 minutes; with a 30-minute lunch, that's 8 hours worked. If the shift crosses midnight, add 24 hours to the end time first.</p>
@@ -194,7 +196,7 @@
       <p class="about-text">Multiply the decimal hours by the hourly rate: 7.5 hours at £12 is £90. Enter a rate in the calculator and it does it for the shift and the week.</p>
       <h3 class="faq-q">How are night shifts counted?</h3>
       <p class="about-text">When the end time is earlier than the start, the calculator treats it as the next day: 10pm to 6am is 8 hours.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -233,6 +235,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -108,32 +108,34 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">How we check our figures</span></nav>
       <h1 class="page-title">How we check our figures</h1>
       <p class="page-subtitle">Where the numbers come from, how they're kept current, and how every change is tested before it goes live.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Official sources first</h2>
       <p class="about-text">Calculators that depend on rules set by someone else — tax, National Insurance, student loans, stamp duty, the energy price cap, statutory pay — use the figures published by the body that sets them: GOV.UK and HMRC, Ofgem, the IRS and state revenue departments, the Canada Revenue Agency, and the tax authorities of each European country covered. Where an official source doesn't publish a figure in usable form, we use payroll and accounting publications that cite it, and say so.</p>
       <p class="about-text">Each salary page lists its sources, what it assumes (for example a single employee with no pension contributions), and what it leaves out. Health and fitness calculators name the formula and the body behind it — the NHS, the CDC, the British Nutrition Foundation — and are estimates, not medical advice.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Checked every month</h2>
       <p class="about-text">The site covers income tax and social contributions in 94 jurisdictions across 22 countries. Every month each one is compared with its published sources. When a rate changes, it's updated with the new source recorded alongside it; when it hasn't, the file gets a new "last checked" date. Next year's rates are prepared as drafts as soon as they're announced and switched on when the tax year starts.</p>
       <p class="about-text">Other figures that move — inflation, the energy price cap, fuel prices, exchange rates, bank holidays — are downloaded from their official publishers each month too. <a href="/tax-rates/">The tax rates page</a> shows when every country, state and province was last checked.</p>
-    </main>
+    </section>
 
-    <main class="tool" id="checked">
+    <section class="tool" id="checked">
       <h2 class="tool-section-title">What's checked, and when</h2>
       <p class="about-text">Everything the calculators rely on that can change, who publishes it, and when it was last checked or downloaded. These dates come from the data files the calculators read, so this table updates itself.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What's checked, and when (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Figures</th><th>Source</th><th>Last checked</th></tr></thead>
@@ -154,20 +156,20 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Tested before anything goes live</h2>
       <p class="about-text">Every tax file carries worked examples: a salary, worked through by hand from the official rules, with the result it must produce. There are 411 of them, and every change to the rates or the code has to reproduce all of them exactly before it's published. The same calculation code runs on the pages and in the tests, so what's tested is what you use.</p>
       <p class="about-text">Where a publisher gives its own worked example, the calculator has to reproduce it before a page is built: GOV.UK's payments on account example, its higher rate pension relief example, and the Child Benefit charge's 1% for every £200, among others. If a rule changes so that an example no longer comes out, the page isn't published until it's fixed.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Being clear about limits</h2>
       <p class="about-text">A calculator is only as good as its assumptions, so each page states them. Tax pages also say whether a person has yet checked the figures line by line against the official source — a stricter mark than the monthly check — and link to the official calculator so you can compare. If something doesn't match your payslip, the assumptions are the first place to look.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Where do the tax rates come from?</h3>
       <p class="about-text">From the official tax authority wherever it publishes them — GOV.UK and HMRC, the IRS and state revenue departments, the CRA, and each European country's tax office — or, where it doesn't publish a usable figure, from payroll and accounting publications that cite it. Every salary page lists its sources.</p>
@@ -177,8 +179,9 @@
       <p class="about-text">It's a separate, stricter mark: a person going through a country's figures line by line against the official source. Pages say plainly when that hasn't happened yet, so you know how much weight to put on them.</p>
       <h3 class="faq-q">What if a figure doesn't match my payslip?</h3>
       <p class="about-text">Start with the page's assumptions and what it leaves out — a pension contribution, a tax code or a benefit in kind is usually the difference. If a rate itself is wrong, it's corrected in the next monthly update, with the source recorded.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

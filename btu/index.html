@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -102,17 +102,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/home-diy/">Home &amp; DIY</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">BTU Radiator Sizing Calculator</span></nav>
       <h1 class="page-title">BTU Radiator Sizing Calculator</h1>
       <p class="page-subtitle">Room size, type and construction → roughly how much heat output you need, in BTU/hr and watts.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Room dimensions</h2>
       <div class="tabs" role="tablist">
         <button class="tab active" data-unit="m" type="button">Metres</button>
@@ -197,18 +199,18 @@
         </div>
       </div>
       <p class="tool-hint" id="btu-advice" style="margin-top:16px;">If you're between two radiator sizes, go for the larger one — an oversized radiator simply runs cooler, while an undersized one can never quite heat the room.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About this calculator</h2>
       <p class="about-text">This uses the standard UK room-volume method that radiator retailers and heating suppliers publish. The room's volume is worked out in cubic feet, multiplied by a factor for the type of room, then adjusted for the things that make a room harder to heat. Metric entries are converted using 1 metre = 3.280839895 feet.</p>
       <p class="about-text">The room-type factors are: living or dining room &times;5, bathroom &times;5, bedroom &times;4, hallway or landing &times;4, and kitchen &times;3. Kitchens are lowest because ovens, hobs and fridges all give off heat of their own; living rooms are highest because they are the rooms you most want genuinely warm while sitting still.</p>
       <p class="about-text">The adjustments then applied are: exterior walls, taken as a baseline of one wall with +10% for each additional exterior wall (and &minus;10% for a fully internal room with none); glazing, where single glazing is the baseline, double glazing is &minus;10% and triple glazing is &minus;15%; a north-facing room +15%; and French doors or an unusually large window +20%. Every multiplier is applied to the base figure in sequence, and the combined effect is shown in the results so you can see what the adjustments did.</p>
       <p class="about-text">Radiators are advertised in both BTU per hour and watts, so both are given &mdash; the conversion is 1 watt = 3.412142 BTU/hr. Note that manufacturers quote outputs at a stated temperature difference (usually delta T 50), and a real system running at a lower flow temperature, as heat pumps do, will deliver noticeably less than the headline figure.</p>
       <p class="about-text">This is a planning estimate to help you shop for a radiator, not a heating engineer's specification. It takes no account of insulation levels, floor and ceiling construction, draughts, ceiling height beyond the volume itself, or how the rest of your heating system is balanced. For a new system, an extension, or anything you are committing real money to, get a proper room-by-room heat loss survey.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Should I round up or down when choosing a radiator?</h3>
       <p class="about-text">Round up. A slightly oversized radiator just reaches temperature sooner and then ticks over, whereas an undersized one runs flat out and still leaves the room cool on the coldest days. Being 10–15% over the calculated figure is a sensible margin.</p>
@@ -216,13 +218,13 @@
       <p class="about-text">They measure the same thing in different units: 1 watt equals 3.412142 BTU per hour. UK radiators are listed both ways, so a 2,000 W radiator is about 6,824 BTU/hr.</p>
       <h3 class="faq-q">Why does a kitchen need less heating than a living room?</h3>
       <p class="about-text">Because appliances contribute their own heat — an oven, hob, fridge and dishwasher all add warmth — and people tend to be moving about rather than sitting still. That is why the kitchen factor is ×3 against ×5 for a living room of the same size.</p>
-    </main>
+    </section>
 
     <!-- btu pages: generated by tools/build-btu-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">BTU by room size</h2>
       <p class="salary-links"><a href="/btu/2m-x-2m-room/">2m × 2m</a> <a href="/btu/2m-x-3m-room/">2m × 3m</a> <a href="/btu/2.5m-x-3m-room/">2.5m × 3m</a> <a href="/btu/3m-x-3m-room/">3m × 3m</a> <a href="/btu/3m-x-3.5m-room/">3m × 3.5m</a> <a href="/btu/3m-x-4m-room/">3m × 4m</a> <a href="/btu/3.5m-x-4m-room/">3.5m × 4m</a> <a href="/btu/4m-x-4m-room/">4m × 4m</a> <a href="/btu/3m-x-5m-room/">3m × 5m</a> <a href="/btu/4m-x-4.5m-room/">4m × 4.5m</a> <a href="/btu/4m-x-5m-room/">4m × 5m</a> <a href="/btu/4.5m-x-5m-room/">4.5m × 5m</a> <a href="/btu/5m-x-5m-room/">5m × 5m</a> <a href="/btu/4m-x-6m-room/">4m × 6m</a> <a href="/btu/5m-x-6m-room/">5m × 6m</a> <a href="/btu/6m-x-6m-room/">6m × 6m</a> <a href="/btu/5m-x-7m-room/">5m × 7m</a> <a href="/btu/6m-x-7m-room/">6m × 7m</a> <a href="/btu/6m-x-8m-room/">6m × 8m</a> <a href="/btu/7m-x-8m-room/">7m × 8m</a> <a href="/btu/8m-x-8m-room/">8m × 8m</a> <a href="/btu/8m-x-10m-room/">8m × 10m</a></p>
-    </main>
+    </section>
 
     <!-- end btu pages -->
 
@@ -264,6 +266,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

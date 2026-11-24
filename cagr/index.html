@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/investing-pensions/">Investing &amp; Pensions</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">CAGR Calculator</span></nav>
       <h1 class="page-title">CAGR Calculator</h1>
       <p class="page-subtitle">Compound annual growth rate between a start and end value over N years.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="field-row">
         <div class="field">
           <label for="start">Start value</label>
@@ -163,25 +165,25 @@
           <div class="result-row"><span class="r-label">Absolute change</span><span class="r-value" id="abs-change">0.00</span></div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">The CAGR formula</h2>
       <p class="about-text">Compound annual growth rate answers &ldquo;what steady yearly growth rate would take the start value to the end value?&rdquo;</p>
       <p class="about-text"><strong>CAGR = (end value &divide; start value)<sup>1 &divide; years</sup> &minus; 1</strong></p>
       <p class="about-text"><strong>Worked example:</strong> an investment grows from &pound;10,000 to &pound;16,000 over 5 years. 16,000 &divide; 10,000 = 1.6. Raising 1.6 to the power of 1/5 (0.2) gives 1.0986, and taking away 1 leaves 0.0986 &mdash; a CAGR of <strong>9.86%</strong>. Check it: &pound;10,000 growing 9.86% a year for five years comes to &pound;16,000.</p>
       <p class="about-text">The total growth over the period is 60%, but dividing that by five years (12% a year) overstates it, because each year's growth builds on the last. CAGR undoes the compounding properly.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Why CAGR beats an average</h2>
       <p class="about-text">A simple average of yearly returns ignores the order and size of the swings. If a fund rises 50% one year and falls 50% the next, the average return is 0% &mdash; but &pound;1,000 becomes &pound;1,500 and then &pound;750, a 25% loss. CAGR reports that correctly as <strong>&minus;13.4%</strong> a year.</p>
       <p class="about-text">That makes CAGR the fair way to compare investments, revenue or anything else that grows over several years, even when the periods have very different ups and downs.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How long to double?</h2>
       <p class="about-text">A rough rule: divide 72 by the annual growth rate to get the years it takes to double. At 6% a year, 72 &divide; 6 = 12 years. It works the other way too &mdash; something that doubled in 10 years grew at roughly 7.2% a year (the exact CAGR is 7.18%).</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How long to double? (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>CAGR</th><th>After 5 years</th><th>After 10 years</th><th>Years to double</th></tr></thead>
@@ -196,9 +198,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I calculate CAGR in Excel or Google Sheets?</h3>
       <p class="about-text">Use =(end/start)^(1/years)-1 and format the cell as a percentage. With the start value in A1, the end value in B1 and the number of years in C1, that is =(B1/A1)^(1/C1)-1. Excel's RRI function gives the same answer: =RRI(C1, A1, B1).</p>
@@ -212,7 +214,7 @@
       <p class="about-text">Yes. If the end value is below the start value, CAGR is negative and shows the steady yearly decline that would have produced the same loss. It can't be worked out if the start value is zero or the two values have different signs.</p>
       <h3 class="faq-q">Does CAGR include money I added along the way?</h3>
       <p class="about-text">No. CAGR only looks at a start and end value, so deposits or withdrawals in between distort it. For savings with regular contributions, the <a href="/compound-interest/">compound interest calculator</a> models the payments properly.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -250,6 +252,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

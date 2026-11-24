@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/everyday/">Everyday</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">BMI Calculator</span></nav>
       <h1 class="page-title">BMI Calculator</h1>
       <p class="page-subtitle">Height and weight → Body Mass Index, category and the healthy weight range for your height.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="metric">Metric</button>
         <button class="tab" data-tab="imperial">Imperial</button>
@@ -193,20 +195,20 @@
           <div class="result-row"><span class="r-label">Obese</span><span class="r-value">30 and above</span></div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How BMI is calculated</h2>
       <p class="about-text">Body Mass Index is your weight divided by the square of your height:</p>
       <p class="about-text"><strong>BMI = weight (kg) &divide; height (m)&sup2;</strong></p>
       <p class="about-text">In imperial units the same thing is <strong>703 &times; weight (lb) &divide; height (in)&sup2;</strong>, where 703 converts pounds and inches into kilograms and metres. Stones are turned into pounds first: one stone is 14 pounds.</p>
       <p class="about-text"><strong>Worked example (metric).</strong> Someone 175 cm tall weighing 70 kg: 1.75 &times; 1.75 = 3.0625, and 70 &divide; 3.0625 = <strong>22.9</strong>, which is in the healthy range.</p>
       <p class="about-text"><strong>Worked example (stones and pounds).</strong> Someone 5ft 10in weighing 12st: that is 70 inches and 168 pounds. 70 &times; 70 = 4,900, and 703 &times; 168 &divide; 4,900 = <strong>24.1</strong> &mdash; just inside the healthy range, which tops out at 24.9.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Healthy weight for your height</h2>
       <p class="about-text">The healthy range is a BMI of 18.5 to 24.9, so the healthy weight for a height is 18.5 &times; height&sup2; up to 24.9 &times; height&sup2;. For common adult heights:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Healthy weight for your height (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Height</th><th>Healthy weight (kg)</th><th>Healthy weight (st, lb)</th></tr></thead>
@@ -226,16 +228,16 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Heights in feet and inches are rounded to the nearest inch. For adults only &mdash; see below for children.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">What BMI does and doesn't tell you</h2>
       <p class="about-text">BMI is a quick screening figure, not a diagnosis. It compares weight with height and nothing else, so it can't tell muscle from fat or say where fat is carried. A very muscular person can have an &ldquo;overweight&rdquo; BMI with little body fat, and an older adult who has lost muscle can have a healthy BMI while carrying more fat than it suggests.</p>
       <p class="about-text">Waist size adds what BMI misses. The NHS suggests measuring your waist and comparing it with your height: a waist of less than half your height is the healthy target for most adults.</p>
       <p class="about-text">If your BMI is outside the healthy range, or you are worried about your weight, your GP or practice nurse can look at the whole picture.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is a healthy BMI range?</h3>
       <p class="about-text">For adults, 18.5 to 24.9. Below 18.5 is underweight, 25 to 29.9 is overweight, and 30 or above is obese. Some groups are advised to use lower thresholds &mdash; see the question on ethnicity below.</p>
@@ -249,7 +251,7 @@
       <p class="about-text">No. Children and teenagers are still growing, so their BMI is compared with other children of the same age and sex using centile charts rather than the adult categories. The NHS has a separate healthy weight calculator for under-18s.</p>
       <h3 class="faq-q">Is BMI accurate for everyone?</h3>
       <p class="about-text">No. BMI only compares height and weight, so it cannot tell muscle from fat and can misclassify very muscular people, older adults and pregnant women. Treat it as a rough screening figure, and use waist measurement alongside it.</p>
-    </main>
+    </section>
 
     <!-- embed box: generated by tools/build-embeds.js -->
     <details class="embed-box">
@@ -297,6 +299,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

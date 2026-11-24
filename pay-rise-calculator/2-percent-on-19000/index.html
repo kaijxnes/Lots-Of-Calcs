@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -100,17 +100,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/pay-rise-calculator/">Pay Rise Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">2% on £19,000</span></nav>
       <h1 class="page-title">2% pay rise on £19,000</h1>
       <p class="page-subtitle">£380 more before tax; £22.80 a month more after tax (2026/27).</p>
     </header>
 
-    <main class="tool" id="pr-tool">
+    <section class="tool" id="pr-tool">
       <div class="field"><label for="pr-location">Where you're paid</label><select id="pr-location"><optgroup label="United Kingdom"><option value="gb" data-currency="GBP" data-gross="35000" selected>England, Wales &amp; Northern Ireland</option><option value="gb-sct" data-currency="GBP" data-gross="35000">Scotland</option></optgroup><optgroup label="United States"><option value="us-al" data-currency="USD" data-gross="75000">Alabama</option><option value="us-ak" data-currency="USD" data-gross="75000">Alaska</option><option value="us-az" data-currency="USD" data-gross="75000">Arizona</option><option value="us-ar" data-currency="USD" data-gross="75000">Arkansas</option><option value="us-ca" data-currency="USD" data-gross="75000">California</option><option value="us-co" data-currency="USD" data-gross="75000">Colorado</option><option value="us-ct" data-currency="USD" data-gross="75000">Connecticut</option><option value="us-de" data-currency="USD" data-gross="75000">Delaware</option><option value="us-fl" data-currency="USD" data-gross="75000">Florida</option><option value="us-ga" data-currency="USD" data-gross="75000">Georgia</option><option value="us-hi" data-currency="USD" data-gross="75000">Hawaii</option><option value="us-id" data-currency="USD" data-gross="75000">Idaho</option><option value="us-il" data-currency="USD" data-gross="75000">Illinois</option><option value="us-in" data-currency="USD" data-gross="75000">Indiana</option><option value="us-ia" data-currency="USD" data-gross="75000">Iowa</option><option value="us-ks" data-currency="USD" data-gross="75000">Kansas</option><option value="us-ky" data-currency="USD" data-gross="75000">Kentucky</option><option value="us-la" data-currency="USD" data-gross="75000">Louisiana</option><option value="us-me" data-currency="USD" data-gross="75000">Maine</option><option value="us-md" data-currency="USD" data-gross="75000">Maryland</option><option value="us-ma" data-currency="USD" data-gross="75000">Massachusetts</option><option value="us-mi" data-currency="USD" data-gross="75000">Michigan</option><option value="us-mn" data-currency="USD" data-gross="75000">Minnesota</option><option value="us-ms" data-currency="USD" data-gross="75000">Mississippi</option><option value="us-mo" data-currency="USD" data-gross="75000">Missouri</option><option value="us-mt" data-currency="USD" data-gross="75000">Montana</option><option value="us-ne" data-currency="USD" data-gross="75000">Nebraska</option><option value="us-nv" data-currency="USD" data-gross="75000">Nevada</option><option value="us-nh" data-currency="USD" data-gross="75000">New Hampshire</option><option value="us-nj" data-currency="USD" data-gross="75000">New Jersey</option><option value="us-nm" data-currency="USD" data-gross="75000">New Mexico</option><option value="us-ny" data-currency="USD" data-gross="75000">New York</option><option value="us-ny-nyc" data-currency="USD" data-gross="75000">New York City</option><option value="us-nc" data-currency="USD" data-gross="75000">North Carolina</option><option value="us-nd" data-currency="USD" data-gross="75000">North Dakota</option><option value="us-oh" data-currency="USD" data-gross="75000">Ohio</option><option value="us-ok" data-currency="USD" data-gross="75000">Oklahoma</option><option value="us-or" data-currency="USD" data-gross="75000">Oregon</option><option value="us-pa" data-currency="USD" data-gross="75000">Pennsylvania</option><option value="us-ri" data-currency="USD" data-gross="75000">Rhode Island</option><option value="us-sc" data-currency="USD" data-gross="75000">South Carolina</option><option value="us-sd" data-currency="USD" data-gross="75000">South Dakota</option><option value="us-tn" data-currency="USD" data-gross="75000">Tennessee</option><option value="us-tx" data-currency="USD" data-gross="75000">Texas</option><option value="us-ut" data-currency="USD" data-gross="75000">Utah</option><option value="us-vt" data-currency="USD" data-gross="75000">Vermont</option><option value="us-va" data-currency="USD" data-gross="75000">Virginia</option><option value="us-wa" data-currency="USD" data-gross="75000">Washington</option><option value="us-dc" data-currency="USD" data-gross="75000">Washington, DC</option><option value="us-wv" data-currency="USD" data-gross="75000">West Virginia</option><option value="us-wi" data-currency="USD" data-gross="75000">Wisconsin</option><option value="us-wy" data-currency="USD" data-gross="75000">Wyoming</option></optgroup><optgroup label="Canada"><option value="ca-ab" data-currency="CAD" data-gross="75000">Alberta</option><option value="ca-bc" data-currency="CAD" data-gross="75000">British Columbia</option><option value="ca-mb" data-currency="CAD" data-gross="75000">Manitoba</option><option value="ca-nb" data-currency="CAD" data-gross="75000">New Brunswick</option><option value="ca-nl" data-currency="CAD" data-gross="75000">Newfoundland and Labrador</option><option value="ca-nt" data-currency="CAD" data-gross="75000">Northwest Territories</option><option value="ca-ns" data-currency="CAD" data-gross="75000">Nova Scotia</option><option value="ca-nu" data-currency="CAD" data-gross="75000">Nunavut</option><option value="ca-on" data-currency="CAD" data-gross="75000">Ontario</option><option value="ca-pe" data-currency="CAD" data-gross="75000">Prince Edward Island</option><option value="ca-qc" data-currency="CAD" data-gross="75000">Quebec</option><option value="ca-sk" data-currency="CAD" data-gross="75000">Saskatchewan</option><option value="ca-yt" data-currency="CAD" data-gross="75000">Yukon</option></optgroup><optgroup label="Europe"><option value="at" data-currency="EUR" data-gross="50000">Austria</option><option value="be" data-currency="EUR" data-gross="50000">Belgium</option><option value="dk" data-currency="DKK" data-gross="600000">Denmark</option><option value="fi" data-currency="EUR" data-gross="50000">Finland</option><option value="fr" data-currency="EUR" data-gross="50000">France</option><option value="de" data-currency="EUR" data-gross="50000">Germany</option><option value="ie" data-currency="EUR" data-gross="50000">Ireland</option><option value="it" data-currency="EUR" data-gross="50000">Italy</option><option value="lu" data-currency="EUR" data-gross="50000">Luxembourg</option><option value="nl" data-currency="EUR" data-gross="50000">Netherlands</option><option value="no" data-currency="NOK" data-gross="600000">Norway</option><option value="pt" data-currency="EUR" data-gross="50000">Portugal</option><option value="es" data-currency="EUR" data-gross="50000">Spain</option><option value="se" data-currency="SEK" data-gross="500000">Sweden</option><option value="ch-bs" data-currency="CHF" data-gross="100000">Switzerland (Basel)</option><option value="ch-be" data-currency="CHF" data-gross="100000">Switzerland (Bern)</option><option value="ch-vd" data-currency="CHF" data-gross="100000">Switzerland (Lausanne)</option><option value="ch-zg" data-currency="CHF" data-gross="100000">Switzerland (Zug)</option><option value="ch" data-currency="CHF" data-gross="100000">Switzerland (Zurich)</option></optgroup><optgroup label="Asia-Pacific"><option value="au" data-currency="AUD" data-gross="90000">Australia</option><option value="in" data-currency="INR" data-gross="1200000">India</option><option value="jp" data-currency="JPY" data-gross="5000000">Japan</option><option value="nz" data-currency="NZD" data-gross="80000">New Zealand</option></optgroup></select></div>
       <div class="field-row">
         <div class="field"><label for="pr-salary">Salary now (<span id="pr-currency">GBP</span> a year)</label><input type="number" id="pr-salary" value="19000" min="0" step="any" inputmode="decimal"></div>
@@ -138,14 +140,14 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">The UK, every US state, every Canadian province, Western Europe, Australia, New Zealand, India and Japan, for the current tax year — the same rules and options as the <a href="/salary/">salary calculator</a>, checked every month (<a href="/tax-rates/">when each was last checked</a>).</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Before and after (England, Wales and Northern Ireland)</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Before and after (England, Wales and Northern Ireland) (table)">
         <div style="min-width:460px;">
           <table class="out-table">
-            <thead><tr><th></th><th>Now</th><th>After 2%</th><th>Change</th></tr></thead>
+            <thead><tr><td></td><th>Now</th><th>After 2%</th><th>Change</th></tr></thead>
             <tbody>
 <tr><td>Salary</td><td>£19,000</td><td>£19,380</td><td>+£380</td></tr>
 <tr><td>Income tax</td><td>£1,286.00</td><td>£1,362.00</td><td>+£76.00</td></tr>
@@ -158,7 +160,7 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Take-home on £19,000 line by line: <a href="/salary/19000-after-tax/">£19,000 after tax</a>. In Scotland, take-home goes from £1,436.61 to £1,459.41 a month (+£22.80). No student loan or pension. See the full breakdown on the <a href="/salary/uk/">UK salary calculator</a>.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Other rises on £19,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Other rises on £19,000 (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>Before tax</th><th>After tax, a year</th><th>A month</th></tr></thead>
@@ -177,9 +179,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is a 2% increase on £19,000?</h3>
       <p class="about-text">£380 a year before tax, so your salary goes to £19,380. After tax and National Insurance that's £273.60 a year, or £22.80 a month, in England, Wales and Northern Ireland; £22.80 a month in Scotland.</p>
@@ -187,13 +189,14 @@
       <p class="about-text">Because a rise is taxed at your highest rates: at £19,000 each extra pound loses 28p to income tax and National Insurance. Student loan repayments take another 9% of the rise if you're above the threshold, and a pension contribution set as a percentage of pay goes up with it.</p>
       <h3 class="faq-q">Which tax year is this?</h3>
       <p class="about-text">2026/27, using the same rates as the salary calculators. A rise in April may fall in the next tax year, which can have different thresholds.</p>
-    </main>
+    </section>
 
     <p class="salary-links"><a href="/mortgage-affordability/uk/19000/">How much can I borrow on £19,000?</a> <a href="/salary/19000-after-tax/">£19,000 after tax</a></p>
 
     <div class="hub-group-title" style="margin-top:28px;">A 2% rise on other salaries</div>
     <p class="salary-links"><a href="/pay-rise-calculator/2-percent-on-15000/">£15,000</a> <a href="/pay-rise-calculator/2-percent-on-16000/">£16,000</a> <a href="/pay-rise-calculator/2-percent-on-17000/">£17,000</a> <a href="/pay-rise-calculator/2-percent-on-18000/">£18,000</a> <a href="/pay-rise-calculator/2-percent-on-20000/">£20,000</a> <a href="/pay-rise-calculator/2-percent-on-21000/">£21,000</a> <a href="/pay-rise-calculator/2-percent-on-22000/">£22,000</a> <a href="/pay-rise-calculator/2-percent-on-23000/">£23,000</a> <a href="/pay-rise-calculator/2-percent-on-24000/">£24,000</a> <a href="/pay-rise-calculator/2-percent-on-25000/">£25,000</a> <a href="/pay-rise-calculator/2-percent-on-26000/">£26,000</a> <a href="/pay-rise-calculator/2-percent-on-27000/">£27,000</a> <a href="/pay-rise-calculator/2-percent/">All salaries at 2%</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

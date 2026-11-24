@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -136,17 +136,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/personal-finance/">Personal Finance</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Beckham law calculator</span></nav>
       <h1 class="page-title">Beckham law calculator</h1>
       <p class="page-subtitle">Your take-home pay in Spain under the special regime for workers moving there (the Beckham law) and under normal income tax, on the 2026 rates.</p>
     </header>
 
-    <main class="tool" id="ex-tool" data-place="es" data-option="regime" data-off="standard" data-on="beckham" data-currency="EUR" data-name="The Beckham law">
+    <section class="tool" id="ex-tool" data-place="es" data-option="regime" data-off="standard" data-on="beckham" data-currency="EUR" data-name="The Beckham law">
       <div class="field-row">
         <div class="field"><label for="ex-salary">Salary a year (€)</label><input type="number" id="ex-salary" value="100000" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="ex-region">Region (for normal income tax)</label><select id="ex-region" data-option="region"><option value="madrid" selected>Comunidad de Madrid</option><option value="catalonia">Catalonia</option><option value="andalusia">Andalusia</option><option value="valencia">Valencian Community</option></select></div>
@@ -176,11 +178,11 @@
       </div>
       <p class="about-text" id="ex-verdict" style="margin-top:16px; font-weight:600;" aria-live="polite">The Beckham law leaves you €6,747 a year better off — €562.22 a month more take-home pay.</p>
       <p class="tool-hint">2026 rates, single, employment income only, no pension contributions. For other options use the <a href="/salary/spain/">Spain salary calculator</a> (choose the Beckham law there too). Rates last checked null.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">The Beckham law at common salaries (2026)</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="The Beckham law at common salaries (2026) (table)">
         <div style="min-width:680px;">
           <table class="out-table">
             <thead><tr><th>Salary</th><th>Tax normally</th><th>Tax, Beckham law</th><th>Take-home normally</th><th>Take-home, Beckham law</th><th>Difference a year</th></tr></thead>
@@ -202,18 +204,18 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Normal income tax for Comunidad de Madrid, single, no children. Social security is the same either way. A full year on the scheme.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How the Beckham law works</h2>
       <p class="about-text">Spain's special regime for workers moving there (<em>régimen especial para trabajadores desplazados</em>, article 93 of the income tax law — nicknamed after David Beckham, one of the first to use it) taxes your Spanish employment income at a flat <strong>24% up to €600,000</strong> and <strong>47% above</strong>, instead of the normal progressive IRPF scales.</p>
       <p class="about-text"><strong>It's on gross pay.</strong> The 24% is charged on your whole salary: there's no personal allowance, no reduction for employment income and no deduction for social security, and the regional scales don't apply (the tax is split half to the state and half to your region on the return, but the rate is the same everywhere). That's why it only pays off above about €64,000 in Comunidad de Madrid — below that, normal income tax with its allowances comes out lower.</p>
       <p class="about-text"><strong>Who can use it.</strong> You mustn't have been resident in Spain in the previous 5 tax years, and you must be moving for a job with a Spanish employer (or one that posts you there, or remote work for a foreign company under Spain's international teleworking (digital nomad) visa), to become a company director, or for some entrepreneurial and highly qualified roles. You opt in on form 149 within six months of the start date on your Spanish social security registration.</p>
       <p class="about-text"><strong>How long.</strong> The year you become resident and the following five — up to six tax years. You still pay Spanish social security as normal, unless you stay in your home country's system on a posting certificate. Savings income such as dividends, interest and gains is taxed separately, at 19% to 30%.</p>
       <p class="tool-hint">Sources: <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764" rel="noopener">BOE — Ley 35/2006 del IRPF, artículo 93 (régimen especial para trabajadores desplazados)</a>; <a href="https://sede.agenciatributaria.gob.es/Sede/todas-gestiones/impuestos-tasas/impuesto-sobre-renta-personas-fisicas/modelo-151-decla_____los-trabajadores-desplazados-espanol_/instrucciones-cumplimentacion-ejercicio-2023-siguientes.html" rel="noopener">Agencia Tributaria — Modelo 151, instrucciones de cumplimentación (ejercicio 2023 y siguientes)</a>; <a href="https://www.boe.es/buscar/act.php?id=BOE-A-2007-6820" rel="noopener">BOE — Reglamento del IRPF (RD 439/2007), artículos 113–120</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the Beckham law?</h3>
       <p class="about-text">Spain's special tax regime for people who move there to work. Instead of normal income tax, whose top rate is well over 40% in every region, your employment income is taxed at a flat 24% up to €600,000 a year and 47% above, for the year you arrive and the next five.</p>
@@ -227,7 +229,7 @@
       <p class="about-text">File form 149 with the Agencia Tributaria within six months of the start date on your Spanish social security registration. Each year you then file form 151 instead of the normal income tax return.</p>
       <h3 class="faq-q">Does the Beckham law depend on the region?</h3>
       <p class="about-text">No. The flat rate is the same everywhere in Spain (half is credited to the region on the return). Normal income tax does depend on the region, so whether the regime saves you money does too — pick yours above.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -266,6 +268,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

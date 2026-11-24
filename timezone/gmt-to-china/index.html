@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -99,17 +99,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/timezone/">Time Zone Converter</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">GMT to China time</span></nav>
       <h1 class="page-title">GMT to China time</h1>
       <p class="page-subtitle">China Standard Time (Beijing) is usually <strong>7 hours ahead of UK time</strong>: 3pm GMT/BST is <strong>10pm</strong> CST (China).</p>
     </header>
 
-    <main class="tool" id="tzp-tool" data-a="Europe/London" data-b="Asia/Shanghai" data-an="GMT" data-bn="China time">
+    <section class="tool" id="tzp-tool" data-a="Europe/London" data-b="Asia/Shanghai" data-an="GMT" data-bn="China time">
       <h2 class="tool-section-title" style="margin-top:0;">Convert a time</h2>
       <div class="field-row">
         <div class="field"><label for="tzp-date">Date</label><input type="date" id="tzp-date"></div>
@@ -122,11 +124,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Uses your browser's time zone database, so daylight saving is exact for any date. Any two places: the <a href="/timezone/">time zone converter</a>. The other way: <a href="/timezone/china-to-gmt/">China time to GMT</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Every hour, GMT to China time</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Every hour, GMT to China time (table)">
         <div style="min-width:300px;">
           <table class="out-table">
             <thead><tr><th>GMT/BST</th><th>CST (China) in January</th><th>CST (China) in July</th></tr></thead>
@@ -159,11 +161,11 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">When the time difference changes (2026–2027)</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="When the time difference changes (2026–2027) (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Dates</th><th>Difference</th></tr></thead>
@@ -179,9 +181,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Clocks change on different dates in different countries, so for a few weeks in spring and autumn the gap is an hour different from usual.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the time difference between GMT and China time?</h3>
       <p class="about-text">China Standard Time is 8 hours ahead of UK time in January and 7 hours ahead of UK time in July. The table of dates shows exactly when it changes.</p>
@@ -189,8 +191,9 @@
       <p class="about-text">10pm for most of the year. In January it's 11pm.</p>
       <h3 class="faq-q">What is 9am GMT in China time?</h3>
       <p class="about-text">4pm for most of the year.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

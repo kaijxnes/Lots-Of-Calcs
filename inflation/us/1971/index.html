@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -107,17 +107,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/inflation/">Inflation Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">$100 in 1971</span></nav>
       <h1 class="page-title">$100 in 1971 is worth how much today?</h1>
       <p class="page-subtitle">About <strong>$827.11</strong> in August 2026 money — prices have risen 727.1% since 1971 in the US.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="result-box">
         <div class="result-hero"><div class="value">$827.11</div><div class="label">$100 in 1971, in August 2026 money</div></div>
         <hr class="divider">
@@ -128,11 +130,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">By the Consumer Price Index (CPI-U). <a href="/inflation/?measure=us-cpi&amp;from=1971&amp;amount=100">Open 1971 in the inflation calculator</a> for any amount, any two years, or another measure.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">1971 money in today's money</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="1971 money in today's money (table)">
         <div style="min-width:380px;">
           <table class="out-table">
             <thead><tr><th>In 1971</th><th>In August 2026</th><th>August 2026 money in 1971</th></tr></thead>
@@ -151,7 +153,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:20px;">How $100 from 1971 has grown</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How $100 from 1971 has grown (table)">
         <div style="min-width:320px;">
           <table class="out-table">
             <thead><tr><th>Year</th><th>$100 from 1971</th><th>Rise since 1971</th></tr></thead>
@@ -167,9 +169,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Using each year's average index and the latest month published (August 2026). Source: <a href="https://data.bls.gov/timeseries/CUUR0000SA0" rel="noopener">US Bureau of Labor Statistics, series CUUR0000SA0</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is $100 from 1971 worth today?</h3>
       <p class="about-text">About $827.11 in August 2026 money, using the Consumer Price Index (CPI-U). Something that cost $100 in 1971 would cost $827.11 now if its price had risen in line with inflation.</p>
@@ -179,11 +181,12 @@
       <p class="about-text">$12.09. Today's money buys that much less than the same amount did in 1971.</p>
       <h3 class="faq-q">Which inflation measure is used?</h3>
       <p class="about-text">The Consumer Price Index for All Urban Consumers (CPI-U) from the Bureau of Labor Statistics, the standard US measure, using each year's average and the latest month published.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other years</div>
     <p class="salary-links"><a href="/inflation/us/1965/">1965</a> <a href="/inflation/us/1966/">1966</a> <a href="/inflation/us/1967/">1967</a> <a href="/inflation/us/1968/">1968</a> <a href="/inflation/us/1969/">1969</a> <a href="/inflation/us/1970/">1970</a> <a href="/inflation/us/1972/">1972</a> <a href="/inflation/us/1973/">1973</a> <a href="/inflation/us/1974/">1974</a> <a href="/inflation/us/1975/">1975</a> <a href="/inflation/us/1976/">1976</a> <a href="/inflation/us/1977/">1977</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

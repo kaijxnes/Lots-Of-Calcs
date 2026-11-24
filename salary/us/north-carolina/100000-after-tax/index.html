@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -151,17 +151,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/us/">United States</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/us/north-carolina/">North Carolina</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">$100,000 after tax</span></nav>
       <h1 class="page-title">$100,000 after tax in North Carolina</h1>
       <p class="page-subtitle">What a $100,000 salary leaves you in the 2026 tax year — single.</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="us-nc" data-currency="USD" data-gross="100000" data-mode="annual">
+    <section class="tool split" id="salary-tool" data-tax-id="us-nc" data-currency="USD" data-gross="100000" data-mode="annual">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">$75,698.73</div>
@@ -236,12 +238,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">A salary of <strong>$100,000</strong> in North Carolina leaves <strong>$75,698.73</strong> a year once federal and state taxes and payroll deductions are taken off &mdash; <strong>$6,308.23</strong> a month. The deductions come to $24,301.28, or 24.3% of the gross, and the next unit earned is taxed at 34%.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Federal income tax, band by band</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Federal income tax, band by band (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Band</th><th>Rate</th><th>Amount in band</th><th>Charged</th></tr></thead>
@@ -250,7 +252,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:22px;">$100,000 in other states</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="$100,000 in other states (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
@@ -260,7 +262,7 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Each place on its own default assumptions — single filer, standard deduction. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on $100,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What a pay rise is worth on $100,000 (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
@@ -276,18 +278,18 @@
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (34% here), so you keep less of it than of your salary overall.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">More on $100,000</h2>
       <p class="salary-links"><a href="/mortgage-affordability/us/100000/">How much house can I afford on $100,000?</a> <a href="/salary/us/north-carolina/50-an-hour-after-tax/">$50 an hour after tax ($104,000 a year)</a> <a href="/biweekly-pay-schedule/">Biweekly pay schedule and 3-paycheck months</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How $100,000 after tax is worked out</h2>
       <p class="about-text"><strong>Federal income tax: $13,170.00.</strong> </p>
       <p class="about-text"><strong>Social Security: $6,200.00.</strong> 6.2% of wages up to the 2026 wage base of $184,500.</p>
       <p class="about-text"><strong>Medicare: $1,450.00.</strong> </p>
       <p class="about-text"><strong>Additional Medicare tax: $0.00.</strong> 0.9% on wages above $200,000 ($250,000 married filing jointly). Employers withhold it from $200,000 whatever the status; the threshold here is the liability.</p>
       <p class="about-text"><strong>North Carolina income tax: $3,481.28.</strong> 3.99% in 2026, after a standard deduction of $12,750 ($25,500 married).</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is $100,000 after tax in North Carolina?</h3>
       <p class="about-text">A $100,000 salary in North Carolina leaves $75,698.73 a year after federal and state taxes and payroll deductions, which is $6,308.23 a month or about $1,455.74 a week. The deductions are federal income tax $13,170.00, Social Security $6,200.00, Medicare $1,450.00, North Carolina income tax $3,481.28 — $24,301.28 in all, or 24.3% of the gross. That is for single.</p>
@@ -305,9 +307,9 @@
       <p class="about-text">Pre-tax 401(k), HSA and health insurance contributions; Tax credits, including the child tax credit and earned income credit; Itemized deductions, including state and local taxes (SALT) — high earners in high-tax states may pay less federal tax by itemizing; The deductions for tips, overtime, car loan interest and seniors introduced for 2025–2028; Alternative minimum tax; Head of household, married filing separately and qualifying surviving spouse; Roth 401(k) (after-tax), HSA and FSA contributions; State child and dependent credits.</p>
       <h3 class="faq-q">How accurate are these North Carolina figures?</h3>
       <p class="about-text">They apply the 2026 rates and thresholds to a $100,000 salary for single. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026</strong> tax year, which runs from 1 January 2026 to 31 December 2026. The rates have not yet been checked by a person against the official sources — <a href="https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -316,7 +318,7 @@
       <ul class="about-list"><li>Pre-tax 401(k), HSA and health insurance contributions</li><li>Tax credits, including the child tax credit and earned income credit</li><li>Itemized deductions, including state and local taxes (SALT) — high earners in high-tax states may pay less federal tax by itemizing</li><li>The deductions for tips, overtime, car loan interest and seniors introduced for 2025–2028</li><li>Alternative minimum tax</li><li>Head of household, married filing separately and qualifying surviving spouse</li><li>Roth 401(k) (after-tax), HSA and FSA contributions</li><li>State child and dependent credits</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://www.irs.gov/pub/irs-drop/rp-25-32.pdf" rel="nofollow noopener" target="_blank">IRS Rev. Proc. 2025-32 — 2026 inflation adjustments (brackets, standard deduction)</a></li><li><a href="https://www.ssa.gov/oact/cola/cbb.html" rel="nofollow noopener" target="_blank">SSA — Contribution and benefit base</a></li><li><a href="https://www.law.cornell.edu/uscode/text/26/3101" rel="nofollow noopener" target="_blank">26 U.S.C. § 3101 — FICA rates, including the additional Medicare tax</a></li><li><a href="https://www.irs.gov/newsroom/401k-limit-increases-to-24500-for-2026-ira-limit-increases-to-7500" rel="nofollow noopener" target="_blank">401(k) limit increases to $24,500 for 2026 (IRS)</a></li><li><a href="https://www.irs.gov/credits-deductions/individuals/child-tax-credit" rel="nofollow noopener" target="_blank">Child Tax Credit (IRS)</a></li><li><a href="https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8" rel="nofollow noopener" target="_blank">2025 North Carolina Individual Income Tax Instructions</a></li><li><a href="https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules" rel="nofollow noopener" target="_blank">2025 North Carolina Tax Rate Schedule</a></li><li><a href="https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-standard-deduction-or-north-carolina-itemized-deductions" rel="nofollow noopener" target="_blank">2025 North Carolina Standard Deduction</a></li><li><a href="https://www.ncdor.gov/taxes-forms/tax-rate-schedules" rel="nofollow noopener" target="_blank">North Carolina Department of Revenue - Tax Rate Schedules</a></li><li><a href="https://www.ncdor.gov/2022-d-400-handwritten-version/open#page=2" rel="nofollow noopener" target="_blank">2022 North Carolina Form D-400, Line 15</a></li><li><a href="https://www.ncdor.gov/2023-d-400-handwritten-version/open#page=2" rel="nofollow noopener" target="_blank">2023 North Carolina Form D-400, Line 15</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in North Carolina</div>
     <div class="hub-grid">
@@ -372,6 +374,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -92,7 +92,7 @@ function tool(w, unit) {
 }
 
 function ukTable(hi) {
-  return site.table(["Weight", "Cooking time at 180°C", ""], KGS.map((k) => [k === hi ? `<strong>${n1(k)} kg</strong>` : `<a href="${BASE}${kgSlug(k)}/">${n1(k)} kg</a>`, esc(T.hm(T.ukMinutes(k))), `<span class="tool-hint">${n1(k / T.LB)} lb</span>`]), 360);
+  return site.table(["Weight", "Cooking time at 180°C", "In pounds"], KGS.map((k) => [k === hi ? `<strong>${n1(k)} kg</strong>` : `<a href="${BASE}${kgSlug(k)}/">${n1(k)} kg</a>`, esc(T.hm(T.ukMinutes(k))), `<span class="tool-hint">${n1(k / T.LB)} lb</span>`]), 360);
 }
 function usTable(hi) {
   const rows = T.US.unstuffed.map((r, i) => {
