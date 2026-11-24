@@ -64,7 +64,10 @@ const EVENTS = [
   { slug: "remembrance-sunday", name: "Remembrance Sunday", day: "Remembrance Sunday", date: nth(11, 0, 2), note: "Remembrance Sunday is the second Sunday in November." },
   { slug: "fourth-of-july", name: "the Fourth of July", day: "Independence Day (US)", date: fixed(7, 4), note: "US Independence Day is always 4 July." },
   { slug: "memorial-day", name: "Memorial Day", day: "Memorial Day (US)", date: last(5, 1), note: "Memorial Day is the last Monday in May." },
-  { slug: "labor-day", name: "Labor Day", day: "Labor Day (US)", date: nth(9, 1, 1), note: "US Labor Day is the first Monday in September." }
+  { slug: "labor-day", name: "Labor Day", day: "Labor Day (US)", date: nth(9, 1, 1), note: "US Labor Day is the first Monday in September." },
+  { slug: "self-assessment-deadline", name: "the Self Assessment deadline", day: "The Self Assessment deadline", date: fixed(1, 31),
+    note: "Online Self Assessment tax returns, and any tax owed, are due by 11:59pm on 31 January for the tax year that ended the April before. Paper returns are due by 31 October, and returns sent by 30 December can have the bill collected through your tax code. (GOV.UK, Self Assessment tax returns: deadlines.)",
+    extra: 'Work out what you owe with the <a href="/self-employed-tax-calculator/">self-employed tax calculator</a> and <a href="/payments-on-account-calculator/">payments on account calculator</a>; if you\'re late, the <a href="/self-assessment-penalty-calculator/">penalty calculator</a> shows the cost. The <a href="/guides/self-assessment-explained/">Self Assessment guide</a> covers every deadline.' }
 ];
 
 const iso = (d) => d.toISOString().slice(0, 10);

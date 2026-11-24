@@ -7,20 +7,79 @@
     "includes": "income tax and Class 4 National Insurance",
     "balancingAlsoIncludes": "capital gains tax and student loan repayments",
     "note": "'Each payment is half of the tax you owed last year. These payments are due by midnight on 31 January and 31 July. You must make these 2 payments, unless either: the amount of tax you owed last year was less than £1,000; last year you paid more than 80% of the tax you owed outside of Self Assessment.' The balancing payment 'will also include anything you owe for capital gains or student loans (if you're self-employed).'",
-    "source": { "title": "GOV.UK — Understand your Self Assessment tax bill: Payments on account", "url": "https://www.gov.uk/understand-self-assessment-bill/payments-on-account" }
+    "source": {
+      "title": "GOV.UK — Understand your Self Assessment tax bill: Payments on account",
+      "url": "https://www.gov.uk/understand-self-assessment-bill/payments-on-account"
+    }
   },
   "penalties": {
-    "filing": { "initial": 100, "dailyAfterMonths": 3, "daily": 10, "dailyMax": 900, "sixMonthPct": 5, "sixMonthMin": 300, "twelveMonthPct": 5, "twelveMonthMin": 300 },
-    "payment": { "pct": 5, "after": ["30 days", "6 months", "12 months"] },
+    "filing": {
+      "initial": 100,
+      "dailyAfterMonths": 3,
+      "daily": 10,
+      "dailyMax": 900,
+      "sixMonthPct": 5,
+      "sixMonthMin": 300,
+      "twelveMonthPct": 5,
+      "twelveMonthMin": 300
+    },
+    "payment": {
+      "pct": 5,
+      "after": [
+        "30 days",
+        "6 months",
+        "12 months"
+      ]
+    },
     "note": "Late filing: 'an initial £100 penalty'; 'after 3 months, additional daily penalties of £10 per day, up to a maximum of £900'; 'after 6 months, a further penalty of 5% of the tax due or £300, whichever is greater'; 'after 12 months, another 5% or £300 charge, whichever is greater'. Late payment: 'penalties of 5% of the tax unpaid at: 30 days, 6 months, 12 months'. 'You'll also be charged interest on the amount owed.'",
-    "source": { "title": "GOV.UK — Self Assessment tax returns: Penalties", "url": "https://www.gov.uk/self-assessment-tax-returns/penalties" }
+    "source": {
+      "title": "GOV.UK — Self Assessment tax returns: Penalties",
+      "url": "https://www.gov.uk/self-assessment-tax-returns/penalties"
+    }
   },
   "interest": {
     "latePaymentRate": 8.0,
     "from": "2026-11-24",
     "basis": "Bank of England base rate plus 4% (from 6 April 2025)",
     "note": "'late payment interest rate — 8.00% from 24 November 2026' (page updated 6 November 2026).",
-    "source": { "title": "GOV.UK — HMRC interest rates for late and early payments", "url": "https://www.gov.uk/government/publications/rates-and-allowances-hmrc-interest-rates-for-late-and-early-payments/rates-and-allowances-hmrc-interest-rates" }
+    "source": {
+      "title": "GOV.UK — HMRC interest rates for late and early payments",
+      "url": "https://www.gov.uk/government/publications/rates-and-allowances-hmrc-interest-rates-for-late-and-early-payments/rates-and-allowances-hmrc-interest-rates"
+    }
+  },
+  "deadlines": {
+    "register": "10-05",
+    "paper": "10-31",
+    "codingOut": "12-30",
+    "online": "01-31",
+    "payment": "01-31",
+    "secondPayment": "07-31",
+    "time": "11:59pm",
+    "mtd": {
+      "thresholds": [
+        [
+          "2024 to 2025",
+          50000
+        ],
+        [
+          "2025 to 2026",
+          30000
+        ],
+        [
+          "2026 to 2027",
+          20000
+        ]
+      ]
+    },
+    "note": "'You must tell HMRC by 5 October if you need to complete a tax return for the previous year'. 'HMRC must receive your paper tax return by 11:59pm on 31 October'. 'You must submit your online tax return by 11:59pm on 31 January ... If you want to pay your Self Assessment bill through your tax code, you must submit it by 11:59pm on 30 December'. 'You need to pay your Self Assessment tax by 11:59pm on 31 January ... There is a second payment deadline of 31 July if you make payments towards your bill'. Making Tax Digital for Income Tax applies to sole traders and landlords already registered for Self Assessment if their 'total self-employment and property income (before expenses are deducted): was over £50,000 for the 2024 to 2025 tax year may be over £30,000 for the 2025 to 2026 tax year may be over £20,000 for the 2026 to 2027 tax year'. Who must send a return includes sole traders who 'earned more than £1,000', partners, Capital Gains Tax to pay, the High Income Child Benefit Charge not paid through PAYE, and untaxed income such as rent, tips and commission, savings interest, dividends and foreign income.",
+    "source": {
+      "title": "GOV.UK — Self Assessment tax returns: deadlines",
+      "url": "https://www.gov.uk/self-assessment-tax-returns/deadlines"
+    },
+    "whoSource": {
+      "title": "GOV.UK — Self Assessment tax returns: who must send a tax return",
+      "url": "https://www.gov.uk/self-assessment-tax-returns/who-must-send-a-tax-return"
+    }
   },
   "lastChecked": "2026-11-24",
   "lastVerified": null

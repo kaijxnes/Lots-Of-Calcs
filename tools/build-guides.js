@@ -3,6 +3,7 @@
 
        /guides/                                  the list
        /guides/uk-income-tax/                    bands, allowance taper, NI, worked examples
+       /guides/self-assessment-explained/        who files, the deadlines, January bills, penalties
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
        /guides/matched-betting-explained/        lay stakes, qualifying bets, free bets
 
@@ -258,15 +259,66 @@ function betting() {
     foot: "Worked out with the same formulas as the lay bet calculator. Odds and commission are examples; exchanges charge different rates. 18+ only. A guide, not betting advice." };
 }
 
+/* ===================================================== Self Assessment */
+function selfAssessment() {
+  const SA = require("../self-assessment.js");
+  const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/self-assessment.json"), "utf8"));
+  const D = R.deadlines, f = R.penalties.filing, pay = R.penalties.payment, RATE = R.interest.latePaymentRate;
+  const TODAY = new Date(site.TODAY + "T00:00:00Z");
+  /* the next 31 January deadline, as on the Self Assessment calculators */
+  const Y = TODAY > SA.utc(TODAY.getUTCFullYear(), 0, 31) ? TODAY.getUTCFullYear() + 1 : TODAY.getUTCFullYear();
+  const ty = (end) => `${end - 1}/${String(end).slice(2)}`;
+  const YEAR = ty(Y - 1), NEXT = ty(Y);
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const on = (md, y) => { const [m, d] = md.split("-").map(Number); return `${d} ${MONTHS[m - 1]} ${y}`; };
+  const poa = SA.payments(R, 3000, 0, 1800, false);
+  const late = SA.penalties(R, 2000, SA.utc(Y, 0, 31), null, null, SA.utc(Y, 4, 31));
+  const src = (o) => `<a href="${o.url}" rel="nofollow noopener" target="_blank">${esc(o.title)}</a>`;
+
+  const body = section("who", "Who needs to send a return", p(`You need to send a Self Assessment tax return for the tax year that ended on 5 April if, for example, you were self-employed and earned more than £1,000, were a partner in a business partnership, have Capital Gains Tax to pay, or have to pay the <a href="/child-benefit-tax-charge-calculator/">High Income Child Benefit Charge</a> and don't pay it through PAYE. Untaxed income such as rent, tips and commission, savings interest, dividends or foreign income can mean a return too. GOV.UK has a checker if you're not sure.`)) +
+    section("deadlines", `The deadlines for the ${YEAR} return`, p(`The ${YEAR} tax year ran from 6 April ${Y - 2} to 5 April ${Y - 1}. Each deadline is at ${D.time}:`) +
+      site.table(["What", "Deadline"], [
+        ["Tell HMRC you need to send a return (if you haven't before)", on(D.register, Y - 1)],
+        ["Paper tax return", on(D.paper, Y - 1)],
+        ["Online return, to have the bill collected through your tax code", on(D.codingOut, Y - 1)],
+        ["<strong>Online tax return</strong>", `<strong>${on(D.online, Y)}</strong>`],
+        [`<strong>Pay the tax owed for ${YEAR}</strong> (and the first payment on account for ${NEXT})`, `<strong>${on(D.payment, Y)}</strong>`],
+        [`Second payment on account for ${NEXT}`, on(D.secondPayment, Y)]
+      ], 420) +
+      p(`If you register after 5 October, HMRC gives you a different deadline for the return (3 months from its letter), but the tax is still due by 31 January. The <a href="/days-until/self-assessment-deadline/">Self Assessment countdown</a> shows how long is left.`)) +
+    section("january", "What you pay in January", p(`The 31 January bill is usually two things: the <strong>balancing payment</strong> (what's left of last year's bill once your payments on account are taken off) and the <strong>first payment on account</strong> towards this year, which is half of last year's bill. On GOV.UK's example, a ${m0(3000)} bill with ${m0(1800)} already paid on account means ${m0(poa.balancing)} plus ${m0(poa.poa)}: <strong>${m0(poa.january)} by 31 January</strong> and ${m0(poa.july)} by 31 July.`) +
+      p(`You don't make payments on account if last year's bill was under ${m0(R.paymentsOnAccount.minBill)}, or if more than 80% of your tax was taken at source. The <a href="/payments-on-account-calculator/">payments on account calculator</a> works out your own figures, and the <a href="/self-employed-tax-calculator/">self-employed tax calculator</a> estimates the bill itself.`)) +
+    section("late", "Penalties and interest", p(`Miss the return deadline and there's a <strong>${m0(f.initial)}</strong> penalty straight away. After 3 months, ${m0(f.daily)} a day up to ${m0(f.dailyMax)}; after 6 months, ${f.sixMonthPct}% of the tax due or ${m0(f.sixMonthMin)}, whichever is more; after 12 months, the same again. Paying late adds ${pay.pct}% of the tax unpaid at 30 days, 6 months and 12 months, plus interest at HMRC's late payment rate, ${RATE}% a year at the moment.`) +
+      p(`So a return and ${m0(2000)} of tax both still outstanding at the end of May cost about ${m2(late.total)}: ${m2(late.filingTotal)} in filing penalties, ${m2(late.paymentTotal)} in payment penalties and ${m2(late.interest)} interest. The <a href="/self-assessment-penalty-calculator/">Self Assessment penalty calculator</a> works it out for your dates. If you had a reasonable excuse, you can appeal.`)) +
+    section("mtd", "Making Tax Digital", p(`Sole traders and landlords already registered for Self Assessment may need to keep digital records and send updates with Making Tax Digital for Income Tax software. GOV.UK says it applies if your self-employment and property income before expenses ${D.mtd.thresholds.map(([y, v], i) => `${i ? (i === D.mtd.thresholds.length - 1 ? "or may be over " : "may be over ") : "was over "}${m0(v)} for ${y}`).join(", ")}. Check GOV.UK for when it starts for you.`)) +
+    section("bill", "Working out the bill", p(`The return brings all your income together. For the pieces: <a href="/self-employed-tax-calculator/">self-employed tax and Class 4 National Insurance</a>, the <a href="/dividend-tax-calculator/">dividend tax calculator</a>, the <a href="/capital-gains-tax-calculator/">Capital Gains Tax calculator</a>, and the <a href="/child-benefit-tax-charge-calculator/">Child Benefit charge</a>. Higher rate taxpayers paying into a personal pension claim extra relief on the return: the <a href="/pension-tax-relief-calculator/">pension tax relief calculator</a> shows how much.`));
+
+  const q = [
+    [`When is the Self Assessment deadline for ${YEAR}?`, `${on(D.online, Y)} at ${D.time}, for both the online return and paying what you owe. Paper returns were due by ${on(D.paper, Y - 1)}.`],
+    ["What happens if I miss the Self Assessment deadline?", `A ${m0(f.initial)} late filing penalty straight away, then daily penalties after 3 months and more at 6 and 12 months. Paying late adds ${pay.pct}% penalties at 30 days, 6 months and 12 months, plus interest at ${RATE}%.`],
+    ["Why is my January tax bill so high?", "It usually includes the balancing payment for last year and the first payment on account for this year, half of last year's bill again. In your first year there are no payments on account to take off, so it can be half as much again as the year's tax."],
+    ["Can I pay my Self Assessment through my tax code?", `You may be able to, if you file your return online by ${on(D.codingOut, Y - 1)}. After that, you pay it another way.`],
+    ["When is the second payment on account due?", `${on(D.secondPayment, Y)}: the second half of your payments on account towards ${NEXT}.`]
+  ];
+  return { path: "/guides/self-assessment-explained/", crumb: "Self Assessment Explained", blurb: `Who needs a return, the ${YEAR} deadlines, what's due in January, and the penalties for being late.`,
+    title: site.fitTitle(`Self Assessment Explained ${Y} — Deadlines, Payments & Penalties`, `Self Assessment Deadlines ${Y} Explained`), modified: R.lastChecked,
+    desc: `Self Assessment for the ${YEAR} tax year: who needs to send a return, the deadlines up to ${on(D.online, Y)}, payments on account, and the penalties and interest for being late.`,
+    h1: `Self Assessment explained (${YEAR} return)`, sub: `Who needs to send a tax return, every deadline up to <strong>${on(D.online, Y)}</strong>, what you'll pay in January, and what being late costs.`,
+    sections: [["who", "Who needs to send a return"], ["deadlines", "The deadlines"], ["january", "What you pay in January"], ["late", "Penalties and interest"], ["mtd", "Making Tax Digital"], ["bill", "Working out the bill"]],
+    tools: [["/self-employed-tax-calculator/", "Self-employed tax"], ["/payments-on-account-calculator/", "Payments on account"], ["/self-assessment-penalty-calculator/", "Penalties"], ["/days-until/self-assessment-deadline/", "Countdown"]],
+    body, q, callouts: ["/payments-on-account-calculator/", "/self-assessment-penalty-calculator/", "/self-employed-tax-calculator/"],
+    foot: `Deadlines and rules from ${src(D.source)}, ${src(D.whoSource)} and the sources on the <a href="/self-assessment-penalty-calculator/">penalty calculator</a> (last checked ${site.niceDate(R.lastChecked)}). A guide, not tax advice.` };
+}
+
 /* ===================================================== build */
-const GUIDES = [incomeTax(), mortgage(), betting()];
+const GUIDES = [incomeTax(), selfAssessment(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
 GUIDES.forEach((g) => { site.write(g.path.replace(/^\/|\/$/g, ""), guidePage(g)); urls.push([g.path, "0.6"]); });
 
 const hubUrl = SITE + "/guides/";
-const hubDesc = "Plain-English guides to UK income tax, how mortgage interest works and the maths of matched betting, with worked examples and links to the calculators.";
+const hubDesc = "Plain-English guides to UK income tax, Self Assessment, how mortgage interest works and the maths of matched betting, with worked examples and links to the calculators.";
 site.write("guides", site.head({ title: "Guides — Tax, Mortgages and Betting Maths Explained", desc: hubDesc, url: hubUrl,
   ld: [site.webPage("Guides", hubDesc, hubUrl), site.breadcrumb([["Home", SITE + "/"], ["Guides", hubUrl]]),
     { "@context": "https://schema.org", "@type": "ItemList", numberOfItems: GUIDES.length, itemListElement: GUIDES.map((g, i) => ({ "@type": "ListItem", position: i + 1, name: g.h1, url: SITE + g.path })) }] }) + `    <header class="site-header">
@@ -287,11 +339,14 @@ ${site.FOOTER}
 `);
 urls.unshift(["/guides/", "0.5"]);
 
-/* the "read the guide" link on each calculator a guide explains */
-GUIDES.forEach((g) => g.callouts.forEach((u) => {
-  site.hubBlock(u, "guide link", "tools/build-guides.js", `    <p class="guide-callout">${icons.svg("book-open")}<span><a href="${g.path}">${esc(g.h1)}</a>: ${esc(g.blurb.charAt(0).toLowerCase() + g.blurb.slice(1))}</span></p>
-`);
-}));
+/* the "read the guide" link on each calculator a guide explains (one block
+   per page, so a page two guides explain links to both) */
+const callouts = new Map();
+GUIDES.forEach((g) => g.callouts.forEach((u) => { if (!callouts.has(u)) callouts.set(u, []); callouts.get(u).push(g); }));
+callouts.forEach((gs, u) => {
+  site.hubBlock(u, "guide link", "tools/build-guides.js", gs.map((g) => `    <p class="guide-callout">${icons.svg("book-open")}<span><a href="${g.path}">${esc(g.h1)}</a>: ${esc(g.blurb.charAt(0).toLowerCase() + g.blurb.slice(1))}</span></p>
+`).join(""));
+});
 
 site.sitemapBlock("guides", "tools/build-guides.js", urls);
-console.log(`built ${GUIDES.length} guides and the guide list; linked from ${GUIDES.reduce((a, g) => a + g.callouts.length, 0)} calculators`);
+console.log(`built ${GUIDES.length} guides and the guide list; linked from ${callouts.size} calculators`);

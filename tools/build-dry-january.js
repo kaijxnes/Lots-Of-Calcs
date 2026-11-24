@@ -12,7 +12,9 @@ const { esc, SITE } = site;
 function page() {
   const url = SITE + "/dry-january-calculator/";
   const w = D.week(D.DRINKS.map((d) => ({ key: d.key, per: d.per, price: d.price })));
-  const title = "Dry January Calculator — How Much Will I Save Giving Up Alcohol?";
+  /* the coming January: this one while it's January, otherwise next year's */
+  const now = new Date(site.TODAY + "T00:00:00Z"), jan = now.getUTCMonth() === 0 ? now.getUTCFullYear() : now.getUTCFullYear() + 1;
+  const title = site.fitTitle(`Dry January ${jan} Calculator — How Much Will I Save Giving Up Alcohol?`, `Dry January ${jan} Calculator — How Much Will I Save?`);
   const desc = `Work out the money, alcohol units and calories you save by not drinking in January — and over a year. Four pints and three glasses of wine a week costs about ${D.pounds(w.money * D.JAN_WEEKS)} in January.`;
   const unitRows = D.DRINKS.map((d) => [esc(d.name), D.n1(D.units(d)), D.n0(D.units(d) * D.KCAL_PER_UNIT)]);
   const q = [
