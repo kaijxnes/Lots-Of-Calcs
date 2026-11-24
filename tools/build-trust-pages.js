@@ -16,6 +16,41 @@ const tests = files.reduce((a, f) => a + (f.tests || []).length, 0);
 const countries = new Set(live.map((f) => f.country)).size;
 const n = (v) => v.toLocaleString("en-GB");
 
+/* what's checked or downloaded each month, with the date it last was: read
+   from the data files themselves, so the table can't claim a check that
+   didn't happen */
+const J = (p) => { try { return JSON.parse(fs.readFileSync(path.join(site.ROOT, p), "utf8")); } catch (e) { return {}; } };
+const readme = (p, re) => { try { return (fs.readFileSync(path.join(site.ROOT, p), "utf8").match(re) || [])[1] || null; } catch (e) { return null; } };
+const when = (d) => (d ? site.niceDate(d) : "not yet");
+const oldest = (ds) => ds.filter(Boolean).sort()[0] || null;
+const checkedTax = live.filter((f) => f.lastChecked).length;
+const taxDates = live.map((f) => f.lastChecked).filter(Boolean).sort();
+const energy = J("data/energy/uk.json"), fuel = J("data/fuel/uk.json"), ecb = J("data/currency/ecb.json");
+const a = (url, text) => `<a href="${url}" rel="nofollow noopener" target="_blank">${esc(text)}</a>`;
+const CHECKS = [
+  ["Income tax and social contributions", `${n(live.length)} tax files`, "Each country's tax authority (GOV.UK and HMRC, the IRS, the CRA and others)",
+    taxDates.length ? `${n(checkedTax)} of ${n(live.length)} so far, between ${when(taxDates[0])} and ${when(taxDates[taxDates.length - 1])}; the rest come up in turn` : "not yet", "/tax-rates/"],
+  ["UK dividend, capital gains, inheritance tax, employer NI and statutory pay", "", a("https://www.gov.uk/", "GOV.UK"), when(J("data/uk/rates-2026-27.json").lastChecked), "/dividend-tax-calculator/"],
+  ["Self Assessment penalties and HMRC interest", "", a("https://www.gov.uk/self-assessment-tax-returns/penalties", "GOV.UK"), when(J("data/uk/self-assessment.json").lastChecked), "/self-assessment-penalty-calculator/"],
+  ["Child Benefit and the High Income Child Benefit Charge", "", a("https://www.gov.uk/child-benefit-tax-charge", "GOV.UK"), when(J("data/uk/child-benefit.json").lastChecked), "/child-benefit-tax-charge-calculator/"],
+  ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
+  ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
+  ["Student loan interest and write-off", "", a("https://www.gov.uk/repaying-your-student-loan/what-you-pay", "GOV.UK"), when(J("data/student-loans/uk.json").lastChecked), "/student-loan-calculator/"],
+  ["Energy price cap", energy.period ? esc(energy.period.label || "") : "", energy.source ? a(energy.source.url, "Ofgem") : "Ofgem", when(energy.lastChecked), "/heating-cost/"],
+  ["Pump prices", fuel.week ? `week of ${when(fuel.week)}` : "", fuel.source ? a(fuel.source.url, "GOV.UK weekly road fuel prices") : "GOV.UK", when(fuel.lastChecked), "/fuel-cost/"],
+  ["Exchange rates", ecb.date ? `rates of ${when(ecb.date)}` : "", ecb.source ? a(ecb.source.url, "European Central Bank") : "European Central Bank", ecb.date ? "downloaded with the rates" : "not yet", "/currency/"],
+  ["Inflation (CPI, CPIH, RPI, US CPI)", "", "ONS and the US Bureau of Labor Statistics", when(readme("data/inflation/raw/README.md", /downloaded (\d{4}-\d{2}-\d{2})/)), "/inflation/"],
+  ["Bank holidays", "", a("https://www.gov.uk/bank-holidays", "GOV.UK"), when(readme("data/holidays/README.md", /downloaded (\d{4}-\d{2}-\d{2})/)), "/working-days/"]
+].map(([what, detail, who, date, href]) => [fs.existsSync(path.join(site.ROOT, href, "index.html")) ? `<a href="${href}">${esc(what)}</a>` : esc(what), (detail ? detail + " · " : "") + who, date]);
+
+/* the About page's calculator count follows the homepage's list */
+const homeCount = (fs.readFileSync(path.join(site.ROOT, "index.html"), "utf8").match(/"numberOfItems": (\d+)/) || [])[1];
+const aboutFile = path.join(site.ROOT, "about", "index.html");
+if (homeCount && fs.existsSync(aboutFile)) {
+  const before = fs.readFileSync(aboutFile, "utf8"), after = before.replace(/free collection of (<strong>)?\d+ calculators/, (m, b) => `free collection of ${b || ""}${homeCount} calculators`);
+  if (after !== before) fs.writeFileSync(aboutFile, after);
+}
+
 const url = SITE + "/how-we-check/";
 const title = "How We Check Our Figures — Sources, Testing and Updates";
 const desc = `Where Lots Of Calcs gets its tax rates and other figures, how they're checked every month against official sources, and the ${n(tests)} worked examples every change has to pass.`;
@@ -45,9 +80,15 @@ const html = site.head({ title, desc, url, ld }) + `    <header class="site-head
       <p class="about-text">Other figures that move — inflation, the energy price cap, fuel prices, exchange rates, bank holidays — are downloaded from their official publishers each month too. <a href="/tax-rates/">The tax rates page</a> shows when every country, state and province was last checked.</p>
     </main>
 
+    <main class="tool" id="checked">
+      <h2 class="tool-section-title">What's checked, and when</h2>
+      <p class="about-text">Everything the calculators rely on that can change, who publishes it, and when it was last checked or downloaded. These dates come from the data files the calculators read, so this table updates itself.</p>
+${site.table(["Figures", "Source", "Last checked"], CHECKS, 520)}    </main>
+
     <main class="tool">
       <h2 class="tool-section-title">Tested before anything goes live</h2>
       <p class="about-text">Every tax file carries worked examples: a salary, worked through by hand from the official rules, with the result it must produce. There are ${n(tests)} of them, and every change to the rates or the code has to reproduce all of them exactly before it's published. The same calculation code runs on the pages and in the tests, so what's tested is what you use.</p>
+      <p class="about-text">Where a publisher gives its own worked example, the calculator has to reproduce it before a page is built: GOV.UK's payments on account example, its higher rate pension relief example, and the Child Benefit charge's 1% for every £200, among others. If a rule changes so that an example no longer comes out, the page isn't published until it's fixed.</p>
     </main>
 
     <main class="tool">
