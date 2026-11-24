@@ -104,10 +104,19 @@ if (typeof module !== "undefined" && module.exports) {
         });
         body.appendChild(tr);
       });
+      /* the chart: what's still owed and the interest paid so far, year by year */
+      if (window.MiniChart) {
+        var owed = [loan], paidInt = [0], yrs = [0], cum = 0;
+        s.rows.forEach(function (row) { cum += row.interest; yrs.push(row.year); owed.push(row.balance); paidInt.push(cum); });
+        MiniChart.draw($("mc-chart"), { title: "Mortgage over the term", labels: yrs, money: function (v) { return money(v, 0); },
+          series: [{ name: "Still owed", values: owed, area: true }, { name: "Interest paid so far", values: paidInt }] });
+      }
     }
 
     ids.forEach(function (k) { $("mc-" + k).addEventListener("input", calculate); });
     $("mc-type").addEventListener("change", calculate);
     $("mc-currency").addEventListener("change", calculate);
+    /* once on load: the figures are already in the page, but the chart is drawn here */
+    calculate();
   })();
 }

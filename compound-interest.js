@@ -78,6 +78,16 @@ function calculate() {
     `;
     yearlyBody.appendChild(tr);
   });
+
+  /* the chart: the balance against what was paid in */
+  if (window.MiniChart) {
+    const whole = (v) => symbol + Math.round(v).toLocaleString("en-GB");
+    let inSoFar = principal;
+    const yrs = [0], bal = [principal], paidIn = [principal];
+    yearRows.forEach((r) => { inSoFar += r.contributed; yrs.push(r.year); bal.push(r.balance); paidIn.push(inSoFar); });
+    MiniChart.draw(document.getElementById("ci-chart"), { title: "Growth over time", labels: yrs, money: whole,
+      series: [{ name: "Balance", values: bal, area: true }, { name: "Paid in", values: paidIn }] });
+  }
 }
 
 document.querySelectorAll("input, select").forEach((el) => el.addEventListener("input", calculate));

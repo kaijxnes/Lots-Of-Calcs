@@ -114,6 +114,16 @@ function calculate() {
     `;
     amortBody.appendChild(tr);
   });
+
+  /* the chart: what's still owed and the interest paid so far */
+  if (window.MiniChart) {
+    const whole = (v) => document.getElementById("currency").value + Math.round(v).toLocaleString("en-GB");
+    let cum = 0;
+    const yrs = [0], owed = [amount], paid = [0];
+    yearRows.forEach((r) => { cum += r.interest; yrs.push(r.year); owed.push(r.balance); paid.push(cum); });
+    MiniChart.draw(document.getElementById("loan-chart"), { title: "Loan over the term", labels: yrs, money: whole,
+      series: [{ name: "Still owed", values: owed, area: true }, { name: "Interest paid so far", values: paid }] });
+  }
 }
 
 document.querySelectorAll("input, select").forEach((el) => el.addEventListener("input", calculate));
