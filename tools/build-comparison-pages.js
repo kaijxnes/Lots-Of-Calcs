@@ -87,7 +87,7 @@ ${site.faqHtml(q)}    </main>
 
     <main class="tool">
       <h2 class="tool-section-title">More comparisons</h2>
-      <p class="salary-links">${others.join(" ")}</p>
+      <p class="salary-links">${others.join(" ")} <a href="/salary-comparison/take-home-pay-by-country/">All 26 places ranked</a></p>
     </main>
 
 ${site.FOOTER}
@@ -104,6 +104,7 @@ site.sitemapBlock("salary comparison pages", "tools/build-comparison-pages.js", 
 /* links from the salary calculator */
 site.hubBlock("/salary/", "salary comparisons", "tools/build-comparison-pages.js", `    <main class="tool">
       <h2 class="tool-section-title">Take-home pay compared between countries</h2>
+      <p class="about-text">See all 26 places ranked side by side: <a href="/salary-comparison/take-home-pay-by-country/">take-home pay by country</a>.</p>
       <p class="salary-links">${PAIRS.map(([a, b]) => `<a href="${BASE}${slug(a, b)}/">${esc(LABEL[a][0])} vs ${esc(LABEL[b][0])}</a>`).join(" ")}</p>
     </main>
 

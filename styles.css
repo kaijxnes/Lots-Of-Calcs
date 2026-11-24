@@ -1900,3 +1900,12 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .hub-card:focus-vi
     margin-top: 0;
   }
 }
+
+/* ---------- Bar charts drawn as inline SVG (take-home pay by country) ---------- */
+.ch { width: 100%; height: auto; display: block; font-family: inherit; }
+.ch-label { fill: var(--text-main); font-size: 12px; }
+.ch-val { fill: var(--text-muted); font-size: 11px; font-weight: 700; }
+.ch-tick { fill: var(--text-muted); font-size: 10px; }
+.ch-grid { stroke: var(--border); stroke-width: 1; }
+.ch-bar { fill: var(--accent); opacity: 0.55; }
+.ch-bar.ch-hl { opacity: 1; }
