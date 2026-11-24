@@ -65,6 +65,7 @@ const SEASONAL = [
   ["/salary/", "Salary after tax", md(3, 20), md(4, 30), 1, "💷", "Take-home pay"],
   ["/tax-rates/", "This year's tax rates", md(3, 20), md(4, 30), 1, "🏛️", "Bands and allowances"],
   ["/pay-rise-calculator/", "Pay rise calculator", md(3, 20), md(4, 30), 2, "📈", "What you keep"],
+  ["/salary-sacrifice-calculator/", "Salary sacrifice", md(3, 1), md(4, 30), 2, "🐷", "Tax and NI saved"],
   ["/grade/", "Grade calculator", md(5, 1), md(6, 30), 2, "🎓", "Score to grade"],
   ["/degree-classification-calculator/", "Degree classification", md(5, 15), md(7, 31), 2, "🎓", "Your classification"],
   ["/days-until/fathers-day/", "Days until Father's Day", shift(fathersDay, -28), fathersDay, 1, "📆", null],
