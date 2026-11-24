@@ -152,7 +152,7 @@ function cards() {
     const name = section.slice(0, section.indexOf("<"));
     const more = section.match(/<a class="hub-card hub-more" href="([^"]+)"/);
     const category = { name: name, href: more ? more[1] : null };
-    const re = /<a class="hub-card" href="([^"]+)">\s*<span class="icon">([^<]*)<\/span>\s*<div class="title">([^<]*)<\/div>\s*<div class="desc">([^<]*)<\/div>/g;
+    const re = /<a class="hub-card" href="([^"]+)">\s*<span class="icon">((?:(?!<\/span>)[\s\S])*)<\/span>\s*<div class="title">([^<]*)<\/div>\s*<div class="desc">([^<]*)<\/div>/g;
     let m;
     while ((m = re.exec(section))) if (!out[m[1]]) out[m[1]] = { icon: m[2], title: m[3], desc: m[4], category: category };
   });
@@ -162,7 +162,7 @@ function cards() {
 function cardHtml(href, c) {
   const tag = tags.span(href);
   return `      <a class="hub-card" href="${href}">
-        <span class="icon">${c.icon}</span>
+        <span class="icon">${/^</.test(c.icon) ? c.icon : require("./lib/icons.js").inner(c.icon)}</span>
         <div class="title">${c.title}</div>
         <div class="desc">${c.desc}</div>${tag ? `\n        ${tag}` : ""}
       </a>

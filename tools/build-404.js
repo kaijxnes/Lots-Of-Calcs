@@ -18,7 +18,7 @@ function build() {
   const home = fs.readFileSync(path.join(site.ROOT, "index.html"), "utf8");
   const seen = new Set();
   const cards = [];
-  const re = /<a class="hub-card" href="([^"]+)">\s*<span class="icon">([^<]*)<\/span>\s*<div class="title">([^<]*)<\/div>\s*<div class="desc">([^<]*)<\/div>/g;
+  const re = /<a class="hub-card" href="([^"]+)">\s*<span class="icon">((?:(?!<\/span>)[\s\S])*)<\/span>\s*<div class="title">([^<]*)<\/div>\s*<div class="desc">([^<]*)<\/div>/g;
   let m;
   while ((m = re.exec(home))) {
     if (seen.has(m[1])) continue;
@@ -53,7 +53,7 @@ ${site.TOPBAR}    <header class="site-header">
     <main class="tool">
       <p class="about-text" id="nf-nearest" hidden></p>
       <div class="hub-search">
-        <span class="hub-search-icon" aria-hidden="true">🔍</span>
+        <span class="hub-search-icon" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="/icons.svg#search"></use></svg></span>
         <input type="search" id="nf-search" placeholder="Search calculators…" aria-label="Search calculators">
       </div>
       <h2 class="tool-section-title" id="nf-heading" style="margin-top:18px;">Popular calculators</h2>

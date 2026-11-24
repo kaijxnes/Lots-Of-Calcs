@@ -61,7 +61,7 @@
   var btn = document.createElement("button");
   btn.type = "button";
   btn.className = "btn btn-ghost share-btn";
-  btn.textContent = "🔗 Copy link";
+  btn.innerHTML = '<svg class="ico" aria-hidden="true"><use href="/icons.svg#link"></use></svg>Copy link';
   btn.title = "Copy a link to these numbers";
   btn.setAttribute("aria-label", "Copy a link to these numbers");
   var note = document.createElement("span");
@@ -83,7 +83,7 @@
     var pr = document.createElement("button");
     pr.type = "button";
     pr.className = "btn btn-ghost share-btn no-print";
-    pr.textContent = "🖨 Print";
+    pr.innerHTML = '<svg class="ico" aria-hidden="true"><use href="/icons.svg#printer"></use></svg>Print';
     pr.title = "Print or save as PDF";
     pr.setAttribute("aria-label", "Print or save as PDF");
     pr.addEventListener("click", function () { window.print(); });
@@ -102,7 +102,7 @@
     var sv = document.createElement("button");
     sv.type = "button";
     sv.className = "btn btn-ghost share-btn no-print";
-    sv.textContent = "☆ Save";
+    sv.innerHTML = '<svg class="ico" aria-hidden="true"><use href="/icons.svg#star"></use></svg>Save';
     sv.title = "Save these numbers on this device";
     sv.setAttribute("aria-label", "Save these numbers on this device");
     bar.insertBefore(sv, note);

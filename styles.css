@@ -1179,6 +1179,43 @@ hr.divider {
   font-size: 1.6rem;
   margin-bottom: 10px;
   display: block;
+  color: var(--accent-text);
+  line-height: 1;
+}
+
+/* Line icons from /icons.svg (tools/lib/icons.js) */
+.ico {
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  vertical-align: middle;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.hub-card .icon .ico,
+.cat-tile-icon .ico {
+  width: 26px;
+  height: 26px;
+}
+
+/* A country's two-letter code where its flag would be */
+.flag-code {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 34px;
+  height: 26px;
+  padding: 0 6px;
+  border: 1.5px solid currentColor;
+  border-radius: 7px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  line-height: 1;
 }
 
 .hub-card .title {
@@ -1321,6 +1358,7 @@ hr.divider {
 .cat-tile-icon {
   font-size: 1.6rem;
   line-height: 1;
+  color: var(--accent-text);
 }
 
 /* Two lines reserved for every name, so a one-word category and a
@@ -1803,6 +1841,7 @@ hr.divider {
 
 /* "Copy a link to these numbers", under each calculator */
 .share-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 18px 0 0; padding-top: 14px; border-top: 1px solid var(--border); }
+.share-bar .share-btn .ico { width: 15px; height: 15px; margin: -2px 5px 0 0; }
 .share-bar .share-btn { padding: 7px 13px; font-size: 0.85rem; font-weight: 600; border-radius: 999px; background: transparent; border: 1px solid var(--border); color: var(--text-muted); }
 .share-bar .share-btn:hover { background: var(--key-fn-bg); color: var(--text-main); }
 .share-note { flex-basis: 100%; font-size: 0.85rem; color: var(--text-muted); word-break: break-all; }

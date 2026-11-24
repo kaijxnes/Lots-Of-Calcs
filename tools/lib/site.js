@@ -159,7 +159,7 @@ function faqHtml(q) {
 
 function card(href, icon, title, desc) {
   return `      <a class="hub-card" href="${href}">
-        <span class="icon">${icon}</span>
+        <span class="icon">${/^</.test(icon) ? icon : require("./icons.js").inner(icon) || icon}</span>
         <div class="title">${esc(title)}</div>
         <div class="desc">${esc(desc)}</div>
       </a>
@@ -203,6 +203,7 @@ const written = new Set();
 
 /* rel is the page's directory relative to the site root, e.g. "salary/us" */
 function write(rel, html) {
+  html = require("./icons.js").convert(html, rel);
   const dir = path.join(ROOT, rel);
   const file = path.join(dir, "index.html");
   const loc = "/" + (rel ? rel.replace(/\/$/, "") + "/" : "");
