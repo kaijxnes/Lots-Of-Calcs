@@ -1,0 +1,19 @@
+{
+  "_note": "Child Benefit rates and the High Income Child Benefit Charge, for tools/build-child-benefit-pages.js. Each figure is quoted from the GOV.UK page in its source. Child Benefit rates change each April, so check them monthly.",
+  "rates": {
+    "eldest": 27.05,
+    "additional": 17.90,
+    "weeksInYear": 52,
+    "note": "'There are 2 Child Benefit rates. Eldest or only child £27.05 (weekly). Additional children £17.90 per child.' (GOV.UK, Child Benefit: What you'll get, as shown on 24 November 2026.)",
+    "source": { "title": "GOV.UK — Child Benefit: What you'll get", "url": "https://www.gov.uk/child-benefit/what-youll-get" }
+  },
+  "charge": {
+    "threshold": 60000,
+    "step": 200,
+    "full": 80000,
+    "note": "'An individual income is over the threshold if it's over £60,000 for tax years starting from 2024 to 2025.' 'You'll pay back 1% of your Child Benefit for every £200 you earn over £60,000. If you earn over £80,000 you'll pay it all back.' Income is 'adjusted net income': 'your total taxable income, which includes savings interest and dividends ... before any Personal Allowances and less certain tax reliefs, such as pension contributions and Gift Aid.' 'If your adjusted net income is over the threshold and so is your partner's, then whoever has the higher income is responsible for paying the tax charge.'",
+    "source": { "title": "GOV.UK — High Income Child Benefit Charge", "url": "https://www.gov.uk/child-benefit-tax-charge" }
+  },
+  "lastChecked": "2026-11-24",
+  "lastVerified": null
+}

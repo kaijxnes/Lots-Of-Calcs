@@ -50,6 +50,7 @@ const SEASONAL = [
   ["/self-employed-tax-calculator/", "Self-employed tax", md(12, 1), md(1, 31), 1, "🧾", "Tax and NI on profits"],
   ["/payments-on-account-calculator/", "Payments on account", md(1, 1), md(1, 31), 1, "📆", "Due 31 January and 31 July"],
   ["/self-assessment-penalty-calculator/", "Late tax return penalties", md(2, 1), md(3, 31), 1, "⏰", "Penalties and interest"],
+  ["/child-benefit-tax-charge-calculator/", "Child Benefit tax charge", md(1, 1), md(1, 31), 2, "👶", "Income over £60,000"],
   ["/dry-january-calculator/", "Dry January savings", md(12, 26), md(1, 31), 2, "🍷", "What you'll save"],
   ["/52-week-savings-challenge/", "52-week savings challenge", md(12, 26), md(1, 31), 2, "🐷", "Your savings chart"],
   ["/christmas-savings-calculator/", "Save for next Christmas", md(12, 26), md(2, 28), 2, "🎄", "Your weekly target"],
