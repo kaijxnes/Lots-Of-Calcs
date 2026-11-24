@@ -106,6 +106,7 @@ const FOOTER = `    <footer class="site-footer">
         <a href="/home-diy/">Home &amp; DIY</a>
         <a href="/betting-odds/">Betting &amp; Odds</a>
         <a href="/other/">Other</a>
+        <a href="/guides/">Guides</a>
       </p>
       <p>Built with plain HTML, CSS &amp; JavaScript — all calculations run locally in your browser.</p>
       <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
