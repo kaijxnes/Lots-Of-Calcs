@@ -179,6 +179,11 @@ body:has(> .page) {
   display: none;
 }
 
+/* ...so its top bar is just the name, centred */
+.hub .topbar {
+  justify-content: center;
+}
+
 @media (max-width: 420px) {
   .topbar-search input {
     width: 140px;
