@@ -92,6 +92,18 @@ function calculate() {
   document.getElementById("total-contributed").textContent = fmtMoney(totalContributed);
   document.getElementById("total-interest-earned").textContent = fmtMoney(totalInterest);
   document.getElementById("projected-balance").textContent = fmtMoney(projectedBalance);
+
+  /* the chart: savings growing to the goal, at the end of each year */
+  if (window.MiniChart) {
+    const whole = (v) => document.getElementById("currency").value + Math.round(v).toLocaleString("en-GB");
+    const at = (m) => current * Math.pow(1 + monthlyRate, m) + requiredContribution * (monthlyRate !== 0 ? (Math.pow(1 + monthlyRate, m) - 1) / monthlyRate : m);
+    const marks = [];
+    for (let m = 0; m < totalMonths; m += 12) marks.push(m);
+    marks.push(totalMonths);
+    const saved = marks.map((m) => current + requiredContribution * m);
+    MiniChart.draw(document.getElementById("sg-chart"), { title: "Savings growing to the goal", labels: marks.map((m) => Math.round(m / 12 * 10) / 10), money: whole, goal,
+      series: [{ name: "Savings", values: marks.map(at), area: true }, { name: "Paid in", values: saved }] });
+  }
 }
 
 document.querySelectorAll("input, select").forEach((el) => el.addEventListener("input", calculate));

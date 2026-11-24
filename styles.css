@@ -1909,3 +1909,23 @@ a:focus-visible, button:focus-visible, summary:focus-visible, .hub-card:focus-vi
 .ch-grid { stroke: var(--border); stroke-width: 1; }
 .ch-bar { fill: var(--accent); opacity: 0.55; }
 .ch-bar.ch-hl { opacity: 1; }
+
+/* ---------- Line charts on the money calculators (chart.js) ---------- */
+.mini-chart { margin: 18px 0 4px; }
+.mini-chart-svg { display: block; width: 100%; height: auto; aspect-ratio: 600 / 250; touch-action: pan-y; }
+.mini-chart-read { margin: 0 0 6px; min-height: 1.3em; color: var(--text-main); font-size: 0.85rem; font-weight: 600; }
+.mini-chart-legend { display: flex; flex-wrap: wrap; gap: 14px; margin: 6px 0 0; min-height: 1.3em; color: var(--text-muted); font-size: 0.8rem; }
+.mini-chart-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.mc-key { display: inline-block; width: 14px; height: 3px; border-radius: 2px; }
+.mc-grid { stroke: var(--border); stroke-width: 1; }
+.mc-tick { fill: var(--text-muted); font-size: 11px; }
+.mc-line { fill: none; stroke-width: 2.5; stroke-linejoin: round; }
+.mc-area { stroke: none; opacity: 0.14; }
+.mc-cursor { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 3 3; }
+.mc-dot { stroke: var(--calc-bg); stroke-width: 2; }
+.mc-goal { stroke: var(--text-muted); stroke-width: 1.5; stroke-dasharray: 6 5; }
+.mc-goal-key { background: var(--text-muted); }
+.mc-line.mc-s0, .mc-key.mc-s0 { stroke: var(--accent); background: var(--accent); }
+.mc-area.mc-s0, .mc-dot.mc-s0 { fill: var(--accent); }
+.mc-line.mc-s1, .mc-key.mc-s1 { stroke: var(--link); background: var(--link); }
+.mc-area.mc-s1, .mc-dot.mc-s1 { fill: var(--link); }

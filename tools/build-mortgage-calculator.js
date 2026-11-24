@@ -111,6 +111,7 @@ ${field("years", "Term (years)", D.years)}
         </div>
       </div>
 
+      <div class="mini-chart" id="mc-chart" aria-label="Mortgage balance and interest over the term"><p class="mini-chart-read">&nbsp;</p><svg class="mini-chart-svg" viewBox="0 0 600 250" aria-hidden="true"></svg><p class="mini-chart-legend">&nbsp;</p></div>
       <h2 class="tool-section-title" style="margin-top:22px;">Year by year</h2>
       <div class="table-scroll">
         <div style="min-width:420px;">
@@ -138,6 +139,7 @@ ${site.faqHtml(q)}    </main>
 ${related.block("/mortgage-calculator/")}
 ${site.FOOTER}
   </div>
+  <script src="/chart.js"></script>
   <script src="/mortgage-calculator.js"></script>
 </body>
 </html>
