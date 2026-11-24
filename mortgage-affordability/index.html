@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -136,17 +136,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/mortgages-loans/">Mortgages &amp; Loans</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Mortgage Affordability Calculator</span></nav>
       <h1 class="page-title">Mortgage affordability calculator</h1>
       <p class="page-subtitle">How much you could borrow, what home it buys, and what it costs each month.</p>
     </header>
 
-    <main class="tool" id="afford-tool">
+    <section class="tool" id="afford-tool">
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="uk">UK</button>
         <button class="tab" data-tab="us">US</button>
@@ -267,12 +269,12 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Rules of thumb, not a lender's decision: each lender sets its own limits and checks your credit history and spending.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How much can I borrow on my salary? (UK)</h2>
       <p class="about-text">At 4 to 4.5 times a single salary, with the repayment at 4.5% over 25 years on the higher figure and its share of take-home pay after income tax and National Insurance:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How much can I borrow on my salary? (UK) (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Salary</th><th>Borrowing (4x – 4.5x)</th><th>Repayment a month</th><th>Of take-home pay</th></tr></thead>
@@ -292,12 +294,12 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Take-home pay from the <a href="/salary/uk/">UK salary calculator</a> for 2026/27, with no pension or student loan. Add your deposit to the borrowing for the price of home it buys.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How much house can I afford? (US)</h2>
       <p class="about-text">The home price that fits the 28/36 rule with 20% down, at 6.5% over 30 years, 1.1% property tax and $1,800 a year insurance, with no other debts:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How much house can I afford? (US) (table)">
         <div style="min-width:400px;">
           <table class="out-table">
             <thead><tr><th>Household income</th><th>Home price</th><th>Monthly housing cost</th></tr></thead>
@@ -314,16 +316,16 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How lenders decide</h2>
       <p class="about-text"><strong>In the UK</strong>, lenders start from a multiple of income &mdash; usually 4 to 4.5 times, and up to 5 or 5.5 times for some higher earners &mdash; then run an affordability check on your spending, debts and dependants, and test whether you could still pay at a higher rate. The deposit sets your loan to value (LTV): the bigger the deposit, the lower the LTV and usually the better the rate, with steps at 60%, 75%, 85% and 90%.</p>
       <p class="about-text"><strong>In the US</strong>, lenders look at your debt-to-income ratio. The traditional guideline keeps housing costs to 28% of gross monthly income and all debts to 36%; many loan programmes allow higher. Putting down less than 20% usually means paying private mortgage insurance on top.</p>
       <p class="about-text">For the cost of a particular loan size, see <a href="/mortgage/">mortgage payments by amount</a>; to compare buying with carrying on renting, the <a href="/rent-vs-buy/">rent vs buy calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much can I borrow for a mortgage in the UK?</h3>
       <p class="about-text">Most lenders lend around 4 to 4.5 times your yearly income before tax, or your combined income for a joint mortgage, and some go to 5 or 5.5 times for higher earners or certain professions. On a £45,000 salary that is roughly £180,000 to £202,500. Lenders then check your spending, debts and whether you could still pay if rates rose, so the real figure can be lower.</p>
@@ -337,10 +339,10 @@
       <p class="about-text">Because income multiples are based on pay before tax, but you pay the mortgage out of what reaches your account. The take-home figure comes from this site's UK tax calculator, so a payment that looks fine as a multiple can be checked against what you'd actually have left.</p>
       <h3 class="faq-q">What is a stress test?</h3>
       <p class="about-text">Lenders check that you could still afford the mortgage if interest rates rose, usually by testing the payment at a higher rate than the one you're offered. The calculator shows the payment 3 percentage points above your rate so you can see the cushion you'd need.</p>
-    </main>
+    </section>
 
     <!-- borrowing pages: generated by tools/build-borrowing-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">By salary</h2>
       <p class="salary-links-title">UK: how much can I borrow on…</p>
       <p class="salary-links"><a href="/mortgage-affordability/uk/18000/">£18,000</a> <a href="/mortgage-affordability/uk/19000/">£19,000</a> <a href="/mortgage-affordability/uk/20000/">£20,000</a> <a href="/mortgage-affordability/uk/21000/">£21,000</a> <a href="/mortgage-affordability/uk/22000/">£22,000</a> <a href="/mortgage-affordability/uk/23000/">£23,000</a> <a href="/mortgage-affordability/uk/24000/">£24,000</a> <a href="/mortgage-affordability/uk/25000/">£25,000</a> <a href="/mortgage-affordability/uk/26000/">£26,000</a> <a href="/mortgage-affordability/uk/27000/">£27,000</a> <a href="/mortgage-affordability/uk/28000/">£28,000</a> <a href="/mortgage-affordability/uk/29000/">£29,000</a> <a href="/mortgage-affordability/uk/30000/">£30,000</a> <a href="/mortgage-affordability/uk/31000/">£31,000</a> <a href="/mortgage-affordability/uk/32000/">£32,000</a> <a href="/mortgage-affordability/uk/33000/">£33,000</a> <a href="/mortgage-affordability/uk/34000/">£34,000</a> <a href="/mortgage-affordability/uk/35000/">£35,000</a> <a href="/mortgage-affordability/uk/36000/">£36,000</a> <a href="/mortgage-affordability/uk/37000/">£37,000</a> <a href="/mortgage-affordability/uk/38000/">£38,000</a> <a href="/mortgage-affordability/uk/39000/">£39,000</a> <a href="/mortgage-affordability/uk/40000/">£40,000</a> <a href="/mortgage-affordability/uk/41000/">£41,000</a> <a href="/mortgage-affordability/uk/42000/">£42,000</a> <a href="/mortgage-affordability/uk/43000/">£43,000</a> <a href="/mortgage-affordability/uk/44000/">£44,000</a> <a href="/mortgage-affordability/uk/45000/">£45,000</a> <a href="/mortgage-affordability/uk/46000/">£46,000</a> <a href="/mortgage-affordability/uk/47000/">£47,000</a> <a href="/mortgage-affordability/uk/48000/">£48,000</a> <a href="/mortgage-affordability/uk/49000/">£49,000</a> <a href="/mortgage-affordability/uk/50000/">£50,000</a> <a href="/mortgage-affordability/uk/51000/">£51,000</a> <a href="/mortgage-affordability/uk/52000/">£52,000</a> <a href="/mortgage-affordability/uk/53000/">£53,000</a> <a href="/mortgage-affordability/uk/54000/">£54,000</a> <a href="/mortgage-affordability/uk/55000/">£55,000</a> <a href="/mortgage-affordability/uk/56000/">£56,000</a> <a href="/mortgage-affordability/uk/57000/">£57,000</a> <a href="/mortgage-affordability/uk/58000/">£58,000</a> <a href="/mortgage-affordability/uk/59000/">£59,000</a> <a href="/mortgage-affordability/uk/60000/">£60,000</a> <a href="/mortgage-affordability/uk/65000/">£65,000</a> <a href="/mortgage-affordability/uk/70000/">£70,000</a> <a href="/mortgage-affordability/uk/75000/">£75,000</a> <a href="/mortgage-affordability/uk/80000/">£80,000</a> <a href="/mortgage-affordability/uk/85000/">£85,000</a> <a href="/mortgage-affordability/uk/90000/">£90,000</a> <a href="/mortgage-affordability/uk/95000/">£95,000</a> <a href="/mortgage-affordability/uk/100000/">£100,000</a> <a href="/mortgage-affordability/uk/110000/">£110,000</a> <a href="/mortgage-affordability/uk/120000/">£120,000</a> <a href="/mortgage-affordability/uk/125000/">£125,000</a> <a href="/mortgage-affordability/uk/150000/">£150,000</a></p>
@@ -350,7 +352,7 @@
       <p class="salary-links"><a href="/mortgage-affordability/ireland/20000/">€20,000</a> <a href="/mortgage-affordability/ireland/21000/">€21,000</a> <a href="/mortgage-affordability/ireland/22000/">€22,000</a> <a href="/mortgage-affordability/ireland/23000/">€23,000</a> <a href="/mortgage-affordability/ireland/24000/">€24,000</a> <a href="/mortgage-affordability/ireland/25000/">€25,000</a> <a href="/mortgage-affordability/ireland/26000/">€26,000</a> <a href="/mortgage-affordability/ireland/27000/">€27,000</a> <a href="/mortgage-affordability/ireland/28000/">€28,000</a> <a href="/mortgage-affordability/ireland/29000/">€29,000</a> <a href="/mortgage-affordability/ireland/30000/">€30,000</a> <a href="/mortgage-affordability/ireland/31000/">€31,000</a> <a href="/mortgage-affordability/ireland/32000/">€32,000</a> <a href="/mortgage-affordability/ireland/33000/">€33,000</a> <a href="/mortgage-affordability/ireland/34000/">€34,000</a> <a href="/mortgage-affordability/ireland/35000/">€35,000</a> <a href="/mortgage-affordability/ireland/36000/">€36,000</a> <a href="/mortgage-affordability/ireland/37000/">€37,000</a> <a href="/mortgage-affordability/ireland/38000/">€38,000</a> <a href="/mortgage-affordability/ireland/39000/">€39,000</a> <a href="/mortgage-affordability/ireland/40000/">€40,000</a> <a href="/mortgage-affordability/ireland/41000/">€41,000</a> <a href="/mortgage-affordability/ireland/42000/">€42,000</a> <a href="/mortgage-affordability/ireland/43000/">€43,000</a> <a href="/mortgage-affordability/ireland/44000/">€44,000</a> <a href="/mortgage-affordability/ireland/45000/">€45,000</a> <a href="/mortgage-affordability/ireland/46000/">€46,000</a> <a href="/mortgage-affordability/ireland/47000/">€47,000</a> <a href="/mortgage-affordability/ireland/48000/">€48,000</a> <a href="/mortgage-affordability/ireland/49000/">€49,000</a> <a href="/mortgage-affordability/ireland/50000/">€50,000</a> <a href="/mortgage-affordability/ireland/51000/">€51,000</a> <a href="/mortgage-affordability/ireland/52000/">€52,000</a> <a href="/mortgage-affordability/ireland/53000/">€53,000</a> <a href="/mortgage-affordability/ireland/54000/">€54,000</a> <a href="/mortgage-affordability/ireland/55000/">€55,000</a> <a href="/mortgage-affordability/ireland/56000/">€56,000</a> <a href="/mortgage-affordability/ireland/57000/">€57,000</a> <a href="/mortgage-affordability/ireland/58000/">€58,000</a> <a href="/mortgage-affordability/ireland/59000/">€59,000</a> <a href="/mortgage-affordability/ireland/60000/">€60,000</a> <a href="/mortgage-affordability/ireland/65000/">€65,000</a> <a href="/mortgage-affordability/ireland/70000/">€70,000</a> <a href="/mortgage-affordability/ireland/75000/">€75,000</a> <a href="/mortgage-affordability/ireland/80000/">€80,000</a> <a href="/mortgage-affordability/ireland/85000/">€85,000</a> <a href="/mortgage-affordability/ireland/90000/">€90,000</a> <a href="/mortgage-affordability/ireland/95000/">€95,000</a> <a href="/mortgage-affordability/ireland/100000/">€100,000</a> <a href="/mortgage-affordability/ireland/110000/">€110,000</a> <a href="/mortgage-affordability/ireland/120000/">€120,000</a> <a href="/mortgage-affordability/ireland/130000/">€130,000</a> <a href="/mortgage-affordability/ireland/150000/">€150,000</a> <a href="/mortgage-affordability/ireland/200000/">€200,000</a></p>
       <p class="salary-links-title">France: how much can I borrow on…</p>
       <p class="salary-links"><a href="/mortgage-affordability/france/20000/">€20,000</a> <a href="/mortgage-affordability/france/21000/">€21,000</a> <a href="/mortgage-affordability/france/22000/">€22,000</a> <a href="/mortgage-affordability/france/23000/">€23,000</a> <a href="/mortgage-affordability/france/24000/">€24,000</a> <a href="/mortgage-affordability/france/25000/">€25,000</a> <a href="/mortgage-affordability/france/26000/">€26,000</a> <a href="/mortgage-affordability/france/27000/">€27,000</a> <a href="/mortgage-affordability/france/28000/">€28,000</a> <a href="/mortgage-affordability/france/29000/">€29,000</a> <a href="/mortgage-affordability/france/30000/">€30,000</a> <a href="/mortgage-affordability/france/31000/">€31,000</a> <a href="/mortgage-affordability/france/32000/">€32,000</a> <a href="/mortgage-affordability/france/33000/">€33,000</a> <a href="/mortgage-affordability/france/34000/">€34,000</a> <a href="/mortgage-affordability/france/35000/">€35,000</a> <a href="/mortgage-affordability/france/36000/">€36,000</a> <a href="/mortgage-affordability/france/37000/">€37,000</a> <a href="/mortgage-affordability/france/38000/">€38,000</a> <a href="/mortgage-affordability/france/39000/">€39,000</a> <a href="/mortgage-affordability/france/40000/">€40,000</a> <a href="/mortgage-affordability/france/41000/">€41,000</a> <a href="/mortgage-affordability/france/42000/">€42,000</a> <a href="/mortgage-affordability/france/43000/">€43,000</a> <a href="/mortgage-affordability/france/44000/">€44,000</a> <a href="/mortgage-affordability/france/45000/">€45,000</a> <a href="/mortgage-affordability/france/46000/">€46,000</a> <a href="/mortgage-affordability/france/47000/">€47,000</a> <a href="/mortgage-affordability/france/48000/">€48,000</a> <a href="/mortgage-affordability/france/49000/">€49,000</a> <a href="/mortgage-affordability/france/50000/">€50,000</a> <a href="/mortgage-affordability/france/51000/">€51,000</a> <a href="/mortgage-affordability/france/52000/">€52,000</a> <a href="/mortgage-affordability/france/53000/">€53,000</a> <a href="/mortgage-affordability/france/54000/">€54,000</a> <a href="/mortgage-affordability/france/55000/">€55,000</a> <a href="/mortgage-affordability/france/56000/">€56,000</a> <a href="/mortgage-affordability/france/57000/">€57,000</a> <a href="/mortgage-affordability/france/58000/">€58,000</a> <a href="/mortgage-affordability/france/59000/">€59,000</a> <a href="/mortgage-affordability/france/60000/">€60,000</a> <a href="/mortgage-affordability/france/65000/">€65,000</a> <a href="/mortgage-affordability/france/70000/">€70,000</a> <a href="/mortgage-affordability/france/75000/">€75,000</a> <a href="/mortgage-affordability/france/80000/">€80,000</a> <a href="/mortgage-affordability/france/85000/">€85,000</a> <a href="/mortgage-affordability/france/90000/">€90,000</a> <a href="/mortgage-affordability/france/95000/">€95,000</a> <a href="/mortgage-affordability/france/100000/">€100,000</a> <a href="/mortgage-affordability/france/110000/">€110,000</a> <a href="/mortgage-affordability/france/120000/">€120,000</a> <a href="/mortgage-affordability/france/130000/">€130,000</a> <a href="/mortgage-affordability/france/150000/">€150,000</a> <a href="/mortgage-affordability/france/200000/">€200,000</a></p>
-    </main>
+    </section>
 
     <!-- end borrowing pages -->
 
@@ -395,6 +397,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

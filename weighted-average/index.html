@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/business-analysis/">Business &amp; Analysis</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Weighted Average Calculator</span></nav>
       <h1 class="page-title">Weighted Average Calculator</h1>
       <p class="page-subtitle">Values and weights → the weighted average, with each row's contribution shown.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text" style="margin-bottom:18px;">A weighted average lets some values count for more than others. Enter your values and weights below, or <strong>paste a two-column block straight from Excel, Google Sheets or a CSV</strong> into any Value box and the rows will fill themselves in.</p>
 
       <h2 class="tool-section-title">Weights are</h2>
@@ -153,7 +155,7 @@
       <p class="tool-hint" id="norm-hint" style="margin-top:10px;">Weights are scaled so they add up to 1, which is what almost everyone means by a weighted average.</p>
 
       <h2 class="tool-section-title" style="margin-top:20px;">Values and weights</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Values and weights (table)">
         <div style="min-width:460px;">
           <div class="dyn-table-head">
             <span class="row-index">#</span>
@@ -185,7 +187,7 @@
       </div>
 
       <h2 class="tool-section-title" style="margin-top:20px;">Per-row breakdown</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Per-row breakdown (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead>
@@ -215,9 +217,9 @@
           <div class="result-row"><span class="r-label">Smallest / largest value</span><span class="r-value" id="minmax">—</span></div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">The weighted average multiplies each value by its weight, adds those products up, then divides by the total weight:</p>
       <p class="about-text"><strong>Weighted average = &Sigma;(value &times; weight) &divide; &Sigma;(weight)</strong></p>
@@ -237,9 +239,9 @@
       <h2 class="tool-section-title" style="margin-top:22px;">When averaging the averages misleads you</h2>
       <p class="about-text">Use a weighted average whenever the things you are averaging represent different amounts of something &mdash; different numbers of people, pounds, hours or units. The classic mistake is taking a plain mean of figures that are themselves averages: average the conversion rates of two campaigns and you treat a campaign with 50 visitors as equal to one with 50,000. Weight by the underlying volume and you get the real combined figure.</p>
       <p class="about-text">A plain mean is the right tool only when every item genuinely counts the same &mdash; and in that case the weighted average returns exactly the same answer anyway.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Do my weights have to add up to 100?</h3>
       <p class="about-text">No. With normalising on, the calculator divides by the total weight for you, so 3, 1, 1 gives the same answer as 60%, 20%, 20%. The only time it matters is in percentage mode, where a total well away from 100% usually means a row is missing or mistyped — so the tool flags it.</p>
@@ -253,7 +255,7 @@
       <p class="about-text">You get a clear message rather than a broken result. Dividing by a zero total weight is undefined, so the calculator stops and tells you instead of showing NaN or infinity.</p>
       <h3 class="faq-q">Which weighted standard deviation does this use?</h3>
       <p class="about-text">The reliability-weight version: the square root of Σw(value − mean)² ÷ Σw. It describes the spread of the values you entered around their weighted mean. It is not the frequency-weight form, which would assume each weight is a repeat count and apply a Bessel-style correction.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -292,6 +294,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

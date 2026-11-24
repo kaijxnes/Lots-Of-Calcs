@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -115,17 +115,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/ev-charging-cost/">EV Charging Cost Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Škoda Enyaq</span></nav>
       <h1 class="page-title">Škoda Enyaq charging cost</h1>
       <p class="page-subtitle">A full charge at home is about <strong>£23.10</strong> at the Oct–Dec 2026 price cap — 8.0p a mile.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="result-box">
         <div class="result-hero"><div class="value">£23.10</div><div class="label">0–100% at home, 26.32p per kWh</div></div>
         <hr class="divider">
@@ -138,11 +140,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;"><a href="/ev-charging-cost/?model=skoda-enyaq">Open the Škoda Enyaq in the calculator</a> to use your own tariff, charge level and charger, and compare with petrol.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Škoda Enyaq charging cost at different prices</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Škoda Enyaq charging cost at different prices (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Price per kWh</th><th>Full charge (0–100%)</th><th>10–80%</th><th>Per mile</th></tr></thead>
@@ -157,17 +159,17 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Prices other than the price cap are examples: overnight EV tariffs are often well under 10p, while public rapid chargers can be 70p or more. Home charging assumes 10% lost in charging, rapid (50p and up) 5%.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it's worked out</h2>
       <p class="about-text"><strong>The battery:</strong> the Škoda Enyaq 85 84 kWh (MY27) has 79 kWh of usable capacity. Some energy is lost as heat while charging, so filling it from empty draws about 87.8 kWh from the grid at home.</p>
       <p class="about-text"><strong>The price:</strong> 87.8 kWh × 26.32p, the Ofgem price cap unit rate for 1 October to 31 December 2026 (Direct Debit, average for England, Scotland and Wales; no VAT on electricity from 1 October 2026 to 31 March 2027), is £23.10. Your tariff may be different; the table shows other prices.</p>
       <p class="about-text"><strong>Per mile:</strong> EV Database estimates 272 Wh a mile in real-world driving, so each mile takes 0.302 kWh from the grid, 8.0p at 26.32p.</p>
       <p class="tool-hint">Battery, range and consumption from <a href="https://ev-database.org/uk/car/3868/Skoda-Enyaq-85-84-kWh" rel="noopener">EV Database</a> (checked 2026-11-21); electricity price from <a href="https://www.ofgem.gov.uk/information-consumers/energy-advice-households/get-energy-price-cap-standing-charges-and-unit-rates-region" rel="noopener">Ofgem</a>, updated each quarter.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much does it cost to charge a Škoda Enyaq at home?</h3>
       <p class="about-text">About £23.10 from empty to full at the Oct–Dec 2026 price cap rate of 26.32p per kWh: 87.8 kWh from the grid to put 79 kWh into the battery, allowing for 10% lost in charging. On an overnight EV tariff at 7.5p it would be £6.58.</p>
@@ -179,11 +181,12 @@
       <p class="about-text">About 11h 52m from empty to full on a 7.4 kW home wallbox, or roughly 70% of that for a 10–80% top-up. A three-pin plug at around 2.3 kW takes about three times as long.</p>
       <h3 class="faq-q">How far does a Škoda Enyaq go on a full charge?</h3>
       <p class="about-text">373 miles on the official WLTP test, and about 290 miles in mixed real-world driving by EV Database's estimate. Cold weather and motorway speeds cut range most.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other cars</div>
     <p class="salary-links"><a href="/ev-charging-cost/audi-q4-e-tron/">Audi Q4 e-tron</a> <a href="/ev-charging-cost/bmw-i4/">BMW i4</a> <a href="/ev-charging-cost/bmw-ix1/">BMW iX1</a> <a href="/ev-charging-cost/byd-atto-3/">BYD Atto 3</a> <a href="/ev-charging-cost/byd-dolphin-surf/">BYD Dolphin Surf</a> <a href="/ev-charging-cost/byd-seal/">BYD Seal</a> <a href="/ev-charging-cost/byd-sealion-7/">BYD Sealion 7</a> <a href="/ev-charging-cost/citroen-e-c3/">Citroën ë-C3</a> <a href="/ev-charging-cost/cupra-born/">CUPRA Born</a> <a href="/ev-charging-cost/dacia-spring/">Dacia Spring</a> <a href="/ev-charging-cost/fiat-500e/">Fiat 500e</a> <a href="/ev-charging-cost/ford-explorer/">Ford Explorer</a> <a href="/ev-charging-cost/ford-puma-gen-e/">Ford Puma Gen-E</a> <a href="/ev-charging-cost/hyundai-inster/">Hyundai Inster</a> <a href="/ev-charging-cost/hyundai-ioniq-5/">Hyundai Ioniq 5</a> <a href="/ev-charging-cost/hyundai-ioniq-6/">Hyundai Ioniq 6</a> <a href="/ev-charging-cost/hyundai-kona-electric/">Hyundai Kona Electric</a> <a href="/ev-charging-cost/kia-ev3/">Kia EV3</a> <a href="/ev-charging-cost/kia-ev4/">Kia EV4</a> <a href="/ev-charging-cost/kia-ev5/">Kia EV5</a> <a href="/ev-charging-cost/kia-ev6/">Kia EV6</a> <a href="/ev-charging-cost/leapmotor-t03/">Leapmotor T03</a> <a href="/ev-charging-cost/mercedes-cla/">Mercedes-Benz CLA</a> <a href="/ev-charging-cost/mg-zs-ev/">MG ZS EV</a> <a href="/ev-charging-cost/mg4/">MG4</a> <a href="/ev-charging-cost/mini-countryman-e/">MINI Countryman E</a> <a href="/ev-charging-cost/nissan-leaf/">Nissan Leaf</a> <a href="/ev-charging-cost/nissan-leaf-75kwh/">Nissan Leaf 75 kWh</a> <a href="/ev-charging-cost/peugeot-e-2008/">Peugeot e-2008</a> <a href="/ev-charging-cost/polestar-2/">Polestar 2</a> <a href="/ev-charging-cost/renault-5/">Renault 5</a> <a href="/ev-charging-cost/renault-megane/">Renault Megane E-Tech</a> <a href="/ev-charging-cost/renault-scenic/">Renault Scenic E-Tech</a> <a href="/ev-charging-cost/skoda-elroq/">Škoda Elroq</a> <a href="/ev-charging-cost/skoda-epiq/">Škoda Epiq</a> <a href="/ev-charging-cost/tesla-model-3/">Tesla Model 3</a> <a href="/ev-charging-cost/tesla-model-y/">Tesla Model Y</a> <a href="/ev-charging-cost/toyota-bz4x/">Toyota bZ4X</a> <a href="/ev-charging-cost/volkswagen-id3/">Volkswagen ID.3</a> <a href="/ev-charging-cost/volkswagen-id4/">Volkswagen ID.4</a> <a href="/ev-charging-cost/volkswagen-id7/">Volkswagen ID.7</a> <a href="/ev-charging-cost/volvo-ex30/">Volvo EX30</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

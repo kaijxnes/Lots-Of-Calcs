@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -129,17 +129,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/italy/">Italy</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">€120,000 after tax</span></nav>
       <h1 class="page-title">€120,000 after tax in Italy</h1>
       <p class="page-subtitle">What a €120,000 salary leaves you in the 2026 tax year — Regional and municipal surcharges: Milan (Lombardy).</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="it" data-currency="EUR" data-gross="120000" data-mode="annual">
+    <section class="tool split" id="salary-tool" data-tax-id="it" data-currency="EUR" data-gross="120000" data-mode="annual">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">€66,906.36</div>
@@ -201,12 +203,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">A salary of <strong>€120,000</strong> in Italy leaves <strong>€66,906.36</strong> a year once income tax and social contributions are taken off &mdash; <strong>€5,575.53</strong> a month. The deductions come to €53,093.64, or 44.2% of the gross, and the next unit earned is taxed at 51%.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Regional surcharge (addizionale regionale), band by band</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Regional surcharge (addizionale regionale), band by band (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Band</th><th>Rate</th><th>Amount in band</th><th>Charged</th></tr></thead>
@@ -215,7 +217,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:22px;">€120,000 in other euro countries</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="€120,000 in other euro countries (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
@@ -225,7 +227,7 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Each place on its own default assumptions. Tax systems differ in what they count, so treat this as a rough guide to where the same pay goes further.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on €120,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What a pay rise is worth on €120,000 (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
@@ -239,18 +241,18 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (51% here), so you keep less of it than of your salary overall.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How €120,000 after tax is worked out</h2>
       <p class="about-text"><strong>Taxable income (reddito imponibile): €108,334.24.</strong> Pay less INPS and deductible pension fund contributions.</p>
       <p class="about-text"><strong>Social security (INPS): €11,665.76.</strong> 9.19%, plus 1% on pay above €56,224, on pay up to €122,295 (the ceiling for anyone who started contributing after 1995).</p>
       <p class="about-text"><strong>Income tax (IRPEF): €38,783.72.</strong> 23% up to €28,000, 33% to €50,000 (cut from 35% in 2026) and 43% above, less the tax credits.</p>
       <p class="about-text"><strong>Regional surcharge (addizionale regionale): €1,777.48.</strong> Lombardy: 1.23% to €15,000, 1.58% to €28,000, 1.72% to €50,000, 1.73% above.</p>
       <p class="about-text"><strong>Municipal surcharge (addizionale comunale): €866.67.</strong> Milan: 0.8% of all taxable income, with incomes up to €23,000 exempt.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is €120,000 after tax in Italy?</h3>
       <p class="about-text">A €120,000 salary in Italy leaves €66,906.36 a year after income tax and social contributions, which is €5,575.53 a month or about €1,286.66 a week. The deductions are Social security (INPS) €11,665.76, income tax (IRPEF) €38,783.72, regional surcharge (addizionale regionale) €1,777.48, municipal surcharge (addizionale comunale) €866.67 — €53,093.64 in all, or 44.2% of the gross. That is for Regional and municipal surcharges: Milan (Lombardy).</p>
@@ -264,9 +266,9 @@
       <p class="about-text">Surcharges for regions and cities other than Milan, which typically add 1.5–4% of taxable income (Rome's 2026 regional table could not be confirmed); Dependant tax credits and the single allowance for children (assegno unico); The supplementary payment (trattamento integrativo) of up to €1,200 for incomes up to €15,000; Severance pay accrual (TFR), which is not deducted from pay; Joint filing — Italy taxes each person separately; The extra deduction for workers in their first job (contributions below the limit in the first five years).</p>
       <h3 class="faq-q">How accurate are these Italy figures?</h3>
       <p class="about-text">They apply the 2026 rates and thresholds to a €120,000 salary for Regional and municipal surcharges: Milan (Lombardy). The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026</strong> tax year, which runs from 1 January 2026 to 31 December 2026. The rates have not yet been checked by a person against the official sources — <a href="https://www.agenziaentrate.gov.it/portale/web/guest/schede/agevolazioni/detrazioni-per-lavoro-dipendente" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -277,7 +279,7 @@
       <ul class="about-list"><li>Lombardy's regional bands and Milan's 0.8% with a €23,000 exemption come from secondary sources that broadly agree; Lombardy's top rate is given as 1.73% or 1.74%</li><li>The €5,300 pension limit is taken from several agreeing secondary sources citing L. 199/2025; the Gazzetta Ufficiale text was not read directly</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917" rel="nofollow noopener" target="_blank">TUIR art. 11 (aliquote) and art. 13 (detrazioni), as amended by Legge 199/2025</a></li><li><a href="https://www.gazzettaufficiale.it/" rel="nofollow noopener" target="_blank">Legge 30 dicembre 2025 n. 199 (Legge di Bilancio 2026)</a></li><li><a href="https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf" rel="nofollow noopener" target="_blank">INPS circolare n. 6 del 30 gennaio 2026 — minimali, massimali, prima fascia</a></li><li><a href="https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php" rel="nofollow noopener" target="_blank">MEF — addizionali regionali e comunali</a></li><li><a href="https://www.gazzettaufficiale.it/eli/id/2025/12/30/25G00212/sg" rel="nofollow noopener" target="_blank">Legge 30 dicembre 2025, n. 199 (Budget Law 2026), art. 1 para. 201: pension contribution limit €5,300</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in Italy</div>
     <div class="hub-grid">
@@ -333,6 +335,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

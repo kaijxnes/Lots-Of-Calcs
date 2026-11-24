@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -105,17 +105,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/personal-finance/">Personal Finance</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Currency Converter</span></nav>
       <h1 class="page-title">Currency converter</h1>
       <p class="page-subtitle">30 currencies at the European Central Bank's reference rates for 20 November 2026.</p>
     </header>
 
-    <main class="tool" id="fx-tool" data-rates="{&quot;EUR&quot;:[1,&quot;€&quot;,2],&quot;USD&quot;:[1.099,&quot;$&quot;,2],&quot;JPY&quot;:[174.35,&quot;¥&quot;,0],&quot;CZK&quot;:[24.469,&quot;Kč &quot;,2],&quot;DKK&quot;:[7.4746,&quot;kr &quot;,2],&quot;GBP&quot;:[0.83735,&quot;£&quot;,2],&quot;HUF&quot;:[373.55,&quot;Ft &quot;,0],&quot;PLN&quot;:[4.4583,&quot;zł &quot;,2],&quot;RON&quot;:[5.3493,&quot;lei &quot;,2],&quot;SEK&quot;:[11.2125,&quot;kr &quot;,2],&quot;CHF&quot;:[0.9223,&quot;CHF &quot;,2],&quot;ISK&quot;:[137.2,&quot;kr &quot;,0],&quot;NOK&quot;:[10.718,&quot;kr &quot;,2],&quot;TRY&quot;:[55.5788,&quot;₺&quot;,2],&quot;AUD&quot;:[1.6487,&quot;A$&quot;,2],&quot;BRL&quot;:[6.5259,&quot;R$&quot;,2],&quot;CAD&quot;:[1.5723,&quot;C$&quot;,2],&quot;CNY&quot;:[7.3388,&quot;¥&quot;,2],&quot;HKD&quot;:[8.615,&quot;HK$&quot;,2],&quot;IDR&quot;:[20071.37,&quot;Rp &quot;,0],&quot;ILS&quot;:[3.6737,&quot;₪&quot;,2],&quot;INR&quot;:[101.85,&quot;₹&quot;,2],&quot;KRW&quot;:[1472.04,&quot;₩&quot;,0],&quot;MXN&quot;:[20.9547,&quot;MX$&quot;,2],&quot;MYR&quot;:[4.5196,&quot;RM &quot;,2],&quot;NZD&quot;:[1.9968,&quot;NZ$&quot;,2],&quot;PHP&quot;:[70.091,&quot;₱&quot;,2],&quot;SGD&quot;:[1.416,&quot;S$&quot;,2],&quot;THB&quot;:[37.262,&quot;฿&quot;,2],&quot;ZAR&quot;:[19.1987,&quot;R &quot;,2]}">
+    <section class="tool" id="fx-tool" data-rates="{&quot;EUR&quot;:[1,&quot;€&quot;,2],&quot;USD&quot;:[1.099,&quot;$&quot;,2],&quot;JPY&quot;:[174.35,&quot;¥&quot;,0],&quot;CZK&quot;:[24.469,&quot;Kč &quot;,2],&quot;DKK&quot;:[7.4746,&quot;kr &quot;,2],&quot;GBP&quot;:[0.83735,&quot;£&quot;,2],&quot;HUF&quot;:[373.55,&quot;Ft &quot;,0],&quot;PLN&quot;:[4.4583,&quot;zł &quot;,2],&quot;RON&quot;:[5.3493,&quot;lei &quot;,2],&quot;SEK&quot;:[11.2125,&quot;kr &quot;,2],&quot;CHF&quot;:[0.9223,&quot;CHF &quot;,2],&quot;ISK&quot;:[137.2,&quot;kr &quot;,0],&quot;NOK&quot;:[10.718,&quot;kr &quot;,2],&quot;TRY&quot;:[55.5788,&quot;₺&quot;,2],&quot;AUD&quot;:[1.6487,&quot;A$&quot;,2],&quot;BRL&quot;:[6.5259,&quot;R$&quot;,2],&quot;CAD&quot;:[1.5723,&quot;C$&quot;,2],&quot;CNY&quot;:[7.3388,&quot;¥&quot;,2],&quot;HKD&quot;:[8.615,&quot;HK$&quot;,2],&quot;IDR&quot;:[20071.37,&quot;Rp &quot;,0],&quot;ILS&quot;:[3.6737,&quot;₪&quot;,2],&quot;INR&quot;:[101.85,&quot;₹&quot;,2],&quot;KRW&quot;:[1472.04,&quot;₩&quot;,0],&quot;MXN&quot;:[20.9547,&quot;MX$&quot;,2],&quot;MYR&quot;:[4.5196,&quot;RM &quot;,2],&quot;NZD&quot;:[1.9968,&quot;NZ$&quot;,2],&quot;PHP&quot;:[70.091,&quot;₱&quot;,2],&quot;SGD&quot;:[1.416,&quot;S$&quot;,2],&quot;THB&quot;:[37.262,&quot;฿&quot;,2],&quot;ZAR&quot;:[19.1987,&quot;R &quot;,2]}">
       <div class="field"><label for="fx-amount">Amount</label><input type="number" id="fx-amount" value="100" min="0" step="any" inputmode="decimal"></div>
       <div class="field-row">
         <div class="field"><label for="fx-from">From</label><select id="fx-from"><option value="EUR">EUR — euro</option><option value="USD">USD — US dollar</option><option value="JPY">JPY — Japanese yen</option><option value="CZK">CZK — Czech koruna</option><option value="DKK">DKK — Danish krone</option><option value="GBP" selected>GBP — pound</option><option value="HUF">HUF — Hungarian forint</option><option value="PLN">PLN — Polish złoty</option><option value="RON">RON — Romanian leu</option><option value="SEK">SEK — Swedish krona</option><option value="CHF">CHF — Swiss franc</option><option value="ISK">ISK — Icelandic króna</option><option value="NOK">NOK — Norwegian krone</option><option value="TRY">TRY — Turkish lira</option><option value="AUD">AUD — Australian dollar</option><option value="BRL">BRL — Brazilian real</option><option value="CAD">CAD — Canadian dollar</option><option value="CNY">CNY — Chinese yuan</option><option value="HKD">HKD — Hong Kong dollar</option><option value="IDR">IDR — Indonesian rupiah</option><option value="ILS">ILS — Israeli shekel</option><option value="INR">INR — Indian rupee</option><option value="KRW">KRW — South Korean won</option><option value="MXN">MXN — Mexican peso</option><option value="MYR">MYR — Malaysian ringgit</option><option value="NZD">NZD — New Zealand dollar</option><option value="PHP">PHP — Philippine peso</option><option value="SGD">SGD — Singapore dollar</option><option value="THB">THB — Thai baht</option><option value="ZAR">ZAR — South African rand</option></select></div>
@@ -126,14 +128,14 @@
         <div class="result-hero"><div class="value" id="fx-out">€119.42</div><div class="label" id="fx-rate">1 GBP = 1.1942 EUR</div></div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Mid-market reference rates from the <a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" rel="noopener">European Central Bank</a> for 20 November 2026, refreshed monthly. Banks and card providers add a margin.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">The pound against other currencies (20 November 2026)</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="The pound against other currencies (20 November 2026) (table)">
         <div style="min-width:360px;">
           <table class="out-table">
-            <thead><tr><th></th><th></th><th></th><th></th></tr></thead>
+            <thead><tr><td></td><td></td><td></td><td></td></tr></thead>
             <tbody>
 <tr><td>1 GBP</td><td>1.1942 EUR</td><td>1 EUR</td><td>0.83735 GBP</td></tr>
 <tr><td>1 GBP</td><td>1.3125 USD</td><td>1 USD</td><td>0.76192 GBP</td></tr>
@@ -168,15 +170,15 @@
       <p class="salary-links"><strong>GBP to THB:</strong> <a href="/currency/1-gbp-to-thb/">1</a> <a href="/currency/5-gbp-to-thb/">5</a> <a href="/currency/10-gbp-to-thb/">10</a> <a href="/currency/20-gbp-to-thb/">20</a> <a href="/currency/50-gbp-to-thb/">50</a> <a href="/currency/100-gbp-to-thb/">100</a> <a href="/currency/200-gbp-to-thb/">200</a> <a href="/currency/250-gbp-to-thb/">250</a> <a href="/currency/500-gbp-to-thb/">500</a> <a href="/currency/1000-gbp-to-thb/">1,000</a> <a href="/currency/2000-gbp-to-thb/">2,000</a> <a href="/currency/5000-gbp-to-thb/">5,000</a> <a href="/currency/10000-gbp-to-thb/">10,000</a></p>
       <p class="salary-links"><strong>USD to CAD:</strong> <a href="/currency/1-usd-to-cad/">1</a> <a href="/currency/5-usd-to-cad/">5</a> <a href="/currency/10-usd-to-cad/">10</a> <a href="/currency/20-usd-to-cad/">20</a> <a href="/currency/50-usd-to-cad/">50</a> <a href="/currency/100-usd-to-cad/">100</a> <a href="/currency/200-usd-to-cad/">200</a> <a href="/currency/250-usd-to-cad/">250</a> <a href="/currency/500-usd-to-cad/">500</a> <a href="/currency/1000-usd-to-cad/">1,000</a> <a href="/currency/2000-usd-to-cad/">2,000</a> <a href="/currency/5000-usd-to-cad/">5,000</a> <a href="/currency/10000-usd-to-cad/">10,000</a></p>
       <p class="salary-links"><strong>EUR to CHF:</strong> <a href="/currency/1-eur-to-chf/">1</a> <a href="/currency/5-eur-to-chf/">5</a> <a href="/currency/10-eur-to-chf/">10</a> <a href="/currency/20-eur-to-chf/">20</a> <a href="/currency/50-eur-to-chf/">50</a> <a href="/currency/100-eur-to-chf/">100</a> <a href="/currency/200-eur-to-chf/">200</a> <a href="/currency/250-eur-to-chf/">250</a> <a href="/currency/500-eur-to-chf/">500</a> <a href="/currency/1000-eur-to-chf/">1,000</a> <a href="/currency/2000-eur-to-chf/">2,000</a> <a href="/currency/5000-eur-to-chf/">5,000</a> <a href="/currency/10000-eur-to-chf/">10,000</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Where do these exchange rates come from?</h3>
       <p class="about-text">The European Central Bank's euro reference rates, published every working day; these are for 20 November 2026. Cross rates (such as pounds to dollars) are worked out through the euro.</p>
       <h3 class="faq-q">Why is my bank's rate different?</h3>
       <p class="about-text">Reference rates are mid-market rates without any margin. Banks, card providers and bureaux de change add a margin or a fee, so compare the amount you'll actually receive.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -214,6 +216,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

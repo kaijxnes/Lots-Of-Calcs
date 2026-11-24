@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -135,26 +135,28 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/guides/">Guides</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">UK Income Tax Explained</span></nav>
       <h1 class="page-title">UK income tax explained (2026/27)</h1>
       <p class="page-subtitle">How the bands, the personal allowance and National Insurance turn a salary into take-home pay, with worked figures for the 2026/27 tax year.</p>
     </header>
 
-    <main class="tool guide">
+    <section class="tool guide">
       <p class="guide-toc-label">In this guide</p>
       <ol class="guide-toc"><li><a href="#bands">Income tax bands</a></li><li><a href="#allowance">The allowance taper and the 60% band</a></li><li><a href="#ni">National Insurance</a></li><li><a href="#examples">Take-home pay at different salaries</a></li><li><a href="#scotland">Scotland</a></li><li><a href="#other">Other things that change your tax</a></li></ol>
       <p class="guide-tools">Calculators: <a href="/salary/">Salary calculator</a> · <a href="/tax-rates/">Tax rates</a> · <a href="/pay-rise-calculator/">Pay rise</a> · <a href="/self-employed-tax-calculator/">Self-employed tax</a></p>
-    </main>
+    </section>
 
-    <main class="tool" id="bands">
+    <section class="tool" id="bands">
       <h2 class="tool-section-title">Income tax bands for 2026/27</h2>
       <p class="about-text">In England, Wales and Northern Ireland, the first <strong>£12,570</strong> of your income each tax year is tax-free: that's the personal allowance. Income above it is taxed in bands, and each rate applies only to the slice of income inside its band, not to everything you earn. The 2026/27 tax year runs from 6 April 2026 to 5 April 2027.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Income tax bands for 2026/27 (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Band</th><th>Rate</th><th>Income (with the full personal allowance)</th></tr></thead>
@@ -168,21 +170,21 @@
         </div>
       </div>
       <p class="about-text">So on <a href="/salary/50000-after-tax/">£50,000</a> you pay nothing on the first £12,570 and 20% on the remaining £37,430: £7,486 of income tax. Moving into the higher rate band doesn't change the tax on the income below it: only the pounds above £50,270 are taxed at 40%.</p>
-    </main>
-    <main class="tool" id="allowance">
+    </section>
+    <section class="tool" id="allowance">
       <h2 class="tool-section-title">The personal allowance taper and the 60% band</h2>
       <p class="about-text">Once your income goes over <strong>£100,000</strong>, the personal allowance shrinks by £1 for every £2 above it, so it's gone completely at <strong>£125,140</strong>. Each extra £100 in that range costs 40% tax on the £100 itself and another 40% on the £50 of allowance it takes away: an effective 60% income tax rate.</p>
       <p class="about-text">Add National Insurance and someone paid £110,000 keeps only about 38% of a pay rise: a marginal rate of <strong>62%</strong>, against 42% at £60,000 and 28% at £30,000. Pension contributions bring the income used for the taper down, which is why paying more into a pension is popular in this band; the <a href="/pay-rise-calculator/">pay rise calculator</a> shows what a rise is really worth.</p>
-    </main>
-    <main class="tool" id="ni">
+    </section>
+    <section class="tool" id="ni">
       <h2 class="tool-section-title">National Insurance</h2>
       <p class="about-text">Employees also pay Class 1 National Insurance on their pay: <strong>8%</strong> between £12,570 and £50,270 a year, and <strong>2%</strong> above that. It's worked out on pay before pension contributions (unless they're made by salary sacrifice), and per pay period rather than over the year. On £50,000 it comes to £2,994.</p>
       <p class="about-text">If you're self-employed you pay Class 4 National Insurance on your profits through Self Assessment instead: the <a href="/self-employed-tax-calculator/">self-employed tax calculator</a> works it out, and the <a href="/payments-on-account-calculator/">payments on account calculator</a> shows when it's due.</p>
-    </main>
-    <main class="tool" id="examples">
+    </section>
+    <section class="tool" id="examples">
       <h2 class="tool-section-title">Take-home pay at different salaries</h2>
       <p class="about-text">Income tax and National Insurance on a salary in 2026/27, with the standard tax code, no pension and no student loan:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Take-home pay at different salaries (table)">
         <div style="min-width:560px;">
           <table class="out-table">
             <thead><tr><th>Salary</th><th>Income tax</th><th>National Insurance</th><th>Take-home a year</th><th>A month</th><th>Deducted</th></tr></thead>
@@ -200,11 +202,11 @@
         </div>
       </div>
       <p class="about-text">On £30,000 you take home £25,120 a year, £2,093 a month. For your own salary, with a pension, student loan or another part of the UK, use the <a href="/salary/">salary calculator</a>; the <a href="/tax-rates/">tax rates page</a> lists every band and threshold.</p>
-    </main>
-    <main class="tool" id="scotland">
+    </section>
+    <section class="tool" id="scotland">
       <h2 class="tool-section-title">Scotland</h2>
       <p class="about-text">If you live in Scotland, income tax on your wages follows the Scottish bands instead (National Insurance and the personal allowance are the same across the UK). There are six rates:</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Scotland (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Band</th><th>Rate</th><th>Income (with the full personal allowance)</th></tr></thead>
@@ -220,14 +222,14 @@
         </div>
       </div>
       <p class="about-text">On £50,000 in Scotland the income tax comes to £8,982, against £7,486 in the rest of the UK. The <a href="/salary/scotland/">Scottish salary calculator</a> works out take-home pay with these bands.</p>
-    </main>
-    <main class="tool" id="other">
+    </section>
+    <section class="tool" id="other">
       <h2 class="tool-section-title">Other things that change your tax</h2>
       <p class="about-text"><strong>Pension contributions</strong> made by salary sacrifice or a net pay arrangement come off your pay before tax (salary sacrifice saves National Insurance too: see the <a href="/salary-sacrifice-calculator/">salary sacrifice calculator</a>); with relief at source, the pension provider adds the basic rate and higher rate taxpayers claim the rest back (the <a href="/pension-tax-relief-calculator/">pension tax relief calculator</a> works it out). <strong>Student loans</strong> take 9% of earnings above your plan's threshold (the <a href="/student-loan-calculator/">student loan calculator</a> shows how long repayments last). <strong>Dividends</strong> have their own rates and allowance: see the <a href="/dividend-tax-calculator/">dividend tax calculator</a>.</p>
       <p class="about-text">If you or your partner get Child Benefit and either of you earns over £60,000, the <a href="/child-benefit-tax-charge-calculator/">High Income Child Benefit Charge</a> takes some or all of it back.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What are the UK income tax bands for 2026/27?</h3>
       <p class="about-text">The personal allowance is £12,570. Then 20% basic rate up to £50,270, 40% higher rate up to £125,140 and 45% additional rate above that, for England, Wales and Northern Ireland. Scotland has its own six bands.</p>
@@ -240,9 +242,9 @@
       <h3 class="faq-q">How much National Insurance do employees pay?</h3>
       <p class="about-text">8% of pay between £12,570 and £50,270 a year, and 2% of pay above £50,270.</p>
       <p class="tool-hint" style="margin-top:12px;">Figures worked out from the 2026/27 rates the <a href="/salary/">salary calculator</a> uses, checked against <a href="https://www.gov.uk/income-tax-rates" rel="nofollow noopener" target="_blank">GOV.UK</a> (last checked 10 November 2026). A guide, not tax advice.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">More guides</h2>
       <div class="hub-grid">
       <a class="hub-card" href="/guides/how-mortgage-interest-works/">
@@ -256,8 +258,9 @@
         <div class="desc">How back and lay bets cancel out, the lay stake formulas, and what a free bet is really worth.</div>
       </a>
       </div>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -91,17 +91,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/heart-rate-zones/">Heart Rate Zones</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Age 40</span></nav>
       <h1 class="page-title">Target heart rate at 40</h1>
       <p class="page-subtitle">Estimated maximum <strong>180 bpm</strong> — moderate exercise 115–137 bpm, vigorous 139–167 bpm.</p>
     </header>
 
-    <main class="tool" id="hr-zones" data-hr='{"base":220,"moderate":[64,76],"vigorous":[77,93]}'>
+    <section class="tool" id="hr-zones" data-hr='{"base":220,"moderate":[64,76],"vigorous":[77,93]}'>
       <div class="field" style="max-width:200px;"><label for="hz-age">Age</label><input type="number" id="hz-age" value="40" min="1" max="110" step="1" inputmode="numeric"></div>
       <div class="result-box" aria-live="polite">
         <div class="result-grid">
@@ -111,21 +113,22 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Maximum heart rate estimated as 220 minus your age, with the CDC's target ranges. Some medicines, such as beta blockers, lower heart rate — ask your doctor what's right for you.</p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the maximum heart rate for a 40-year-old?</h3>
       <p class="about-text">About 180 beats a minute: 220 − 40 = 180.</p>
       <h3 class="faq-q">What is a good target heart rate at 40?</h3>
       <p class="about-text">115–137 bpm for moderate-intensity exercise (64–76% of maximum) and 139–167 bpm for vigorous (77–93%), using the CDC's ranges.</p>
       <p class="tool-hint" style="margin-top:12px;">An estimate for general information, not medical advice. Source: <a href="https://www.cdc.gov/physicalactivity/basics/measuring/heartrate.htm" rel="nofollow noopener" target="_blank">CDC — Target heart rate and estimated maximum heart rate</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Other ages</h2>
       <p class="salary-links"><a href="/heart-rate-zones/age-20/">Age 20</a> <a href="/heart-rate-zones/age-25/">Age 25</a> <a href="/heart-rate-zones/age-30/">Age 30</a> <a href="/heart-rate-zones/age-35/">Age 35</a> <a href="/heart-rate-zones/age-45/">Age 45</a> <a href="/heart-rate-zones/age-50/">Age 50</a> <a href="/heart-rate-zones/age-55/">Age 55</a> <a href="/heart-rate-zones/age-60/">Age 60</a> <a href="/heart-rate-zones/age-65/">Age 65</a> <a href="/heart-rate-zones/age-70/">Age 70</a> <a href="/heart-rate-zones/age-75/">Age 75</a> <a href="/heart-rate-zones/age-80/">Age 80</a></p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

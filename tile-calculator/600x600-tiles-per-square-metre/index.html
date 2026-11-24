@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -99,17 +99,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/tile-calculator/">Tile Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">600×600 tiles per m²</span></nav>
       <h1 class="page-title">600 × 600mm tiles per square metre</h1>
       <p class="page-subtitle"><strong>2.78 tiles</strong> cover one square metre.</p>
     </header>
 
-    <main class="tool" id="tl-tool">
+    <section class="tool" id="tl-tool">
       <div class="field-row">
         <div class="field"><label for="tl-l">Area length (m)</label><input type="number" id="tl-l" value="" min="0" step="any" inputmode="decimal" placeholder="or enter the area"></div>
         <div class="field"><label for="tl-wd">Area width (m)</label><input type="number" id="tl-wd" value="" min="0" step="any" inputmode="decimal"></div>
@@ -135,8 +137,8 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Tile sizes only, ignoring grout lines (which slightly reduce the number needed). The extra for cuts is a starting point you can change — more for diagonal layouts or lots of cutting.</p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How many 600×600 tiles in a square metre?</h3>
       <p class="about-text">2.78 tiles: one square metre is 1,000,000 mm², and each tile covers 600 × 600 = 360,000 mm², so 1,000,000 ÷ 360,000 = 2.78.</p>
@@ -144,13 +146,14 @@
       <p class="about-text">27.78 tiles before any extra — 31 with 10% added for cuts and breakages.</p>
       <h3 class="faq-q">Does grout change the number?</h3>
       <p class="about-text">Slightly — grout lines mean each tile covers a little more than its own size, so you need a few fewer. The figures here ignore them, which leaves a small margin.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Other tile sizes</h2>
       <p class="salary-links"><a href="/tile-calculator/100x100-tiles-per-square-metre/">100×100 tiles per m²</a> <a href="/tile-calculator/150x150-tiles-per-square-metre/">150×150 tiles per m²</a> <a href="/tile-calculator/200x200-tiles-per-square-metre/">200×200 tiles per m²</a> <a href="/tile-calculator/75x150-tiles-per-square-metre/">75×150 tiles per m²</a> <a href="/tile-calculator/100x200-tiles-per-square-metre/">100×200 tiles per m²</a> <a href="/tile-calculator/300x300-tiles-per-square-metre/">300×300 tiles per m²</a> <a href="/tile-calculator/250x400-tiles-per-square-metre/">250×400 tiles per m²</a> <a href="/tile-calculator/300x600-tiles-per-square-metre/">300×600 tiles per m²</a> <a href="/tile-calculator/400x400-tiles-per-square-metre/">400×400 tiles per m²</a> <a href="/tile-calculator/450x450-tiles-per-square-metre/">450×450 tiles per m²</a> <a href="/tile-calculator/800x800-tiles-per-square-metre/">800×800 tiles per m²</a> <a href="/tile-calculator/600x1200-tiles-per-square-metre/">600×1200 tiles per m²</a> <a href="/tile-calculator/200x1200-tiles-per-square-metre/">200×1200 tiles per m²</a></p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

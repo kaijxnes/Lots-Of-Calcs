@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -129,17 +129,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/">Salary after tax</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/salary/new-zealand/">New Zealand</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">$60,000 after tax</span></nav>
       <h1 class="page-title">$60,000 after tax in New Zealand</h1>
       <p class="page-subtitle">What a $60,000 salary leaves you in the 2026-27 tax year.</p>
     </header>
 
-    <main class="tool split" id="salary-tool" data-tax-id="nz" data-currency="NZD" data-gross="60000" data-mode="annual">
+    <section class="tool split" id="salary-tool" data-tax-id="nz" data-currency="NZD" data-gross="60000" data-mode="annual">
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" data-out="net">$49,249.50</div>
@@ -199,12 +201,12 @@
       </div>
       <p class="tool-hint" id="salary-note">Change the salary or the options and everything above updates.</p>
       <p class="tool-hint" id="rates-checked">2026-27 tax year · <a href="/tax-rates/">when every rate was last checked</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">A salary of <strong>$60,000</strong> in New Zealand leaves <strong>$49,249.50</strong> a year once income tax and social contributions are taken off &mdash; <strong>$4,104.13</strong> a month. The deductions come to $10,750.50, or 17.9% of the gross, and the next unit earned is taxed at 32%.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">What a pay rise is worth on $60,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="What a pay rise is worth on $60,000 (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>Rise</th><th>New salary</th><th>Extra a year</th><th>Extra a month</th><th>You keep</th></tr></thead>
@@ -220,16 +222,16 @@
       <p class="tool-hint" style="margin-top:12px;">After the same deductions as above. A rise is taxed at your marginal rate (32% here), so you keep less of it than of your salary overall.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">More on $60,000</h2>
       <p class="salary-links"><a href="/salary/new-zealand/28-an-hour-after-tax/">$28 an hour after tax ($58,240 a year)</a> <a href="/salary-comparison/uk-vs-new-zealand/">UK vs New Zealand take-home pay</a> <a href="/salary-comparison/australia-vs-new-zealand/">Australia vs New Zealand take-home pay</a></p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How $60,000 after tax is worked out</h2>
       <p class="about-text"><strong>Independent earner tax credit: $520.00.</strong> $520 a year for incomes from $24,000 to $66,000, falling by 13 cents per dollar to nothing at $70,000.</p>
       <p class="about-text"><strong>Income tax (PAYE): $9,700.50.</strong> 10.5% to $15,600, 17.5% to $53,500, 30% to $78,100, 33% to $180,000, 39% above.</p>
       <p class="about-text"><strong>ACC earners' levy: $1,050.00.</strong> 1.75% of earnings up to $156,641 in 2026–27.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much is $60,000 after tax in New Zealand?</h3>
       <p class="about-text">A $60,000 salary in New Zealand leaves $49,249.50 a year after income tax and social contributions, which is $4,104.13 a month or about $947.11 a week. The deductions are income tax (PAYE) $9,700.50, ACC earners' levy $1,050.00 — $10,750.50 in all, or 17.9% of the gross.</p>
@@ -243,9 +245,9 @@
       <p class="about-text">KiwiSaver contributions (employee default rate 3–4%); Student loan repayments (12% above the threshold); Secondary tax codes.</p>
       <h3 class="faq-q">How accurate are these New Zealand figures?</h3>
       <p class="about-text">They apply the 2026-27 rates and thresholds to a $60,000 salary. The rates come from published sources listed on this page but have not yet been checked by a person against the official tax authority, so confirm them before relying on them. Pensions, credits and deductions specific to you will change the result.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About these figures</h2>
       <p class="about-text">They use the <strong>2026-27</strong> tax year, which runs from 1 April 2026 to 31 March 2027. The rates have not yet been checked by a person against the official sources — <a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals" rel="nofollow noopener" target="_blank">check them here</a> before relying on them. This is an estimate, not a payslip. <a href="/tax-rates/">When every rate was last checked</a> · <a href="/how-we-check/">How we check our figures</a>.</p>
       <p class="about-text"><strong>Assumes:</strong></p>
@@ -256,7 +258,7 @@
       <ul class="about-list"><li>Figures are from secondary payroll and calculator sources that agree with each other; not checked against Inland Revenue or ACC directly</li></ul>
       <p class="about-text"><strong>Sources:</strong></p>
       <ul class="about-list"><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals" rel="nofollow noopener" target="_blank">Inland Revenue — Tax rates for individuals</a></li><li><a href="https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc" rel="nofollow noopener" target="_blank">Inland Revenue — Independent earner tax credit</a></li><li><a href="https://www.acc.co.nz/for-business/understanding-levies-if-you-work/" rel="nofollow noopener" target="_blank">ACC — Levy rates</a></li><li><a href="https://www.ird.govt.nz/updates/news-folder/2026/taxation-bill-now-in-effect" rel="nofollow noopener" target="_blank">KiwiSaver and student loan changes (Inland Revenue)</a></li></ul>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other salaries in New Zealand</div>
     <div class="hub-grid">
@@ -312,6 +314,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

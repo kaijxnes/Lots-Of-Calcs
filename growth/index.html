@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/business-analysis/">Business &amp; Analysis</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">YoY / MoM Growth Calculator</span></nav>
       <h1 class="page-title">YoY / MoM Growth Calculator</h1>
       <p class="page-subtitle">Enter a monthly series to get month-on-month change, year-on-year change (once 12+ months are entered), and cumulative growth.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="dyn-table-head">
         <span class="row-index">#</span>
         <span class="grow">Label</span>
@@ -152,7 +154,7 @@
         </div>
       </div>
 
-      <div class="table-scroll" style="margin-top:16px;">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1">
         <table class="out-table">
           <thead>
             <tr>
@@ -165,24 +167,24 @@
           <tbody id="out-body"></tbody>
         </table>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How each figure is worked out</h2>
       <p class="about-text"><strong>Month-on-month (MoM)</strong> compares each month with the one before: (this month &minus; last month) &divide; last month &times; 100.</p>
       <p class="about-text"><strong>Year-on-year (YoY)</strong> compares each month with the same month a year earlier &mdash; the entry 12 rows above it &mdash; so it appears from your 13th month onwards.</p>
       <p class="about-text"><strong>Cumulative growth</strong> is the total change from your first entry to your last.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Worked example</h2>
       <p class="about-text">A shop's sales were &pound;40,000 in November, &pound;58,000 in December and &pound;36,000 in January. Month-on-month, December is up (58,000 &minus; 40,000) &divide; 40,000 = <strong>45%</strong> and January is down (36,000 &minus; 58,000) &divide; 58,000 = <strong>&minus;37.9%</strong>.</p>
       <p class="about-text">That January fall looks alarming, but if the previous January was &pound;32,000, year-on-year January is up (36,000 &minus; 32,000) &divide; 32,000 = <strong>12.5%</strong>. The shop is growing; December is simply always busy. That is why seasonal businesses watch YoY.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Turning monthly growth into a yearly rate</h2>
       <p class="about-text">Monthly growth compounds, so 12 months of 3% growth is not 36% a year. Multiply 1.03 by itself 12 times and you get 1.426 &mdash; <strong>42.6%</strong> annual growth. Going the other way, 20% growth over a year is (1.20)<sup>1/12</sup> &minus; 1 = <strong>1.53%</strong> a month, not 1.67%.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Turning monthly growth into a yearly rate (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Steady monthly growth</th><th>Equivalent annual growth</th></tr></thead>
@@ -197,9 +199,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">For growth across several years, the <a href="/cagr/">CAGR calculator</a> gives the steady yearly rate between two values.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the difference between MoM and YoY growth?</h3>
       <p class="about-text">Month-on-month compares each figure to the previous month, so it reacts quickly but is noisy. Year-on-year compares it to the same month a year earlier, which strips out seasonal patterns and shows the underlying trend.</p>
@@ -213,7 +215,7 @@
       <p class="about-text">No &mdash; labels such as &ldquo;Jan 2026&rdquo; are only for your reference. The calculation uses the order of the rows, so enter one month per row, in date order, with no months missing.</p>
       <h3 class="faq-q">What if a month's value is zero?</h3>
       <p class="about-text">Growth from zero can't be expressed as a percentage, because it means dividing by zero, so that comparison shows a dash. Growth <em>to</em> zero is shown as &minus;100%.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -251,6 +253,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

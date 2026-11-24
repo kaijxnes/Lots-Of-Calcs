@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/other/">Other</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Time Zone Converter</span></nav>
       <h1 class="page-title">Time Zone Converter</h1>
       <p class="page-subtitle">Convert a date and time between two time zones, DST included.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="field">
         <label for="tz-datetime">Date &amp; time</label>
         <input type="datetime-local" id="tz-datetime">
@@ -163,16 +165,16 @@
           <div class="result-row"><span class="r-label">Difference</span><span class="r-value" id="tz-diff">—</span></div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How the conversion works</h2>
       <p class="about-text">Pick a date and time, the zone it's in and the zone you want. The calculator looks up each zone's offset from UTC for that exact moment &mdash; including whether daylight saving is in force there &mdash; and converts. It uses the time zone database built into your browser, the same one your phone and computer use to set their clocks.</p>
       <p class="about-text"><strong>Worked example:</strong> a call at 14:00 in London on 20 March 2026 is <strong>10:00 in New York</strong>. On 20 January it would be 09:00 in New York. The gap is usually five hours, but the US moves its clocks forward on 8 March 2026 and the UK not until 29 March, so for three weeks it is only four.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">When the clocks change</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="When the clocks change (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Where</th><th>Clocks go forward</th><th>Clocks go back</th></tr></thead>
@@ -187,14 +189,14 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Because the southern hemisphere's summer is the northern winter, London is 11 hours behind Sydney in January but 9 hours behind in July. Some places, including Arizona and Queensland, don't use daylight saving at all.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">GMT, BST, UTC &mdash; what's the difference?</h2>
       <p class="about-text"><strong>UTC</strong> (Coordinated Universal Time) is the reference every time zone is measured from, and never changes for daylight saving. <strong>GMT</strong> is the UK's winter time and is the same as UTC. <strong>BST</strong>, British Summer Time, is the UK's summer time, one hour ahead (UTC+1), from the last Sunday in March to the last Sunday in October.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Does this handle daylight saving time?</h3>
       <p class="about-text">Yes. The conversion uses your browser's time zone data, so daylight saving is applied automatically for the specific date you enter — which matters, since the offset between two zones changes across the year.</p>
@@ -208,13 +210,13 @@
       <p class="about-text">Convert a few candidate times and look for one inside working hours in both places. London and New York overlap best between about 13:00 and 17:00 UK time; London and Sydney have almost no overlap, so one side usually takes an early morning or evening call.</p>
       <h3 class="faq-q">Why does a time zone show something like GMT+5:30?</h3>
       <p class="about-text">Not every zone is a whole number of hours from UTC. India is 5 hours 30 minutes ahead, Nepal 5 hours 45 minutes, and parts of Australia half an hour off their neighbours. The calculator handles these offsets exactly.</p>
-    </main>
+    </section>
 
     <!-- timezone pages: generated by tools/build-timezone-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Popular time differences</h2>
       <p class="salary-links"><a href="/timezone/gmt-to-est/">GMT to EST</a> <a href="/timezone/est-to-gmt/">EST to GMT</a> <a href="/timezone/gmt-to-cst/">GMT to CST</a> <a href="/timezone/cst-to-gmt/">CST to GMT</a> <a href="/timezone/gmt-to-mst/">GMT to MST</a> <a href="/timezone/mst-to-gmt/">MST to GMT</a> <a href="/timezone/gmt-to-pst/">GMT to PST</a> <a href="/timezone/pst-to-gmt/">PST to GMT</a> <a href="/timezone/gmt-to-cet/">GMT to CET</a> <a href="/timezone/cet-to-gmt/">CET to GMT</a> <a href="/timezone/gmt-to-ist/">GMT to IST</a> <a href="/timezone/ist-to-gmt/">IST to GMT</a> <a href="/timezone/gmt-to-aest/">GMT to AEST</a> <a href="/timezone/aest-to-gmt/">AEST to GMT</a> <a href="/timezone/gmt-to-jst/">GMT to JST</a> <a href="/timezone/jst-to-gmt/">JST to GMT</a> <a href="/timezone/gmt-to-gst/">GMT to Dubai time</a> <a href="/timezone/gst-to-gmt/">Dubai time to GMT</a> <a href="/timezone/gmt-to-sgt/">GMT to Singapore time</a> <a href="/timezone/sgt-to-gmt/">Singapore time to GMT</a> <a href="/timezone/gmt-to-china/">GMT to China time</a> <a href="/timezone/china-to-gmt/">China time to GMT</a> <a href="/timezone/est-to-pst/">EST to PST</a> <a href="/timezone/pst-to-est/">PST to EST</a> <a href="/timezone/est-to-cst/">EST to CST</a> <a href="/timezone/cst-to-est/">CST to EST</a> <a href="/timezone/est-to-ist/">EST to IST</a> <a href="/timezone/ist-to-est/">IST to EST</a> <a href="/timezone/pst-to-ist/">PST to IST</a> <a href="/timezone/ist-to-pst/">IST to PST</a> <a href="/timezone/cet-to-ist/">CET to IST</a> <a href="/timezone/ist-to-cet/">IST to CET</a> <a href="/timezone/est-to-cet/">EST to CET</a> <a href="/timezone/cet-to-est/">CET to EST</a> <a href="/timezone/est-to-aest/">EST to AEST</a> <a href="/timezone/aest-to-est/">AEST to EST</a> <a href="/timezone/utc-to-est/">UTC to EST</a> <a href="/timezone/est-to-utc/">EST to UTC</a> <a href="/timezone/utc-to-pst/">UTC to PST</a> <a href="/timezone/pst-to-utc/">PST to UTC</a> <a href="/timezone/utc-to-ist/">UTC to IST</a> <a href="/timezone/ist-to-utc/">IST to UTC</a> <a href="/timezone/pst-to-cet/">PST to CET</a> <a href="/timezone/cet-to-pst/">CET to PST</a></p>
-    </main>
+    </section>
 
     <!-- end timezone pages -->
 
@@ -254,6 +256,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

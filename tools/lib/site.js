@@ -25,7 +25,7 @@ function niceDate(iso) {
 /* The bar at the top of every page: the site's name and a search box that
    opens the homepage search with the words already typed in */
 const TOPBAR = `    <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
 `;
@@ -204,7 +204,7 @@ const written = new Set();
 
 /* rel is the page's directory relative to the site root, e.g. "salary/us" */
 function write(rel, html) {
-  html = require("./assets.js").version(require("./crumbs.js").crumbs(require("./icons.js").convert(html, rel)));
+  html = require("./assets.js").version(require("./landmarks.js").landmarks(require("./crumbs.js").crumbs(require("./icons.js").convert(html, rel))));
   const dir = path.join(ROOT, rel);
   const file = path.join(dir, "index.html");
   const loc = "/" + (rel ? rel.replace(/\/$/, "") + "/" : "");

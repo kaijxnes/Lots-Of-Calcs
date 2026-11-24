@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -115,18 +115,20 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/odds-converter/">Odds Converter</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">14/1 odds</span></nav>
       <h1 class="page-title">14/1 odds (14 to 1) explained</h1>
       <p class="page-subtitle">14/1 means you win £14 for every £1 you stake. £10 at 14/1 makes £140.00 profit and returns £150.00 with your stake.</p>
     </header>
 
-    <main class="tool" id="op-tool" data-dec="15">
-      <div class="table-scroll">
+    <section class="tool" id="op-tool" data-dec="15">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>Format</th><th>14/1</th></tr></thead>
@@ -154,11 +156,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">To convert any other price, use the <a href="/odds-converter/">odds converter</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Returns at 14/1</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Returns at 14/1 (table)">
         <div style="min-width:260px;">
           <table class="out-table">
             <thead><tr><th>Stake</th><th>Profit</th><th>Total return</th></tr></thead>
@@ -175,7 +177,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:20px;">£10 each-way at 14/1 (£20 total)</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="£10 each-way at 14/1 (£20 total) (table)">
         <div style="min-width:290px;">
           <table class="out-table">
             <thead><tr><th>Terms</th><th>Places: return</th><th>Wins: return</th><th>Places: profit</th></tr></thead>
@@ -187,9 +189,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">The place part pays a fraction of the win odds: at 1/4 terms, 14/1 places at 4.50. If it wins, both parts pay. More in the <a href="/each-way/">each-way calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What does 14/1 (14 to 1) mean in betting?</h3>
       <p class="about-text">14/1 means you win £14 for every £1 you stake. £10 at 14/1 makes £140.00 profit and returns £150.00 with your stake. It's said &quot;fourteen to one&quot;.</p>
@@ -202,11 +204,12 @@
       <h3 class="faq-q">How much does a £10 each-way bet at 14/1 pay?</h3>
       <p class="about-text">£20 in total (£10 to win, £10 to place). If it wins at 1/4 place terms it returns £195.00; if it only places, £45.00.</p>
       <p class="tool-hint" style="margin-top:12px;">18+. Odds are a price, not a prediction — the bookmaker's margin is built in. If gambling stops being fun, <a href="https://www.begambleaware.org/" rel="noopener">BeGambleAware</a> offers free, confidential help.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Shorter and longer prices</div>
     <p class="salary-links"><a href="/odds-converter/8-1/">8/1</a> <a href="/odds-converter/9-1/">9/1</a> <a href="/odds-converter/10-1/">10/1</a> <a href="/odds-converter/11-1/">11/1</a> <a href="/odds-converter/12-1/">12/1</a> <a href="/odds-converter/16-1/">16/1</a> <a href="/odds-converter/18-1/">18/1</a> <a href="/odds-converter/20-1/">20/1</a> <a href="/odds-converter/25-1/">25/1</a> <a href="/odds-converter/28-1/">28/1</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

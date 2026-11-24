@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -120,17 +120,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs no-print" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/personal-finance/">Personal Finance</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Biweekly Pay Schedule</span></nav>
       <h1 class="page-title">Biweekly pay schedule</h1>
       <p class="page-subtitle">Enter one payday and see every payday in the year, the months with three paychecks, and whether you'll get 26 or 27.</p>
     </header>
 
-    <main class="tool" id="ps-tool">
+    <section class="tool" id="ps-tool">
       <div class="field-row">
         <div class="field"><label for="ps-payday">Any one of your paydays</label><input type="date" id="ps-payday" value=""></div>
         <div class="field"><label for="ps-year">Year</label><select id="ps-year"><option value="2026">2026</option><option value="2027" selected>2027</option><option value="2028">2028</option></select></div>
@@ -151,7 +153,7 @@
         </div>
       </div>
       <div class="no-print" style="margin:12px 0;"><button class="btn btn-ghost" id="ps-print" type="button"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=e437077b#printer"></use></svg> Print the schedule</button></div>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1">
         <div style="min-width:340px;">
           <table class="out-table">
             <thead><tr><th>Month</th><th>Paydays</th><th>Count</th></tr></thead>
@@ -173,13 +175,13 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">★ marks months with an extra paycheck. If a payday falls on a public holiday, many employers pay the working day before — the dates here are the regular schedule.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Biweekly pay schedules by year</h2>
       <p class="salary-links"><a href="/biweekly-pay-schedule/2026/">2026 pay schedule</a> <a href="/biweekly-pay-schedule/2027/">2027 pay schedule</a> <a href="/biweekly-pay-schedule/2028/">2028 pay schedule</a></p>
       <h2 class="tool-section-title" style="margin-top:18px;">Which years have 27 Friday paydays?</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Which years have 27 Friday paydays? (table)">
         <div style="min-width:340px;">
           <table class="out-table">
             <thead><tr><th>Year</th><th>First cycle</th><th>Second cycle</th></tr></thead>
@@ -201,9 +203,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Friday paydays, the two cycles being the first and second Friday of January. If your employer pays a fixed salary over 26 paychecks, a 27-paycheck year either adds an extra paycheck or spreads the salary thinner — ask your payroll team which.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">Which months have three paychecks in 2027?</h3>
       <p class="about-text">It depends on your pay cycle. Paid on Fridays starting Friday January 1, 2027, it's January, July and December; starting Friday January 8, 2027, it's April and October. Enter any of your paydays above for your own dates.</p>
@@ -213,7 +215,7 @@
       <p class="about-text">No. Biweekly is every two weeks — 26 paychecks a year, two most months and three in two of them. Twice a month (semi-monthly) is 24 paychecks on fixed dates, often the 15th and the last day of the month, so each paycheck is a bit larger.</p>
       <h3 class="faq-q">How should I budget with biweekly pay?</h3>
       <p class="about-text">Plan your monthly bills around two paychecks. The months with a third paycheck then give you an extra one to save, pay down debt or cover yearly costs, and the 50/30/20 budget calculator shows how to split the rest.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -252,6 +254,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

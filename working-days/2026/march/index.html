@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -113,21 +113,23 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/working-days/">Working Days</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/working-days/2026/">2026</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">March</span></nav>
       <h1 class="page-title">Working days in March 2026</h1>
       <p class="page-subtitle">22 working days in England and Wales — 31 days, less 9 at the weekend.</p>
     </header>
 
-    <main class="tool">
-      <div class="table-scroll">
+    <section class="tool">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Table 1">
         <div style="min-width:520px;">
           <table class="out-table">
-            <thead><tr><th></th><th>Working days</th><th>Bank holidays</th><th>First working day</th><th>Last working day</th></tr></thead>
+            <thead><tr><td></td><th>Working days</th><th>Bank holidays</th><th>First working day</th><th>Last working day</th></tr></thead>
             <tbody>
 <tr><td>England and Wales</td><td><strong>22</strong></td><td>0</td><td>Mon 2 Mar</td><td>Tue 31 Mar</td></tr>
 <tr><td>Scotland</td><td><strong>22</strong></td><td>0</td><td>Mon 2 Mar</td><td>Tue 31 Mar</td></tr>
@@ -137,7 +139,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:22px;">Bank holidays in March 2026</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Bank holidays in March 2026 (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Date</th><th>Bank holiday</th><th>Eng &amp; Wales</th><th>Scot</th><th>NI</th></tr></thead>
@@ -148,9 +150,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: 165 hours on a 7.5-hour day. When you'll be paid: <a href="/working-days/2026/payday-calendar/">payday calendar 2026</a>. Bank holidays from <a href="https://www.gov.uk/bank-holidays" rel="noopener">GOV.UK</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool" id="wd-tool">
+    <section class="tool" id="wd-tool">
       <div class="field-row">
         <div class="field"><label for="wd-from">From</label><input type="date" id="wd-from" value="2026-03-01"></div>
         <div class="field"><label for="wd-to">To</label><input type="date" id="wd-to" value="2026-03-31"></div>
@@ -171,9 +173,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays. Bank holidays from <a href="https://www.gov.uk/bank-holidays" rel="noopener">GOV.UK</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How many working days are in March 2026?</h3>
       <p class="about-text">England and Wales: 22; Scotland: 22; Northern Ireland: 21.</p>
@@ -183,11 +185,12 @@
       <p class="about-text">165 hours on a 7.5-hour day or 176 on an 8-hour day (22 days, England and Wales).</p>
       <h3 class="faq-q">Are there any bank holidays in March 2026?</h3>
       <p class="about-text">Northern Ireland: St Patrick's Day on Tuesday 17 March.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other months in 2026</div>
     <p class="salary-links"><a href="/working-days/2026/january/">January</a> <a href="/working-days/2026/february/">February</a> <strong>March</strong> <a href="/working-days/2026/april/">April</a> <a href="/working-days/2026/may/">May</a> <a href="/working-days/2026/june/">June</a> <a href="/working-days/2026/july/">July</a> <a href="/working-days/2026/august/">August</a> <a href="/working-days/2026/september/">September</a> <a href="/working-days/2026/october/">October</a> <a href="/working-days/2026/november/">November</a> <a href="/working-days/2026/december/">December</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

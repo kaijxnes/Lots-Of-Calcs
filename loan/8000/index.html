@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -139,17 +139,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/loan/">Loan repayments</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">£8,000 loan</span></nav>
       <h1 class="page-title">£8,000 loan repayments</h1>
       <p class="page-subtitle">What borrowing £8,000 costs a month, and in total, at every common APR and term.</p>
     </header>
 
-    <main class="tool" id="repay-tool" data-symbol="£">
+    <section class="tool" id="repay-tool" data-symbol="£">
       <div class="result-box" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="repay-payment">£247.02</div>
@@ -177,12 +179,12 @@
       </div>
       <p class="tool-hint" id="repay-error" role="alert" style="color: var(--bad); display: none;"></p>
       <p class="tool-hint">Starts on an example of 7% over 3 years &mdash; put in the APR and term you've been offered.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text">Borrowing <strong>£8,000</strong> at 7% APR over 3 years costs <strong>£247.02</strong> a month, £892.60 in interest overall. At 20% APR, a rate more typical for smaller loans or a weaker credit record, the monthly payment would be £297.31.</p>
       <h2 class="tool-section-title" style="margin-top:22px;">Monthly repayments on £8,000</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Monthly repayments on £8,000 (table)">
         <div style="min-width:750px;">
           <table class="out-table">
             <thead><tr><th>Rate</th><th>1 year</th><th>2 years</th><th>3 years</th><th>4 years</th><th>5 years</th><th>7 years</th><th>10 years</th></tr></thead>
@@ -200,7 +202,7 @@
         </div>
       </div>
       <h2 class="tool-section-title" style="margin-top:22px;">Total interest</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Total interest (table)">
         <div style="min-width:750px;">
           <table class="out-table">
             <thead><tr><th>Rate</th><th>1 year</th><th>2 years</th><th>3 years</th><th>4 years</th><th>5 years</th><th>7 years</th><th>10 years</th></tr></thead>
@@ -217,14 +219,14 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How the repayment is worked out</h2>
       <p class="about-text">Each month the lender charges interest on what you still owe, and your fixed payment covers that interest plus part of the loan, so the balance falls faster towards the end. The payment is <strong>P &times; r &times; (1 + r)<sup>n</sup> &divide; ((1 + r)<sup>n</sup> &minus; 1)</strong>, with P the amount borrowed, r the APR divided by 12 and n the number of months.</p>
       <p class="about-text">The <a href="/loan-repayment/">loan repayment calculator</a> shows the balance year by year, and the <a href="/debt-snowball-vs-avalanche/">debt snowball vs avalanche calculator</a> compares ways of paying off several debts. Buying a car on dealer finance with a balloon payment? Use the <a href="/car-finance/">car finance calculator</a>.</p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What are the monthly repayments on a £8,000 loan?</h3>
       <p class="about-text">At 7% APR over 3 years, £247.02 a month, £8,892.60 in total. At 20% APR the same loan costs £297.31 a month. The table on this page covers every common rate and term.</p>
@@ -242,7 +244,7 @@
       <p class="about-text">With the standard repayment formula, charging the APR divided by twelve each month on what is still owed. A lender's quote can differ by a little, since APR also includes any fees and lenders round differently.</p>
       <h3 class="faq-q">Should I borrow £8,000 or use savings?</h3>
       <p class="about-text">If you have savings earning less than the loan's APR, using them usually costs less overall. Keep an emergency fund first, though — a loan can be cheaper than having nothing to fall back on.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other loan amounts</div>
     <div class="hub-grid">
@@ -298,6 +300,7 @@
       </a>
     </div>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

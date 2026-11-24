@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -99,17 +99,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/air-fryer-conversion/">Air Fryer Conversion</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">210°C oven in an air fryer</span></nav>
       <h1 class="page-title">210°C oven in an air fryer</h1>
       <p class="page-subtitle">An oven recipe at 210°C cooks at about <strong>190°C</strong> in an air fryer, for 20–25% less time.</p>
     </header>
 
-    <main class="tool" id="af-tool" data-less="20" data-pct="20,25" data-frozen="50">
+    <section class="tool" id="af-tool" data-less="20" data-pct="20,25" data-frozen="50">
       <div class="field-row">
         <div class="field"><label for="af-temp">Oven temperature in the recipe</label><input type="number" id="af-temp" value="210" step="any" inputmode="decimal"></div>
         <div class="field"><label for="af-unit">In</label><select id="af-unit"><option value="c" selected>°C (conventional or fan)</option><option value="f">°F</option></select></div>
@@ -125,10 +127,10 @@
         </div>
       </div>
       <p class="tool-hint" id="af-hint" style="margin-top:12px;">Fresh food: 20°C lower and 20–25% less time. Frozen food: the same temperature for about half the time. Check early, shake or turn halfway, and make sure food is piping hot all the way through.</p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">210°C oven times in an air fryer</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="210°C oven times in an air fryer (table)">
         <div style="min-width:460px;">
           <table class="out-table">
             <thead><tr><th>Oven</th><th>Air fryer, fresh food</th><th>Air fryer, frozen food</th></tr></thead>
@@ -147,8 +149,8 @@
           </table>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is 210°C in an air fryer?</h3>
       <p class="about-text">About 190°C for fresh food, with 20–25% less time than the oven: 210°C for 30 minutes becomes 190°C for 22–24 minutes.</p>
@@ -157,13 +159,14 @@
       <h3 class="faq-q">What about frozen food at 210°C?</h3>
       <p class="about-text">Keep it at 210°C and cook for about half the oven time, then check it's piping hot all the way through.</p>
       <p class="tool-hint" style="margin-top:12px;">Sources: <a href="https://www.which.co.uk/reviews/built-in-ovens/article/oven-temperature-conversion-degrees-celsius-to-fahrenheit-gas-mark-and-fan-aA5Ol9b157On" rel="nofollow noopener" target="_blank">Which?</a>, <a href="https://instantpot.co.uk/air-frying-101-how-to-convert-oven-cooking-times-to-your-air-fryer/" rel="nofollow noopener" target="_blank">Instant Pot UK</a>, <a href="https://lianaskitchen.co.uk/oven-to-air-fryer-conversion/" rel="nofollow noopener" target="_blank">Liana's Kitchen</a>. Ovens vary, so check your oven's manual — and check food is piping hot all the way through before serving.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Other oven temperatures</h2>
       <p class="salary-links"><a href="/air-fryer-conversion/160c/">160°C oven in an air fryer</a> <a href="/air-fryer-conversion/170c/">170°C oven in an air fryer</a> <a href="/air-fryer-conversion/180c/">180°C oven in an air fryer</a> <a href="/air-fryer-conversion/190c/">190°C oven in an air fryer</a> <a href="/air-fryer-conversion/200c/">200°C oven in an air fryer</a> <a href="/air-fryer-conversion/220c/">220°C oven in an air fryer</a> <a href="/air-fryer-conversion/230c/">230°C oven in an air fryer</a> <a href="/air-fryer-conversion/240c/">240°C oven in an air fryer</a> <a href="/oven-temperature-converter/">Oven temperature converter</a></p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

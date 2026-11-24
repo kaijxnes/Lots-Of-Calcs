@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/home-diy/">Home &amp; DIY</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Household Bill Splitter</span></nav>
       <h1 class="page-title">Household Bill Splitter</h1>
       <p class="page-subtitle">Add everyone in the household with their contribution %, list your bills, and split the total fairly.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="field" style="max-width:280px;">
         <label for="currency">Currency</label>
         <select id="currency">
@@ -170,9 +172,9 @@
           <div class="result-row"><span class="r-label" id="people-total-label">Total share entered</span><span class="r-value" id="people-total">0%</span></div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Household bills</h2>
       <div class="dyn-table-head">
         <span class="row-index">#</span>
@@ -189,11 +191,11 @@
           <div class="label">Total bills</div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Split</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Split (table)">
         <table class="out-table">
           <thead>
             <tr>
@@ -206,16 +208,16 @@
           <tbody id="split-out-body"></tbody>
         </table>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How the split works</h2>
       <p class="about-text">Each person's share is their figure divided by everyone's figures added together. In <strong>% mode</strong> you type the shares you've agreed; they don't need to add up to 100, because they're scaled to fit. In <strong>income mode</strong> you type each person's income and the shares follow from it, so someone earning twice as much pays twice as much.</p>
       <p class="about-text"><strong>Worked example:</strong> a couple pay &pound;1,850 a month in rent, council tax and bills. One takes home &pound;2,700 a month and the other &pound;1,800. Together that is &pound;4,500, so their shares are 60% and 40%: <strong>&pound;1,110</strong> and <strong>&pound;740</strong>. Each puts the same 41% of their take-home pay into the household, leaving &pound;1,590 and &pound;1,060.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Choosing a fair split</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Choosing a fair split (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Approach</th><th>Works well when</th></tr></thead>
@@ -228,15 +230,15 @@
         </div>
       </div>
       <p class="about-text" style="margin-top:12px;">Use take-home pay rather than gross salary for the income split: it's what each person actually has to spend. The <a href="/salary/">salary after tax calculator</a> gives it for a gross salary. Whatever you choose, review it when someone's pay or circumstances change.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">What to include</h2>
       <p class="about-text">Typical shared costs are rent or mortgage, council tax, energy, water, broadband, TV licence, phone contracts if shared, and a food shop if you buy it together. Annual bills such as insurance or the TV licence are easiest to share monthly: divide the yearly cost by 12.</p>
       <p class="about-text">If one person lives alone they can claim a 25% council tax single person discount; when a household changes size, it's worth checking whether the council tax bill should change too.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the fairest way to split household bills?</h3>
       <p class="about-text">Splitting in proportion to income is the usual answer when housemates or partners earn very differently, since it keeps the burden even relative to what each person can afford. An even split is simpler when incomes are similar.</p>
@@ -250,7 +252,7 @@
       <p class="about-text">Enter it as a monthly amount by dividing the yearly cost by 12, so it is shared in the same proportions as everything else and nobody is caught out by a large bill.</p>
       <h3 class="faq-q">Is a joint account better than paying each other back?</h3>
       <p class="about-text">A joint account for bills, with each person paying in their share each month, avoids a running tally of who owes what. Use the amounts in the &ldquo;Owes&rdquo; column as each person's monthly transfer.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -289,6 +291,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -134,17 +134,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/everyday/">Everyday</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">EV Charging Cost Calculator</span></nav>
       <h1 class="page-title">EV Charging Cost Calculator</h1>
       <p class="page-subtitle">What a charge actually costs — including the energy lost on the way into the battery.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text" style="margin-bottom:18px;">Enter your car, the charge you want and the price you pay, and this works out what the session costs, how long it takes, and what that comes to per mile. Unlike most charging calculators it also shows <strong>charging losses</strong> — the electricity your meter records but the battery never receives.</p>
 
       <h2 class="tool-section-title">Car and charge</h2>
@@ -248,9 +250,9 @@
           <div class="result-row"><span class="r-label">Full charge range</span><span class="r-value" id="full-range">210 miles</span></div>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Compared with petrol or diesel</h2>
       <div class="field-row">
         <div class="field">
@@ -282,9 +284,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:16px;">Fuel and energy only — it excludes tax, insurance, servicing and depreciation, which differ between the two.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How it works</h2>
       <p class="about-text">Four formulas do all the work:</p>
       <p class="about-text">
@@ -314,9 +316,9 @@
       <h2 class="tool-section-title" style="margin-top:22px;">A note on currency and units</h2>
       <p class="about-text">The currency selector changes the symbol shown against your results only &mdash; it does not convert between currencies, so enter every figure in the currency you have picked. Prices for electricity and fuel are entered in the minor unit, which is pence per kWh and pence per litre in the UK, and the equivalent hundredth of the main unit elsewhere.</p>
       <p class="about-text">Fuel economy stays in miles per gallon using the <strong>imperial</strong> gallon of 4.54609 litres, which is the UK convention. If you are working in US mpg, note that a US gallon is 3.785 litres, so a US mpg figure needs converting before it will give the right answer here.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much does it cost to fully charge an electric car in the UK?</h3>
       <p class="about-text">It depends almost entirely on where you charge. A 60 kWh car needs about 67 kWh from the grid for a full charge at 90% efficiency. On a 7.5p off-peak home tariff that is about £5; on a public rapid at 79p per kWh it is closer to £53. Same car, same electricity, ten times the price.</p>
@@ -332,13 +334,13 @@
       <p class="about-text">No — they are indicative defaults set in August 2026, not a live feed. Energy prices and public charging rates change regularly, so treat them as a starting point, check your own tariff, and type the real number in. Anything you type is stored against whichever preset is selected, and the Custom preset leaves your own figures alone entirely.</p>
       <h3 class="faq-q">Can I use this outside the UK?</h3>
       <p class="about-text">Yes. Pick your currency and enter the price in that currency's minor unit per kWh. The selector only changes the symbol — it does not convert between currencies, so keep every figure in the one you have chosen. One caveat: fuel economy is miles per imperial gallon (4.54609 litres), so a US mpg figure needs converting first.</p>
-    </main>
+    </section>
 
 
     <!-- ev model pages: generated by tools/build-ev-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Charging cost by car (home, 26.32p per kWh)</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Charging cost by car (home, 26.32p per kWh) (table)">
         <div style="min-width:400px;">
           <table class="out-table">
             <thead><tr><th>Car</th><th>Usable battery</th><th>Full charge</th><th>Per mile</th></tr></thead>
@@ -391,7 +393,7 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">At the Ofgem price cap for Oct–Dec 2026, allowing 10% charging loss; per mile from EV Database's real-world consumption. Each car has its own page with other prices and charging times.</p>
-    </main>
+    </section>
 
     <!-- end ev model pages -->
 
@@ -432,6 +434,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

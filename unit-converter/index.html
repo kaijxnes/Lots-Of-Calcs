@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/everyday/">Everyday</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Unit Converter</span></nav>
       <h1 class="page-title">Unit Converter</h1>
       <p class="page-subtitle">Length, weight, temperature and volume conversions.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="tabs" role="tablist">
         <button class="tab active" data-tab="length">Length</button>
         <button class="tab" data-tab="weight">Weight</button>
@@ -295,16 +297,16 @@
           </div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How the conversions work</h2>
       <p class="about-text">Length, weight and volume are converted through a common base unit &mdash; metres, kilograms or litres. Your value is multiplied into the base unit and then divided into the unit you want, using the exact international definitions: an inch is exactly 2.54 cm, a pound exactly 0.45359237 kg, and a UK gallon exactly 4.54609 litres.</p>
       <p class="about-text">Temperature needs a formula rather than a multiplication, because the scales start from different zeros. To go from Celsius to Fahrenheit, multiply by 9, divide by 5 and add 32; to go back, take away 32, multiply by 5 and divide by 9. Kelvin is Celsius plus 273.15.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Common conversions</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Common conversions (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>From</th><th>To</th><th>Multiply by</th><th>Example</th></tr></thead>
@@ -323,14 +325,14 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Temperatures worth knowing</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Temperatures worth knowing (table)">
         <div style="min-width:360px;">
           <table class="out-table">
-            <thead><tr><th>Celsius</th><th>Fahrenheit</th><th></th></tr></thead>
+            <thead><tr><th>Celsius</th><th>Fahrenheit</th><td></td></tr></thead>
             <tbody>
 <tr><td>&minus;40&deg;C</td><td>&minus;40&deg;F</td><td>The one point where the scales meet</td></tr>
 <tr><td>0&deg;C</td><td>32&deg;F</td><td>Water freezes</td></tr>
@@ -343,9 +345,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I convert Celsius to Fahrenheit?</h3>
       <p class="about-text">Multiply by 9, divide by 5, then add 32. So 20C is 68F. Going the other way, subtract 32 first, then multiply by 5 and divide by 9.</p>
@@ -359,16 +361,16 @@
       <p class="about-text">177.8 cm. Multiply the feet by 12 and add the inches to get inches (70), then multiply by 2.54.</p>
       <h3 class="faq-q">How do I convert cups to millilitres?</h3>
       <p class="about-text">A US cup, as used in most recipes online, is about 237 ml. Australian and some UK recipes use a 250 ml metric cup. For baking, weighing in grams is more reliable than cups, since a cup of flour can vary by 20 grams or more depending on how it's packed.</p>
-    </main>
+    </section>
 
 
 
 
     <!-- conversion pages: generated by tools/build-conversion-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Popular conversions</h2>
       <p class="salary-links"><a href="/convert/5-ft-0-in-to-cm/">5 ft 0 in → 152.4 cm</a> <a href="/convert/5-ft-4-in-to-cm/">5 ft 4 in → 162.6 cm</a> <a href="/convert/5-ft-6-in-to-cm/">5 ft 6 in → 167.6 cm</a> <a href="/convert/5-ft-8-in-to-cm/">5 ft 8 in → 172.7 cm</a> <a href="/convert/5-ft-10-in-to-cm/">5 ft 10 in → 177.8 cm</a> <a href="/convert/6-ft-0-in-to-cm/">6 ft 0 in → 182.9 cm</a> <a href="/convert/50-kg-in-stone/">50 kg → 7 st 12.2 lb</a> <a href="/convert/60-kg-in-stone/">60 kg → 9 st 6.3 lb</a> <a href="/convert/70-kg-in-stone/">70 kg → 11 st 0.3 lb</a> <a href="/convert/80-kg-in-stone/">80 kg → 12 st 8.4 lb</a> <a href="/convert/90-kg-in-stone/">90 kg → 14 st 2.4 lb</a> <a href="/convert/100-kg-in-stone/">100 kg → 15 st 10.5 lb</a> <a href="/convert/minus-10-c-to-f/">-10 °C → 14 °F</a> <a href="/convert/0-c-to-f/">0 °C → 32 °F</a> <a href="/convert/20-c-to-f/">20 °C → 68 °F</a> <a href="/convert/37-c-to-f/">37 °C → 98.6 °F</a> <a href="/convert/100-c-to-f/">100 °C → 212 °F</a> <a href="/convert/180-c-to-f/">180 °C → 356 °F</a> <a href="/convert/200-c-to-f/">200 °C → 392 °F</a> <a href="/convert/32-f-to-c/">32 °F → 0 °C</a> <a href="/convert/70-f-to-c/">70 °F → 21.1 °C</a> <a href="/convert/98-f-to-c/">98 °F → 36.7 °C</a> <a href="/convert/350-f-to-c/">350 °F → 176.7 °C</a> <a href="/convert/400-f-to-c/">400 °F → 204.4 °C</a> <a href="/convert/5-km-to-miles/">5 km → 3.11 miles</a> <a href="/convert/10-km-to-miles/">10 km → 6.21 miles</a> <a href="/convert/21-1-km-to-miles/">21.1 km → 13.11 miles</a> <a href="/convert/42-2-km-to-miles/">42.2 km → 26.22 miles</a> <a href="/convert/100-km-to-miles/">100 km → 62.14 miles</a> <a href="/convert/160-cm-in-feet-and-inches/">160 cm → 5 ft 3 in</a> <a href="/convert/170-cm-in-feet-and-inches/">170 cm → 5 ft 6.9 in</a> <a href="/convert/180-cm-in-feet-and-inches/">180 cm → 5 ft 10.9 in</a> <a href="/convert/">All conversions →</a></p>
-    </main>
+    </section>
 
     <!-- end conversion pages -->
 
@@ -408,6 +410,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

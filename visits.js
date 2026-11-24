@@ -16,7 +16,7 @@
 
   var path = window.location.pathname;
   /* A calculator page: one with something to type into or choose */
-  var isCalc = path !== "/" && !!document.querySelector("main.tool input:not([type=search]), main.tool select, main.calculator button.key");
+  var isCalc = path !== "/" && !!document.querySelector(".tool input:not([type=search]), .tool select, .calculator button.key");
 
   /* ---------- remember this calculator ---------- */
   if (isCalc) {
@@ -45,7 +45,7 @@
   }
 
   function showHint() {
-    var tool = document.querySelector("main.calculator, main.tool");
+    var tool = document.querySelector(".calculator, .tool");
     if (!tool) return;
     try { window.sessionStorage.setItem(HINT, "1"); } catch (e) { /* fine */ }
     var ua = navigator.userAgent || "";

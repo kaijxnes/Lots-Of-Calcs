@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -99,19 +99,21 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/watts-amps-volts/">Watts, Amps and Volts Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">6,000 watts to amps</span></nav>
       <h1 class="page-title">6,000 watts to amps</h1>
       <p class="page-subtitle">6,000 W is <strong>26.09 A</strong> at 230 V (UK) and <strong>50 A</strong> at 120 V (US).</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">6 kW at different voltages</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="6 kW at different voltages (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Voltage</th><th>Used for</th><th>Current</th></tr></thead>
@@ -126,11 +128,11 @@
       </div>
       <p class="about-text" style="margin-top:12px;"><strong>Formula:</strong> amps = watts ÷ volts, so 6,000 ÷ 230 = 26.09 A. That's more than a UK 13 A plug can supply, so an appliance this powerful is wired to its own circuit (an electric shower or a 7 kW EV charger, for example).</p>
       <p class="tool-hint">Single-phase, power factor 1. For three-phase, DC or a power factor, use the <a href="/watts-amps-volts/">watts, amps and volts calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Nearby powers</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Nearby powers (table)">
         <div style="min-width:300px;">
           <table class="out-table">
             <thead><tr><th>Power</th><th>At 230 V</th><th>At 120 V</th></tr></thead>
@@ -150,9 +152,9 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How many amps is 6,000 watts?</h3>
       <p class="about-text">26.09 A on a 230 V supply (UK and Europe) and 50 A on 120 V (US and Canada). Divide the watts by the volts.</p>
@@ -160,8 +162,9 @@
       <p class="about-text">26.09 A at the standard 230 V. Some appliances still quote 240 V, which gives 25 A. That's more than a UK 13 A plug can supply, so an appliance this powerful is wired to its own circuit (an electric shower or a 7 kW EV charger, for example).</p>
       <h3 class="faq-q">Does this apply to every appliance?</h3>
       <p class="about-text">It's exact for heaters, kettles, toasters and other resistive loads. Motors, compressors and some electronics draw a little more current than this for the same watts (their power factor is below 1), and many draw extra when they start.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

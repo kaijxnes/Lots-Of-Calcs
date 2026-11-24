@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -142,15 +142,17 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/general/">General</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Basic Calculator</span></nav>
       <h1 class="page-title">Basic Calculator</h1>
     </header>
-    <main class="calculator">
+    <section class="calculator">
       <div class="display">
         <div class="display-history" id="history"></div>
         <div class="display-current" id="current">0</div>
@@ -180,17 +182,17 @@
         <button class="key key-num" data-action="decimal">.</button>
         <button class="key key-eq" data-action="equals">=</button>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">How to use it</h2>
       <p class="about-text">This calculator handles the four basic operations &mdash; addition, subtraction, multiplication and division &mdash; plus percentages, all with full keyboard support.</p>
       <p class="about-text">Type numbers and operators directly, or click the on-screen keys; press Enter or = to see the result.</p>
       <p class="about-text">Like a pocket calculator, it works out each step as you go: press an operator and the sum so far is calculated straight away. That means <strong>2 + 3 &times; 4 gives 20</strong> &mdash; it adds 2 and 3, then multiplies by 4. If you want multiplication done before addition, the way it's written on paper (2 + 3 &times; 4 = 14), use the <a href="/scientific/">scientific calculator</a>, which follows the order of operations.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Keyboard shortcuts</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Keyboard shortcuts (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Key</th><th>Does</th></tr></thead>
@@ -205,17 +207,17 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Using the % key</h2>
       <p class="about-text">The % key divides the number on screen by 100. Use it to take a percentage of something: <strong>240 &times; 15 % =</strong> gives 36, which is 15% of 240.</p>
       <p class="about-text">To add a percentage, multiply by 1 plus the percentage: 240 plus 15% is 240 &times; 1.15 = 276. To take one off, multiply by 1 minus it: 240 less 15% is 240 &times; 0.85 = 204. For percentage change, &ldquo;what percent of&rdquo; and reverse percentages, the <a href="/percent/">percentage calculator</a> does each in one step.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Everyday sums, key by key</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Everyday sums, key by key (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>To work out</th><th>Press</th><th>Answer</th></tr></thead>
@@ -232,9 +234,9 @@
         </div>
       </div>
       <p class="about-text" style="margin-top:12px;">Some of these have a dedicated calculator that does the whole job in one step: <a href="/split-bill/">split a bill</a> (with tip), <a href="/vat/">add or remove VAT</a>, <a href="/percent/">percentages and percentage change</a>, <a href="/discount/">discounts</a> and <a href="/fractions/">fractions</a>. For powers, roots, brackets and trigonometry, use the <a href="/scientific/">scientific calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What's the difference between AC and DEL?</h3>
       <p class="about-text">DEL removes the last digit you typed, so a typo can be fixed without starting again. AC (all clear) wipes the whole calculation back to zero.</p>
@@ -252,7 +254,7 @@
       <p class="about-text">Yes. Keep pressing operators and numbers and the running total updates at each step: 12 + 8 &times; 3 &minus; 10 = gives 50. After pressing =, type an operator to carry on from the answer, or press Escape to start a new sum.</p>
       <h3 class="faq-q">Is anything I type sent anywhere?</h3>
       <p class="about-text">No. The calculator runs entirely in your browser; nothing you type leaves your device.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -290,6 +292,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

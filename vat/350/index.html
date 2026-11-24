@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -107,17 +107,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/vat/">VAT Calculator</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">VAT on £350</span></nav>
       <h1 class="page-title">VAT on £350</h1>
       <p class="page-subtitle">£350 plus VAT is £420.00; £350 including VAT is £291.67 plus £58.33 VAT.</p>
     </header>
 
-    <main class="tool" id="vp-tool">
+    <section class="tool" id="vp-tool">
       <div class="field-row">
         <div class="field"><label for="vp-amount">Amount (£)</label><input type="number" id="vp-amount" value="350" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="vp-rate">VAT rate</label><select id="vp-rate"><option value="20" selected>20% standard</option><option value="5">5% reduced</option><option value="0">0% zero</option></select></div>
@@ -137,11 +139,11 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">For another rate or currency, use the <a href="/vat/">VAT calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">£350 at each UK VAT rate</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="£350 at each UK VAT rate (table)">
         <div style="min-width:560px;">
           <table class="out-table">
             <thead><tr><th>Rate</th><th>VAT added</th><th>£350 + VAT</th><th>Ex VAT, if VAT included</th><th>VAT included</th></tr></thead>
@@ -154,9 +156,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">To add VAT, multiply by 1.2 (or 1.05 at 5%); to remove it, divide by 1.2 (or 1.05). Rates from <a href="https://www.gov.uk/vat-rates" rel="noopener">GOV.UK VAT rates</a>. Pennies are rounded to the nearest 1p.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is £350 plus VAT?</h3>
       <p class="about-text">£420.00 at the standard 20% rate: £350 × 1.2. The VAT is £70.00. At the reduced 5% rate it's £367.50.</p>
@@ -166,11 +168,12 @@
       <p class="about-text">Because the 20% is added to the price before VAT, so it's a sixth (20/120) of the VAT-inclusive total. Taking 20% off £350 would give £280.00, which is £11.67 too little.</p>
       <h3 class="faq-q">Which VAT rate applies?</h3>
       <p class="about-text">The standard rate of 20% covers most goods and services; the reduced rate of 5% applies to some, such as home energy and children's car seats; and zero-rated items, such as most food and children's clothes, have none (GOV.UK).</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other amounts</div>
     <p class="salary-links"><a href="/vat/125/">VAT on £125</a> <a href="/vat/150/">VAT on £150</a> <a href="/vat/175/">VAT on £175</a> <a href="/vat/200/">VAT on £200</a> <a href="/vat/250/">VAT on £250</a> <a href="/vat/300/">VAT on £300</a> <a href="/vat/400/">VAT on £400</a> <a href="/vat/450/">VAT on £450</a> <a href="/vat/500/">VAT on £500</a> <a href="/vat/600/">VAT on £600</a> <a href="/vat/700/">VAT on £700</a> <a href="/vat/750/">VAT on £750</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

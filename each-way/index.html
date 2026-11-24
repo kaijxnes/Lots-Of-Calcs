@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/betting-odds/">Betting &amp; Odds</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Each-Way Bet Calculator</span></nav>
       <h1 class="page-title">Each-Way Bet Calculator</h1>
       <p class="page-subtitle">An each-way bet is two bets — one for the win, one for the place. Work out what a single, double, treble or acca returns.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="field-row">
         <div class="field">
           <label for="unit-stake">Unit stake (per part)</label>
@@ -159,7 +161,7 @@
 
       <h2 class="tool-section-title">Selections</h2>
       <p class="tool-hint">Odds accept fractional (10/1), evens or decimal (11.0). Place terms are the fraction of the odds paid for placing, e.g. 1/5 or 1/4. Add a second selection for an each-way double, a third for a treble, and so on. A non-runner is Void.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Selections (table)">
         <div style="min-width:400px;">
           <div class="dyn-table-head">
             <span class="row-index">#</span>
@@ -191,22 +193,22 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:16px;">Place odds are 1 + (odds &minus; 1) &times; the place terms for each selection; with several selections the win and place odds are each multiplied together.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">About this calculator</h2>
       <p class="about-text">An each-way bet is really two separate bets of the same size: one that your selection wins, and one that it finishes in the places. That's why a &quot;&pound;10 each-way&quot; bet costs &pound;20 &mdash; the unit stake is what goes on each part, and the total staked is always double it.</p>
       <p class="about-text">The place part is settled at a fraction of the win odds, set by the bookmaker's place terms. At 1/5 terms, a 10/1 selection pays 2/1 for placing, which is 3.00 in decimal. The general rule this uses is place decimal odds = 1 + (win decimal odds &minus; 1) &times; the place fraction.</p>
       <p class="about-text">If your selection wins, both parts pay out, because a winner has also placed. If it only places, the win part is lost and the place part pays. If it does neither, you lose the whole stake. This calculator follows those standard UK each-way rules.</p>
       <p class="about-text">Assumptions: the number of places offered and the place fraction are whatever your bookmaker advertised for that race or market, so enter the terms they quoted. Dead heats and Rule 4 deductions are not modelled, and either will change the actual settled return. Mark a non-runner as Void: in a multiple it counts as odds of 1.00, and on its own the stake is returned.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How to work out an each-way bet</h2>
       <p class="about-text"><strong>1. Double the stake.</strong> &pound;5 each-way is a &pound;5 win bet plus a &pound;5 place bet: &pound;10 in total.</p>
       <p class="about-text"><strong>2. Work out the place odds.</strong> Take the profit part of the odds and apply the place terms. At 8/1 with 1/5 terms, the place part is paid at 8/5, which is 1.6/1 (2.60 in decimal).</p>
       <p class="about-text"><strong>3. Settle each part.</strong> The win part pays at the full odds only if it wins; the place part pays if it finishes anywhere in the places, winning included.</p>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="How to work out an each-way bet (table)">
         <div style="min-width:480px;">
           <table class="out-table">
             <thead><tr><th>£5 e/w at 8/1, 1/5 terms</th><th>Win part</th><th>Place part</th><th>Return</th><th>Profit</th></tr></thead>
@@ -221,7 +223,7 @@
       <p class="about-text" style="margin-top:12px;">The same bet at 1/4 terms returns &pound;60.00 if it wins and &pound;15.00 if it only places. At short odds the place part can return less than the whole stake: at 2/1 with 1/5 terms, &pound;5 each-way that only places returns &pound;7, less than the &pound;10 staked.</p>
 
       <h2 class="tool-section-title" style="margin-top:22px;">Standard each-way terms in UK horse racing</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Standard each-way terms in UK horse racing (table)">
         <div style="min-width:460px;">
           <table class="out-table">
             <thead><tr><th>Race</th><th>Places paid</th><th>Terms</th></tr></thead>
@@ -240,12 +242,12 @@
       <h2 class="tool-section-title" style="margin-top:22px;">Each-way doubles and accumulators</h2>
       <p class="about-text">An each-way double is a win double plus a place double, so &pound;5 each-way costs &pound;10. Take a 5/1 and a 3/1 at 1/5 terms: the win double pays 6.00 &times; 4.00 = 24.00, and the place double pays 2.00 &times; 1.60 = 3.20.</p>
       <p class="about-text">If both win, you get both doubles: &pound;120 + &pound;16 = <strong>&pound;136</strong>. If either one only places, the win double is lost and the place double returns &pound;16, a &pound;6 profit on the &pound;10. If either misses the places, both doubles lose. Each-way trebles and accumulators work the same way with more legs. Add selections in the calculator above to work any of them out.</p>
-    </main>
+    </section>
 
     <!-- reference tables: generated by tools/build-betting-tables.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">£10 each-way returns at common prices</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="£10 each-way returns at common prices (table)">
         <div style="min-width:520px;">
           <table class="out-table">
             <thead><tr><th>Price</th><th>Wins (¼ odds)</th><th>Places only (¼)</th><th>Wins (⅕ odds)</th><th>Places only (⅕)</th></tr></thead>
@@ -267,10 +269,10 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">A £10 each-way bet costs £20: £10 to win and £10 to place. Returns include stakes. If the selection wins, both parts pay; if it only places, the win part is lost and the place part pays at the fraction of the odds in the place terms. For example, at 8/1 with ⅕ terms the place part pays at 8/5: £10 × 2.60 = £26.00.</p>
-    </main>
+    </section>
     <!-- end reference tables -->
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do you work out an each-way bet?</h3>
       <p class="about-text">Double the unit stake for the total cost, work out the place odds as the win odds' profit part times the place terms (8/1 at 1/5 is 8/5), then add up whichever parts pay. £5 each-way at 8/1, 1/5 terms, returns £58 if it wins and £13 if it only places.</p>
@@ -285,7 +287,7 @@
       <h3 class="faq-q">What do place terms like 1/5 mean?</h3>
       <p class="about-text">They are the fraction of the win odds paid on the place part. At 1/5 terms a 10/1 selection is paid at 2/1 for placing, so a £10 place part returns £30 including the stake.</p>
       <p class="tool-hint" style="margin-top:12px;">18+. A calculator shows what a bet pays, not whether it will win &mdash; the bookmaker's margin is built into every price. If gambling stops being fun, <a href="https://www.begambleaware.org/" rel="noopener">BeGambleAware</a> offers free, confidential help.</p>
-    </main>
+    </section>
 
     <!-- guide link: generated by tools/build-guides.js -->
     <p class="guide-callout"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=e437077b#book-open"></use></svg><span><a href="/guides/matched-betting-explained/">Matched betting explained</a>: how back and lay bets cancel out, the lay stake formulas, and what a free bet is really worth.</span></p>
@@ -337,6 +339,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -120,17 +120,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/home-diy/">Home &amp; DIY</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Concrete Calculator</span></nav>
       <h1 class="page-title">Concrete calculator</h1>
       <p class="page-subtitle">How much concrete for a slab, path, footing or post holes — in m³, litres, cubic feet or cubic yards, and bags.</p>
     </header>
 
-    <main class="tool" id="cc-tool">
+    <section class="tool" id="cc-tool">
       <div class="field-row">
         <div class="field"><label for="cc-units">Units</label><select id="cc-units"><option value="metric" selected>Metres and millimetres</option><option value="imperial">Feet and inches</option></select></div>
         <div class="field"><label for="cc-shape">Shape</label><select id="cc-shape"><option value="slab" selected>Slab, path or footing</option><option value="hole">Round post holes</option></select></div>
@@ -160,12 +162,12 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Volumes only. How much concrete a bag makes depends on the product — it's printed on the bag — and how much extra to allow for uneven ground and spillage is your call.</p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Common slab sizes</h2>
       <p class="salary-links"><a href="/concrete-calculator/2m-x-2m-x-100mm/">2m × 2m × 100mm</a> <a href="/concrete-calculator/2m-x-2m-x-150mm/">2m × 2m × 150mm</a> <a href="/concrete-calculator/2m-x-3m-x-100mm/">2m × 3m × 100mm</a> <a href="/concrete-calculator/2m-x-3m-x-150mm/">2m × 3m × 150mm</a> <a href="/concrete-calculator/3m-x-3m-x-100mm/">3m × 3m × 100mm</a> <a href="/concrete-calculator/3m-x-3m-x-150mm/">3m × 3m × 150mm</a> <a href="/concrete-calculator/3m-x-4m-x-100mm/">3m × 4m × 100mm</a> <a href="/concrete-calculator/3m-x-4m-x-150mm/">3m × 4m × 150mm</a> <a href="/concrete-calculator/4m-x-4m-x-100mm/">4m × 4m × 100mm</a> <a href="/concrete-calculator/4m-x-4m-x-150mm/">4m × 4m × 150mm</a> <a href="/concrete-calculator/4m-x-5m-x-100mm/">4m × 5m × 100mm</a> <a href="/concrete-calculator/4m-x-5m-x-150mm/">4m × 5m × 150mm</a> <a href="/concrete-calculator/5m-x-5m-x-100mm/">5m × 5m × 100mm</a> <a href="/concrete-calculator/5m-x-5m-x-150mm/">5m × 5m × 150mm</a> <a href="/concrete-calculator/3m-x-6m-x-100mm/">3m × 6m × 100mm</a> <a href="/concrete-calculator/3m-x-6m-x-150mm/">3m × 6m × 150mm</a> <a href="/concrete-calculator/6m-x-6m-x-100mm/">6m × 6m × 100mm</a> <a href="/concrete-calculator/6m-x-6m-x-150mm/">6m × 6m × 150mm</a> <a href="/concrete-calculator/5m-x-10m-x-100mm/">5m × 10m × 100mm</a> <a href="/concrete-calculator/5m-x-10m-x-150mm/">5m × 10m × 150mm</a> <a href="/concrete-calculator/10x10-ft-4-inch/">10x10 ft, 4 inches</a> <a href="/concrete-calculator/12x12-ft-4-inch/">12x12 ft, 4 inches</a> <a href="/concrete-calculator/10x20-ft-4-inch/">10x20 ft, 4 inches</a> <a href="/concrete-calculator/12x24-ft-4-inch/">12x24 ft, 4 inches</a> <a href="/concrete-calculator/20x20-ft-4-inch/">20x20 ft, 4 inches</a> <a href="/concrete-calculator/24x24-ft-4-inch/">24x24 ft, 4 inches</a> <a href="/concrete-calculator/30x30-ft-4-inch/">30x30 ft, 4 inches</a></p>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How do I work out how much concrete I need?</h3>
       <p class="about-text">Multiply length × width × depth in the same units. For a 3m × 3m slab 100mm deep: 3 × 3 × 0.1 = 0.9 m³. In feet, divide the cubic feet by 27 for cubic yards: a 10 × 10 ft slab 4 inches deep is 33.33 cu ft, or 1.23 yd³.</p>
@@ -175,7 +177,7 @@
       <p class="about-text">Divide the volume by what one bag makes — the bag says, and it varies by product and bag size. Enter it in the calculator.</p>
       <h3 class="faq-q">How much extra should I allow?</h3>
       <p class="about-text">Enough to cover uneven ground and spillage; it depends on the job and how level the base is. Add a percentage in the calculator to see the difference.</p>
-    </main>
+    </section>
 
     <!-- related calculators: generated by tools/related.js -->
     <div class="hub-group-title" style="margin-top:28px;">Related calculators</div>
@@ -213,6 +215,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

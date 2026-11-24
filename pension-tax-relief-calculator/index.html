@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -137,17 +137,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/investing-pensions/">Investing &amp; Pensions</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Pension Tax Relief Calculator</span></nav>
       <h1 class="page-title">Pension tax relief calculator</h1>
       <p class="page-subtitle">The tax relief on what you pay into a pension in 2026/27: what your provider adds, what you can <strong>claim back</strong> as a higher rate taxpayer, and what it really costs you.</p>
     </header>
 
-    <main class="tool split" id="pt-tool" data-rules="{&quot;_note&quot;:&quot;Pension tax relief rules for tools/build-pension-relief-pages.js, quoted from GOV.UK. The extra relief higher rate taxpayers claim follows the income tax bands in the UK tax files (data/tax/gb), so only these rules live here.&quot;,&quot;basicRelief&quot;:20,&quot;noEarningsNet&quot;:2880,&quot;noEarningsGross&quot;:3600,&quot;earningsLimitPct&quot;:100,&quot;annualAllowance&quot;:60000,&quot;taper&quot;:{&quot;thresholdIncome&quot;:200000,&quot;adjustedIncome&quot;:260000},&quot;note&quot;:&quot;'You can get tax relief on private pension contributions worth up to 100% of your annual earnings.' Relief at source: 'your pension provider claims tax relief from the government at the basic 20% rate and adds it to your pension pot'. 'If your rate of Income Tax in Scotland is 19% your pension provider will claim tax relief for you at a rate of 20%. You do not need to pay the difference.' Non-taxpayers: relief at 20% 'up to either: 80% of your earnings in that year [or] £2,880 if you have no earnings in that year'. England, Wales or Northern Ireland: claim '20% up to the amount of any income you have paid 40% tax on' and '25% up to the amount of any income you have paid 45% tax on'. Scotland: '1% ... 21% ... 22% ... 42% ... 25% ... 45% ... 28% ... 48%'. Example: 'You earn £60,270 ... You can claim an extra 20% tax relief on £10,000 (the same amount you paid 40% tax on)'. Annual allowance: 'This is £60,000 this tax year'; tapered if 'threshold income is over £200,000' and 'adjusted income is over £260,000'.&quot;,&quot;sources&quot;:[{&quot;title&quot;:&quot;GOV.UK — Tax on your private pension contributions: tax relief&quot;,&quot;url&quot;:&quot;https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief&quot;},{&quot;title&quot;:&quot;GOV.UK — Tax on your private pension contributions: annual allowance&quot;,&quot;url&quot;:&quot;https://www.gov.uk/tax-on-your-private-pension/annual-allowance&quot;}],&quot;lastChecked&quot;:&quot;2026-11-24&quot;,&quot;lastVerified&quot;:null}">
+    <section class="tool split" id="pt-tool" data-rules="{&quot;_note&quot;:&quot;Pension tax relief rules for tools/build-pension-relief-pages.js, quoted from GOV.UK. The extra relief higher rate taxpayers claim follows the income tax bands in the UK tax files (data/tax/gb), so only these rules live here.&quot;,&quot;basicRelief&quot;:20,&quot;noEarningsNet&quot;:2880,&quot;noEarningsGross&quot;:3600,&quot;earningsLimitPct&quot;:100,&quot;annualAllowance&quot;:60000,&quot;taper&quot;:{&quot;thresholdIncome&quot;:200000,&quot;adjustedIncome&quot;:260000},&quot;note&quot;:&quot;'You can get tax relief on private pension contributions worth up to 100% of your annual earnings.' Relief at source: 'your pension provider claims tax relief from the government at the basic 20% rate and adds it to your pension pot'. 'If your rate of Income Tax in Scotland is 19% your pension provider will claim tax relief for you at a rate of 20%. You do not need to pay the difference.' Non-taxpayers: relief at 20% 'up to either: 80% of your earnings in that year [or] £2,880 if you have no earnings in that year'. England, Wales or Northern Ireland: claim '20% up to the amount of any income you have paid 40% tax on' and '25% up to the amount of any income you have paid 45% tax on'. Scotland: '1% ... 21% ... 22% ... 42% ... 25% ... 45% ... 28% ... 48%'. Example: 'You earn £60,270 ... You can claim an extra 20% tax relief on £10,000 (the same amount you paid 40% tax on)'. Annual allowance: 'This is £60,000 this tax year'; tapered if 'threshold income is over £200,000' and 'adjusted income is over £260,000'.&quot;,&quot;sources&quot;:[{&quot;title&quot;:&quot;GOV.UK — Tax on your private pension contributions: tax relief&quot;,&quot;url&quot;:&quot;https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief&quot;},{&quot;title&quot;:&quot;GOV.UK — Tax on your private pension contributions: annual allowance&quot;,&quot;url&quot;:&quot;https://www.gov.uk/tax-on-your-private-pension/annual-allowance&quot;}],&quot;lastChecked&quot;:&quot;2026-11-24&quot;,&quot;lastVerified&quot;:null}">
       <div class="field"><label for="pt-income">Your taxable income for the year</label><input type="number" id="pt-income" value="60000" min="0" step="any" inputmode="decimal"><p class="tool-hint" style="margin:6px 0 0;">Salary, profits, rent and other income before tax. With a net pay pension, enter it before the contribution comes off.</p></div>
       <div class="field-row">
         <div class="field"><label for="pt-type">Pension type</label><select id="pt-type"><option value="ras" selected>Relief at source (personal pensions, SIPPs, many workplace)</option><option value="netpay">Net pay (taken from pay before tax)</option></select></div>
@@ -169,15 +171,15 @@
         </div>
         <p class="tool-hint" id="pt-note" style="margin:10px 0 0;"></p>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">How pension tax relief works</h2>
       <p class="about-text">Money you pay into a pension gets tax relief at your highest rate of income tax, on contributions up to 100% of your earnings for the year (or £3,600 gross, if that's more). How you get it depends on the scheme:</p>
       <p class="about-text"><strong>Relief at source</strong> (personal pensions, SIPPs and many workplace schemes): you pay in from your take-home pay and the provider adds basic rate relief, so £80 becomes £100. If you pay 40% or 45% tax, you claim the rest through Self Assessment: an extra 20% on the slice of income taxed at 40% and 25% on any taxed at 45%.</p>
       <p class="about-text"><strong>Net pay</strong> (many workplace schemes): the contribution comes out of your pay before income tax, so you get all the relief straight away. On £60,000, £5,000 through net pay saves £2,000 of tax.</p>
       <p class="about-text">On £60,000, paying £4,000 into a relief at source pension puts £5,000 in: the provider adds £1,000, and you claim £1,000 back, so it costs you £3,000. With £4,000 paid in at each income (2026/27, England, Wales and Northern Ireland):</p>
-            <div class="table-scroll">
+            <div class="table-scroll" tabindex="0" role="region" aria-label="How pension tax relief works (table)">
         <div style="min-width:560px;">
           <table class="out-table">
             <thead><tr><th>Income</th><th>Into pension</th><th>Provider adds</th><th>You claim</th><th>Total relief</th><th>Cost to you</th><th>Relief</th></tr></thead>
@@ -193,12 +195,12 @@
         </div>
       </div>
       <p class="about-text" style="margin-top:14px;"><strong>Between £100,000 and £125,140</strong>, pension contributions also win back personal allowance, so the relief is bigger: on £110,000, £8,000 paid in (£10,000 gross) brings £6,000 of relief, 60%.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Scotland</h2>
       <p class="about-text">Relief at source providers add 20% for everyone, including starter rate taxpayers paying 19%, who keep the difference. Above that you claim the gap between your rate and 20% (1% at the intermediate rate, 22% at the higher rate). £4,000 paid in, 2026/27:</p>
-            <div class="table-scroll">
+            <div class="table-scroll" tabindex="0" role="region" aria-label="Scotland (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Income</th><th>Provider adds</th><th>You claim</th><th>Total relief</th><th>Relief</th></tr></thead>
@@ -211,15 +213,15 @@
           </table>
         </div>
       </div>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Limits</h2>
       <p class="about-text">The <strong>annual allowance</strong> is £60,000 a year in total, including your employer's contributions; above it you may owe tax, though you can carry forward unused allowance from the previous three years. It's lower if you've flexibly taken money from a pension, or with threshold income over £200,000 and adjusted income over £260,000.</p>
       <p class="about-text">If your employer offers <a href="/salary-sacrifice-calculator/">salary sacrifice</a>, it saves National Insurance as well as tax. To weigh a pension against an ISA, see <a href="/isa-vs-pension/">ISA or pension</a>; for taking money out, the <a href="/pension-drawdown-calculator/">pension drawdown calculator</a>.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">How much tax relief do I get on pension contributions?</h3>
       <p class="about-text">Relief at your highest rate of income tax. Relief at source pensions add 20% (so £80 becomes £100), and higher and additional rate taxpayers claim the rest through Self Assessment. On £60,000, £4,000 paid in gets £2,000 of relief.</p>
@@ -234,7 +236,7 @@
       <h3 class="faq-q">Is pension tax relief different in Scotland?</h3>
       <p class="about-text">Providers add 20%, even for starter rate taxpayers. Intermediate, higher, advanced and top rate taxpayers claim the difference between their rate and 20% through Self Assessment.</p>
       <p class="tool-hint" style="margin-top:12px;">A guide, not advice. 2026/27 income tax bands as on the <a href="/salary/">salary calculator</a> (last checked 10 November 2026); rules from <a href="https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief" rel="nofollow noopener" target="_blank">GOV.UK — Tax on your private pension contributions: tax relief</a> and <a href="https://www.gov.uk/tax-on-your-private-pension/annual-allowance" rel="nofollow noopener" target="_blank">GOV.UK — Tax on your private pension contributions: annual allowance</a>.</p>
-    </main>
+    </section>
 
     <!-- guide link: generated by tools/build-guides.js -->
     <p class="guide-callout"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=e437077b#book-open"></use></svg><span><a href="/guides/uk-income-tax/">UK income tax explained (2026/27)</a>: how the bands, the personal allowance and National Insurance work, with take-home pay at different salaries.</span></p>
@@ -280,6 +282,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

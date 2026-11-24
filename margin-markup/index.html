@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -126,17 +126,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/business-analysis/">Business &amp; Analysis</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Margin vs Markup Calculator</span></nav>
       <h1 class="page-title">Margin vs Markup Calculator</h1>
       <p class="page-subtitle">Cost price, margin% and markup% — solve for whichever one you don't have.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <div class="field" style="max-width:280px;">
         <label for="currency">Currency</label>
         <select id="currency">
@@ -218,23 +220,23 @@
           </div>
         </div>
       </div>
-    </main>
-    <main class="tool">
+    </section>
+    <section class="tool">
       <h2 class="tool-section-title">Margin and markup, side by side</h2>
       <p class="about-text">Both measure the same profit, against different bases. <strong>Margin</strong> is profit as a percentage of the selling price: profit &divide; sell price &times; 100. <strong>Markup</strong> is profit as a percentage of the cost: profit &divide; cost &times; 100.</p>
       <p class="about-text"><strong>Worked example:</strong> you buy a lamp for &pound;24 and sell it for &pound;40. The profit is &pound;16. The margin is 16 &divide; 40 = <strong>40%</strong>; the markup is 16 &divide; 24 = <strong>66.7%</strong>. Same lamp, same &pound;16 &mdash; but quote the wrong one and a price looks a lot more, or less, generous than it is.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Setting a price from a target</h2>
       <p class="about-text"><strong>From a target margin:</strong> sell price = cost &divide; (1 &minus; margin). To make a 40% margin on a &pound;24 cost, 24 &divide; 0.6 = <strong>&pound;40</strong>.</p>
       <p class="about-text"><strong>From a target markup:</strong> sell price = cost &times; (1 + markup). A 40% markup on &pound;24 is 24 &times; 1.4 = <strong>&pound;33.60</strong> &mdash; which is only a 28.6% margin.</p>
       <p class="about-text">A common mistake is to add the target margin to the cost as if it were a markup: &pound;24 plus 40% gives &pound;33.60, not the &pound;40 a 40% margin needs.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Margin to markup conversion</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Margin to markup conversion (table)">
         <div style="min-width:360px;">
           <table class="out-table">
             <thead><tr><th>Margin</th><th>Equivalent markup</th><th>Sell price on a &pound;100 cost</th></tr></thead>
@@ -252,9 +254,9 @@
         </div>
       </div>
       <p class="tool-hint" style="margin-top:12px;">Markup = margin &divide; (100 &minus; margin) &times; 100. Margin = markup &divide; (100 + markup) &times; 100.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">What is the difference between margin and markup?</h3>
       <p class="about-text">Both measure the same profit against different bases. Margin is profit as a percentage of the sell price; markup is profit as a percentage of the cost price. The same sale always shows a lower margin than markup.</p>
@@ -268,12 +270,12 @@
       <p class="about-text">No &mdash; if you are VAT-registered, use prices without VAT for both cost and sale, since the VAT isn't yours to keep. The <a href="/vat/">VAT calculator</a> strips it out of a VAT-inclusive price.</p>
       <h3 class="faq-q">What is the difference between gross margin and net margin?</h3>
       <p class="about-text">Gross margin only takes off the direct cost of what you sold, which is what this calculator does. Net margin also takes off overheads such as rent, wages, marketing and fees. For selling online, the <a href="/marketplace-fees/">marketplace fee calculator</a> shows what eBay, Etsy or Amazon take before you see your margin.</p>
-    </main>
+    </section>
 
     <!-- margin pages: generated by tools/build-margin-pages.js -->
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Margin and markup conversion</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Margin and markup conversion (table)">
         <div style="min-width:420px;">
           <table class="out-table">
             <thead><tr><th>Percentage</th><th>Markup needed for this margin</th><th>Margin this markup gives</th></tr></thead>
@@ -307,7 +309,7 @@
       <p class="salary-links"><strong>60% margin on:</strong> <a href="/margin-markup/60-percent-margin-on-5/">£5</a> <a href="/margin-markup/60-percent-margin-on-10/">£10</a> <a href="/margin-markup/60-percent-margin-on-15/">£15</a> <a href="/margin-markup/60-percent-margin-on-20/">£20</a> <a href="/margin-markup/60-percent-margin-on-25/">£25</a> <a href="/margin-markup/60-percent-margin-on-30/">£30</a> <a href="/margin-markup/60-percent-margin-on-40/">£40</a> <a href="/margin-markup/60-percent-margin-on-50/">£50</a> <a href="/margin-markup/60-percent-margin-on-75/">£75</a> <a href="/margin-markup/60-percent-margin-on-100/">£100</a> <a href="/margin-markup/60-percent-margin-on-150/">£150</a> <a href="/margin-markup/60-percent-margin-on-200/">£200</a> <a href="/margin-markup/60-percent-margin-on-250/">£250</a> <a href="/margin-markup/60-percent-margin-on-500/">£500</a> <a href="/margin-markup/60-percent-margin-on-1000/">£1,000</a></p>
       <p class="salary-links"><strong>70% margin on:</strong> <a href="/margin-markup/70-percent-margin-on-5/">£5</a> <a href="/margin-markup/70-percent-margin-on-10/">£10</a> <a href="/margin-markup/70-percent-margin-on-15/">£15</a> <a href="/margin-markup/70-percent-margin-on-20/">£20</a> <a href="/margin-markup/70-percent-margin-on-25/">£25</a> <a href="/margin-markup/70-percent-margin-on-30/">£30</a> <a href="/margin-markup/70-percent-margin-on-40/">£40</a> <a href="/margin-markup/70-percent-margin-on-50/">£50</a> <a href="/margin-markup/70-percent-margin-on-75/">£75</a> <a href="/margin-markup/70-percent-margin-on-100/">£100</a> <a href="/margin-markup/70-percent-margin-on-150/">£150</a> <a href="/margin-markup/70-percent-margin-on-200/">£200</a> <a href="/margin-markup/70-percent-margin-on-250/">£250</a> <a href="/margin-markup/70-percent-margin-on-500/">£500</a> <a href="/margin-markup/70-percent-margin-on-1000/">£1,000</a></p>
       <p class="salary-links"><strong>75% margin on:</strong> <a href="/margin-markup/75-percent-margin-on-5/">£5</a> <a href="/margin-markup/75-percent-margin-on-10/">£10</a> <a href="/margin-markup/75-percent-margin-on-15/">£15</a> <a href="/margin-markup/75-percent-margin-on-20/">£20</a> <a href="/margin-markup/75-percent-margin-on-25/">£25</a> <a href="/margin-markup/75-percent-margin-on-30/">£30</a> <a href="/margin-markup/75-percent-margin-on-40/">£40</a> <a href="/margin-markup/75-percent-margin-on-50/">£50</a> <a href="/margin-markup/75-percent-margin-on-75/">£75</a> <a href="/margin-markup/75-percent-margin-on-100/">£100</a> <a href="/margin-markup/75-percent-margin-on-150/">£150</a> <a href="/margin-markup/75-percent-margin-on-200/">£200</a> <a href="/margin-markup/75-percent-margin-on-250/">£250</a> <a href="/margin-markup/75-percent-margin-on-500/">£500</a> <a href="/margin-markup/75-percent-margin-on-1000/">£1,000</a></p>
-    </main>
+    </section>
 
     <!-- end margin pages -->
 
@@ -347,6 +349,7 @@
     </div>
     <!-- end related calculators -->
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>

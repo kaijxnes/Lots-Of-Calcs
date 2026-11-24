@@ -21,11 +21,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=7392496b">
+<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
-<script src="/visits.js?v=1acb6618" defer></script>
-<script src="/share.js?v=0ac6d1cb" defer></script>
+<script src="/visits.js?v=7f8547a3" defer></script>
+<script src="/share.js?v=4a56d6c6" defer></script>
 <script type="application/ld+json">
 [
   {
@@ -105,19 +105,21 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
-      <a class="topbar-brand" href="/"><img src="/favicon-32.png" alt="" width="22" height="22">Lots Of Calcs</a>
+      <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/working-days/">Working Days</a><span class="crumb-sep" aria-hidden="true">›</span><a href="/working-days/2026/">2026</a><span class="crumb-sep" aria-hidden="true">›</span><span aria-current="page">Payday calendar</span></nav>
       <h1 class="page-title">Payday calendar 2026</h1>
       <p class="page-subtitle">When you'll be paid each month, with paydays that fall on a weekend or bank holiday moved to the working day before.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">If you're paid on the…</h2>
-      <div class="table-scroll">
+      <div class="table-scroll" tabindex="0" role="region" aria-label="If you're paid on the… (table)">
         <div style="min-width:640px;">
           <table class="out-table">
             <thead><tr><th>Month</th><th>Last working day</th><th>Last Friday</th><th>28th</th><th>25th</th><th>20th</th><th>15th</th></tr></thead>
@@ -140,9 +142,9 @@
       </div>
       <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or bank holiday. England and Wales bank holidays. In Scotland and Northern Ireland: Scotland, 15th in June: Fri 12 Jun (not Mon 15 Jun); Scotland, last working day in August: Mon 31 Aug (not Fri 28 Aug); Scotland, last working day in November: Fri 27 Nov (not Mon 30 Nov). Bank holidays from <a href="https://www.gov.uk/bank-holidays" rel="noopener">GOV.UK</a>.</p>
       <p class="tool-hint">When payday falls on a weekend or bank holiday, most employers pay on the working day before — but it's set by your contract, so check with your employer. December pay is often earlier still, before Christmas.</p>
-    </main>
+    </section>
 
-    <main class="tool">
+    <section class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
       <h3 class="faq-q">When is payday in 2026 if I'm paid on the last working day?</h3>
       <p class="about-text">England and Wales: January — Friday 30 January; February — Friday 27 February; March — Tuesday 31 March; April — Thursday 30 April; May — Friday 29 May; June — Tuesday 30 June; July — Friday 31 July; August — Friday 28 August; September — Wednesday 30 September; October — Friday 30 October; November — Monday 30 November; December — Thursday 31 December.</p>
@@ -150,11 +152,12 @@
       <p class="about-text">When payday falls on a weekend or bank holiday, most employers pay on the working day before — but it's set by your contract, so check with your employer. December pay is often earlier still, before Christmas.</p>
       <h3 class="faq-q">When is the 25th paid early in 2026?</h3>
       <p class="about-text">January (Friday 23 January), April (Friday 24 April), May (Friday 22 May), July (Friday 24 July), October (Friday 23 October), December (Thursday 24 December) — the 25th falls on a weekend or bank holiday in those months.</p>
-    </main>
+    </section>
 
     <div class="hub-group-title" style="margin-top:28px;">Other years</div>
     <p class="salary-links"><a href="/working-days/2025/payday-calendar/">Payday calendar 2025</a> <a href="/working-days/2027/payday-calendar/">Payday calendar 2027</a> <a href="/working-days/2028/payday-calendar/">Payday calendar 2028</a></p>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>
