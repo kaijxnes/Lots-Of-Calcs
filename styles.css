@@ -1063,6 +1063,13 @@ hr.divider {
   margin: 0 0 8px;
 }
 
+@media (max-width: 600px) {
+  .hub-hero h1 {
+    font-size: 1.55rem;
+    line-height: 1.25;
+  }
+}
+
 .hub-hero p {
   color: var(--text-muted);
   margin: 0;
@@ -1287,32 +1294,6 @@ hr.divider {
   display: none;
 }
 
-.pill-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin: 0;
-}
-
-.pill-links a {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 14px;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  background: var(--calc-bg);
-  color: var(--text-main);
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.pill-links a:hover,
-.pill-links a:focus-visible {
-  border-color: var(--accent-text);
-  background: var(--hover-bg);
-}
 
 .cat-browse-label {
   color: var(--text-muted);
