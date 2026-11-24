@@ -211,3 +211,48 @@
     }, true);
   });
 })();
+
+/* On a phone, a calculator's main answer stays in sight: when its result
+   box (the one marked "split-aside", which sits beside the inputs on a wide
+   screen) scrolls out of view while you're working in the calculator, a
+   slim bar at the bottom shows it, and tapping the bar goes back to it. */
+(function () {
+  "use strict";
+  var aside = document.querySelector("main.tool.split .split-aside");
+  if (!aside || !window.IntersectionObserver || !window.matchMedia) return;
+  var tool = aside.closest("main.tool");
+  var narrow = window.matchMedia("(max-width: 999px)");
+  function source() {
+    var v = aside.querySelector(".result-hero .value"), l = aside.querySelector(".result-hero .label");
+    if (v) return [l ? l.textContent : "", v.textContent];
+    var row = aside.querySelector(".result-row.highlight") || aside.querySelector(".result-row");
+    return row ? [row.querySelector(".r-label").textContent, row.querySelector(".r-value").textContent] : null;
+  }
+  var bar = document.createElement("button");
+  bar.type = "button";
+  bar.className = "result-bar no-print";
+  bar.hidden = true;
+  bar.innerHTML = '<span class="rb-label"></span><span class="rb-value"></span>';
+  document.body.appendChild(bar);
+  function fill() {
+    var s = source();
+    if (!s) return;
+    var l = s[0].trim();
+    bar.querySelector(".rb-label").textContent = l.charAt(0).toUpperCase() + l.slice(1);
+    bar.querySelector(".rb-value").textContent = s[1].trim();
+    bar.setAttribute("aria-label", s[0].trim() + ": " + s[1].trim() + ". Go to the results");
+  }
+  var asideSeen = true, toolSeen = false;
+  function update() {
+    var banner = document.getElementById("consent-banner");
+    var show = narrow.matches && toolSeen && !asideSeen && !(banner && !banner.hidden && banner.offsetParent);
+    if (show) fill();
+    bar.hidden = !show;
+    document.body.classList.toggle("has-result-bar", show);
+  }
+  new IntersectionObserver(function (e) { asideSeen = e[0].isIntersecting; update(); }).observe(aside);
+  new IntersectionObserver(function (e) { toolSeen = e[0].isIntersecting; update(); }).observe(tool);
+  new MutationObserver(function () { if (!bar.hidden) fill(); }).observe(aside, { subtree: true, childList: true, characterData: true });
+  if (narrow.addEventListener) narrow.addEventListener("change", update);
+  bar.addEventListener("click", function () { aside.scrollIntoView({ behavior: "smooth", block: "center" }); });
+})();
