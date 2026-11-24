@@ -162,3 +162,52 @@
   tabs(); labels();
   if (window.MutationObserver) new MutationObserver(function (m) { m.forEach(function (r) { Array.prototype.forEach.call(r.addedNodes, function (n) { if (n.nodeType === 1) labels(n); }); }); }).observe(document.body, { childList: true, subtree: true });
 })();
+
+/* Thousands separators in money fields: 250000 shows as 250,000 as you
+   type. Number inputs can't show commas, so a money field (by its label:
+   salary, price, amount, balance...; not years, rates, counts) becomes a
+   text field with a numeric keypad. Its .value still gives the plain number
+   ("250000"), so every calculator reads it exactly as before, and setting
+   .value formats it. */
+(function () {
+  "use strict";
+  var desc = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value");
+  if (!desc || !desc.get || !desc.set) return;
+  var MONEY = /([£$€]|salary|price|amount|income|balance|loan|deposit|bill\b|spend|spent|sav(ed|ing)|goal|cost|profit|budget|\bpay\b|paid|payment|earn|borrow|principal|turnover|revenue|gross|wage|mortgage|debt|\bpot\b|contribution|tax due|cashback|\bfee\b|invest|dividend|expenses|insurance|bonus|day rate|value|down payment|\brent\b|stake|childcare|food|commute|council tax|home left|estate|pension pot|lump sum)/i;
+  var NOT = /(%|percent|\bapr\b|\((years?|yrs)\)|years worked|full years|\bage\b|people|hours?\b|number of|how many|count|\bterm\b|kwh|mile|\bkm\b|\bweeks?\b|\bdays\b|minutes|guests|credits|points|odds|decimal|fraction|height|weight|depth|diameter|width|length|power|watts|efficiency|mpg|distance|dice|\bp per\b|interest rate|return)/i;
+  function fmt(raw) {
+    var m = /^(-?)(\d*)(\.\d*)?$/.exec(raw);
+    if (!m) return raw;
+    return m[1] + m[2].replace(/^0+(?=\d)/, "").replace(/\B(?=(\d{3})+(?!\d))/g, ",") + (m[3] || "");
+  }
+  var clean = function (s) { return String(s).replace(/[^0-9.\-]/g, ""); };
+  function labelOf(el) {
+    var t = (el.labels && el.labels[0] && el.labels[0].textContent) || el.getAttribute("aria-label") || "";
+    return t.trim();
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('input[type="number"]'), function (el) {
+    var label = labelOf(el);
+    if (!label || !MONEY.test(label) || NOT.test(label)) return;
+    var v = desc.get.call(el);
+    el.type = "text";
+    el.setAttribute("inputmode", "decimal");
+    el.setAttribute("autocomplete", "off");
+    Object.defineProperty(el, "value", {
+      configurable: true,
+      get: function () { return clean(desc.get.call(this)); },
+      set: function (x) { desc.set.call(this, fmt(clean(x))); }
+    });
+    desc.set.call(el, fmt(clean(v)));
+    el.addEventListener("input", function () {
+      var shown = desc.get.call(el), pos = el.selectionStart || 0;
+      var keep = shown.slice(0, pos).replace(/[^0-9.\-]/g, "").length;
+      var f = fmt(clean(shown));
+      if (f === shown) return;
+      desc.set.call(el, f);
+      /* put the cursor back after the same number of digits */
+      var i = 0, n = 0;
+      while (i < f.length && n < keep) { if (/[0-9.\-]/.test(f.charAt(i))) n++; i++; }
+      try { el.setSelectionRange(i, i); } catch (e) { /* not focused */ }
+    }, true);
+  });
+})();
