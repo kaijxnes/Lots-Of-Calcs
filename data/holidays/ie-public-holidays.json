@@ -1,0 +1,6 @@
+{
+  "_note": "Ireland's public holidays, for payday calendars, from the Workplace Relations Commission. 'In Ireland there are ten public holidays each year. From 2023, there is a public holiday on the first Monday in February, except where 1st February falls on a Friday in which case that Friday 1st February will be the public holiday. Public holidays are: New Year's Day (1st January), First Monday in February, St. Patrick's Day (17th March), Easter Monday, First Monday in May, First Monday in June, First Monday in August, Last Monday in October, Christmas Day (25th December), St. Stephen's Day (26th December). Good Friday is not a public holiday and is a normal working day.' 'Where the public holiday falls on a day which is not a normal working day for that business (e.g. a Saturday or Sunday) ... there is no legal entitlement to have the next working day off work.' The WRC's own list for 2026 (in 'check') must come out of the rules exactly.",
+  "source": { "title": "Workplace Relations Commission — Public Holidays", "url": "https://www.workplacerelations.ie/en/what_you_should_know/public-holidays/" },
+  "check": { "2026": ["2026-01-01", "2026-02-02", "2026-03-17", "2026-04-06", "2026-05-04", "2026-06-01", "2026-08-03", "2026-10-26", "2026-12-25", "2026-12-26"] },
+  "lastChecked": "2026-11-25"
+}

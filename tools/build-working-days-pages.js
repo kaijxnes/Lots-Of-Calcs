@@ -117,6 +117,9 @@ function paydayPage(y) {
   ];
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Working Days", SITE + BASE], [String(y), SITE + `${BASE}${y}/`], ["Payday calendar", url]]), site.faqLd(q)];
   const other = YEARS.filter((x) => x !== y).map((x) => `<a href="${BASE}${x}/payday-calendar/">Payday calendar ${x}</a>`).join(" ");
+  /* other countries' calendars for the same year (tools/build-payday-pages.js) */
+  const abroad = [["us", "US"], ["ireland", "Ireland"]].filter(([c]) => fs.existsSync(path.join(site.ROOT, "payday-calendar", c, String(y), "index.html")))
+    .map(([c, n]) => `<a href="/payday-calendar/${c}/${y}/">${n} ${y}</a>`).concat('<a href="/payday-calendar/">All payday calendars</a>').join(" ");
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${BASE}${y}/">← Working days in ${y}</a>
       <h1 class="page-title">Payday calendar ${y}</h1>
@@ -135,6 +138,8 @@ ${site.faqHtml(q)}    </main>
 
     <div class="hub-group-title" style="margin-top:28px;">Other years</div>
     <p class="salary-links">${other}</p>
+    <div class="hub-group-title" style="margin-top:18px;">Other countries</div>
+    <p class="salary-links">${abroad}</p>
 
 ${site.FOOTER}
   </div>
@@ -297,7 +302,7 @@ function hub() {
   ];
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Working Days", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Working Days Calculator", url, applicationCategory: "BusinessApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
-  const years = YEARS.map((y) => `<a href="${BASE}${y}/">Bank holidays and working days ${y}</a> <a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`).join(" ");
+  const years = YEARS.map((y) => `<a href="${BASE}${y}/">Bank holidays and working days ${y}</a> <a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`).join(" ") + ' <a href="/payday-calendar/">Payday calendars for the US and Ireland</a>';
   const nextY = YEARS.find((y) => y > THIS_YEAR) || THIS_YEAR;
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
