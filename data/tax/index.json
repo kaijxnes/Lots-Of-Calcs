@@ -219,7 +219,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "ch-vd": {
       "file": "ch/ch-vd.2026.json",
@@ -230,7 +230,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "ch-zg": {
       "file": "ch/ch-zg.2026.json",
@@ -263,7 +263,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "es": {
       "file": "es/es.2026.json",
@@ -274,7 +274,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "fi": {
       "file": "fi/fi.2026.json",
@@ -351,7 +351,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "in": {
       "file": "in/in.2026-27.json",
@@ -395,7 +395,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "nl": {
       "file": "nl/nl.2026.json",
@@ -406,7 +406,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "no": {
       "file": "no/no.2026.json",
@@ -417,7 +417,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "nz": {
       "file": "nz/nz.2026-27.json",
@@ -428,7 +428,7 @@
       "standalone": true,
       "taxYear": "2026-27",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "pt": {
       "file": "pt/pt.2026.json",
@@ -439,7 +439,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "se": {
       "file": "se/se.2026.json",

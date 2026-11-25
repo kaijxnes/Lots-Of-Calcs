@@ -4,13 +4,14 @@ Generated from `data/tax/no/no.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: NOK
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `Union dues maximum NOK 8,700 is the government's 2026 proposal; the enacted figure was not confirmed separately`
 
 ## Check against
 
 - **Start here:** https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
+- Skatteetaten — general income rates 2026 (18.5% in Finnmark and Nord-Troms): https://www.skatteetaten.no/en/rates/general-income/
 - Regjeringen — Skattesatser 2026: https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skatte-og-avgiftssatser/skattesatser-2026/id3121978/
 - Skatteetaten — Forskuddsutskrivingen 2026: https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
 - Regjeringen — Endringer i lover og forskrifter fra 1. januar 2026: https://www.regjeringen.no/no/aktuelt/endringer-i-lover-og-forskrifter-fra-1.-januar-2026-fra-finansdepartementet/id3144251/

@@ -4,7 +4,7 @@ Generated from `data/tax/pt/pt.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: EUR
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `Monthly withholding in 2026 used the earlier rates; the annual return settles the difference`
 
