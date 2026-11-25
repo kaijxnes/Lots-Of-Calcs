@@ -10,7 +10,9 @@
    Bank holidays come from GOV.UK's official list, saved unmodified in
    data/holidays/gov-uk-bank-holidays.json (re-download it from
    https://www.gov.uk/bank-holidays.json and re-run; the monthly check does).
-   Pages are made for each full year it covers from last year on. */
+   Pages are made for each full year it covers from last year on, and for
+   the years after it up to four years ahead, from the expected dates
+   (tools/lib/uk-bank-holiday-rules.js), marked as expected. */
 const fs = require("fs");
 const path = require("path");
 const site = require("./lib/site.js");
@@ -26,7 +28,35 @@ const all = REG.flatMap((r) => HOL[r].map((h) => h.date)).sort();
 const yearsInData = [...new Set(all.map((d) => +d.slice(0, 4)))];
 const THIS_YEAR = +site.TODAY.slice(0, 4);
 /* a year is complete when England and Wales has its usual 8 (or more) */
-const YEARS = yearsInData.filter((y) => y >= THIS_YEAR - 1 && HOL["england-and-wales"].filter((h) => h.date.startsWith(y + "-")).length >= 8);
+const PUBLISHED = yearsInData.filter((y) => HOL["england-and-wales"].filter((h) => h.date.startsWith(y + "-")).length >= 8);
+
+/* Beyond GOV.UK's list (it runs about two years ahead), the expected dates
+   from the usual pattern (tools/lib/uk-bank-holiday-rules.js), up to four
+   years ahead, marked as expected wherever they're shown. The pattern must
+   reproduce every year GOV.UK has published, except years with a one-off
+   (a coronation, jubilee or moved May bank holiday, which GOV.UK gives its
+   own title); if it doesn't, the build stops. When GOV.UK publishes a year,
+   the monthly download replaces the expected dates with the official ones. */
+const RULES_UK = require("./lib/uk-bank-holiday-rules.js");
+const STANDARD = new Set(["New Year's Day", "2nd January", "Good Friday", "Easter Monday", "Early May bank holiday", "Spring bank holiday", "Summer bank holiday",
+  "St Patrick's Day", "Battle of the Boyne (Orangemen's Day)", "St Andrew's Day", "Christmas Day", "Boxing Day"]);
+REG.forEach((r) => PUBLISHED.forEach((y) => {
+  const key = (h) => h.date + " " + h.title + (h.sub ? " *" : "");
+  const gov = inYearOf(r, y), exp = RULES_UK.expected(r, y);
+  const g = new Set(gov.map(key)), e = new Set(exp.map(key));
+  const differs = [...g].some((k) => !e.has(k)) || [...e].some((k) => !g.has(k));
+  if (differs && gov.every((h) => STANDARD.has(h.title))) throw new Error(`bank holiday pattern doesn't match GOV.UK for ${r} ${y}: update tools/lib/uk-bank-holiday-rules.js`);
+}));
+function inYearOf(r, y) { return HOL[r].filter((h) => h.date.startsWith(y + "-")); }
+const LAST_PUBLISHED = PUBLISHED[PUBLISHED.length - 1];
+const AHEAD_TO = THIS_YEAR + 4;
+for (let y = LAST_PUBLISHED + 1; y <= AHEAD_TO; y++) REG.forEach((r) => {
+  HOL[r] = HOL[r].filter((h) => !h.date.startsWith(y + "-")).concat(RULES_UK.expected(r, y).map((h) => ({ ...h, expected: true })));
+});
+REG.forEach((r) => HOL[r].sort((a, b) => (a.date < b.date ? -1 : 1)));
+const isExpected = (y) => y > LAST_PUBLISHED;
+const YEARS = [];
+for (let y = THIS_YEAR - 1; y <= AHEAD_TO; y++) if (PUBLISHED.includes(y) || isExpected(y)) YEARS.push(y);
 const RANGE = [yearsInData[0] + "-01-01", YEARS[YEARS.length - 1] + "-12-31"];
 const BASE = "/working-days/";
 const mslug = (m) => W.MONTHS[m].toLowerCase();
@@ -35,7 +65,11 @@ const inYear = (r, y) => HOL[r].filter((h) => h.date.startsWith(y + "-"));
 const monthCount = (r, y, m) => W.count(W.first(y, m), W.lastDay(y, m), HOL[r]);
 const andList = (a) => (a.length < 2 ? a.join("") : a.slice(0, -1).join(", ") + " and " + a[a.length - 1]);
 const SRC = 'Bank holidays from <a href="https://www.gov.uk/bank-holidays" rel="noopener">GOV.UK</a>.';
-const holTitle = (h) => esc(h.title) + (h.sub ? " (substitute day)" : "");
+const AHEAD = (y) => `GOV.UK hasn't published the bank holidays for ${y} yet, so these are the expected dates: the usual pattern, which matches every year GOV.UK has published apart from one-offs like a coronation or jubilee. They'll change to GOV.UK's official list as soon as it's out.`;
+const src = (y) => (isExpected(y) ? esc(AHEAD(y)) : SRC);
+/* a notice at the top of a page for a year GOV.UK hasn't published */
+const aheadNote = (y) => (isExpected(y) ? `      <p class="tool-hint" style="margin-top:10px;"><strong>Expected dates.</strong> ${esc(AHEAD(y))}</p>\n` : "");
+const holTitle = (h) => esc(h.title) + (h.sub ? " (substitute day)" : "") + (h.expected ? " (expected)" : "");
 
 /* ---------- paydays ---------- */
 const isWorking = (iso, r) => { const d = new Date(W.parse(iso)).getUTCDay(); return d !== 0 && d !== 6 && !HOL[r].some((h) => h.date === iso); };
@@ -87,11 +121,11 @@ function paydayPage(y) {
       <a class="back-link" href="${BASE}${y}/">← Working days in ${y}</a>
       <h1 class="page-title">Payday calendar ${y}</h1>
       <p class="page-subtitle">When you'll be paid each month, with paydays that fall on a weekend or bank holiday moved to the working day before.</p>
-    </header>
+${aheadNote(y)}    </header>
 
     <main class="tool">
       <h2 class="tool-section-title">If you're paid on the…</h2>
-${site.table(["Month"].concat(RULES.map((x) => x[0])), rows, 640)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or bank holiday. England and Wales bank holidays.${diffs.length ? " In Scotland and Northern Ireland: " + esc(diffs.join("; ")) + "." : " Scotland and Northern Ireland are the same."} ${SRC}</p>
+${site.table(["Month"].concat(RULES.map((x) => x[0])), rows, 640)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or bank holiday. England and Wales bank holidays.${diffs.length ? " In Scotland and Northern Ireland: " + esc(diffs.join("; ")) + "." : " Scotland and Northern Ireland are the same."} ${src(y)}</p>
       <p class="tool-hint">${esc(PAY_NOTE)}</p>
     </main>
 
@@ -171,11 +205,11 @@ function yearPage(y) {
       <a class="back-link" href="${BASE}">← Working days calculator</a>
       <h1 class="page-title">Bank holidays and working days in ${y}</h1>
       <p class="page-subtitle">${ew.working} working days in England and Wales, ${sc.working} in Scotland, ${ni.working} in Northern Ireland.</p>
-    </header>
+${aheadNote(y)}    </header>
 
     <main class="tool">
       <h2 class="tool-section-title">Bank holidays in ${y}</h2>
-${holidayTable(y)}      <p class="tool-hint" style="margin-top:12px;">When a bank holiday falls on a weekend, a substitute weekday is usually given. ${SRC}</p>
+${holidayTable(y)}      <p class="tool-hint" style="margin-top:12px;">When a bank holiday falls on a weekend, a substitute weekday is usually given. ${src(y)}</p>
     </main>
 
     <main class="tool">
@@ -223,11 +257,11 @@ function monthPage(y, m) {
       <a class="back-link" href="${BASE}${y}/">← Working days in ${y}</a>
       <h1 class="page-title">Working days in ${name} ${y}</h1>
       <p class="page-subtitle">${ew.working} working days${same ? " across the UK" : " in England and Wales"} — ${ew.calendar} days, less ${ew.weekend} at the weekend${ew.holidays.length ? ` and ${ew.holidays.length} bank holiday${ew.holidays.length > 1 ? "s" : ""}` : ""}.</p>
-    </header>
+${aheadNote(y)}    </header>
 
     <main class="tool">
 ${site.table(["", "Working days", "Bank holidays", "First working day", "Last working day"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), dm(firstWorking(y, m, r)), dm(lastWorking(y, m, r))]), 520)}${holRows.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</h2>
-${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>. ${SRC}</p>
+${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>. ${src(y)}</p>
     </main>
 
 ${tool(W.first(y, m), W.lastDay(y, m), "england-and-wales", false)}
@@ -304,8 +338,9 @@ chk.forEach(([got, want], i) => { if (got !== want) throw new Error(`working day
    (and the browser caches) rather than a copy inside each page */
 function holidaysScript() {
   const data = { _range: RANGE };
-  REG.forEach((k) => { data[k] = HOL[k].map((h) => ({ date: h.date, title: h.title + (h.sub ? " (substitute day)" : "") })); });
-  return `/* UK bank holidays from GOV.UK (https://www.gov.uk/bank-holidays.json).
+  REG.forEach((k) => { data[k] = HOL[k].map((h) => ({ date: h.date, title: h.title + (h.sub ? " (substitute day)" : "") + (h.expected ? " (expected)" : "") })); });
+  return `/* UK bank holidays from GOV.UK (https://www.gov.uk/bank-holidays.json), then
+   the expected dates for the years after it (tools/lib/uk-bank-holiday-rules.js).
    Generated by tools/build-working-days-pages.js — don't edit by hand. */
 var UK_BANK_HOLIDAYS = ${JSON.stringify(data)};
 `;
