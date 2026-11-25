@@ -4,13 +4,17 @@ Generated from `data/tax/se/se.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: SEK
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `The earned income tax credit uses the formula from Skatteverket's 2025 technical description; it reproduces the SEK 52,390 2026 maximum quoted by a secondary source, but the 2026 edition was not read directly`
 
 ## Check against
 
 - **Start here:** https://app.skatteverket.se/rakna-skatt-client-skut-skatteutrakning/
+- Skatteverket — belopp och procentsatser för inkomståret 2026 (prisbasbelopp 59,200, inkomstbasbelopp 83,400, skiktgräns 643,000): https://skatteverket.se/download/18.1522bf3f19aea8075ba3285/1767885159120/belopp-och-procentsatser-for-inkomstaret-2026.pdf
+- Inkomstskattelag (1999:1229) 63 kap. 3 § and 67 kap. 7 § — grundavdrag and jobbskatteavdrag (as amended by 2025:1376): https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/inkomstskattelag-19991229_sfs-1999-1229/
+- Lag (1994:1744) om allmän pensionsavgift — 7% up to 8.07 income base amounts: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-19941744-om-allman-pensionsavgift_sfs-1994-1744/
+- Lag (2025:986) om finansiering av radio och tv i allmänhetens tjänst — public service fee 1% of at most 1.42 income base amounts: https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2025986-om-finansiering-av-radio-och-tv-i_sfs-2025-986/
 - Skatteverket — Belopp och procent, inkomstår 2026: https://www.skatteverket.se/privat/skatter/beloppochprocent/2026
 - Skatteverket — Teknisk beskrivning SKV 433, 2026 (utgåva 36): https://www.skatteverket.se/download/18.1522bf3f19aea8075ba55c/1766385913260/teknisk-beskrivning-skv-433-2026-utgava-36.pdf
 - SCB — Kommunalskatterna 2026: https://www.scb.se/hitta-statistik/statistik-efter-amne/offentlig-ekonomi/finanser-for-den-kommunala-sektorn/kommunalskatterna/pong/statistiknyhet/kommunalskatterna-2026/

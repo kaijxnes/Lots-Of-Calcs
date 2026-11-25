@@ -14,12 +14,12 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | **New York** | [us-ny](us-ny.md) | 2026 | 66 | 2026-11-25 | — |
 | **New York City** | [us-ny-nyc](us-ny-nyc.md) | 2026 | 19 | 2026-11-25 | — |
 | **Florida** | [us-fl](us-fl.md) | 2026 | 3 | 2026-11-25 | — |
-| **Germany** | [de](de.md) | 2026 | 46 | — | — |
+| **Germany** | [de](de.md) | 2026 | 46 | 2026-11-25 | — |
 | **Ireland** | [ie](ie.md) | 2026 | 24 | 2026-11-25 | — |
 | **Australia** | [au](au.md) | 2026-27 | 33 | — | — |
 | **New Zealand** | [nz](nz.md) | 2026-27 | 23 | 2026-11-25 | — |
 | **France** | [fr](fr.md) | 2026 | 57 | — | — |
-| Austria | [at](at.md) | 2026 | 57 | — | — |
+| Austria | [at](at.md) | 2026 | 57 | 2026-11-25 | — |
 | Belgium | [be](be.md) | 2026 | 34 | — | — |
 | Canada (federal) | [ca](ca.md) | 2026 | 26 | 2026-11-11 | — |
 | Alberta | [ca-ab](ca-ab.md) | 2026 | 15 | 2026-11-11 | — |
@@ -52,7 +52,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Netherlands | [nl](nl.md) | 2026 | 32 | 2026-11-25 | — |
 | Norway | [no](no.md) | 2026 | 19 | 2026-11-25 | — |
 | Portugal | [pt](pt.md) | 2026 | 37 | 2026-11-25 | — |
-| Sweden | [se](se.md) | 2026 | 36 | — | — |
+| Sweden | [se](se.md) | 2026 | 36 | 2026-11-25 | — |
 | Alaska | [us-ak](us-ak.md) | 2026 | 3 | 2026-11-25 | — |
 | Alabama | [us-al](us-al.md) | 2026 | 20 | 2026-11-25 | — |
 | Arkansas | [us-ar](us-ar.md) | 2026 | 46 | 2026-11-25 | — |

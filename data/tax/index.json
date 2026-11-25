@@ -10,7 +10,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "au": {
       "file": "au/au.2026-27.json",
@@ -252,7 +252,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "dk": {
       "file": "dk/dk.2026.json",
@@ -450,7 +450,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us": {
       "file": "us/us.2026.json",
