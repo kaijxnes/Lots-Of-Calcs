@@ -307,6 +307,22 @@
   ],
   "provisional": [],
   "sources": [
+    {
+      "title": "§ 32a EStG, tariff from 2026 (Steuerfortentwicklungsgesetz), consolidated text on buzer.de",
+      "url": "https://www.buzer.de/32a_EStG.htm"
+    },
+    {
+      "title": "§ 10 EStG — 4% reduction for sick-pay entitlement and the €1,900 limit, consolidated text on buzer.de",
+      "url": "https://www.buzer.de/10_EStG.htm"
+    },
+    {
+      "title": "Deutsche Rentenversicherung — changes from 1 January 2026 (contribution rate 18.6%)",
+      "url": "https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Pressemitteilungen/Pressemitteilungen-archiv/2025/2025-12-18-rv-aenderungen-2026.html"
+    },
+    {
+      "title": "Techniker Krankenkasse — Solidaritätszuschlag 2026 (€20,350 / €40,700, 11.9% transition, 5.5%)",
+      "url": "https://www.tk.de/firmenkunden/service/fachthemen/fachthema-beitraege/solidaritaetszuschlag-2075802"
+    },
     {"title": "§ 32a EStG — Einkommensteuertarif", "url": "https://www.gesetze-im-internet.de/estg/__32a.html"},
     {
       "title": "§ 9a EStG — Pauschbeträge für Werbungskosten",
@@ -333,7 +349,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.bmf-steuerrechner.de/",
   "tests": [
     {

@@ -4,12 +4,16 @@ Generated from `data/tax/de/de.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: EUR
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 
 ## Check against
 
 - **Start here:** https://www.bmf-steuerrechner.de/
+- § 32a EStG, tariff from 2026 (Steuerfortentwicklungsgesetz), consolidated text on buzer.de: https://www.buzer.de/32a_EStG.htm
+- § 10 EStG — 4% reduction for sick-pay entitlement and the €1,900 limit, consolidated text on buzer.de: https://www.buzer.de/10_EStG.htm
+- Deutsche Rentenversicherung — changes from 1 January 2026 (contribution rate 18.6%): https://www.deutsche-rentenversicherung.de/DRV/DE/Ueber-uns-und-Presse/Presse/Pressemitteilungen/Pressemitteilungen-archiv/2025/2025-12-18-rv-aenderungen-2026.html
+- Techniker Krankenkasse — Solidaritätszuschlag 2026 (€20,350 / €40,700, 11.9% transition, 5.5%): https://www.tk.de/firmenkunden/service/fachthemen/fachthema-beitraege/solidaritaetszuschlag-2075802
 - § 32a EStG — Einkommensteuertarif: https://www.gesetze-im-internet.de/estg/__32a.html
 - § 9a EStG — Pauschbeträge für Werbungskosten: https://www.gesetze-im-internet.de/estg/__9a.html
 - Solidaritätszuschlaggesetz 1995 § 3, § 4: https://www.gesetze-im-internet.de/solzg_1995/

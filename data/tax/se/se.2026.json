@@ -327,6 +327,22 @@
   ],
   "sources": [
     {
+      "title": "Skatteverket — belopp och procentsatser för inkomståret 2026 (prisbasbelopp 59,200, inkomstbasbelopp 83,400, skiktgräns 643,000)",
+      "url": "https://skatteverket.se/download/18.1522bf3f19aea8075ba3285/1767885159120/belopp-och-procentsatser-for-inkomstaret-2026.pdf"
+    },
+    {
+      "title": "Inkomstskattelag (1999:1229) 63 kap. 3 § and 67 kap. 7 § — grundavdrag and jobbskatteavdrag (as amended by 2025:1376)",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/inkomstskattelag-19991229_sfs-1999-1229/"
+    },
+    {
+      "title": "Lag (1994:1744) om allmän pensionsavgift — 7% up to 8.07 income base amounts",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-19941744-om-allman-pensionsavgift_sfs-1994-1744/"
+    },
+    {
+      "title": "Lag (2025:986) om finansiering av radio och tv i allmänhetens tjänst — public service fee 1% of at most 1.42 income base amounts",
+      "url": "https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2025986-om-finansiering-av-radio-och-tv-i_sfs-2025-986/"
+    },
+    {
       "title": "Skatteverket — Belopp och procent, inkomstår 2026",
       "url": "https://www.skatteverket.se/privat/skatter/beloppochprocent/2026"
     },
@@ -362,7 +378,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://app.skatteverket.se/rakna-skatt-client-skut-skatteutrakning/",
   "tests": [
     {

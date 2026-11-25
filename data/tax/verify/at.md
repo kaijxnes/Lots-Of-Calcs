@@ -4,13 +4,16 @@ Generated from `data/tax/at/at.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: EUR
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `The unemployment insurance reduction thresholds (€2,225 / €2,427 / €2,630 a month) come from a single secondary source`, `Special-payment tax bands (§ 67 EStG) were not re-checked for 2026`
 
 ## Check against
 
 - **Start here:** https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/
+- Dachverband der Sozialversicherungsträger — beitragsrechtliche Werte 2026 (rates, €6,930 / €13,860 ceilings, reduced unemployment contribution bands): https://www.sozialversicherung.at/cdscontent/load?contentid=10008.806858
+- BMF — Das Steuerbuch 2026 (13th/14th salary rates, Familienbonus Plus): https://www.bmf.gv.at/dam/jcr:436f8c01-38e0-41bf-b904-c0e62a862bf1/251117_Steuerbuch2026_DE_BF.pdf
+- USP — Steuerabsetzbeträge (Verkehrsabsetzbetrag and its 2026 supplement, €19,761–€30,259): https://www.usp.gv.at/themen/steuern-finanzen/einkommensteuer-ueberblick/weitere-informationen-est/steuerabsetzbetraege.html
 - BMF — Übersicht Steuerabsetzbeträge 2026: https://www.bmf.gv.at/themen/steuern/arbeitnehmerveranlagung/steuertarif-steuerabsetzbetraege/uebersicht-steuerabsetzbetraege.html
 - WKO — Einkommensteuer 2026, aktuelle Werte: https://www.wko.at/steuern/einkommen-koerperschaftsteuer-2026
 - USP — Höchstbeitragsgrundlage: https://www.usp.gv.at/services/suchen-und-finden/lexikon/hoechstbeitragsgrundlage.html

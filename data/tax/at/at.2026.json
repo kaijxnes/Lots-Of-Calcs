@@ -493,6 +493,18 @@
   ],
   "sources": [
     {
+      "title": "Dachverband der Sozialversicherungsträger — beitragsrechtliche Werte 2026 (rates, €6,930 / €13,860 ceilings, reduced unemployment contribution bands)",
+      "url": "https://www.sozialversicherung.at/cdscontent/load?contentid=10008.806858"
+    },
+    {
+      "title": "BMF — Das Steuerbuch 2026 (13th/14th salary rates, Familienbonus Plus)",
+      "url": "https://www.bmf.gv.at/dam/jcr:436f8c01-38e0-41bf-b904-c0e62a862bf1/251117_Steuerbuch2026_DE_BF.pdf"
+    },
+    {
+      "title": "USP — Steuerabsetzbeträge (Verkehrsabsetzbetrag and its 2026 supplement, €19,761–€30,259)",
+      "url": "https://www.usp.gv.at/themen/steuern-finanzen/einkommensteuer-ueberblick/weitere-informationen-est/steuerabsetzbetraege.html"
+    },
+    {
       "title": "BMF — Übersicht Steuerabsetzbeträge 2026",
       "url": "https://www.bmf.gv.at/themen/steuern/arbeitnehmerveranlagung/steuertarif-steuerabsetzbetraege/uebersicht-steuerabsetzbetraege.html"
     },
@@ -528,7 +540,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/",
   "tests": [
     {
