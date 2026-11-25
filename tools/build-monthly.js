@@ -33,7 +33,7 @@ const STEPS = [
   ["build-stamp-duty-pages.js"], ["build-borrowing-pages.js"], ["build-budget-pages.js"], ["build-job-offer.js"],
   ["build-inflation.js"], ["build-repayment-pages.js"],
   ["build-appliance-pages.js"], ["build-heating-pages.js"], ["build-ev-pages.js"], ["build-fuel-route-pages.js"],
-  ["build-tax-wrappers.js"], ["build-working-days-pages.js"], ["build-countdown-pages.js"], ["build-turkey-pages.js"],
+  ["build-tax-wrappers.js"], ["build-working-days-pages.js"], ["build-payday-pages.js"], ["build-countdown-pages.js"], ["build-turkey-pages.js"],
   ["build-born-pages.js"], ["build-planet-age.js"], ["build-calorie-pages.js"], ["build-dry-january.js"],
   ["build-savings-challenge-pages.js"], ["build-savings-goal-pages.js"], ["build-christmas-savings-pages.js"],
   ["build-pay-schedule-pages.js"], ["build-student-loan-pages.js"], ["build-expat-pages.js"],
