@@ -4,12 +4,13 @@ Generated from `data/tax/us/us.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: USD
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 
 ## Check against
 
 - **Start here:** https://www.irs.gov/pub/irs-drop/rp-25-32.pdf
+- IRS Publication 15 (2026) — Social Security wage base $184,500: https://www.irs.gov/pub/irs-pdf/p15.pdf
 - IRS Rev. Proc. 2025-32 — 2026 inflation adjustments (brackets, standard deduction): https://www.irs.gov/pub/irs-drop/rp-25-32.pdf
 - SSA — Contribution and benefit base: https://www.ssa.gov/oact/cola/cbb.html
 - 26 U.S.C. § 3101 — FICA rates, including the additional Medicare tax: https://www.law.cornell.edu/uscode/text/26/3101

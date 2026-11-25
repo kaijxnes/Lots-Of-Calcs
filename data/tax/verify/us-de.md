@@ -4,13 +4,15 @@ Generated from `data/tax/us/us-de.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=8
+- IRS Publication 15 (2026) — Social Security wage base $184,500: https://www.irs.gov/pub/irs-pdf/p15.pdf
+- Delaware Code Title 19 ch. 37 — Paid Leave contribution rates (0.4% medical, 0.32% parental, 0.08% caregiving for 2026) and wages as defined for Social Security: https://delcode.delaware.gov/title19/c037/index.html
 - 2025 Delaware Individual Income Tax Return Instructions: https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=8
 - 2025 Delaware Individual Income Tax Return Instructions: https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=3
 - Government of Delaware - Tax Rate Changes: https://revenue.delaware.gov/software-developer/tax-rate-changes/

@@ -30,6 +30,10 @@
   "provisional": [],
   "sources": [
     {
+      "title": "Kentucky DOR — 2026 withholding formula (3.5% flat rate)",
+      "url": "https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf"
+    },
+    {
       "title": "Kentucky DOR Announces 2026 Standard Deduction (September 4, 2025)",
       "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx"
     },
@@ -59,7 +63,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx",
   "tests": [
     {

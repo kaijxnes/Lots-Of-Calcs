@@ -4,13 +4,14 @@ Generated from `data/tax/us/us-wv.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6
+- West Virginia Tax Division — 2026 income tax rate cut: https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx
 - West Virginia Senate Bill 392 (2026), §11-21-4j(a): https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6
 - West Virginia Personal Income Tax Forms And Instructions 2025, Family Tax Credit Tables: https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=14
 - West Virginia Personal Income Tax Forms And Instructions 2025: https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=26

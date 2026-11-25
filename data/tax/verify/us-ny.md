@@ -4,13 +4,15 @@ Generated from `data/tax/us/us-ny.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://web.archive.org/web/20260617073750/https://www.tax.ny.gov/pit/inflation-refund-checks.htm
+- Workers’ Compensation Board — disability benefits for employers (0.5% of wages, at most 60 cents a week): https://www.wcb.ny.gov/content/main/DisabilityBenefits/employer-disability-benefits.jsp
+- New York State Paid Family Leave — 2026 contribution (0.432%, up to $411.91): https://paidfamilyleave.ny.gov/2026
 - 2025 NYS inflation refund checks (eligibility based on 2023 returns): https://web.archive.org/web/20260617073750/https://www.tax.ny.gov/pit/inflation-refund-checks.htm
 - New York FY2026 Budget Agreement (Senate Bill S3009C): https://legislation.nysenate.gov/pdf/bills/2025/S3009C#page=12
 - 2025 Form IT-201-I Instructions: https://www.tax.ny.gov/pdf/current_forms/it/it201i.pdf#page=27

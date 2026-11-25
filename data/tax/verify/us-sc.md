@@ -4,13 +4,14 @@ Generated from `data/tax/us/us-sc.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://www.scstatehouse.gov/sess126_2025-2026/bills/4216
+- South Carolina H.4216 — bill text with the income adjusted deduction and its phase-out: https://www.scstatehouse.gov/sess126_2025-2026/prever/4216_20260121.htm
 - SC H.4216 Section 1 - Section 12-6-510(C) (2026+): https://www.scstatehouse.gov/sess126_2025-2026/bills/4216
 - SC 1040 Instructions 2025: https://dor.sc.gov/sites/dor/files/forms/SC1040Instr_2025.pdf#page=1
 - IRS Rev. Proc. 2024-40 § 3.15 (2025 inflation-adjusted values under pre-OBBBA rule): https://www.irs.gov/pub/irs-drop/rp-24-40.pdf#page=12

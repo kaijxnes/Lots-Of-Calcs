@@ -461,7 +461,7 @@
       "standalone": false,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ak": {
       "file": "us/us-ak.2026.json",
@@ -472,7 +472,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-al": {
       "file": "us/us-al.2026.json",
@@ -483,7 +483,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ar": {
       "file": "us/us-ar.2026.json",
@@ -494,7 +494,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-az": {
       "file": "us/us-az.2026.json",
@@ -505,7 +505,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ca": {
       "file": "us/us-ca.2026.json",
@@ -516,7 +516,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-co": {
       "file": "us/us-co.2026.json",
@@ -549,7 +549,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-de": {
       "file": "us/us-de.2026.json",
@@ -560,7 +560,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-fl": {
       "file": "us/us-fl.2026.json",
@@ -571,7 +571,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ga": {
       "file": "us/us-ga.2026.json",
@@ -582,7 +582,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-hi": {
       "file": "us/us-hi.2026.json",
@@ -593,7 +593,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ia": {
       "file": "us/us-ia.2026.json",
@@ -604,7 +604,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-id": {
       "file": "us/us-id.2026.json",
@@ -615,7 +615,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-il": {
       "file": "us/us-il.2026.json",
@@ -626,7 +626,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-in": {
       "file": "us/us-in.2026.json",
@@ -648,7 +648,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ky": {
       "file": "us/us-ky.2026.json",
@@ -659,7 +659,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-la": {
       "file": "us/us-la.2026.json",
@@ -670,7 +670,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ma": {
       "file": "us/us-ma.2026.json",
@@ -714,7 +714,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-mn": {
       "file": "us/us-mn.2026.json",
@@ -725,7 +725,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-mo": {
       "file": "us/us-mo.2026.json",
@@ -736,7 +736,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ms": {
       "file": "us/us-ms.2026.json",
@@ -747,7 +747,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-mt": {
       "file": "us/us-mt.2026.json",
@@ -758,7 +758,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-nc": {
       "file": "us/us-nc.2026.json",
@@ -769,7 +769,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-nd": {
       "file": "us/us-nd.2026.json",
@@ -780,7 +780,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ne": {
       "file": "us/us-ne.2026.json",
@@ -791,7 +791,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-nh": {
       "file": "us/us-nh.2026.json",
@@ -802,7 +802,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-nj": {
       "file": "us/us-nj.2026.json",
@@ -824,7 +824,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-nv": {
       "file": "us/us-nv.2026.json",
@@ -835,7 +835,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ny": {
       "file": "us/us-ny.2026.json",
@@ -846,7 +846,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ny-nyc": {
       "file": "us/us-ny-nyc.2026.json",
@@ -857,7 +857,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-oh": {
       "file": "us/us-oh.2026.json",
@@ -868,7 +868,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ok": {
       "file": "us/us-ok.2026.json",
@@ -879,7 +879,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-or": {
       "file": "us/us-or.2026.json",
@@ -890,7 +890,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-pa": {
       "file": "us/us-pa.2026.json",
@@ -901,7 +901,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ri": {
       "file": "us/us-ri.2026.json",
@@ -912,7 +912,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-sc": {
       "file": "us/us-sc.2026.json",
@@ -923,7 +923,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-sd": {
       "file": "us/us-sd.2026.json",
@@ -934,7 +934,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-tn": {
       "file": "us/us-tn.2026.json",
@@ -945,7 +945,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-tx": {
       "file": "us/us-tx.2026.json",
@@ -956,7 +956,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ut": {
       "file": "us/us-ut.2026.json",
@@ -967,7 +967,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-va": {
       "file": "us/us-va.2026.json",
@@ -978,7 +978,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-vt": {
       "file": "us/us-vt.2026.json",
@@ -989,7 +989,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-wa": {
       "file": "us/us-wa.2026.json",
@@ -1000,7 +1000,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-wi": {
       "file": "us/us-wi.2026.json",
@@ -1011,7 +1011,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-wv": {
       "file": "us/us-wv.2026.json",
@@ -1022,7 +1022,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-wy": {
       "file": "us/us-wy.2026.json",
@@ -1033,7 +1033,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     }
   }
 }

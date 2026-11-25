@@ -46,6 +46,10 @@
   "provisional": [],
   "sources": [
     {
+      "title": "West Virginia Tax Division — 2026 income tax rate cut",
+      "url": "https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx"
+    },
+    {
       "title": "West Virginia Senate Bill 392 (2026), §11-21-4j(a)",
       "url": "https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6"
     },
@@ -78,7 +82,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6",
   "tests": [
     {

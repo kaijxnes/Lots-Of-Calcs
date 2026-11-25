@@ -4,13 +4,16 @@ Generated from `data/tax/us/us-wa.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=60
+- WA Cares Fund — premiums for employers (0.58%): https://wacaresfund.wa.gov/employers/
+- Paid Leave — 2026 paycheck insert (wages up to $184,500): https://paidleave.wa.gov/app/uploads/2025/12/Paycheck-insert-2026-1.pdf
+- Employment Security Department — Paid Leave premium rate 1.13% in 2026 (employees pay 71.43%): https://esd.wa.gov/node/1109
 - ESSB 6346, Sec. 901(2)(e) - Maximum qualifying income: https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=60
 - WAC 388-478-0015 - Need standards for cash assistance: https://lawfilesext.leg.wa.gov/law/WACArchive/2025/pdf/WAC%20388%20-478%20%20CHAPTER/WAC%20388%20-478%20-0015.pdf
 - WSR 25-10-017 - WAC 388-478-0015 update effective July 1, 2025: https://lawfilesext.leg.wa.gov/law/wsrpdf/2025/10/25-10-017.pdf

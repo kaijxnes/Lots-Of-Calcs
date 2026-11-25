@@ -34,6 +34,18 @@
   "provisional": [],
   "sources": [
     {
+      "title": "WA Cares Fund — premiums for employers (0.58%)",
+      "url": "https://wacaresfund.wa.gov/employers/"
+    },
+    {
+      "title": "Paid Leave — 2026 paycheck insert (wages up to $184,500)",
+      "url": "https://paidleave.wa.gov/app/uploads/2025/12/Paycheck-insert-2026-1.pdf"
+    },
+    {
+      "title": "Employment Security Department — Paid Leave premium rate 1.13% in 2026 (employees pay 71.43%)",
+      "url": "https://esd.wa.gov/node/1109"
+    },
+    {
       "title": "ESSB 6346, Sec. 901(2)(e) - Maximum qualifying income",
       "url": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=60"
     },
@@ -63,7 +75,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://lawfilesext.leg.wa.gov/biennium/2025-26/Pdf/Bills/Senate%20Passed%20Legislature/6346-S.PL.pdf#page=60",
   "tests": [
     {
