@@ -1,0 +1,23 @@
+{
+  "_note": "When UK benefits are paid around weekends and bank holidays, for tools/build-benefit-dates-pages.js. Each rule is quoted from the GOV.UK page in its source. Bank holidays come from data/holidays/gov-uk-bank-holidays.json (expected dates after GOV.UK's list, as on the working days pages).",
+  "general": {
+    "note": "'If your payment date is on a weekend or a bank holiday you'll usually be paid on the working day before. This may be different for Child Benefit.' How often: Attendance Allowance 'Usually every 4 weeks'; Carer's Allowance 'Weekly in advance or every 4 weeks'; Child Benefit 'Usually every 4 weeks - or weekly if you're a single parent or you or your partner get certain benefits'; Disability Living Allowance 'Usually every 4 weeks'; Employment and Support Allowance 'Usually every 2 weeks'; Jobseeker's Allowance 'Usually every 2 weeks'; Maternity Allowance 'Every 2 or 4 weeks'; Pension Credit 'Usually every 4 weeks'; Personal Independence Payment 'Usually every 4 weeks'; State Pension 'Usually every 4 weeks'; Universal Credit 'Every month'.",
+    "frequencies": [["Universal Credit", "Every month"], ["State Pension", "Usually every 4 weeks"], ["Pension Credit", "Usually every 4 weeks"], ["Personal Independence Payment (PIP)", "Usually every 4 weeks"], ["Attendance Allowance", "Usually every 4 weeks"], ["Disability Living Allowance", "Usually every 4 weeks"], ["Carer's Allowance", "Weekly in advance or every 4 weeks"], ["Employment and Support Allowance", "Usually every 2 weeks"], ["Jobseeker's Allowance", "Usually every 2 weeks"], ["Maternity Allowance", "Every 2 or 4 weeks"], ["Child Benefit", "Usually every 4 weeks, on a Monday or Tuesday (weekly for some)"]],
+    "source": { "title": "GOV.UK — How and when your benefits are paid", "url": "https://www.gov.uk/how-to-have-your-benefits-paid" }
+  },
+  "universalCredit": {
+    "note": "'After the first payment, you'll be paid on the same date of every month. If your payment date is on a weekend or a bank holiday, you'll be paid on the working day before.' It's 'paid monthly - or twice a month for some people in Scotland'.",
+    "source": { "title": "GOV.UK — Universal Credit: how you're paid", "url": "https://www.gov.uk/universal-credit/how-youre-paid" }
+  },
+  "statePension": {
+    "note": "'The new State Pension is usually paid into your account every 4 weeks.' 'The day your pension is paid depends on your National Insurance number. You might be paid earlier if your normal payment day is a bank holiday.' Last 2 digits of your National Insurance number: 00 to 19 Monday, 20 to 39 Tuesday, 40 to 59 Wednesday, 60 to 79 Thursday, 80 to 99 Friday.",
+    "days": [["00 to 19", "Monday"], ["20 to 39", "Tuesday"], ["40 to 59", "Wednesday"], ["60 to 79", "Thursday"], ["80 to 99", "Friday"]],
+    "source": { "title": "GOV.UK — The new State Pension: when you're paid", "url": "https://www.gov.uk/new-state-pension/when-youre-paid" }
+  },
+  "childBenefit": {
+    "note": "'Child Benefit is usually paid every 4 weeks on a Monday or Tuesday.' GOV.UK says the weekend and bank holiday rule 'may be different for Child Benefit'.",
+    "source": { "title": "GOV.UK — Child Benefit: when and how it's paid", "url": "https://www.gov.uk/child-benefit/when-and-how-its-paid" }
+  },
+  "lastChecked": "2026-11-25",
+  "lastVerified": null
+}
