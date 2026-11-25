@@ -153,7 +153,7 @@
             "blackford": 2.5,
             "boone": 1.7,
             "brown": 2.5234,
-            "carroll": 2.2733,
+            "carroll": 2.4733,
             "cass": 2.95,
             "clark": 2.0,
             "clay": 2.35,
@@ -172,14 +172,14 @@
             "franklin": 1.7,
             "fulton": 2.88,
             "gibson": 1.3,
-            "grant": 2.55,
-            "greene": 2.15,
+            "grant": 2.75,
+            "greene": 2.35,
             "hamilton": 1.1,
             "hancock": 1.94,
             "harrison": 1.0,
             "hendricks": 1.7,
             "henry": 2.02,
-            "howard": 1.95,
+            "howard": 2.35,
             "huntington": 1.95,
             "jackson": 2.1,
             "jasper": 2.864,
@@ -218,7 +218,7 @@
             "rush": 2.15,
             "st-joseph": 1.75,
             "scott": 2.16,
-            "shelby": 1.6,
+            "shelby": 1.7,
             "spencer": 0.8,
             "starke": 1.71,
             "steuben": 1.99,
@@ -226,7 +226,7 @@
             "switzerland": 1.45,
             "tippecanoe": 1.28,
             "tipton": 2.6,
-            "union": 2.0,
+            "union": 2.75,
             "vanderburgh": 1.25,
             "vermillion": 1.5,
             "vigo": 2.0,
@@ -246,9 +246,13 @@
   ],
   "notModelled": [],
   "provisional": [
-    "County rates are the latest PolicyEngine holds (set between 2021 and 2025); counties can change them each year"
+    "Boone County's rate rose from 1.7% to 1.71% for withholding from 1 October 2026; 1.7% is used for the year until the 2026 county rate chart shows how the annual return treats it"
   ],
   "sources": [
+    {
+      "title": "Indiana DOR — Departmental Notice #1, effective 1 October 2026 (county rates; state rate 2.95% for 2026)",
+      "url": "https://www.in.gov/dor/files/dn01.pdf"
+    },
     {"title": "2025 IT-40 Income Tax Form", "url": "https://forms.in.gov/Download.aspx?id=16915"},
     {
       "title": "2025 Indiana County Income Tax Rates and County Codes",
@@ -261,13 +265,17 @@
   ],
   "obtainedFrom": [
     {
+      "title": "Indiana DOR Departmental Notice #1, read 25 Nov 2026",
+      "note": "All 92 county rates compared. Six counties raised their rates from 1 January 2026 and are updated: Carroll 2.2733% to 2.4733%, Grant 2.55% to 2.75%, Greene 2.15% to 2.35%, Howard 1.95% to 2.35%, Shelby 1.6% to 1.7%, Union 2.0% to 2.75%. Boone changed from 1 October (see provisional). No worked test uses these counties."
+    },
+    {
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/in",
       "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://forms.in.gov/Download.aspx?id=16915",
   "tests": [
     {

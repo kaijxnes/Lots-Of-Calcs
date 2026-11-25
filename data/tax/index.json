@@ -538,7 +538,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-dc": {
       "file": "us/us-dc.2026.json",
@@ -637,7 +637,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-ks": {
       "file": "us/us-ks.2026.json",
@@ -692,7 +692,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-me": {
       "file": "us/us-me.2026.json",
@@ -813,7 +813,7 @@
       "standalone": true,
       "taxYear": "2026",
       "lastVerified": null,
-      "lastChecked": null
+      "lastChecked": "2026-11-25"
     },
     "us-nm": {
       "file": "us/us-nm.2026.json",

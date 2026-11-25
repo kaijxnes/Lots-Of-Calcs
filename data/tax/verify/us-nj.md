@@ -4,13 +4,15 @@ Generated from `data/tax/us/us-nj.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=8
+- NJ Department of Labor — rate information (2026 worker rates: UI 0.3825%, DI 0.19%, WF 0.0425%, FLI 0.23%): https://www.nj.gov/labor/ea/employer-services/rate-info/index.shtml
+- NJ Department of Labor — Temporary Disability and Family Leave for employers (2026 wage base $171,100): https://www.nj.gov/labor/myleavebenefits/employer/
 - 2025 NJ-1040 Instructions (Line 8): https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=8
 - 2025 NJ-1040 Instructions - Tax Rate Schedules: https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=65
 - P.L. 2023, c.75, Section 3(c) - Stay NJ Act: https://pub.njleg.state.nj.us/Bills/2022/PL23/75_.PDF#page=3

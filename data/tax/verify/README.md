@@ -58,7 +58,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Arkansas | [us-ar](us-ar.md) | 2026 | 46 | 2026-11-25 | — |
 | Arizona | [us-az](us-az.md) | 2026 | 6 | 2026-11-25 | — |
 | Colorado | [us-co](us-co.md) | 2026 | 9 | — | — |
-| Connecticut | [us-ct](us-ct.md) | 2026 | 105 | — | — |
+| Connecticut | [us-ct](us-ct.md) | 2026 | 105 | 2026-11-25 | — |
 | District of Columbia | [us-dc](us-dc.md) | 2026 | 12 | 2026-11-25 | — |
 | Delaware | [us-de](us-de.md) | 2026 | 17 | 2026-11-25 | — |
 | Georgia | [us-ga](us-ga.md) | 2026 | 6 | 2026-11-25 | — |
@@ -66,12 +66,12 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Iowa | [us-ia](us-ia.md) | 2026 | 7 | 2026-11-25 | — |
 | Idaho | [us-id](us-id.md) | 2026 | 10 | 2026-11-25 | — |
 | Illinois | [us-il](us-il.md) | 2026 | 9 | 2026-11-25 | — |
-| Indiana | [us-in](us-in.md) | 2026 | 100 | — | — |
+| Indiana | [us-in](us-in.md) | 2026 | 100 | 2026-11-25 | — |
 | Kansas | [us-ks](us-ks.md) | 2026 | 13 | 2026-11-25 | — |
 | Kentucky | [us-ky](us-ky.md) | 2026 | 5 | 2026-11-25 | — |
 | Louisiana | [us-la](us-la.md) | 2026 | 6 | 2026-11-25 | — |
 | Massachusetts | [us-ma](us-ma.md) | 2026 | 11 | — | — |
-| Maryland | [us-md](us-md.md) | 2026 | 73 | — | — |
+| Maryland | [us-md](us-md.md) | 2026 | 73 | 2026-11-25 | — |
 | Maine | [us-me](us-me.md) | 2026 | 28 | — | — |
 | Michigan | [us-mi](us-mi.md) | 2026 | 14 | 2026-11-25 | — |
 | Minnesota | [us-mn](us-mn.md) | 2026 | 22 | 2026-11-25 | — |
@@ -82,7 +82,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | North Dakota | [us-nd](us-nd.md) | 2026 | 9 | 2026-11-25 | — |
 | Nebraska | [us-ne](us-ne.md) | 2026 | 14 | 2026-11-25 | — |
 | New Hampshire | [us-nh](us-nh.md) | 2026 | 3 | 2026-11-25 | — |
-| New Jersey | [us-nj](us-nj.md) | 2026 | 26 | — | — |
+| New Jersey | [us-nj](us-nj.md) | 2026 | 26 | 2026-11-25 | — |
 | New Mexico | [us-nm](us-nm.md) | 2026 | 24 | 2026-11-25 | — |
 | Nevada | [us-nv](us-nv.md) | 2026 | 3 | 2026-11-25 | — |
 | Ohio | [us-oh](us-oh.md) | 2026 | 28 | 2026-11-25 | — |
