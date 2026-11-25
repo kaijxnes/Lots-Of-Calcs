@@ -9,6 +9,8 @@
    - build-tax-pages.js rewrites the salary calculator page; build-comparison-pages.js
      then adds its links to it, and build-take-home-index.js ranks the same
      salary across countries from the tax files and the ECB rates.
+   - build-tax-week-pages.js writes the tax week calendars before
+     build-working-days-pages.js, whose UK payday calendars link to them.
    - build-working-days-pages.js regenerates bank-holidays.js, which
      build-countdown-pages.js reads.
    - build-guides.js builds the guides (the UK income tax guide follows the tax
@@ -33,7 +35,7 @@ const STEPS = [
   ["build-stamp-duty-pages.js"], ["build-borrowing-pages.js"], ["build-budget-pages.js"], ["build-job-offer.js"],
   ["build-inflation.js"], ["build-repayment-pages.js"],
   ["build-appliance-pages.js"], ["build-heating-pages.js"], ["build-ev-pages.js"], ["build-fuel-route-pages.js"],
-  ["build-tax-wrappers.js"], ["build-benefit-dates-pages.js"], ["build-working-days-pages.js"], ["build-payday-pages.js"], ["build-countdown-pages.js"], ["build-turkey-pages.js"],
+  ["build-tax-wrappers.js"], ["build-benefit-dates-pages.js"], ["build-tax-week-pages.js"], ["build-working-days-pages.js"], ["build-payday-pages.js"], ["build-countdown-pages.js"], ["build-turkey-pages.js"],
   ["build-born-pages.js"], ["build-planet-age.js"], ["build-calorie-pages.js"], ["build-dry-january.js"],
   ["build-savings-challenge-pages.js"], ["build-savings-goal-pages.js"], ["build-christmas-savings-pages.js"],
   ["build-pay-schedule-pages.js"], ["build-student-loan-pages.js"], ["build-expat-pages.js"],
