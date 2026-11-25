@@ -89,6 +89,14 @@
       },
       {
         "@type": "Question",
+        "name": "How old am I in months, weeks, hours and seconds?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Enter your date of birth and the calculator shows your age in each, with the seconds counting up live. Someone born on 14 February 2000 is 321 months old on 14 November 2026, and has lived 9,770 days, or 1,395 weeks and 5 days. Hours, minutes and seconds are counted from midnight at the start of the day you were born."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "How many days old am I?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -183,6 +191,17 @@
           <div class="result-row"><span class="r-label">Total days lived</span><span class="r-value" id="days-lived">—</span></div>
           <div class="result-row highlight"><span class="r-label">Next birthday in</span><span class="r-value" id="days-until">—</span></div>
         </div>
+        <hr class="divider">
+        <p class="tool-hint" style="margin:0 0 6px;">Your age in…</p>
+        <div class="result-grid" aria-live="off">
+          <div class="result-row"><span class="r-label">Years, months and days</span><span class="r-value" id="age-words">—</span></div>
+          <div class="result-row"><span class="r-label">Months</span><span class="r-value" id="age-months">—</span></div>
+          <div class="result-row"><span class="r-label">Weeks</span><span class="r-value" id="age-weeks">—</span></div>
+          <div class="result-row"><span class="r-label">Hours</span><span class="r-value" id="age-hours">—</span></div>
+          <div class="result-row"><span class="r-label">Minutes</span><span class="r-value" id="age-minutes">—</span></div>
+          <div class="result-row"><span class="r-label">Seconds (live)</span><span class="r-value" id="age-seconds">—</span></div>
+        </div>
+        <p class="tool-hint" style="margin:8px 0 0;">Hours, minutes and seconds count from midnight at the start of the day you were born.</p>
       </div>
     </section>
     <section class="tool">
@@ -219,6 +238,8 @@
       <p class="about-text">Enter your date of birth and the calculator works it out from the calendar, along with your exact age and how long until your next birthday.</p>
       <h3 class="faq-q">How is my exact age calculated?</h3>
       <p class="about-text">By counting complete years from your birth date, then the remaining whole months, then the leftover days — which is why it does not simply divide the total days by 365.</p>
+      <h3 class="faq-q">How old am I in months, weeks, hours and seconds?</h3>
+      <p class="about-text">Enter your date of birth and the calculator shows your age in each, with the seconds counting up live. Someone born on 14 February 2000 is 321 months old on 14 November 2026, and has lived 9,770 days, or 1,395 weeks and 5 days. Hours, minutes and seconds are counted from midnight at the start of the day you were born.</p>
       <h3 class="faq-q">How many days old am I?</h3>
       <p class="about-text">The &ldquo;total days lived&rdquo; figure counts every day from your birth date to today, leap days included. On your 30th birthday you have lived 10,957 or 10,958 days, depending on how many 29 Februarys fell in between.</p>
       <h3 class="faq-q">When is my birthday if I was born on 29 February?</h3>
@@ -303,6 +324,6 @@
       <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
     </footer>
   </div>
-  <script src="/birthday.js?v=85391ff3"></script>
+  <script src="/birthday.js?v=9a4b30f4"></script>
 </body>
 </html>
