@@ -266,7 +266,7 @@ ${aheadNote(y)}    </header>
 
     <main class="tool">
 ${site.table(["", "Working days", "Bank holidays", "First working day", "Last working day"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), dm(firstWorking(y, m, r)), dm(lastWorking(y, m, r))]), 520)}${holRows.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</h2>
-${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>. ${src(y)}</p>
+${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>${fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? `; benefits and pensions: <a href="/benefit-payment-dates/${y}/">benefit payment dates ${y}</a>` : ""}. ${src(y)}</p>
     </main>
 
 ${tool(W.first(y, m), W.lastDay(y, m), "england-and-wales", false)}
