@@ -95,7 +95,8 @@ function calculate() {
 
   if (parsed.error) {
     setError(parsed.error);
-    ["age-value", "birth-weekday", "days-lived", "days-until"].forEach((id) => {
+    current = null;
+    ["age-value", "birth-weekday", "days-lived", "days-until", "age-words", "age-months", "age-weeks", "age-hours", "age-minutes", "age-seconds"].forEach((id) => {
       document.getElementById(id).textContent = "—";
     });
     return;
@@ -123,7 +124,26 @@ function calculate() {
   const daysUntil = Math.round((nextBirthday - today) / msPerDay);
   document.getElementById("days-until").textContent =
     daysUntil === 0 ? "Today! 🎉" : `${daysUntil.toLocaleString("en-GB")} day${daysUntil === 1 ? "" : "s"}`;
+
+  const plural = (n, w) => `${n.toLocaleString("en-GB")} ${w}${n === 1 ? "" : "s"}`;
+  document.getElementById("age-words").textContent = `${plural(age.years, "year")}, ${plural(age.months, "month")}, ${plural(age.days, "day")}`;
+  document.getElementById("age-months").textContent = plural(age.years * 12 + age.months, "month") + (age.days ? ` and ${plural(age.days, "day")}` : "");
+  document.getElementById("age-weeks").textContent = plural(Math.floor(daysLived / 7), "week") + (daysLived % 7 ? ` and ${plural(daysLived % 7, "day")}` : "");
+  current = dob;
+  tick();
 }
+
+/* hours, minutes and seconds from midnight at the start of the birth day,
+   counting on while the page is open */
+let current = null;
+function tick() {
+  if (!current) return;
+  const s = Math.max(0, Math.floor((Date.now() - current.getTime()) / 1000));
+  document.getElementById("age-hours").textContent = Math.floor(s / 3600).toLocaleString("en-GB");
+  document.getElementById("age-minutes").textContent = Math.floor(s / 60).toLocaleString("en-GB");
+  document.getElementById("age-seconds").textContent = s.toLocaleString("en-GB");
+}
+setInterval(tick, 1000);
 
 yearEl.max = String(new Date().getFullYear());
 
