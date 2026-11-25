@@ -12,7 +12,7 @@ Generated from `data/tax/nl/nl.2026.json` by `tools/tax/checklist.js`. Do not ed
 - **Start here:** https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen
 - Belastingdienst — tarieven en heffingskortingen 2026: https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen
 - Belastingdienst — tabel arbeidskorting 2026: https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/heffingskortingen/arbeidskorting/tabel-arbeidskorting-2026
-- Deloitte — Pakket Belastingplan 2026, tarieven en heffingskortingen: https://www.deloitte.com/nl/nl/services/tax/blogs/pakket-belastingplan-2026-tarieven-heffingskortingen.html
+- Belastingdienst — box 1: uitleg en tarieven: https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/inkomstenbelasting/heffingskortingen_boxen_tarieven/boxen_en_tarieven/box_1/box_1
 - Belastingdienst — pensioenpremie: aftrekbaar van het loon: https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/werk_en_inkomen/pensioen_en_andere_uitkeringen/
 - Rijksoverheid — Expatregeling hoogopgeleide buitenlandse werknemers: https://www.rijksoverheid.nl/themas/werk/inkomstenbelasting/belastingvoordeel-buitenlandse-werknemers
 - Belastingdienst — Kan ik de expatregeling aanvragen als ik in Nederland kom werken?: https://www.belastingdienst.nl/wps/wcm/connect/nl/buitenland/content/ik-kom-in-nederland-werken-30-procent-regeling-aanvragen

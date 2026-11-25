@@ -432,8 +432,8 @@
       "url": "https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf"
     },
     {
-      "title": "MEF — addizionali regionali e comunali",
-      "url": "https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php"
+      "title": "MEF Dipartimento delle Finanze — addizionale regionale IRPEF, Lombardia 2026",
+      "url": "https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026"
     },
     {
       "title": "Legge 30 dicembre 2025, n. 199 (Budget Law 2026), art. 1 para. 201: pension contribution limit €5,300",
@@ -452,7 +452,7 @@
   ],
   "lastVerified": null,
   "lastChecked": null,
-  "verifyAt": "https://www.agenziaentrate.gov.it/portale/web/guest/schede/agevolazioni/detrazioni-per-lavoro-dipendente",
+  "verifyAt": "https://infoprecompilata.agenziaentrate.gov.it/portale/web/guest/quadro-c-lavoro-dipendente",
   "tests": [
     {
       "gross": 30000,

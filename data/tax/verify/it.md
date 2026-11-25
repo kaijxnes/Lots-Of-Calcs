@@ -10,11 +10,11 @@ Generated from `data/tax/it/it.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 ## Check against
 
-- **Start here:** https://www.agenziaentrate.gov.it/portale/web/guest/schede/agevolazioni/detrazioni-per-lavoro-dipendente
+- **Start here:** https://infoprecompilata.agenziaentrate.gov.it/portale/web/guest/quadro-c-lavoro-dipendente
 - TUIR art. 11 (aliquote) and art. 13 (detrazioni), as amended by Legge 199/2025: https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.presidente.repubblica:1986-12-22;917
 - Legge 30 dicembre 2025 n. 199 (Legge di Bilancio 2026): https://www.gazzettaufficiale.it/
 - INPS circolare n. 6 del 30 gennaio 2026 — minimali, massimali, prima fascia: https://www.fiscoetasse.com/files/21228/circolare-n-6-del-30-01-2026.pdf
-- MEF — addizionali regionali e comunali: https://www1.finanze.gov.it/finanze/pagina_addizionali/public/addizionali.php
+- MEF Dipartimento delle Finanze — addizionale regionale IRPEF, Lombardia 2026: https://www1.finanze.gov.it/finanze2/dipartimentopolitichefiscali/fiscalitalocale/addregirpef/addregirpef.php?reg=10&anno=2026
 - Legge 30 dicembre 2025, n. 199 (Budget Law 2026), art. 1 para. 201: pension contribution limit €5,300: https://www.gazzettaufficiale.it/eli/id/2025/12/30/25G00212/sg
 
 ## Figures
