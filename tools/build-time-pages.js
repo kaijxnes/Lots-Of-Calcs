@@ -308,7 +308,7 @@ function weekHub() {
     h1: "What week number is it?", sub: "This week's number, the week of any date, and the dates of every week in the year (ISO 8601, Monday to Sunday).", q,
     body: weekTool() + `    <main class="tool">
       <h2 class="tool-section-title">Week numbers ${YEAR}</h2>
-${weekTable(YEAR)}      <p class="salary-links" style="margin-top:12px;">${WEEK_YEARS.map((y) => `<a href="/week-number/${y}/">Week numbers ${y}</a>`).join(" ")}</p>
+${weekTable(YEAR)}      <p class="salary-links" style="margin-top:12px;">${WEEK_YEARS.map((y) => `<a href="/week-number/${y}/">Week numbers ${y}</a>`).join(" ")} <a href="/tax-week-calendar/">UK tax weeks (payroll)</a></p>
     </main>
 ` });
 }
