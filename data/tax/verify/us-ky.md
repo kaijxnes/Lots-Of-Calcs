@@ -4,13 +4,14 @@ Generated from `data/tax/us/us-ky.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx
+- Kentucky DOR — 2026 withholding formula (3.5% flat rate): https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf
 - Kentucky DOR Announces 2026 Standard Deduction (September 4, 2025): https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx
 - 2025 Kentucky Individual Income Tax Return - Form 740 - Line 12: https://revenue.ky.gov/Forms/740%20(2025).pdf#page=1
 - 2024 Kentucky individual tax credit schedule, ITC: https://revenue.ky.gov/Forms/Schedule%20ITC%20(2025).pdf#page=2

@@ -4,7 +4,7 @@ Generated from `data/tax/us/us-ca.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 - Provisional items: `Tax brackets, the standard deduction ($5,706 / $11,412) and the exemption credit ($153) are the 2025 figures; California publishes the 2026 inflation-adjusted amounts late in the year`

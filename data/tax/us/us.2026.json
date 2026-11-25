@@ -290,6 +290,10 @@
   "provisional": [],
   "sources": [
     {
+      "title": "IRS Publication 15 (2026) — Social Security wage base $184,500",
+      "url": "https://www.irs.gov/pub/irs-pdf/p15.pdf"
+    },
+    {
       "title": "IRS Rev. Proc. 2025-32 — 2026 inflation adjustments (brackets, standard deduction)",
       "url": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf"
     },
@@ -324,7 +328,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.irs.gov/pub/irs-drop/rp-25-32.pdf",
   "tests": [
     {

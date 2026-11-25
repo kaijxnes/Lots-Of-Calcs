@@ -4,13 +4,14 @@ Generated from `data/tax/us/us-mt.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025
+- Montana Department of Revenue — HB 337 (2026 rates 4.7% and 5.65%): https://revenue.mt.gov/news/recent-news/HB-337
 - 2025 Montana Tax Tables and Deductions: https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025
 - Montana Code Annotated 2023, TITLE 15, CHAPTER 30, Part 23, 15-30-2337 (11): https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html
 - 2021 Montana Code Annotated, Title 15, Chapter 30, Part 23, 15-30-2337 (11): https://law.justia.com/codes/montana/2021/title-15/chapter-30/part-23/section-15-30-2337/

@@ -4,7 +4,7 @@ Generated from `data/tax/us/us-dc.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 - Provisional items: `Standard deduction of $15,000 ($30,000 married) is the 2025 amount; DC had not set its 2026 figure`

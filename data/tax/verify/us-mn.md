@@ -4,13 +4,15 @@ Generated from `data/tax/us/us-mn.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1
+- DEED — Paid Leave overview for bookkeepers (0.88%, up to 0.44% from employees, wages up to $185,000): https://mn.gov/deed/assets/paid-leave-overview-bookkeepers-presentation_tcm1045-715814.pdf
+- DEED — Paid Leave premium rate unchanged for 2027 (0.88%, the same as 2026): https://content.govdelivery.com/accounts/MNDEED/bulletins/422fdf7
 - 2025 Minnesota Schedule M1MT form, Line 22: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1
 - 2025 Schedule M1CWFC, Minnesota Child and Working Family Credits: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cwfc-25.pdf#page=1
 - 2025 Schedule M1ED, Line 11: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ed-25.pdf

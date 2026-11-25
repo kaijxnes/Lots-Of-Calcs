@@ -197,6 +197,14 @@
   "provisional": [],
   "sources": [
     {
+      "title": "Workers’ Compensation Board — disability benefits for employers (0.5% of wages, at most 60 cents a week)",
+      "url": "https://www.wcb.ny.gov/content/main/DisabilityBenefits/employer-disability-benefits.jsp"
+    },
+    {
+      "title": "New York State Paid Family Leave — 2026 contribution (0.432%, up to $411.91)",
+      "url": "https://paidfamilyleave.ny.gov/2026"
+    },
+    {
       "title": "2025 NYS inflation refund checks (eligibility based on 2023 returns)",
       "url": "https://web.archive.org/web/20260617073750/https://www.tax.ny.gov/pit/inflation-refund-checks.htm"
     },
@@ -229,7 +237,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://web.archive.org/web/20260617073750/https://www.tax.ny.gov/pit/inflation-refund-checks.htm",
   "tests": [
     {

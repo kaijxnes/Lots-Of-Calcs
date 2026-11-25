@@ -8,12 +8,12 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 |---|---|---|---:|---|---|
 | **United Kingdom** | [gb](gb.md) | 2026/27 | 33 | 2026-11-10 | — |
 | **Scotland** | [gb-sct](gb-sct.md) | 2026/27 | 9 | 2026-11-10 | — |
-| **United States (federal)** | [us](us.md) | 2026 | 43 | — | — |
-| **California** | [us-ca](us-ca.md) | 2026 | 33 | — | — |
-| **Texas** | [us-tx](us-tx.md) | 2026 | 3 | — | — |
-| **New York** | [us-ny](us-ny.md) | 2026 | 66 | — | — |
-| **New York City** | [us-ny-nyc](us-ny-nyc.md) | 2026 | 19 | — | — |
-| **Florida** | [us-fl](us-fl.md) | 2026 | 3 | — | — |
+| **United States (federal)** | [us](us.md) | 2026 | 43 | 2026-11-25 | — |
+| **California** | [us-ca](us-ca.md) | 2026 | 33 | 2026-11-25 | — |
+| **Texas** | [us-tx](us-tx.md) | 2026 | 3 | 2026-11-25 | — |
+| **New York** | [us-ny](us-ny.md) | 2026 | 66 | 2026-11-25 | — |
+| **New York City** | [us-ny-nyc](us-ny-nyc.md) | 2026 | 19 | 2026-11-25 | — |
+| **Florida** | [us-fl](us-fl.md) | 2026 | 3 | 2026-11-25 | — |
 | **Germany** | [de](de.md) | 2026 | 46 | — | — |
 | **Ireland** | [ie](ie.md) | 2026 | 24 | 2026-11-25 | — |
 | **Australia** | [au](au.md) | 2026-27 | 33 | — | — |
@@ -53,50 +53,50 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Norway | [no](no.md) | 2026 | 19 | 2026-11-25 | — |
 | Portugal | [pt](pt.md) | 2026 | 37 | 2026-11-25 | — |
 | Sweden | [se](se.md) | 2026 | 36 | — | — |
-| Alaska | [us-ak](us-ak.md) | 2026 | 3 | — | — |
-| Alabama | [us-al](us-al.md) | 2026 | 20 | — | — |
-| Arkansas | [us-ar](us-ar.md) | 2026 | 46 | — | — |
-| Arizona | [us-az](us-az.md) | 2026 | 6 | — | — |
+| Alaska | [us-ak](us-ak.md) | 2026 | 3 | 2026-11-25 | — |
+| Alabama | [us-al](us-al.md) | 2026 | 20 | 2026-11-25 | — |
+| Arkansas | [us-ar](us-ar.md) | 2026 | 46 | 2026-11-25 | — |
+| Arizona | [us-az](us-az.md) | 2026 | 6 | 2026-11-25 | — |
 | Colorado | [us-co](us-co.md) | 2026 | 9 | — | — |
 | Connecticut | [us-ct](us-ct.md) | 2026 | 105 | — | — |
-| District of Columbia | [us-dc](us-dc.md) | 2026 | 12 | — | — |
-| Delaware | [us-de](us-de.md) | 2026 | 17 | — | — |
-| Georgia | [us-ga](us-ga.md) | 2026 | 6 | — | — |
-| Hawaii | [us-hi](us-hi.md) | 2026 | 48 | — | — |
-| Iowa | [us-ia](us-ia.md) | 2026 | 7 | — | — |
-| Idaho | [us-id](us-id.md) | 2026 | 10 | — | — |
-| Illinois | [us-il](us-il.md) | 2026 | 9 | — | — |
+| District of Columbia | [us-dc](us-dc.md) | 2026 | 12 | 2026-11-25 | — |
+| Delaware | [us-de](us-de.md) | 2026 | 17 | 2026-11-25 | — |
+| Georgia | [us-ga](us-ga.md) | 2026 | 6 | 2026-11-25 | — |
+| Hawaii | [us-hi](us-hi.md) | 2026 | 48 | 2026-11-25 | — |
+| Iowa | [us-ia](us-ia.md) | 2026 | 7 | 2026-11-25 | — |
+| Idaho | [us-id](us-id.md) | 2026 | 10 | 2026-11-25 | — |
+| Illinois | [us-il](us-il.md) | 2026 | 9 | 2026-11-25 | — |
 | Indiana | [us-in](us-in.md) | 2026 | 100 | — | — |
-| Kansas | [us-ks](us-ks.md) | 2026 | 13 | — | — |
-| Kentucky | [us-ky](us-ky.md) | 2026 | 5 | — | — |
-| Louisiana | [us-la](us-la.md) | 2026 | 6 | — | — |
+| Kansas | [us-ks](us-ks.md) | 2026 | 13 | 2026-11-25 | — |
+| Kentucky | [us-ky](us-ky.md) | 2026 | 5 | 2026-11-25 | — |
+| Louisiana | [us-la](us-la.md) | 2026 | 6 | 2026-11-25 | — |
 | Massachusetts | [us-ma](us-ma.md) | 2026 | 11 | — | — |
 | Maryland | [us-md](us-md.md) | 2026 | 73 | — | — |
 | Maine | [us-me](us-me.md) | 2026 | 28 | — | — |
-| Michigan | [us-mi](us-mi.md) | 2026 | 14 | — | — |
-| Minnesota | [us-mn](us-mn.md) | 2026 | 22 | — | — |
-| Missouri | [us-mo](us-mo.md) | 2026 | 23 | — | — |
-| Mississippi | [us-ms](us-ms.md) | 2026 | 9 | — | — |
-| Montana | [us-mt](us-mt.md) | 2026 | 7 | — | — |
-| North Carolina | [us-nc](us-nc.md) | 2026 | 6 | — | — |
-| North Dakota | [us-nd](us-nd.md) | 2026 | 9 | — | — |
-| Nebraska | [us-ne](us-ne.md) | 2026 | 14 | — | — |
-| New Hampshire | [us-nh](us-nh.md) | 2026 | 3 | — | — |
+| Michigan | [us-mi](us-mi.md) | 2026 | 14 | 2026-11-25 | — |
+| Minnesota | [us-mn](us-mn.md) | 2026 | 22 | 2026-11-25 | — |
+| Missouri | [us-mo](us-mo.md) | 2026 | 23 | 2026-11-25 | — |
+| Mississippi | [us-ms](us-ms.md) | 2026 | 9 | 2026-11-25 | — |
+| Montana | [us-mt](us-mt.md) | 2026 | 7 | 2026-11-25 | — |
+| North Carolina | [us-nc](us-nc.md) | 2026 | 6 | 2026-11-25 | — |
+| North Dakota | [us-nd](us-nd.md) | 2026 | 9 | 2026-11-25 | — |
+| Nebraska | [us-ne](us-ne.md) | 2026 | 14 | 2026-11-25 | — |
+| New Hampshire | [us-nh](us-nh.md) | 2026 | 3 | 2026-11-25 | — |
 | New Jersey | [us-nj](us-nj.md) | 2026 | 26 | — | — |
-| New Mexico | [us-nm](us-nm.md) | 2026 | 24 | — | — |
-| Nevada | [us-nv](us-nv.md) | 2026 | 3 | — | — |
-| Ohio | [us-oh](us-oh.md) | 2026 | 28 | — | — |
-| Oklahoma | [us-ok](us-ok.md) | 2026 | 16 | — | — |
-| Oregon | [us-or](us-or.md) | 2026 | 33 | — | — |
-| Pennsylvania | [us-pa](us-pa.md) | 2026 | 9 | — | — |
-| Rhode Island | [us-ri](us-ri.md) | 2026 | 16 | — | — |
-| South Carolina | [us-sc](us-sc.md) | 2026 | 14 | — | — |
-| South Dakota | [us-sd](us-sd.md) | 2026 | 3 | — | — |
-| Tennessee | [us-tn](us-tn.md) | 2026 | 3 | — | — |
-| Utah | [us-ut](us-ut.md) | 2026 | 8 | — | — |
-| Virginia | [us-va](us-va.md) | 2026 | 12 | — | — |
-| Vermont | [us-vt](us-vt.md) | 2026 | 17 | — | — |
-| Washington | [us-wa](us-wa.md) | 2026 | 6 | — | — |
-| Wisconsin | [us-wi](us-wi.md) | 2026 | 20 | — | — |
-| West Virginia | [us-wv](us-wv.md) | 2026 | 11 | — | — |
-| Wyoming | [us-wy](us-wy.md) | 2026 | 3 | — | — |
+| New Mexico | [us-nm](us-nm.md) | 2026 | 24 | 2026-11-25 | — |
+| Nevada | [us-nv](us-nv.md) | 2026 | 3 | 2026-11-25 | — |
+| Ohio | [us-oh](us-oh.md) | 2026 | 28 | 2026-11-25 | — |
+| Oklahoma | [us-ok](us-ok.md) | 2026 | 16 | 2026-11-25 | — |
+| Oregon | [us-or](us-or.md) | 2026 | 33 | 2026-11-25 | — |
+| Pennsylvania | [us-pa](us-pa.md) | 2026 | 9 | 2026-11-25 | — |
+| Rhode Island | [us-ri](us-ri.md) | 2026 | 16 | 2026-11-25 | — |
+| South Carolina | [us-sc](us-sc.md) | 2026 | 14 | 2026-11-25 | — |
+| South Dakota | [us-sd](us-sd.md) | 2026 | 3 | 2026-11-25 | — |
+| Tennessee | [us-tn](us-tn.md) | 2026 | 3 | 2026-11-25 | — |
+| Utah | [us-ut](us-ut.md) | 2026 | 8 | 2026-11-25 | — |
+| Virginia | [us-va](us-va.md) | 2026 | 12 | 2026-11-25 | — |
+| Vermont | [us-vt](us-vt.md) | 2026 | 17 | 2026-11-25 | — |
+| Washington | [us-wa](us-wa.md) | 2026 | 6 | 2026-11-25 | — |
+| Wisconsin | [us-wi](us-wi.md) | 2026 | 20 | 2026-11-25 | — |
+| West Virginia | [us-wv](us-wv.md) | 2026 | 11 | 2026-11-25 | — |
+| Wyoming | [us-wy](us-wy.md) | 2026 | 3 | 2026-11-25 | — |

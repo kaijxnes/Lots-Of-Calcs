@@ -90,6 +90,10 @@
   "provisional": [],
   "sources": [
     {
+      "title": "South Carolina H.4216 — bill text with the income adjusted deduction and its phase-out",
+      "url": "https://www.scstatehouse.gov/sess126_2025-2026/prever/4216_20260121.htm"
+    },
+    {
       "title": "SC H.4216 Section 1 - Section 12-6-510(C) (2026+)",
       "url": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216"
     },
@@ -122,7 +126,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.scstatehouse.gov/sess126_2025-2026/bills/4216",
   "tests": [
     {

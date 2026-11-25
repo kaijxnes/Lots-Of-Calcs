@@ -4,7 +4,7 @@ Generated from `data/tax/us/us-or.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 - Provisional items: `Standard deduction ($2,835 / $5,670) and exemption credit ($256) are the 2025 amounts`
@@ -12,6 +12,8 @@ Generated from `data/tax/us/us-or.2026.json` by `tools/tax/checklist.js`. Do not
 ## Check against
 
 - **Start here:** https://www.oregon.gov/dor/forms/FormsPubs/publication-or-estimate_101-026_2026.pdf#page=3
+- Oregon Employment Department — 2026 tax rates press release (Paid Leave Oregon 1% up to $184,500): https://www.oregon.gov/employ/NewsAndMedia/Documents/2025-11-18_Tax_Rate_2026_Press_Release.pdf
+- Oregon DOR — Statewide transit tax (one-tenth of 1 percent): https://www.oregon.gov/dor/programs/businesses/Pages/statewide-transit-tax.aspx
 - 2026 Publication OR-ESTIMATE, Oregon Estimated Income Tax Instructions, rate charts for 2026 (Charts S and J): https://www.oregon.gov/dor/forms/FormsPubs/publication-or-estimate_101-026_2026.pdf#page=3
 - 2026 Oregon Withholding Tax Formulas (150-206-436), annual wages formula: https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-formulas_206-436_2026.pdf#page=6
 - 2026 Oregon Withholding Tax Formulas (150-206-436), federal tax withheld phase-out: https://www.oregon.gov/dor/forms/FormsPubs/withholding-tax-formulas_206-436_2026.pdf#page=7

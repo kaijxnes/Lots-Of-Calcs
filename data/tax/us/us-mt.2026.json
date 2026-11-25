@@ -28,6 +28,10 @@
   "provisional": [],
   "sources": [
     {
+      "title": "Montana Department of Revenue — HB 337 (2026 rates 4.7% and 5.65%)",
+      "url": "https://revenue.mt.gov/news/recent-news/HB-337"
+    },
+    {
       "title": "2025 Montana Tax Tables and Deductions",
       "url": "https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025"
     },
@@ -60,7 +64,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025",
   "tests": [
     {

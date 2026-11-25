@@ -117,6 +117,14 @@
   "provisional": [],
   "sources": [
     {
+      "title": "DEED — Paid Leave overview for bookkeepers (0.88%, up to 0.44% from employees, wages up to $185,000)",
+      "url": "https://mn.gov/deed/assets/paid-leave-overview-bookkeepers-presentation_tcm1045-715814.pdf"
+    },
+    {
+      "title": "DEED — Paid Leave premium rate unchanged for 2027 (0.88%, the same as 2026)",
+      "url": "https://content.govdelivery.com/accounts/MNDEED/bulletins/422fdf7"
+    },
+    {
       "title": "2025 Minnesota Schedule M1MT form, Line 22",
       "url": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1"
     },
@@ -149,7 +157,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1",
   "tests": [
     {
