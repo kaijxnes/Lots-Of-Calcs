@@ -4,7 +4,7 @@ Generated from `data/tax/us/us-md.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 - Provisional items: `Standard deduction of $3,350 / $6,700 is the 2025 amount`, `County rates are the latest PolicyEngine holds; counties can change them each year`
@@ -12,6 +12,9 @@ Generated from `data/tax/us/us-md.2026.json` by `tools/tax/checklist.js`. Do not
 ## Check against
 
 - **Start here:** https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22
+- Comptroller of Maryland — Withholding Tax Facts 2026 (county rates for 2026): https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf
+- Comptroller of Maryland — 2026 state and local withholding information (Anne Arundel and Frederick brackets): https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf
+- Comptroller of Maryland — tax alert on 2025 legislative changes (Allegany 3.03% to 3.20%, Kent 3.20% to 3.30% for 2026): https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/alerts/tax-alert-changes-to-standard-and-itemized-deductions-and-to-state-and-local-income-tax-rates-from-the-2025-legislative-session.pdf
 - Maryland 2025 Resident Tax Forms and Instructions - Capital Gains Surtax: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22
 - Maryland House Bill 352 - Budget Reconciliation and Financing Act of 2025: https://mgaleg.maryland.gov/2025RS/Chapters_noln/CH_604_hb0352e.pdf#page=163
 - Maryland 2025 Resident Tax Forms and Instructions - Senior Tax Credit: https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=24
@@ -67,7 +70,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 
 > Every Maryland county (and Baltimore City) levies its own tax on Maryland taxable income, from 2.25% to 3.3%.
 
-- [ ] Allegany County — rate 3.03%
+- [ ] Allegany County — rate 3.2%
 - [ ] Baltimore City — rate 3.2%
 - [ ] Baltimore County — rate 3.2%
 - [ ] Calvert County — rate 3.2%
@@ -79,7 +82,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] Garrett County — rate 2.65%
 - [ ] Harford County — rate 3.06%
 - [ ] Howard County — rate 3.2%
-- [ ] Kent County — rate 3.2%
+- [ ] Kent County — rate 3.3%
 - [ ] Montgomery County — rate 3.2%
 - [ ] Prince George's County — rate 3.2%
 - [ ] Queen Anne's County — rate 3.2%

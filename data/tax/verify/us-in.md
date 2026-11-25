@@ -4,14 +4,15 @@ Generated from `data/tax/us/us-in.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
-- Provisional items: `County rates are the latest PolicyEngine holds (set between 2021 and 2025); counties can change them each year`
+- Provisional items: `Boone County's rate rose from 1.7% to 1.71% for withholding from 1 October 2026; 1.7% is used for the year until the 2026 county rate chart shows how the annual return treats it`
 
 ## Check against
 
 - **Start here:** https://forms.in.gov/Download.aspx?id=16915
+- Indiana DOR — Departmental Notice #1, effective 1 October 2026 (county rates; state rate 2.95% for 2026): https://www.in.gov/dor/files/dn01.pdf
 - 2025 IT-40 Income Tax Form: https://forms.in.gov/Download.aspx?id=16915
 - 2025 Indiana County Income Tax Rates and County Codes: https://forms.in.gov/Download.aspx?id=16925#page=5
 - IC 6-3-2-1 Tax rate (a)(3): https://iga.in.gov/laws/2024/ic/titles/6#6-3-2-1
@@ -44,7 +45,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] Blackford County — rate 2.5%
 - [ ] Boone County — rate 1.7%
 - [ ] Brown County — rate 2.5234%
-- [ ] Carroll County — rate 2.2733%
+- [ ] Carroll County — rate 2.4733%
 - [ ] Cass County — rate 2.95%
 - [ ] Clark County — rate 2%
 - [ ] Clay County — rate 2.35%
@@ -63,14 +64,14 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] Franklin County — rate 1.7%
 - [ ] Fulton County — rate 2.88%
 - [ ] Gibson County — rate 1.3%
-- [ ] Grant County — rate 2.55%
-- [ ] Greene County — rate 2.15%
+- [ ] Grant County — rate 2.75%
+- [ ] Greene County — rate 2.35%
 - [ ] Hamilton County — rate 1.1%
 - [ ] Hancock County — rate 1.94%
 - [ ] Harrison County — rate 1%
 - [ ] Hendricks County — rate 1.7%
 - [ ] Henry County — rate 2.02%
-- [ ] Howard County — rate 1.95%
+- [ ] Howard County — rate 2.35%
 - [ ] Huntington County — rate 1.95%
 - [ ] Jackson County — rate 2.1%
 - [ ] Jasper County — rate 2.864%
@@ -109,7 +110,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] Rush County — rate 2.15%
 - [ ] St. Joseph County — rate 1.75%
 - [ ] Scott County — rate 2.16%
-- [ ] Shelby County — rate 1.6%
+- [ ] Shelby County — rate 1.7%
 - [ ] Spencer County — rate 0.8%
 - [ ] Starke County — rate 1.71%
 - [ ] Steuben County — rate 1.99%
@@ -117,7 +118,7 @@ Tick each figure once it matches the official source. Amounts are yearly, in und
 - [ ] Switzerland County — rate 1.45%
 - [ ] Tippecanoe County — rate 1.28%
 - [ ] Tipton County — rate 2.6%
-- [ ] Union County — rate 2%
+- [ ] Union County — rate 2.75%
 - [ ] Vanderburgh County — rate 1.25%
 - [ ] Vermillion County — rate 1.5%
 - [ ] Vigo County — rate 2%

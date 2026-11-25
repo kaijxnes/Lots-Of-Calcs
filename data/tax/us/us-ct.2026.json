@@ -312,6 +312,18 @@
   "provisional": [],
   "sources": [
     {
+      "title": "CT Paid Leave Authority — employers deduct 0.5% from pay",
+      "url": "https://www.ctpaidleave.org/For-Businesses-and-Employers"
+    },
+    {
+      "title": "CT Paid Leave Authority — contributions up to the Social Security contribution and benefit base",
+      "url": "https://www.ctpaidleave.org/For-Businesses-and-Employers/a-Sole-proprietor"
+    },
+    {
+      "title": "IRS Publication 15 (2026) — Social Security wage base $184,500",
+      "url": "https://www.irs.gov/pub/irs-pdf/p15.pdf"
+    },
+    {
       "title": "2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions",
       "url": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23"
     },
@@ -344,7 +356,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23",
   "tests": [
     {

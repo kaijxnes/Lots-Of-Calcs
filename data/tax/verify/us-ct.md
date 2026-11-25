@@ -4,13 +4,16 @@ Generated from `data/tax/us/us-ct.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `us` (check that one too)
 
 ## Check against
 
 - **Start here:** https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23
+- CT Paid Leave Authority — employers deduct 0.5% from pay: https://www.ctpaidleave.org/For-Businesses-and-Employers
+- CT Paid Leave Authority — contributions up to the Social Security contribution and benefit base: https://www.ctpaidleave.org/For-Businesses-and-Employers/a-Sole-proprietor
+- IRS Publication 15 (2026) — Social Security wage base $184,500: https://www.irs.gov/pub/irs-pdf/p15.pdf
 - 2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions: https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23
 - 2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions: https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=26
 - 2025 Form CT-1040 Connecticut Resident Income Tax Return Instructions: https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=19

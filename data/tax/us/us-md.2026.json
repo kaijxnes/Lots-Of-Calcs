@@ -120,7 +120,7 @@
       "charge": {
         "option": "county",
         "cases": {
-          "allegany-county": {"pct": 3.03, "of": "md-taxable"},
+          "allegany-county": {"pct": 3.2, "of": "md-taxable"},
           "baltimore-city": {"pct": 3.2, "of": "md-taxable"},
           "baltimore-county": {"pct": 3.2, "of": "md-taxable"},
           "calvert-county": {"pct": 3.2, "of": "md-taxable"},
@@ -132,7 +132,7 @@
           "garrett-county": {"pct": 2.65, "of": "md-taxable"},
           "harford-county": {"pct": 3.06, "of": "md-taxable"},
           "howard-county": {"pct": 3.2, "of": "md-taxable"},
-          "kent-county": {"pct": 3.2, "of": "md-taxable"},
+          "kent-county": {"pct": 3.3, "of": "md-taxable"},
           "montgomery-county": {"pct": 3.2, "of": "md-taxable"},
           "prince-georges-county": {"pct": 3.2, "of": "md-taxable"},
           "queen-annes-county": {"pct": 3.2, "of": "md-taxable"},
@@ -176,6 +176,18 @@
   ],
   "sources": [
     {
+      "title": "Comptroller of Maryland — Withholding Tax Facts 2026 (county rates for 2026)",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/facts/withholding-tax-facts-2026.pdf"
+    },
+    {
+      "title": "Comptroller of Maryland — 2026 state and local withholding information (Anne Arundel and Frederick brackets)",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/md/state-payroll/memos/2026/2026-maryland-state-and-local-withholding-information.pdf"
+    },
+    {
+      "title": "Comptroller of Maryland — tax alert on 2025 legislative changes (Allegany 3.03% to 3.20%, Kent 3.20% to 3.30% for 2026)",
+      "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/legal-publications/alerts/tax-alert-changes-to-standard-and-itemized-deductions-and-to-state-and-local-income-tax-rates-from-the-2025-legislative-session.pdf"
+    },
+    {
       "title": "Maryland 2025 Resident Tax Forms and Instructions - Capital Gains Surtax",
       "url": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22"
     },
@@ -202,13 +214,17 @@
   ],
   "obtainedFrom": [
     {
+      "title": "Comptroller of Maryland 2026 rate tables, read 25 Nov 2026",
+      "note": "Every county rate compared with Withholding Tax Facts 2026. Allegany corrected from 3.03% to 3.20% and Kent from 3.20% to 3.30% (2025 legislative changes, effective for 2026). No worked test uses either county."
+    },
+    {
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/md",
       "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22",
   "tests": [
     {
