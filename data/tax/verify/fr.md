@@ -12,9 +12,9 @@ Generated from `data/tax/fr/fr.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - **Start here:** https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/
 - Article 197 CGI — barème de l'impôt sur le revenu: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000048862617
-- Impots.gouv — barème et décote: https://www.impots.gouv.fr/particulier/questions/comment-calculer-mon-taux-dimposition-dapres-le-bareme-progressif
+- BOFiP — barème de l'impôt sur le revenu (BOI-IR-LIQ-20-10): https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407
 - URSSAF — taux de cotisations salariales: https://www.urssaf.fr/accueil/outils-documentation/taux-baremes/taux-cotisations-secteur-prive.html
-- Agirc-Arrco — taux de cotisation: https://www.agirc-arrco.fr/entreprises/gerer-les-salaries/calcul-des-cotisations/
+- Service-public.fr — retraite complémentaire Agirc-Arrco, taux de cotisation: https://www.service-public.gouv.fr/particuliers/vosdroits/F15396
 - Article 223 sexies CGI — contribution exceptionnelle sur les hauts revenus: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000025049019
 - Article 194 CGI — quotient familial shares: https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000049371120
 

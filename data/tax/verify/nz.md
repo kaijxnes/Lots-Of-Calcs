@@ -14,7 +14,8 @@ Generated from `data/tax/nz/nz.2026-27.json` by `tools/tax/checklist.js`. Do not
 - Inland Revenue — Tax rates for individuals: https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
 - Inland Revenue — Independent earner tax credit: https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc
 - ACC — Levy rates: https://www.acc.co.nz/for-business/understanding-levies-if-you-work/
-- KiwiSaver and student loan changes (Inland Revenue): https://www.ird.govt.nz/updates/news-folder/2026/taxation-bill-now-in-effect
+- KiwiSaver rate changes (Inland Revenue commentary on the Taxation (Budget Measures) Act 2025): https://www.taxpolicy.ird.govt.nz/-/media/project/ir/tp/publications/2025/ac-taxation-budget-measures-act-2025.pdf
+- Repaying my student loan when I earn salary or wages (Inland Revenue): https://www.ird.govt.nz/student-loans/living-in-new-zealand-with-a-student-loan/repaying-my-student-loan-when-i-earn-salary-or-wages
 
 ## Figures
 

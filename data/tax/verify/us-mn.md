@@ -15,7 +15,7 @@ Generated from `data/tax/us/us-mn.2026.json` by `tools/tax/checklist.js`. Do not
 - 2025 Schedule M1CWFC, Minnesota Child and Working Family Credits: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1cwfc-25.pdf#page=1
 - 2025 Schedule M1ED, Line 11: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ed-25.pdf
 - 2025 Minnesota Schedule M1MA, Marriage Credit, Line 10: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1ma-25.pdf#page=1
-- 2025 Minnesota M1 form instructions: https://www.revenue.state.mn.us/sites/default/files/2026-07/m1-inst-25.pdf#page=4
+- 2025 Minnesota M1 form instructions: https://www.revenue.state.mn.us/sites/default/files/2026-10/m1-inst-25.pdf#page=4
 - Minnesota Department of Revenue, Tax Year 2026 Inflation-Adjusted Amounts, 290.0123 Subd. 1 Standard Deduction: https://www.revenue.state.mn.us/sites/default/files/2025-12/inflation-adjusted-amounts-2026.pdf#page=1
 
 ## Figures

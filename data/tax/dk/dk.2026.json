@@ -329,8 +329,8 @@
   ],
   "sources": [
     {
-      "title": "Skatteministeriet — satser og beløbsgrænser",
-      "url": "https://skm.dk/tal-og-metode/satser/tidsserier/centrale-skattesatser-i-skattelovgivningen-2026"
+      "title": "Skattestyrelsen (skat.dk) — bundskat, mellemskat, topskat og toptopskat",
+      "url": "https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat"
     },
     {
       "title": "Den juridiske vejledning C.A.4.3.7 — beskæftigelsesfradrag",
@@ -369,7 +369,7 @@
   ],
   "lastVerified": null,
   "lastChecked": null,
-  "verifyAt": "https://skat.dk/borger/skatteberegning",
+  "verifyAt": "https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat",
   "tests": [
     {
       "gross": 600000,

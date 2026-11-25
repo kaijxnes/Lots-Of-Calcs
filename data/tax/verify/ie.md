@@ -12,7 +12,7 @@ Generated from `data/tax/ie/ie.2026.json` by `tools/tax/checklist.js`. Do not ed
 - **Start here:** https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx
 - Revenue — tax rates, bands and reliefs: https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx
 - Revenue — Universal Social Charge rates: https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds-usc.aspx
-- gov.ie — PRSI rates: https://www.gov.ie/en/department-of-social-protection/publications/prsi-contribution-rates-and-user-guide-for-the-year-2026/
+- Citizens Information Board — Benefits and taxes 2026 (PRSI rates): https://www.citizensinformationboard.ie/downloads/benefits_and_taxes/benefits_and_taxes_booklet_2026.pdf
 - Tax relief on pension contributions: limits (Revenue): https://www.revenue.ie/en/jobs-and-pensions/pension/relief/tax-relief-limits.aspx
 
 ## Figures

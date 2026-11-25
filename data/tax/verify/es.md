@@ -14,7 +14,7 @@ Generated from `data/tax/es/es.2026.json` by `tools/tax/checklist.js`. Do not ed
 - Ley 35/2006 del IRPF — art. 20 (reducción rendimientos del trabajo), art. 57 (mínimo personal), art. 63 (escala estatal): https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764
 - AEAT — Manual IRPF 2025, reducción por obtención de rendimientos del trabajo: https://sede.agenciatributaria.gob.es/Sede/en_gb/ayuda/manuales-videos-folletos/manuales-ayuda-presentacion/irpf-2025/7-cumplimentacion-irpf/7_1-rendimientos-trabajo-personal/7_1_6-reduccion-obtencion-rendimientos-trabajo.html
 - Seguridad Social — bases y tipos de cotización 2026 (Orden PJC/297/2026): https://www.seg-social.es/wps/portal/wss/internet/Trabajadores/CotizacionRecaudacionTrabajadores/36537
-- Comunidad de Madrid — escala autonómica IRPF: https://www.comunidad.madrid/servicios/impuestos-tributos/irpf
+- BOE — Ley 13/2023 de la Comunidad de Madrid (escala autonómica del IRPF): https://www.boe.es/buscar/doc.php?id=BOE-A-2024-5610
 - Agència Tributària de Catalunya — escala autonòmica IRPF: https://atc.gencat.cat/es/tributs/irpf/
 - Ley 35/2006 (consolidated, BOE): art. 52 pension limit, arts. 57–58 minimums: https://www.boe.es/buscar/pdf/2006/BOE-A-2006-20764-consolidado.pdf
 - Comunidad de Madrid: Decreto Legislativo 1/2010 (consolidated, BOE), arts. 1–2 bis: https://www.boe.es/buscar/pdf/2010/BOCM-m-2010-90068-consolidado.pdf

@@ -10,8 +10,8 @@ Generated from `data/tax/dk/dk.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 ## Check against
 
-- **Start here:** https://skat.dk/borger/skatteberegning
-- Skatteministeriet — satser og beløbsgrænser: https://skm.dk/tal-og-metode/satser/tidsserier/centrale-skattesatser-i-skattelovgivningen-2026
+- **Start here:** https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat
+- Skattestyrelsen (skat.dk) — bundskat, mellemskat, topskat og toptopskat: https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat
 - Den juridiske vejledning C.A.4.3.7 — beskæftigelsesfradrag: https://tax.dk/jv/ca/C_A_4_3_7.htm
 - skat.dk — AM-bidrag: https://skat.dk/borger/am-bidrag
 - RSM — Satser og beløbsgrænser 2025/2026: https://www.rsm.global/denmark/sites/default/files/media/ePublikationer/Satser%20og%20bel%C3%B8bsgr%C3%A6nser%2020252026%20-%20RSM%20-%20NET_0.pdf

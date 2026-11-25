@@ -12,7 +12,7 @@ Generated from `data/tax/us/us-ny-nyc.2026.json` by `tools/tax/checklist.js`. Do
 
 - **Start here:** https://www.tax.ny.gov/pit/file/tax_tables.htm
 - NYC personal income tax rates (NY Department of Taxation): https://www.tax.ny.gov/pit/file/tax_tables.htm
-- NYC school tax credit: https://www.tax.ny.gov/pit/credits/nyc_school_tax_credit.htm
+- NYC school tax credit (Form IT-201 instructions, 2025): https://www.tax.ny.gov/pdf/2025/inc/it201i_2025.pdf
 
 ## Figures
 

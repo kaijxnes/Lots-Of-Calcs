@@ -10,7 +10,7 @@ Generated from `data/tax/no/no.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 ## Check against
 
-- **Start here:** https://www.skatteetaten.no/en/calculator/
+- **Start here:** https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
 - Regjeringen — Skattesatser 2026: https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skatte-og-avgiftssatser/skattesatser-2026/id3121978/
 - Skatteetaten — Forskuddsutskrivingen 2026: https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/
 - Regjeringen — Endringer i lover og forskrifter fra 1. januar 2026: https://www.regjeringen.no/no/aktuelt/endringer-i-lover-og-forskrifter-fra-1.-januar-2026-fra-finansdepartementet/id3144251/
