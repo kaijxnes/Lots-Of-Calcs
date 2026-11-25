@@ -4,7 +4,7 @@ Generated from `data/tax/lu/lu.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: EUR
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `The dependency contribution is treated as deductible like the other social contributions`, `The ceiling and allowance from June are worked out from the €2,771.33 minimum wage`
 

@@ -4,7 +4,7 @@ Generated from `data/tax/ch/ch-bs.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `ch` (check that one too)
 - Provisional items: `The amounts are those indexed from 2025, which the Basel-Stadt government decided to keep for 2026 (no cold-progression adjustment)`

@@ -168,6 +168,10 @@
     {
       "title": "Ville de Lausanne — Coefficient, taux et arrêté d'imposition",
       "url": "https://www.lausanne.ch/officiel/administration/finances-et-mobilite/finances/impots/coefficient-taux-arrete-imposition.html"
+    },
+    {
+      "title": "État de Vaud — Barèmes des impôts à la source 2026 (the 5% cut in the cantonal base tax for 2026)",
+      "url": "https://www.vd.ch/actualites/decisions-du-conseil-detat/seance-du-conseil-detat/decision/id/dbad77e3-0394-4561-89c9-967adb9415ab"
     }
   ],
   "obtainedFrom": [
@@ -177,7 +181,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://swisstaxcalculator.estv.admin.ch/#/home",
   "tests": [
     {

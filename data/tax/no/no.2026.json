@@ -163,6 +163,10 @@
   ],
   "sources": [
     {
+      "title": "Skatteetaten — general income rates 2026 (18.5% in Finnmark and Nord-Troms)",
+      "url": "https://www.skatteetaten.no/en/rates/general-income/"
+    },
+    {
       "title": "Regjeringen — Skattesatser 2026",
       "url": "https://www.regjeringen.no/no/tema/okonomi-og-budsjett/skatter-og-avgifter/skatte-og-avgiftssatser/skattesatser-2026/id3121978/"
     },
@@ -198,7 +202,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/",
   "tests": [
     {

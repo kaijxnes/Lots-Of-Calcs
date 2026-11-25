@@ -4,13 +4,14 @@ Generated from `data/tax/dk/dk.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: DKK
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
-- Provisional items: `The national average municipal rate is given as 24.94%–25.43% by different sources; 25.05% is used`, `ATP amount is from a single secondary source`
 
 ## Check against
 
 - **Start here:** https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat
+- Skatteministeriet — kommuneskatter, gennemsnitsprocenter 2007–2026: https://skm.dk/tal-og-metode/satser/statistik-i-kommunerne/kommuneskatter-gennemsnitsprocenter-2007-2026
+- Virk — Samlet Betaling for arbejdsgivere (ATP 891 kr. a quarter, 2026): https://virk.dk/vejledning/samlet-betaling/sb-arbejdsgiver/
 - Skattestyrelsen (skat.dk) — bundskat, mellemskat, topskat og toptopskat: https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat
 - Den juridiske vejledning C.A.4.3.7 — beskæftigelsesfradrag: https://tax.dk/jv/ca/C_A_4_3_7.htm
 - skat.dk — AM-bidrag: https://skat.dk/borger/am-bidrag
@@ -25,9 +26,9 @@ Tick each figure once it matches the official source. Amounts are yearly, in DKK
 
 ### ATP pension contribution (`dk-atp`)
 
-> DKK 99.48 a month for full-time employees.
+> DKK 99.00 a month for full-time employees: a third of the DKK 891 a quarter (the employer pays the other two thirds).
 
-- [ ] capped at 1,193.76
+- [ ] capped at 1,188
 
 ### Labour market contribution (AM-bidrag) (`dk-am`)
 
@@ -86,12 +87,12 @@ Tick each figure once it matches the official source. Amounts are yearly, in DKK
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
 
-- [ ] 600,000: dk-am 47,904.50; dk-taxable 484,501.74; dk-municipal 107,815.64; dk-state 59,665.89; net 383,420.22 — AM 8% × 598,806.24 = 47,904.50; personal income 550,901.74. Employment deduction capped at 63,300; job deduction capped at 3,100; taxable 484,501.74. Municipal 25.05% × 430,401.74 = 107,815.64. Bottom tax 12.01% × 496,801.74 = 59,665.89.
-- [ ] 900,000: dk-state 110,416.25; net 539,531.85 — Personal income 826,901.74: middle tax 7.5% × 185,701.74 = 13,927.63 and top tax 7.5% × 49,001.74 = 3,675.13, on top of bottom tax 92,813.49.
-- [ ] 600,000 with church = yes: dk-church 3,744.50 — Church tax 0.87% × 430,401.74 = 3,744.50.
-- [ ] 600,000 with pensionPct = 5: dk-am 47,904.50; dk-taxable 456,901.74; dk-municipal 100,901.84; dk-state 56,351.13; net 366,048.78 — Contribution 30,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.
-- [ ] 400,000 with pensionPct = 8: dk-am 31,904.50; dk-taxable 283,513.95; dk-municipal 57,468.19; dk-state 34,031.75; net 245,961.80 — Contribution 32,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.
-- [ ] 900,000 with pensionPct = 10: dk-am 71,904.50; dk-taxable 677,701.74; dk-municipal 156,212.24; dk-state 90,586.84; net 497,302.67 — Contribution 90,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.
+- [ ] 600,000: dk-am 47,904.96; dk-taxable 484,507.04; dk-municipal 107,816.96; dk-state 59,666.53; net 383,423.55 — AM 8% × 598,812.00 = 47,904.96; personal income 550,907.04. Employment deduction capped at 63,300; job deduction capped at 3,100; taxable 484,507.04. Municipal 25.05% × 430,407.04 = 107,816.96. Bottom tax 12.01% × 496,807.04 = 59,666.53.
+- [ ] 900,000: dk-state 110,417.68; net 539,534.39 — Personal income 826,907.04: middle tax 7.5% × 185,707.04 = 13,928.03 and top tax 7.5% × 49,007.04 = 3,675.53, on top of bottom tax 92,814.13.
+- [ ] 600,000 with church = yes: dk-church 3,744.54 — Church tax 0.87% × 430,407.04 = 3,744.54.
+- [ ] 600,000 with pensionPct = 5: dk-am 47,904.96; dk-taxable 456,907.04; dk-municipal 100,903.16; dk-state 56,351.77; net 366,052.11 — Contribution 30,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.
+- [ ] 400,000 with pensionPct = 8: dk-am 31,904.96; dk-taxable 283,518.51; dk-municipal 57,469.34; dk-state 34,032.38; net 245,965.32 — Contribution 32,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.
+- [ ] 900,000 with pensionPct = 10: dk-am 71,904.96; dk-taxable 677,707.04; dk-municipal 156,213.56; dk-state 90,587.87; net 497,305.60 — Contribution 90,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.
 
 ## Not modelled (confirm the page says so)
 

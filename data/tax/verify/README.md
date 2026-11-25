@@ -15,9 +15,9 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | **New York City** | [us-ny-nyc](us-ny-nyc.md) | 2026 | 19 | — | — |
 | **Florida** | [us-fl](us-fl.md) | 2026 | 3 | — | — |
 | **Germany** | [de](de.md) | 2026 | 46 | — | — |
-| **Ireland** | [ie](ie.md) | 2026 | 24 | — | — |
+| **Ireland** | [ie](ie.md) | 2026 | 24 | 2026-11-25 | — |
 | **Australia** | [au](au.md) | 2026-27 | 33 | — | — |
-| **New Zealand** | [nz](nz.md) | 2026-27 | 23 | — | — |
+| **New Zealand** | [nz](nz.md) | 2026-27 | 23 | 2026-11-25 | — |
 | **France** | [fr](fr.md) | 2026 | 57 | — | — |
 | Austria | [at](at.md) | 2026 | 57 | — | — |
 | Belgium | [be](be.md) | 2026 | 34 | — | — |
@@ -37,21 +37,21 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Yukon | [ca-yt](ca-yt.md) | 2026 | 12 | 2026-11-11 | — |
 | Switzerland (Zurich) | [ch](ch.md) | 2026 | 63 | — | — |
 | Bern | [ch-be](ch-be.md) | 2026 | 22 | — | — |
-| Basel | [ch-bs](ch-bs.md) | 2026 | 10 | — | — |
-| Lausanne | [ch-vd](ch-vd.md) | 2026 | 27 | — | — |
+| Basel | [ch-bs](ch-bs.md) | 2026 | 10 | 2026-11-25 | — |
+| Lausanne | [ch-vd](ch-vd.md) | 2026 | 27 | 2026-11-25 | — |
 | Zug | [ch-zg](ch-zg.md) | 2026 | 23 | — | — |
-| Denmark | [dk](dk.md) | 2026 | 25 | — | — |
-| Spain | [es](es.md) | 2026 | 120 | — | — |
+| Denmark | [dk](dk.md) | 2026 | 25 | 2026-11-25 | — |
+| Spain | [es](es.md) | 2026 | 120 | 2026-11-25 | — |
 | Finland | [fi](fi.md) | 2026 | 29 | 2026-11-11 | — |
 | Self-employed (Scotland) | [gb-sct-se](gb-sct-se.md) | 2026/27 | 4 | 2026-11-16 | — |
 | Self-employed (England, Wales & Northern Ireland) | [gb-se](gb-se.md) | 2026/27 | 6 | 2026-11-16 | — |
 | India | [in](in.md) | 2026-27 | 40 | — | — |
 | Italy | [it](it.md) | 2026 | 46 | — | — |
 | Japan | [jp](jp.md) | 2026 | 86 | — | — |
-| Luxembourg | [lu](lu.md) | 2026 | 141 | — | — |
-| Netherlands | [nl](nl.md) | 2026 | 32 | — | — |
-| Norway | [no](no.md) | 2026 | 19 | — | — |
-| Portugal | [pt](pt.md) | 2026 | 37 | — | — |
+| Luxembourg | [lu](lu.md) | 2026 | 141 | 2026-11-25 | — |
+| Netherlands | [nl](nl.md) | 2026 | 32 | 2026-11-25 | — |
+| Norway | [no](no.md) | 2026 | 19 | 2026-11-25 | — |
+| Portugal | [pt](pt.md) | 2026 | 37 | 2026-11-25 | — |
 | Sweden | [se](se.md) | 2026 | 36 | — | — |
 | Alaska | [us-ak](us-ak.md) | 2026 | 3 | — | — |
 | Alabama | [us-al](us-al.md) | 2026 | 20 | — | — |

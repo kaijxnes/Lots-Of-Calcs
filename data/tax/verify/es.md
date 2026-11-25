@@ -4,7 +4,7 @@ Generated from `data/tax/es/es.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: EUR
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `The Catalan scale (eight bands from 9.5% to 25.5%, Decree-law 5/2025) comes from secondary sources that agree with each other; older tables starting at 10.5% are still in circulation`
 

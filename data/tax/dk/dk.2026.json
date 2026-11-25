@@ -47,10 +47,10 @@
       "id": "dk-atp",
       "label": "ATP pension contribution",
       "group": "social",
-      "note": "DKK 99.48 a month for full-time employees.",
+      "note": "DKK 99.00 a month for full-time employees: a third of the DKK 891 a quarter (the employer pays the other two thirds).",
       "charge": {
         "min": [
-          1193.76,
+          1188,
           "gross"
         ]
       }
@@ -323,11 +323,16 @@
     "Interest, union dues, commuting and other deductions",
     "Private (non-employer) pension savings and the employer's share of contributions"
   ],
-  "provisional": [
-    "The national average municipal rate is given as 24.94%–25.43% by different sources; 25.05% is used",
-    "ATP amount is from a single secondary source"
-  ],
+  "provisional": [],
   "sources": [
+    {
+      "title": "Skatteministeriet — kommuneskatter, gennemsnitsprocenter 2007–2026",
+      "url": "https://skm.dk/tal-og-metode/satser/statistik-i-kommunerne/kommuneskatter-gennemsnitsprocenter-2007-2026"
+    },
+    {
+      "title": "Virk — Samlet Betaling for arbejdsgivere (ATP 891 kr. a quarter, 2026)",
+      "url": "https://virk.dk/vejledning/samlet-betaling/sb-arbejdsgiver/"
+    },
     {
       "title": "Skattestyrelsen (skat.dk) — bundskat, mellemskat, topskat og toptopskat",
       "url": "https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat"
@@ -365,29 +370,33 @@
     {
       "title": "Danish statute text via danskelove.dk and the Juridisk Vejledning, 11 Nov 2026",
       "note": "Employer-scheme pension contributions are deducted before A-skat, are in the AM-bidrag basis (AMBL §2 stk. 1 nr. 4) and therefore in the employment deduction basis (LL §9 J)."
+    },
+    {
+      "title": "Official pages read, 25 Nov 2026",
+      "note": "Average municipal tax 25.049% and church tax 0.867% for 2026 (Skatteministeriet table; 25.05% and 0.87% used). ATP corrected from DKK 99.48 to 99.00 a month: Virk gives DKK 891 a quarter per full-time employee for 2026, of which the employee pays a third. Tests recomputed."
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat",
   "tests": [
     {
       "gross": 600000,
-      "note": "AM 8% × 598,806.24 = 47,904.50; personal income 550,901.74. Employment deduction capped at 63,300; job deduction capped at 3,100; taxable 484,501.74. Municipal 25.05% × 430,401.74 = 107,815.64. Bottom tax 12.01% × 496,801.74 = 59,665.89.",
+      "note": "AM 8% × 598,812.00 = 47,904.96; personal income 550,907.04. Employment deduction capped at 63,300; job deduction capped at 3,100; taxable 484,507.04. Municipal 25.05% × 430,407.04 = 107,816.96. Bottom tax 12.01% × 496,807.04 = 59,666.53.",
       "expect": {
-        "dk-am": 47904.5,
-        "dk-taxable": 484501.74,
-        "dk-municipal": 107815.64,
-        "dk-state": 59665.89,
-        "net": 383420.22
+        "dk-am": 47904.96,
+        "dk-taxable": 484507.04,
+        "dk-municipal": 107816.96,
+        "dk-state": 59666.53,
+        "net": 383423.55
       }
     },
     {
       "gross": 900000,
-      "note": "Personal income 826,901.74: middle tax 7.5% × 185,701.74 = 13,927.63 and top tax 7.5% × 49,001.74 = 3,675.13, on top of bottom tax 92,813.49.",
+      "note": "Personal income 826,907.04: middle tax 7.5% × 185,707.04 = 13,928.03 and top tax 7.5% × 49,007.04 = 3,675.53, on top of bottom tax 92,814.13.",
       "expect": {
-        "dk-state": 110416.25,
-        "net": 539531.85
+        "dk-state": 110417.68,
+        "net": 539534.39
       }
     },
     {
@@ -395,9 +404,9 @@
       "options": {
         "church": "yes"
       },
-      "note": "Church tax 0.87% × 430,401.74 = 3,744.50.",
+      "note": "Church tax 0.87% × 430,407.04 = 3,744.54.",
       "expect": {
-        "dk-church": 3744.5
+        "dk-church": 3744.54
       }
     },
     {
@@ -407,11 +416,11 @@
       },
       "note": "Contribution 30,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.",
       "expect": {
-        "dk-am": 47904.5,
-        "dk-taxable": 456901.74,
-        "dk-municipal": 100901.84,
-        "dk-state": 56351.13,
-        "net": 366048.78
+        "dk-am": 47904.96,
+        "dk-taxable": 456907.04,
+        "dk-municipal": 100903.16,
+        "dk-state": 56351.77,
+        "net": 366052.11
       }
     },
     {
@@ -421,11 +430,11 @@
       },
       "note": "Contribution 32,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.",
       "expect": {
-        "dk-am": 31904.5,
-        "dk-taxable": 283513.95,
-        "dk-municipal": 57468.19,
-        "dk-state": 34031.75,
-        "net": 245961.8
+        "dk-am": 31904.96,
+        "dk-taxable": 283518.51,
+        "dk-municipal": 57469.34,
+        "dk-state": 34032.38,
+        "net": 245965.32
       }
     },
     {
@@ -435,11 +444,11 @@
       },
       "note": "Contribution 90,000; 92% of it comes off personal income; AM-bidrag and the deductions are unchanged.",
       "expect": {
-        "dk-am": 71904.5,
-        "dk-taxable": 677701.74,
-        "dk-municipal": 156212.24,
-        "dk-state": 90586.84,
-        "net": 497302.67
+        "dk-am": 71904.96,
+        "dk-taxable": 677707.04,
+        "dk-municipal": 156213.56,
+        "dk-state": 90587.87,
+        "net": 497305.6
       }
     }
   ]

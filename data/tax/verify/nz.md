@@ -4,13 +4,14 @@ Generated from `data/tax/nz/nz.2026-27.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026-27 (2026-04-01 to 2027-03-31)
 - Currency: NZD
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Provisional items: `Figures are from secondary payroll and calculator sources that agree with each other; not checked against Inland Revenue or ACC directly`
 
 ## Check against
 
 - **Start here:** https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+- Inland Revenue — ACC earners’ levy rates (1.75%, maximum liable earnings $156,641): https://www.ird.govt.nz/income-tax/income-tax-for-individuals/acc-clients-and-carers/acc-earners-levy-rates
 - Inland Revenue — Tax rates for individuals: https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
 - Inland Revenue — Independent earner tax credit: https://www.ird.govt.nz/income-tax/income-tax-for-individuals/individual-tax-credits/independent-earner-tax-credit-ietc
 - ACC — Levy rates: https://www.acc.co.nz/for-business/understanding-levies-if-you-work/

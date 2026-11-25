@@ -4,7 +4,7 @@ Generated from `data/tax/ch/ch-vd.2026.json` by `tools/tax/checklist.js`. Do not
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: undefined
-- Rates last checked: not yet
+- Rates last checked: 2026-11-25
 - Verified by a person: **not yet**
 - Adds to: `ch` (check that one too)
 - Provisional items: `Assumes health and accident insurance premiums of at least CHF 5,000 a year, the most a single person can deduct`, `The 5% reduction for 2026 is applied to the cantonal tax only, not Lausanne's`, `Vaud taxable income is not rounded here`
@@ -14,6 +14,7 @@ Generated from `data/tax/ch/ch-vd.2026.json` by `tools/tax/checklist.js`. Do not
 - **Start here:** https://swisstaxcalculator.estv.admin.ch/#/home
 - ESTV — Feuille cantonale Vaud (Informations fiscales, état février 2026): https://www.estv2.admin.ch/stp/kb/vd-fr.pdf
 - Ville de Lausanne — Coefficient, taux et arrêté d'imposition: https://www.lausanne.ch/officiel/administration/finances-et-mobilite/finances/impots/coefficient-taux-arrete-imposition.html
+- État de Vaud — Barèmes des impôts à la source 2026 (the 5% cut in the cantonal base tax for 2026): https://www.vd.ch/actualites/decisions-du-conseil-detat/seance-du-conseil-detat/decision/id/dbad77e3-0394-4561-89c9-967adb9415ab
 
 ## Figures
 

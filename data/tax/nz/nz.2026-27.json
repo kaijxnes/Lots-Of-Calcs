@@ -148,6 +148,10 @@
   ],
   "sources": [
     {
+      "title": "Inland Revenue — ACC earners’ levy rates (1.75%, maximum liable earnings $156,641)",
+      "url": "https://www.ird.govt.nz/income-tax/income-tax-for-individuals/acc-clients-and-carers/acc-earners-levy-rates"
+    },
+    {
       "title": "Inland Revenue — Tax rates for individuals",
       "url": "https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals"
     },
@@ -174,7 +178,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-25",
   "verifyAt": "https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals",
   "tests": [
     {
