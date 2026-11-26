@@ -1,0 +1,207 @@
+{
+  "about": "State Pension age by date of birth for tools/build-state-pension-age-pages.js, transcribed by script from the tables in DWP's State Pension age timetable on GOV.UK (tables 1 to 5). Women's tables 1 and 2 apply to women only; tables 3 to 5 to men and women.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "sources": [
+    {
+      "title": "State Pension age timetable",
+      "url": "https://www.gov.uk/government/publications/state-pension-age-timetable/state-pension-age-timetable"
+    },
+    {
+      "title": "State Pension age review",
+      "url": "https://www.gov.uk/government/news/state-pension-age-review"
+    },
+    {
+      "title": "Check your State Pension age",
+      "url": "https://www.gov.uk/state-pension-age"
+    },
+    {
+      "title": "The new State Pension: what you'll get",
+      "url": "https://www.gov.uk/new-state-pension/what-youll-get"
+    },
+    {
+      "title": "The new State Pension: eligibility",
+      "url": "https://www.gov.uk/new-state-pension/eligibility"
+    },
+    {
+      "title": "The new State Pension: how to claim",
+      "url": "https://www.gov.uk/new-state-pension/how-to-claim"
+    }
+  ],
+  "rules": {
+    "fullRate": {
+      "quote": "The full rate of new State Pension is £241.30 a week.",
+      "source": 3
+    },
+    "tenYears": {
+      "quote": "You’ll need 10 qualifying years on your National Insurance record to get any new State Pension.",
+      "source": 4
+    },
+    "thirtyFive": {
+      "quote": "If your National Insurance record started after April 2016 you will need 35 qualifying years to get the full rate of new State Pension.",
+      "source": 3
+    },
+    "triple": {
+      "quote": "The new State Pension increases each year by whichever is the highest: earnings – the average percentage growth in wages (in Great Britain) prices – the percentage growth in prices in the UK measured by the Consumer Prices Index ( CPI ) 2.5%",
+      "source": 3
+    },
+    "phasing": {
+      "quote": "rather than reaching State Pension age on a specific date, people born between 6 April 1960 and 5 March 1961 will reach their State Pension age at 66 years and the specified number of months.",
+      "source": 0
+    },
+    "monthEnd": {
+      "quote": "A person born on 31 July 1960 is considered to reach the age of 66 years and 4 months on 30 November 2026. A person born on 31 December 1960 is considered to reach the age of 66 years and 9 months on 30 September 2027. A person born on 31 January 1961 is considered to reach the age of 66 years and 10 months on 30 November 2027.",
+      "source": 0
+    },
+    "to68": {
+      "quote": "Under the Pensions Act 2007 the State Pension age for men and women will increase from 67 to 68 between 2044 and 2046.",
+      "source": 0
+    },
+    "mayChange": {
+      "quote": "However the timetable for the increase in the State Pension age from 67 to 68 could change as a result of a future review. Before any future changes could become law Parliament would need to approve the plans.",
+      "source": 0
+    },
+    "review": {
+      "quote": "The government’s second periodic review of the State Pension age sets out plans for a further SPa review within 2 years of the next Parliament. That review will reconsider the rise of the SPa to age 68.",
+      "source": 1
+    },
+    "notice": {
+      "quote": "The government remains committed to the principle of providing 10 years’ notice of changes to the SPa.",
+      "source": 1
+    },
+    "already67": {
+      "quote": "For people born after 5 April 1969 but before 6 April 1977, under the Pensions Act 2007, State Pension age was already 67.",
+      "source": 0
+    },
+    "claim": {
+      "quote": "You will not get your new State Pension automatically - you have to claim it.",
+      "source": 5
+    }
+  },
+  "examples": [
+    {
+      "dob": "1960-07-31",
+      "date": "2026-11-30"
+    },
+    {
+      "dob": "1960-12-31",
+      "date": "2027-09-30"
+    },
+    {
+      "dob": "1961-01-31",
+      "date": "2027-11-30"
+    }
+  ],
+  "tables": {
+    "women1995": {
+      "title": "Women's State Pension age under the Pensions Act 1995",
+      "who": "women",
+      "rows": [
+        { "from": "1950-04-06", "to": "1950-05-05", "date": "2010-05-06" },
+        { "from": "1950-05-06", "to": "1950-06-05", "date": "2010-07-06" },
+        { "from": "1950-06-06", "to": "1950-07-05", "date": "2010-09-06" },
+        { "from": "1950-07-06", "to": "1950-08-05", "date": "2010-11-06" },
+        { "from": "1950-08-06", "to": "1950-09-05", "date": "2011-01-06" },
+        { "from": "1950-09-06", "to": "1950-10-05", "date": "2011-03-06" },
+        { "from": "1950-10-06", "to": "1950-11-05", "date": "2011-05-06" },
+        { "from": "1950-11-06", "to": "1950-12-05", "date": "2011-07-06" },
+        { "from": "1950-12-06", "to": "1951-01-05", "date": "2011-09-06" },
+        { "from": "1951-01-06", "to": "1951-02-05", "date": "2011-11-06" },
+        { "from": "1951-02-06", "to": "1951-03-05", "date": "2012-01-06" },
+        { "from": "1951-03-06", "to": "1951-04-05", "date": "2012-03-06" },
+        { "from": "1951-04-06", "to": "1951-05-05", "date": "2012-05-06" },
+        { "from": "1951-05-06", "to": "1951-06-05", "date": "2012-07-06" },
+        { "from": "1951-06-06", "to": "1951-07-05", "date": "2012-09-06" },
+        { "from": "1951-07-06", "to": "1951-08-05", "date": "2012-11-06" },
+        { "from": "1951-08-06", "to": "1951-09-05", "date": "2013-01-06" },
+        { "from": "1951-09-06", "to": "1951-10-05", "date": "2013-03-06" },
+        { "from": "1951-10-06", "to": "1951-11-05", "date": "2013-05-06" },
+        { "from": "1951-11-06", "to": "1951-12-05", "date": "2013-07-06" },
+        { "from": "1951-12-06", "to": "1952-01-05", "date": "2013-09-06" },
+        { "from": "1952-01-06", "to": "1952-02-05", "date": "2013-11-06" },
+        { "from": "1952-02-06", "to": "1952-03-05", "date": "2014-01-06" },
+        { "from": "1952-03-06", "to": "1952-04-05", "date": "2014-03-06" },
+        { "from": "1952-04-06", "to": "1952-05-05", "date": "2014-05-06" },
+        { "from": "1952-05-06", "to": "1952-06-05", "date": "2014-07-06" },
+        { "from": "1952-06-06", "to": "1952-07-05", "date": "2014-09-06" },
+        { "from": "1952-07-06", "to": "1952-08-05", "date": "2014-11-06" },
+        { "from": "1952-08-06", "to": "1952-09-05", "date": "2015-01-06" },
+        { "from": "1952-09-06", "to": "1952-10-05", "date": "2015-03-06" },
+        { "from": "1952-10-06", "to": "1952-11-05", "date": "2015-05-06" },
+        { "from": "1952-11-06", "to": "1952-12-05", "date": "2015-07-06" },
+        { "from": "1952-12-06", "to": "1953-01-05", "date": "2015-09-06" },
+        { "from": "1953-01-06", "to": "1953-02-05", "date": "2015-11-06" },
+        { "from": "1953-02-06", "to": "1953-03-05", "date": "2016-01-06" },
+        { "from": "1953-03-06", "to": "1953-04-05", "date": "2016-03-06" }
+      ]
+    },
+    "women2011": {
+      "title": "Women's State Pension age under the Pensions Act 2011",
+      "who": "women",
+      "rows": [
+        { "from": "1953-04-06", "to": "1953-05-05", "date": "2016-07-06" },
+        { "from": "1953-05-06", "to": "1953-06-05", "date": "2016-11-06" },
+        { "from": "1953-06-06", "to": "1953-07-05", "date": "2017-03-06" },
+        { "from": "1953-07-06", "to": "1953-08-05", "date": "2017-07-06" },
+        { "from": "1953-08-06", "to": "1953-09-05", "date": "2017-11-06" },
+        { "from": "1953-09-06", "to": "1953-10-05", "date": "2018-03-06" },
+        { "from": "1953-10-06", "to": "1953-11-05", "date": "2018-07-06" },
+        { "from": "1953-11-06", "to": "1953-12-05", "date": "2018-11-06" }
+      ]
+    },
+    "to66": {
+      "title": "Increase in State Pension age from 65 to 66, men and women",
+      "who": "all",
+      "rows": [
+        { "from": "1953-12-06", "to": "1954-01-05", "date": "2019-03-06" },
+        { "from": "1954-01-06", "to": "1954-02-05", "date": "2019-05-06" },
+        { "from": "1954-02-06", "to": "1954-03-05", "date": "2019-07-06" },
+        { "from": "1954-03-06", "to": "1954-04-05", "date": "2019-09-06" },
+        { "from": "1954-04-06", "to": "1954-05-05", "date": "2019-11-06" },
+        { "from": "1954-05-06", "to": "1954-06-05", "date": "2020-01-06" },
+        { "from": "1954-06-06", "to": "1954-07-05", "date": "2020-03-06" },
+        { "from": "1954-07-06", "to": "1954-08-05", "date": "2020-05-06" },
+        { "from": "1954-08-06", "to": "1954-09-05", "date": "2020-07-06" },
+        { "from": "1954-09-06", "to": "1954-10-05", "date": "2020-09-06" },
+        { "from": "1954-10-06", "to": "1960-04-05", "years": 66, "months": 0 }
+      ]
+    },
+    "to67": {
+      "title": "Increase in State Pension age from 66 to 67, men and women (Pensions Act 2014)",
+      "who": "all",
+      "rows": [
+        { "from": "1960-04-06", "to": "1960-05-05", "years": 66, "months": 1 },
+        { "from": "1960-05-06", "to": "1960-06-05", "years": 66, "months": 2 },
+        { "from": "1960-06-06", "to": "1960-07-05", "years": 66, "months": 3 },
+        { "from": "1960-07-06", "to": "1960-08-05", "years": 66, "months": 4 },
+        { "from": "1960-08-06", "to": "1960-09-05", "years": 66, "months": 5 },
+        { "from": "1960-09-06", "to": "1960-10-05", "years": 66, "months": 6 },
+        { "from": "1960-10-06", "to": "1960-11-05", "years": 66, "months": 7 },
+        { "from": "1960-11-06", "to": "1960-12-05", "years": 66, "months": 8 },
+        { "from": "1960-12-06", "to": "1961-01-05", "years": 66, "months": 9 },
+        { "from": "1961-01-06", "to": "1961-02-05", "years": 66, "months": 10 },
+        { "from": "1961-02-06", "to": "1961-03-05", "years": 66, "months": 11 },
+        { "from": "1961-03-06", "to": "1977-04-05", "years": 67, "months": 0 }
+      ]
+    },
+    "to68": {
+      "title": "Increase in State Pension age from 67 to 68, men and women (Pensions Act 2007)",
+      "who": "all",
+      "rows": [
+        { "from": "1977-04-06", "to": "1977-05-05", "date": "2044-05-06" },
+        { "from": "1977-05-06", "to": "1977-06-05", "date": "2044-07-06" },
+        { "from": "1977-06-06", "to": "1977-07-05", "date": "2044-09-06" },
+        { "from": "1977-07-06", "to": "1977-08-05", "date": "2044-11-06" },
+        { "from": "1977-08-06", "to": "1977-09-05", "date": "2045-01-06" },
+        { "from": "1977-09-06", "to": "1977-10-05", "date": "2045-03-06" },
+        { "from": "1977-10-06", "to": "1977-11-05", "date": "2045-05-06" },
+        { "from": "1977-11-06", "to": "1977-12-05", "date": "2045-07-06" },
+        { "from": "1977-12-06", "to": "1978-01-05", "date": "2045-09-06" },
+        { "from": "1978-01-06", "to": "1978-02-05", "date": "2045-11-06" },
+        { "from": "1978-02-06", "to": "1978-03-05", "date": "2046-01-06" },
+        { "from": "1978-03-06", "to": "1978-04-05", "date": "2046-03-06" },
+        { "from": "1978-04-06", "to": null, "years": 68, "months": 0 }
+      ]
+    }
+  }
+}

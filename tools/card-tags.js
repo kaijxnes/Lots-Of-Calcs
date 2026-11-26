@@ -24,6 +24,7 @@ const TAGS = {
   "/savings-tax-calculator/": "UK",
   "/irregular-hours-holiday-calculator/": "UK",
   "/universal-credit-calculator/": "UK",
+  "/state-pension-age-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
