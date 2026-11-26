@@ -1,0 +1,59 @@
+{
+  "about": "National Minimum Wage and National Living Wage hourly rates, for tools/build-minimum-wage-pages.js, quoted from GOV.UK. Each set applies from its start date; the page picks the set in force on the visitor's date.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "rates": [
+    {
+      "from": "2025-04-01",
+      "label": "April 2025 to March 2026",
+      "adult": 12.21,
+      "age18to20": 10.0,
+      "under18": 7.55,
+      "apprentice": 7.55
+    },
+    {
+      "from": "2026-04-01",
+      "label": "April 2026",
+      "adult": 12.71,
+      "age18to20": 10.85,
+      "under18": 8.0,
+      "apprentice": 8.0
+    },
+    {
+      "from": "2027-04-01",
+      "label": "April 2027",
+      "adult": 13.21,
+      "age18to20": 11.27,
+      "under18": 8.31,
+      "apprentice": 8.31
+    }
+  ],
+  "rules": {
+    "rates": {
+      "quote": "Current rates — 21 and over / 18 to 20 / Under 18 / Apprentice: April 2026 £12.71 £10.85 £8 £8; April 2027 £13.21 £11.27 £8.31 £8.31. … April 2025 to March 2026 £12.21 £10 £7.55 £7.55",
+      "source": 0
+    },
+    "ages": {
+      "quote": "You must be at least: school leaving age to get the National Minimum Wage; aged 21 to get the National Living Wage - the minimum wage will still apply for workers aged 20 and under",
+      "source": 0
+    },
+    "april": {
+      "quote": "The rates change on 1 April every year.",
+      "source": 0
+    },
+    "apprentice": {
+      "quote": "Apprentices are entitled to the apprentice rate if they’re either: aged under 19; aged 19 or over and in the first year of their apprenticeship … Apprentices are entitled to the minimum wage for their age if they both: are aged 19 or over; have completed the first year of their apprenticeship",
+      "source": 0
+    },
+    "acas": {
+      "quote": "Contact Acas if you’re not getting the National Minimum Wage and think you should be.",
+      "source": 0
+    }
+  },
+  "sources": [
+    {
+      "title": "National Minimum Wage and National Living Wage rates",
+      "url": "https://www.gov.uk/national-minimum-wage-rates"
+    }
+  ]
+}
