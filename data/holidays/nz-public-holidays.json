@@ -1,0 +1,48 @@
+{
+  "_note": "New Zealand's national public holidays, for payday calendars, from Employment New Zealand and govt.nz: New Year's Day, the day after New Year's Day, Waitangi Day, Good Friday, Easter Monday, Anzac Day, King's Birthday (first Monday in June), Matariki (a set Friday each year), Labour Day (fourth Monday in October), Christmas Day and Boxing Day. New Year's, 2 January, Christmas and Boxing Day falling on a weekend are observed on the following Monday (or Tuesday); Waitangi Day and Anzac Day are Mondayised. Matariki dates from MBIE's Matariki dates 2022 to 2052. Regional anniversary days are left out. The observed dates Employment New Zealand lists (in 'check') must come out of the rules exactly; later years are expected dates.",
+  "source": {
+    "title": "Employment New Zealand — Public holidays and anniversary dates",
+    "url": "https://www.employment.govt.nz/leave-and-holidays/public-holidays/public-holidays-and-anniversary-dates"
+  },
+  "matarikiSource": {
+    "title": "MBIE — Matariki dates 2022 to 2052",
+    "url": "https://www.mbie.govt.nz/assets/matariki-dates-2022-to-2052-matariki-advisory-group.pdf"
+  },
+  "matariki": {
+    "2026": "2026-07-10",
+    "2027": "2027-06-25",
+    "2028": "2028-07-14",
+    "2029": "2029-07-06",
+    "2030": "2030-06-21",
+    "2031": "2031-07-11"
+  },
+  "check": {
+    "2026": [
+      "2026-01-01",
+      "2026-01-02",
+      "2026-02-06",
+      "2026-04-03",
+      "2026-04-06",
+      "2026-04-27",
+      "2026-06-01",
+      "2026-07-10",
+      "2026-10-26",
+      "2026-12-25",
+      "2026-12-28"
+    ],
+    "2027": [
+      "2027-01-01",
+      "2027-01-04",
+      "2027-02-08",
+      "2027-03-26",
+      "2027-03-29",
+      "2027-04-26",
+      "2027-06-07",
+      "2027-06-25",
+      "2027-10-25",
+      "2027-12-27",
+      "2027-12-28"
+    ]
+  },
+  "lastChecked": "2026-11-26"
+}

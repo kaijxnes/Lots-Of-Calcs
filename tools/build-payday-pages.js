@@ -4,6 +4,9 @@
        /payday-calendar/                 every country and year
        /payday-calendar/us/2027/         US, from the Federal Reserve's holidays
        /payday-calendar/ireland/2027/    Ireland, from its public holiday rules
+       /payday-calendar/canada/2027/     Canada, from Payments Canada's closure days
+       /payday-calendar/australia/2027/  Australia, national public holidays (RBA)
+       /payday-calendar/new-zealand/2027/ New Zealand, from Employment New Zealand
 
        node tools/build-payday-pages.js
 
@@ -16,6 +19,11 @@
    Ireland: the Workplace Relations Commission's rules
    (data/holidays/ie-public-holidays.json), which must reproduce its own
    list for 2026; a holiday on a weekend has no substitute day.
+   Canada, Australia and New Zealand: rules in data/holidays/ (ca-payments-
+   canada, au-national-holidays, nz-public-holidays), each of which must
+   reproduce the official lists for the years published (2026 and 2027);
+   later years are labelled as expected. A weekend holiday moves to the next
+   free weekday where the country does that (observe()).
 
    Paydays that fall on a weekend or holiday are shown on the working day
    before, as most employers pay. */
@@ -82,6 +90,52 @@ Object.entries(IE.check).forEach(([y, dates]) => {
 });
 const ieYears = []; for (let y = THIS_YEAR; y <= THIS_YEAR + 4; y++) ieYears.push(y);
 
+/* A holiday on a weekend moves to the next weekday that isn't already a
+   holiday, taken in date order (so Christmas on a Saturday and Boxing Day
+   on a Sunday become Monday and Tuesday). "shift" marks those that move. */
+function observe(list) {
+  const out = list.map(([name, t, shift]) => ({ name, t, shift, closed: dow(t) % 6 === 0 ? null : t }));
+  const taken = new Set(out.filter((h) => h.closed).map((h) => h.closed));
+  out.slice().sort((a, b) => a.t - b.t).forEach((h) => {
+    if (h.closed || !h.shift) return;
+    let d = h.t + DAY; while (dow(d) % 6 === 0 || taken.has(d)) d += DAY;
+    h.closed = d; taken.add(d);
+  });
+  return out.sort((a, b) => a.t - b.t);
+}
+const years5 = () => { const a = []; for (let y = THIS_YEAR; y <= THIS_YEAR + 4; y++) a.push(y); return a; };
+/* the dates a country's own list gives must come out of the rules */
+function verify(label, data, fn, mode) {
+  Object.entries(data.check).forEach(([y, dates]) => {
+    const hol = fn(+y);
+    const got = (mode === "both" ? [...new Set(hol.flatMap((h) => [h.t, h.closed].filter(Boolean)))] : hol.map((h) => h.closed).filter(Boolean)).map(iso).sort().join(",");
+    if (got !== dates.slice().sort().join(",")) throw new Error(`${label} ${y}: the rules give ${got}, the official list has ${dates.join(",")}`);
+  });
+  return Math.max(...Object.keys(data.check).map(Number));
+}
+
+/* ------------------------------------------------------------ Canada */
+const CA = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/holidays/ca-payments-canada.json"), "utf8"));
+const caHolidays = (y) => observe([["New Year's Day", utc(y, 0, 1), 1], ["Good Friday", easter(y) - 2 * DAY, 1],
+  ["Victoria Day", (() => { let t = utc(y, 4, 24); while (dow(t) !== 1) t -= DAY; return t; })(), 1], ["Canada Day", utc(y, 6, 1), 1],
+  ["Labour Day", nthDow(y, 8, 1, 1), 1], ["National Day for Truth and Reconciliation", utc(y, 8, 30), 1], ["Thanksgiving", nthDow(y, 9, 1, 2), 1],
+  ["Remembrance Day", utc(y, 10, 11), 1], ["Christmas Day", utc(y, 11, 25), 1], ["Boxing Day", utc(y, 11, 26), 1]]);
+const caPublished = verify("Canada", CA, caHolidays);
+
+/* ------------------------------------------------------- New Zealand */
+const NZ = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/holidays/nz-public-holidays.json"), "utf8"));
+const nzHolidays = (y) => observe([["New Year's Day", utc(y, 0, 1), 1], ["Day after New Year's Day", utc(y, 0, 2), 1], ["Waitangi Day", utc(y, 1, 6), 1],
+  ["Good Friday", easter(y) - 2 * DAY, 0], ["Easter Monday", easter(y) + DAY, 0], ["Anzac Day", utc(y, 3, 25), 1], ["King's Birthday", nthDow(y, 5, 1, 1), 0],
+  ["Matariki", parse(NZ.matariki[y]), 0], ["Labour Day", nthDow(y, 9, 1, 4), 0], ["Christmas Day", utc(y, 11, 25), 1], ["Boxing Day", utc(y, 11, 26), 1]]);
+const nzPublished = verify("New Zealand", NZ, nzHolidays);
+const nzYears = years5().filter((y) => NZ.matariki[y]);
+
+/* --------------------------------------------------------- Australia */
+const AU = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/holidays/au-national-holidays.json"), "utf8"));
+const auHolidays = (y) => observe([["New Year's Day", utc(y, 0, 1), 1], ["Australia Day", utc(y, 0, 26), 1], ["Good Friday", easter(y) - 2 * DAY, 0],
+  ["Easter Monday", easter(y) + DAY, 0], ["Anzac Day", utc(y, 3, 25), 0], ["Christmas Day", utc(y, 11, 25), 1], ["Boxing Day", utc(y, 11, 26), 1]]);
+const auPublished = verify("Australia", AU, auHolidays, "both");
+
 /* ---------------------------------------------------------- paydays */
 const isWorking = (t, closed) => dow(t) % 6 !== 0 && !closed.has(t);
 const onOrBefore = (t, closed) => { while (!isWorking(t, closed)) t -= DAY; return t; };
@@ -96,6 +150,30 @@ const COUNTRIES = {
     src: `Bank holidays from the <a href="${US.source.url}" rel="nofollow noopener" target="_blank">Federal Reserve</a> (when a holiday falls on a Saturday, banks open the Friday before; on a Sunday, they close the Monday after).`,
     note: "When payday falls on a weekend or bank holiday, most employers pay on the business day before, but some pay the next one: it's in your employer's pay policy and some states set rules. Direct deposits can't arrive on days the Federal Reserve is closed.",
     extra: 'Paid every other Friday? The <a href="/biweekly-pay-schedule/">biweekly pay schedule calculator</a> lists every payday for your start date.'
+  },
+  canada: {
+    name: "Canada", long: "Canada", slug: "canada", years: years5(), published: caPublished, hol: caHolidays, cur: "$",
+    rules: [["Last business day", lastDay], ["15th", (y, m) => utc(y, m, 15)], ["Last Friday", lastFriday], ["25th", (y, m) => utc(y, m, 25)]],
+    semi: true, holWord: "bank holidays", dayWord: "business day",
+    src: `Bank holidays are the days <a href="${CA.source.url}" rel="nofollow noopener" target="_blank">Payments Canada</a> closes the systems that settle direct deposits; one on a weekend closes them the next weekday.`,
+    note: "When payday falls on a weekend or bank holiday, most employers pay on the business day before. Provincial holidays such as Family Day and the August Civic Holiday don't close the payment system, so deposits usually arrive as normal; your employer's pay policy has the final say.",
+    extra: 'Paid every other Friday? The <a href="/biweekly-pay-schedule/">biweekly pay schedule calculator</a> lists every payday for your start date.'
+  },
+  australia: {
+    name: "Australia", long: "Australia", slug: "australia", years: years5(), published: auPublished, hol: auHolidays, cur: "$",
+    rules: [["Last business day", lastDay], ["15th", (y, m) => utc(y, m, 15)], ["Last Friday", lastFriday], ["25th", (y, m) => utc(y, m, 25)]],
+    holWord: "public holidays", dayWord: "business day",
+    src: `National public holidays observed in every state and territory, from the <a href="${AU.source.url}" rel="nofollow noopener" target="_blank">Reserve Bank of Australia</a>. State holidays (King's Birthday, Labour Day, Melbourne Cup and others) can move pay too.`,
+    note: "When payday falls on a weekend or public holiday, most employers pay on the business day before; your award, agreement or contract sets it. Many Australians are paid fortnightly, and a state public holiday can also bring pay forward.",
+    extra: ""
+  },
+  "new-zealand": {
+    name: "New Zealand", long: "New Zealand", slug: "new-zealand", years: nzYears, published: nzPublished, hol: nzHolidays, cur: "$",
+    rules: [["Last working day", lastDay], ["15th", (y, m) => utc(y, m, 15)], ["20th", (y, m) => utc(y, m, 20)], ["Last Friday", lastFriday]],
+    holWord: "public holidays", dayWord: "working day",
+    src: `National public holidays from <a href="${NZ.source.url}" rel="nofollow noopener" target="_blank">Employment New Zealand</a>, observed on the Monday (or Tuesday) when they fall on a weekend; Matariki from <a href="${NZ.matarikiSource.url}" rel="nofollow noopener" target="_blank">MBIE</a>. Regional anniversary days are left out.`,
+    note: "When payday falls on a weekend or public holiday, most employers pay on the working day before; it's set in your employment agreement. Your region's anniversary day can also bring pay forward.",
+    extra: ""
   },
   ireland: {
     name: "Ireland", long: "Ireland", slug: "ireland", years: ieYears, hol: ieHolidays, cur: "€",
@@ -124,7 +202,7 @@ function countryPage(c, y) {
     const wk = dow(h.t) === 6 ? "Saturday" : "Sunday";
     const status = c.slug === "us"
       ? (h.closed ? (h.closed === h.t ? "Closed" : `Closed ${long(h.closed)}`) : `Open (falls on a ${wk})`)
-      : (h.closed ? "Yes" : `Falls on a ${wk}: no substitute day`);
+      : (h.closed ? (h.closed === h.t ? "Yes" : `Moved to ${long(h.closed)}`) : `Falls on a ${wk}: no substitute day`);
     return [esc(h.name), long(h.t), status];
   });
   const lastW = c.rules[0];
@@ -151,7 +229,8 @@ function countryPage(c, y) {
     <main class="tool">
       <h2 class="tool-section-title">If you're paid on the…</h2>
 ${site.table(["Month"].concat(c.rules.map((r) => r[0])), rows, 560)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or ${c.holWord.replace(/s$/, "")}. ${c.src}</p>
-      <p class="tool-hint">${esc(c.note)}${c.extra ? " " + c.extra : ""}</p>
+      <p class="tool-hint">${esc(c.note)}${c.extra ? " " + c.extra : ""}</p>${c.published && y > c.published ? `
+      <p class="tool-hint">${y} dates are expected: they follow the usual rules, as the official ${y} list isn't out yet.</p>` : ""}
     </main>
 
     <main class="tool">
@@ -177,8 +256,8 @@ ${site.FOOTER}
 function hub() {
   const url = SITE + BASE;
   const ukYears = fs.readdirSync(path.join(site.ROOT, "working-days")).filter((d) => /^\d{4}$/.test(d) && fs.existsSync(path.join(site.ROOT, "working-days", d, "payday-calendar", "index.html"))).map(Number).sort();
-  const title = "Payday Calendars — UK, US and Ireland Pay Dates by Year";
-  const desc = `When you'll be paid each month when payday falls on a weekend or holiday: payday calendars for the UK (${ukYears[0]}–${ukYears[ukYears.length - 1]}), the US and Ireland.`;
+  const title = "Payday Calendars — UK, US, Canada, Australia, NZ and Ireland Pay Dates";
+  const desc = `When you'll be paid each month when payday falls on a weekend or holiday: payday calendars for the UK (${ukYears[0]}–${ukYears[ukYears.length - 1]}), the US, Canada, Australia, New Zealand and Ireland.`;
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Payday calendars", url]])];
   const row = (label, years, href) => `      <h2 class="tool-section-title">${label}</h2>
       <p class="salary-links">${years.map((y) => `<a href="${href(y)}">Payday calendar ${y}</a>`).join(" ")}</p>
@@ -190,7 +269,7 @@ function hub() {
     </header>
 
     <main class="tool">
-${row("United Kingdom", ukYears, (y) => `/working-days/${y}/payday-calendar/`)}${Object.values(COUNTRIES).map((c) => row(c.slug === "us" ? "United States" : c.name, c.years, (y) => purl(c, y))).join("")}      <p class="tool-hint" style="margin-top:12px;">UK dates follow GOV.UK's bank holidays (expected dates for years it hasn't published yet); US dates the Federal Reserve's; Ireland's the Workplace Relations Commission's public holidays.</p>
+${row("United Kingdom", ukYears, (y) => `/working-days/${y}/payday-calendar/`)}${Object.values(COUNTRIES).map((c) => row(c.slug === "us" ? "United States" : c.name, c.years, (y) => purl(c, y))).join("")}      <p class="tool-hint" style="margin-top:12px;">UK dates follow GOV.UK's bank holidays (expected dates for years it hasn't published yet); US dates the Federal Reserve's; Canada's Payments Canada's closure days; Australia's the national public holidays the RBA lists; New Zealand's Employment New Zealand's; Ireland's the Workplace Relations Commission's. Years each country hasn't published yet use the usual rules and are marked as expected.</p>
     </main>
 
 ${site.FOOTER}
@@ -204,4 +283,4 @@ const urls = [[BASE, "0.5"]];
 site.write("payday-calendar", hub());
 Object.values(COUNTRIES).forEach((c) => c.years.forEach((y) => { site.write(`payday-calendar/${c.slug}/${y}`, countryPage(c, y)); urls.push([purl(c, y), "0.5"]); }));
 site.sitemapBlock("payday calendars", "tools/build-payday-pages.js", urls);
-console.log(`built the payday calendar hub and ${urls.length - 1} country pages (US ${usYears[0]}–${usYears[usYears.length - 1]}, Ireland ${ieYears[0]}–${ieYears[ieYears.length - 1]})`);
+console.log(`built the payday calendar hub and ${urls.length - 1} country pages (${Object.values(COUNTRIES).map((c) => `${c.name} ${c.years[0]}–${c.years[c.years.length - 1]}`).join(", ")})`);
