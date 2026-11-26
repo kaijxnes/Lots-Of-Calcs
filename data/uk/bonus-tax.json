@@ -1,0 +1,73 @@
+{
+  "about": "How a cash bonus is taxed through PAYE, for tools/build-bonus-pages.js. Each rule is quoted from the page it came from. The rates and thresholds themselves come from the UK and Scottish tax files in data/tax/gb.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "rules": {
+    "earnings": {
+      "quote": "The bonus you’ve paid counts as earnings, so: add it to your employee’s other earnings; deduct and pay Pay As You Earn (PAYE) tax and Class 1 National Insurance through payroll",
+      "source": 0
+    },
+    "niBonus": {
+      "quote": "Include all bonuses made as a reward for services in gross pay for NICs purposes. For example: productivity bonuses, Christmas bonuses, and contract or completion of job bonuses.",
+      "source": 1
+    },
+    "niPeriod": {
+      "quote": "£242 to £967 a week (£1,048 to £4,189 a month) 8%. Over £967 a week (£4,189 a month) 2%",
+      "source": 2
+    },
+    "loanPeriod": {
+      "quote": "Employee earnings threshold for student loan plan 2: £29,385 per year, £2,448.75 per month, £565.09 per week. Student loan deductions 9%",
+      "source": 3
+    },
+    "cumulative": {
+      "quote": "Usually, your tax is worked out based on your total income so far in that tax year. If you’re on an emergency tax code your tax is worked out based on what you’re paid in that week or month only. You get taxed as if you’re paid that amount every week or month of the year.",
+      "source": 4
+    },
+    "taper": {
+      "quote": "Your personal allowance goes down by £1 for every £2 that your adjusted net income is above £100,000. This means your allowance is zero if your income is £125,140 or above.",
+      "source": 5
+    },
+    "adjustedNetIncome": {
+      "quote": "Adjusted net income is total taxable income before any Personal Allowances and less certain tax reliefs, for example: … pension contributions paid gross (before tax relief); pension contributions where your pension provider has already given you tax relief at the basic rate — take off the ‘grossed-up’ amount",
+      "source": 6
+    },
+    "sacrifice": {
+      "quote": "£5,000 bonus → £5,000 employer contribution to registered pension scheme: No employment income tax or National Insurance contributions charge to the employee - the full amount is invested in the pension fund",
+      "source": 7
+    }
+  },
+  "sources": [
+    {
+      "title": "Expenses and benefits: bonuses",
+      "url": "https://www.gov.uk/expenses-and-benefits-bonuses"
+    },
+    {
+      "title": "HMRC National Insurance Manual NIM02070: bonus payments",
+      "url": "https://www.gov.uk/hmrc-internal-manuals/national-insurance-manual/nim02070"
+    },
+    {
+      "title": "National Insurance: how much you pay",
+      "url": "https://www.gov.uk/national-insurance/how-much-you-pay"
+    },
+    {
+      "title": "Rates and thresholds for employers 2026 to 2027",
+      "url": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027"
+    },
+    {
+      "title": "Emergency tax codes",
+      "url": "https://www.gov.uk/tax-codes/emergency-tax-codes"
+    },
+    {
+      "title": "Income Tax rates and Personal Allowances",
+      "url": "https://www.gov.uk/income-tax-rates"
+    },
+    {
+      "title": "Adjusted net income",
+      "url": "https://www.gov.uk/guidance/adjusted-net-income"
+    },
+    {
+      "title": "Salary sacrifice for employers",
+      "url": "https://www.gov.uk/guidance/salary-sacrifice-and-the-effects-on-paye"
+    }
+  ]
+}

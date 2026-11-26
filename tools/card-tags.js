@@ -15,6 +15,7 @@ const TAGS = {
   "/marriage-allowance-calculator/": "UK",
   "/tax-code-checker/": "UK",
   "/tax-refund-calculator/": "UK",
+  "/bonus-tax-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
