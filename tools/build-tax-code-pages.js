@@ -12,28 +12,13 @@
    built from the same functions the checker runs (tax-code.js), and the
    build stops unless GOV.UK's K475 example gives £31,750 of taxable pay.
    Runs in the monthly rebuild. */
-const fs = require("fs");
-const path = require("path");
 const site = require("./lib/site.js");
 const related = require("./related.js");
-const registry = require("./tax/registry.js");
 const TC = require("../tax-code.js");
 const { esc, SITE } = site;
 
-const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
-const D = J("data/uk/tax-codes.json"), MA = J("data/uk/marriage-allowance.json");
-const cur = registry.currentFiles(registry.readAll());
-const bandsOf = (doc) => doc.items.find((i) => i.id === "gb-income-tax").charge.brackets;
-const ruk = bandsOf(cur.gb.doc), sct = bandsOf(cur["gb-sct"].doc);
-const pa = cur.gb.doc.items.find((i) => i.id === "gb-personal-allowance").value.taper;
-const rate = (b, name) => { const x = b.find((r) => r[2] === name); if (!x) throw new Error("tax codes: no " + name + " band"); return x[1]; };
-const R = {
-  letters: D.letters, kCap: D.kCap, personalAllowance: pa, transfer: MA.transfer, year: cur.gb.doc.taxYear.label,
-  bands: { ruk: ruk.map((r) => [r[0], r[1]]), sct: sct.map((r) => [r[0], r[1]]) },
-  flat: { BR: rate(ruk, "Basic rate"), D0: rate(ruk, "Higher rate"), D1: rate(ruk, "Additional rate"),
-    CBR: rate(ruk, "Basic rate"), CD0: rate(ruk, "Higher rate"), CD1: rate(ruk, "Additional rate"),
-    SBR: rate(sct, "Basic rate"), SD0: rate(sct, "Intermediate rate"), SD1: rate(sct, "Higher rate"), SD2: rate(sct, "Advanced rate"), SD3: rate(sct, "Top rate") }
-};
+const { D, MA, R } = require("./lib/tax-code-rules.js")();
+const pa = R.personalAllowance;
 /* GOV.UK's examples */
 const k = TC.parse("K475"), kt = TC.annualTax(R, k, 27000);
 if (kt.taxable !== 31750) throw new Error("tax codes: GOV.UK's K475 example should give £31,750 taxable");
@@ -67,7 +52,11 @@ const CODES = [
   ["S0T", "s0t", "Scotland: no tax-free allowance"],
   ["C1257L", "c1257l", "The standard code in Wales"],
   ["CBR", "cbr", "Wales: all income at the basic rate"],
-  ["C0T", "c0t", "Wales: no tax-free allowance"]
+  ["C0T", "c0t", "Wales: no tax-free allowance"],
+  ["1257T", "1257t", "Personal Allowance worked out with other calculations"],
+  ["0T M1", "0t-m1", "No allowance, on an emergency basis"],
+  ["1100L", "1100l", "A lower allowance, for example after a company benefit"],
+  [`S${(pa + MA.transfer) / 10}M`, `s${(pa + MA.transfer) / 10}m`, "Scotland: receiving Marriage Allowance"]
 ];
 const url = (slug) => `${BASE}${slug}/`;
 
@@ -127,6 +116,7 @@ function codePage([code, slug, short]) {
     [`What does tax code ${isEm ? "1257L M1" : isK ? "K475" : code} mean?`, lines.join(" ")],
     [`How much tax will I pay on ${m0(30000)} with ${isEm ? "an emergency code" : isK ? "tax code K475" : "tax code " + code}?`, `About ${m0(t30.tax)} a year (${m2(t30.tax / 12)} a month) in Income Tax at ${R.year} rates${isEm ? ", if you're paid the same each month: on an emergency code each payday is taxed on its own, so a pay that varies can mean paying too much or too little" : ""}${t30.capped ? ", the most a K code can take being half your pay" : ""}. National Insurance comes on top.`]
   ];
+  if (p.emergency) q.push(["Will I get the tax back if an emergency code took too much?", "Yes: once HMRC updates your code, any overpaid tax usually comes back through your pay, or after the tax year ends on 5 April. The tax refund calculator estimates how much."]);
   if (isEm) q.push(["How do I get off an emergency tax code?", "Give your new employer your P45 from your last job (ask your old employer for one if you didn't get it). HMRC usually updates your code once it has the details from both employers, which can take up to 35 days from when you start. If you've paid too much, the refund normally comes through your pay."]);
   if (isK) q.push(["Why do I have a K tax code?", `Because things HMRC needs to tax through your pay add up to more than your Personal Allowance: company benefits such as a car, the State Pension, taxable benefits, savings interest over your allowance, or tax owed from an earlier year. The number times 10 is added to your taxable pay: K475 adds ${m0(4750)}.`]);
   if (p.kind === "flat") q.push([`Is ${code} the right code for my main job?`, `Usually not. ${code} is meant for a second job or pension, with your tax-free allowance used against your main one. If it's on your only or main job, you're probably paying too much: check your details with HMRC online or in the HMRC app.`]);
