@@ -23,8 +23,9 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | us-az.2027 | 2.5%, federal standard deduction. Provisional: Arizona's 2027 conformity |
 | us-ny.2027, us-ny-nyc.2027 | 2027 rate cuts and recapture (S3009C §6, §8 d-6); PFL 0.452% up to $451.81 (DFS). NYC rates carried |
 | us-wa.2027 | Paid leave 1.2% × 70.7% employee share; WA Cares 0.58% |
+| ie.2027 | Budget 2027: standard rate band €46,500 / €55,500, credits €2,125, USC 2% band to €30,300, PRSI 4.35% then 4.5% from October (KPMG). Provisional: PRSI credit |
 
-## To do (64)
+## To do (63)
 
 | File | Name | Where to check | Notes |
 |---|---|---|---|
@@ -49,16 +50,15 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | ch-bs | Basel | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
 | ch-vd | Lausanne | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
 | ch-zg | Zug | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
-| de | Germany | [source](https://www.bmf-steuerrechner.de/) | BMF Programmablaufplan 2027 for the wage tax; 2027 social insurance ceilings (Beitragsbemessungsgrenzen). |
+| de | Germany | [source](https://www.bmf-steuerrechner.de/) | BMF Programmablaufplan 2027 for the wage tax; 2027 social insurance ceilings (Beitragsbemessungsgrenzen), contribution rates and the average Zusatzbeitrag. Not yet confirmed on 26 November 2026. |
 | dk | Denmark | [source](https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat) |  |
 | es | Spain | [source](https://sede.agenciatributaria.gob.es/Sede/irpf.html) |  |
 | fi | Finland | [source](https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/verotettavan-tulon-laskeminen-henkiloverotuksessa9/) |  |
 | fr | France | [source](https://simulateur-ir-ifi.impots.gouv.fr/calcul_impot/2026/) |  |
-| ie | Ireland | [source](https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx) |  |
 | it | Italy | [source](https://infoprecompilata.agenziaentrate.gov.it/portale/web/guest/quadro-c-lavoro-dipendente) |  |
 | jp | Japan | [source](https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/2260.htm) | Check the NTA for 2027 changes (basic deduction, employment income deduction). |
 | lu | Luxembourg | [source](https://impotsdirects.public.lu/fr/baremes.html) |  |
-| nl | Netherlands | [source](https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen) |  |
+| nl | Netherlands | [source](https://www.belastingdienst.nl/wps/wcm/connect/nl/voorlopige-aanslag/content/voorlopige-aanslag-tarieven-en-heffingskortingen) | Belastingplan 2027 was still before the Senate on 26 November 2026 and blog figures disagreed (first bracket 36.23% to €39,247 and 38.16% to €78,426 were most often quoted). Wait for the Belastingdienst's 2027 tables, including the credits' phase-out points, and model the 30% ruling's fall to 27% for people who started from 2024. |
 | no | Norway | [source](https://www.skatteetaten.no/en/rettskilder/type/uttalelser/uttalelser/forskuddsutskrivingen-2026/) |  |
 | pt | Portugal | [source](https://info.portaldasfinancas.gov.pt/pt/informacao_fiscal/codigos_tributarios/cirs_rep/Pages/irs68.aspx) |  |
 | se | Sweden | [source](https://app.skatteverket.se/rakna-skatt-client-skut-skatteutrakning/) |  |

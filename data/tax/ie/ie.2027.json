@@ -1,0 +1,339 @@
+{
+  "id": "ie",
+  "name": "Ireland",
+  "kind": "country",
+  "country": "IE",
+  "parent": null,
+  "standalone": true,
+  "currency": "EUR",
+  "locale": "en-IE",
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "options": {
+    "status": {
+      "label": "Status",
+      "default": "single",
+      "choices": {
+        "single": "Single",
+        "married": "Married or civil partners, one income"
+      }
+    },
+    "pensionPct": {
+      "label": "Pension contribution (% of salary)",
+      "type": "number",
+      "default": 0,
+      "min": 0,
+      "max": 40,
+      "step": 0.5,
+      "samples": [
+        5,
+        15
+      ],
+      "inSummary": false
+    }
+  },
+  "items": [
+    {
+      "id": "ie-pension-amount",
+      "label": "Pension contribution",
+      "value": {
+        "pct": {
+          "input": "pensionPct"
+        },
+        "of": "gross"
+      },
+      "note": "Your contribution to an occupational pension, PRSA or personal pension."
+    },
+    {
+      "id": "ie-tax-pay",
+      "label": "Pay for income tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              {
+                "min": [
+                  "ie-pension-amount",
+                  {
+                    "pct": 40,
+                    "of": {
+                      "min": [
+                        "gross",
+                        115000
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "note": "Pension contributions get income tax relief within age-related limits, from 15% of earnings under 30 to 40% at 60 and over, on earnings up to €115,000. USC and PRSI are still charged on the full salary."
+    },
+    {
+      "id": "ie-tax-credits",
+      "label": "Tax credits",
+      "show": true,
+      "note": "Personal credit €2,125 (€4,250 married) and employee (PAYE) credit €2,125.",
+      "value": {
+        "sum": [
+          {
+            "status": {
+              "single": 2125,
+              "married": 4250
+            }
+          },
+          {
+            "min": [
+              2125,
+              {
+                "pct": 20,
+                "of": "gross"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ie-income-tax",
+      "label": "Income tax",
+      "group": "tax",
+      "note": "20% up to €46,500 (€55,500 for a married couple with one income), 40% above, less tax credits.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": {
+                  "status": {
+                    "single": [
+                      [
+                        0,
+                        20
+                      ],
+                      [
+                        46500,
+                        40
+                      ]
+                    ],
+                    "married": [
+                      [
+                        0,
+                        20
+                      ],
+                      [
+                        55500,
+                        40
+                      ]
+                    ]
+                  }
+                },
+                "of": "ie-tax-pay"
+              },
+              "ie-tax-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ie-usc",
+      "label": "Universal Social Charge",
+      "group": "social",
+      "note": "0.5% to €12,012, 2% to €30,300, 3% to €70,044, 8% above. Nothing is due on incomes of €13,000 or less.",
+      "charge": {
+        "if": {
+          "lte": [
+            "gross",
+            13000
+          ]
+        },
+        "then": 0,
+        "else": {
+          "brackets": [
+            [
+              0,
+              0.5
+            ],
+            [
+              12012,
+              2
+            ],
+            [
+              30300,
+              3
+            ],
+            [
+              70044,
+              8
+            ]
+          ],
+          "of": "gross"
+        }
+      }
+    },
+    {
+      "id": "ie-prsi",
+      "label": "PRSI",
+      "group": "social",
+      "note": "Class A: 4.35% until September and 4.5% from 1 October 2027, 4.3875% over the year. Nothing below €352 a week, and a tapering PRSI credit up to €424 a week.",
+      "charge": {
+        "if": {
+          "lte": [
+            "gross",
+            18304
+          ]
+        },
+        "then": 0,
+        "else": {
+          "max": [
+            0,
+            {
+              "sub": [
+                {
+                  "pct": 4.3875,
+                  "of": "gross"
+                },
+                {
+                  "max": [
+                    0,
+                    {
+                      "sub": [
+                        624,
+                        {
+                          "div": [
+                            {
+                              "sub": [
+                                "gross",
+                                18304
+                              ]
+                            },
+                            6
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ie-pension",
+      "label": "Pension contribution",
+      "group": "pension",
+      "charge": "ie-pension-amount",
+      "note": "Taken from pay before income tax."
+    }
+  ],
+  "assumptions": [
+    "PAYE employee paying Class A PRSI",
+    "No children; married means one spouse earns the whole salary and the couple is jointly assessed",
+    "Paid evenly through the year",
+    "Any pension contribution entered is within your age-related limit for tax relief"
+  ],
+  "notModelled": [
+    "Pension contributions (tax relief at the marginal rate)",
+    "Other tax credits (rent, home carer, single person child carer)",
+    "Benefit-in-kind",
+    "Reduced USC rates for medical card holders and over-70s"
+  ],
+  "provisional": [
+    "The PRSI credit (up to €12 a week, tapering between €352 and €424 a week) is the 2026 one; Budget 2027 announced no change to it"
+  ],
+  "sources": [
+    {
+      "title": "KPMG Ireland — Budget 2027: income tax, USC and PRSI measures",
+      "url": "https://kpmg.com/ie/en/insights/tax/budget-2027/income-tax.html"
+    },
+    {
+      "title": "Revenue — tax rates, bands and reliefs",
+      "url": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx"
+    },
+    {
+      "title": "Revenue — Universal Social Charge rates",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/usc/standard-rates-thresholds-usc.aspx"
+    },
+    {
+      "title": "Citizens Information Board — Benefits and taxes 2026 (PRSI rates)",
+      "url": "https://www.citizensinformationboard.ie/downloads/benefits_and_taxes/benefits_and_taxes_booklet_2026.pdf"
+    },
+    {
+      "title": "Tax relief on pension contributions: limits (Revenue)",
+      "url": "https://www.revenue.ie/en/jobs-and-pensions/pension/relief/tax-relief-limits.aspx"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "KPMG Ireland, Budget 2027 income tax (6 October 2026)",
+      "url": "https://kpmg.com/ie/en/insights/tax/budget-2027/income-tax.html",
+      "note": "Read 26 Nov 2026: \"The standard-rate income tax band will increase by €2,500 per person. The personal tax credit, employee tax credit and earned income tax credit will each increase by €125\"; \"The upper limit of the 2% USC band will rise by €1,600 to €30,300\"; \"The planned 0.15% increases in employee and employer PRSI will take effect from 1 October 2027.\" Revenue's tax relief charts note the changes announced on 6 October 2026."
+    },
+    {
+      "title": "Web search, 24 Oct 2026",
+      "note": "Bands, credits, USC and PRSI rates (Zellis Tax Facts Ireland Jan 2026, SD Worx, FSSU budget summary, KPMG agree)."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://www.revenue.ie/en/personal-tax-credits-reliefs-and-exemptions/tax-relief-charts/index.aspx",
+  "tests": [
+    {
+      "gross": 50000,
+      "note": "Income tax 6,450.00 after credits of 4,250; USC 1,016.82; PRSI 4.3875% less any credit 2,193.75.",
+      "expect": {
+        "ie-income-tax": 6450.0,
+        "ie-usc": 1016.82,
+        "ie-prsi": 2193.75,
+        "net": 40339.43
+      }
+    },
+    {
+      "gross": 20000,
+      "note": "Income tax 0.00 after credits of 4,250; USC 219.82; PRSI 4.3875% less any credit 536.17.",
+      "expect": {
+        "ie-income-tax": 0,
+        "ie-usc": 219.82,
+        "ie-prsi": 536.17,
+        "net": 19244.01
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married"
+      },
+      "note": "Income tax 6,525.00 after credits of 6,375; USC 1,316.82; PRSI 4.3875% less any credit 2,632.50.",
+      "expect": {
+        "ie-income-tax": 6525.0,
+        "ie-usc": 1316.82,
+        "ie-prsi": 2632.5,
+        "net": 49525.68
+      }
+    },
+    {
+      "gross": 50000,
+      "options": {
+        "pensionPct": 5
+      },
+      "note": "Income tax 5,450.00 after credits of 4,250; USC 1,016.82; PRSI 4.3875% less any credit 2,193.75.",
+      "expect": {
+        "ie-income-tax": 5450.0,
+        "ie-usc": 1016.82,
+        "ie-prsi": 2193.75,
+        "net": 38839.43
+      }
+    }
+  ]
+}
