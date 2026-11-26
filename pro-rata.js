@@ -36,9 +36,15 @@ if (typeof module !== "undefined" && module.exports) {
       if (!chain) return;
       var err = $("pp-error"), full = num("pp-salary"), fh = num("pp-fullhours"), mode = $("pp-mode").value, amt = num("pp-amount");
       var max = mode === "days" ? 5 : fh;
-      if (!(full > 0) || !(fh > 0) || !(amt > 0)) { err.textContent = "Enter the full-time salary, full-time hours and what you work."; err.style.display = "block"; return; }
-      if (amt > max) { err.textContent = mode === "days" ? "That's more than 5 days a week." : "That's more than the full-time hours."; err.style.display = "block"; return; }
-      if (full > 1e9) { err.textContent = "That's beyond what the calculator covers."; err.style.display = "block"; return; }
+      /* a problem clears the old result so it can't be mistaken for this one */
+      var fail = function (msg) {
+        err.textContent = msg; err.style.display = "block";
+        ["pp-salary-out", "pp-month", "pp-net", "pp-full", "pp-netshare", "pp-hourly"].forEach(function (id) { $(id).textContent = "—"; });
+        $("pp-label").textContent = "a year pro rata";
+      };
+      if (!(full > 0) || !(fh > 0) || !(amt > 0)) { fail("Enter the full-time salary, full-time hours and what you work."); return; }
+      if (amt > max) { fail(mode === "days" ? "That's more than 5 days a week." : "That's more than the full-time hours."); return; }
+      if (full > 1e9) { fail("That's beyond what the calculator covers."); return; }
       err.style.display = "none";
       var h = ProRata.hoursOf(fh, mode, amt), s = ProRata.calc(TaxEngine, chain, full, fh, h, options);
       $("pp-salary-out").textContent = money(s.salary, true);

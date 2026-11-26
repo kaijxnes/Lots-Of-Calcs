@@ -7,6 +7,7 @@
        /guides/tax-changes-2027-28/              what changes on 6 April 2027 (Budget 2026)
        /guides/national-insurance-explained/     classes, rates, employers, State Pension years
        /guides/why-has-my-tax-code-changed/      reasons, reading the code, fixing it, refunds
+       /guides/before-the-tax-year-ends/         Marriage Allowance backdating, ISA, pension, claims
        /guides/student-loans-explained/          plans, thresholds, repayments, interest, write-off
        /guides/isa-vs-pension-explained/         allowances, relief, access, which leaves more
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
@@ -533,8 +534,39 @@ function taxCodeChanges() {
     foot: `From GOV.UK's <a href="https://www.gov.uk/tax-codes" rel="nofollow noopener" target="_blank">Tax codes</a> guide (why your tax code might change, what it means, if you think it's wrong, if you've paid too much or too little) and <a href="https://www.gov.uk/tax-overpayments-and-underpayments" rel="nofollow noopener" target="_blank">Tax overpayments and underpayments</a>. A guide, not tax advice.` };
 }
 
+/* ============================================ Before 5 April */
+function taxYearEnd() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const MA = J("data/uk/marriage-allowance.json"), PR = J("data/uk/pension-tax-relief.json"), R = J("data/uk/rates-2026-27.json"), CB = J("data/uk/child-benefit.json"), MI = J("data/uk/mileage.json");
+  const YEAR = R.taxYear, end = `5 April ${Number(YEAR.slice(0, 4)) + 1}`, back = MA.backdateYears.length * MA.maxSaving;
+  const nextSA = `31 January ${Number(YEAR.slice(0, 4)) + 1}`, prevYear = `${Number(YEAR.slice(0, 4)) - 1}/${YEAR.slice(2, 4)}`;
+  const body = section("marriage", "Claim Marriage Allowance, including the backdated years", p(`If you're married or in a civil partnership and one of you earns less than the Personal Allowance, the lower earner can transfer ${m0(MA.transfer)} of it, cutting the other's tax by up to <strong>${m0(MA.maxSaving)}</strong> a year. GOV.UK lets you backdate a claim to 6 April 2022 (the 2022 to 2023 tax year) for any year you were both eligible: ${esc(MA.backdateYears.join(", "))}, up to <strong>${m0(back)}</strong> on top of this year. Backdating only reaches back a limited number of years, so if you've been eligible since 2022 and haven't claimed, applying before ${end} is the safe way to make sure 2022/23 is included. The <a href="/marriage-allowance-calculator/">Marriage Allowance calculator</a> shows what you'd get.`)) +
+    section("isa", "Use this year's ISA allowance", p(`Every tax year you can save up to <strong>${m0(20000)}</strong> in ISAs (at most ${m0(4000)} of it in a Lifetime ISA), and the tax year runs from 6 April to 5 April, so money meant for the ${YEAR} allowance has to go in by ${end}. Interest, dividends and gains inside an ISA are tax-free, and the accounts don't close when the tax year ends.`)) +
+    section("pension", "Top up your pension", p(`Pension contributions get tax relief within the <strong>${m0(PR.annualAllowance)}</strong> annual allowance for the tax year, and you might be able to carry over allowance you didn't use in the previous 3 tax years. Contributions also reduce your adjusted net income, which matters in two places:`) +
+      `      <ul class="about-list"><li>Between ${m0(100000)} and ${m0(125140)}, where you lose £1 of Personal Allowance for every £2: paying in enough to bring your income back to ${m0(100000)} keeps it. See the <a href="/bonus-tax-calculator/">bonus tax calculator</a> and <a href="/salary-sacrifice-calculator/">salary sacrifice calculator</a>.</li><li>Above ${m0(CB.charge.threshold)}, where the High Income Child Benefit Charge takes back 1% of Child Benefit for every ${m0(CB.charge.step)}: the <a href="/child-benefit-tax-charge-calculator/">Child Benefit charge calculator</a> shows how much a contribution saves.</li></ul>\n` +
+      p(`The <a href="/pension-tax-relief-calculator/">pension tax relief calculator</a> works out the relief on a contribution.`)) +
+    section("allowances", "Use your other yearly allowances", p(`The capital gains tax-free allowance is <strong>${m0(R.capitalGains.allowance)}</strong> and the dividend allowance <strong>${m0(R.dividends.allowance)}</strong> for ${YEAR}. Both are for the tax year, so if you're selling investments outside an ISA, gains made before ${end} use this year's allowance and gains after it use next year's. The <a href="/capital-gains-tax-calculator/">capital gains tax calculator</a> and <a href="/dividend-tax-calculator/">dividend tax calculator</a> show the tax either side.`)) +
+    section("claims", "Claim job expenses and mileage you've paid for", p(`You can claim tax relief on things you had to pay for to do your job, such as business mileage in your own vehicle, uniforms, tools and professional fees, for the current tax year and the 4 previous tax years. HMRC's approved rate for cars is ${MI.years["2026-27"].car[0]}p a mile for the first 10,000 business miles from 6 April 2026 (${MI.years.before.car[0]}p before), and if your employer pays less you can claim relief on the difference: the <a href="/mileage-allowance-calculator/">mileage allowance calculator</a> works it out. If you've been on the wrong tax code, the <a href="/tax-refund-calculator/">tax refund calculator</a> estimates what you're owed.`)) +
+    section("sa", "Self Assessment", p(`The online tax return for the ${prevYear} tax year, and any tax owed for it, are due by <strong>${nextSA}</strong>. The <a href="/guides/self-assessment-explained/">Self Assessment guide</a> covers the deadlines, payments on account and penalties.`));
+  const q = [
+    ["How far back can I claim Marriage Allowance?", `GOV.UK lets you backdate a claim to 6 April 2022 (the 2022 to 2023 tax year) for any year you were eligible, which with this year is up to ${m0(back + MA.maxSaving)}.`],
+    [`When is the ISA deadline for ${YEAR}?`, `${end}, the last day of the tax year. You can save up to ${m0(20000)} in ISAs each tax year.`],
+    ["Can I use unused pension allowance from previous years?", `You might be able to carry over annual allowance you didn't use in the previous 3 tax years, once you've used all of this year's ${m0(PR.annualAllowance)}.`],
+    ["How far back can I claim tax relief on work expenses?", "For the current tax year and the 4 previous tax years, including mileage in your own vehicle."],
+    ["When does the tax year end?", `On 5 April. The ${YEAR} tax year ends on ${end} and the next one starts on 6 April.`]
+  ];
+  return { path: "/guides/before-the-tax-year-ends/", crumb: "Before the Tax Year Ends", blurb: `Things to do before ${end}: Marriage Allowance backdating, ISA and pension allowances, and claims you can still make.`,
+    title: site.fitTitle(`Before ${end}: Tax Year End Checklist (${YEAR})`, `Tax Year End Checklist ${YEAR}`), modified: MA.lastChecked,
+    desc: `What to do before the tax year ends on ${end}: claim Marriage Allowance back to 2022, use your ${m0(20000)} ISA allowance and pension allowance, the CGT and dividend allowances, and claims for expenses and mileage.`,
+    h1: `Before the tax year ends on ${end}`, sub: "The allowances you lose if you don't use them, and the claims to make while you still can.",
+    sections: [["marriage", "Marriage Allowance"], ["isa", "ISA allowance"], ["pension", "Pensions"], ["allowances", "CGT and dividends"], ["claims", "Expenses and mileage"], ["sa", "Self Assessment"]],
+    tools: [["/marriage-allowance-calculator/", "Marriage Allowance"], ["/pension-tax-relief-calculator/", "Pension tax relief"], ["/isa-vs-pension/", "ISA vs pension"], ["/mileage-allowance-calculator/", "Mileage allowance"]],
+    body, q, callouts: ["/marriage-allowance-calculator/", "/mileage-allowance-calculator/"],
+    foot: `From GOV.UK's <a href="${MA.source.url}" rel="nofollow noopener" target="_blank">Marriage Allowance</a>, <a href="https://www.gov.uk/individual-savings-accounts" rel="nofollow noopener" target="_blank">ISAs</a>, <a href="https://www.gov.uk/tax-on-your-private-pension/annual-allowance" rel="nofollow noopener" target="_blank">pension annual allowance</a>, <a href="https://www.gov.uk/guidance/adjusted-net-income" rel="nofollow noopener" target="_blank">adjusted net income</a> and <a href="https://www.gov.uk/tax-relief-for-employees" rel="nofollow noopener" target="_blank">job expenses</a> pages, with the allowances from the site's ${YEAR} rates file. A guide, not tax advice.` };
+}
+
 /* ===================================================== build */
-const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
+const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
