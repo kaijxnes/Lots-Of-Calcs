@@ -8,6 +8,7 @@
        /guides/national-insurance-explained/     classes, rates, employers, State Pension years
        /guides/why-has-my-tax-code-changed/      reasons, reading the code, fixing it, refunds
        /guides/before-the-tax-year-ends/         Marriage Allowance backdating, ISA, pension, claims
+       /guides/us-tax-brackets-2027/             IRS 2027 brackets, standard deduction, examples
        /guides/student-loans-explained/          plans, thresholds, repayments, interest, write-off
        /guides/isa-vs-pension-explained/         allowances, relief, access, which leaves more
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
@@ -565,8 +566,65 @@ function taxYearEnd() {
     foot: `From GOV.UK's <a href="${MA.source.url}" rel="nofollow noopener" target="_blank">Marriage Allowance</a>, <a href="https://www.gov.uk/individual-savings-accounts" rel="nofollow noopener" target="_blank">ISAs</a>, <a href="https://www.gov.uk/tax-on-your-private-pension/annual-allowance" rel="nofollow noopener" target="_blank">pension annual allowance</a>, <a href="https://www.gov.uk/guidance/adjusted-net-income" rel="nofollow noopener" target="_blank">adjusted net income</a> and <a href="https://www.gov.uk/tax-relief-for-employees" rel="nofollow noopener" target="_blank">job expenses</a> pages, with the allowances from the site's ${YEAR} rates file. A guide, not tax advice.` };
 }
 
+/* ============================================ US 2027 tax brackets */
+function usBrackets2027() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const f27 = J("data/tax/us/us.2027.json"), f26 = J("data/tax/us/us.2026.json");
+  const it = (d, id) => d.items.find((i) => i.id === id);
+  const br = (d, s) => it(d, "us-income-tax").charge.brackets.status[s];
+  const sd = (d, s) => it(d, "us-standard-deduction").value.status[s];
+  const usd = (v) => "$" + Math.round(v).toLocaleString("en-US"), usd2 = (v) => "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  /* head of household and married filing separately aren't in the tax file: Rev. Proc. 2026-35 Tables 2 and 4 */
+  const HOH = [[0, 10], [18250, 12], [69650, 22], [109100, 24], [208300, 32], [264550, 35], [661350, 37]], HOH_SD = 24925;
+  const MFS = [[0, 10], [12800, 12], [52025, 22], [109125, 24], [208325, 32], [264550, 35], [396825, 37]];
+  const CG = [["Single", 51050, 563200], ["Married filing jointly", 102100, 633600], ["Head of household", 68350, 598400], ["Married filing separately", 51050, 316800]];
+  const tax = (b, x) => b.reduce((t, [lo, r], i) => { const hi = i + 1 < b.length ? b[i + 1][0] : Infinity; return x > lo ? t + (Math.min(x, hi) - lo) * r / 100 : t; }, 0);
+  if (Math.round(tax(br(f27, "single"), 264550)) !== 60349 || Math.round(tax(br(f27, "married"), 529100)) !== 120698 || Math.round(tax(HOH, 264550)) !== 58480 || Math.round(tax(MFS, 264550)) !== 60349) throw new Error("US 2027 guide: bracket sums don't match Rev. Proc. 2026-35's tables");
+  const rows = (b, prev) => b.map(([lo, r], i) => {
+    const hi = i + 1 < b.length ? b[i + 1][0] : null, label = hi ? `${usd(lo === 0 ? 0 : lo + 1)} to ${usd(hi)}` : `Over ${usd(lo)}`;
+    return [`${r}%`, label].concat(prev ? [prev[i] ? (prev[i][0] === 0 ? "—" : `${usd(prev[i][0])}`) : ""] : []);
+  });
+  const bands = (s) => rows(br(f27, s)).map((r, i) => r.concat([i === 0 ? "—" : usd(br(f26, s)[i][0])]));
+  const v = (d, id) => { const x = it(d, id); return x.value || x.charge; };
+  const k401 = v(f27, "us-401k-amount").min[1], ss = it(f27, "us-social-security").charge.of.min[1], ss26 = it(f26, "us-social-security").charge.of.min[1];
+  const ctc = it(f27, "us-ctc-max").value.taper.mul[0], actc = it(f27, "us-actc").value.min[1].mul[0];
+  const ex = [["Single", "single", 75000], ["Single", "single", 150000], ["Married filing jointly", "married", 150000], ["Married filing jointly", "married", 300000]].map(([n, s, g]) => {
+    const ti = Math.max(0, g - sd(f27, s)), t = tax(br(f27, s), ti), t26 = tax(br(f26, s), Math.max(0, g - sd(f26, s)));
+    const top = br(f27, s).filter(([lo]) => ti > lo).pop()[1];
+    return [`${n}, ${usd(g)}`, usd(ti), usd2(t), `${(Math.round(t / g * 1000) / 10).toFixed(1)}%`, `${top}%`, usd2(t26 - t)];
+  });
+  const s75 = tax(br(f27, "single"), 75000 - sd(f27, "single"));
+  const body = section("brackets", "2027 federal income tax brackets", p(`The IRS sets the 2027 brackets in Revenue Procedure 2026-35. The seven rates stay at 10%, 12%, 22%, 24%, 32%, 35% and 37%; the income levels they start at rise with inflation. They apply to income earned in 2027, so to the tax return you file in 2028, and to withholding from your paychecks from January 2027.`) +
+      `      <h3 class="tool-section-title" style="font-size:1rem;margin-top:14px;">Single</h3>\n` + site.table(["Rate", "Taxable income 2027", "2026 starting point"], bands("single"), 520) +
+      `      <h3 class="tool-section-title" style="font-size:1rem;margin-top:14px;">Married filing jointly</h3>\n` + site.table(["Rate", "Taxable income 2027", "2026 starting point"], bands("married"), 520) +
+      `      <h3 class="tool-section-title" style="font-size:1rem;margin-top:14px;">Head of household</h3>\n` + site.table(["Rate", "Taxable income 2027"], rows(HOH), 420) +
+      `      <h3 class="tool-section-title" style="font-size:1rem;margin-top:14px;">Married filing separately</h3>\n` + site.table(["Rate", "Taxable income 2027"], rows(MFS), 420)) +
+    section("deduction", "The 2027 standard deduction", site.table(["Filing status", "2027", "2026"], [["Single or married filing separately", usd(sd(f27, "single")), usd(sd(f26, "single"))], ["Married filing jointly", usd(sd(f27, "married")), usd(sd(f26, "married"))], ["Head of household", usd(HOH_SD), ""]], 440) +
+      p(`Taxable income is your income less the standard deduction (or your itemized deductions if they're bigger). If you're 65 or older or blind, the standard deduction is $1,700 more for each, or $2,100 if you're also unmarried and not a surviving spouse.`)) +
+    section("example", "How much tax you'll pay", p(`Brackets are marginal: each rate applies only to the slice of income inside its band. A single filer earning ${usd(75000)} in wages has ${usd(75000 - sd(f27, "single"))} of taxable income after the ${usd(sd(f27, "single"))} standard deduction: 10% on the first $12,800, 12% up to $52,025 and 22% on the rest, <strong>${usd2(s75)}</strong> in all. That's ${(Math.round(s75 / 75000 * 1000) / 10).toFixed(1)}% of their pay, although their top rate is 22%.`) +
+      site.table(["Example (wages only)", "Taxable income", "Federal income tax 2027", "Share of pay", "Top rate", "Less than 2026"], ex, 620) +
+      p(`Social Security and Medicare come on top, and most states add their own income tax: the <a href="/salary/">salary calculator</a> works out take-home pay for every state.`)) +
+    section("other", "Other 2027 figures", `      <ul class="about-list"><li><strong>401(k):</strong> you can defer up to ${usd(k401)} (from $24,500).</li><li><strong>Child Tax Credit:</strong> up to ${usd(ctc)} a child under 17, of which up to ${usd(actc)} can be refunded.</li><li><strong>Social Security:</strong> 6.2% on wages up to ${usd(ss)} (from ${usd(ss26)}); Medicare 1.45% on all wages, plus 0.9% above $200,000.</li><li><strong>Long-term capital gains and qualified dividends:</strong> 0% up to the amounts below, 15% up to the next, 20% above.</li></ul>\n` +
+      site.table(["Filing status", "0% up to", "15% up to"], CG.map(([n, a, b]) => [n, usd(a), usd(b)]), 440));
+  const q = [
+    ["What are the 2027 tax brackets?", `For single filers: 10% up to $12,800 of taxable income, 12% to $52,025, 22% to $109,125, 24% to $208,325, 32% to $264,550, 35% to $661,375 and 37% above. Married couples filing jointly: 10% to $25,600, 12% to $104,050, 22% to $218,250, 24% to $416,650, 32% to $529,100, 35% to $793,650 and 37% above.`],
+    ["What is the 2027 standard deduction?", `${usd(sd(f27, "single"))} for single filers and married filing separately, ${usd(sd(f27, "married"))} for married couples filing jointly and ${usd(HOH_SD)} for heads of household.`],
+    [`How much federal tax will I pay on ${usd(75000)} in 2027?`, `As a single filer with only wages and the standard deduction, ${usd2(s75)} of federal income tax, plus Social Security and Medicare of ${usd2(75000 * 0.0765)}.`],
+    ["When do the 2027 tax brackets apply?", "To income earned from 1 January to 31 December 2027, reported on the tax return you file in 2028. Paycheck withholding switches to them in January 2027."],
+    ["What is the 2027 401(k) contribution limit?", `${usd(k401)} of elective deferrals, up from $24,500 in 2026.`]
+  ];
+  return { path: "/guides/us-tax-brackets-2027/", crumb: "US Tax Brackets 2027", blurb: "The 2027 federal income tax brackets and standard deduction for every filing status, with worked examples and the other new limits.",
+    title: site.fitTitle("2027 Tax Brackets and Standard Deduction (IRS) — Rates, Examples, Changes", "2027 Tax Brackets and Standard Deduction"), modified: f27.lastChecked,
+    desc: `The 2027 federal tax brackets for single, married and head of household filers, the ${usd(sd(f27, "single"))} / ${usd(sd(f27, "married"))} standard deduction, how much tax you'll pay, and the 2027 401(k), Child Tax Credit and Social Security figures.`,
+    h1: "2027 federal tax brackets", sub: "The IRS's 2027 rates, brackets and standard deduction, what they mean for your tax, and the other limits that change.",
+    sections: [["brackets", "Brackets"], ["deduction", "Standard deduction"], ["example", "Worked examples"], ["other", "Other 2027 figures"]],
+    tools: [["/salary/", "Take-home pay"], ["/pay-rise-calculator/", "Pay rise"], ["/net-to-gross-salary/", "Net to gross"], ["/roth-vs-traditional/", "Roth vs traditional"]],
+    body, q, callouts: ["/salary/", "/pay-rise-calculator/"],
+    foot: `From IRS <a href="https://www.irs.gov/pub/irs-drop/rp-26-35.pdf" rel="nofollow noopener" target="_blank">Revenue Procedure 2026-35</a> (Tables 1 to 4, sections .03, .05 and .15), IRS <a href="https://www.irs.gov/pub/irs-drop/n-26-66.pdf" rel="nofollow noopener" target="_blank">Notice 2026-66</a> and the SSA's <a href="https://public-inspection.federalregister.gov/2026-21796.pdf" rel="nofollow noopener" target="_blank">2027 wage base notice</a>. Not tax advice.` };
+}
+
 /* ===================================================== build */
-const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
+const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), usBrackets2027(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
