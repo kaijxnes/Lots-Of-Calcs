@@ -1,0 +1,229 @@
+{
+  "id": "us-mi",
+  "name": "Michigan",
+  "appliesTo": "Residents of Michigan",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "mi-income-tax",
+      "label": "Michigan income tax",
+      "group": "tax",
+      "note": "4.25% after a $5,900 personal exemption each.",
+      "charge": {
+        "pct": 4.25,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "us-wages",
+                {
+                  "mul": [
+                    5900,
+                    {
+                      "status": {
+                        "single": 1,
+                        "married": 2
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "us-mi-city-tax",
+      "label": "Detroit city income tax",
+      "group": "tax",
+      "note": "2.4% for residents, after a $600 exemption for you, your spouse on a joint return and each dependant.",
+      "charge": {
+        "option": "city",
+        "cases": {
+          "none": 0,
+          "detroit": {
+            "pct": 2.4,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "us-wages",
+                    {
+                      "mul": [
+                        600,
+                        {
+                          "sum": [
+                            {
+                              "status": {
+                                "single": 1,
+                                "married": 2
+                              }
+                            },
+                            {
+                              "input": "children"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "City income taxes outside Detroit (Grand Rapids 1.5% and 22 other cities)"
+  ],
+  "provisional": [
+    "The 4.25% rate is the 2026 rate; Treasury sets the 2027 rate in spring 2027",
+    "The $5,900 personal exemption is the 2026 amount, carried over from 2026 until the 2027 figure is published"
+  ],
+  "sources": [
+    {
+      "title": "Michigan Treasury — 4.25% for the 2026 tax year",
+      "url": "https://www.michigan.gov/treasury/news/2026/04/15/state-individual-income-tax-rate-for-2026-tax-year-determined"
+    },
+    {
+      "title": "4.25% Income Tax Rate for Individuals and Fiduciaries in 2026 Tax Year",
+      "url": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2026/04/15/425-income-tax-rate-for-individuals-and-fiduciaries-in-2026-tax-year"
+    },
+    {
+      "title": "Revenue Administrative Bulletin 2026-1",
+      "url": "https://www.michigan.gov/taxes/rep-legal/rab/2026-revenue-administrative-bulletins/revenue-administrative-bulletin-2026-1"
+    },
+    {
+      "title": "Michigan 2026 Income Tax Withholding Guide (Form 446), Personal Exemption Amount",
+      "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/SUW/TY2026/446_Withholding-Guide_2026.pdf#page=1"
+    },
+    {
+      "title": "Michigan Treasury, Withholding Tax Information by Calendar Year (2026 personal exemption)",
+      "url": "https://www.michigan.gov/taxes/business-taxes/withholding/calendar-year-tax-information"
+    },
+    {
+      "title": "2025 Tax Year Income Tax Rate for Individuals and Fiduciaries",
+      "url": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2025/05/01/2025-tax-year-income-tax-rate-for-individuals-and-fiduciaries"
+    },
+    {
+      "title": "Michigan 2024 Book MI-1040CR7 Home Heating Instructions, Table A",
+      "url": "https://web.archive.org/web/20250202150154/https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/IIT/TY2024/BOOK_MI-1040CR-7.pdf#page=11"
+    },
+    {
+      "title": "Michigan Treasury — City withholding guide 5469 (Detroit 2.4% resident)",
+      "url": "https://www.michigan.gov/taxes/-/media/Project/Websites/taxes/Forms/City-Withholding/TY2025/5469_ty2025.pdf"
+    },
+    {
+      "title": "City of Detroit — Individual income tax filers ($600 exemption)",
+      "url": "https://detroitmi.gov/node/10171"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Michigan Treasury, 15 April 2026",
+      "url": "https://www.michigan.gov/treasury/news/2026/04/15/state-individual-income-tax-rate-for-2026-tax-year-determined",
+      "note": "The rate is recalculated each year after the state's annual financial report; the 2027 rate is not yet set."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mi",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    },
+    {
+      "title": "Official city or state pages, 11 Nov 2026",
+      "note": "2.4% for residents, after a $600 exemption for you, your spouse on a joint return and each dependant."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://www.michigan.gov/treasury/reference/taxpayer-notices/2026/04/15/425-income-tax-rate-for-individuals-and-fiduciaries-in-2026-tax-year",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "mi-income-tax": 1449.25,
+        "net": 32938.75
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "mi-income-tax": 3361.75,
+        "net": 65546.25
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "mi-income-tax": 5873.5,
+        "net": 117872.5
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "detroit"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-mi-city-tax": 1785.6,
+        "net": 57150.65
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2,
+        "city": "detroit"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-mi-city-tax": 1382.4,
+        "net": 53875.1
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "k401Pct": 6,
+        "city": "detroit"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-mi-city-tax": 2692.8,
+        "net": 80678.45
+      }
+    }
+  ],
+  "options": {
+    "city": {
+      "label": "City",
+      "default": "none",
+      "choices": {
+        "none": "Elsewhere in Michigan",
+        "detroit": "Detroit"
+      },
+      "inSummary": false
+    }
+  }
+}

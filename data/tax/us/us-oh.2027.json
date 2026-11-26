@@ -1,0 +1,351 @@
+{
+  "id": "us-oh",
+  "name": "Ohio",
+  "appliesTo": "Residents of Ohio",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "oh-taxable",
+      "label": "Ohio taxable income",
+      "show": true,
+      "note": "Personal exemption of $2,400, $2,150 or $1,900 each depending on income.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              {
+                "mul": [
+                  {
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
+                  },
+                  {
+                    "lookup": [
+                      [
+                        0,
+                        2400
+                      ],
+                      [
+                        40001,
+                        2150
+                      ],
+                      [
+                        80001,
+                        1900
+                      ],
+                      [
+                        500000,
+                        0
+                      ]
+                    ],
+                    "of": "us-wages"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "oh-income-tax",
+      "label": "Ohio income tax",
+      "group": "tax",
+      "note": "No tax on the first $26,050; above it $332 plus 2.75% of the excess (the flat rate from 2026). Less the $20 exemption credit each for incomes up to $30,000.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "if": {
+                  "lte": [
+                    "oh-taxable",
+                    26050
+                  ]
+                },
+                "then": 0,
+                "else": {
+                  "brackets": [
+                    [
+                      0,
+                      1.27448
+                    ],
+                    [
+                      26050,
+                      2.75
+                    ]
+                  ],
+                  "of": "oh-taxable"
+                }
+              },
+              {
+                "if": {
+                  "lte": [
+                    {
+                      "sub": [
+                        "us-wages",
+                        {
+                          "mul": [
+                            {
+                              "status": {
+                                "single": 1,
+                                "married": 2
+                              }
+                            },
+                            {
+                              "lookup": [
+                                [
+                                  0,
+                                  2400
+                                ],
+                                [
+                                  40001,
+                                  2150
+                                ],
+                                [
+                                  80001,
+                                  1900
+                                ],
+                                [
+                                  500000,
+                                  0
+                                ]
+                              ],
+                              "of": "us-wages"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    30000
+                  ]
+                },
+                "then": {
+                  "mul": [
+                    20,
+                    {
+                      "status": {
+                        "single": 1,
+                        "married": 2
+                      }
+                    }
+                  ]
+                },
+                "else": 0
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "us-oh-city-tax",
+      "label": "City income tax",
+      "group": "tax",
+      "note": "On qualifying wages (Medicare wages): Columbus 2.5%, Cleveland 2.5%, Cincinnati 1.8%.",
+      "charge": {
+        "option": "city",
+        "cases": {
+          "none": 0,
+          "columbus": {
+            "pct": 2.5,
+            "of": "us-fica-wages"
+          },
+          "cleveland": {
+            "pct": 2.5,
+            "of": "us-fica-wages"
+          },
+          "cincinnati": {
+            "pct": 1.8,
+            "of": "us-fica-wages"
+          }
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "School district income taxes",
+    "Joint filing credit (needs both spouses to have income)",
+    "Municipal income taxes in other Ohio cities (typically 1–2.5%)"
+  ],
+  "provisional": [
+    "The $26,050 threshold and personal exemptions are the 2026 amounts; indexing was suspended for 2025 and 2026 and its 2027 position is carried over from 2026 until the 2027 figure is published"
+  ],
+  "sources": [
+    {
+      "title": "Ohio H.B. 96 (2025): flat 2.75% for taxable years beginning in 2026 and later",
+      "url": "https://search-prod.lis.state.oh.us/api/v2/general_assembly_136/legislation/hb96/07_EN/pdf/"
+    },
+    {
+      "title": "House Bill 96 - Joint filing credit MAGI limit ($750k for 2025, $500k for 2026+)",
+      "url": "https://search-prod.lis.state.oh.us/api/v2/general_assembly_136/legislation/hb96/07_EN/pdf/"
+    },
+    {
+      "title": "Ohio Income Tax Form 2025 Instructions (Page 18)",
+      "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=18"
+    },
+    {
+      "title": "Ohio Income Tax Form 2025 Instructions (Page 29)",
+      "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=29"
+    },
+    {
+      "title": "Ohio Income Tax Form 2025 Instructions (Page 44)",
+      "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=44"
+    },
+    {
+      "title": "Ohio Income Tax Form 2025 Instructions (Line 44)",
+      "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=26"
+    },
+    {
+      "title": "Ohio Income Tax Form 2025 Instructions (Page 17)",
+      "url": "https://dam.assets.ohio.gov/image/upload/v1767095693/tax.ohio.gov/forms/ohio_individual/individual/2025/it1040-booklet.pdf#page=17"
+    },
+    {
+      "title": "City of Columbus — Income Tax Division (2.5%)",
+      "url": "https://www.columbus.gov/Government/City-Auditor/Income-Tax-Division/General-Income-Tax-Information"
+    },
+    {
+      "title": "Central Collection Agency — tax rates 2026 (Cleveland 2.5%)",
+      "url": "https://www.ccaohio.gov/tax-rates#year-2026"
+    },
+    {
+      "title": "City of Cincinnati — income tax (1.8% since 2 Oct 2020)",
+      "url": "https://www.cincinnati-oh.gov/finance/income-taxes/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Ohio Legislative Service Commission, H.B. 96 tax analysis as enacted",
+      "url": "https://www.lsc.ohio.gov/assets/legislation/136/hb96/en0/files/hb96-tax-bill-analysis-as-enacted-136th-general-assembly.pdf",
+      "note": "$332 plus 2.75% above $26,050 for 2026 and later; inflation indexing of brackets and exemptions suspended for 2025 and 2026."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/oh",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    },
+    {
+      "title": "Official city or state pages, 11 Nov 2026",
+      "note": "On qualifying wages (Medicare wages): Columbus 2.5%, Cleveland 2.5%, Cincinnati 1.8%."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://search-prod.lis.state.oh.us/api/v2/general_assembly_136/legislation/hb96/07_EN/pdf/",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "oh-taxable": 37600,
+        "oh-income-tax": 649.63,
+        "net": 33738.37
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "oh-taxable": 83100,
+        "oh-income-tax": 1900.88,
+        "net": 67007.12
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "oh-taxable": 146200,
+        "oh-income-tax": 3636.13,
+        "net": 120109.87
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "columbus"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-oh-city-tax": 1875.0,
+        "net": 58379.0
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "cleveland"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-oh-city-tax": 1875.0,
+        "net": 58379.0
+      }
+    },
+    {
+      "gross": 75000,
+      "options": {
+        "city": "cincinnati"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-oh-city-tax": 1350.0,
+        "net": 58904.0
+      }
+    },
+    {
+      "gross": 60000,
+      "options": {
+        "status": "married",
+        "children": 2,
+        "city": "columbus"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-oh-city-tax": 1500.0,
+        "net": 54658.62
+      }
+    },
+    {
+      "gross": 120000,
+      "options": {
+        "k401Pct": 6,
+        "city": "columbus"
+      },
+      "note": "State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "us-oh-city-tax": 3000.0,
+        "net": 82249.12
+      }
+    }
+  ],
+  "options": {
+    "city": {
+      "label": "City",
+      "default": "none",
+      "choices": {
+        "none": "No city tax",
+        "columbus": "Columbus",
+        "cleveland": "Cleveland",
+        "cincinnati": "Cincinnati"
+      },
+      "inSummary": false
+    }
+  }
+}
