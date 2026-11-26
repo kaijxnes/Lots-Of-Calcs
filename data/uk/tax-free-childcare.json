@@ -1,0 +1,28 @@
+{
+  "about": "Tax-Free Childcare rules for tools/build-childcare-help-pages.js, quoted from GOV.UK; compared with the Universal Credit childcare amount from data/uk/universal-credit.json.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "topUpPer": 2,
+  "payIn": 8,
+  "maxYear": 2000,
+  "maxYearDisabled": 4000,
+  "maxQuarter": 500,
+  "maxQuarterDisabled": 1000,
+  "minEarnQuarter": { "21+": 2643.68, "18-20": 2256.80, "under18OrApprentice": 1664 },
+  "incomeLimit": 100000,
+  "sources": [
+    { "title": "Tax-Free Childcare", "url": "https://www.gov.uk/tax-free-childcare" },
+    { "title": "Tax-Free Childcare: check if you're eligible", "url": "https://www.gov.uk/tax-free-childcare/check-if-youre-eligible" },
+    { "title": "Tax-Free Childcare: Universal Credit and childcare vouchers", "url": "https://www.gov.uk/tax-free-childcare/universal-credit-childcare-vouchers" }
+  ],
+  "rules": {
+    "topUp": { "quote": "For every £8 you pay into the account, the government will top it up by £2. The total top up you can get for each child is £500 every 3 months (up to £2,000 a year). This goes up to £1,000 every 3 months if your child is disabled (up to £4,000 a year).", "source": 0 },
+    "working": { "quote": "You’ll usually need to be working (or returning to work) and your child must be 11 or younger (16 or younger if they’re disabled). Your childcare provider must be signed up to the Tax-Free Childcare scheme.", "source": 0 },
+    "age": { "quote": "Your child is eligible until the September after they turn 11.", "source": 1 },
+    "income": { "quote": "£2,643.68 before tax if you’re aged 21 or over (the same as £203.36 per week) £2,256.80 before tax if you’re aged 18 to 20 (the same as £173.60 per week) £1,664 before tax if you’re under 18 or an apprentice (the same as £128 per week)", "source": 1 },
+    "limit": { "quote": "you or your partner’s expected adjusted net income (including any foreign income ) is over £100,000 for the current tax year", "source": 1 },
+    "notBoth": { "quote": "If you claim either Universal Credit or childcare vouchers, you cannot get Tax-Free Childcare at the same time.", "source": 1 },
+    "wait": { "quote": "Wait until you get a decision on your Tax-Free Childcare application before cancelling your Universal Credit claim.", "source": 2 },
+    "reconfirm": { "quote": "To keep getting Tax-Free Childcare you must sign in to your childcare account every 3 months to confirm your details are up to date.", "source": 0 }
+  }
+}
