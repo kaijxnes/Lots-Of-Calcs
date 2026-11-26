@@ -38,6 +38,7 @@ const CHECKS = [
   ["How HMRC settles over- and underpaid tax", "", a("https://www.gov.uk/tax-overpayments-and-underpayments", "GOV.UK"), when(J("data/uk/tax-refunds.json").lastChecked), "/tax-refund-calculator/"],
   ["How bonuses are taxed and charged National Insurance", "", a("https://www.gov.uk/expenses-and-benefits-bonuses", "GOV.UK and HMRC"), when(J("data/uk/bonus-tax.json").lastChecked), "/bonus-tax-calculator/"],
   ["Tax codes and National Insurance with more than one job", "", a("https://www.gov.uk/guidance/how-tax-works-if-you-have-more-than-one-job", "GOV.UK"), when(J("data/uk/second-job.json").lastChecked), "/second-job-tax-calculator/"],
+  ["Part-time pay (pro rata)", "", a("https://www.gov.uk/part-time-worker-rights", "GOV.UK"), when(J("data/uk/pro-rata.json").lastChecked), "/pro-rata-salary-calculator/"],
   ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
   ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
   ["Student loan interest and write-off", "", a("https://www.gov.uk/repaying-your-student-loan/what-you-pay", "GOV.UK"), when(J("data/student-loans/uk.json").lastChecked), "/student-loan-calculator/"],

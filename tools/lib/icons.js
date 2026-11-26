@@ -22,7 +22,7 @@ const ICONS = {
   "🥚": "egg", "😴": "moon", "🤰": "calendar-heart", "🥗": "salad", "🍷": "wine", "⛽": "fuel", "🔌": "plug-zap",
   "🏃": "footprints", "💡": "lightbulb", "🎨": "paintbrush", "🧱": "brick-wall", "🔲": "grid-3x3", "⚡": "zap",
   "🐎": "trophy", "🔀": "shuffle", "🎰": "layers", "📆": "calendar-plus", "⏳": "hourglass", "🐕": "dog", "🐈": "cat",
-  "🚀": "rocket", "📖": "book-open", "🎁": "gift", "👥": "briefcase-business", "👛": "wallet"
+  "🚀": "rocket", "📖": "book-open", "🎁": "gift", "👥": "briefcase-business", "👛": "wallet", "🕒": "clock"
 };
 /* used by share.js and the homepage search, not by cards */
 const EXTRA = ["link", "printer", "star", "search"];
