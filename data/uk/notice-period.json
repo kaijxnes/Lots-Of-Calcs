@@ -1,0 +1,27 @@
+{
+  "about": "Statutory notice periods for tools/build-notice-period-pages.js, each quoted from GOV.UK: what an employer must give by length of service, what an employee must give, and when notice starts.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "employer": { "minMonths": 1, "oneWeekUntilYears": 2, "maxWeeks": 12 },
+  "employee": { "minMonths": 1, "weeks": 1 },
+  "sources": [
+    { "title": "Making staff redundant: giving staff notice", "url": "https://www.gov.uk/staff-redundant/giving-staff-notice" },
+    { "title": "Dismissal: your rights", "url": "https://www.gov.uk/dismissal" },
+    { "title": "Handing in your notice", "url": "https://www.gov.uk/handing-in-your-notice/giving-notice" },
+    { "title": "Handing in your notice: payment during your notice period", "url": "https://www.gov.uk/handing-in-your-notice/payment-during-your-notice-period" },
+    { "title": "Handing in your notice: garden leave", "url": "https://www.gov.uk/handing-in-your-notice/garden-leave" }
+  ],
+  "rules": {
+    "employerTable": { "quote": "Length of service Notice you must give 1 month to 2 years At least a week 2 years to 12 years A week’s notice for every year employed 12 or more years 12 weeks", "source": 0 },
+    "longer": { "quote": "You must be given at least the notice stated in your contract or the statutory minimum notice period, whichever is longer. There are some situations where you can be dismissed immediately - for example, for violence.", "source": 1 },
+    "employee": { "quote": "You must give at least a week’s notice if you’ve been in your job for more than a month.", "source": 2 },
+    "breach": { "quote": "You may be in breach of your contract if you do not give enough notice, or give notice verbally when it should be given in writing.", "source": 2 },
+    "starts": { "quote": "Your notice period usually runs from the start of the day after you handed your notice in.", "source": 2 },
+    "noticePay": { "quote": "Your employees’ notice pay is based on the average they earned per week over the 12 weeks before their notice period starts.", "source": 0 },
+    "normalPay": { "quote": "You’ll usually get your normal pay rate during your notice period.", "source": 3 },
+    "bonuses": { "quote": "You are entitled to bonuses and commission during your notice period unless your contract states otherwise.", "source": 3 },
+    "pilon": { "quote": "You can only get payment in lieu if it’s in your contract or you agree to it. If you do not agree to it, you can work out your notice period.", "source": 3 },
+    "pilonTax": { "quote": "These payments must have tax and National Insurance deducted .", "source": 0 },
+    "garden": { "quote": "Your employer may ask you not to come into work, or to work at home or another location during your notice period. This is called ‘garden leave’ (also referred to as ‘gardening leave’). You’ll get the same pay and contractual benefits.", "source": 4 }
+  }
+}
