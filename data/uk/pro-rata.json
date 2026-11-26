@@ -1,0 +1,29 @@
+{
+  "about": "What GOV.UK says about part-time pay, for tools/build-pro-rata-pages.js. Tax figures come from the UK tax files.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "rules": {
+    "proRata": {
+      "quote": "Some benefits are applied ‘pro rata’ (in proportion to hours worked). For example, if a full-time worker gets a £1,000 Christmas bonus, and a part-time worker works half the number of hours, they should get £500.",
+      "source": 0
+    },
+    "sameRates": {
+      "quote": "Part-time workers should get the same treatment for: pay rates (including sick pay, maternity, paternity and adoption leave and pay); pension opportunities and benefits; holidays …",
+      "source": 0
+    },
+    "fullTime": {
+      "quote": "There is no specific number of hours that makes someone full or part-time, but a full-time worker will usually work 35 hours or more a week.",
+      "source": 0
+    },
+    "overtime": {
+      "quote": "Overtime pay - part-time workers may not get overtime pay until they’ve worked over the normal hours of a full-time worker.",
+      "source": 0
+    }
+  },
+  "sources": [
+    {
+      "title": "Part-time workers' rights",
+      "url": "https://www.gov.uk/part-time-worker-rights"
+    }
+  ]
+}

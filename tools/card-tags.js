@@ -17,6 +17,7 @@ const TAGS = {
   "/tax-refund-calculator/": "UK",
   "/bonus-tax-calculator/": "UK",
   "/second-job-tax-calculator/": "UK",
+  "/pro-rata-salary-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
