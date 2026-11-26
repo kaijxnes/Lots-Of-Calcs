@@ -34,6 +34,7 @@ const CHECKS = [
   ["Self Assessment penalties and HMRC interest", "", a("https://www.gov.uk/self-assessment-tax-returns/penalties", "GOV.UK"), when(J("data/uk/self-assessment.json").lastChecked), "/self-assessment-penalty-calculator/"],
   ["Child Benefit and the High Income Child Benefit Charge", "", a("https://www.gov.uk/child-benefit-tax-charge", "GOV.UK"), when(J("data/uk/child-benefit.json").lastChecked), "/child-benefit-tax-charge-calculator/"],
   ["Marriage Allowance", "", a("https://www.gov.uk/marriage-allowance", "GOV.UK"), when(J("data/uk/marriage-allowance.json").lastChecked), "/marriage-allowance-calculator/"],
+  ["What tax codes mean", "", a("https://www.gov.uk/tax-codes", "GOV.UK"), when(J("data/uk/tax-codes.json").lastChecked), "/tax-code-checker/"],
   ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
   ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
   ["Student loan interest and write-off", "", a("https://www.gov.uk/repaying-your-student-loan/what-you-pay", "GOV.UK"), when(J("data/student-loans/uk.json").lastChecked), "/student-loan-calculator/"],
