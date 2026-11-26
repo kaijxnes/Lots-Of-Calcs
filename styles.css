@@ -1152,6 +1152,19 @@ hr.divider {
   margin-top: 0;
 }
 
+/* A hub split into sections: the jump links sit above the first one */
+.hub-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 0 0 18px;
+  font-size: 0.9rem;
+}
+.hub-jump a { color: var(--link); text-decoration: none; }
+.hub-jump a:hover { color: var(--link-hover); text-decoration: underline; }
+h2.hub-group-title { scroll-margin-top: 70px; }
+.hub-jump + h2.hub-group-title { margin-top: 0; }
+
 .hub-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
