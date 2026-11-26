@@ -239,7 +239,8 @@ function holiday() {
     sources: src(h.source, "Holiday entitlement"),
     more: `    <main class="tool">
       <h2 class="tool-section-title">Statutory holiday by days worked</h2>
-${site.table(["Days a week", "Holiday a year"], table, 260)}    </main>
+${site.table(["Days a week", "Holiday a year"], table, 260)}      <p class="about-text" style="margin-top:12px;">On irregular hours or part-year work, the <a href="/irregular-hours-holiday-calculator/">irregular hours holiday calculator</a> works out the holiday you build up in each pay period and rolled-up holiday pay.</p>
+    </main>
 
 `,
     q: [

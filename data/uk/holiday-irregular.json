@@ -1,0 +1,88 @@
+{
+  "about": "Holiday rules for irregular-hours and part-year workers, for tools/build-irregular-holiday-pages.js, each quoted from GOV.UK. The build checks GOV.UK's worked examples against holiday-irregular.js.",
+  "pct": 12.07,
+  "statutoryWeeks": 5.6,
+  "yearWeeks": 52,
+  "from": "2024-04-01",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "sources": [
+    { "title": "Holiday entitlement", "url": "https://www.gov.uk/holiday-entitlement-rights" },
+    { "title": "Holiday pay and entitlement reforms from 1 January 2024", "url": "https://www.gov.uk/government/publications/simplifying-holiday-entitlement-and-holiday-pay-calculations/holiday-pay-and-entitlement-reforms-from-1-january-2024" }
+  ],
+  "rules": {
+    "accrual": {
+      "quote": "Their entitlement will be 12.07% of the hours they worked in a pay period. It must be rounded up to the nearest hour if the entitlement is 0.5 of an hour or more.",
+      "source": 0
+    },
+    "from": {
+      "quote": "For leave years beginning on or after 1 April 2024, there is a new accrual method for irregular hour workers and part-year workers in the first year of employment and beyond.",
+      "source": 1
+    },
+    "rounding": {
+      "quote": "Note: the hours can be rounded down (to zero if it is less than 30 minutes) but will be rounded up to one hour if it is 30 minutes or more than 30 minutes.",
+      "source": 1
+    },
+    "why": {
+      "quote": "The 12.07% figure is based on the fact that all workers are entitled to 5.6 weeks’ leave. This means that a worker’s total working weeks in a year is 46.4 (52 weeks in a year minus 5.6 weeks of leave). 12.07% of 46.4 is 5.6.",
+      "source": 1
+    },
+    "contract": {
+      "quote": "To find the relevant percentage for these workers, you would need to do the following calculation: (total holiday entitlement ÷ remaining working weeks in the year) x 100. For example, if a part-year worker is entitled to 6 weeks of leave as per their contract, then: 6 ÷ 46 = 0.1304 0.1304 x 100 = 13.04",
+      "source": 1
+    },
+    "rolledUp": {
+      "quote": "The calculation of holiday pay by employers is 12.07% of a worker’s total pay as 12.07% is the proportion of statutory annual leave in relation to the working weeks of each year",
+      "source": 1
+    },
+    "rolledUpPeriod": {
+      "quote": "Employers using rolled-up holiday pay should calculate it based on a worker’s total pay in a pay period.",
+      "source": 1
+    },
+    "rolledUpWho": {
+      "quote": "Employers can use rolled-up holiday pay for irregular-hours and part-year workers, unless their leave year began on or before 31 March 2024.",
+      "source": 0
+    },
+    "payslip": {
+      "quote": "Employers should tell their workers if they intend to start using rolled-up holiday pay and for this payment to be clearly marked as a separate item on each payslip.",
+      "source": 1
+    },
+    "onTop": {
+      "quote": "Rolled-up holiday pay is to be paid in addition to the worker’s normal salary, which should be at National Minimum Wage or above.",
+      "source": 1
+    },
+    "normalRate": {
+      "quote": "For irregular-hours workers or those who work part of the year, all leave must be paid at their ‘normal’ rate of pay.",
+      "source": 0
+    },
+    "weeksPay": {
+      "quote": "Irregular-hours and part-year work A worker’s average pay from the previous 52 weeks (only counting weeks in which they were paid)",
+      "source": 0
+    },
+    "irregular": {
+      "quote": "A worker is an irregular hours worker, in relation to a leave year, if the number of paid hours that they will work in each pay period during the term of their contract in that year is, under the terms of their contract, wholly or mostly variable.",
+      "source": 1
+    },
+    "partYear": {
+      "quote": "A worker is a part-year worker, in relation to a leave year, if, under the terms of their contract, they are required to work only part of that year and there are periods within that year (during the term of the contract) of at least a week which they are not required to work and for which they are not paid.",
+      "source": 1
+    },
+    "maximum": {
+      "quote": "part-year and irregular hours workers are legally entitled up to a maximum amount of 5.6 weeks of paid statutory holiday entitlement per year, calculated according to actual hours worked using the 12.07% accrual method.",
+      "source": 1
+    }
+  },
+  "examples": {
+    "hours": [
+      { "hours": 30, "exact": 3.621, "holiday": 4, "source": 0 },
+      { "hours": 68, "exact": 8.2076, "holiday": 8, "source": 1 }
+    ],
+    "rolledUp": [
+      { "pay": 364.70, "govuk": 44.06, "source": 1 },
+      { "pay": 460, "govuk": 55.52, "source": 1 }
+    ],
+    "contract": [
+      { "weeks": 6, "pct": 13.04, "source": 1 }
+    ]
+  }
+}
