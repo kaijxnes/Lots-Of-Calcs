@@ -41,6 +41,7 @@ const CHECKS = [
   ["Part-time pay (pro rata)", "", a("https://www.gov.uk/part-time-worker-rights", "GOV.UK"), when(J("data/uk/pro-rata.json").lastChecked), "/pro-rata-salary-calculator/"],
   ["Statutory Sick Pay", "", a("https://www.gov.uk/statutory-sick-pay", "GOV.UK"), when(J("data/uk/ssp.json").lastChecked), "/statutory-sick-pay-calculator/"],
   ["Approved mileage rates and Mileage Allowance Relief", "", a("https://www.gov.uk/tax-relief-for-employees/vehicles-you-use-for-work", "GOV.UK"), when(J("data/uk/mileage.json").lastChecked), "/mileage-allowance-calculator/"],
+  ["National Minimum Wage and National Living Wage", "", a("https://www.gov.uk/national-minimum-wage-rates", "GOV.UK"), when(J("data/uk/minimum-wage.json").lastChecked), "/minimum-wage-calculator/"],
   ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
   ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
   ["Student loan interest and write-off", "", a("https://www.gov.uk/repaying-your-student-loan/what-you-pay", "GOV.UK"), when(J("data/student-loans/uk.json").lastChecked), "/student-loan-calculator/"],

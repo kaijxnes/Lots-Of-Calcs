@@ -20,6 +20,7 @@ const TAGS = {
   "/pro-rata-salary-calculator/": "UK",
   "/statutory-sick-pay-calculator/": "UK",
   "/mileage-allowance-calculator/": "UK",
+  "/minimum-wage-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
