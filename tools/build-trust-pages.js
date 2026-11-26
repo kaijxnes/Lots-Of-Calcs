@@ -42,6 +42,7 @@ const CHECKS = [
   ["Statutory Sick Pay", "", a("https://www.gov.uk/statutory-sick-pay", "GOV.UK"), when(J("data/uk/ssp.json").lastChecked), "/statutory-sick-pay-calculator/"],
   ["Approved mileage rates and Mileage Allowance Relief", "", a("https://www.gov.uk/tax-relief-for-employees/vehicles-you-use-for-work", "GOV.UK"), when(J("data/uk/mileage.json").lastChecked), "/mileage-allowance-calculator/"],
   ["National Minimum Wage and National Living Wage", "", a("https://www.gov.uk/national-minimum-wage-rates", "GOV.UK"), when(J("data/uk/minimum-wage.json").lastChecked), "/minimum-wage-calculator/"],
+  ["Holiday for irregular hours and part-year work (12.07%)", "", a("https://www.gov.uk/holiday-entitlement-rights", "GOV.UK"), when(J("data/uk/holiday-irregular.json").lastChecked), "/irregular-hours-holiday-calculator/"],
   ["Tax on savings interest (UK and 7 other countries)", "", a("https://www.gov.uk/apply-tax-free-interest-on-savings", "GOV.UK and each country's tax authority"), when(J("data/uk/savings-tax.json").lastChecked), "/savings-tax-calculator/"],
   ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
   ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
