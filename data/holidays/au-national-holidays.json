@@ -1,0 +1,31 @@
+{
+  "_note": "Australia's public holidays observed in every state and territory, for payday calendars, from the Reserve Bank of Australia's list of public and bank holidays: New Year's Day, Australia Day, Good Friday, Easter Monday, Anzac Day, Christmas Day and Boxing Day, with an additional day when Christmas or Boxing Day falls on a weekend (Monday 28 December 2026; Monday 27 and Tuesday 28 December 2027). Anzac Day's additional day when it falls on a weekend is given only in some states, so it isn't counted. New Year's Day and Australia Day on a weekend are taken to move to the Monday. State holidays (King's Birthday, Labour Day, Melbourne Cup and others) are left out. The dates the RBA lists for all states and territories (in 'check') must come out of the rules exactly; later years are expected dates.",
+  "source": {
+    "title": "Reserve Bank of Australia — Public & Bank Holidays",
+    "url": "https://www.rba.gov.au/schedules-events/bank-holidays/"
+  },
+  "check": {
+    "2026": [
+      "2026-01-01",
+      "2026-01-26",
+      "2026-04-03",
+      "2026-04-06",
+      "2026-04-25",
+      "2026-12-25",
+      "2026-12-26",
+      "2026-12-28"
+    ],
+    "2027": [
+      "2027-01-01",
+      "2027-01-26",
+      "2027-03-26",
+      "2027-03-29",
+      "2027-04-25",
+      "2027-12-25",
+      "2027-12-26",
+      "2027-12-27",
+      "2027-12-28"
+    ]
+  },
+  "lastChecked": "2026-11-26"
+}
