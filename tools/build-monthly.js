@@ -36,7 +36,7 @@ const STEPS = [
   ["build-inflation.js"], ["build-repayment-pages.js"],
   ["build-appliance-pages.js"], ["build-heating-pages.js"], ["build-ev-pages.js"], ["build-fuel-route-pages.js"],
   ["build-tax-wrappers.js"], ["build-benefit-dates-pages.js"], ["build-tax-week-pages.js"], ["build-working-days-pages.js"], ["build-payday-pages.js"], ["build-countdown-pages.js"], ["build-turkey-pages.js"],
-  ["build-born-pages.js"], ["build-planet-age.js"], ["build-calorie-pages.js"], ["build-dry-january.js"],
+  ["build-age-in-year-pages.js"], ["build-born-pages.js"], ["build-planet-age.js"], ["build-calorie-pages.js"], ["build-dry-january.js"],
   ["build-savings-challenge-pages.js"], ["build-savings-goal-pages.js"], ["build-christmas-savings-pages.js"],
   ["build-pay-schedule-pages.js"], ["build-student-loan-pages.js"], ["build-expat-pages.js"],
   ["build-small-calcs.js"], ["build-uk-calcs.js"], ["build-currency-pages.js"],
