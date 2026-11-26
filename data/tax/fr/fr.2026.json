@@ -539,6 +539,16 @@
     {
       "title": "OpenFisca-France parameters, commit be579829 (27 Oct 2026)",
       "note": "plaf_qf: shares per child (art. 194) and caps of €1,807 per half-share and €4,262 for a single parent's first child (art. 197, values for 2025 income, matching this file's scale)."
+    },
+    {
+      "title": "BOFiP BOI-IR-LIQ-20-10-20260407 — barème de l'impôt sur le revenu",
+      "url": "https://bofip.impots.gouv.fr/bofip/2491-PGP.html/identifiant=BOI-IR-LIQ-20-10-20260407",
+      "note": "Read 26 Nov 2026: bands at €11,600, €29,579, €84,577 and €181,917, as in this file."
+    },
+    {
+      "title": "Service Public — Retraite complémentaire dans le privé : Agirc-Arrco",
+      "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F15396",
+      "note": "Read 26 Nov 2026: tranche 1 up to €48,060, tranche 2 from €48,060 to €384,480; employee share 3.15% and 8.64%, as in this file. URSSAF's rates page refused automated requests, so the other contribution rates were not re-read."
     }
   ],
   "lastVerified": null,
