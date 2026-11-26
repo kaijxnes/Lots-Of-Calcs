@@ -1,0 +1,15 @@
+{
+  "_note": "How HMRC settles over- and underpaid PAYE tax, for tools/build-tax-refund-pages.js. Quoted from GOV.UK.",
+  "p800": "'If you've paid too much or too little tax by the end of the tax year (5 April), HM Revenue and Customs (HMRC) will send you either: a tax calculation letter (also known as a P800) a Simple Assessment letter.' 'The letters are sent out between June and the end of November.' 'You might get a tax calculation letter if you either owe tax or are owed a refund because you: were put on the wrong tax code ... finished one job, started a new one and were paid by both in the same month; started receiving a pension at work; received Employment and Support Allowance or Jobseeker's Allowance.'",
+  "refund": "'You'll be sent the money within: 5 working days if you've claimed online; 6 weeks if you've asked HMRC to send you a cheque.' 'You'll get your cheque within 14 days of the date on your letter.'",
+  "owe": "'HMRC will usually collect the tax you owe by changing your tax code. This will increase the tax deducted from your wages, salary or pension, usually in equal instalments for 12 months from the start of the following tax year. This happens automatically if you: pay Income Tax through an employer or pension provider; earn enough income over your Personal Allowance to cover the underpayment; owe less than £3,000.'",
+  "collectLimit": 3000,
+  "emergency": "'If you're on an emergency tax code your tax is worked out based on what you're paid in that week or month only. You get taxed as if you're paid that amount every week or month of the year.' 'If you've paid too much tax, you can get a tax refund.' (Tax codes: emergency tax codes)",
+  "sources": [
+    { "title": "GOV.UK — Tax overpayments and underpayments", "url": "https://www.gov.uk/tax-overpayments-and-underpayments" },
+    { "title": "GOV.UK — Check how to claim a tax refund", "url": "https://www.gov.uk/claim-tax-refund" },
+    { "title": "GOV.UK — Tax codes: emergency tax codes", "url": "https://www.gov.uk/tax-codes/emergency-tax-codes" }
+  ],
+  "lastChecked": "2026-11-26",
+  "lastVerified": null
+}

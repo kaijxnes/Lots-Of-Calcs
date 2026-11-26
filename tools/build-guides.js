@@ -6,6 +6,7 @@
        /guides/self-assessment-explained/        who files, the deadlines, January bills, penalties
        /guides/tax-changes-2027-28/              what changes on 6 April 2027 (Budget 2026)
        /guides/national-insurance-explained/     classes, rates, employers, State Pension years
+       /guides/why-has-my-tax-code-changed/      reasons, reading the code, fixing it, refunds
        /guides/student-loans-explained/          plans, thresholds, repayments, interest, write-off
        /guides/isa-vs-pension-explained/         allowances, relief, access, which leaves more
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
@@ -505,8 +506,35 @@ function isaPension() {
     foot: `Pension rules from GOV.UK's <a href="${PR.sources[0].url}" rel="nofollow noopener" target="_blank">pension tax relief</a> and <a href="${P.source}" rel="nofollow noopener" target="_blank">lump sum allowance</a> pages (checked ${site.niceDate(PR.lastChecked)}); ISA limits from GOV.UK's <a href="https://www.gov.uk/individual-savings-accounts" rel="nofollow noopener" target="_blank">Individual Savings Accounts</a>; access age from <a href="https://www.gov.uk/pension-types" rel="nofollow noopener" target="_blank">Pension types</a>. A guide, not financial advice.` };
 }
 
+/* ============================================ Why tax codes change */
+function taxCodeChanges() {
+  const { R } = require("./lib/tax-code-rules.js")();
+  const pa = R.personalAllowance, std = pa / 10 + "L";
+  const reasons = ["you start a new job", "you get taxable state benefits", "you start to get income from an additional job or pension", "the interest on your savings is more than your Personal Savings Allowance", "your weekly State Pension amount changes", "your employer tells HMRC you have started or stopped getting benefits from your job", "you claim Marriage Allowance", "you claim expenses that you get tax relief on", "you're paying the High Income Child Benefit Charge through your wages or pension", "you need to pay back the Winter Fuel Payment or Pension Age Winter Heating Payment", "you've been on the wrong tax code and owe tax"];
+  const body = section("why", "Why HMRC changes your code", p(`HMRC changes your tax code when you need to pay a different amount of tax, usually because your income or circumstances have changed. GOV.UK lists these as the usual reasons:`) +
+      `      <ul class="about-list">${reasons.map((r) => `<li>${esc(r.charAt(0).toUpperCase() + r.slice(1))}</li>`).join("")}</ul>\n` +
+      p(`Starting a job without a P45 can also put you on an emergency code for a while.`)) +
+    section("read", "Reading the new code", p(`The number, times 10, is the tax-free income you get from that job or pension; the letter describes your situation. The standard code is <strong>${std}</strong> (${m0(pa)} tax-free). A lower number usually means HMRC has taken something off your allowance, such as a company benefit, untaxed income or tax owed from an earlier year: a ${m0(1570)} medical insurance benefit turns ${std} into 1100L. M or N at the end means Marriage Allowance; K means the deductions are bigger than the allowance. Type yours into the <a href="/tax-code-checker/">tax code checker</a> for what it means and the tax it takes.`)) +
+    section("wrong", "If you think it's wrong", p(`HMRC sets codes from what your employer, pension provider or benefits office tell it, so a wrong code usually means missing or wrong information. Check and update your jobs, pensions, estimated income, company benefits and expenses online or in the HMRC app. If a change is needed, HMRC tells you and your employer within <strong>15 working days</strong>; it should appear on your next or following payslip if you're paid monthly, or your third payslip if weekly. If you've just started a job, wait 35 days for HMRC to get your details before contacting it.`)) +
+    section("money", "Getting tax back, or paying what you owe", p(`When your code is corrected, HMRC works out what you've over- or underpaid. Overpaid tax usually comes back through your pay with the new code; if HMRC doesn't have all your details yet, it settles up after the tax year ends and sends a tax calculation letter (P800). Underpaid tax is usually collected through your code over one or more years. The <a href="/tax-refund-calculator/">tax refund calculator</a> estimates which way it'll go.`));
+  const q = [
+    ["Why has my tax code changed?", "Usually because something HMRC knows about your income has changed: a new or second job or pension, a company benefit starting or stopping, savings interest above your allowance, a State Pension change, claiming Marriage Allowance or expenses, the High Income Child Benefit Charge, or tax owed from an earlier year."],
+    ["Why has my tax code gone down?", `HMRC has taken something off your ${m0(pa)} allowance: commonly a company benefit like a car or medical insurance, untaxed income, the High Income Child Benefit Charge, or collecting tax you owe from a previous year. Your tax code notice or the HMRC app shows the breakdown.`],
+    ["How long does it take for a new tax code to show on my payslip?", "HMRC tells you and your employer within 15 working days. Paid monthly, it should be on your next or following payslip; paid weekly, your third."],
+    ["Will I get a refund if my tax code was wrong?", "If you paid too much, yes: usually through your pay once the code is fixed, or after the tax year ends if HMRC is still missing details."]
+  ];
+  return { path: "/guides/why-has-my-tax-code-changed/", crumb: "Why Has My Tax Code Changed?", blurb: "The usual reasons HMRC changes your code, how to read the new one, and what to do if it's wrong.",
+    title: site.fitTitle("Why Has My Tax Code Changed? Reasons, Fixes and Refunds", "Why Has My Tax Code Changed?"), modified: JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/tax-codes.json"), "utf8")).lastChecked,
+    desc: `Why HMRC changes your tax code, how to read the new one (${std}, lower codes, M, N, K, emergency codes), how to correct it, how long it takes, and how over- or underpaid tax is settled.`,
+    h1: "Why has my tax code changed?", sub: "The usual reasons HMRC changes your code, what the new one means, and what to do if it's wrong.",
+    sections: [["why", "Why it changes"], ["read", "Reading the new code"], ["wrong", "If it's wrong"], ["money", "Refunds and underpayments"]],
+    tools: [["/tax-code-checker/", "Tax code checker"], ["/tax-refund-calculator/", "Tax refund"], ["/marriage-allowance-calculator/", "Marriage Allowance"], ["/salary/", "Take-home pay"]],
+    body, q, callouts: ["/tax-code-checker/", "/tax-refund-calculator/"],
+    foot: `From GOV.UK's <a href="https://www.gov.uk/tax-codes" rel="nofollow noopener" target="_blank">Tax codes</a> guide (why your tax code might change, what it means, if you think it's wrong, if you've paid too much or too little) and <a href="https://www.gov.uk/tax-overpayments-and-underpayments" rel="nofollow noopener" target="_blank">Tax overpayments and underpayments</a>. A guide, not tax advice.` };
+}
+
 /* ===================================================== build */
-const GUIDES = [incomeTax(), nationalInsurance(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
+const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
