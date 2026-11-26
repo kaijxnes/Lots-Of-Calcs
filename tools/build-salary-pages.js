@@ -364,7 +364,7 @@ ${site.TOPBAR}    <header class="site-header">
 
 ${(() => {
         const b = links.borrowUk(gross) || (links.borrowUkNear(gross) || {}).url, se = links.selfEmployed(gross);
-        const items = [b ? `<a href="${b}">How much can I borrow on ${money0(gross)}?</a>` : "", se ? `<a href="${se}">${money0(gross)} self-employed</a>` : "", payRise.has(3, gross) ? `<a href="${payRise.url(3, gross)}">3% pay rise on ${money0(gross)}</a>` : "", links.budgetUk(gross) ? `<a href="${links.budgetUk(gross)}">50/30/20 budget on ${money0(gross)}</a>` : "", (() => {
+        const items = [b ? `<a href="${b}">How much can I borrow on ${money0(gross)}?</a>` : "", se ? `<a href="${se}">${money0(gross)} self-employed</a>` : "", payRise.has(3, gross) ? `<a href="${payRise.url(3, gross)}">3% pay rise on ${money0(gross)}</a>` : "", links.budgetUk(gross) ? `<a href="${links.budgetUk(gross)}">50/30/20 budget on ${money0(gross)}</a>` : "", links.employerCost(gross) ? `<a href="${links.employerCost(gross)}">Cost to employ someone on ${money0(gross)}</a>` : "", (() => {
           /* the nearest hourly rate page, if it's within 10% of this salary */
           const H = config.HOURLY.GBP, yr = (h) => h * H.hours * 52;
           const h = H.rates.reduce((a, x) => Math.abs(yr(x) - gross) < Math.abs(yr(a) - gross) ? x : a);

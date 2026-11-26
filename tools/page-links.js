@@ -38,6 +38,8 @@ module.exports = {
   selfEmployed: (profit) => exact("self-employed-tax-calculator", profit),
   /* the 50/30/20 budget on a UK salary */
   budgetUk: (salary) => exact("50-30-20-budget", salary),
+  /* what a UK salary costs the employer */
+  employerCost: (salary) => exact("employer-cost-calculator", salary),
   salaryUk: (salary) => (fs.existsSync(path.join(ROOT, "salary", `${salary}-after-tax`, "index.html")) ? `/salary/${salary}-after-tax/` : null),
   money
 };

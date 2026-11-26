@@ -15,17 +15,19 @@
 </head>
 <body>
   <div class="page">
+  <a class="skip-link" href="#main">Skip to content</a>
     <nav class="topbar" aria-label="Site">
       <a class="topbar-brand" href="/"><img src="/favicon-32.png" srcset="/favicon-64.png 2x" alt="" width="22" height="22">Lots Of Calcs</a>
       <form class="topbar-search" action="/" method="get" role="search"><input type="search" name="q" placeholder="Search…" aria-label="Search calculators"></form>
     </nav>
+    <main id="main" class="page-main">
     <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
       <h1 class="page-title">Page not found</h1>
       <p class="page-subtitle">There's nothing at this address. It may have moved, or there's a typo in the link.</p>
     </header>
 
-    <main class="tool">
+    <section class="tool">
       <p class="about-text" id="nf-nearest" hidden></p>
       <div class="hub-search">
         <span class="hub-search-icon" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#search"></use></svg></span>
@@ -736,8 +738,9 @@
       </div>
       <p class="tool-hint" id="nf-none" hidden>No calculators match that. Try another word, or browse a category below.</p>
       <p class="tool-hint" style="margin-top:16px;">Or go to the <a href="/">homepage</a> to see all 140 calculators.</p>
-    </main>
+    </section>
 
+    </main>
     <footer class="site-footer">
       <p class="footer-categories">
         <a href="/general/">General</a>
