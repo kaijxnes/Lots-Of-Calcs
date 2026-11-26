@@ -1,0 +1,89 @@
+{
+  "about": "Approved mileage rates and how mileage allowance and relief work, for tools/build-mileage-pages.js, quoted from GOV.UK. Rates in pence per business mile.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "years": {
+    "2026-27": {
+      "label": "2026 to 2027 (from 6 April 2026)",
+      "car": [
+        55,
+        25
+      ],
+      "motorcycle": 24,
+      "bicycle": 20,
+      "niCar": 55
+    },
+    "before": {
+      "label": "Before 6 April 2026",
+      "car": [
+        45,
+        25
+      ],
+      "motorcycle": 24,
+      "bicycle": 20,
+      "niCar": 45
+    }
+  },
+  "firstMiles": 10000,
+  "passenger": 5,
+  "rules": {
+    "rates": {
+      "quote": "Approved mileage rates — Vehicle / Flat rate per business mile for the 2026 to 2027 tax year / Flat rate per business mile before 6 April 2026: Cars and goods vehicles first 10,000 miles 55p 45p; Cars and goods vehicles after 10,000 miles 25p 25p; Motorcycles 24p 24p; Bicycles 20p 20p",
+      "source": 0
+    },
+    "example": {
+      "quote": "Your employee travels 12,000 business miles in their car - the approved amount for the year would be £6,000 (10,000 × 55p plus 2,000 × 25p).",
+      "source": 1
+    },
+    "excess": {
+      "quote": "Anything above the ‘approved amount’: You must either: report on form P11D; add anything above the ‘approved amount’ to the employee’s pay, and deduct and pay tax as normal",
+      "source": 1
+    },
+    "ni": {
+      "quote": "National Insurance: rates per business mile — Cars and vans 55p from 6 April 2026 (45p before 6 April 2026); Motorcycles 24p; Bikes 20p … add the excess to their other earnings for that earnings period when calculating Class 1 National Insurance (but not Pay As You Earn (PAYE) tax)",
+      "source": 1
+    },
+    "covers": {
+      "quote": "This covers the cost of owning and running your vehicle. You cannot claim separately for things like: fuel, electricity, vehicle tax, MOTs, repairs",
+      "source": 0
+    },
+    "shortfall": {
+      "quote": "take away any amount your employer pays you towards your costs, (sometimes called a ‘mileage allowance’)",
+      "source": 0
+    },
+    "commute": {
+      "quote": "This does not include travelling to and from your work, unless it’s a temporary place of work.",
+      "source": 0
+    },
+    "years": {
+      "quote": "You can claim for the current tax year and the 4 previous tax years, if you’re eligible.",
+      "source": 0
+    },
+    "reliefRate": {
+      "quote": "You’ll get tax relief based on what you’ve spent and the rate at which you pay tax. Example: If you claim £60 and pay tax at a rate of 20% in that year, the amount you are entitled to is £12 (20% of £60).",
+      "source": 2
+    },
+    "passenger": {
+      "quote": "If your employee carries another employee in their own car or van on a business journey, you can pay them passenger payments of up to 5p per mile tax-free.",
+      "source": 1
+    },
+    "logs": {
+      "quote": "When you claim, you must send HM Revenue and Customs (HMRC) copies of your mileage logs.",
+      "source": 0
+    }
+  },
+  "sources": [
+    {
+      "title": "Claim tax relief for your job expenses: vehicles you use for work",
+      "url": "https://www.gov.uk/tax-relief-for-employees/vehicles-you-use-for-work"
+    },
+    {
+      "title": "Expenses and benefits: business travel mileage for employees' own vehicles",
+      "url": "https://www.gov.uk/expenses-and-benefits-business-travel-mileage"
+    },
+    {
+      "title": "Claim tax relief for your job expenses",
+      "url": "https://www.gov.uk/tax-relief-for-employees"
+    }
+  ]
+}
