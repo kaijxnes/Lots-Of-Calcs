@@ -6,7 +6,7 @@ Generated from `data/tax/au/au.2026-27.json` by `tools/tax/checklist.js`. Do not
 - Currency: AUD
 - Rates last checked: not yet
 - Verified by a person: **not yet**
-- Provisional items: `Medicare levy thresholds are the 2025–26 ones ($28,011 / $35,013); the 2026–27 thresholds are usually announced in the following May budget`, `The $1,000 standard deduction is described by the ATO as starting in 2026–27, but no source confirmed the bill had passed`, `Medicare levy surcharge thresholds are the 2025–26 ones`
+- Provisional items: `Medicare levy thresholds are the 2025–26 ones ($28,011 / $35,013); the 2026–27 thresholds are usually announced in the following May budget`, `Medicare levy surcharge thresholds are the 2025–26 ones`
 
 ## Check against
 

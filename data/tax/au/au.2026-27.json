@@ -7,18 +7,28 @@
   "standalone": true,
   "currency": "AUD",
   "locale": "en-AU",
-  "taxYear": {"label": "2026-27", "start": "2026-07-01", "end": "2027-06-30"},
+  "taxYear": {
+    "label": "2026-27",
+    "start": "2026-07-01",
+    "end": "2027-06-30"
+  },
   "options": {
     "cover": {
       "label": "Private hospital cover",
       "default": "yes",
-      "choices": {"yes": "Yes", "no": "No"}
+      "choices": {
+        "yes": "Yes",
+        "no": "No"
+      }
     },
     "help": {
       "label": "HELP / HECS debt",
       "default": "no",
       "inSummary": false,
-      "choices": {"no": "No", "yes": "Yes"}
+      "choices": {
+        "no": "No",
+        "yes": "Yes"
+      }
     }
   },
   "items": [
@@ -31,7 +41,10 @@
         "max": [
           0,
           {
-            "sub": ["gross", 1000]
+            "sub": [
+              "gross",
+              1000
+            ]
           }
         ]
       }
@@ -47,17 +60,44 @@
           {
             "sub": [
               {
-                "brackets": [[0, 0], [18200, 15], [45000, 30], [135000, 37], [190000, 45]],
+                "brackets": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    18200,
+                    15
+                  ],
+                  [
+                    45000,
+                    30
+                  ],
+                  [
+                    135000,
+                    37
+                  ],
+                  [
+                    190000,
+                    45
+                  ]
+                ],
                 "of": "au-taxable"
               },
               {
                 "if": {
-                  "lte": ["au-taxable", 37500]
+                  "lte": [
+                    "au-taxable",
+                    37500
+                  ]
                 },
                 "then": 700,
                 "else": {
                   "if": {
-                    "lte": ["au-taxable", 45000]
+                    "lte": [
+                      "au-taxable",
+                      45000
+                    ]
                   },
                   "then": {
                     "sub": [
@@ -65,7 +105,10 @@
                       {
                         "pct": 5,
                         "of": {
-                          "sub": ["au-taxable", 37500]
+                          "sub": [
+                            "au-taxable",
+                            37500
+                          ]
                         }
                       }
                     ]
@@ -79,7 +122,10 @@
                           {
                             "pct": 1.5,
                             "of": {
-                              "sub": ["au-taxable", 45000]
+                              "sub": [
+                                "au-taxable",
+                                45000
+                              ]
                             }
                           }
                         ]
@@ -100,16 +146,25 @@
       "note": "2% of taxable income, phased in from $28,011 at 10 cents per dollar.",
       "charge": {
         "min": [
-          {"pct": 2, "of": "au-taxable"},
+          {
+            "pct": 2,
+            "of": "au-taxable"
+          },
           {
             "if": {
-              "lte": ["au-taxable", 28011]
+              "lte": [
+                "au-taxable",
+                28011
+              ]
             },
             "then": 0,
             "else": {
               "pct": 10,
               "of": {
-                "sub": ["au-taxable", 28011]
+                "sub": [
+                  "au-taxable",
+                  28011
+                ]
               }
             }
           }
@@ -127,7 +182,24 @@
           "yes": 0,
           "no": {
             "pct": {
-              "lookup": [[0, 0], [101000, 1], [118000, 1.25], [158000, 1.5]],
+              "lookup": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  101000,
+                  1
+                ],
+                [
+                  118000,
+                  1.25
+                ],
+                [
+                  158000,
+                  1.5
+                ]
+              ],
               "of": "au-taxable",
               "strict": true
             },
@@ -147,11 +219,30 @@
           "no": 0,
           "yes": {
             "if": {
-              "gt": ["gross", 186050]
+              "gt": [
+                "gross",
+                186050
+              ]
             },
-            "then": {"pct": 10, "of": "gross"},
+            "then": {
+              "pct": 10,
+              "of": "gross"
+            },
             "else": {
-              "brackets": [[0, 0], [69528, 15], [129717, 17]],
+              "brackets": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  69528,
+                  15
+                ],
+                [
+                  129717,
+                  17
+                ]
+              ],
               "of": "gross"
             }
           }
@@ -172,7 +263,6 @@
   ],
   "provisional": [
     "Medicare levy thresholds are the 2025–26 ones ($28,011 / $35,013); the 2026–27 thresholds are usually announced in the following May budget",
-    "The $1,000 standard deduction is described by the ATO as starting in 2026–27, but no source confirmed the bill had passed",
     "Medicare levy surcharge thresholds are the 2025–26 ones"
   ],
   "sources": [
@@ -206,6 +296,16 @@
       "title": "2026-27 HELP thresholds (WeMoney, H&R Block)",
       "url": "https://www.wemoney.com.au/blog/how-hecs-help-debt-and-indexation-work",
       "note": "$69,528 / $129,717 / $186,050 at 15%, 17% and 10%; consistent across several sources."
+    },
+    {
+      "title": "KPMG TaxNewsFlash, 1 July 2026: Tax Reform No. 1 package receives Royal Assent",
+      "url": "https://kpmg.com/us/en/taxnewsflash/news/2026/07/australia-cgt-amendments-fuel-excise-reduction.html",
+      "note": "Read 26 Nov 2026: the package introducing \"an AU$1,000 standard deduction for work-related expenses for individuals, received Royal Assent on June 26, 2026\". Its working Australians tax offset applies from 2027-28, so it isn't in this file."
+    },
+    {
+      "title": "Treasurer's media release: New cost-of-living tax cuts",
+      "url": "https://ministers.treasury.gov.au/ministers/jim-chalmers-2022/media-releases/new-cost-living-tax-cuts-under-labor",
+      "note": "Read 26 Nov 2026: \"2026–27 First new tax cut (from 16 to 15 per cent)\"; 15 to 14 per cent from 2027–28. The ATO's own pages refuse automated requests; HELP thresholds not yet confirmed from an official page."
     }
   ],
   "lastVerified": null,
@@ -215,36 +315,61 @@
     {
       "gross": 60000,
       "note": "Taxable 59,000. Tax 26,800 × 15% = 4,020 + 14,000 × 30% = 4,200 → 8,220, less offset 325 − 1.5% × 14,000 = 115 → 8,105. Medicare 2% = 1,180.",
-      "expect": {"au-taxable": 59000, "au-income-tax": 8105, "au-medicare": 1180, "net": 50715}
+      "expect": {
+        "au-taxable": 59000,
+        "au-income-tax": 8105,
+        "au-medicare": 1180,
+        "net": 50715
+      }
     },
     {
       "gross": 30000,
       "note": "Taxable 29,000. Tax 15% × 10,800 = 1,620, less the full 700 offset = 920. Medicare phasing in: 10% × 989 = 98.90.",
-      "expect": {"au-income-tax": 920, "au-medicare": 98.9}
+      "expect": {
+        "au-income-tax": 920,
+        "au-medicare": 98.9
+      }
     },
     {
       "gross": 130000,
-      "options": {"cover": "no"},
+      "options": {
+        "cover": "no"
+      },
       "note": "Taxable 129,000: surcharge 1.25% = 1,612.50.",
-      "expect": {"au-mls": 1612.5, "net": 96587.5}
+      "expect": {
+        "au-mls": 1612.5,
+        "net": 96587.5
+      }
     },
     {
       "gross": 100000,
-      "options": {"help": "yes"},
+      "options": {
+        "help": "yes"
+      },
       "note": "15% x (100,000 - 69,528) = 4,570.80.",
-      "expect": {"au-help": 4570.8}
+      "expect": {
+        "au-help": 4570.8
+      }
     },
     {
       "gross": 150000,
-      "options": {"help": "yes"},
+      "options": {
+        "help": "yes"
+      },
       "note": "9,028.35 + 17% x (150,000 - 129,717) = 9,028.35 + 3,448.11 = 12,476.46.",
-      "expect": {"au-help": 12476.46}
+      "expect": {
+        "au-help": 12476.46
+      }
     },
     {
       "gross": 200000,
-      "options": {"help": "yes"},
+      "options": {
+        "help": "yes"
+      },
       "note": "Above 186,050: 10% x 200,000 = 20,000.",
-      "expect": {"au-help": 20000}
+      "expect": {
+        "au-help": 20000
+      }
     }
   ]
 }
