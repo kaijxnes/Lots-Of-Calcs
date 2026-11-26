@@ -5,6 +5,9 @@
        /guides/uk-income-tax/                    bands, allowance taper, NI, worked examples
        /guides/self-assessment-explained/        who files, the deadlines, January bills, penalties
        /guides/tax-changes-2027-28/              what changes on 6 April 2027 (Budget 2026)
+       /guides/national-insurance-explained/     classes, rates, employers, State Pension years
+       /guides/student-loans-explained/          plans, thresholds, repayments, interest, write-off
+       /guides/isa-vs-pension-explained/         allowances, relief, access, which leaves more
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
        /guides/matched-betting-explained/        lay stakes, qualifying bets, free bets
 
@@ -392,15 +395,125 @@ function changes2027() {
     foot: `Figures from ${src(S.ootlar)} and ${src(S.annex)}, ${src(S.dwp)}, ${src(S.nmw)} and ${src(S.slc)}, read 26 November 2026. Measures in Finance Bill 2026-27 still need to pass Parliament. A guide, not tax advice.` };
 }
 
+/* ============================================ National Insurance */
+function nationalInsurance() {
+  const all = registry.readAll(), cur = registry.currentFiles(all);
+  const gb = cur.gb.doc, se = cur["gb-se"].doc;
+  const NI = gb.items.find((i) => i.id === "gb-ni").charge.brackets, C4 = se.items.find((i) => i.id === "gb-ni").charge.brackets;
+  if (NI.length !== 3 || C4.length !== 3) throw new Error("NI guide: expected three bands");
+  const [pt, mainR] = [NI[1][0], NI[1][1]], [uel, upR] = [NI[2][0], NI[2][1]], [lpl, c4R] = [C4[1][0], C4[1][1]], [upl, c4Up] = [C4[2][0], C4[2][1]];
+  const seNote = se.items[0].note, c2At = +((/profits of £([\d,]+) or more/.exec(seNote) || [])[1] || "").replace(/,/g, ""), c2Vol = (/\(£([\d.]+) a week\)/.exec(se.notModelled.join(" ")) || [])[1];
+  if (!c2At || !c2Vol) throw new Error("NI guide: Class 2 figures not found in the self-employed file");
+  const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/rates-2026-27.json"), "utf8")), E = R.employerNI, sp = R.pensions.statePensionWeekly;
+  const ch = registry.chainFor(gb, all), sch = registry.chainFor(se, all), YEAR = gb.taxYear.label;
+  const ni = (g) => TaxEngine.compute(ch, g, {}).values["gb-ni"] || 0, c4 = (g) => TaxEngine.compute(sch, g, {}).values["gb-ni"] || 0;
+  const emp = (g) => Math.max(0, g - E.threshold) * E.rate / 100;
+  if (Math.abs(ni(40000) - (40000 - pt) * mainR / 100) > 0.01) throw new Error("NI guide: engine and bands disagree");
+  const rows = [15000, 20000, 30000, 40000, 50000, 60000, 80000, 100000].map((g) => [m0(g), m0(ni(g)), pct(ni(g) / g * 100), m0(emp(g)), m0(c4(g))]);
+  const body = section("what", "What National Insurance is for", p(`National Insurance is a tax on earnings that also builds your right to the <strong>State Pension</strong> and some benefits. Each tax year you pay it (or get credits for, for example while unemployed, ill, or as a parent or carer) counts as a <em>qualifying year</em>. You need 10 qualifying years for any new State Pension and 35 for the full rate, currently <strong>£${sp.toFixed(2)} a week</strong>. Gaps can sometimes be filled with voluntary contributions.`)) +
+    section("employees", "Employees: Class 1", p(`If you're employed you pay <strong>${mainR}%</strong> on earnings between ${m0(pt)} and ${m0(uel)} a year, and <strong>${upR}%</strong> on everything above ${m0(uel)}. It's worked out on each payday's earnings, not over the year as Income Tax is, and on gross pay: pension contributions under net pay or relief at source don't reduce it, but <a href="/salary-sacrifice-calculator/">salary sacrifice</a> does. You stop paying it once you reach State Pension age.`) +
+      site.table(["Salary", "Your NI", "Share of pay", "Employer's NI", "If self-employed"], rows, 560) +
+      p(`${YEAR} figures, paid evenly through the year. "If self-employed" is Class 4 on the same profit. Take-home pay with tax included is on the <a href="/salary/">salary calculator</a>.`)) +
+    section("employers", "Employers' National Insurance", p(`Employers pay <strong>${E.rate}%</strong> on each employee's earnings above ${m0(E.threshold)} a year, on top of the salary, with no upper limit. Many can take up to <strong>${m0(E.employmentAllowance)}</strong> a year off the bill through the Employment Allowance (not companies whose only paid employee is the director). It's why salary sacrifice saves employers money too, and why company directors often pay themselves a small salary plus dividends: see <a href="/salary-vs-dividends/">salary vs dividends</a>.`)) +
+    section("selfemployed", "Self-employed: Class 2 and Class 4", p(`On profits, the self-employed pay <strong>Class 4</strong>: ${c4R}% between ${m0(lpl)} and ${m0(upl)} and ${c4Up}% above, through Self Assessment. <strong>Class 2</strong> is no longer charged: with profits of ${m0(c2At)} or more it's treated as paid, so the year still counts for your State Pension, and below that you can pay it voluntarily at £${c2Vol} a week to keep the year. The <a href="/self-employed-tax-calculator/">self-employed tax calculator</a> works out both with Income Tax.`)) +
+    section("record", "Checking your record", p(`Your National Insurance record and State Pension forecast are in your personal tax account and the HMRC app. They show which years count and whether filling a gap with voluntary Class 3 contributions would raise your State Pension.`));
+  const q = [
+    [`How much National Insurance do I pay on £30,000?`, `${m0(ni(30000))} a year in ${YEAR} if you're employed: ${mainR}% of the ${m0(30000 - pt)} above ${m0(pt)}. Self-employed, Class 4 on £30,000 of profit is ${m0(c4(30000))}.`],
+    ["What is the National Insurance rate?", `${mainR}% on employees' earnings between ${m0(pt)} and ${m0(uel)} a year and ${upR}% above that; ${c4R}% and ${c4Up}% for the self-employed on profits; ${E.rate}% for employers above ${m0(E.threshold)}.`],
+    ["How many years of National Insurance do I need for a full State Pension?", `35 qualifying years for the full new State Pension (£${sp.toFixed(2)} a week), and at least 10 to get any. Credits count, as do voluntary contributions.`],
+    ["Do I pay National Insurance after State Pension age?", "No: employees stop paying Class 1 National Insurance once they reach State Pension age. Income Tax carries on as normal."],
+    ["Does a pension contribution reduce National Insurance?", "Only through salary sacrifice, which lowers your pay before National Insurance is worked out. Contributions taken under net pay or paid through relief at source come off after National Insurance."]
+  ];
+  return { path: "/guides/national-insurance-explained/", crumb: "National Insurance Explained", blurb: "What National Insurance pays for, the rates for employees, employers and the self-employed, and how many years you need for a full State Pension.",
+    title: site.fitTitle(`National Insurance Explained ${YEAR} — Rates, Thresholds & Your State Pension`, `National Insurance Explained (${YEAR})`), modified: gb.lastChecked,
+    desc: `How UK National Insurance works in ${YEAR}: ${mainR}% and ${upR}% for employees, ${E.rate}% for employers, Class 2 and Class 4 for the self-employed, and the 35 qualifying years for a full State Pension.`,
+    h1: "National Insurance explained", sub: `What it pays for, what you pay in <strong>${YEAR}</strong> as an employee, an employer or self-employed, and how it builds your State Pension.`,
+    sections: [["what", "What it's for"], ["employees", "Employees"], ["employers", "Employers"], ["selfemployed", "Self-employed"], ["record", "Your record"]],
+    tools: [["/salary/", "Take-home pay"], ["/self-employed-tax-calculator/", "Self-employed tax"], ["/salary-sacrifice-calculator/", "Salary sacrifice"], ["/salary-vs-dividends/", "Salary vs dividends"]],
+    body, q, callouts: ["/salary-vs-dividends/", "/contractor-calculator/"],
+    foot: `Rates from the ${YEAR} tax files (GOV.UK's <a href="https://www.gov.uk/national-insurance-rates-letters" rel="nofollow noopener" target="_blank">National Insurance rates</a> and <a href="https://www.gov.uk/self-employed-national-insurance-rates" rel="nofollow noopener" target="_blank">self-employed rates</a>), employer figures from <a href="${E.source}" rel="nofollow noopener" target="_blank">rates and thresholds for employers</a>, State Pension years from GOV.UK's <a href="https://www.gov.uk/new-state-pension/what-youll-get" rel="nofollow noopener" target="_blank">new State Pension</a>. A guide, not tax advice.` };
+}
+
+/* ================================================== Student loans */
+function studentLoans() {
+  const all = registry.readAll(), cur = registry.currentFiles(all), gb = cur.gb.doc, YEAR = gb.taxYear.label;
+  const SL = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/student-loans/uk.json"), "utf8"));
+  const cases = gb.items.find((i) => i.id === "gb-student-loan").charge.cases, pg = gb.items.find((i) => i.id === "gb-postgrad-loan").charge.cases.yes;
+  const thr = (c) => c.of.max[1].sub[1], rate = cases.plan2.pct, pgThr = pg.of.max[1].sub[1], pgRate = pg.pct;
+  const ch = registry.chainFor(gb, all);
+  const repay = (g, plan) => TaxEngine.compute(ch, g, { studentLoan: plan }).values["gb-student-loan"] || 0;
+  const plans = ["plan1", "plan2", "plan4", "plan5"];
+  const intText = (pl) => pl.interest.flat !== undefined ? `${pl.interest.flat}%` : `${pl.interest.low}% to ${pl.interest.high}%`;
+  const planRows = plans.map((k) => [SL.plans[k].name, esc(SL.plans[k].who), m0(thr(cases[k])), `${rate}%`, intText(SL.plans[k]), `${SL.plans[k].writeOffYears} years`])
+    .concat([[SL.plans.postgrad.name, esc(SL.plans.postgrad.who), m0(pgThr), `${pgRate}%`, intText(SL.plans.postgrad), `${SL.plans.postgrad.writeOffYears} years`]]);
+  const pays = [25000, 30000, 35000, 40000, 50000, 60000];
+  const exRows = pays.map((g) => [m0(g)].concat(plans.map((k) => m0(repay(g, k)))));
+  const p2 = SL.plans.plan2.interest;
+  const body = section("plans", "Which plan you're on", p(`Which plan you have depends on where you lived and when your course started. You repay <strong>${rate}%</strong> of your income above your plan's threshold (${pgRate}% above ${m0(pgThr)} for a Postgraduate Loan, on top of any undergraduate plan), and whatever is left is written off after a set number of years.`) +
+      site.table(["Plan", "Who", "Threshold", "Repay", "Interest now", "Written off after"], planRows, 640) +
+      p(`${YEAR} thresholds; interest rates as GOV.UK gives them now (they change each September). Write-off counts from the April you were first due to repay.`)) +
+    section("repayments", "What you repay", p(`Employees repay through PAYE, so it comes off each payslip alongside tax. Repayments depend only on what you earn, not on how much you owe: someone on ${m0(40000)} with Plan 2 repays ${m0(repay(40000, "plan2"))} a year whether they owe ${m0(20000)} or ${m0(60000)}.`) +
+      site.table(["Salary", "Plan 1", "Plan 2", "Plan 4", "Plan 5"], exRows, 480) +
+      p(`A year's repayments if paid evenly, from the same tax files as the <a href="/student-loan-calculator/">student loan calculator</a>, which also shows how the balance grows or shrinks over time.`)) +
+    section("interest", "Interest and write-off", p(`Interest is added to the balance, not taken from your pay. Plan 2 charges ${p2.low}% on incomes up to ${m0(p2.lower)}, rising to ${p2.high}% at ${m0(p2.upper)} and above. Because repayments are a share of income above a threshold, many Plan 2 and Plan 5 borrowers never clear the balance and have the rest written off after ${SL.plans.plan2.writeOffYears} or ${SL.plans.plan5.writeOffYears} years: for them it works more like a ${rate}% tax on earnings above the threshold than a normal loan.`) +
+      p(`That's why paying extra off early only helps if you'd otherwise clear the loan before write-off: usually higher earners or smaller balances. The <a href="/student-loan-calculator/">student loan calculator</a> projects your balance year by year so you can see which applies to you.`));
+  const q = [
+    [`How much is the Plan 2 student loan threshold?`, `${m0(thr(cases.plan2))} a year in ${YEAR}. You repay ${rate}% of your income above it: ${m0(repay(30000, "plan2"))} a year on ${m0(30000)}.`],
+    ["How much will I repay on £40,000?", plans.map((k) => `${SL.plans[k].name} ${m0(repay(40000, k))}`).join(", ") + ` a year in ${YEAR}.`],
+    ["When is a student loan written off?", plans.concat(["postgrad"]).map((k) => `${SL.plans[k].name} after ${SL.plans[k].writeOffYears} years`).join("; ") + ", counted from the April after you were first due to repay."],
+    ["Should I pay off my student loan early?", "Only if you'd clear it before it's written off anyway: otherwise extra payments reduce a balance that would have been written off. It depends on your plan, balance and expected earnings, which the student loan calculator can project."]
+  ];
+  return { path: "/guides/student-loans-explained/", crumb: "Student Loans Explained", blurb: "The plans, the thresholds, what you repay at each salary, how interest works and when the loan is written off.",
+    title: site.fitTitle(`Student Loans Explained ${YEAR} — Plans, Thresholds, Interest & Write-Off`, `Student Loans Explained (${YEAR})`), modified: SL.lastChecked,
+    desc: `How UK student loan repayments work in ${YEAR}: Plan 1, 2, 4 and 5 and Postgraduate thresholds, ${rate}% of income above them, interest rates, write-off dates and what you repay at each salary.`,
+    h1: "Student loans explained", sub: `Which plan you're on, what you repay in <strong>${YEAR}</strong>, how the interest works and when the rest is written off.`,
+    sections: [["plans", "The plans"], ["repayments", "What you repay"], ["interest", "Interest and write-off"]],
+    tools: [["/student-loan-calculator/", "Student loan calculator"], ["/salary/", "Take-home pay"], ["/degree-classification-calculator/", "Degree classification"]],
+    body, q, callouts: ["/student-loan-calculator/", "/degree-classification-calculator/"],
+    foot: `Thresholds and rates from the ${YEAR} UK tax file; interest and write-off from GOV.UK's <a href="${SL.sources[0].url}" rel="nofollow noopener" target="_blank">${esc(SL.sources[0].title)}</a> and <a href="${SL.sources[1].url}" rel="nofollow noopener" target="_blank">${esc(SL.sources[1].title)}</a> (checked ${site.niceDate(SL.lastChecked)}). A guide, not financial advice.` };
+}
+
+/* ================================================== ISAs and pensions */
+function isaPension() {
+  const PR = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/pension-tax-relief.json"), "utf8"));
+  const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/rates-2026-27.json"), "utf8")), P = R.pensions, YEAR = R.taxYear;
+  const isa = 20000, lisa = 4000, tf = P.taxFreePct;
+  /* £100 into a pension vs the same cost into an ISA, taking the pension out at 20% */
+  const outRate = (rateNow, rateLater) => { const cost = 100 * (1 - rateNow / 100); const pension = 100 * (tf / 100) + 100 * (1 - tf / 100) * (1 - rateLater / 100); return [cost, pension, cost]; };
+  const cases = [["Basic rate now, basic rate in retirement", 20, 20], ["Higher rate now, basic rate in retirement", 40, 20], ["Basic rate now, no tax in retirement", 20, 0], ["Higher rate now, higher rate in retirement", 40, 40]]
+    .map(([l, a, b]) => { const [cost, pen, isaV] = outRate(a, b); return [l, m2(cost), m2(pen), m2(isaV)]; });
+  const body = section("isa", "ISAs: tax-free, any time", p(`You can put up to <strong>${m0(isa)}</strong> a year (${YEAR}) into ISAs, split across cash, stocks and shares, innovative finance and Lifetime ISAs as you like (at most ${m0(lisa)} into a Lifetime ISA). There's no tax relief going in, but interest, dividends and gains are tax-free and you can take money out whenever you like.`)) +
+    section("pension", "Pensions: relief now, tax later", p(`Money paid into a pension gets tax relief: with relief at source you pay ${100 - PR.basicRelief}p and the provider claims ${PR.basicRelief}p from the government, and higher and additional rate taxpayers claim more back. You can get relief on up to ${PR.earningsLimitPct}% of your earnings (${m0(PR.noEarningsGross)} gross if you have none), within the <strong>${m0(PR.annualAllowance)}</strong> annual allowance. Workplace pensions usually add an employer contribution too, which an ISA can't match.`) +
+      p(`The catch is access: you usually can't take money out until 55 at the earliest. Then up to <strong>${tf}%</strong> is tax-free (at most ${m0(P.lumpSumAllowance)} over your lifetime) and the rest is taxed as income. From April 2027 most unused pension pots will also count towards your estate for Inheritance Tax.`)) +
+    section("compare", "Which leaves more?", p(`The same £100 of pre-tax income, put in either. Into a pension it all goes in; into an ISA you pay tax first. Taking the pension out, ${tf}% is tax-free and the rest is taxed at your rate in retirement. (Growth is the same in both, so it doesn't change which wins.)`) +
+      site.table(["", "Cost to you", "Pension, after tax", "ISA"], cases, 520) +
+      p(`Because of the ${tf}% tax-free part, a pension usually comes out ahead unless you'd pay more tax in retirement than now, and the gap is widest for higher-rate taxpayers and with an employer contribution. An ISA wins on flexibility: it's yours to spend at any age. Try your own numbers in the <a href="/isa-vs-pension/">ISA vs pension calculator</a>, and see the relief on a contribution with the <a href="/pension-tax-relief-calculator/">pension tax relief calculator</a>.`));
+  const q = [
+    ["Is a pension better than an ISA?", `For retirement saving, usually yes for the same cost: tax relief going in and ${tf}% tax-free coming out beat an ISA unless you'll pay a higher rate of tax in retirement than now. An ISA is better for money you might need before 55.`],
+    [`How much can I put in an ISA in ${YEAR}?`, `${m0(isa)} in total across all your ISAs, of which at most ${m0(lisa)} can go into a Lifetime ISA.`],
+    ["How much can I pay into a pension?", `Up to ${PR.earningsLimitPct}% of your earnings with tax relief, within the ${m0(PR.annualAllowance)} annual allowance (lower for very high earners). With no earnings you can still pay in ${m0(PR.noEarningsNet)}, which becomes ${m0(PR.noEarningsGross)} with relief.`],
+    ["How much of my pension can I take tax-free?", `Usually ${tf}%, up to ${m0(P.lumpSumAllowance)} in total across your pensions. The rest is taxed as income when you take it.`],
+    ["When can I take money out of my pension?", "Usually from 55 at the earliest, depending on your scheme's rules. ISAs can be taken out at any time (a Lifetime ISA has its own rules and a charge for early withdrawal)."]
+  ];
+  return { path: "/guides/isa-vs-pension-explained/", crumb: "ISA vs Pension Explained", blurb: "How ISAs and pensions are taxed, the allowances, when you can get at the money, and which leaves you more.",
+    title: site.fitTitle(`ISA vs Pension Explained ${YEAR} — Tax Relief, Allowances & Which Is Better`, `ISA vs Pension Explained (${YEAR})`), modified: PR.lastChecked,
+    desc: `ISAs and pensions compared for ${YEAR}: the ${m0(isa)} ISA allowance, pension tax relief and the ${m0(PR.annualAllowance)} annual allowance, ${tf}% tax-free at 55, and which leaves you more after tax.`,
+    h1: "ISA vs pension explained", sub: `How each is taxed, the <strong>${YEAR}</strong> allowances, when you can get at your money, and which comes out ahead.`,
+    sections: [["isa", "ISAs"], ["pension", "Pensions"], ["compare", "Which leaves more"]],
+    tools: [["/isa-vs-pension/", "ISA vs pension"], ["/pension-tax-relief-calculator/", "Pension tax relief"], ["/salary-sacrifice-calculator/", "Salary sacrifice"], ["/compound-interest/", "Compound interest"]],
+    body, q, callouts: ["/compound-interest/", "/pension-drawdown-calculator/"],
+    foot: `Pension rules from GOV.UK's <a href="${PR.sources[0].url}" rel="nofollow noopener" target="_blank">pension tax relief</a> and <a href="${P.source}" rel="nofollow noopener" target="_blank">lump sum allowance</a> pages (checked ${site.niceDate(PR.lastChecked)}); ISA limits from GOV.UK's <a href="https://www.gov.uk/individual-savings-accounts" rel="nofollow noopener" target="_blank">Individual Savings Accounts</a>; access age from <a href="https://www.gov.uk/pension-types" rel="nofollow noopener" target="_blank">Pension types</a>. A guide, not financial advice.` };
+}
+
 /* ===================================================== build */
-const GUIDES = [incomeTax(), selfAssessment(), changes2027(), mortgage(), betting()];
+const GUIDES = [incomeTax(), nationalInsurance(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
 GUIDES.forEach((g) => { site.write(g.path.replace(/^\/|\/$/g, ""), guidePage(g)); urls.push([g.path, "0.6"]); });
 
 const hubUrl = SITE + "/guides/";
-const hubDesc = "Plain-English guides to UK income tax, Self Assessment, the April 2027 tax changes, how mortgage interest works and the maths of matched betting, with worked examples and links to the calculators.";
+const hubDesc = "Plain-English guides to UK income tax, National Insurance, Self Assessment, student loans, ISAs and pensions, the April 2027 tax changes, how mortgage interest works and the maths of matched betting, with worked examples and links to the calculators.";
 site.write("guides", site.head({ title: "Guides — Tax, Mortgages and Betting Maths Explained", desc: hubDesc, url: hubUrl,
   ld: [site.webPage("Guides", hubDesc, hubUrl), site.breadcrumb([["Home", SITE + "/"], ["Guides", hubUrl]]),
     { "@context": "https://schema.org", "@type": "ItemList", numberOfItems: GUIDES.length, itemListElement: GUIDES.map((g, i) => ({ "@type": "ListItem", position: i + 1, name: g.h1, url: SITE + g.path })) }] }) + `    <header class="site-header">
