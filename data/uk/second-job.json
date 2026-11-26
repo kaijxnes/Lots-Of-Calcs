@@ -1,0 +1,70 @@
+{
+  "about": "How tax and National Insurance work with more than one job, for tools/build-second-job-pages.js. Each rule is quoted from the GOV.UK page it came from; rates and thresholds come from the UK and Scottish tax files (data/tax/gb) and data/uk/tax-codes.json.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "rules": {
+    "oneAllowance": {
+      "quote": "You only get one Personal Allowance for each tax year even if you have income from more than one job, pension, or other source.",
+      "source": 0
+    },
+    "codes": {
+      "quote": "For your second job or pension, you’ll usually be on one of these tax codes: BR — all income taxed at the basic rate (20%); D0 — all income taxed at the higher rate (40%); D1 — all income taxed at the additional rate (45%). Your tax codes depend on what your total income is across all sources for the tax year. If you live or work in Scotland or Wales the rates and tax codes may be different.",
+      "source": 0
+    },
+    "mainJob": {
+      "quote": "When you have more than one job working as an employee, your Personal Allowance is usually allocated to the job that pays you the most.",
+      "source": 0
+    },
+    "split": {
+      "quote": "Any allowance that has not been used by your main job might be allocated to your other job or jobs depending on your circumstances. … Contact HMRC to check if your Personal Allowance can be split between your jobs.",
+      "source": 0
+    },
+    "exampleBR": {
+      "quote": "You have a permanent job that pays £22,000 … seasonal work … which pays £1,800. … You’ll pay £1,886 tax for your permanent job … your seasonal employer uses a BR tax code and deducts 20% … You pay £360 … In total, you pay £2,246",
+      "source": 0
+    },
+    "exampleSplit": {
+      "quote": "job 1 pays £8,000 in the tax year; job 2 pays £7,000 in the tax year … The remainder of your Personal Allowance is £4,570 … £2,430 (£7,000 – £4,570) of this income would be taxable … You’ll pay £486 tax",
+      "source": 0
+    },
+    "yearEnd": {
+      "quote": "After the end of the tax year, we’ll check the tax you paid across all your jobs. If you paid the wrong amount, we’ll usually send you a P800 tax calculation letter showing whether you’re due a refund or you owe tax.",
+      "source": 0
+    },
+    "starter": {
+      "quote": "you’ll need to fill in a starter checklist and give this to your new employer. When completing the starter checklist, make sure you include that you already have another job.",
+      "source": 0
+    },
+    "niPerJob": {
+      "quote": "Your employer will automatically deduct Class 1 contributions from your pay if you’re both: under State Pension age; earning more than £242 a week from one job",
+      "source": 1
+    },
+    "defer": {
+      "quote": "Employees with more than one job may be allowed to defer (delay) paying Class 1 National Insurance on their other jobs. … If you have 2 jobs, over the tax year you’ll need to earn: £967 or more per week from one job; £242 or more per week in your second job … you’ll pay a reduced rate of 2% on your weekly earnings between £242 and £967.",
+      "source": 2
+    }
+  },
+  "sources": [
+    {
+      "title": "How tax works if you have more than one job",
+      "url": "https://www.gov.uk/guidance/how-tax-works-if-you-have-more-than-one-job"
+    },
+    {
+      "title": "National Insurance classes",
+      "url": "https://www.gov.uk/national-insurance/national-insurance-classes"
+    },
+    {
+      "title": "Defer your National Insurance",
+      "url": "https://www.gov.uk/defer-national-insurance"
+    },
+    {
+      "title": "Tax codes",
+      "url": "https://www.gov.uk/tax-codes"
+    }
+  ],
+  "deferWeekly": {
+    "main": 967,
+    "other": 242,
+    "source": 2
+  }
+}
