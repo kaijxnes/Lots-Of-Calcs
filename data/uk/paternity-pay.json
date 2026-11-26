@@ -1,0 +1,37 @@
+{
+  "about": "Statutory Paternity Pay and Statutory Shared Parental Pay for tools/build-paternity-pay-pages.js, quoted from GOV.UK. The weekly rate and lower earnings limit must match data/uk/rates-2026-27.json (the build checks). Changes each April.",
+  "taxYear": "2026/27",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "weeklyRate": 194.32,
+  "earningsPct": 90,
+  "minAverageWeekly": 129,
+  "paternityWeeks": 2,
+  "smpWeeks": 39,
+  "smpHigherWeeks": 6,
+  "leaveWeeks": 52,
+  "compulsoryWeeks": 2,
+  "sharedLeaveMax": 50,
+  "sharedPayMax": 37,
+  "sources": [
+    { "title": "Paternity pay and leave: pay", "url": "https://www.gov.uk/paternity-pay-leave/pay" },
+    { "title": "Paternity pay and leave: leave", "url": "https://www.gov.uk/paternity-pay-leave/leave" },
+    { "title": "Paternity pay and leave: eligibility", "url": "https://www.gov.uk/paternity-pay-leave/eligibility" },
+    { "title": "Shared Parental Leave and Pay", "url": "https://www.gov.uk/shared-parental-leave-and-pay" },
+    { "title": "Shared Parental Leave and Pay: what you'll get", "url": "https://www.gov.uk/shared-parental-leave-and-pay/what-youll-get" },
+    { "title": "Shared Parental Leave and Pay: eligibility for birth parents", "url": "https://www.gov.uk/shared-parental-leave-and-pay/eligibility-for-birth-parents" }
+  ],
+  "rules": {
+    "rate": { "quote": "The statutory weekly rate of Paternity Pay is £194.32, or 90% of your average weekly earnings (whichever is lower).", "source": 0 },
+    "taxed": { "quote": "Tax and National Insurance will be deducted.", "source": 0 },
+    "company": { "quote": "You could get more pay if your employer has a company paternity scheme - they cannot offer you less than the statutory amounts.", "source": 0 },
+    "leave": { "quote": "You can take up to 2 weeks’ leave. You can take both weeks together or take them separately in one-week blocks.", "source": 1 },
+    "when": { "quote": "Your leave cannot start before the birth. It must end within 52 weeks of the baby’s birth (or the due date if the baby is early).", "source": 1 },
+    "eligibility": { "quote": "be employed by your employer up to the date of birth earn an average of at least £129 a week (before tax) give the correct notice have been continuously employed by your employer for at least 26 weeks up to the end of any day in the ‘qualifying week’ The ‘qualifying week’ is the 15th week before the baby is due.", "source": 2 },
+    "share": { "quote": "You can share up to 50 weeks of leave and up to 37 weeks of pay between you. You need to share the pay and leave in the first year after your child is born or placed with your family.", "source": 3 },
+    "shareExample": { "quote": "For example, if you’re the mother and you’ve taken 22 weeks of Maternity Leave and Statutory Maternity Pay, you can share 30 weeks of SPL and 17 weeks of ShPP with your partner.", "source": 3 },
+    "shppRate": { "quote": "ShPP is paid at the rate of £194.32 a week or 90% of your average weekly earnings, whichever is lower. This is the same as Statutory Maternity Pay ( SMP ) except that during the first 6 weeks SMP is paid at 90% of whatever you earn (with no maximum).", "source": 4 },
+    "shppExample": { "quote": "She normally earns £300 a week. She’s paid £270 (90% of her average weekly earnings) as SMP for the first 6 weeks of maternity leave, then £194.32 a week for the next 8 weeks. Once she goes onto SPL , she’s still paid £194.32 a week.", "source": 4 },
+    "shppEarnings": { "quote": "To be eligible for ShPP , you must each earn on average at least £129 a week.", "source": 5 }
+  }
+}
