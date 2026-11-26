@@ -139,10 +139,71 @@ ${site.table(["Month"].concat(RULES.map((x) => x[0])), rows, 640)}      <p class
       <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}    </main>
 
-    <div class="hub-group-title" style="margin-top:28px;">Other years</div>
+${XMAS_YEARS.includes(y) ? `    <p class="tool-hint" style="margin-top:18px;">December and January: <a href="${XMAS(y)}">Christmas payday ${y}</a>, with the gap to January's payday.</p>
+` : ""}    <div class="hub-group-title" style="margin-top:28px;">Other years</div>
     <p class="salary-links">${other}</p>
     <div class="hub-group-title" style="margin-top:18px;">Other countries and tax weeks</div>
     <p class="salary-links">${abroad}</p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+
+/* "When do I get paid in December?" — December pay for each rule, the
+   January payday after it and the gap between them (the long January),
+   with the Christmas and New Year bank holidays. One page per year that
+   has the next year's bank holidays too. */
+const XMAS = (y) => `${BASE}${y}/christmas-payday/`;
+const XMAS_YEARS = YEARS.filter((y) => y >= THIS_YEAR && YEARS.includes(y + 1));
+const daysBetween = (a, b) => Math.round((W.parse(b) - W.parse(a)) / 86400000);
+function christmasPage(y) {
+  const url = SITE + XMAS(y), r = "england-and-wales";
+  const rows = RULES.map((rule) => {
+    const dec = paid(rule, y, 11, r), jan = paid(rule, y + 1, 0, r), due = rule[1](y, 11);
+    return [rule[0], dec === due ? dm(dec) : `<strong>${dm(dec)}</strong>`, dm(jan), `${daysBetween(dec, jan)} days`];
+  });
+  const lw = paid(RULES[0], y, 11, r), lwJan = paid(RULES[0], y + 1, 0, r), lf = paid(RULES[1], y, 11, r);
+  const p25 = paid(RULES[3], y, 11, r);
+  const hols = inYear(r, y).filter((h) => h.date >= `${y}-12-20`).concat(HOL[r].filter((h) => h.date.startsWith(`${y + 1}-01-0`)));
+  const scotJan = HOL.scotland.filter((h) => h.date.startsWith(`${y + 1}-01-0`) && !hols.some((x) => x.date === h.date));
+  const holRows = hols.map((h) => [W.long(h.date), holTitle(h)]).concat(scotJan.map((h) => [W.long(h.date), holTitle(h) + " (Scotland only)"]));
+  const longest = rows.reduce((a, b) => (parseInt(b[3]) > parseInt(a[3]) ? b : a));
+  const q = [
+    [`When do I get paid in December ${y}?`, `If you're paid on the last working day, ${W.long(lw).replace(/ \d{4}$/, "")}; the last Friday, ${W.long(lf).replace(/ \d{4}$/, "")}; the 25th, ${W.long(p25).replace(/ \d{4}$/, "")}${p25 !== RULES[3][1](y, 11) ? ", because Christmas Day is a bank holiday" : ""}. Many employers pay earlier in December, before Christmas, so check your payslip or ask payroll.`],
+    [`When is the January ${y + 1} payday?`, `On the last working day it's ${W.long(lwJan)}: ${daysBetween(lw, lwJan)} days after December's. Paid on the ${longest[0].toLowerCase()} rule, the gap is ${longest[3]}.`],
+    [`Why does January feel so long?`, `Because December pay usually comes before Christmas and January's at the end of the month, and Christmas spending lands in between. If your December pay comes early, the gap to January's payday is longer still: worth planning the budget for it.`],
+    [`Is Christmas Eve a bank holiday?`, `No: Christmas Eve and New Year's Eve aren't bank holidays anywhere in the UK, so they're normal working days for payday. ${andList(holRows.map((h) => h[0].replace(/ \d{4}$/, "")))} are.`]
+  ];
+  const title = site.fitTitle(`Christmas Payday ${y} — When You'll Be Paid in December and January`, `Christmas Payday ${y} — December & January Pay Dates`);
+  const desc = `When December ${y} pay lands for each payday rule, the January ${y + 1} payday after it and the gap between them, with the Christmas and New Year bank holidays.`;
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Working Days", SITE + BASE], [String(y), SITE + `${BASE}${y}/`], ["Christmas payday", url]]), site.faqLd(q)];
+  const benefits = fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? ` <a href="/benefit-payment-dates/${y}/">Benefit and pension payment dates ${y}</a>` : "";
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${BASE}${y}/payday-calendar/">← Payday calendar ${y}</a>
+      <h1 class="page-title">Christmas payday ${y}</h1>
+      <p class="page-subtitle">When you'll be paid in December ${y}, when January's payday comes, and how long you'll need to make it last.</p>
+${aheadNote(y)}${aheadNote(y + 1)}    </header>
+
+    <main class="tool">
+      <h2 class="tool-section-title">December and January paydays</h2>
+${site.table(["If you're paid on the…", `December ${y}`, `January ${y + 1}`, "Gap"], rows, 520)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than usual because the normal day is a weekend or bank holiday. England and Wales; Scotland's extra 2 January bank holiday doesn't move any of these. ${src(y)}</p>
+      <p class="tool-hint">Many employers pay earlier still in December, before Christmas: if yours does, the gap to January is longer than shown. ${esc(PAY_NOTE.replace(/ December pay is often earlier still, before Christmas\.$/, ""))}</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Bank holidays over Christmas and New Year</h2>
+${site.table(["Date", "Bank holiday"], holRows, 360)}      <p class="tool-hint" style="margin-top:12px;">Christmas Eve and New Year's Eve are normal working days.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">More dates</div>
+    <p class="salary-links"><a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a> <a href="${BASE}${y}/december/">Working days in December ${y}</a>${benefits} ${XMAS_YEARS.filter((x) => x !== y).map((x) => `<a href="${XMAS(x)}">Christmas payday ${x}</a>`).join(" ")} <a href="/christmas-savings-calculator/">Christmas savings calculator</a></p>
 
 ${site.FOOTER}
   </div>
@@ -360,6 +421,7 @@ site.write("working-days", hub());
 YEARS.forEach((y) => {
   site.write(`working-days/${y}`, yearPage(y)); urls.push([`${BASE}${y}/`, "0.6"]);
   site.write(`working-days/${y}/payday-calendar`, paydayPage(y)); urls.push([`${BASE}${y}/payday-calendar/`, "0.6"]);
+  if (XMAS_YEARS.includes(y)) { site.write(`working-days/${y}/christmas-payday`, christmasPage(y)); urls.push([XMAS(y), "0.6"]); }
   W.MONTHS.forEach((n, m) => { site.write(`working-days/${y}/${mslug(m)}`, monthPage(y, m)); urls.push([`${BASE}${y}/${mslug(m)}/`, "0.5"]); });
 });
 site.sitemapBlock("working days pages", "tools/build-working-days-pages.js", urls);
