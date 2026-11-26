@@ -53,7 +53,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | Norway | [no](no.md) | 2026 | 19 | 2026-11-25 | — |
 | Portugal | [pt](pt.md) | 2026 | 37 | 2026-11-25 | — |
 | Sweden | [se](se.md) | 2026 | 36 | 2026-11-25 | — |
-| Alaska | [us-ak](us-ak.md) | 2026 | 3 | 2026-11-25 | — |
+| Alaska | [us-ak](us-ak.md) | 2026 | 5 | 2026-11-25 | — |
 | Alabama | [us-al](us-al.md) | 2026 | 20 | 2026-11-25 | — |
 | Arkansas | [us-ar](us-ar.md) | 2026 | 46 | 2026-11-25 | — |
 | Arizona | [us-az](us-az.md) | 2026 | 6 | 2026-11-25 | — |

@@ -6,19 +6,54 @@
   "country": "US",
   "parent": "us",
   "standalone": true,
-  "taxYear": {"label": "2026", "start": "2026-01-01", "end": "2026-12-31"},
+  "taxYear": {
+    "label": "2026",
+    "start": "2026-01-01",
+    "end": "2026-12-31"
+  },
   "noIncomeTax": true,
-  "note": "Alaska has no state income tax on wages; take-home pay is federal income tax and FICA.",
-  "items": [],
-  "notModelled": ["Employee unemployment insurance contributions (Alaska is one of three states that charge employees)"],
+  "note": "Alaska has no state income tax on wages. Employees do pay unemployment insurance: 0.5% of wages up to the yearly taxable wage base, on top of federal income tax and FICA.",
+  "items": [
+    {
+      "id": "ak-ui",
+      "label": "Unemployment insurance (employee)",
+      "group": "social",
+      "note": "0.5% of wages up to the taxable wage base ($54,200 in 2026), at most $271 a year. Alaska is one of the few states where employees pay unemployment insurance.",
+      "charge": {
+        "pct": 0.5,
+        "of": {
+          "min": [
+            "gross",
+            54200
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "Employee unemployment insurance contributions (Alaska is one of three states that charge employees)"
+  ],
   "provisional": [],
   "sources": [
+    {
+      "title": "Alaska Department of Labor — 2026 unemployment insurance tax rates (employee rate 0.50%, taxable wage base $54,200)",
+      "url": "https://labor.alaska.gov/estax/2026-experience-rates.html"
+    },
+    {
+      "title": "Alaska ES Tax FAQs — wage base and employee rate by year",
+      "url": "https://dol.alaska.gov/estax/faq/WagesDeductions.htm"
+    },
     {
       "title": "Tax Foundation — State income tax rates",
       "url": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
     }
   ],
   "obtainedFrom": [
+    {
+      "title": "Alaska DOLWD, 2026 UI tax rates",
+      "url": "https://labor.alaska.gov/estax/2026-experience-rates.html",
+      "note": "Read 26 Nov 2026: \"The 2026 Taxable Wage Base is $54,200.00. The 2026 Employee Rate is 0.50%.\" The FAQ table gives the 2026 employee total as $271.00."
+    },
     {
       "title": "PolicyEngine US parameters and formulas",
       "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ak",
@@ -27,23 +62,34 @@
   ],
   "lastVerified": null,
   "lastChecked": "2026-11-25",
-  "verifyAt": "https://taxfoundation.org/data/all/state/state-income-tax-rates/",
+  "verifyAt": "https://labor.alaska.gov/estax/2026-experience-rates.html",
   "tests": [
     {
       "gross": 40000,
-      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"net": 34320}
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent. Unemployment insurance 0.5% × 40,000 = 200.00.",
+      "expect": {
+        "ak-ui": 200.0,
+        "net": 34120.0
+      }
     },
     {
       "gross": 85000,
-      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"net": 68627.5}
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent. Unemployment insurance 0.5% × 54,200 = 271.00.",
+      "expect": {
+        "ak-ui": 271.0,
+        "net": 68356.5
+      }
     },
     {
       "gross": 150000,
-      "options": {"status": "married"},
-      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.",
-      "expect": {"net": 123185}
+      "options": {
+        "status": "married"
+      },
+      "note": "No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent. Unemployment insurance 0.5% × 54,200 = 271.00.",
+      "expect": {
+        "ak-ui": 271.0,
+        "net": 122914.0
+      }
     }
   ]
 }
