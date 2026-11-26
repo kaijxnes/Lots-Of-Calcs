@@ -2,19 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://lotsofcalcs.com/guides/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
   <url>
     <loc>https://lotsofcalcs.com/guides/uk-income-tax/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/guides/national-insurance-explained/</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://lotsofcalcs.com/guides/self-assessment-explained/</loc>
-    <lastmod>2026-11-24</lastmod>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/guides/student-loans-explained/</loc>
+    <lastmod>2026-11-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/guides/isa-vs-pension-explained/</loc>
+    <lastmod>2026-11-26</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
