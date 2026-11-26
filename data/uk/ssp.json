@@ -1,0 +1,65 @@
+{
+  "about": "Statutory Sick Pay rules for tools/build-ssp-pages.js, each quoted from GOV.UK. The weekly rate changes each April.",
+  "taxYear": "2026/27",
+  "weeklyRate": 123.25,
+  "earningsPct": 80,
+  "maxWeeks": 28,
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "rules": {
+    "rate": {
+      "quote": "The weekly rate for Statutory Sick Pay (SSP) is £123.25 or 80% of average weekly earnings - whichever is lower. It’s paid for up to 28 weeks.",
+      "source": 1
+    },
+    "qualifyingDays": {
+      "quote": "SSP is paid: for the days an employee normally works - called ‘qualifying days’ in the same way as wages, for example on the normal payday, deducting tax and National insurance",
+      "source": 1
+    },
+    "fullDays": {
+      "quote": "You’ll be paid SSP for all the full days you’re off sick that you normally would have worked.",
+      "source": 0
+    },
+    "awe": {
+      "quote": "Your employer will use your average weekly earnings over an 8-week period to work out much you get. You still qualify if you started your job recently and have not yet received 8 weeks’ pay.",
+      "source": 0
+    },
+    "start": {
+      "quote": "SSP is paid when the employee is sick for at least one full working day. You cannot count a day as a sick day if an employee has worked for a minute or more before they go home sick.",
+      "source": 1
+    },
+    "linked": {
+      "quote": "To be linked, the periods must: last for at least one full working day; be 8 weeks or less apart. Your employee is no longer eligible for SSP if they have a continuous series of linked periods that lasts more than 3 years.",
+      "source": 1
+    },
+    "moreThanOneJob": {
+      "quote": "If you have more than one job, you may get SSP from each employer. Tax and National Insurance will be deducted.",
+      "source": 0
+    },
+    "fitNote": {
+      "quote": "You must give your employer a fit note if you’re off work for more than 7 days in a row (including non-working days).",
+      "source": 0
+    },
+    "company": {
+      "quote": "You cannot get less than the statutory amount. You can get more if your company has a sick pay scheme (or ‘occupational scheme’) - check your employment contract.",
+      "source": 0
+    },
+    "afterSSP": {
+      "quote": "If an employee is not eligible or their SSP ends: Employees may be able to apply for Universal Credit or Employment and Support Allowance (ESA).",
+      "source": 1
+    },
+    "ssp1": {
+      "quote": "They use form SSP1 to support their application. If your employee’s SSP is ending you must send them form SSP1",
+      "source": 1
+    }
+  },
+  "sources": [
+    {
+      "title": "Statutory Sick Pay (SSP)",
+      "url": "https://www.gov.uk/statutory-sick-pay"
+    },
+    {
+      "title": "Statutory Sick Pay (SSP): employer guide",
+      "url": "https://www.gov.uk/employers-sick-pay"
+    }
+  ]
+}

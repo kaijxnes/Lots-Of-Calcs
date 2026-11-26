@@ -29,7 +29,7 @@ const path = require("path");
 
 const STEPS = [
   ["tax/check.js", "--write"],
-  ["build-tax-pages.js"], ["build-pay-rise-pages.js"], ["build-bonus-pages.js"], ["build-net-to-gross-pages.js"], ["build-pro-rata-pages.js"], ["build-self-employed-pages.js"],
+  ["build-tax-pages.js"], ["build-pay-rise-pages.js"], ["build-bonus-pages.js"], ["build-net-to-gross-pages.js"], ["build-pro-rata-pages.js"], ["build-ssp-pages.js"], ["build-self-employed-pages.js"],
   ["build-self-assessment-pages.js"], ["build-child-benefit-pages.js"], ["build-marriage-allowance-pages.js"], ["build-tax-code-pages.js"], ["build-tax-refund-pages.js"], ["build-second-job-pages.js"],
   ["build-salary-sacrifice-pages.js"], ["build-pension-relief-pages.js"],
   ["build-stamp-duty-pages.js"], ["build-borrowing-pages.js"], ["build-budget-pages.js"], ["build-job-offer.js"],
