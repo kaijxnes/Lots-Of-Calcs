@@ -264,6 +264,14 @@
   ],
   "sources": [
     {
+      "title": "RSZ administrative instructions 2026 — social security contributions (employee shares 7.50 + 3.55 + 1.15 + 0.87 = 13.07%)",
+      "url": "https://www.socialsecurity.be/employer/instructions/dmfa/nl/latest/instructions/socialsecuritycontributions/contributions.html"
+    },
+    {
+      "title": "RSZ administrative instructions 2026 — special social security contribution (individual assessment schedule)",
+      "url": "https://www.socialsecurity.be/employer/instructions/dmfa/nl/latest/instructions/special_contributions/other_specialcontributions/specialsocialsecuritycontribution.html"
+    },
+    {
       "title": "Wikifin (FSMA) — belastingvrije som, aanslagjaar 2027",
       "url": "https://www.wikifin.be/nl/belasting-werk-en-inkomen/belastingaangifte/je-beroepsinkomen/je-bent-werknemer"
     },
@@ -291,7 +299,7 @@
     }
   ],
   "lastVerified": null,
-  "lastChecked": null,
+  "lastChecked": "2026-11-26",
   "verifyAt": "https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027",
   "tests": [
     {

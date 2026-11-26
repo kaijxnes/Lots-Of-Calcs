@@ -4,13 +4,15 @@ Generated from `data/tax/be/be.2026.json` by `tools/tax/checklist.js`. Do not ed
 
 - Tax year: 2026 (2026-01-01 to 2026-12-31)
 - Currency: EUR
-- Rates last checked: not yet
+- Rates last checked: 2026-11-26
 - Verified by a person: **not yet**
 - Provisional items: `The 13.07% employee social security rate comes from secondary sources`, `The 2026 tax bands and €6,070 lump-sum cap come from tax publishers (Practicali, Plutus), not an official page; Plutus gives a different tax-free amount (€11,180) from Wikifin's €11,550`
 
 ## Check against
 
 - **Start here:** https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027
+- RSZ administrative instructions 2026 — social security contributions (employee shares 7.50 + 3.55 + 1.15 + 0.87 = 13.07%): https://www.socialsecurity.be/employer/instructions/dmfa/nl/latest/instructions/socialsecuritycontributions/contributions.html
+- RSZ administrative instructions 2026 — special social security contribution (individual assessment schedule): https://www.socialsecurity.be/employer/instructions/dmfa/nl/latest/instructions/special_contributions/other_specialcontributions/specialsocialsecuritycontribution.html
 - Wikifin (FSMA) — belastingvrije som, aanslagjaar 2027: https://www.wikifin.be/nl/belasting-werk-en-inkomen/belastingaangifte/je-beroepsinkomen/je-bent-werknemer
 - Practicali — geïndexeerde bedragen aanslagjaar 2027: https://www.practicali.be/blog/geindexeerde-bedragen-aj-2027
 - Plutus — fiscale kerncijfers aanslagjaar 2027: https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027
