@@ -49,6 +49,7 @@ const CHECKS = [
   ["Company car benefit (appropriate percentages)", "", a("https://www.gov.uk/guidance/company-car-benefit-the-appropriate-percentage-480-appendix-2", "HMRC"), when(J("data/uk/company-car.json").lastChecked), "/company-car-tax-calculator/"],
   ["Statutory notice periods", "", a("https://www.gov.uk/staff-redundant/giving-staff-notice", "GOV.UK"), when(J("data/uk/notice-period.json").lastChecked), "/notice-period-calculator/"],
   ["Tax-Free Childcare", "", a("https://www.gov.uk/tax-free-childcare", "GOV.UK"), when(J("data/uk/tax-free-childcare.json").lastChecked), "/childcare-help-calculator/"],
+  ["Statutory Paternity Pay and Shared Parental Pay", "", a("https://www.gov.uk/paternity-pay-leave/pay", "GOV.UK"), when(J("data/uk/paternity-pay.json").lastChecked), "/paternity-pay-calculator/"],
   ["Tax on savings interest (UK and 7 other countries)", "", a("https://www.gov.uk/apply-tax-free-interest-on-savings", "GOV.UK and each country's tax authority"), when(J("data/uk/savings-tax.json").lastChecked), "/savings-tax-calculator/"],
   ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
   ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
