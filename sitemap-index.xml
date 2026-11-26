@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
+    <loc>https://lotsofcalcs.com/sitemaps/age-in-year-pages.xml</loc>
+    <lastmod>2026-11-26</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://lotsofcalcs.com/sitemaps/appliance-pages.xml</loc>
     <lastmod>2026-11-24</lastmod>
   </sitemap>

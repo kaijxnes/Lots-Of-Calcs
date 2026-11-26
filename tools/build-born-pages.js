@@ -122,7 +122,8 @@ function page(y) {
   const desc = `If you were born in ${y}, you are ${after} in ${NOW} once you've had your birthday, or ${before} before it. With your generation and the year you turn every milestone age.`;
   const miles = [18, 21, 30, 40, 50, 60, 65, 70, 80, 90, 100].map((a) => [`${a}`, `${y + a}`, y + a < NOW ? "Done" : y + a === NOW ? "This year" : `In ${y + a - NOW} year${y + a - NOW === 1 ? "" : "s"}`]);
   const future = Array.from(new Set([NOW + 1, NOW + 2, NOW + 3, NOW + 4, 2030, 2035, 2040, 2045, 2050].filter((t) => t > NOW))).sort((a, b) => a - b);
-  const ahead = future.map((t) => [String(t), `${t - y - 1} or ${t - y}`]);
+  /* link the year to its "how old will I be in…" page (tools/build-age-in-year-pages.js) */
+  const ahead = future.map((t) => [fs.existsSync(path.join(site.ROOT, "birthday", `how-old-will-i-be-in-${t}`, "index.html")) ? `<a href="/birthday/how-old-will-i-be-in-${t}/">${t}</a>` : String(t), `${t - y - 1} or ${t - y}`]);
   const q = [
     [`How old will I be in 2030 if I was born in ${y}?`, `${2030 - y} once your birthday has passed in 2030, or ${2030 - y - 1} before it. In ${NOW + 1} you'll be ${NOW + 1 - y} after your birthday.`],
     [`How old am I if I was born in ${y}?`, `In ${NOW} you are ${after} if your birthday has already been this year, or ${before} if it's still to come.`],
