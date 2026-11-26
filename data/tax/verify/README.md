@@ -20,7 +20,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | **New Zealand** | [nz](nz.md) | 2026-27 | 23 | 2026-11-25 | — |
 | **France** | [fr](fr.md) | 2026 | 57 | — | — |
 | Austria | [at](at.md) | 2026 | 57 | 2026-11-25 | — |
-| Belgium | [be](be.md) | 2026 | 34 | — | — |
+| Belgium | [be](be.md) | 2026 | 34 | 2026-11-26 | — |
 | Canada (federal) | [ca](ca.md) | 2026 | 26 | 2026-11-11 | — |
 | Alberta | [ca-ab](ca-ab.md) | 2026 | 15 | 2026-11-11 | — |
 | British Columbia | [ca-bc](ca-bc.md) | 2026 | 17 | 2026-11-11 | — |
