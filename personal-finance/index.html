@@ -21,7 +21,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="theme-color" content="#1f2233">
-<link rel="stylesheet" href="/styles.css?v=9bf7fda0">
+<link rel="stylesheet" href="/styles.css?v=83123e7a">
 <script src="/theme.js?v=08c0b879"></script>
 <script src="/consent.js?v=fc8878df" defer></script>
 <script src="/visits.js?v=7f8547a3" defer></script>
@@ -178,9 +178,11 @@
     <header class="site-header">
       <p class="breadcrumb"><a href="/">Home</a> <span class="sep">/</span> Personal Finance</p>
       <h1 class="page-title">Personal Finance Calculators</h1>
-      <p class="page-subtitle">What you earn and where it goes: take-home pay after tax in over 80 places, pay rises, self-employed tax, a 50/30/20 budget, cashback and what inflation does to your money. All calculations run locally in your browser, with no sign-up.</p>
+      <p class="page-subtitle">What you earn and where it goes: take-home pay after tax in over 80 places, the tax on it, your pay and rights at work, benefits and help for parents, and budgeting. All calculations run locally in your browser, with no sign-up.</p>
     </header>
 
+    <nav class="hub-jump" aria-label="Sections"><a href="#pay">Pay and take-home</a><a href="#tax">Tax, HMRC and self-employment</a><a href="#work">Work and employment rights</a><a href="#family">Benefits, parents and childcare</a><a href="#abroad">Working abroad</a><a href="#budget">Budgeting and spending</a></nav>
+    <h2 class="hub-group-title" id="pay"><span>Pay and take-home</span></h2>
     <div class="hub-grid">
       <a class="hub-card" href="/salary/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#banknote"></use></svg></span>
@@ -209,23 +211,21 @@
         <div class="title">Net to Gross Salary</div>
         <div class="desc">The salary you need to take home the amount you want, after tax and every deduction.</div>
       </a>
-      <a class="hub-card" href="/employer-cost-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#building-2"></use></svg></span>
-        <div class="title">Employer Cost</div>
-        <div class="desc">What an employee costs: salary, employer NI and pension.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/company-car-tax-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#car"></use></svg></span>
-        <div class="title">Company Car Tax</div>
-        <div class="desc">Benefit in kind and the tax on a company car, by CO2 and range.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
       <a class="hub-card" href="/pro-rata-salary-calculator/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#clock"></use></svg></span>
         <div class="title">Pro Rata Salary</div>
         <div class="desc">Part-time salary from the full-time one, by hours or days, and the take-home pay.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/hourly-to-salary/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#timer"></use></svg></span>
+        <div class="title">Hourly to Salary</div>
+        <div class="desc">Hourly, weekly, monthly and yearly pay converted, before tax.</div>
+      </a>
+      <a class="hub-card" href="/overtime-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#alarm-clock"></use></svg></span>
+        <div class="title">Overtime</div>
+        <div class="desc">Time and a half or double time, and what you keep after tax.</div>
       </a>
       <a class="hub-card" href="/minimum-wage-calculator/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#coins"></use></svg></span>
@@ -238,20 +238,56 @@
         <div class="title">Job Offer Comparison</div>
         <div class="desc">Two offers side by side after tax, pension, perks and commute.</div>
       </a>
-      <a class="hub-card" href="/hourly-to-salary/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#timer"></use></svg></span>
-        <div class="title">Hourly to Salary</div>
-        <div class="desc">Hourly, weekly, monthly and yearly pay converted, before tax.</div>
+      <a class="hub-card" href="/student-loan-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#graduation-cap"></use></svg></span>
+        <div class="title">Student Loan Repayment</div>
+        <div class="desc">Plans 1, 2, 4, 5 and Postgraduate: repaid or written off, and overpaying.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
-      <a class="hub-card" href="/currency-converter/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#arrow-left-right"></use></svg></span>
-        <div class="title">Currency Converter</div>
-        <div class="desc">Pounds, euros, dollars and 27 more at the ECB's reference rates.</div>
+      <a class="hub-card" href="/biweekly-pay-schedule/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#calendar"></use></svg></span>
+        <div class="title">Biweekly Pay Schedule</div>
+        <div class="desc">Every payday in the year, and which months bring three paychecks.</div>
       </a>
-      <a class="hub-card" href="/overtime-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#alarm-clock"></use></svg></span>
-        <div class="title">Overtime</div>
-        <div class="desc">Time and a half or double time, and what you keep after tax.</div>
+    </div>
+
+    <h2 class="hub-group-title" id="tax"><span>Tax, HMRC and self-employment</span></h2>
+    <div class="hub-grid">
+      <a class="hub-card" href="/tax-code-checker/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#search"></use></svg></span>
+        <div class="title">Tax Code Checker</div>
+        <div class="desc">What your tax code means (1257L, BR, 0T, K, M1) and the tax it takes.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/tax-refund-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#receipt"></use></svg></span>
+        <div class="title">Tax Refund</div>
+        <div class="desc">Whether PAYE took too much tax this year, e.g. after leaving a job, and how HMRC pays it back.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/marriage-allowance-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#gem"></use></svg></span>
+        <div class="title">Marriage Allowance</div>
+        <div class="desc">Transfer £1,260 of Personal Allowance to your spouse: up to £252 a year, backdated to 2022.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/child-benefit-tax-charge-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#baby"></use></svg></span>
+        <div class="title">Child Benefit Tax Charge</div>
+        <div class="desc">How much Child Benefit you pay back on an income over £60,000, and how to keep it.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/salary-sacrifice-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#piggy-bank"></use></svg></span>
+        <div class="title">Salary Sacrifice</div>
+        <div class="desc">What a pension salary sacrifice saves in tax, NI and student loan, and what it costs you.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/company-car-tax-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#car"></use></svg></span>
+        <div class="title">Company Car Tax</div>
+        <div class="desc">Benefit in kind and the tax on a company car, by CO2 and range.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
       <a class="hub-card" href="/self-employed-tax-calculator/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#receipt"></use></svg></span>
@@ -269,48 +305,6 @@
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#alarm-clock"></use></svg></span>
         <div class="title">Self Assessment Penalties</div>
         <div class="desc">HMRC's penalties and interest for filing or paying your tax return late.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/salary-sacrifice-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#piggy-bank"></use></svg></span>
-        <div class="title">Salary Sacrifice</div>
-        <div class="desc">What a pension salary sacrifice saves in tax, NI and student loan, and what it costs you.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/child-benefit-tax-charge-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#baby"></use></svg></span>
-        <div class="title">Child Benefit Tax Charge</div>
-        <div class="desc">How much Child Benefit you pay back on an income over £60,000, and how to keep it.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/universal-credit-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#heart-handshake"></use></svg></span>
-        <div class="title">Universal Credit</div>
-        <div class="desc">Your monthly payment and how much you keep as your wages go up.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/childcare-help-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#toy-brick"></use></svg></span>
-        <div class="title">Childcare Help</div>
-        <div class="desc">Tax-Free Childcare or Universal Credit: which gives you more.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/marriage-allowance-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#gem"></use></svg></span>
-        <div class="title">Marriage Allowance</div>
-        <div class="desc">Transfer £1,260 of Personal Allowance to your spouse: up to £252 a year, backdated to 2022.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/tax-code-checker/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#search"></use></svg></span>
-        <div class="title">Tax Code Checker</div>
-        <div class="desc">What your tax code means (1257L, BR, 0T, K, M1) and the tax it takes.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/tax-refund-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#receipt"></use></svg></span>
-        <div class="title">Tax Refund</div>
-        <div class="desc">Whether PAYE took too much tax this year, e.g. after leaving a job, and how HMRC pays it back.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
       <a class="hub-card" href="/dividend-tax-calculator/">
@@ -337,40 +331,20 @@
         <div class="desc">Day rate to take-home pay, inside and outside IR35.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
-      <a class="hub-card" href="/maternity-pay-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#baby"></use></svg></span>
-        <div class="title">Maternity Pay</div>
-        <div class="desc">Statutory Maternity Pay week by week from your earnings.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/paternity-pay-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#baby"></use></svg></span>
-        <div class="title">Paternity Pay</div>
-        <div class="desc">Statutory Paternity Pay and Shared Parental Pay, and the leave left to share.</div>
+    </div>
+
+    <h2 class="hub-group-title" id="work"><span>Work and employment rights</span></h2>
+    <div class="hub-grid">
+      <a class="hub-card" href="/employer-cost-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#building-2"></use></svg></span>
+        <div class="title">Employer Cost</div>
+        <div class="desc">What an employee costs: salary, employer NI and pension.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
       <a class="hub-card" href="/statutory-sick-pay-calculator/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#stethoscope"></use></svg></span>
         <div class="title">Statutory Sick Pay</div>
         <div class="desc">How much SSP you get for time off sick, by the day and the week.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/mileage-allowance-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#route"></use></svg></span>
-        <div class="title">Mileage Allowance</div>
-        <div class="desc">HMRC's 55p mileage rate for your business miles, and the tax relief if your employer pays less.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/redundancy-pay-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#package"></use></svg></span>
-        <div class="title">Redundancy Pay</div>
-        <div class="desc">UK statutory redundancy pay by age, service and weekly pay.</div>
-        <span class="card-tag" title="For the United Kingdom">UK</span>
-      </a>
-      <a class="hub-card" href="/notice-period-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#calendar-days"></use></svg></span>
-        <div class="title">Notice Period</div>
-        <div class="desc">Statutory notice and the last day of your notice period.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
       <a class="hub-card" href="/holiday-entitlement-calculator/">
@@ -385,12 +359,56 @@
         <div class="desc">Holiday hours at 12.07% and rolled-up holiday pay each pay period.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
-      <a class="hub-card" href="/student-loan-calculator/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#graduation-cap"></use></svg></span>
-        <div class="title">Student Loan Repayment</div>
-        <div class="desc">Plans 1, 2, 4, 5 and Postgraduate: repaid or written off, and overpaying.</div>
+      <a class="hub-card" href="/redundancy-pay-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#package"></use></svg></span>
+        <div class="title">Redundancy Pay</div>
+        <div class="desc">UK statutory redundancy pay by age, service and weekly pay.</div>
         <span class="card-tag" title="For the United Kingdom">UK</span>
       </a>
+      <a class="hub-card" href="/notice-period-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#calendar-days"></use></svg></span>
+        <div class="title">Notice Period</div>
+        <div class="desc">Statutory notice and the last day of your notice period.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/mileage-allowance-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#route"></use></svg></span>
+        <div class="title">Mileage Allowance</div>
+        <div class="desc">HMRC's 55p mileage rate for your business miles, and the tax relief if your employer pays less.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+    </div>
+
+    <h2 class="hub-group-title" id="family"><span>Benefits, parents and childcare</span></h2>
+    <div class="hub-grid">
+      <a class="hub-card" href="/universal-credit-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#heart-handshake"></use></svg></span>
+        <div class="title">Universal Credit</div>
+        <div class="desc">Your monthly payment and how much you keep as your wages go up.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/childcare-help-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#toy-brick"></use></svg></span>
+        <div class="title">Childcare Help</div>
+        <div class="desc">Tax-Free Childcare or Universal Credit: which gives you more.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/maternity-pay-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#baby"></use></svg></span>
+        <div class="title">Maternity Pay</div>
+        <div class="desc">Statutory Maternity Pay week by week from your earnings.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+      <a class="hub-card" href="/paternity-pay-calculator/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#baby"></use></svg></span>
+        <div class="title">Paternity Pay</div>
+        <div class="desc">Statutory Paternity Pay and Shared Parental Pay, and the leave left to share.</div>
+        <span class="card-tag" title="For the United Kingdom">UK</span>
+      </a>
+    </div>
+
+    <h2 class="hub-group-title" id="abroad"><span>Working abroad</span></h2>
+    <div class="hub-grid">
       <a class="hub-card" href="/30-percent-ruling-calculator/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#luggage"></use></svg></span>
         <div class="title">30% Ruling</div>
@@ -403,6 +421,15 @@
         <div class="desc">Spain's 24% flat tax for new arrivals against normal income tax.</div>
         <span class="card-tag" title="For Spain">Spain</span>
       </a>
+      <a class="hub-card" href="/currency-converter/">
+        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#arrow-left-right"></use></svg></span>
+        <div class="title">Currency Converter</div>
+        <div class="desc">Pounds, euros, dollars and 27 more at the ECB's reference rates.</div>
+      </a>
+    </div>
+
+    <h2 class="hub-group-title" id="budget"><span>Budgeting and spending</span></h2>
+    <div class="hub-grid">
       <a class="hub-card" href="/50-30-20-budget/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#chart-column"></use></svg></span>
         <div class="title">50/30/20 Budget</div>
@@ -412,11 +439,6 @@
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#gem"></use></svg></span>
         <div class="title">Wedding Budget</div>
         <div class="desc">Split your wedding budget and see the cost per guest.</div>
-      </a>
-      <a class="hub-card" href="/biweekly-pay-schedule/">
-        <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#calendar"></use></svg></span>
-        <div class="title">Biweekly Pay Schedule</div>
-        <div class="desc">Every payday in the year, and which months bring three paychecks.</div>
       </a>
       <a class="hub-card" href="/cashback/">
         <span class="icon"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=74747dc3#credit-card"></use></svg></span>
