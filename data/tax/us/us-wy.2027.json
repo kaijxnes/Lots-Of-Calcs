@@ -1,0 +1,61 @@
+{
+  "id": "us-wy",
+  "name": "Wyoming",
+  "appliesTo": "Residents of Wyoming",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "noIncomeTax": true,
+  "note": "Wyoming has no state income tax on wages; take-home pay is federal income tax and FICA.",
+  "items": [],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Tax Foundation — State income tax rates",
+      "url": "https://taxfoundation.org/data/all/state/state-income-tax-rates/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/wy",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://taxfoundation.org/data/all/state/state-income-tax-rates/",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "No state income tax: federal income tax and FICA only, from the 2027 federal file (IRS Rev. Proc. 2026-35, SSA wage base $192,300).",
+      "expect": {
+        "net": 34388.0
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "No state income tax: federal income tax and FICA only, from the 2027 federal file (IRS Rev. Proc. 2026-35, SSA wage base $192,300).",
+      "expect": {
+        "net": 68908.0
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "No state income tax: federal income tax and FICA only, from the 2027 federal file (IRS Rev. Proc. 2026-35, SSA wage base $192,300).",
+      "expect": {
+        "net": 123746.0
+      }
+    }
+  ]
+}
