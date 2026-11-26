@@ -116,7 +116,8 @@ function page(s) {
     [`How much does the employee take home on ${m0(s)}?`, `About ${m2(take)} a year (${m2(take / 12)} a month) in England, Wales and Northern Ireland, with tax code 1257L, before their own pension contribution or any student loan. The salary calculator has the full breakdown.`],
     ["Does Employment Allowance reduce the cost?", `If the employer is eligible, it takes up to ${m0(R.employmentAllowance)} a year off its National Insurance bill across all staff, which would cover the ${m2(r.ni)} here.`]
   ];
-  const others = SALARIES.filter((x) => x !== s).map((x) => `<a href="${surl(x)}">${m0(x)}</a>`).join(" ");
+  const salaryPage = fs.existsSync(path.join(site.ROOT, "salary", `${s}-after-tax`, "index.html")) ? `/salary/${s}-after-tax/` : null;
+  const others = (salaryPage ? [`<a href="${salaryPage}">${m0(s)} after tax</a>`] : []).concat(SALARIES.filter((x) => x !== s).map((x) => `<a href="${surl(x)}">${m0(x)}</a>`)).join(" ");
   return head(title, desc, u, [["Home", SITE + "/"], ["Employer Cost Calculator", SITE + BASE], [m0(s), u]], q) + `    <header class="site-header">
       <a class="back-link" href="${BASE}">← Employer cost calculator</a>
       <h1 class="page-title">Cost of employing someone on ${m0(s)}</h1>
