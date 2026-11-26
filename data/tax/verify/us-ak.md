@@ -10,20 +10,29 @@ Generated from `data/tax/us/us-ak.2026.json` by `tools/tax/checklist.js`. Do not
 
 ## Check against
 
-- **Start here:** https://taxfoundation.org/data/all/state/state-income-tax-rates/
+- **Start here:** https://labor.alaska.gov/estax/2026-experience-rates.html
+- Alaska Department of Labor — 2026 unemployment insurance tax rates (employee rate 0.50%, taxable wage base $54,200): https://labor.alaska.gov/estax/2026-experience-rates.html
+- Alaska ES Tax FAQs — wage base and employee rate by year: https://dol.alaska.gov/estax/faq/WagesDeductions.htm
 - Tax Foundation — State income tax rates: https://taxfoundation.org/data/all/state/state-income-tax-rates/
 
 ## Figures
 
 Tick each figure once it matches the official source. Amounts are yearly, in undefined, unless the line says otherwise.
 
+### Unemployment insurance (employee) (`ak-ui`)
+
+> 0.5% of wages up to the taxable wage base ($54,200 in 2026), at most $271 a year. Alaska is one of the few states where employees pay unemployment insurance.
+
+- [ ] rate 0.5%
+- [ ] capped at 54,200
+
 ## Spot checks
 
 Worked results the data must reproduce (`node tools/tax/check.js` runs them). Compare a few with an official calculator or a real payslip.
 
-- [ ] 40,000: net 34,320 — No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.
-- [ ] 85,000: net 68,627.50 — No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.
-- [ ] 150,000 with status = married: net 123,185 — No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent.
+- [ ] 40,000: ak-ui 200; net 34,120 — No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent. Unemployment insurance 0.5% × 40,000 = 200.00.
+- [ ] 85,000: ak-ui 271; net 68,356.50 — No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent. Unemployment insurance 0.5% × 54,200 = 271.00.
+- [ ] 150,000 with status = married: ak-ui 271; net 122,914 — No state income tax. PolicyEngine US 2.62.5 gives the same state figures to the cent. Unemployment insurance 0.5% × 54,200 = 271.00.
 
 ## Not modelled (confirm the page says so)
 

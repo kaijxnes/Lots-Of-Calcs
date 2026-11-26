@@ -30,7 +30,7 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 |---|---|---|---|
 | at | Austria | [source](https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/) |  |
 | be | Belgium | [source](https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027) |  |
-| ca | Canada (federal) | [source](https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf) | CRA T4127 January 2027 edition: indexation, brackets, basic personal amount, CPP/CPP2 and EI 2027 rates and maximums. |
+| ca | Canada (federal) | [source](https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf) | CRA T4127 January 2027 edition: indexation, brackets, basic personal amount, CPP/CPP2 and EI 2027 rates and maximums. On 26 November 2026 the CRA had not yet posted 2027 indexation; news reports gave the 2027 CPP YMPE as $76,700 and YAMPE as $87,400 (confirm from the CRA) and the EI rate was not yet confirmed. canada.ca refuses automated requests from some environments: use payroll publications that quote it if so. |
 | ca-ab | Alberta | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
 | ca-bc | British Columbia | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
 | ca-mb | Manitoba | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
