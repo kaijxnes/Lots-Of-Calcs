@@ -23,6 +23,7 @@ const TAGS = {
   "/minimum-wage-calculator/": "UK",
   "/savings-tax-calculator/": "UK",
   "/irregular-hours-holiday-calculator/": "UK",
+  "/universal-credit-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",

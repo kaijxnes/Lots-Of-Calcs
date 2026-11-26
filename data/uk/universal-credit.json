@@ -1,0 +1,117 @@
+{
+  "about": "Universal Credit monthly amounts and earnings rules for tools/build-universal-credit-pages.js, each quoted from GOV.UK and DWP's benefit and pension rates. The amounts change each April.",
+  "taxYear": "2026/27",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "standard": { "singleUnder25": 338.58, "single25": 424.90, "coupleUnder25": 528.34, "couple25": 666.97 },
+  "child": 303.94,
+  "firstChildBefore2017Extra": 47.94,
+  "disabledChild": { "lower": 164.79, "higher": 514.71 },
+  "health": { "lcwra": 217.26, "lcwraSevere": 429.80 },
+  "carer": 209.34,
+  "childcarePct": 85,
+  "childcareMax": { "one": 1071.09, "twoOrMore": 1836.16 },
+  "workAllowance": { "withHousing": 427, "withoutHousing": 710 },
+  "taperPct": 55,
+  "capital": { "disregard": 6000, "upper": 16000, "step": 250, "perStep": 4.35 },
+  "benefitCap": { "earningsThreshold": 881, "outsideLondon": { "family": 1835, "single": 1229.42 }, "london": { "family": 2110.25, "single": 1413.92 } },
+  "sources": [
+    { "title": "Universal Credit: what you'll get", "url": "https://www.gov.uk/universal-credit/what-youll-get" },
+    { "title": "Universal Credit: how your wages affect your payments", "url": "https://www.gov.uk/universal-credit/how-your-wages-affect-your-payments" },
+    { "title": "Universal Credit and earnings", "url": "https://www.gov.uk/guidance/universal-credit-and-earnings" },
+    { "title": "Universal Credit if you have children", "url": "https://www.gov.uk/guidance/universal-credit-if-you-have-children" },
+    { "title": "Benefit and pension rates 2026 to 2027", "url": "https://www.gov.uk/government/publications/benefit-and-pension-rates-2026-to-2027/proposed-benefit-and-pension-rates-2026-to-2027" },
+    { "title": "Benefit cap", "url": "https://www.gov.uk/benefit-cap" },
+    { "title": "Universal Credit: eligibility", "url": "https://www.gov.uk/universal-credit/eligibility" }
+  ],
+  "rules": {
+    "standard": {
+      "quote": "If you’re single and under 25 £338.58 If you’re single and 25 or over £424.90 If you live with your partner and you’re both under 25 £528.34 (for you both) If you live with your partner and either of you are 25 or over £666.97 (for you both)",
+      "source": 0
+    },
+    "child": {
+      "quote": "You’ll get £303.94 a month for each child that lives with you. If your first child was born before 6 April 2017, you’ll get an extra £47.94 a month for that child.",
+      "source": 0
+    },
+    "twoChildLimit": {
+      "quote": "The 2-child limit ended on 6 April 2026 Universal Credit now pays the extra amount for every child, no matter how many children you have.",
+      "source": 3
+    },
+    "disabledChild": {
+      "quote": "£164.79 - the lower amount £514.71 - the higher amount",
+      "source": 0
+    },
+    "health": {
+      "quote": "If you have a severe health condition or disability that’s unlikely to change or you are nearing the end of your life £429.80 If your health condition or disability is assessed as less severe or your condition may improve over time £217.26 There are different rules if you reported a health condition before 6 April 2026",
+      "source": 0
+    },
+    "healthRates": {
+      "quote": "Limited Capability for Work and Work-Related Activity amount | 423.27 | 217.26 | Limited Capability for Work and Work-Related Activity amount (Pre-2026 claimant, severe conditions criteria claimant or claimant who is terminally ill) | 423.27 | 429.80",
+      "source": 4
+    },
+    "carer": {
+      "quote": "You’ll get an extra monthly amount of £209.34. If you live with your partner and you both care for the same person, you’ll only get one extra monthly amount.",
+      "source": 0
+    },
+    "carerNotWithHealth": {
+      "quote": "If you are getting an extra amount because you have limited capability for work and work related activity (LCWRA), you cannot also get the carer’s element.",
+      "source": 0
+    },
+    "childcare": {
+      "quote": "You can claim back up to 85% of your childcare costs if you’re working. If you live with your partner both of you need to be working, unless one of you is unable to work due to a disability or health condition.",
+      "source": 0
+    },
+    "childcareMax": {
+      "quote": "The most you can get each month is: £1,071.09 for one child £1,836.16 for 2 or more children",
+      "source": 0
+    },
+    "taper": {
+      "quote": "For every £1 you earn from working, your Universal Credit payment goes down by 55p. Your income will be your wages plus your new Universal Credit payment.",
+      "source": 1
+    },
+    "workAllowanceWho": {
+      "quote": "You can earn a certain amount before your Universal Credit starts to be reduced if you or your partner are either: responsible for a child or young person living with a disability or health condition that affects your ability to work",
+      "source": 1
+    },
+    "workAllowanceLower": {
+      "quote": "You can earn up to £427 a month before your payment starts to reduce if either: you get help with housing costs through Universal Credit you live in temporary accommodation arranged by your council because you’re homeless",
+      "source": 1
+    },
+    "workAllowanceHigher": {
+      "quote": "If neither of these circumstances apply to you, you can earn up to £710 a month before your payment starts to reduce.",
+      "source": 1
+    },
+    "noHoursLimit": {
+      "quote": "There’s no limit to how many hours you can work and still get Universal Credit.",
+      "source": 1
+    },
+    "takeHome": {
+      "quote": "A workplace pension run by your employer should already be taken into account, as Universal Credit is based on your net take-home pay.",
+      "source": 2
+    },
+    "statutoryPay": {
+      "quote": "Any statutory pay you receive is treated as earnings, in the same way as your regular wages.",
+      "source": 2
+    },
+    "otherBenefits": {
+      "quote": "Your Universal Credit payment will be reduced by an amount equal to the other benefit’s payment.",
+      "source": 0
+    },
+    "capital": {
+      "quote": "If you have over £6,000 in money, savings and investments, your payment will be reduced by £4.35 for every £250 you have between £6,000 and £16,000. Another £4.35 is taken off for any remaining amount that is not a complete £250.",
+      "source": 0
+    },
+    "capitalLimit": {
+      "quote": "have £16,000 or less in money, savings and investments",
+      "source": 6
+    },
+    "benefitCapEarnings": {
+      "quote": "get Universal Credit and you and your partner earn £881 or more a month combined, after tax and National Insurance contributions",
+      "source": 5
+    },
+    "benefitCapAmounts": {
+      "quote": "Benefit cap outside Greater London Per week Per month If you’re in a couple £423.46 £1,835 If you’re a single parent and your children live with you £423.46 £1,835 If you’re a single adult £283.71 £1,229.42 Benefit cap inside Greater London Per week Per month If you’re in a couple £486.98 £2,110.25 If you’re a single parent and your children live with you £486.98 £2,110.25 If you’re a single adult £326.29 £1,413.92",
+      "source": 5
+    }
+  }
+}
