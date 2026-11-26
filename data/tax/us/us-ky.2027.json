@@ -1,0 +1,129 @@
+{
+  "id": "us-ky",
+  "name": "Kentucky",
+  "appliesTo": "Residents of Kentucky",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ky-income-tax",
+      "label": "Kentucky income tax",
+      "group": "tax",
+      "note": "3.5% after the $3,470 standard deduction (2027).",
+      "charge": {
+        "pct": 3.5,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "us-wages",
+                3470
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "Local occupational license taxes (Louisville about 2.2%, Lexington 2.25%, others 1–2.5%)"
+  ],
+  "provisional": [
+    "The 3.5% rate assumes no reduction for 2027 is enacted under KRS 141.020(2)(g); check the Kentucky 2027 withholding formula when it is published"
+  ],
+  "sources": [
+    {
+      "title": "Kentucky DOR Announces 2027 Standard Deduction ($3,470)",
+      "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2027-Standard-Deduction.aspx"
+    },
+    {
+      "title": "KRS 141.020(2)(f): 3.5% for taxable years beginning on or after 1 January 2026",
+      "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56339"
+    },
+    {
+      "title": "Kentucky DOR — 2026 withholding formula (3.5% flat rate)",
+      "url": "https://revenue.ky.gov/Forms/2026%20Withholding%20Formula.pdf"
+    },
+    {
+      "title": "Kentucky DOR Announces 2026 Standard Deduction (September 4, 2025)",
+      "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx"
+    },
+    {
+      "title": "2025 Kentucky Individual Income Tax Return - Form 740 - Line 12",
+      "url": "https://revenue.ky.gov/Forms/740%20(2025).pdf#page=1"
+    },
+    {
+      "title": "2024 Kentucky individual tax credit schedule, ITC",
+      "url": "https://revenue.ky.gov/Forms/Schedule%20ITC%20(2025).pdf#page=2"
+    },
+    {
+      "title": "2025 Kentucky Form 8863-K",
+      "url": "https://revenue.ky.gov/Forms/8863-K%20(2025).pdf#page=1"
+    },
+    {
+      "title": "2025 KENTUCKY Standard Deduction Press Release",
+      "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2025-Standard-Deduction.aspx"
+    },
+    {
+      "title": "2021 Kentucky Individual Income Tax Return Residents Only - Form 740 - Line 12",
+      "url": "https://revenue.ky.gov/Forms/Form%20740-2021.pdf#page=1"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Kentucky DOR, 11 September 2026",
+      "url": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2027-Standard-Deduction.aspx",
+      "note": "\"the standard deduction for 2027 is $3,470.00\"."
+    },
+    {
+      "title": "KRS 141.020",
+      "url": "https://apps.legislature.ky.gov/law/statutes/statute.aspx?id=56339",
+      "note": "(2)(f) sets 3.5% from 2026; (2)(g) allows a 2027 reduction only through the revenue-condition process, which news reports in September 2026 said was not met."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ky",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://revenue.ky.gov/News/Pages/Kentucky-DOR-Announces-2026-Standard-Deduction.aspx",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "3.5% × (40,000 − 3,470) = 1,278.55.",
+      "expect": {
+        "ky-income-tax": 1278.55,
+        "net": 33109.45
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "3.5% × (85,000 − 3,470) = 2,853.55.",
+      "expect": {
+        "ky-income-tax": 2853.55,
+        "net": 66054.45
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "3.5% × (150,000 − 3,470) = 5,128.55.",
+      "expect": {
+        "ky-income-tax": 5128.55,
+        "net": 118617.45
+      }
+    }
+  ]
+}

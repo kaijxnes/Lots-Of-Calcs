@@ -1,0 +1,117 @@
+{
+  "id": "us-nc",
+  "name": "North Carolina",
+  "appliesTo": "Residents of North Carolina",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "nc-income-tax",
+      "label": "North Carolina income tax",
+      "group": "tax",
+      "note": "3.49% in 2027, after a standard deduction of $12,750 ($25,500 married).",
+      "charge": {
+        "pct": 3.49,
+        "of": {
+          "max": [
+            0,
+            {
+              "sub": [
+                "us-wages",
+                {
+                  "status": {
+                    "single": 12750,
+                    "married": 25500
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "N.C. Session Law 2026-41 (S.B. 257), section 44.1: G.S. 105-153.7 rate 3.49% for 2027–2029",
+      "url": "https://www.ncleg.gov/EnactedLegislation/SessionLaws/PDF/2025-2026/SL2026-41.pdf"
+    },
+    {
+      "title": "2025 North Carolina Individual Income Tax Instructions",
+      "url": "https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8"
+    },
+    {
+      "title": "2025 North Carolina Tax Rate Schedule",
+      "url": "https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules"
+    },
+    {
+      "title": "2025 North Carolina Standard Deduction",
+      "url": "https://www.ncdor.gov/taxes-forms/individual-income-tax/filing-topics/north-carolina-standard-deduction-or-north-carolina-itemized-deductions"
+    },
+    {
+      "title": "North Carolina Department of Revenue - Tax Rate Schedules",
+      "url": "https://www.ncdor.gov/taxes-forms/individual-income-tax/tax-rate-schedules"
+    },
+    {
+      "title": "2022 North Carolina Form D-400, Line 15",
+      "url": "https://www.ncdor.gov/2022-d-400-handwritten-version/open#page=2"
+    },
+    {
+      "title": "2023 North Carolina Form D-400, Line 15",
+      "url": "https://www.ncdor.gov/2023-d-400-handwritten-version/open#page=2"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Session Law 2026-41, signed 7 July 2026",
+      "url": "https://www.ncleg.gov/BillLookUp/2025/S257",
+      "note": "G.S. 105-153.7(a) as rewritten: \"In 2027, 2028, and 2029 — 3.49%\"; the revenue triggers now apply from 2035 (EY Tax Alert 28 July 2026 and Sovos agree). Standard deduction unchanged in G.S. 105-153.5."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nc",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://www.ncdor.gov/2025-d-401-individual-income-tax-instructions/open#page=8",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "3.49% × (40,000 − 12,750) = 951.02. Federal from the 2027 file.",
+      "expect": {
+        "nc-income-tax": 951.02,
+        "net": 33436.97
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "3.49% × (85,000 − 12,750) = 2,521.53. Federal from the 2027 file.",
+      "expect": {
+        "nc-income-tax": 2521.53,
+        "net": 66386.48
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "3.49% × (150,000 − 25,500) = 4,345.05. Federal from the 2027 file.",
+      "expect": {
+        "nc-income-tax": 4345.05,
+        "net": 119400.95
+      }
+    }
+  ]
+}
