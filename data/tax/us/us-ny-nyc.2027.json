@@ -1,0 +1,193 @@
+{
+  "id": "us-ny-nyc",
+  "name": "New York City",
+  "appliesTo": "Residents of the five boroughs",
+  "kind": "city",
+  "country": "US",
+  "parent": "us-ny",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "nyc-income-tax",
+      "label": "New York City income tax",
+      "group": "tax",
+      "note": "Charged on New York State taxable income, less the school tax credit ($63, or $125 married, up to $250,000 of income) and the school tax rate reduction credit.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": {
+                  "status": {
+                    "single": [
+                      [
+                        0,
+                        3.078
+                      ],
+                      [
+                        12000,
+                        3.762
+                      ],
+                      [
+                        25000,
+                        3.819
+                      ],
+                      [
+                        50000,
+                        3.876
+                      ]
+                    ],
+                    "married": [
+                      [
+                        0,
+                        3.078
+                      ],
+                      [
+                        21600,
+                        3.762
+                      ],
+                      [
+                        45000,
+                        3.819
+                      ],
+                      [
+                        90000,
+                        3.876
+                      ]
+                    ]
+                  }
+                },
+                "of": "ny-taxable"
+              },
+              {
+                "sum": [
+                  {
+                    "if": {
+                      "lte": [
+                        "us-wages",
+                        250000
+                      ]
+                    },
+                    "then": {
+                      "status": {
+                        "single": 63,
+                        "married": 125
+                      }
+                    },
+                    "else": 0
+                  },
+                  {
+                    "if": {
+                      "lte": [
+                        "us-wages",
+                        500000
+                      ]
+                    },
+                    "then": {
+                      "if": {
+                        "lte": [
+                          "ny-taxable",
+                          500000
+                        ]
+                      },
+                      "then": {
+                        "brackets": {
+                          "status": {
+                            "single": [
+                              [
+                                0,
+                                0.171
+                              ],
+                              [
+                                12000,
+                                0.228
+                              ]
+                            ],
+                            "married": [
+                              [
+                                0,
+                                0.171
+                              ],
+                              [
+                                21600,
+                                0.228
+                              ]
+                            ]
+                          }
+                        },
+                        "of": "ny-taxable"
+                      },
+                      "else": 0
+                    },
+                    "else": 0
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Household credit (incomes under $12,500)",
+    "Income tax elimination credit (households with dependants)"
+  ],
+  "provisional": [
+    "New York City's rates are the 2026 ones; no change for 2027 had been announced when this file was made"
+  ],
+  "sources": [
+    {
+      "title": "New York State tax tables (city rates)",
+      "url": "https://www.tax.ny.gov/pit/file/tax_tables.htm"
+    },
+    {
+      "title": "NYC school tax credit (Form IT-201 instructions, 2025)",
+      "url": "https://www.tax.ny.gov/pdf/2025/inc/it201i_2025.pdf"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "PolicyEngine US parameters — New York City",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/local/ny/nyc"
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://www.tax.ny.gov/pit/file/tax_tables.htm",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "City tax unchanged at 996.63 on the same New York taxable income; take-home is the New York 2027 figure 32,645.00 less it.",
+      "expect": {
+        "nyc-income-tax": 996.63,
+        "net": 31648.37
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "City tax unchanged at 2,627.97 on the same New York taxable income; take-home is the New York 2027 figure 64,576.60 less it.",
+      "expect": {
+        "nyc-income-tax": 2627.97,
+        "net": 61948.63
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "City tax unchanged at 4,549.11 on the same New York taxable income; take-home is the New York 2027 figure 116,214.09 less it.",
+      "expect": {
+        "nyc-income-tax": 4549.11,
+        "net": 111664.98
+      }
+    }
+  ]
+}

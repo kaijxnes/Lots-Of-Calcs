@@ -1,0 +1,122 @@
+{
+  "id": "us-ia",
+  "name": "Iowa",
+  "appliesTo": "Residents of Iowa",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ia-income-tax",
+      "label": "Iowa income tax",
+      "group": "tax",
+      "note": "3.8% of federal taxable income, less the $40 personal exemption credit per person.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "pct": 3.8,
+                "of": "us-taxable"
+              },
+              {
+                "mul": [
+                  40,
+                  {
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Iowa Department of Revenue — Iowa tax and fee descriptions and rates: individual rate 3.8% for 2025 or later",
+      "url": "https://revenue.iowa.gov/iowa-tax-fee-descriptions-and-rates"
+    },
+    {
+      "title": "2025 IA 1040 Expanded Instructions, Line 5 Iowa Tax",
+      "url": "https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-tax"
+    },
+    {
+      "title": "2025 IA 1040 Expanded Instructions, Exemption Credits",
+      "url": "https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/exemption-credits"
+    },
+    {
+      "title": "IDR Announces 2025 Individual Income Tax Brackets and Interest Rates",
+      "url": "https://revenue.iowa.gov/press-release/2024-10-16/idr-announces-2025-individual-income-tax-brackets-and-interest-rates"
+    },
+    {
+      "title": "2021 IA1040 Iowa Income Tax Return, Line 39",
+      "url": "https://revenue.iowa.gov/sites/default/files/2022-01/IA1040%2841-001%29.pdf#page=1"
+    },
+    {
+      "title": "2021 IA1040 Income Tax Return instructions",
+      "url": "https://revenue.iowa.gov/media/2650/download?inline#page=54"
+    },
+    {
+      "title": "2022 IA1040 Iowa Income Tax Return, Line 39",
+      "url": "https://revenue.iowa.gov/sites/default/files/2023-01/2022IA1040%2841001%29.pdf#page=1"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Iowa DOR, tax and fee descriptions and rates",
+      "url": "https://revenue.iowa.gov/iowa-tax-fee-descriptions-and-rates",
+      "note": "Read 26 Nov 2026: the highest individual rate is \"3.8% for 2025 or later\" (Iowa's flat rate since S.F. 2442). The 2027 withholding formulas were released on 17 November 2026."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ia",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-26",
+  "verifyAt": "https://revenue.iowa.gov/taxes/tax-guidance/individual-income-tax/1040-expanded-instructions/iowa-tax",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Iowa: 3.8% × federal taxable 23,400 − $40 = 849.20. State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "ia-income-tax": 849.2,
+        "net": 33538.8
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Iowa: 3.8% × federal taxable 68,400 − $40 = 2,559.20. State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "ia-income-tax": 2559.2,
+        "net": 66348.8
+      }
+    },
+    {
+      "gross": 150000,
+      "options": {
+        "status": "married"
+      },
+      "note": "Iowa: 3.8% × federal taxable 116,800 − $80 = 4,358.40. State rules as in 2026; federal figures from the 2027 file (IRS Rev. Proc. 2026-35).",
+      "expect": {
+        "ia-income-tax": 4358.4,
+        "net": 119387.6
+      }
+    }
+  ]
+}
