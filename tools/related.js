@@ -83,6 +83,7 @@ const RELATED = {
   "/universal-credit-calculator/": ["/salary/", "/emergency-fund-calculator/", "/child-benefit-tax-charge-calculator/", "/minimum-wage-calculator/", "/statutory-sick-pay-calculator/", "/50-30-20-budget/"],
   "/state-pension-age-calculator/": ["/pension-drawdown-calculator/", "/pension-tax-relief-calculator/", "/isa-vs-pension/", "/fire-calculator/", "/days-until/", "/salary/"],
   "/employer-cost-calculator/": ["/salary/", "/salary-sacrifice-calculator/", "/contractor-calculator/", "/salary-vs-dividends/", "/minimum-wage-calculator/", "/net-to-gross-salary/"],
+  "/company-car-tax-calculator/": ["/salary/", "/mileage-allowance-calculator/", "/car-finance/", "/ev-charging-cost/", "/tax-code-checker/", "/salary-sacrifice-calculator/"],
   "/minimum-wage-calculator/": ["/salary/", "/hourly-to-salary/", "/pro-rata-salary-calculator/", "/net-to-gross-salary/", "/holiday-entitlement-calculator/", "/statutory-sick-pay-calculator/"],
   "/mileage-allowance-calculator/": ["/fuel-cost/", "/tax-refund-calculator/", "/tax-code-checker/", "/salary/", "/ev-charging-cost/", "/self-employed-tax-calculator/"],
   "/statutory-sick-pay-calculator/": ["/maternity-pay-calculator/", "/salary/", "/universal-credit-calculator/", "/holiday-entitlement-calculator/", "/pro-rata-salary-calculator/", "/emergency-fund-calculator/", "/50-30-20-budget/"],
