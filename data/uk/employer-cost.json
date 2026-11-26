@@ -1,0 +1,33 @@
+{
+  "about": "What an employee costs an employer, for tools/build-employer-cost-pages.js: employer (secondary) Class 1 National Insurance, Employment Allowance and automatic enrolment pension minimums, each quoted from GOV.UK. The employer NI rate, threshold and Employment Allowance must match data/uk/rates-2026-27.json (the build checks). Changes each April.",
+  "taxYear": "2026/27",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "ni": { "rate": 15, "secondaryThreshold": 5000, "upperSecondaryThreshold": 50270 },
+  "employmentAllowance": 10500,
+  "pension": { "employerMinPct": 3, "employeeMinPct": 5, "lower": 6240, "upper": 50270, "autoEnrolFrom": 10000 },
+  "levy": { "pct": 0.5, "payBill": 3000000, "allowance": 15000 },
+  "sources": [
+    { "title": "Rates and thresholds for employers 2026 to 2027", "url": "https://www.gov.uk/guidance/rates-and-thresholds-for-employers-2026-to-2027" },
+    { "title": "Employment Allowance", "url": "https://www.gov.uk/claim-employment-allowance" },
+    { "title": "Workplace pensions: what you, your employer and the government pay", "url": "https://www.gov.uk/workplace-pensions/what-you-your-employer-and-the-government-pay" },
+    { "title": "Workplace pensions: joining a workplace pension", "url": "https://www.gov.uk/workplace-pensions/joining-a-workplace-pension" },
+    { "title": "Pay Apprenticeship Levy", "url": "https://www.gov.uk/guidance/pay-apprenticeship-levy" }
+  ],
+  "rules": {
+    "threshold": { "quote": "Secondary threshold | £96 per week £417 per month £5,000 per year", "source": 0 },
+    "upper": { "quote": "Upper secondary threshold (under 21) | £967 per week £4,189 per month £50,270 per year | Apprentice upper secondary threshold (apprentice under 25) | £967 per week £4,189 per month £50,270 per year", "source": 0 },
+    "rateA": { "quote": "A | 15% | 15% | 15% | 15%", "source": 0 },
+    "rateUnder21": { "quote": "M (under 21) | 0% | 0% | 0% | 15%", "source": 0 },
+    "rateApprentice": { "quote": "H (apprentice under 25) | 0% | 0% | 0% | 15%", "source": 0 },
+    "class1a": { "quote": "The National Insurance Class 1A rate on expenses and benefits for 2026 to 2027 is 15%.", "source": 0 },
+    "allowance": { "quote": "Employment Allowance allows eligible employers to reduce their annual National Insurance liability by up to £10,500.", "source": 1 },
+    "allowanceNot": { "quote": "You also cannot claim if your company has just one director and that director is the only employee liable for secondary Class 1 National Insurance.", "source": 1 },
+    "allowancePublic": { "quote": "You cannot claim if you’re a public body or business doing more than half your work in the public sector (such as local councils and NHS services) - unless you’re a charity.", "source": 1 },
+    "pensionBand": { "quote": "In most automatic enrolment schemes, you’ll make contributions based on your total earnings between £6,240 and £50,270 a year before tax.", "source": 2 },
+    "pensionMin": { "quote": "The minimum your employer pays You pay Total minimum contribution From April 2019 3% 5% 8%", "source": 2 },
+    "autoEnrol": { "quote": "you’re aged between 22 and State Pension age you earn at least £10,000 per year", "source": 3 },
+    "levy": { "quote": "Apprenticeship Levy is an amount paid at a rate of 0.5% of an employer’s annual pay bill. As an employer, you have to pay Apprenticeship Levy each month if you: have an annual pay bill of more than £3 million", "source": 4 },
+    "levyAllowance": { "quote": "The allowance reduces the amount of Apprenticeship Levy you have to pay by £15,000 across the year.", "source": 4 }
+  }
+}
