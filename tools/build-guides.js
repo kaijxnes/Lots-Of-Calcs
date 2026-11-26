@@ -4,6 +4,7 @@
        /guides/                                  the list
        /guides/uk-income-tax/                    bands, allowance taper, NI, worked examples
        /guides/self-assessment-explained/        who files, the deadlines, January bills, penalties
+       /guides/tax-changes-2027-28/              what changes on 6 April 2027 (Budget 2026)
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
        /guides/matched-betting-explained/        lay stakes, qualifying bets, free bets
 
@@ -310,15 +311,96 @@ function selfAssessment() {
     foot: `Deadlines and rules from ${src(D.source)}, ${src(D.whoSource)} and the sources on the <a href="/self-assessment-penalty-calculator/">penalty calculator</a> (last checked ${site.niceDate(R.lastChecked)}). A guide, not tax advice.` };
 }
 
+/* ===================================================== 2027/28 changes */
+/* Every figure is from the Budget 2026 Overview of Tax Legislation and Rates
+   (OOTLAR) and its Annex A, DWP's proposed benefit and pension rates for
+   2027 to 2028, GOV.UK's minimum wage rates and the Student Loans Company's
+   2027 threshold announcement — read 26 November 2026. */
+function changes2027() {
+  const S = {
+    ootlar: { title: "HMRC — Budget 2026: Overview of tax legislation and rates", url: "https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/budget-2026-overview-of-tax-legislation-and-rates-ootlar" },
+    annex: { title: "OOTLAR Annex A: rates and allowances", url: "https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/annex-a-rates-and-allowances" },
+    dwp: { title: "DWP — Proposed benefit and pension rates 2027 to 2028", url: "https://www.gov.uk/government/publications/benefit-and-pension-rates-2027-to-2028/proposed-benefit-and-pension-rates-2027-to-2028" },
+    nmw: { title: "GOV.UK — National Minimum Wage and National Living Wage rates", url: "https://www.gov.uk/national-minimum-wage-rates" },
+    slc: { title: "Student loans repayment threshold announcement", url: "https://www.gov.uk/government/news/student-loans-repayment-threshold-announcement" }
+  };
+  const src = (o) => `<a href="${o.url}" rel="nofollow noopener" target="_blank">${esc(o.title)}</a>`;
+  const sp = 250.70, spYear = sp * 52;
+  /* worked examples, plain arithmetic */
+  const save = (interest, psa, oldR, newR) => [Math.max(0, interest - psa) * oldR, Math.max(0, interest - psa) * newR];
+  const [s1o, s1n] = save(3000, 500, 0.40, 0.44), [s2o, s2n] = save(2000, 1000, 0.20, 0.24);
+  const [l1o, l1n] = [10000 * 0.20, 10000 * 0.24], [l2o, l2n] = [15000 * 0.40, 15000 * 0.44];
+  const sale = 2500, [t1o, t1n] = [Math.max(0, sale - 1000) * 0.20, Math.max(0, sale - 3000) * 0.20];
+  const rows = [
+    ["Personal Allowance", "£12,570", "£12,570"],
+    ["Basic rate band / higher rate from", "£37,700 / £50,270", "£37,700 / £50,270"],
+    ["Savings income tax (basic / higher / additional)", "20% / 40% / 45%", "<strong>24% / 44% / 49%</strong>"],
+    ["Property income tax (basic / higher / additional)", "20% / 40% / 45% (main rates)", "<strong>24% / 44% / 49%</strong>"],
+    ["Dividend tax (ordinary / upper / additional)", "10.75% / 35.75% / 39.35%", "10.75% / 35.75% / 39.35%"],
+    ["Dividend allowance / Personal Savings Allowance", "£500 / £1,000 (£500 higher rate)", "£500 / £1,000 (£500 higher rate)"],
+    ["Trading allowance", "£1,000", "<strong>£3,000</strong>"],
+    ["Pension Tax Allowance", "—", "<strong>New</strong>: no tax on income up to £13,037"],
+    ["Full new State Pension", "£241.30 a week", "<strong>£250.70 a week</strong>"],
+    ["Basic (old) State Pension", "£184.90 a week", "<strong>£192.10 a week</strong>"],
+    ["Employee National Insurance", "8% / 2% (£242 to £967 a week)", "8% / 2% (£242 to £967 a week)"],
+    ["Class 2 Small Profits Threshold", "£7,105", "<strong>£7,355</strong>"],
+    ["Voluntary Class 3 National Insurance", "£18.40 a week", "<strong>£19.05 a week</strong>"],
+    ["Child Benefit (eldest / others)", "£27.05 / £17.90 a week", "<strong>£28.00 / £18.55 a week</strong>"],
+    ["Marriage Allowance", "£1,260", "£1,260"],
+    ["Blind Person's Allowance", "£3,250", "<strong>£3,370</strong>"],
+    ["Capital Gains Tax rates / annual exempt amount", "18% / 24%, £3,000", "18% / 24%, £3,000"],
+    ["Business Asset Disposal Relief lifetime limit", "£1 million", "<strong>£500,000</strong>"],
+    ["Founders' relief (new, 10% CGT)", "—", "<strong>New</strong>: up to £10 million of gains"],
+    ["Inheritance Tax nil-rate band / residence band", "£325,000 / £175,000", "£325,000 / £175,000"],
+    ["ISA allowance", "£20,000", "£20,000"],
+    ["Pension annual allowance", "£60,000", "£60,000"],
+    ["Business mileage over 10,000 miles", "25p a mile", "<strong>35p a mile</strong>"],
+    ["National Living Wage (21 and over, from 1 April)", "£12.71 an hour", "<strong>£13.21 an hour</strong>"]
+  ];
+  const body = section("glance", "What changes on 6 April 2027", site.table(["", "2026/27", "2027/28"], rows, 560) +
+      p(`Bold figures change. Income tax bands, the Personal Allowance and most National Insurance thresholds stay frozen, so pay rises are taxed more as they push people into higher bands. Rates for England, Wales and Northern Ireland; Scotland sets its own income tax rates and bands, and Scotland and Wales can set their own property income rates.`)) +
+    section("savings", "Savings and property income: a new 24% basic rate", p(`From 6 April 2027 savings income (interest) and property income (rent) have their own rates, each 4 points higher than the rates on wages: <strong>24% basic, 44% higher and 49% additional</strong>. The Personal Savings Allowance (£1,000 for basic-rate taxpayers, £500 at the higher rate) and the £5,000 starting rate for savings are unchanged, and interest in an ISA stays tax-free.`) +
+      site.table(["Example", "2026/27", "2027/28", "Extra tax"], [
+        ["Higher-rate taxpayer, £3,000 of interest", m0(s1o), m0(s1n), m0(s1n - s1o)],
+        ["Basic-rate taxpayer, £2,000 of interest", m0(s2o), m0(s2n), m0(s2n - s2o)],
+        ["Basic-rate landlord, £10,000 rental profit", m0(l1o), m0(l1n), m0(l1n - l1o)],
+        ["Higher-rate landlord, £15,000 rental profit (all in the higher band)", m0(l2o), m0(l2n), m0(l2n - l2o)]
+      ], 520) + p(`Savings interest after the Personal Savings Allowance; rental profit after expenses, all taxed in the one band. Work out interest on your own savings with the <a href="/savings/">savings calculator</a>.`)) +
+    section("pensions", "Pensioners: the new Pension Tax Allowance", p(`The full new State Pension rises to <strong>£${sp.toFixed(2)} a week</strong> (£${spYear.toLocaleString("en-GB", { minimumFractionDigits: 2 })} a year), which is more than the £12,570 Personal Allowance. So that pensioners whose only income is the State Pension don't get small tax bills, a <strong>Pension Tax Allowance</strong> applies from 2027/28 to 2029/30: it takes 20% of the gap between the full new State Pension and the Personal Allowance off the tax bill, in full for income up to <strong>£13,037</strong>, withdrawn by £1 for every £3 above that and gone at £13,319.`) +
+      p(`Also from 6 April 2027, most unused pension pots and pension death benefits count towards the value of an estate for <a href="/inheritance-tax-calculator/">Inheritance Tax</a>.`)) +
+    section("selfemployed", "Side income and the self-employed", p(`The <strong>trading allowance</strong> triples from £1,000 to <strong>£3,000</strong>: if your gross income from selling, freelancing or a side business is £3,000 or less, you don't need to declare it or pay tax on it. Someone with ${m0(sale)} of side income and no claimed expenses paid tax on ${m0(sale - 1000)} at 20% (${m0(t1o)}) in 2026/27; in 2027/28 they pay ${m0(t1n)}.`) +
+      p(`The Class 2 Small Profits Threshold rises to £7,355 and voluntary Class 2 contributions to £3.80 a week; Class 4 stays at 6% and 2%. Anyone joining Making Tax Digital for Income Tax in April 2027 won't get late-submission penalty points on quarterly updates for 2027/28. Estimate the bill with the <a href="/self-employed-tax-calculator/">self-employed tax calculator</a>.`)) +
+    section("gains", "Selling a business or shares", p(`The lifetime limit for <strong>Business Asset Disposal Relief</strong> halves from £1 million to <strong>£500,000</strong> for disposals from 6 April 2027 (the rate stays 18%). A new <strong>Founders' relief</strong> taxes qualifying gains of founders and early investors in high-growth companies at <strong>10%</strong>, up to £10 million over a lifetime. Capital Gains Tax rates (18% and 24%) and the £3,000 annual exempt amount don't change; see the <a href="/capital-gains-tax-calculator/">capital gains tax calculator</a>.`)) +
+    section("work", "Pay, benefits and employers", p(`The National Living Wage rises to <strong>£13.21 an hour</strong> from 1 April 2027 (18 to 20: £11.27; under 18 and apprentices: £8.31). Child Benefit goes up to £28.00 a week for the eldest child and £18.55 for others. Employers must put company cars, vans, fuel and medical benefits through payroll from 6 April 2027, so tax on them is taken from pay as it goes instead of through a P11D. The approved mileage rate above 10,000 business miles rises from 25p to 35p.`) +
+      p(`Student loan thresholds for 2027/28: Plan 2 stays at £29,385, Plan 5 rises to £26,025 and the postgraduate (Plan 3) threshold stays at £21,000. See what you'll repay with the <a href="/student-loan-calculator/">student loan calculator</a>.`)) +
+    section("other", "Bills and later changes", p(`The 0% VAT rate on household electricity and the 5p fuel duty cut both run until 30 June 2027; fuel duty then returns to its pre-2022 level and rises with inflation from 1 July 2027. Energy-saving materials go back to 5% VAT from 1 April 2027, and car tax (VED) rises with RPI inflation from the same date. Further ahead: pay-per-mile Electric Vehicle Excise Duty (3p a mile for electric cars) and the High Value Council Tax Surcharge on homes worth £2 million or more start in April 2028, and the cash ISA limit stays at £20,000.`));
+  const q = [
+    ["Is the Personal Allowance changing in April 2027?", "No. It stays at £12,570 in 2027/28, with the basic rate band at £37,700 and the additional rate from £125,140. All three are frozen in 2027/28."],
+    ["What is the new tax rate on savings interest from April 2027?", "24% for basic-rate taxpayers, 44% for higher-rate and 49% for additional-rate, on interest above the Personal Savings Allowance (£1,000, or £500 for higher-rate taxpayers). ISAs stay tax-free."],
+    ["How much is the State Pension from April 2027?", `The full new State Pension is £${sp.toFixed(2)} a week (£${spYear.toLocaleString("en-GB", { minimumFractionDigits: 2 })} a year), up from £241.30. The basic (old) State Pension is £192.10 a week.`],
+    ["Will pensioners pay tax on the State Pension in 2027/28?", "Not if the State Pension is their only income: the new Pension Tax Allowance removes the tax on income up to £13,037, tapering away to £13,319."],
+    ["What is the trading allowance from April 2027?", "£3,000, up from £1,000. If your total side income is no more than that you don't need to report it to HMRC."],
+    ["What is the minimum wage from April 2027?", "£13.21 an hour for workers aged 21 and over, £11.27 for 18 to 20 year olds, and £8.31 for under-18s and apprentices, from 1 April 2027."]
+  ];
+  return { path: "/guides/tax-changes-2027-28/", crumb: "Tax Changes April 2027", blurb: "What changes in the 2027/28 tax year: new 24% savings and property rates, the Pension Tax Allowance, a £3,000 trading allowance and more.",
+    title: site.fitTitle("UK Tax Changes April 2027 — What's New for the 2027/28 Tax Year", "UK Tax Changes April 2027 (2027/28)"), modified: "2026-11-26",
+    desc: "Every UK tax change from 6 April 2027: 24% savings and property income tax, the Pension Tax Allowance, £250.70 State Pension, £3,000 trading allowance and £13.21 minimum wage, with examples.",
+    h1: "UK tax changes from April 2027", sub: "What's different in the <strong>2027/28 tax year</strong>, which starts on 6 April 2027, from the Budget on 28 October 2026 — with what it means in pounds.",
+    sections: [["glance", "At a glance"], ["savings", "Savings and property income"], ["pensions", "Pensioners"], ["selfemployed", "Side income and the self-employed"], ["gains", "Selling a business or shares"], ["work", "Pay, benefits and employers"], ["other", "Bills and later changes"]],
+    tools: [["/salary/", "Take-home pay"], ["/savings/", "Savings"], ["/self-employed-tax-calculator/", "Self-employed tax"], ["/capital-gains-tax-calculator/", "Capital gains"], ["/tax-week-calendar/2027-28/", "Tax weeks 2027/28"]],
+    body, q, callouts: ["/capital-gains-tax-calculator/", "/inheritance-tax-calculator/", "/isa-vs-pension/"],
+    foot: `Figures from ${src(S.ootlar)} and ${src(S.annex)}, ${src(S.dwp)}, ${src(S.nmw)} and ${src(S.slc)}, read 26 November 2026. Measures in Finance Bill 2026-27 still need to pass Parliament. A guide, not tax advice.` };
+}
+
 /* ===================================================== build */
-const GUIDES = [incomeTax(), selfAssessment(), mortgage(), betting()];
+const GUIDES = [incomeTax(), selfAssessment(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
 GUIDES.forEach((g) => { site.write(g.path.replace(/^\/|\/$/g, ""), guidePage(g)); urls.push([g.path, "0.6"]); });
 
 const hubUrl = SITE + "/guides/";
-const hubDesc = "Plain-English guides to UK income tax, Self Assessment, how mortgage interest works and the maths of matched betting, with worked examples and links to the calculators.";
+const hubDesc = "Plain-English guides to UK income tax, Self Assessment, the April 2027 tax changes, how mortgage interest works and the maths of matched betting, with worked examples and links to the calculators.";
 site.write("guides", site.head({ title: "Guides — Tax, Mortgages and Betting Maths Explained", desc: hubDesc, url: hubUrl,
   ld: [site.webPage("Guides", hubDesc, hubUrl), site.breadcrumb([["Home", SITE + "/"], ["Guides", hubUrl]]),
     { "@context": "https://schema.org", "@type": "ItemList", numberOfItems: GUIDES.length, itemListElement: GUIDES.map((g, i) => ({ "@type": "ListItem", position: i + 1, name: g.h1, url: SITE + g.path })) }] }) + `    <header class="site-header">

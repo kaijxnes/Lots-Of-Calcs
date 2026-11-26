@@ -135,7 +135,7 @@ ${site.faqHtml(q)}      <p class="tool-hint">Definitions from the <a href="https
     <div class="hub-group-title" style="margin-top:28px;">Other tax years</div>
     <p class="salary-links">${other}</p>
     <div class="hub-group-title" style="margin-top:18px;">Related</div>
-    <p class="salary-links">${pay} <a href="/salary/">Take-home pay calculator</a> <a href="/week-number/">Week number</a></p>
+    <p class="salary-links">${pay}${fs.existsSync(path.join(site.ROOT, "guides", `tax-changes-${label(y)}`, "index.html")) ? ` <a href="/guides/tax-changes-${label(y)}/">What changes in ${named(y)}</a>` : ""} <a href="/salary/">Take-home pay calculator</a> <a href="/week-number/">Week number</a></p>
 ${NOW_SCRIPT(y)}
 ${site.FOOTER}
   </div>
