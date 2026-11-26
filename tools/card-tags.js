@@ -27,6 +27,7 @@ const TAGS = {
   "/state-pension-age-calculator/": "UK",
   "/employer-cost-calculator/": "UK",
   "/company-car-tax-calculator/": "UK",
+  "/notice-period-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
