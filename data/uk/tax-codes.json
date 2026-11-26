@@ -1,0 +1,40 @@
+{
+  "_note": "What UK tax codes mean, for tools/build-tax-code-pages.js and tax-code.js. The meanings are GOV.UK's own wording (Tax codes: What your tax code means; Understanding your employees' tax codes). The rates and bands come from the tax files in force (data/tax/gb); Welsh rates are the rest of the UK's, as GOV.UK's Welsh Income Tax page gives them.",
+  "standard": "1257L",
+  "letters": {
+    "L": "You're entitled to the standard tax-free Personal Allowance.",
+    "M": "Marriage Allowance: you've received a transfer of 10% of your partner's Personal Allowance.",
+    "N": "Marriage Allowance: you've transferred 10% of your Personal Allowance to your partner.",
+    "T": "Your tax code includes other calculations to work out your Personal Allowance.",
+    "K": "You have income that you are not paying tax on which is more than your Personal Allowance.",
+    "0T": "Your Personal Allowance has been used up, or you've started a new job and your employer does not have the details they need to give you a tax code.",
+    "BR": "All your income from this job or pension is taxed at the basic rate (usually used if you've got more than one job or pension).",
+    "D0": "All your income from this job or pension is taxed at the higher rate (usually used if you've got more than one job or pension).",
+    "D1": "All your income from this job or pension is taxed at the additional rate (usually used if you've got more than one job or pension).",
+    "NT": "You're not paying any tax on this income.",
+    "S": "Your income or pension is taxed using the rates in Scotland.",
+    "C": "Your income or pension is taxed using the rates in Wales.",
+    "SBR": "All your income from this job or pension is taxed at the basic rate in Scotland.",
+    "SD0": "All your income from this job or pension is taxed at the intermediate rate in Scotland.",
+    "SD1": "All your income from this job or pension is taxed at the higher rate in Scotland.",
+    "SD2": "All your income from this job or pension is taxed at the advanced rate in Scotland.",
+    "SD3": "All your income from this job or pension is taxed at the top rate in Scotland.",
+    "CBR": "All your income from this job or pension is taxed at the basic rate in Wales.",
+    "CD0": "All your income from this job or pension is taxed at the higher rate in Wales.",
+    "CD1": "All your income from this job or pension is taxed at the additional rate in Wales.",
+    "EMERGENCY": "You're on an emergency tax code: your tax is worked out on what you're paid in that week or month only, as if you're paid that amount every week or month of the year."
+  },
+  "numbers": "'You usually multiply the number in the tax code by 10 to get the total amount of income they can earn before being taxed. For example, an employee with the tax code 1257L can earn £12,570 before being taxed.' (Understanding your employees' tax codes)",
+  "k": "'Multiply the number in their tax code by 10 to show how much should be added to their taxable income before deductions are calculated. An employee with tax code K475 and a salary of £27,000 has taxable income of £31,750 (£27,000 plus £4,750). The tax deduction for each pay period cannot be more than half an employee's pre-tax pay or pension.' (Understanding your employees' tax codes)",
+  "kCap": 50,
+  "emergency": "'You're on an emergency tax code if your tax code ends in: W1 - used when you're paid weekly, for example 1257L W1; M1 - used when you're paid monthly, for example S875L M1; X - used when your pay dates vary, for example C663L X. You could also see NONCUM on your payslip.' (Tax codes: Emergency tax codes)",
+  "wales": "'Rates and bands for 2026 to 2027 ... Basic rate £12,571 to £50,270 20%; Higher rate £50,271 to £125,140 40%; Additional rate over £125,140 45%.' 'HMRC will add a C to the start of your tax code.' (GOV.UK, Welsh Income Tax)",
+  "sources": [
+    { "title": "GOV.UK — Tax codes: what your tax code means", "url": "https://www.gov.uk/tax-codes/what-your-tax-code-means" },
+    { "title": "GOV.UK — Understanding your employees' tax codes", "url": "https://www.gov.uk/employee-tax-codes" },
+    { "title": "GOV.UK — Tax codes: emergency tax codes", "url": "https://www.gov.uk/tax-codes/emergency-tax-codes" },
+    { "title": "GOV.UK — Welsh Income Tax", "url": "https://www.gov.uk/welsh-income-tax" }
+  ],
+  "lastChecked": "2026-11-26",
+  "lastVerified": null
+}
