@@ -1,0 +1,193 @@
+{
+  "about": "How savings interest is taxed, for tools/build-savings-tax-pages.js. UK rules quoted from GOV.UK; other countries from the official source in each entry. Rates are for 2026 unless stated.",
+  "lastChecked": "2026-11-26",
+  "lastVerified": null,
+  "uk": {
+    "startingRate": 5000,
+    "startingLimit": 17570,
+    "psa": {
+      "basic": 1000,
+      "higher": 500,
+      "additional": 0
+    },
+    "years": {
+      "2026-27": {
+        "label": "2026 to 2027",
+        "rates": [
+          20,
+          40,
+          45
+        ]
+      },
+      "2027-28": {
+        "label": "2027 to 2028 (from 6 April 2027)",
+        "rates": [
+          24,
+          44,
+          49
+        ]
+      }
+    },
+    "rules": {
+      "allowances": {
+        "quote": "Your allowances for earning interest before you have to pay tax on it include your: Personal Allowance; starting rate for savings; Personal Savings Allowance. You get these allowances each tax year (6 April to 5 April).",
+        "url": "https://www.gov.uk/apply-tax-free-interest-on-savings/how-much-is-tax-free"
+      },
+      "startingRate": {
+        "quote": "If your other taxable income (not including savings interest or dividends) is less than £17,570, you can get the starter rate for savings. This means you can earn up to £5,000 of interest and not have to pay tax on it. … Every £1 of other income above your Personal Allowance reduces your starting rate for savings by £1. Example: You earn £16,000 of wages and £200 interest on your savings … Your remaining starting rate for savings is £1,570 … you will not have to pay tax on your £200 savings interest.",
+        "url": "https://www.gov.uk/apply-tax-free-interest-on-savings/how-much-is-tax-free"
+      },
+      "psa": {
+        "quote": "To work out your tax band, add all the interest you’ve earned to your other income. Basic rate £1,000; Higher rate £500; Additional rate £0 … Your Personal Savings Allowance is £1,000 because you’re a basic rate taxpayer. This means that the: first £1,000 is not taxed; remaining £300 is taxed at 20% (basic rate); tax due on your savings interest is £60",
+        "url": "https://www.gov.uk/apply-tax-free-interest-on-savings/how-much-is-tax-free"
+      },
+      "rate": {
+        "quote": "You pay tax on any interest over your allowance at your usual rate of Income Tax.",
+        "url": "https://www.gov.uk/apply-tax-free-interest-on-savings/how-you-pay-tax-on-savings-interest"
+      },
+      "isa": {
+        "quote": "You do not usually have to pay tax on interest earned from savings in accounts like Individual Savings Accounts (ISAs) and some National Savings and Investments.",
+        "url": "https://www.gov.uk/apply-tax-free-interest-on-savings"
+      },
+      "scotland": {
+        "quote": "You’ll pay the same tax as the rest of the UK on dividends and savings interest.",
+        "url": "https://www.gov.uk/scottish-income-tax"
+      },
+      "rates2027": {
+        "quote": "Savings income tax rates from 6 April 2027: 24% basic, 44% higher, 49% additional (Budget 2026 OOTLAR Annex A, as in the site's April 2027 guide).",
+        "url": "https://www.gov.uk/government/publications/budget-2026-overview-of-tax-legislation-and-rates-ootlar/annex-a-rates-and-allowances"
+      },
+      "collection": {
+        "quote": "If you have tax to pay on your savings interest, HMRC will send you a tax calculation. These are usually sent between June and the end of November. HMRC will usually collect the tax through your tax code.",
+        "url": "https://www.gov.uk/apply-tax-free-interest-on-savings/how-you-pay-tax-on-savings-interest"
+      }
+    }
+  },
+  "countries": [
+    {
+      "id": "us",
+      "name": "United States",
+      "currency": "USD",
+      "kind": "income",
+      "summary": "Taxable interest is reported on your federal return and taxed with your other income at your normal rates (10% to 37%); states have their own rules.",
+      "allowance": "None (some interest is tax-exempt)",
+      "rate": "Your marginal rate, 10% to 37% federal",
+      "source": {
+        "title": "IRS Topic no. 403, Interest received",
+        "url": "https://www.irs.gov/taxtopics/tc403"
+      },
+      "quote": "You must report all taxable and tax-exempt interest on your federal income tax return, even if you don't receive a Form 1099-INT or Form 1099-OID."
+    },
+    {
+      "id": "ca",
+      "name": "Canada",
+      "currency": "CAD",
+      "kind": "income",
+      "summary": "Interest is included in your income and taxed at your normal federal and provincial rates.",
+      "allowance": "None",
+      "rate": "Your marginal rate",
+      "source": {
+        "title": "Income Tax Act, section 12 (income inclusions: interest)",
+        "url": "https://laws-lois.justice.gc.ca/eng/acts/I-3.3/section-12.html"
+      },
+      "quote": "…any amount received or receivable by the taxpayer in the year … as, on account of, in lieu of payment of or in satisfaction of, interest to the extent that the interest was not included in computing the taxpayer’s income for a preceding taxation year"
+    },
+    {
+      "id": "ie",
+      "name": "Ireland",
+      "currency": "EUR",
+      "kind": "flat",
+      "flat": 33,
+      "summary": "Banks deduct Deposit Interest Retention Tax (DIRT) at 33% before paying the interest.",
+      "allowance": "None",
+      "rate": "33% DIRT",
+      "source": {
+        "title": "Revenue Ready Reckoner, post Budget 2027 (DIRT section)",
+        "url": "https://www.revenue.ie/en/corporate/documents/statistics/ready-reckoner.pdf"
+      },
+      "quote": "Deposit Interest Retention Tax (DIRT): Reduction in the standard rate of DIRT, From 33% to 31% … Increase in the standard rate of DIRT, From 33% to 35%"
+    },
+    {
+      "id": "de",
+      "name": "Germany",
+      "currency": "EUR",
+      "kind": "flat",
+      "flat": 26.375,
+      "allowanceAmount": 1000,
+      "summary": "Interest above the €1,000 saver's allowance (€2,000 for a married couple) is taxed at the 25% flat withholding tax plus 5.5% solidarity surcharge on it (26.375%), and church tax if you pay it. If your own rate is lower, you can choose it in your tax return.",
+      "allowance": "€1,000 a year (€2,000 married)",
+      "rate": "26.375% (25% + solidarity surcharge)",
+      "source": {
+        "title": "Service Berlin — Abgeltungsteuer / Sparer-Pauschbetrag",
+        "url": "https://service.berlin.de/dienstleistung/326503/pdf/"
+      },
+      "quote": "durch den Steuerabzug (Abgeltungsteuer) von 25 Prozent zuzüglich Solidaritätszuschlag und ggf. Kirchensteuer abgegolten … unter dem Sparer-Pauschbetrag von 1.000 Euro (bzw. 2.000 Euro …)"
+    },
+    {
+      "id": "fr",
+      "name": "France",
+      "currency": "EUR",
+      "kind": "flat",
+      "flat": 31.4,
+      "summary": "Most interest is taxed at the 31.4% flat tax (prélèvement forfaitaire unique), which covers income tax and social charges; you can choose the income tax scale instead.",
+      "allowance": "None on ordinary accounts",
+      "rate": "31.4% flat tax (30% on some products)",
+      "source": {
+        "title": "Service Public — CSG déductible (flat tax rate)",
+        "url": "https://www.service-public.gouv.fr/particuliers/vosdroits/F2329"
+      },
+      "quote": "Prélèvement forfaitaire unique (PFU), appelé également flat tax au taux de 31,4 % (ou de 30 %)"
+    },
+    {
+      "id": "es",
+      "name": "Spain",
+      "currency": "EUR",
+      "kind": "scale",
+      "scale": [
+        [
+          0,
+          19
+        ],
+        [
+          6000,
+          21
+        ],
+        [
+          50000,
+          23
+        ],
+        [
+          200000,
+          27
+        ],
+        [
+          300000,
+          30
+        ]
+      ],
+      "summary": "Interest is part of the savings income base, taxed on its own scale: 19% up to €6,000, 21% to €50,000, 23% to €200,000, 27% to €300,000 and 30% above.",
+      "allowance": "None",
+      "rate": "19% to 30%",
+      "source": {
+        "title": "Ley 35/2006 del IRPF, arts. 66 and 76 (BOE consolidated text)",
+        "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2006-20764"
+      },
+      "quote": "Base liquidable del ahorro: 0–6.000 9,5; 6.000–50.000 10,5; 50.000–200.000 11,5; 200.000–300.000 13,5; en adelante 15 (state scale, art. 66; the regional scale in art. 76 is the same)"
+    },
+    {
+      "id": "jp",
+      "name": "Japan",
+      "currency": "JPY",
+      "kind": "flat",
+      "flat": 20.315,
+      "summary": "Interest on deposits is taxed at 20.315% (15.315% national income tax including the reconstruction surtax, plus 5% local tax), withheld at source, and that settles it.",
+      "allowance": "None",
+      "rate": "20.315% withheld",
+      "source": {
+        "title": "National Tax Agency, Tax Answer No. 1310 (interest income)",
+        "url": "https://www.nta.go.jp/taxes/shiraberu/taxanswer/shotoku/1310.htm"
+      },
+      "quote": "利子所得の金額に一律15.315パーセント（他に地方税5パーセント）の税率を乗じて算出した所得税および復興特別所得税…が源泉徴収され、これにより納税が完結する"
+    }
+  ]
+}

@@ -21,6 +21,7 @@ const TAGS = {
   "/statutory-sick-pay-calculator/": "UK",
   "/mileage-allowance-calculator/": "UK",
   "/minimum-wage-calculator/": "UK",
+  "/savings-tax-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
