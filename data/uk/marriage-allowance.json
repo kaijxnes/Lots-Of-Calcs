@@ -1,0 +1,15 @@
+{
+  "_note": "Marriage Allowance, for tools/build-marriage-allowance-pages.js and marriage-allowance.js. Each figure is quoted from the GOV.UK page in its source. The Personal Allowance has been £12,570 every year since 2022 to 2023, so the transfer and the saving are the same for each year a claim can be backdated to.",
+  "personalAllowance": 12570,
+  "transfer": 1260,
+  "maxSaving": 252,
+  "rate": 20,
+  "upper": { "ruk": 50270, "scotland": 43662 },
+  "backdateFrom": "2022-04-06",
+  "backdateYears": ["2022/23", "2023/24", "2024/25", "2025/26"],
+  "note": "'Marriage Allowance lets you transfer £1,260 of your Personal Allowance to your husband, wife or civil partner ... This reduces their tax by up to £252 in the tax year.' 'You can benefit from Marriage Allowance if all the following apply: you're married or in a civil partnership; you do not pay Income Tax or your income is below your Personal Allowance (usually £12,570); your partner pays Income Tax at the basic rate, which usually means their income is between £12,571 and £50,270 before they receive Marriage Allowance.' 'If you're in Scotland, your partner must pay the starter, basic or intermediate rate, which usually means their income is between £12,571 and £43,662.' 'You can backdate your claim to 6 April 2022 (the 2022 to 2023 tax year) for any years you were eligible.' 'If you or your partner were born before 6 April 1935, you might benefit more as a couple by applying for Married Couple's Allowance instead.' Worked example on the page: lower earner £11,500 and partner £20,000 save £214 as a couple. (GOV.UK, Marriage Allowance, read 26 November 2026.)",
+  "source": { "title": "GOV.UK — Marriage Allowance", "url": "https://www.gov.uk/marriage-allowance" },
+  "paSource": { "title": "HMRC — Income Tax rates and allowances for current and past years (£12,570 from 2023 to 2024) and Rates and thresholds for employers 2022 to 2023 (£12,570 a year)", "url": "https://www.gov.uk/government/publications/rates-and-allowances-income-tax/income-tax-rates-and-allowances-current-and-past" },
+  "lastChecked": "2026-11-26",
+  "lastVerified": null
+}

@@ -12,6 +12,7 @@ const TAGS = {
   "/payments-on-account-calculator/": "UK",
   "/self-assessment-penalty-calculator/": "UK",
   "/child-benefit-tax-charge-calculator/": "UK",
+  "/marriage-allowance-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
