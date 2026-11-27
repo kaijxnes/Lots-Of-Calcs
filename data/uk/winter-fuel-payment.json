@@ -1,0 +1,106 @@
+{
+  "note": "Winter Fuel Payment amounts and eligibility for one winter, from GOV.UK. Update each autumn when GOV.UK publishes the next winter's dates.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "winter": "2026 to 2027",
+  "bornBy": "1960-06-27",
+  "olderBefore": "1946-09-28",
+  "week": "21 to 27 September 2026",
+  "incomeLimit": 35000,
+  "amounts": {
+    "alone": [
+      200,
+      300
+    ],
+    "care": [
+      100,
+      150
+    ],
+    "together": {
+      "yy": 100,
+      "yo": 100,
+      "oy": 200,
+      "oo": 150
+    },
+    "joint": [
+      200,
+      300
+    ],
+    "single": [
+      200,
+      300
+    ]
+  },
+  "rules": {
+    "who": {
+      "quote": "If you were born on or before 27 June 1960 you could get between £100 and £300 to help you pay your heating bills for winter 2026 to 2027.",
+      "source": "https://www.gov.uk/winter-fuel-payment"
+    },
+    "where": {
+      "quote": "You can get a Winter Fuel Payment if you were born on or before 27 June 1960 and usually live in England, Wales or Northern Ireland.",
+      "source": "https://www.gov.uk/winter-fuel-payment/eligibility"
+    },
+    "alone": {
+      "quote": "If you live alone or no one you live with is eligible for the Winter Fuel Payment You’ll get either: £200 if you were born between 28 September 1946 and 27 June 1960 £300 if you were born before 28 September 1946",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "together": {
+      "quote": "If you do not get any of the benefits You’ll get a payment of: £100 if you and the person you live with were both born between 28 September 1946 and 27 June 1960 £100 if you were born between 28 September 1946 and 27 June 1960 but the person you live with was born before 28 September 1946 £200 if you were born before 28 September 1946 but the person you live with was born between 28 September 1946 and 27 June 1960 £150 if you and the person you live with were both born before 28 September 1946",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "joint": {
+      "quote": "If you and your partner jointly claim any of the benefits One of you will get a payment of either: £200 if both of you were born between 28 September 1946 and 27 June 1960 £300 if one or both of you were born before 28 September 1946",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "single": {
+      "quote": "If you get any of the benefits (not as part of a joint claim) You’ll get a payment of either: £200 if you were born between 28 September 1946 and 27 June 1960 £300 if you were born before 28 September 1946",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "benefits": {
+      "quote": "Your payment may be different if you get one of the following benefits: Pension Credit Universal Credit income-related Employment and Support Allowance (ESA)",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "care": {
+      "quote": "If you live in a care home If you’re eligible you’ll get either: £100 if you were born between 28 September 1946 and 27 June 1960 £150 if you were born before 28 September 1946",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "week": {
+      "quote": "The amount you get is based on when you were born and your circumstances between 21 to 27 September 2026. This is called the ‘qualifying week’.",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    },
+    "income": {
+      "quote": "If your total income is over £35,000, HM Revenue and Customs (HMRC) will take your Winter Fuel Payment back. Your partner’s income does not count towards your total income.",
+      "source": "https://www.gov.uk/winter-fuel-payment/if-your-income-is-over-35000"
+    },
+    "collect": {
+      "quote": "HMRC will usually collect the amount you owe through your tax code. If you complete a Self Assessment tax return, you’ll pay it through your tax bill instead.",
+      "source": "https://www.gov.uk/winter-fuel-payment/if-your-income-is-over-35000"
+    },
+    "careNot": {
+      "quote": "You will not be eligible if both of the following apply: you get Universal Credit, Pension Credit or income-related Employment and Support Allowance (ESA) you lived in a care home for the whole time from 29 June 2026 or earlier",
+      "source": "https://www.gov.uk/winter-fuel-payment/eligibility"
+    },
+    "paid": {
+      "quote": "Most eligible people will be paid in November or December 2026.",
+      "source": "https://www.gov.uk/winter-fuel-payment"
+    },
+    "deadline": {
+      "quote": "The deadline for you to make a claim for winter 2026 to 2027 is 31 March 2027.",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-to-claim"
+    },
+    "scotland": {
+      "quote": "You cannot get a Winter Fuel Payment. You might be eligible for Pension Age Winter Heating payment.",
+      "source": "https://www.gov.uk/winter-fuel-payment"
+    },
+    "notBenefits": {
+      "quote": "Any money you get will not affect your other benefits.",
+      "source": "https://www.gov.uk/winter-fuel-payment/how-much-youll-get"
+    }
+  },
+  "sources": [
+    {
+      "title": "Winter Fuel Payment",
+      "url": "https://www.gov.uk/winter-fuel-payment"
+    }
+  ]
+}

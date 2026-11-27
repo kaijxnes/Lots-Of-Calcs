@@ -38,6 +38,7 @@ const TAGS = {
   "/pension-withdrawal-tax-calculator/": "UK",
   "/student-maintenance-loan-calculator/": "England",
   "/carers-allowance-calculator/": "UK",
+  "/winter-fuel-payment-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
