@@ -12,11 +12,52 @@
 <body class="embed-body">
   <div class="page embed-page">
     <p class="embed-head"><a href="/tip/">Tip calculator</a></p>
-<main class="tool">
-      <h2 class="tool-section-title">How the tip is worked out</h2>
-      <p class="about-text">The tip is the bill multiplied by the tip percentage and divided by 100; the total is the bill plus the tip. Split between several people, both are divided evenly.</p>
-      <p class="about-text"><strong>Example:</strong> a &pound;86 dinner for four with a 12.5% tip. The tip is 86 &times; 0.125 = &pound;10.75, the total &pound;96.75, and each person pays <strong>&pound;24.19</strong> (&pound;24.1875, rounded). If people ordered very different amounts, the <a href="/split-bill/">itemised bill splitter</a> shares the tip by what each person spent.</p>
-      <p class="about-text"><strong>Quick mental maths:</strong> 10% is the bill with the decimal point moved one place left. Add half of that again for 15%, or double it for 20%. On &pound;86: 10% is &pound;8.60, 15% is &pound;12.90, 20% is &pound;17.20.</p>
+<main class="tool split">
+      <div class="field-row">
+        <div class="field">
+          <label for="bill">Bill amount</label>
+          <input type="number" id="bill" placeholder="0.00" step="any" value="50" inputmode="decimal">
+        </div>
+        <div class="field">
+          <label for="currency">Currency</label>
+          <select id="currency">
+            <option value="£" selected>£ British Pound</option>
+            <option value="$">$ US Dollar</option>
+            <option value="€">€ Euro</option>
+            <option value="¥">¥ Japanese Yen</option>
+            <option value="₹">₹ Indian Rupee</option>
+            <option value="A$">A$ Australian Dollar</option>
+            <option value="C$">C$ Canadian Dollar</option>
+            <option value="Fr">Fr Swiss Franc</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label id="tip-label">Tip</label>
+        <div class="tabs" id="tip-presets" aria-labelledby="tip-label">
+          <button class="tab" data-tip="10" type="button">10%</button>
+          <button class="tab active" data-tip="15" type="button">15%</button>
+          <button class="tab" data-tip="20" type="button">20%</button>
+        </div>
+        <label for="tip-percent" class="sub-label">Or your own tip (%)</label>
+        <input type="number" id="tip-percent" placeholder="15" step="any" value="15" inputmode="decimal">
+      </div>
+
+      <div class="field">
+        <label for="people">Number of people</label>
+        <input type="number" id="people" placeholder="1" step="1" min="1" value="1">
+      </div>
+
+      <div class="result-box split-aside">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Tip amount</span><span class="r-value" id="tip-amount">£7.50</span></div>
+          <div class="result-row highlight"><span class="r-label">Total (bill + tip)</span><span class="r-value" id="total">£57.50</span></div>
+          <hr class="divider">
+          <div class="result-row"><span class="r-label">Tip per person</span><span class="r-value" id="tip-per-person">£7.50</span></div>
+          <div class="result-row highlight"><span class="r-label">Total per person</span><span class="r-value" id="total-per-person">£57.50</span></div>
+        </div>
+      </div>
     </main>
     <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/tip/">Lots Of Calcs</a> — all calculations run in your browser.</p>
   </div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payslip checker — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/payslip-checker/">
+<link rel="stylesheet" href="/styles.css?v=3f414463">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/payslip-checker/">Payslip checker</a></p>
+<main class="tool split" id="ps-tool" data-rules="{&quot;letters&quot;:{&quot;L&quot;:&quot;You're entitled to the standard tax-free Personal Allowance.&quot;,&quot;M&quot;:&quot;Marriage Allowance: you've received a transfer of 10% of your partner's Personal Allowance.&quot;,&quot;N&quot;:&quot;Marriage Allowance: you've transferred 10% of your Personal Allowance to your partner.&quot;,&quot;T&quot;:&quot;Your tax code includes other calculations to work out your Personal Allowance.&quot;,&quot;K&quot;:&quot;You have income that you are not paying tax on which is more than your Personal Allowance.&quot;,&quot;0T&quot;:&quot;Your Personal Allowance has been used up, or you've started a new job and your employer does not have the details they need to give you a tax code.&quot;,&quot;BR&quot;:&quot;All your income from this job or pension is taxed at the basic rate (usually used if you've got more than one job or pension).&quot;,&quot;D0&quot;:&quot;All your income from this job or pension is taxed at the higher rate (usually used if you've got more than one job or pension).&quot;,&quot;D1&quot;:&quot;All your income from this job or pension is taxed at the additional rate (usually used if you've got more than one job or pension).&quot;,&quot;NT&quot;:&quot;You're not paying any tax on this income.&quot;,&quot;S&quot;:&quot;Your income or pension is taxed using the rates in Scotland.&quot;,&quot;C&quot;:&quot;Your income or pension is taxed using the rates in Wales.&quot;,&quot;SBR&quot;:&quot;All your income from this job or pension is taxed at the basic rate in Scotland.&quot;,&quot;SD0&quot;:&quot;All your income from this job or pension is taxed at the intermediate rate in Scotland.&quot;,&quot;SD1&quot;:&quot;All your income from this job or pension is taxed at the higher rate in Scotland.&quot;,&quot;SD2&quot;:&quot;All your income from this job or pension is taxed at the advanced rate in Scotland.&quot;,&quot;SD3&quot;:&quot;All your income from this job or pension is taxed at the top rate in Scotland.&quot;,&quot;CBR&quot;:&quot;All your income from this job or pension is taxed at the basic rate in Wales.&quot;,&quot;CD0&quot;:&quot;All your income from this job or pension is taxed at the higher rate in Wales.&quot;,&quot;CD1&quot;:&quot;All your income from this job or pension is taxed at the additional rate in Wales.&quot;,&quot;EMERGENCY&quot;:&quot;You're on an emergency tax code: your tax is worked out on what you're paid in that week or month only, as if you're paid that amount every week or month of the year.&quot;},&quot;kCap&quot;:50,&quot;personalAllowance&quot;:12570,&quot;taperFrom&quot;:100000,&quot;transfer&quot;:1260,&quot;collectLimit&quot;:3000,&quot;year&quot;:&quot;2026/27&quot;,&quot;bands&quot;:{&quot;ruk&quot;:[[0,20],[37700,40],[125140,45]],&quot;sct&quot;:[[0,19],[3967,20],[16956,21],[31092,42],[62430,45],[125140,48]]},&quot;flat&quot;:{&quot;BR&quot;:20,&quot;D0&quot;:40,&quot;D1&quot;:45,&quot;CBR&quot;:20,&quot;CD0&quot;:40,&quot;CD1&quot;:45,&quot;SBR&quot;:20,&quot;SD0&quot;:21,&quot;SD1&quot;:42,&quot;SD2&quot;:45,&quot;SD3&quot;:48},&quot;tolerance&quot;:1,&quot;taxWhy&quot;:&quot;Tax is usually worked out on your pay so far in the tax year, so a bonus, overtime, a pay rise, a new job, or a new or emergency tax code can make one payday's tax differ. Check the tax code on your payslip.&quot;,&quot;niWhy&quot;:&quot;National Insurance is worked out on each payday's pay on its own, so a bigger payday pays more.&quot;}">
+      <div class="field-row">
+        <div class="field"><label for="ps-gross">Gross pay this pay period</label><input type="number" id="ps-gross" value="2500" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ps-per">Paid</label><select id="ps-per"><option value="12" selected>Monthly</option><option value="52">Weekly</option><option value="26">Every 2 weeks</option><option value="13">Every 4 weeks</option></select></div>
+        <div class="field"><label for="ps-code">Tax code</label><input type="text" id="ps-code" value="1257L" autocomplete="off" spellcheck="false"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="ps-pct">Pension (% of pay)</label><input type="number" id="ps-pct" value="0" min="0" max="100" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ps-ptype">Pension type</label><select id="ps-ptype"><option value="relief" selected>Relief at source</option><option value="netpay">Net pay (taken before tax)</option><option value="sacrifice">Salary sacrifice</option></select></div>
+        <div class="field"><label for="ps-loan">Student loan</label><select id="ps-loan"><option value="none" selected>None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4</option><option value="plan5">Plan 5</option></select></div>
+        <div class="field"><label for="ps-pg">Postgraduate loan</label><select id="ps-pg"><option value="no" selected>No</option><option value="yes">Yes</option></select></div>
+      </div>
+      <div class="hub-group-title" style="margin:14px 0 6px;">From your payslip (optional)</div>
+      <div class="field-row">
+        <div class="field"><label for="ps-s-tax">Tax</label><input type="number" id="ps-s-tax" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ps-s-ni">National Insurance</label><input type="number" id="ps-s-ni" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ps-s-loan">Student loan</label><input type="number" id="ps-s-loan" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ps-s-pension">Pension</label><input type="number" id="ps-s-pension" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ps-s-net">Net pay</label><input type="number" id="ps-s-net" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <p class="tool-hint" id="ps-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" style="margin:6px 0 0;">For regular pay that's the same each payday, 2026/27 rates. A code starting with S uses Scottish rates. Figures within £1.00 are just rounding.</p>
+      <div class="result-box split-aside" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="ps-net">£2,093.30</div>
+          <div class="label" id="ps-label">take-home this pay period</div>
+        </div>
+        <p id="ps-verdict" style="margin:8px 0 0; font-weight:600;"></p>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Income Tax</span><span class="r-value"><span id="ps-tax">£290.50</span><span id="ps-tax-d"></span></span></div>
+          <div class="result-row"><span class="r-label">National Insurance</span><span class="r-value"><span id="ps-ni">£116.20</span><span id="ps-ni-d"></span></span></div>
+          <div class="result-row"><span class="r-label">Student loan</span><span class="r-value"><span id="ps-loan-out">£0.00</span><span id="ps-loan-d"></span></span></div>
+          <div class="result-row"><span class="r-label">Pension</span><span class="r-value"><span id="ps-pension">£0.00</span><span id="ps-pension-d"></span></span></div>
+          <div class="result-row highlight"><span class="r-label">Net pay</span><span class="r-value"><span id="ps-net-row">£2,093.30</span><span id="ps-net-d"></span></span></div>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/payslip-checker/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/tax-engine.js?v=eadd7a79"></script>
+  <script src="/tax-code.js?v=f2011b8f"></script>
+  <script src="/payslip.js?v=4b067139"></script>
+</body>
+</html>

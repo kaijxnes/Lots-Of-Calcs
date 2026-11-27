@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Child maintenance calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/child-maintenance-calculator/">
+<link rel="stylesheet" href="/styles.css?v=3f414463">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/child-maintenance-calculator/">Child maintenance calculator</a></p>
+<main class="tool split" id="cm-tool" data-rules="{&quot;flat&quot;:7,&quot;nilBelow&quot;:7,&quot;reducedFrom&quot;:100,&quot;basicFrom&quot;:200,&quot;cap&quot;:3000,&quot;band1&quot;:800,&quot;basicPct&quot;:[12,16,19],&quot;abovePct&quot;:[9,12,15],&quot;otherPct&quot;:[11,14,16],&quot;reducedT&quot;:[[17,14.1,13.2,12.4],[25,21.2,19.9,18.9],[31,26.4,24.9,23.8]],&quot;shared&quot;:[{&quot;from&quot;:52,&quot;to&quot;:103,&quot;sevenths&quot;:1},{&quot;from&quot;:104,&quot;to&quot;:155,&quot;sevenths&quot;:2},{&quot;from&quot;:156,&quot;to&quot;:174,&quot;sevenths&quot;:3},{&quot;from&quot;:175,&quot;to&quot;:365,&quot;sevenths&quot;:3.5}],&quot;halfExtra&quot;:7,&quot;daysInYear&quot;:365}">
+      <div class="field-row" id="cm-income-row">
+        <div class="field"><label for="cm-income">Paying parent's income before tax</label><input type="number" id="cm-income" value="30000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="cm-per">Per</label><select id="cm-per"><option value="1" selected>Year</option><option value="12">Month</option><option value="52">Week</option></select></div>
+        <div class="field"><label for="cm-pension">Pension contributions (same period)</label><input type="number" id="cm-pension" value="0" min="0" step="any" inputmode="decimal"></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="cm-children">Children the maintenance is for</label><input type="number" id="cm-children" value="1" min="1" max="20" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="cm-others">Other children living with the paying parent</label><input type="number" id="cm-others" value="0" min="0" max="20" step="1" inputmode="numeric"></div>
+        <div class="field"><label for="cm-nights">Nights a year with the paying parent</label><select id="cm-nights"><option value="0" selected>None, or fewer than 52 nights</option><option value="52">52 to 103 nights (about 1 a week)</option><option value="104">104 to 155 nights (about 2 a week)</option><option value="156">156 to 174 nights</option><option value="175">175 nights or more (about half the time)</option></select></div>
+      </div>
+      <div class="field"><label><input type="checkbox" id="cm-benefits" style="width:auto; margin-right:8px;">The paying parent gets benefits (such as Universal Credit with no earnings, or a State Pension)</label></div>
+      <p class="tool-hint" id="cm-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" style="margin:6px 0 0;">Leave out pension contributions your employer already takes off before tax. Shared care is per child; this assumes the same nights for each.</p>
+      <div class="result-box split-aside" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="cm-weekly">£69.04</div>
+          <div class="label" id="cm-label">a week, for 1 child</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">About a month (52 weeks ÷ 12)</span><span class="r-value" id="cm-month">£299.17</span></div>
+          <div class="result-row"><span class="r-label">A year (52 weeks)</span><span class="r-value" id="cm-year">£3,590.08</span></div>
+          <div class="result-row"><span class="r-label">Gross weekly income</span><span class="r-value" id="cm-income-out">£575.34</span></div>
+          <div class="result-row"><span class="r-label">Rate</span><span class="r-value" id="cm-rate">Basic rate</span></div>
+          <div class="result-row"><span class="r-label">Before shared care</span><span class="r-value" id="cm-before">£69.04</span></div>
+          <div class="result-row"><span class="r-label">Shared care</span><span class="r-value" id="cm-shared">None</span></div>
+        </div>
+        <p class="tool-hint" id="cm-note" style="margin:10px 0 0;"></p>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/child-maintenance-calculator/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/child-maintenance.js?v=ec041695"></script>
+</body>
+</html>

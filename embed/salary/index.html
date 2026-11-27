@@ -12,35 +12,74 @@
 <body class="embed-body">
   <div class="page embed-page">
     <p class="embed-head"><a href="/salary/">Salary after tax calculator</a></p>
-<main class="tool">
-      <h2 class="tool-section-title">Take-home pay on a typical salary</h2>
-      <div class="table-scroll" tabindex="0" role="region" aria-label="Take-home pay on a typical salary (table)">
-        <div style="min-width:520px;">
-          <table class="out-table">
-            <thead><tr><th>Where</th><th>Salary</th><th>Take-home a year</th><th>A month</th><th>Effective rate</th></tr></thead>
-            <tbody>
-<tr><td><a href="/salary/uk/">England, Wales &amp; N. Ireland</a></td><td>£35,000</td><td>£28,720</td><td>£2,393</td><td>17.9%</td></tr>
-<tr><td><a href="/salary/scotland/">Scotland</a></td><td>£35,000</td><td>£28,705</td><td>£2,392</td><td>18.0%</td></tr>
-<tr><td><a href="/salary/us/texas/">Texas</a></td><td>$75,000</td><td>$61,593</td><td>$5,133</td><td>17.9%</td></tr>
-<tr><td><a href="/salary/us/california/">California</a></td><td>$75,000</td><td>$57,843</td><td>$4,820</td><td>22.9%</td></tr>
-<tr><td><a href="/salary/us/new-york/">New York</a></td><td>$75,000</td><td>$57,784</td><td>$4,815</td><td>23.0%</td></tr>
-<tr><td><a href="/salary/canada/ontario/">Ontario</a></td><td>$75,000</td><td>$56,926</td><td>$4,744</td><td>24.1%</td></tr>
-<tr><td><a href="/salary/ireland/">Ireland</a></td><td>€50,000</td><td>€39,648</td><td>€3,304</td><td>20.7%</td></tr>
-<tr><td><a href="/salary/germany/">Germany</a></td><td>€50,000</td><td>€32,329</td><td>€2,694</td><td>35.3%</td></tr>
-<tr><td><a href="/salary/france/">France</a></td><td>€50,000</td><td>€35,370</td><td>€2,947</td><td>29.3%</td></tr>
-<tr><td><a href="/salary/spain/">Spain</a></td><td>€50,000</td><td>€36,190</td><td>€3,016</td><td>27.6%</td></tr>
-<tr><td><a href="/salary/italy/">Italy</a></td><td>€50,000</td><td>€32,568</td><td>€2,714</td><td>34.9%</td></tr>
-<tr><td><a href="/salary/netherlands/">Netherlands</a></td><td>€50,000</td><td>€39,140</td><td>€3,262</td><td>21.7%</td></tr>
-<tr><td><a href="/salary/sweden/">Sweden</a></td><td>kr 500,000</td><td>kr 393,531</td><td>kr 32,794</td><td>21.3%</td></tr>
-<tr><td><a href="/salary/australia/">Australia</a></td><td>$90,000</td><td>$71,000</td><td>$5,917</td><td>21.1%</td></tr>
-<tr><td><a href="/salary/new-zealand/">New Zealand</a></td><td>$80,000</td><td>$62,323</td><td>$5,194</td><td>22.1%</td></tr>
-<tr><td><a href="/salary/japan/">Japan</a></td><td>¥5,000,000</td><td>¥3,933,663</td><td>¥327,805</td><td>21.3%</td></tr>
-<tr><td><a href="/salary/india/">India</a></td><td>₹12,00,000</td><td>₹12,00,000</td><td>₹1,00,000</td><td>0.0%</td></tr>
-            </tbody>
-          </table>
+<main class="tool split" id="salary-calc">
+      <div class="field-row">
+        <div class="field">
+          <label for="location">Where you're paid</label>
+          <select id="location">
+          <optgroup label="United Kingdom"><option value="gb" data-currency="GBP" data-gross="35000" data-hub="" selected>England, Wales &amp; Northern Ireland</option><option value="gb-sct" data-currency="GBP" data-gross="35000" data-hub="/salary/scotland/">Scotland</option></optgroup>
+          <optgroup label="United States"><option value="us-al" data-currency="USD" data-gross="75000" data-hub="/salary/us/alabama/">Alabama</option><option value="us-ak" data-currency="USD" data-gross="75000" data-hub="/salary/us/alaska/">Alaska</option><option value="us-az" data-currency="USD" data-gross="75000" data-hub="/salary/us/arizona/">Arizona</option><option value="us-ar" data-currency="USD" data-gross="75000" data-hub="/salary/us/arkansas/">Arkansas</option><option value="us-ca" data-currency="USD" data-gross="75000" data-hub="/salary/us/california/">California</option><option value="us-co" data-currency="USD" data-gross="75000" data-hub="/salary/us/colorado/">Colorado</option><option value="us-ct" data-currency="USD" data-gross="75000" data-hub="/salary/us/connecticut/">Connecticut</option><option value="us-de" data-currency="USD" data-gross="75000" data-hub="/salary/us/delaware/">Delaware</option><option value="us-fl" data-currency="USD" data-gross="75000" data-hub="/salary/us/florida/">Florida</option><option value="us-ga" data-currency="USD" data-gross="75000" data-hub="/salary/us/georgia/">Georgia</option><option value="us-hi" data-currency="USD" data-gross="75000" data-hub="/salary/us/hawaii/">Hawaii</option><option value="us-id" data-currency="USD" data-gross="75000" data-hub="/salary/us/idaho/">Idaho</option><option value="us-il" data-currency="USD" data-gross="75000" data-hub="/salary/us/illinois/">Illinois</option><option value="us-in" data-currency="USD" data-gross="75000" data-hub="/salary/us/indiana/">Indiana</option><option value="us-ia" data-currency="USD" data-gross="75000" data-hub="/salary/us/iowa/">Iowa</option><option value="us-ks" data-currency="USD" data-gross="75000" data-hub="/salary/us/kansas/">Kansas</option><option value="us-ky" data-currency="USD" data-gross="75000" data-hub="/salary/us/kentucky/">Kentucky</option><option value="us-la" data-currency="USD" data-gross="75000" data-hub="/salary/us/louisiana/">Louisiana</option><option value="us-me" data-currency="USD" data-gross="75000" data-hub="/salary/us/maine/">Maine</option><option value="us-md" data-currency="USD" data-gross="75000" data-hub="/salary/us/maryland/">Maryland</option><option value="us-ma" data-currency="USD" data-gross="75000" data-hub="/salary/us/massachusetts/">Massachusetts</option><option value="us-mi" data-currency="USD" data-gross="75000" data-hub="/salary/us/michigan/">Michigan</option><option value="us-mn" data-currency="USD" data-gross="75000" data-hub="/salary/us/minnesota/">Minnesota</option><option value="us-ms" data-currency="USD" data-gross="75000" data-hub="/salary/us/mississippi/">Mississippi</option><option value="us-mo" data-currency="USD" data-gross="75000" data-hub="/salary/us/missouri/">Missouri</option><option value="us-mt" data-currency="USD" data-gross="75000" data-hub="/salary/us/montana/">Montana</option><option value="us-ne" data-currency="USD" data-gross="75000" data-hub="/salary/us/nebraska/">Nebraska</option><option value="us-nv" data-currency="USD" data-gross="75000" data-hub="/salary/us/nevada/">Nevada</option><option value="us-nh" data-currency="USD" data-gross="75000" data-hub="/salary/us/new-hampshire/">New Hampshire</option><option value="us-nj" data-currency="USD" data-gross="75000" data-hub="/salary/us/new-jersey/">New Jersey</option><option value="us-nm" data-currency="USD" data-gross="75000" data-hub="/salary/us/new-mexico/">New Mexico</option><option value="us-ny" data-currency="USD" data-gross="75000" data-hub="/salary/us/new-york/">New York</option><option value="us-ny-nyc" data-currency="USD" data-gross="75000" data-hub="/salary/us/new-york-city/">New York City</option><option value="us-nc" data-currency="USD" data-gross="75000" data-hub="/salary/us/north-carolina/">North Carolina</option><option value="us-nd" data-currency="USD" data-gross="75000" data-hub="/salary/us/north-dakota/">North Dakota</option><option value="us-oh" data-currency="USD" data-gross="75000" data-hub="/salary/us/ohio/">Ohio</option><option value="us-ok" data-currency="USD" data-gross="75000" data-hub="/salary/us/oklahoma/">Oklahoma</option><option value="us-or" data-currency="USD" data-gross="75000" data-hub="/salary/us/oregon/">Oregon</option><option value="us-pa" data-currency="USD" data-gross="75000" data-hub="/salary/us/pennsylvania/">Pennsylvania</option><option value="us-ri" data-currency="USD" data-gross="75000" data-hub="/salary/us/rhode-island/">Rhode Island</option><option value="us-sc" data-currency="USD" data-gross="75000" data-hub="/salary/us/south-carolina/">South Carolina</option><option value="us-sd" data-currency="USD" data-gross="75000" data-hub="/salary/us/south-dakota/">South Dakota</option><option value="us-tn" data-currency="USD" data-gross="75000" data-hub="/salary/us/tennessee/">Tennessee</option><option value="us-tx" data-currency="USD" data-gross="75000" data-hub="/salary/us/texas/">Texas</option><option value="us-ut" data-currency="USD" data-gross="75000" data-hub="/salary/us/utah/">Utah</option><option value="us-vt" data-currency="USD" data-gross="75000" data-hub="/salary/us/vermont/">Vermont</option><option value="us-va" data-currency="USD" data-gross="75000" data-hub="/salary/us/virginia/">Virginia</option><option value="us-wa" data-currency="USD" data-gross="75000" data-hub="/salary/us/washington/">Washington</option><option value="us-dc" data-currency="USD" data-gross="75000" data-hub="/salary/us/washington-dc/">Washington, DC</option><option value="us-wv" data-currency="USD" data-gross="75000" data-hub="/salary/us/west-virginia/">West Virginia</option><option value="us-wi" data-currency="USD" data-gross="75000" data-hub="/salary/us/wisconsin/">Wisconsin</option><option value="us-wy" data-currency="USD" data-gross="75000" data-hub="/salary/us/wyoming/">Wyoming</option></optgroup>
+          <optgroup label="Canada"><option value="ca-ab" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/alberta/">Alberta</option><option value="ca-bc" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/british-columbia/">British Columbia</option><option value="ca-mb" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/manitoba/">Manitoba</option><option value="ca-nb" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/new-brunswick/">New Brunswick</option><option value="ca-nl" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/newfoundland-and-labrador/">Newfoundland and Labrador</option><option value="ca-nt" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/northwest-territories/">Northwest Territories</option><option value="ca-ns" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/nova-scotia/">Nova Scotia</option><option value="ca-nu" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/nunavut/">Nunavut</option><option value="ca-on" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/ontario/">Ontario</option><option value="ca-pe" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/prince-edward-island/">Prince Edward Island</option><option value="ca-qc" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/quebec/">Quebec</option><option value="ca-sk" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/saskatchewan/">Saskatchewan</option><option value="ca-yt" data-currency="CAD" data-gross="75000" data-hub="/salary/canada/yukon/">Yukon</option></optgroup>
+          <optgroup label="Europe"><option value="at" data-currency="EUR" data-gross="50000" data-hub="/salary/austria/">Austria</option><option value="be" data-currency="EUR" data-gross="50000" data-hub="/salary/belgium/">Belgium</option><option value="dk" data-currency="DKK" data-gross="600000" data-hub="/salary/denmark/">Denmark</option><option value="fi" data-currency="EUR" data-gross="50000" data-hub="/salary/finland/">Finland</option><option value="fr" data-currency="EUR" data-gross="50000" data-hub="/salary/france/">France</option><option value="de" data-currency="EUR" data-gross="50000" data-hub="/salary/germany/">Germany</option><option value="ie" data-currency="EUR" data-gross="50000" data-hub="/salary/ireland/">Ireland</option><option value="it" data-currency="EUR" data-gross="50000" data-hub="/salary/italy/">Italy</option><option value="lu" data-currency="EUR" data-gross="50000" data-hub="/salary/luxembourg/">Luxembourg</option><option value="nl" data-currency="EUR" data-gross="50000" data-hub="/salary/netherlands/">Netherlands</option><option value="no" data-currency="NOK" data-gross="600000" data-hub="/salary/norway/">Norway</option><option value="pt" data-currency="EUR" data-gross="50000" data-hub="/salary/portugal/">Portugal</option><option value="es" data-currency="EUR" data-gross="50000" data-hub="/salary/spain/">Spain</option><option value="se" data-currency="SEK" data-gross="500000" data-hub="/salary/sweden/">Sweden</option><option value="ch-bs" data-currency="CHF" data-gross="100000" data-hub="/salary/switzerland/basel/">Switzerland (Basel)</option><option value="ch-be" data-currency="CHF" data-gross="100000" data-hub="/salary/switzerland/bern/">Switzerland (Bern)</option><option value="ch-vd" data-currency="CHF" data-gross="100000" data-hub="/salary/switzerland/lausanne/">Switzerland (Lausanne)</option><option value="ch-zg" data-currency="CHF" data-gross="100000" data-hub="/salary/switzerland/zug/">Switzerland (Zug)</option><option value="ch" data-currency="CHF" data-gross="100000" data-hub="/salary/switzerland/">Switzerland (Zurich)</option></optgroup>
+          <optgroup label="Asia-Pacific"><option value="au" data-currency="AUD" data-gross="90000" data-hub="/salary/australia/">Australia</option><option value="in" data-currency="INR" data-gross="1200000" data-hub="/salary/india/">India</option><option value="jp" data-currency="JPY" data-gross="5000000" data-hub="/salary/japan/">Japan</option><option value="nz" data-currency="NZD" data-gross="80000" data-hub="/salary/new-zealand/">New Zealand</option></optgroup>
+          </select>
+        </div>
+        <div class="field">
+          <label for="salary">Gross annual salary (<span id="salary-currency">GBP</span>)</label>
+          <input type="number" id="salary" value="35000" step="any" min="0" inputmode="decimal" placeholder="0">
         </div>
       </div>
-      <p class="tool-hint" style="margin-top:12px;">Single, with the default options, for the current tax year in each place. Pick one for every salary, hourly rate and monthly figure.</p>
+      <div class="field-row" id="salary-options">
+        <div class="field"><label for="opt-pensionPct">Pension contribution (% of salary)</label><input type="number" id="opt-pensionPct" value="0" min="0" max="100" step="0.5" inputmode="decimal"></div>
+        <div class="field"><label for="opt-pensionType">Pension type</label><select id="opt-pensionType"><option value="relief" selected>Relief at source (most personal and many workplace pensions)</option><option value="netpay">Net pay arrangement (taken before tax)</option><option value="sacrifice">Salary sacrifice</option></select></div>
+        <div class="field"><label for="opt-studentLoan">Student loan</label><select id="opt-studentLoan"><option value="none" selected>None</option><option value="plan1">Plan 1</option><option value="plan2">Plan 2</option><option value="plan4">Plan 4 (Scotland)</option><option value="plan5">Plan 5</option></select></div>
+        <div class="field"><label for="opt-postgradLoan">Postgraduate loan</label><select id="opt-postgradLoan"><option value="no" selected>No</option><option value="yes">Yes</option></select></div>
+      </div>
+      <p class="tool-hint" id="salary-error" role="alert" style="color: var(--bad); display: none;"></p>
+
+      <div class="result-box split-aside" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="out-net">£28,719.60</div>
+          <div class="label">Take-home pay, a year</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row highlight"><span class="r-label">A month</span><span class="r-value" id="out-month">£2,393.30</span></div>
+          <div class="result-row"><span class="r-label">A week</span><span class="r-value" id="out-week">£552.30</span></div>
+          <div class="result-row"><span class="r-label">A working day</span><span class="r-value" id="out-day">£110.46</span></div>
+          <div class="result-row"><span class="r-label">Effective tax rate</span><span class="r-value" id="out-rate">17.9%</span></div>
+        </div>
+      </div>
+
+      <h2 class="tool-section-title" style="margin-top:22px;">Where it goes</h2>
+      <div class="result-box">
+        <div class="result-grid" id="breakdown">
+          <div class="result-row"><span class="r-label">Gross salary</span><span class="r-value">£35,000</span></div>
+          <div class="result-row"><span class="r-label">Personal allowance</span><span class="r-value">£12,570.00</span></div>
+          <div class="result-row"><span class="r-label">Taxable income</span><span class="r-value">£22,430.00</span></div>
+          <div class="result-row"><span class="r-label">Income tax</span><span class="r-value">£4,486.00</span></div>
+          <div class="result-row"><span class="r-label">National Insurance</span><span class="r-value">£1,794.40</span></div>
+          <div class="result-row"><span class="r-label">Total deductions</span><span class="r-value">£6,280.40</span></div>
+          <div class="result-row"><span class="r-label">Effective rate</span><span class="r-value">17.9%</span></div>
+          <div class="result-row"><span class="r-label">Marginal rate</span><span class="r-value">28%</span></div>
+          <div class="result-row highlight"><span class="r-label">Take-home pay</span><span class="r-value">£28,719.60</span></div>
+        </div>
+      </div>
+      <h2 class="tool-section-title" style="margin-top:22px;">What would a pay rise be worth?</h2>
+      <div class="field" style="max-width:200px;">
+        <label for="rise-pct">Pay rise (%)</label>
+        <input type="number" id="rise-pct" value="3" min="0" step="any" inputmode="decimal">
+      </div>
+      <div class="result-box">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">New salary</span><span class="r-value" id="out-rise-gross">£36,050</span></div>
+          <div class="result-row highlight"><span class="r-label">Extra take-home a month</span><span class="r-value" id="out-rise-month">£63.00</span></div>
+          <div class="result-row"><span class="r-label">Extra take-home a year</span><span class="r-value" id="out-rise-year">£756.00</span></div>
+          <div class="result-row"><span class="r-label">You keep</span><span class="r-value" id="out-rise-keep">72% of the rise</span></div>
+        </div>
+      </div>
+      <p class="tool-hint">More on pay rises: the <a href="/pay-rise-calculator/">pay rise calculator</a> · <a href="/pay-rise-calculator/2-percent/">2%</a> · <a href="/pay-rise-calculator/3-percent/">3%</a> · <a href="/pay-rise-calculator/4-percent/">4%</a> · <a href="/pay-rise-calculator/5-percent/">5%</a> · <a href="/pay-rise-calculator/6-percent/">6%</a> · <a href="/pay-rise-calculator/10-percent/">10%</a>.</p>
+      <p class="tool-hint" id="salary-note" style="margin-top:12px;">2026/27 tax year. An estimate, not a payslip: it assumes one job and no other income. Pensions, student loans and other deductions can be added where the place has them.</p>
     </main>
     <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/salary/">Lots Of Calcs</a> — all calculations run in your browser.</p>
   </div>

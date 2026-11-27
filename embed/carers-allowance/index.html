@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carer's Allowance earnings calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/carers-allowance-calculator/">
+<link rel="stylesheet" href="/styles.css?v=3f414463">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/carers-allowance-calculator/">Carer's Allowance earnings calculator</a></p>
+<main class="tool split" id="ca-tool" data-rules="{&quot;cfg&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[20,40,45],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;},&quot;niPT&quot;:12570,&quot;niUEL&quot;:50270,&quot;niMain&quot;:8,&quot;niUpper&quot;:2},&quot;R&quot;:{&quot;limit&quot;:204,&quot;pensionShare&quot;:0.5,&quot;careMaxShare&quot;:0.5}}">
+      <div class="field-row">
+        <div class="field"><label for="ca-gross">Your pay before tax</label><input type="number" id="ca-gross" value="880" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ca-per">Paid</label><select id="ca-per"><option value="week">Weekly</option><option value="four">Every 4 weeks</option><option value="month" selected>Monthly</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="ca-pension">Your pension contributions (same period)</label><input type="number" id="ca-pension" value="0" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ca-care">Care costs while you work (same period)</label><input type="number" id="ca-care" value="0" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ca-taxni">Tax and NI on your payslip (optional)</label><input type="number" id="ca-taxni" value="" min="0" step="any" inputmode="decimal" placeholder="Estimated"></div>
+      </div>
+      <p class="tool-hint" id="ca-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" style="margin:6px 0 0;">Care costs count if you pay someone who isn't a close relative to look after the person you care for, or a child under 16, while you're at work. Tax and National Insurance are estimated for 2026/27 with no other income unless you enter them.</p>
+      <div class="result-box split-aside" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="ca-counted">£203.08</div>
+          <div class="label" id="ca-label">counted earnings a week (the limit is £204.00)</div>
+        </div>
+        <p id="ca-verdict" style="margin:8px 0 0; font-weight:600; color: var(--good);">Within the limit: your earnings don't stop Carer's Allowance.</p>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Pay a week</span><span class="r-value" id="ca-gross">£203.08</span></div>
+          <div class="result-row"><span class="r-label">Tax and National Insurance</span><span class="r-value" id="ca-taxni">None (estimate)</span></div>
+          <div class="result-row"><span class="r-label">Half your pension contributions</span><span class="r-value" id="ca-pension-out">—</span></div>
+          <div class="result-row"><span class="r-label">Care costs (up to half)</span><span class="r-value" id="ca-care-out">—</span></div>
+          <div class="result-row highlight"><span class="r-label">Room left under the limit</span><span class="r-value" id="ca-room">£0.92 a week</span></div>
+          <div class="result-row"><span class="r-label">Most you could earn before tax</span><span class="r-value" id="ca-max">£204.00 a week</span></div>
+        </div>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/carers-allowance-calculator/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/uk-calcs.js?v=1173e01a"></script>
+  <script src="/carers-allowance.js?v=531fcc6b"></script>
+</body>
+</html>
