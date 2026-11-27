@@ -1,0 +1,78 @@
+{
+  "note": "Carer's Allowance earnings limit check (England and Wales). Net earnings are gross pay less Income Tax, employee National Insurance and half of pension contributions; relevant care charges come off too, up to half of net earnings.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "weekly": 86.45,
+  "limit": 204,
+  "hours": 35,
+  "pensionShare": 0.5,
+  "careMaxShare": 0.5,
+  "rules": {
+    "rate": {
+      "quote": "You could get £86.45 a week if you care for someone at least 35 hours a week and they get certain benefits.",
+      "source": "https://www.gov.uk/carers-allowance"
+    },
+    "tax": {
+      "quote": "You have to pay tax on it if your income is over the Personal Allowance.",
+      "source": "https://www.gov.uk/carers-allowance"
+    },
+    "limit": {
+      "quote": "your earnings are £204 or less a week after tax, National Insurance and expenses",
+      "source": "https://www.gov.uk/carers-allowance/eligibility"
+    },
+    "hours": {
+      "quote": "You can work and get Carer’s Allowance, as long as you spend at least 35 hours in your caring role.",
+      "source": "https://www.gov.uk/carers-allowance"
+    },
+    "uc": {
+      "quote": "Your Universal Credit payment will be reduced by an amount equal to your Carer’s Allowance payment.",
+      "source": "https://www.gov.uk/carers-allowance"
+    },
+    "credits": {
+      "quote": "For each week you get Carer’s Allowance you’ll automatically get National Insurance credits.",
+      "source": "https://www.gov.uk/carers-allowance"
+    },
+    "scotland": {
+      "quote": "You need to apply for Carer Support Payment instead of Carer’s Allowance.",
+      "source": "https://www.gov.uk/carers-allowance"
+    },
+    "net": {
+      "quote": "(4) For the purposes of paragraph (1) net earnings shall be calculated by taking into account the gross earnings of the claimant from that employment less— (a) any amount deducted from those earnings by way of— (i) income tax; (ii) primary Class 1 contributions under the Contributions and Benefits Act; and (b) one half of any sum paid by the claimant in respect of a pay period by way of a contribution towards an occupational or personal pension scheme.",
+      "source": "https://www.legislation.gov.uk/uksi/1996/2745/regulation/10"
+    },
+    "care": {
+      "quote": "(3) In the case of entitlement to carer’s allowance under section 70 of the Contributions and Benefits Act M1 there shall be disregarded or deducted as appropriate from a claimant’s net earnings— (a) any sum, where applicable, specified in Schedule 1; and (b) any care charges to which Schedule 3 applies up to a maximum deduction, in respect of such care charges incurred by any claimant, of 50% of his net earnings less those sums, if any, specified in Schedule 1 which are disregarded.",
+      "source": "https://www.legislation.gov.uk/uksi/1996/2745/regulation/10"
+    },
+    "careWho": {
+      "quote": "“relevant care charges\" means the charges paid by the claimant for care which is provided by a person, who is not a close relative of either the severely disabled person or the claimant, for— (a) the severely disabled person; or (b) any child aged under 16 on the date on which the benefit week begins in respect of whom the claimant or his partner is entitled to child benefit under section 141 of the Contributions and Benefits Act because the claimant is unable to care for any of those persons because he is carrying out duties in connection with his employment;",
+      "source": "https://www.legislation.gov.uk/uksi/1996/2745/schedule/3"
+    },
+    "weekly": {
+      "quote": "in a case where that period is a month, by multiplying the amount of that payment by 12 and dividing the product by 52;",
+      "source": "https://www.legislation.gov.uk/uksi/1996/2745/regulation/8"
+    }
+  },
+  "sources": [
+    {
+      "title": "Carer's Allowance",
+      "url": "https://www.gov.uk/carers-allowance"
+    },
+    {
+      "title": "Carer's Allowance: eligibility",
+      "url": "https://www.gov.uk/carers-allowance/eligibility"
+    },
+    {
+      "title": "Social Security Benefit (Computation of Earnings) Regulations 1996, regulation 10",
+      "url": "https://www.legislation.gov.uk/uksi/1996/2745/regulation/10"
+    },
+    {
+      "title": "Social Security Benefit (Computation of Earnings) Regulations 1996, regulation 8",
+      "url": "https://www.legislation.gov.uk/uksi/1996/2745/regulation/8"
+    },
+    {
+      "title": "Social Security Benefit (Computation of Earnings) Regulations 1996, Schedule 3",
+      "url": "https://www.legislation.gov.uk/uksi/1996/2745/schedule/3"
+    }
+  ]
+}
