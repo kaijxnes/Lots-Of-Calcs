@@ -1,0 +1,92 @@
+{
+  "note": "Tax on taking money from a defined contribution pension, for tools/build-pension-withdrawal-pages.js. Income Tax bands and the Personal Allowance come from the UK tax file through tools/lib/uk-config.js; the 25% and £268,275 must also match data/uk/rates-2026-27.json.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "taxYear": "2026/27",
+  "taxFreePct": 25,
+  "lumpSumAllowance": 268275,
+  "rules": {
+    "taxFree": {
+      "quote": "You can usually take up to 25% of the amount built up in any pension as a tax-free lump sum. The most you can take is £268,275.",
+      "source": "https://www.gov.uk/tax-on-pension/tax-free"
+    },
+    "rest": {
+      "quote": "Tax is taken off the remaining amount before you get it. Example Your whole pension is worth £60,000. You take £15,000 as a tax-free lump sum. Your pension provider will then take off the tax from the remaining £45,000.",
+      "source": "https://www.gov.uk/tax-on-pension/tax-free"
+    },
+    "age": {
+      "quote": "When you can take your pension depends on your pension scheme’s rules. It’s usually 55 at the earliest.",
+      "source": "https://www.gov.uk/tax-on-pension/tax-free"
+    },
+    "higher": {
+      "quote": "You might have to pay Income Tax at a higher rate if you take a large amount from your pension. You could also owe extra tax at the end of the tax year.",
+      "source": "https://www.gov.uk/tax-on-pension/tax-free"
+    },
+    "paye": {
+      "quote": "Your private pension provider will usually take off any tax you owe before they pay you.",
+      "source": "https://www.gov.uk/tax-on-pension/how-your-tax-is-paid"
+    },
+    "lsa": {
+      "quote": "This is known as the lump sum allowance. You or your beneficiaries may be able to take a tax-free lump sum of up to £1,073,100 in certain circumstances. For example, if you take a lump sum due to serious illness or your beneficiaries are paid certain lump sum death benefits. This is known as the lump sum and death benefit allowance. If you take a lump sum that goes above your allowances, you’ll need to pay Income Tax on the extra amount.",
+      "source": "https://www.gov.uk/tax-on-your-private-pension/lump-sum-allowance"
+    },
+    "ufpls": {
+      "quote": "It counts towards your lump sum allowance if you take any of the following: a pension commencement lump sum an uncrystallised funds pension lump sum (the 25% tax-free part) a standalone lump sum",
+      "source": "https://www.gov.uk/tax-on-your-private-pension/lump-sum-allowance"
+    },
+    "mpaa": {
+      "quote": "Your annual allowance might be lower if you flexibly access your pension. For example, this could include taking: cash or a short-term annuity from a flexi-access drawdown fund cash from a pension pot (‘uncrystallised funds pension lump sums’)",
+      "source": "https://www.gov.uk/tax-on-your-private-pension/annual-allowance"
+    },
+    "emergency": {
+      "quote": "If you’re paying pension payments to an employee who has flexibly accessed their funds, how you deal with these payments depends on whether they’re paid after, or instead of, any other pension benefits. Paid after the standard pension benefits | Paid as the first and only payment from the pension | Treat the payment the same as earlier pension payments and use the same tax code | Use the emergency tax code on a week 1/month 1 basis",
+      "source": "https://www.gov.uk/guidance/paying-a-company-pension-or-annuity-through-your-payroll"
+    },
+    "emergencyHow": {
+      "quote": "If you’re on an emergency tax code your tax is worked out based on what you’re paid in that week or month only. You get taxed as if you’re paid that amount every week or month of the year.",
+      "source": "https://www.gov.uk/tax-codes/emergency-tax-codes"
+    },
+    "p50z": {
+      "quote": "P50Z — Claim a tax refund if you've stopped work and flexibly accessed all of your pension",
+      "source": "https://www.gov.uk/guidance/claim-a-tax-refund-on-your-pension-by-post"
+    },
+    "p53z": {
+      "quote": "P53Z — Claim a tax refund when you've flexibly accessed all of your pension",
+      "source": "https://www.gov.uk/guidance/claim-a-tax-refund-on-your-pension-by-post"
+    },
+    "p55": {
+      "quote": "P55 — Claim back tax on a flexibly accessed pension overpayment",
+      "source": "https://www.gov.uk/guidance/claim-a-tax-refund-on-your-pension-by-post"
+    }
+  },
+  "sources": [
+    {
+      "title": "Tax on your pension: what's tax-free",
+      "url": "https://www.gov.uk/tax-on-pension/tax-free"
+    },
+    {
+      "title": "Tax on your pension: how your tax is paid",
+      "url": "https://www.gov.uk/tax-on-pension/how-your-tax-is-paid"
+    },
+    {
+      "title": "Tax on your private pension: lump sum allowance",
+      "url": "https://www.gov.uk/tax-on-your-private-pension/lump-sum-allowance"
+    },
+    {
+      "title": "Tax on your private pension: annual allowance",
+      "url": "https://www.gov.uk/tax-on-your-private-pension/annual-allowance"
+    },
+    {
+      "title": "Paying a company pension or annuity through your payroll",
+      "url": "https://www.gov.uk/guidance/paying-a-company-pension-or-annuity-through-your-payroll"
+    },
+    {
+      "title": "Tax codes: emergency tax codes",
+      "url": "https://www.gov.uk/tax-codes/emergency-tax-codes"
+    },
+    {
+      "title": "Claim a tax refund on your pension by post",
+      "url": "https://www.gov.uk/guidance/claim-a-tax-refund-on-your-pension-by-post"
+    }
+  ]
+}
