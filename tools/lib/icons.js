@@ -15,7 +15,7 @@ const ICONS = {
   "🌡️": "thermometer", "📐": "ruler", "🎂": "cake", "🗓️": "calendar-days", "🌍": "globe", "🪐": "orbit", "☀️": "sun",
   "📝": "type", "🧑‍🔬": "sigma", "💯": "percent", "➗": "divide", "🔤": "case-sensitive", "🖊️": "pen-line",
   "🧪": "flask-conical", "🎚️": "sliders-horizontal", "🤖": "bot", "💱": "arrow-left-right", "⏰": "alarm-clock",
-  "🏢": "building-2", "💼": "briefcase", "👶": "baby", "📦": "package", "🏖️": "umbrella", "🌴": "tree-palm", "🤝": "heart-handshake", "🧸": "toy-brick", "🧳": "luggage", "💍": "gem", "🔍": "search",
+  "🏢": "building-2", "💼": "briefcase", "👶": "baby", "📦": "package", "🏖️": "umbrella", "🌴": "tree-palm", "🤝": "heart-handshake", "🧸": "toy-brick", "🎟️": "ticket", "🧳": "luggage", "💍": "gem", "🔍": "search",
   "📉": "trending-down", "🎯": "target", "✉️": "mail", "🛟": "life-buoy", "🎄": "tree-pine", "🧓": "armchair",
   "🏘️": "building", "🔑": "key-round", "❄️": "snowflake", "🧮": "chart-line", "🪫": "battery-low", "🍁": "leaf",
   "🧑‍🤝‍🧑": "users", "🦃": "drumstick", "🍟": "wind", "❤️": "heart-pulse", "📏": "person-standing", "🏋️": "dumbbell",

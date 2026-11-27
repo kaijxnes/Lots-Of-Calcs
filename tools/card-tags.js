@@ -32,6 +32,7 @@ const TAGS = {
   "/paternity-pay-calculator/": "UK",
   "/car-tax-calculator/": "UK",
   "/lifetime-isa-calculator/": "UK",
+  "/premium-bonds-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
