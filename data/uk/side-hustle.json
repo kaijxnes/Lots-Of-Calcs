@@ -1,0 +1,60 @@
+{
+  "note": "The £1,000 trading and property allowances, from HMRC's guidance. Income Tax uses the UK tax file; Class 4 National Insurance on trading profits uses the self-employed tax file (data/tax/gb/gb-se).",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "allowance": 1000,
+  "contactFrom": 1000,
+  "saFrom": 2500,
+  "rules": {
+    "both": {
+      "quote": "You can get up to £1,000 each tax year in tax-free allowances for property or trading income from 6 April 2017. If you have both types of income, you’ll get a £1,000 allowance for each.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "partial": {
+      "quote": "If you use the allowances you can deduct up to £1,000, but not more than the amount of your income. This is known as ‘partial relief’.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "expenses": {
+      "quote": "If your expenses are more than your income it may be beneficial to claim expenses instead of the allowances.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "trading": {
+      "quote": "The trading allowance is a tax exemption of up to £1,000 a year for individuals with trading income from: self-employment casual services, for example, babysitting or gardening (helpsheet 325 has more information about other taxable income) hiring personal equipment, for example, power tools",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "tellTrading": {
+      "quote": "You must tell HMRC if you have: gross trading income over £1,000 — register for Self Assessment other gross income over £1,000 up to £2,500 — contact HMRC other income over £2,500 — register for Self Assessment",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "property": {
+      "quote": "The property allowance is a tax exemption of up to £1,000 a year for individuals with income from land or property. If you own a property jointly with others, you’re each eligible for the £1,000 allowance against your share of the gross rental income.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "tellProperty": {
+      "quote": "You must tell HMRC if you have: gross property income over £1,000 up to £2,500 — contact HMRC property income over £2,500 — register for Self Assessment",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "noRentARoom": {
+      "quote": "You cannot use this allowance on income from letting a room in your own home under the Rent a Room Scheme.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "cannot": {
+      "quote": "You cannot use the allowances in a tax year, if you have any trade or property income from: a company you or someone connected to you owns or controls a partnership where you or someone connected to you are partners your employer or the employer of your spouse or civil partner",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "register": {
+      "quote": "If your gross income for a tax year is more than £1,000, you must register for Self Assessment by 5 October in the following tax year.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    },
+    "noOther": {
+      "quote": "You cannot deduct any other expenses or allowances if you claim the allowances.",
+      "source": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    }
+  },
+  "sources": [
+    {
+      "title": "Tax-free allowances on property and trading income",
+      "url": "https://www.gov.uk/guidance/tax-free-allowances-on-property-and-trading-income"
+    }
+  ]
+}
