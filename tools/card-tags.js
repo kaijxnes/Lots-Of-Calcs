@@ -14,6 +14,7 @@ const TAGS = {
   "/child-benefit-tax-charge-calculator/": "UK",
   "/marriage-allowance-calculator/": "UK",
   "/gift-aid-calculator/": "UK",
+  "/council-tax-discount-calculator/": "E&W",
   "/tax-code-checker/": "UK",
   "/tax-refund-calculator/": "UK",
   "/bonus-tax-calculator/": "UK",
@@ -70,8 +71,8 @@ const TAGS = {
   "/30-percent-ruling-calculator/": "NL",
   "/beckham-law-calculator/": "Spain"
 };
-const NAMES = { UK: "United Kingdom", US: "United States", Canada: "Canada", NL: "Netherlands", Spain: "Spain", England: "England" };
-const span = (href) => (TAGS[href] ? `<span class="card-tag" title="For ${/^(United|Netherlands)/.test(NAMES[TAGS[href]]) ? "the " : ""}${NAMES[TAGS[href]]}">${TAGS[href]}</span>` : "");
+const NAMES = { UK: "United Kingdom", US: "United States", Canada: "Canada", NL: "Netherlands", Spain: "Spain", England: "England", "E&W": "England and Wales" };
+const span = (href) => (TAGS[href] ? `<span class="card-tag" title="For ${/^(United|Netherlands)/.test(NAMES[TAGS[href]]) ? "the " : ""}${NAMES[TAGS[href]]}">${TAGS[href].replace(/&/g, "&amp;")}</span>` : "");
 
 /* Rewrites every hub card in an HTML string to carry its tag (or none) */
 function apply(html) {
