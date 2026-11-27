@@ -1,0 +1,63 @@
+{
+  "note": "Gift Aid from GOV.UK; the basic and higher rate limits are extended by the grossed-up gift (Income Tax Act 2007 s414) and adjusted net income is reduced by it (HMRC). Income Tax uses the UK tax file.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "top": 25,
+  "maxTimesTax": 4,
+  "rules": {
+    "extra": {
+      "quote": "Donating through Gift Aid means charities and community amateur sports clubs (CASCs) can claim an extra 25p for every £1 you give. It will not cost you any extra.",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "fourTimes": {
+      "quote": "Your donations will qualify as long as they’re not more than 4 times what you have paid in tax in that tax year (6 April to 5 April).",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "payMore": {
+      "quote": "If the charity or CASC gets back more tax than you’ve paid, HMRC may ask you to pay more tax to cover the difference.",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "higher": {
+      "quote": "You can claim back the difference between the tax you’ve paid on the donation and what the charity got back when you fill in your Self Assessment tax return. It’s the same if you live in Scotland.",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "how": {
+      "quote": "Do this either: through your Self Assessment tax return by contacting HM Revenue and Customs (HMRC) and asking them to amend your tax code",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "example": {
+      "quote": "You donate £100 to charity - they claim Gift Aid to make your donation £125. You pay 40% tax so you can personally claim back £25.00 (£125 x 20%).",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "fourYears": {
+      "quote": "You can include: current and future donations all donations made in the last 4 years",
+      "source": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    "payroll": {
+      "quote": "To donate £1, you pay: 80p if you’re a basic rate taxpayer 60p if you’re a higher rate taxpayer 55p if you’re an additional rate taxpayer",
+      "source": "https://www.gov.uk/donating-to-charity/donating-straight-from-your-wages-or-pension"
+    },
+    "ani": {
+      "quote": "If you made a Gift Aid donation, take off the ‘grossed-up’ amount — what you paid plus the basic rate of tax. So, for every £1 of Gift Aid donations you made, take £1.25 from your net income.",
+      "source": "https://www.gov.uk/guidance/adjusted-net-income"
+    },
+    "bands": {
+      "quote": "the gift had been made after deduction of income tax at the basic rate, and (b) the basic rate limit and the higher rate limit (see section 10) and additionally, in the case of a Scottish taxpayer, the upper limit for the Scottish basic rate and the limits for any Scottish rates above the Scottish basic rate, were increased by an amount equal to the grossed up amount of the gift.",
+      "source": "https://www.legislation.gov.uk/ukpga/2007/3/section/414"
+    }
+  },
+  "sources": [
+    {
+      "title": "Donating to charity: Gift Aid",
+      "url": "https://www.gov.uk/donating-to-charity/gift-aid"
+    },
+    {
+      "title": "Adjusted net income",
+      "url": "https://www.gov.uk/guidance/adjusted-net-income"
+    },
+    {
+      "title": "Income Tax Act 2007, section 414",
+      "url": "https://www.legislation.gov.uk/ukpga/2007/3/section/414"
+    }
+  ]
+}

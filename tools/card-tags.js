@@ -13,6 +13,7 @@ const TAGS = {
   "/self-assessment-penalty-calculator/": "UK",
   "/child-benefit-tax-charge-calculator/": "UK",
   "/marriage-allowance-calculator/": "UK",
+  "/gift-aid-calculator/": "UK",
   "/tax-code-checker/": "UK",
   "/tax-refund-calculator/": "UK",
   "/bonus-tax-calculator/": "UK",
