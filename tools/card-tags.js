@@ -39,6 +39,7 @@ const TAGS = {
   "/student-maintenance-loan-calculator/": "England",
   "/carers-allowance-calculator/": "UK",
   "/winter-fuel-payment-calculator/": "UK",
+  "/day-rate-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
