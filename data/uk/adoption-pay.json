@@ -1,0 +1,65 @@
+{
+  "note": "Statutory Adoption Pay and Leave from GOV.UK. The rate and earnings limit must agree with data/uk/rates-2026-27.json.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "taxYear": "2026/27",
+  "weeklyRate": 194.32,
+  "earningsPct": 90,
+  "higherWeeks": 6,
+  "payWeeks": 39,
+  "minAverageWeekly": 129,
+  "serviceWeeks": 26,
+  "leaveWeeks": 52,
+  "rules": {
+    "pay": {
+      "quote": "Statutory Adoption Pay is paid for up to 39 weeks. The weekly amount is: 90% of your average weekly earnings for the first 6 weeks £194.32 or 90% of your average weekly earnings (whichever is lower) for the next 33 weeks",
+      "source": "https://www.gov.uk/adoption-pay-leave/pay"
+    },
+    "taxed": {
+      "quote": "It’s paid in the same way as your wages (for example monthly or weekly). Tax and National Insurance will be deducted.",
+      "source": "https://www.gov.uk/adoption-pay-leave/pay"
+    },
+    "extra": {
+      "quote": "You may get more pay if your employer has a company adoption pay scheme. Your employer cannot offer you less than the statutory amount.",
+      "source": "https://www.gov.uk/adoption-pay-leave/pay"
+    },
+    "eligibility": {
+      "quote": "To get Statutory Adoption Pay, you must: have been continuously employed by your employer for at least 26 weeks by the week you were matched with a child earn on average at least £129 a week (before tax) give the correct notice give proof of the adoption or surrogacy",
+      "source": "https://www.gov.uk/adoption-pay-leave/eligibility"
+    },
+    "overseas": {
+      "quote": "The requirements are the same if you’re adopting from overseas, except you must have been continuously employed by your employer for at least 26 weeks when you start getting adoption pay.",
+      "source": "https://www.gov.uk/adoption-pay-leave/eligibility"
+    },
+    "surrogacy": {
+      "quote": "The requirements are the same if you’re in a surrogacy arrangement, except you must have been continuously employed by your employer for at least 26 weeks by the 15th week before the baby’s due.",
+      "source": "https://www.gov.uk/adoption-pay-leave/eligibility"
+    },
+    "exceptions": {
+      "quote": "You do not qualify for Statutory Adoption Leave or Pay if you: arrange a private adoption become a special guardian or kinship carer adopt a stepchild adopt a family member",
+      "source": "https://www.gov.uk/adoption-pay-leave/eligibility"
+    },
+    "sap1": {
+      "quote": "Your employer must give you form SAP1 explaining why you cannot get Statutory Adoption Pay.",
+      "source": "https://www.gov.uk/adoption-pay-leave/eligibility"
+    },
+    "leave": {
+      "quote": "Statutory Adoption Leave is 52 weeks. It’s made up of: 26 weeks of Ordinary Adoption Leave 26 weeks of Additional Adoption Leave",
+      "source": "https://www.gov.uk/adoption-pay-leave/leave"
+    },
+    "onePerson": {
+      "quote": "Only 1 person in a couple can take adoption leave. The other partner could get paternity leave instead.",
+      "source": "https://www.gov.uk/adoption-pay-leave/leave"
+    },
+    "notice": {
+      "quote": "You must give them at least 28 days’ notice.",
+      "source": "https://www.gov.uk/adoption-pay-leave/how-to-claim"
+    }
+  },
+  "sources": [
+    {
+      "title": "Adoption pay and leave",
+      "url": "https://www.gov.uk/adoption-pay-leave"
+    }
+  ]
+}
