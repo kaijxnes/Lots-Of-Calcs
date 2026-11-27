@@ -208,6 +208,7 @@ function write(rel, html) {
   const dir = path.join(ROOT, rel);
   const file = path.join(dir, "index.html");
   const loc = "/" + (rel ? rel.replace(/\/$/, "") + "/" : "");
+  html = require("../next-steps.js").apply(loc, html)[0];
   written.add(loc);
   if (fs.existsSync(file) && fs.readFileSync(file, "utf8") === html) return false;
   fs.mkdirSync(dir, { recursive: true });

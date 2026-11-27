@@ -1989,3 +1989,34 @@ body.has-result-bar { padding-bottom: 84px; }
 .skip-link { position: absolute; left: 12px; top: -48px; z-index: 100; padding: 8px 14px; border-radius: 8px; background: var(--calc-bg); color: var(--text-strong); border: 2px solid var(--accent); font-weight: 600; text-decoration: none; }
 .skip-link:focus { top: 12px; }
 .table-scroll:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* "Next" links at the foot of a calculator's main result (tools/next-steps.js):
+   where to go from this answer, as small pills that wrap */
+.next-steps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 8px;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.next-steps-label {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-right: 2px;
+}
+.next-steps a {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--link);
+  font-size: 0.85rem;
+  line-height: 1.3;
+  text-decoration: none;
+}
+.next-steps a:hover, .next-steps a:focus-visible { border-color: var(--link); color: var(--link-hover); }
