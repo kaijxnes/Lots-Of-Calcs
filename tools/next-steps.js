@@ -27,9 +27,33 @@ const salaryN = (n, base) => [
   [`/pay-rise-calculator/`, "What a pay rise adds"],
   ["/salary-sacrifice-calculator/", "Pay less tax with salary sacrifice"]
 ];
+
+/* overseas salary pages: /salary/germany/38000-after-tax/, /salary/us/ohio/…, /salary/switzerland/zug/…, /salary/india/14-lakh-after-tax/ and their hubs */
+const NAME_FIX = { us: "US", uk: "UK", dc: "DC" };
+const nameOf = (slug) => slug.split("-").map((w) => NAME_FIX[w] || w.charAt(0).toUpperCase() + w.slice(1)).join(" ");
+function overseas(m) {
+  const country = m[1], place = m[2] || country, Name = nameOf(country), Place = nameOf(place), hub = `/salary/${country}/${m[2] ? m[2] + "/" : ""}`;
+  return [[`/salary-comparison/uk-vs-${place}/`, `UK vs ${Place} take-home`]]
+    .concat(country === "us" ? [["/guides/us-tax-brackets-2027/", "2027 federal tax brackets"], ["/biweekly-pay-schedule/", "Biweekly paychecks"]] : [])
+    .concat(country === "canada" ? [["/tfsa-vs-rrsp/", "TFSA or RRSP?"]] : [])
+    .concat([[`/payday-calendar/${country}/${new Date().getFullYear()}/`, `${Name} payday calendar`], [hub, `${Place} take-home at other salaries`], ["/currency-converter/", "Convert it to pounds"], ["/salary/", "Take-home in other countries"]]);
+}
+const comparison = (m) => [m[1], m[2]].flatMap((x) => [[`/salary/${x}/`, `${nameOf(x)} take-home`], [`/salary/us/${x}/`, `${nameOf(x)} take-home`], [`/salary/switzerland/${x}/`, `${nameOf(x)} take-home`]]).concat([["/salary/", "Take-home in other countries"], ["/currency-converter/", "Currency converter"]]);
 const RULES = [
   [/^\/salary\/(\d+)-after-tax\/$/, (m) => salaryN(m[1])],
   [/^\/salary\/scotland\/(\d+)-after-tax\/$/, (m) => salaryN(m[1])],
+  [/^\/salary\/(?!scotland\/|uk\/)(us|switzerland)\/(?!index)([a-z-]+)\/(?:\d+-after-tax\/)?$/, overseas],
+  [/^\/salary\/(?!scotland\/|uk\/)([a-z-]+)\/()(?:\d+(?:-lakh)?-after-tax\/)?$/, (m) => overseas([m[0], m[1], ""])],
+  [/^\/salary-comparison\/([a-z-]+)-vs-([a-z-]+)\/$/, comparison],
+  ["/salary/scotland/", () => [["/pay-rise-calculator/", "What a pay rise adds"], ["/net-to-gross-salary/", "Work back from take-home"], ["/salary-sacrifice-calculator/", "Salary sacrifice savings"], ["/50-30-20-budget/", "Budget your take-home"]]],
+  [/^\/hourly-to-salary\/(\d+)-pounds-an-hour\/$/, (m) => [[`/salary/${m[1]}-an-hour-after-tax/`, `${m0(m[1])} an hour after tax`], ["/minimum-wage-calculator/", "Minimum wage check"], ["/holiday-entitlement-calculator/", "Your holiday entitlement"], ["/overtime-calculator/", "Overtime pay"]]],
+  [/^\/salary-to-hourly\/(\d+)-pounds-a-year\/$/, (m) => [[`/salary/${m[1]}-after-tax/`, `Take-home on ${m0(m[1])}`], [`/50-30-20-budget/${m[1]}/`, `50/30/20 budget on ${m0(m[1])}`], ["/pro-rata-salary-calculator/", "Pro rata for part-time"]]],
+  [/^\/(?:hourly-to-salary\/\d+-dollars-an-hour|salary-to-hourly\/\d+-dollars-a-year)\/$/, () => [["/salary/us/", "US take-home by state"], ["/biweekly-pay-schedule/", "Biweekly paychecks"], ["/guides/us-tax-brackets-2027/", "2027 federal tax brackets"]]],
+  [/^\/(?:hourly-to-salary|salary-to-hourly)\/$/, () => [["/salary/", "Take-home after tax"], ["/minimum-wage-calculator/", "Minimum wage check"], ["/pro-rata-salary-calculator/", "Pro rata salary"]]],
+  [/^\/loan\/(\d+\/)?$/, () => [["/loan-repayment/", "Loan repayment calculator"], ["/car-finance/", "Car finance (PCP or HP)"], ["/credit-card-payoff/", "Paying off a credit card"], ["/50-30-20-budget/", "Budget the repayments"]]],
+  [/^\/investing\/(.+\/)?$/, () => [["/compound-interest/", "Compound interest"], ["/isa-vs-pension/", "ISA or pension?"], ["/fund-fees/", "What fund fees cost"], ["/lifetime-isa-calculator/", "Lifetime ISA bonus"]]],
+  [/^\/savings-goal\/.+\/$/, () => [["/compound-interest/", "Compound interest"], ["/premium-bonds-calculator/", "Premium Bonds instead?"], ["/lifetime-isa-calculator/", "Lifetime ISA bonus"], ["/savings-tax-calculator/", "Tax on the interest"]]],
+  [/^\/currency\/.+\/$/, () => [["/currency-converter/", "Convert any amount"], ["/salary/", "Take-home pay by country"], ["/inflation/", "What money was worth"]]],
   [/^\/salary\/(\d+)-an-hour-after-tax\/$/, () => [["/minimum-wage-calculator/", "Is it above the minimum wage?"], ["/overtime-calculator/", "Overtime pay"], ["/holiday-entitlement-calculator/", "Your holiday entitlement"], ["/pay-rise-calculator/", "What a pay rise adds"]]],
   [/^\/salary\/(\d+)-a-month-after-tax\/$/, () => [["/50-30-20-budget/", "Budget it with 50/30/20"], ["/mortgage-affordability/", "How much can I borrow?"], ["/pay-rise-calculator/", "What a pay rise adds"]]],
   ["/salary/", () => [["/pay-rise-calculator/", "What a pay rise adds"], ["/net-to-gross-salary/", "Work back from take-home"], ["/salary-sacrifice-calculator/", "Salary sacrifice savings"], ["/50-30-20-budget/", "Budget your take-home"]]],
