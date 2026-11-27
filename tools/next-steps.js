@@ -73,6 +73,7 @@ const RULES = [
   [/^\/pension-withdrawal-tax-calculator\//, () => [["/tax-refund-calculator/", "Estimate a tax refund"], ["/pension-drawdown-calculator/", "How long your pension pot lasts"], ["/state-pension-forecast-calculator/", "Your State Pension"]]],
   [/^\/student-maintenance-loan-calculator\//, () => [["/student-loan-calculator/", "What you'll repay later"], ["/guides/student-loans-explained/", "Student loans explained"], ["/50-30-20-budget/", "Budget your loan"]]],
   ["/carers-allowance-calculator/", () => [["/universal-credit-calculator/", "Universal Credit with caring"], ["/minimum-wage-calculator/", "Your hourly pay"], ["/state-pension-forecast-calculator/", "Your State Pension"]]],
+  ["/winter-fuel-payment-calculator/", () => [["/heating-cost/", "What your heating costs"], ["/state-pension-forecast-calculator/", "Your State Pension"], ["/benefit-payment-dates/", "Benefit payment dates"]]],
   ["/premium-bonds-calculator/", () => [["/savings-tax-calculator/", "Tax on savings interest instead"], ["/compound-interest/", "What a fixed rate grows to"], ["/lifetime-isa-calculator/", "Lifetime ISA bonus"]]],
   ["/compound-interest/", () => [["/savings-goal/", "Plan a savings goal"], ["/savings-tax-calculator/", "Tax on the interest"], ["/isa-vs-pension/", "ISA or pension?"]]],
   ["/savings-goal/", () => [["/compound-interest/", "Compound interest"], ["/savings-tax-calculator/", "Tax on savings interest"], ["/emergency-fund-calculator/", "Emergency fund"]]]
