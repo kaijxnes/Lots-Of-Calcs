@@ -34,6 +34,7 @@ const TAGS = {
   "/lifetime-isa-calculator/": "UK",
   "/premium-bonds-calculator/": "UK",
   "/child-maintenance-calculator/": "UK",
+  "/state-pension-forecast-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
