@@ -57,6 +57,18 @@
     "p55": {
       "quote": "P55 — Claim back tax on a flexibly accessed pension overpayment",
       "source": "https://www.gov.uk/guidance/claim-a-tax-refund-on-your-pension-by-post"
+    },
+    "spTaxable": {
+      "quote": "You’ll usually pay tax on income from your pensions. This includes your State Pension.",
+      "source": "https://www.gov.uk/tax-on-pension"
+    },
+    "spNotTaxed": {
+      "quote": "When you get your State Pension, it is not taxed before you receive it. You may have to pay tax on it depending on your total income for the tax year.",
+      "source": "https://www.gov.uk/tax-on-pension/how-your-tax-is-paid"
+    },
+    "spCode": {
+      "quote": "If you’re working or getting a private pension, you’ll usually pay more tax to include any tax you need to pay on your State Pension. Your tax code will change to collect this.",
+      "source": "https://www.gov.uk/tax-on-pension/how-your-tax-is-paid"
     }
   },
   "sources": [

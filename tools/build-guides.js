@@ -13,6 +13,9 @@
        /guides/isa-vs-pension-explained/         allowances, relief, access, which leaves more
        /guides/how-mortgage-interest-works/      the repayment formula, tables, overpaying
        /guides/matched-betting-explained/        lay stakes, qualifying bets, free bets
+       /guides/your-first-job/                   tax code, tax and NI, pension, minimum wage, holiday
+       /guides/universal-credit-explained/       amounts, children, taper, savings, benefit cap
+       /guides/retiring/                         State Pension age and amount, pension tax, Winter Fuel
 
        node tools/build-guides.js
 
@@ -683,7 +686,110 @@ function leavingAJob() {
     foot: `From GOV.UK's <a href="${N.sources[0].url}" rel="nofollow noopener" target="_blank">notice</a>, <a href="${N.sources[3].url}" rel="nofollow noopener" target="_blank">notice pay</a>, <a href="${N.sources[5].url}" rel="nofollow noopener" target="_blank">holiday when leaving</a>, <a href="${RD.source}" rel="nofollow noopener" target="_blank">redundancy pay</a> and <a href="${TR.sources[0].url}" rel="nofollow noopener" target="_blank">tax refund</a> pages, as stored in the site's data files. A guide, not advice.` };
 }
 
-const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), havingABaby(), leavingAJob(), usBrackets2027(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
+/* ============================================ your first job */
+function firstJob() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const all = registry.readAll(), cur = registry.currentFiles(all), gb = cur.gb.doc, YEAR = gb.taxYear.label, ch = registry.chainFor(gb, all);
+  const TC = J("data/uk/tax-codes.json"), MW = J("data/uk/minimum-wage.json"), EC = J("data/uk/employer-cost.json"), R = J("data/uk/rates-2026-27.json"), BT = J("data/uk/bonus-tax.json");
+  const PA = gb.items.find((i) => i.id === "gb-personal-allowance").value.taper;
+  const today = new Date().toISOString().slice(0, 10), w = MW.rates.filter((r) => r.from <= today).pop();
+  const P = EC.pension, run = (g) => TaxEngine.compute(ch, g, {});
+  const rows = [18000, 22000, 25000, 30000].map((g) => { const r = run(g), v = r.values; return [m0(g), m0(v["gb-income-tax"] || 0), m0(v["gb-ni"] || 0), m2(r.net / 12)]; });
+  const ex = 25000, qe = Math.min(Math.max(0, ex - P.lower), P.upper - P.lower), you = qe * P.employeeMinPct / 100, them = qe * P.employerMinPct / 100;
+  const body = section("code", "Your tax code", p(`Your employer uses a tax code to work out how much tax to take. Most people with one job get <strong>${esc(TC.standard)}</strong>: the L means "${esc(TC.letters.L)}" That's ${m0(PA)} you can earn tax-free in the tax year (${esc(YEAR)}). If your employer doesn't have your details yet you might see <strong>0T</strong> ("${esc(TC.letters["0T"])}") or an emergency code ending in W1, M1 or X. Giving your employer a P45 from a previous job helps; the <a href="/tax-code-checker/">tax code checker</a> explains any code.`)) +
+    section("pay", "Tax and National Insurance on your pay", p(`Income Tax is 20% of what you earn over ${m0(PA)}, and employee National Insurance comes off too. Here's what that means on a few starting salaries in ${esc(YEAR)}, with tax code ${esc(TC.standard)} and nothing else taken off:`) +
+      site.table(["Salary", "Income Tax a year", "National Insurance a year", "Take-home a month"], rows, 560) +
+      p(`Tax is usually worked out on your pay so far in the tax year, so your first payslip can look different from later ones, especially if you start part-way through the year. The <a href="/salary/">salary calculator</a> works out any salary and the <a href="/payslip-checker/">payslip checker</a> compares a payslip with what it should be.`)) +
+    section("pension", "Workplace pension", p(`Your employer must put you into a workplace pension if you're aged between 22 and State Pension age and earn at least ${m0(P.autoEnrolFrom)} a year. The minimum is <strong>${P.employeeMinPct}% from you and ${P.employerMinPct}% from your employer</strong>, and in most schemes it's worked out on earnings between ${m0(P.lower)} and ${m0(P.upper)}. On ${m0(ex)} that's about ${m0(you)} a year from you and ${m0(them)} from your employer. The <a href="/pension-tax-relief-calculator/">pension tax relief calculator</a> shows the tax relief on what you pay in.`)) +
+    section("wage", "The minimum wage", p(`From ${esc(w.label)}: <strong>${m2(w.adult)} an hour</strong> if you're 21 or over (the National Living Wage), ${m2(w.age18to20)} at 18 to 20, ${m2(w.under18)} under 18, and ${m2(w.apprentice)} for apprentices under 19 or in the first year of their apprenticeship. The <a href="/minimum-wage-calculator/">minimum wage checker</a> checks your pay against it.`)) +
+    section("holiday", "Holiday", p(`Almost all workers get at least <strong>${R.holiday.weeks} weeks' paid holiday</strong> a year, at most ${R.holiday.capDays} days, and your employer can count bank holidays towards it. Part-time workers get the same number of weeks, so fewer days. The <a href="/holiday-entitlement-calculator/">holiday entitlement calculator</a> works out yours.`)) +
+    section("loan", "Student loan repayments", p(`If you have a student loan, repayments come out of your pay through PAYE once you earn over your plan's threshold: 9% of what you earn above it. The <a href="/guides/student-loans-explained/">student loans guide</a> explains the plans and the <a href="/student-loan-calculator/">student loan calculator</a> works out your repayments.`));
+  const r25 = run(ex);
+  const q = [
+    [`How much tax will I pay in my first job?`, `With tax code ${TC.standard} in ${YEAR} you pay no Income Tax on the first ${m0(PA)}. On ${m0(ex)} that's ${m0(r25.values["gb-income-tax"] || 0)} of Income Tax and ${m0(r25.values["gb-ni"] || 0)} of National Insurance a year, leaving about ${m2(r25.net / 12)} a month.`],
+    ["What tax code will I get in my first job?", `Usually ${TC.standard}. Until your employer has your details you might be on 0T or an emergency code ending in W1, M1 or X.`],
+    ["Will I be put in a workplace pension?", `Yes, if you're aged between 22 and State Pension age and earn at least ${m0(P.autoEnrolFrom)} a year. The minimum is ${P.employeeMinPct}% from you and ${P.employerMinPct}% from your employer.`],
+    ["What's the minimum wage for my age?", `From ${w.label}: ${m2(w.adult)} an hour at 21 or over, ${m2(w.age18to20)} at 18 to 20 and ${m2(w.under18)} under 18.`],
+    ["How much holiday do I get?", `At least ${R.holiday.weeks} weeks a year, at most ${R.holiday.capDays} days, which can include bank holidays.`]
+  ];
+  return { path: "/guides/your-first-job/", crumb: "Your First Job", blurb: `Tax codes, tax and NI on your pay, the workplace pension, the minimum wage and holiday, with ${YEAR} figures.`,
+    title: site.fitTitle(`Your First Job — Tax Code, Take-Home Pay, Pension and Minimum Wage (${YEAR})`, "Your First Job: Money Guide"), modified: TC.lastChecked || MW.lastChecked,
+    desc: `Starting your first job in ${YEAR}: your tax code, how much tax and National Insurance comes off, the workplace pension, the minimum wage (${m2(w.adult)} an hour at 21+) and holiday.`,
+    h1: "Your first job: tax, pay and pension", sub: `What comes off your pay and what you're entitled to, with ${esc(YEAR)} figures.`,
+    sections: [["code", "Tax code"], ["pay", "Tax and NI"], ["pension", "Workplace pension"], ["wage", "Minimum wage"], ["holiday", "Holiday"], ["loan", "Student loan"]],
+    tools: [["/salary/", "Salary"], ["/payslip-checker/", "Payslip checker"], ["/tax-code-checker/", "Tax code checker"], ["/minimum-wage-calculator/", "Minimum wage"], ["/holiday-entitlement-calculator/", "Holiday"]],
+    body, q, callouts: ["/payslip-checker/", "/minimum-wage-calculator/"],
+    foot: `Figures from the ${esc(YEAR)} UK tax file and GOV.UK's <a href="${TC.sources[0].url}" rel="nofollow noopener" target="_blank">tax codes</a>, <a href="${MW.sources[0].url}" rel="nofollow noopener" target="_blank">minimum wage</a>, <a href="${EC.sources.find((s) => /pension/.test(s.url)) ? EC.sources.find((s) => /pension/.test(s.url)).url : EC.sources[0].url}" rel="nofollow noopener" target="_blank">workplace pensions</a> and <a href="${R.holiday.source}" rel="nofollow noopener" target="_blank">holiday</a> pages, as stored in the site's data files. A guide, not advice.` };
+}
+
+/* ============================================ Universal Credit explained */
+function universalCredit() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const U = J("data/uk/universal-credit.json"), CA = J("data/uk/carers-allowance.json"), YEAR = U.taxYear, Q = (k) => U.rules[k].quote;
+  const S = U.standard, WA = U.workAllowance, cap = U.capital;
+  /* worked example: single parent 25+, one child, no help with housing, £1,200 a month take-home */
+  const maxEx = S.single25 + U.child, earn = 1200, cut = (earn - WA.withoutHousing) * U.taperPct / 100, ucEx = Math.max(0, maxEx - cut);
+  const body = section("what", "What Universal Credit is", p(`Universal Credit is a monthly payment for people on a low income or out of work. It's made up of a <strong>standard allowance</strong> plus extra amounts for children, disability, caring and housing, then reduced as you earn more. ${esc(Q("noHoursLimit"))}`) +
+      site.table(["Your situation", "Standard allowance a month"], [["Single, under 25", m2(S.singleUnder25)], ["Single, 25 or over", m2(S.single25)], ["Couple, both under 25", m2(S.coupleUnder25) + " (for you both)"], ["Couple, either 25 or over", m2(S.couple25) + " (for you both)"]], 480)) +
+    section("extras", "Extra amounts", p(`<strong>Children:</strong> ${m2(U.child)} a month for each child (${m2(U.child + U.firstChildBefore2017Extra)} for a first child born before 6 April 2017). The 2-child limit ended on 6 April 2026. A disabled child adds ${m2(U.disabledChild.lower)} or ${m2(U.disabledChild.higher)}.`) +
+      p(`<strong>Health:</strong> ${m2(U.health.lcwra)} a month if you have limited capability for work and work-related activity (${m2(U.health.lcwraSevere)} for the most severe conditions). <strong>Caring:</strong> ${m2(U.carer)} a month if you care for a severely disabled person for at least 35 hours a week. <strong>Childcare:</strong> up to ${U.childcarePct}% of your costs if you work, up to ${m2(U.childcareMax.one)} a month for one child and ${m2(U.childcareMax.twoOrMore)} for two or more.`)) +
+    section("work", "Working and Universal Credit", p(`${esc(Q("taper"))} If you're responsible for a child, or have limited capability for work, you also get a <strong>work allowance</strong>: you can earn ${m0(WA.withoutHousing)} a month before it starts to reduce, or ${m0(WA.withHousing)} if you get help with housing costs. It's based on your take-home pay, after tax, National Insurance and pension contributions.`) +
+      p(`For example, a single parent aged 25 or over with one child and no help with housing gets up to ${m2(maxEx)} a month. Taking home ${m0(earn)} a month, ${m2(cut)} comes off (55% of the ${m0(earn - WA.withoutHousing)} over the work allowance), leaving <strong>${m2(ucEx)}</strong> of Universal Credit, so ${m2(earn + ucEx)} a month in all. The <a href="/universal-credit-calculator/">Universal Credit calculator</a> works out yours.`)) +
+    section("savings", "Savings", p(`You can't get Universal Credit with more than ${m0(cap.upper)} in money, savings and investments. Between ${m0(cap.disregard)} and ${m0(cap.upper)}, your payment is reduced by ${m2(cap.perStep)} for every ${m0(cap.step)} (or part of ${m0(cap.step)}) above ${m0(cap.disregard)}: ${m2(Math.ceil((10000 - cap.disregard) / cap.step) * cap.perStep)} a month with ${m0(10000)}.`)) +
+    section("other", "Other benefits and the benefit cap", p(`Other benefits such as Carer's Allowance reduce Universal Credit by the same amount: Carer's Allowance is ${m2(CA.weekly)} a week. The <strong>benefit cap</strong> limits the total of most benefits to ${m2(U.benefitCap.outsideLondon.family)} a month for a couple or single parent outside Greater London (${m2(U.benefitCap.london.family)} in London) and ${m2(U.benefitCap.outsideLondon.single)} for a single adult (${m2(U.benefitCap.london.single)} in London). It doesn't apply if you and your partner earn ${m0(U.benefitCap.earningsThreshold)} or more a month between you after tax and National Insurance.`));
+  const q = [
+    ["How much is Universal Credit?", `The standard allowance is ${m2(S.single25)} a month for a single person aged 25 or over and ${m2(S.couple25)} for a couple where either is 25 or over (${YEAR}), plus extra for children, disability, caring, childcare and housing.`],
+    ["How much can I earn on Universal Credit?", `There's no limit on hours. For every £1 you take home, Universal Credit goes down by 55p, after a work allowance of ${m0(WA.withoutHousing)} a month (${m0(WA.withHousing)} with housing help) if you're responsible for a child or have limited capability for work.`],
+    ["How much is Universal Credit for a child?", `${m2(U.child)} a month for each child, for every child since the 2-child limit ended on 6 April 2026.`],
+    ["Can I have savings on Universal Credit?", `Up to ${m0(cap.upper)}. Above ${m0(cap.disregard)}, your payment goes down by ${m2(cap.perStep)} a month for every ${m0(cap.step)}.`],
+    ["Does Carer's Allowance affect Universal Credit?", `Yes: Universal Credit is reduced by the same amount as your Carer's Allowance (${m2(CA.weekly)} a week), though you may get the carer element of ${m2(U.carer)} a month.`]
+  ];
+  return { path: "/guides/universal-credit-explained/", crumb: "Universal Credit Explained", blurb: `How Universal Credit is worked out: the amounts, children, the 55% taper and work allowance, savings and the benefit cap (${YEAR}).`,
+    title: site.fitTitle(`Universal Credit Explained — Amounts, Earnings and Savings (${YEAR})`, "Universal Credit Explained"), modified: U.lastChecked,
+    desc: `How Universal Credit works in ${YEAR}: standard allowances from ${m2(S.singleUnder25)} a month, ${m2(U.child)} per child, the 55% taper and work allowance, the ${m0(cap.upper)} savings limit and the benefit cap.`,
+    h1: "Universal Credit explained", sub: `What you can get, how earnings and savings change it, with ${esc(YEAR)} amounts.`,
+    sections: [["what", "What it is"], ["extras", "Extra amounts"], ["work", "Working"], ["savings", "Savings"], ["other", "Other benefits and the cap"]],
+    tools: [["/universal-credit-calculator/", "Universal Credit"], ["/childcare-help-calculator/", "Childcare help"], ["/carers-allowance-calculator/", "Carer's Allowance"], ["/benefit-payment-dates/", "Payment dates"]],
+    body, q, callouts: ["/universal-credit-calculator/", "/carers-allowance-calculator/"],
+    foot: `From GOV.UK's <a href="${U.sources[0].url}" rel="nofollow noopener" target="_blank">Universal Credit</a> guide and DWP's benefit rates, and GOV.UK's <a href="${CA.sources[0].url}" rel="nofollow noopener" target="_blank">Carer's Allowance</a> page, as stored in the site's data files. A guide, not advice: the DWP decides what you get.` };
+}
+
+/* ============================================ retiring */
+function retiring() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const F = J("data/uk/state-pension-forecast.json"), A = J("data/uk/state-pension-age.json"), W = J("data/uk/pension-withdrawal.json"), WF = J("data/uk/winter-fuel-payment.json");
+  const UKC = require("../uk-calcs.js"), PW = require("../pension-withdrawal.js"), { cfg } = require("./lib/uk-config.js")(), YEAR = cfg.year;
+  const QA = (k) => A.rules[k].quote, QW = (k) => W.rules[k].quote;
+  const each = F.fullWeekly / F.fullYears, cost = F.class3Weekly * 52;
+  const one = PW.calc(UKC, cfg, W, { amount: 40000, fresh: true, other: 0 }), two = PW.spread(UKC, cfg, W, { amount: 40000, fresh: true, other: 0 }, 2);
+  const sp = Math.round(F.fullWeekly * 52 * 100) / 100, withSp = PW.calc(UKC, cfg, W, { amount: 10000, fresh: true, other: sp });
+  const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const nice = (s) => { const x = s.split("-"); return `${+x[2]} ${MONTHS[+x[1] - 1]} ${x[0]}`; };
+  const body = section("age", "When you can get your State Pension", p(`Your State Pension age depends on your date of birth. ${esc(QA("already67"))} ${esc(QA("to68"))} ${esc(QA("mayChange"))} ${esc(QA("claim"))} The <a href="/state-pension-age-calculator/">State Pension age calculator</a> gives your exact date.`)) +
+    section("amount", "How much State Pension you'll get", p(`The full new State Pension is <strong>${m2(F.fullWeekly)} a week</strong> (${m0(sp)} a year, ${esc(F.taxYear)}). You need ${F.minYears} qualifying years of National Insurance to get any and ${F.fullYears} for the full amount if your record started after April 2016; each year in between is worth 1/${F.fullYears} of it, ${m2(each)} a week. ${esc(QA("triple"))}`) +
+      p(`If you have gaps, a year of voluntary Class 3 contributions costs ${m2(cost)} (${m2(F.class3Weekly)} a week) and, if it adds a qualifying year that raises your pension, it's back in about ${(Math.round(cost / (each * 52) * 10) / 10).toLocaleString("en-GB")} years. You can usually pay for the past ${F.payBackYears} years. The <a href="/state-pension-forecast-calculator/">State Pension forecast calculator</a> works out yours.`)) +
+    section("pot", "Taking money from your pension", p(`${esc(QW("taxFree"))} ${esc(QW("age"))} The rest is taxed as income in the tax year you take it, so spreading it out can save tax: taking ${m0(40000)} from a pot you haven't touched, with no other income, costs ${m2(one.due)} in tax in one tax year (${esc(YEAR)}) but ${m2(two.due)} over two.`) +
+      p(`A first payment is usually taxed on an emergency code on a month 1 basis, so far more can come off at first: ${m2(one.emergency)} on that ${m0(40000)}. You can claim it back from HMRC (forms P55, P53Z or P50Z). The <a href="/pension-withdrawal-tax-calculator/">pension withdrawal tax calculator</a> works it out, and the <a href="/pension-drawdown-calculator/">pension drawdown calculator</a> shows how long a pot lasts.`)) +
+    section("tax", "Tax in retirement", p(`${esc(QW("spTaxable"))} ${esc(QW("spNotTaxed"))} ${esc(QW("spCode"))} With the full State Pension, ${m0(10000)} from a private pension pot you haven't touched costs ${m2(withSp.due)} in tax (${esc(YEAR)}). ${esc(F.rules.workAfter.quote.replace(/^If you do, /, "If you keep working after State Pension age, "))}.`)) +
+    section("winter", "Winter Fuel Payment", p(`For winter ${esc(WF.winter)}, you can get a Winter Fuel Payment if you were born on or before ${nice(WF.bornBy)} and live in England, Wales or Northern Ireland: ${m0(WF.amounts.alone[0])} living alone, or ${m0(WF.amounts.alone[1])} if you were born before ${nice(WF.olderBefore)} (different amounts if you live with someone else who gets it, or in a care home). If your own income is over ${m0(WF.incomeLimit)}, HMRC takes it back. The <a href="/winter-fuel-payment-calculator/">Winter Fuel Payment calculator</a> checks yours.`));
+  const q = [
+    ["How much is the full State Pension?", `${m2(F.fullWeekly)} a week (${m0(sp)} a year) in ${F.taxYear}, with ${F.fullYears} qualifying years of National Insurance.`],
+    ["How many years do I need for a State Pension?", `${F.minYears} qualifying years to get any new State Pension and ${F.fullYears} for the full amount if your record started after April 2016. Each year is worth ${m2(each)} a week.`],
+    ["How much of my pension can I take tax-free?", `Usually ${W.taxFreePct}%, up to ${m0(W.lumpSumAllowance)} in all. The rest is taxed as income.`],
+    ["Is the State Pension taxed?", "It's taxable income but paid without tax taken off. If you also have a private pension or wages, your tax code usually collects the tax on your State Pension."],
+    ["Do I still pay National Insurance after State Pension age?", "No: if you keep working after State Pension age you stop paying National Insurance."]
+  ];
+  return { path: "/guides/retiring/", crumb: "Retiring", blurb: `State Pension age and amount, filling gaps, taking money from your pension, tax in retirement and the Winter Fuel Payment.`,
+    title: site.fitTitle(`Retiring in the UK — State Pension, Pension Tax and Winter Fuel (${YEAR})`, "Retiring: Money Guide"), modified: F.lastChecked,
+    desc: `Money when you retire: your State Pension age, the ${m2(F.fullWeekly)} a week full State Pension and qualifying years, taking pension money tax-efficiently, emergency tax, and the Winter Fuel Payment.`,
+    h1: "Retiring: State Pension, pension tax and more", sub: `When you can get your State Pension, how much, and how to take your pension without paying more tax than you need to.`,
+    sections: [["age", "State Pension age"], ["amount", "How much"], ["pot", "Your pension pot"], ["tax", "Tax in retirement"], ["winter", "Winter Fuel Payment"]],
+    tools: [["/state-pension-age-calculator/", "State Pension age"], ["/state-pension-forecast-calculator/", "State Pension forecast"], ["/pension-withdrawal-tax-calculator/", "Pension withdrawal tax"], ["/pension-drawdown-calculator/", "Pension drawdown"], ["/winter-fuel-payment-calculator/", "Winter Fuel Payment"]],
+    body, q, callouts: ["/state-pension-forecast-calculator/", "/pension-withdrawal-tax-calculator/", "/state-pension-age-calculator/"],
+    foot: `From GOV.UK's <a href="${F.sources[0].url}" rel="nofollow noopener" target="_blank">new State Pension</a>, <a href="${A.sources[0].url}" rel="nofollow noopener" target="_blank">State Pension age timetable</a>, <a href="${W.sources[0].url}" rel="nofollow noopener" target="_blank">tax on your pension</a> and <a href="${WF.sources[0].url}" rel="nofollow noopener" target="_blank">Winter Fuel Payment</a> pages and the Pensions Act 2014, as stored in the site's data files; tax worked out with the ${esc(YEAR)} UK tax file. A guide, not advice.` };
+}
+
+const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), firstJob(), havingABaby(), leavingAJob(), retiring(), universalCredit(), usBrackets2027(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
