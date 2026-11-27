@@ -1,0 +1,59 @@
+{
+  "note": "Rent a Room Scheme limits and the two ways of working out tax above the limit, from GOV.UK and HMRC helpsheet HS223 (2026).",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "limit": 7500,
+  "shared": 3750,
+  "rules": {
+    "limit": {
+      "quote": "The Rent a Room Scheme lets you earn up to a threshold of £7,500 per year tax-free from letting out furnished accommodation in your home. The threshold is halved to £3,750 if you share the income with someone else.",
+      "source": "https://www.gov.uk/rent-room-in-your-home/the-rent-a-room-scheme"
+    },
+    "automatic": {
+      "quote": "The tax exemption is automatic if you earn less than your threshold. Which means you do not need to do anything. You must complete a tax return if you earn more than your threshold. You can then opt into the scheme and claim your tax-free allowance. You do this on your tax return.",
+      "source": "https://www.gov.uk/rent-room-in-your-home/the-rent-a-room-scheme"
+    },
+    "eligible": {
+      "quote": "You can opt in to the scheme at any time if: you’re a resident landlord, whether or not you own your home you run a bed and breakfast or a guest house You cannot use the scheme for homes converted into separate flats.",
+      "source": "https://www.gov.uk/rent-room-in-your-home/the-rent-a-room-scheme"
+    },
+    "receipts": {
+      "quote": "Your gross receipts include: rental income (before expenses) any amounts you receive for meals, goods and services, such as cleaning or laundry any ‘balancing charges’",
+      "source": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    },
+    "methods": {
+      "quote": "If your gross receipts are more than £7,500 (or £3,750), you can choose how you want to work out your tax as follows. Method A You pay tax on your actual profit — your total receipts less any expenses and capital allowances. Method B You pay tax on your gross receipts over the Rent-a-Room limit — that is, your gross receipts minus £7,500 (or £3,750). You cannot deduct any expenses or capital allowances if you choose this method.",
+      "source": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    },
+    "default": {
+      "quote": "HMRC will automatically use your actual profit (Method A) to work out your tax.",
+      "source": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    },
+    "example": {
+      "quote": "Chris rents out a room in his own home. The rent is £200 a week plus contributions to heating and light. His gross receipts for 6 April 2025 to 5 April 2026 are £10,600 (£10,400 rent plus £200 for the heating and light). Chris has expenses of £9,000. If Chris uses his: actual profit (Method A), he pays tax on £1,600 (£10,600 minus £9,000) gross receipts over the Rent-a-Room limit (Method B), he pays tax on £3,100 (£10,600 minus £7,500) It is better for Chris to pay tax on his actual profit, using Method A.",
+      "source": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    },
+    "cannot": {
+      "quote": "You cannot use the scheme if the accommodation is: not part of your main home when you let it not furnished used as an office or for any business — you can use the scheme if your lodger works in your home in the evening or at weekends or is a student who is provided with study facilities in your UK home and is let while you live abroad",
+      "source": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    },
+    "timeLimit": {
+      "quote": "You must let HMRC know within one year of 31 January following the end of the tax year if you: do not want to use the Rent-a-Room Scheme when your receipts are below £7,500 (or £3,750) for example, if you want to claim losses want to start or stop paying tax on your gross receipts over the Rent-a-Room limit (Method B)",
+      "source": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    },
+    "councilTax": {
+      "quote": "You must tell your council if having a tenant means you’re no longer entitled to a single person discount.",
+      "source": "https://www.gov.uk/rent-room-in-your-home/rent-bills-and-tax"
+    }
+  },
+  "sources": [
+    {
+      "title": "Renting out a room in your home: the Rent a Room Scheme",
+      "url": "https://www.gov.uk/rent-room-in-your-home/the-rent-a-room-scheme"
+    },
+    {
+      "title": "HMRC helpsheet HS223: Rent a Room Scheme (2026)",
+      "url": "https://www.gov.uk/government/publications/rent-a-room-for-traders-hs223-self-assessment-helpsheet/hs223-rent-a-room-scheme-2026"
+    }
+  ]
+}

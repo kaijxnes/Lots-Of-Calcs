@@ -42,6 +42,7 @@ const TAGS = {
   "/day-rate-calculator/": "UK",
   "/payslip-checker/": "UK",
   "/pension-credit-calculator/": "UK",
+  "/rent-a-room-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
