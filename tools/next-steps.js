@@ -60,6 +60,7 @@ const RULES = [
   ["/statutory-sick-pay-calculator/", () => [["/universal-credit-calculator/", "Universal Credit"], ["/emergency-fund-calculator/", "Size your emergency fund"]]],
   ["/holiday-entitlement-calculator/", () => [["/irregular-hours-holiday-calculator/", "Irregular hours: 12.07%"], ["/working-days/", "Working days between dates"], ["/notice-period-calculator/", "Notice period"]]],
   [/^\/student-loan-calculator\/(.+\/)?$/, () => [["/salary/", "Take-home with your loan"], ["/guides/student-loans-explained/", "Student loans explained"]]],
+  [/^\/car-tax-calculator\/(.+\/)?$/, () => [["/car-finance/", "Car finance costs"], ["/fuel-cost/", "Fuel cost for a trip"], ["/company-car-tax-calculator/", "Company car tax"], ["/ev-charging-cost/", "EV charging cost"]]],
   [/^\/company-car-tax-calculator\/(.+\/)?$/, () => [["/salary/", "Your take-home pay"], ["/mileage-allowance-calculator/", "Mileage allowance"], ["/ev-charging-cost/", "EV charging cost"]]],
   ["/dividend-tax-calculator/", () => [["/salary-vs-dividends/", "Salary vs dividends"], ["/savings-tax-calculator/", "Tax on savings interest"], ["/capital-gains-tax-calculator/", "Capital gains tax"]]],
   ["/child-benefit-tax-charge-calculator/", () => [["/pension-tax-relief-calculator/", "Cut it with pension contributions"], ["/salary-sacrifice-calculator/", "Salary sacrifice"], ["/marriage-allowance-calculator/", "Marriage Allowance"]]],
