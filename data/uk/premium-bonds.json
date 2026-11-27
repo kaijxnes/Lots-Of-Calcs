@@ -1,5 +1,5 @@
 {
-  "about": "Premium Bonds figures for tools/build-premium-bonds-pages.js, quoted from NS&I: the prize fund rate, odds and limits from the Premium Bonds page, and the number of prizes of each value in the latest draw from the monthly prize allocation page (transcribed by script). All variable: NS&I can change them at any time.",
+  "about": "Premium Bonds figures for tools/build-premium-bonds-pages.js, quoted from NS&I: the prize fund rate, odds and limits from the Premium Bonds page, and the number of prizes of each value in the latest draw from the monthly prize allocation page (transcribed by script). All variable: NS&I can change them at any time. Updated by node tools/fetch-premium-bonds.js on the 5th of each month (a scheduled task); \"next\" is NS&I's estimate for the following draw and \"history\" keeps earlier months.",
   "draw": "November 2026",
   "rate": 4.35,
   "odds": 21000,
@@ -78,5 +78,59 @@
       "quote": "We work out the number of lower value prizes so that there’s an equal number of £100 and £50 prizes, and that the total number of prizes of all values (including £25 prizes) is equal to the number of eligible £1 Bond units divided by the odds.",
       "source": 1
     }
-  }
+  },
+  "next": {
+    "draw": "December 2026",
+    "estimate": true,
+    "prizes": [
+      {
+        "value": 1000000,
+        "count": 2
+      },
+      {
+        "value": 100000,
+        "count": 96
+      },
+      {
+        "value": 50000,
+        "count": 192
+      },
+      {
+        "value": 25000,
+        "count": 384
+      },
+      {
+        "value": 10000,
+        "count": 962
+      },
+      {
+        "value": 5000,
+        "count": 1920
+      },
+      {
+        "value": 1000,
+        "count": 20008
+      },
+      {
+        "value": 500,
+        "count": 60024
+      },
+      {
+        "value": 100,
+        "count": 2379822
+      },
+      {
+        "value": 50,
+        "count": 2379822
+      },
+      {
+        "value": 25,
+        "count": 1727579
+      }
+    ],
+    "totalPrizes": 6570811,
+    "totalValue": 500202775
+  },
+  "history": [],
+  "updateDay": 5
 }
