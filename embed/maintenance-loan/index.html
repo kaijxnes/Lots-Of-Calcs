@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Maintenance Loan calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/student-maintenance-loan-calculator/">
+<link rel="stylesheet" href="/styles.css?v=3f414463">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/student-maintenance-loan-calculator/">Student Maintenance Loan calculator</a></p>
+<main class="tool split" id="ml-tool" data-rules="{&quot;year&quot;:&quot;2026 to 2027&quot;,&quot;threshold&quot;:25000,&quot;dependantAllowance&quot;:1130,&quot;options&quot;:{&quot;away&quot;:{&quot;label&quot;:&quot;Living away from home, outside London&quot;,&quot;max&quot;:10830,&quot;per&quot;:6.47,&quot;floorPct&quot;:46.6,&quot;maxAssessment&quot;:5782},&quot;london&quot;:{&quot;label&quot;:&quot;Living away from home, in London&quot;,&quot;max&quot;:14135,&quot;per&quot;:6.36,&quot;floorPct&quot;:49.8,&quot;maxAssessment&quot;:7096},&quot;home&quot;:{&quot;label&quot;:&quot;Living with your parents&quot;,&quot;max&quot;:9118,&quot;per&quot;:6.54,&quot;floorPct&quot;:44,&quot;maxAssessment&quot;:5105}}}">
+      <div class="field-row">
+        <div class="field"><label for="ml-income">Household income before tax (your parents' and yours)</label><input type="number" id="ml-income" value="40000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ml-option">Where you'll live</label><select id="ml-option"><option value="away" selected>Living away from home, outside London</option><option value="london">Living away from home, in London</option><option value="home">Living with your parents</option></select></div>
+      </div>
+      <div class="field-row">
+        <div class="field"><label for="ml-pension">Your parents' pension contributions a year</label><input type="number" id="ml-pension" value="0" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ml-kids">Other children your parents support</label><input type="number" id="ml-kids" value="0" min="0" max="20" step="1" inputmode="numeric"></div>
+      </div>
+      <p class="tool-hint" id="ml-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" style="margin:6px 0 0;">For full-time students from England, 2026 to 2027, a full (not final) year. Students on certain benefits, aged 60 or over, studying abroad, or on a course over 30 weeks and 3 days can get different amounts.</p>
+      <div class="result-box split-aside" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="ml-loan">£8,512</div>
+          <div class="label" id="ml-label">Maintenance Loan for the year (2026 to 2027)</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">About a month (÷ 12)</span><span class="r-value" id="ml-month">£709</span></div>
+          <div class="result-row"><span class="r-label">Household residual income</span><span class="r-value" id="ml-residual">£40,000</span></div>
+          <div class="result-row highlight"><span class="r-label">Taken off for household income</span><span class="r-value" id="ml-assess">−£2,318</span></div>
+          <div class="result-row"><span class="r-label">Most you can get</span><span class="r-value" id="ml-max">£10,830</span></div>
+          <div class="result-row"><span class="r-label">Least you can get</span><span class="r-value" id="ml-min">£5,048 (from about £62,410)</span></div>
+        </div>
+        <p class="tool-hint" id="ml-note" style="margin:10px 0 0;"></p>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/student-maintenance-loan-calculator/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/maintenance-loan.js?v=3903e61b"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winter Fuel Payment calculator — Lots Of Calcs</title>
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://lotsofcalcs.com/winter-fuel-payment-calculator/">
+<link rel="stylesheet" href="/styles.css?v=3f414463">
+<base target="_blank">
+</head>
+<body class="embed-body">
+  <div class="page embed-page">
+    <p class="embed-head"><a href="/winter-fuel-payment-calculator/">Winter Fuel Payment calculator</a></p>
+<main class="tool split" id="wf-tool" data-rules="{&quot;winter&quot;:&quot;2026 to 2027&quot;,&quot;bornBy&quot;:&quot;1960-06-27&quot;,&quot;olderBefore&quot;:&quot;1946-09-28&quot;,&quot;incomeLimit&quot;:35000,&quot;amounts&quot;:{&quot;alone&quot;:[200,300],&quot;care&quot;:[100,150],&quot;together&quot;:{&quot;yy&quot;:100,&quot;yo&quot;:100,&quot;oy&quot;:200,&quot;oo&quot;:150},&quot;joint&quot;:[200,300],&quot;single&quot;:[200,300]},&quot;bornByText&quot;:&quot;27 June 1960&quot;,&quot;olderBeforeText&quot;:&quot;28 September 1946&quot;}">
+      <div class="field-row">
+        <div class="field"><label for="wf-dob">Your date of birth</label><input type="date" id="wf-dob" value="1955-03-01" min="1900-01-01" max="2010-12-31"></div>
+        <div class="field"><label for="wf-home">During 21 to 27 September 2026 you lived</label><select id="wf-home"><option value="alone" selected>Alone (or with no one else eligible)</option><option value="with">With someone else who's eligible</option><option value="care">In a care home</option></select></div>
+      </div>
+      <div class="field-row" id="wf-with-row" style="display:none;">
+        <div class="field"><label for="wf-pdob">Their date of birth</label><input type="date" id="wf-pdob" value="1956-01-01" min="1900-01-01" max="2010-12-31"></div>
+        <div class="field"><label for="wf-benefit">Pension Credit, Universal Credit or income-related ESA</label><select id="wf-benefit"><option value="none" selected>Neither of us gets them</option><option value="own">I get one in my own name</option><option value="joint">We claim one jointly</option></select></div>
+      </div>
+      <div class="field"><label for="wf-income">Your own total income for the tax year, before deductions</label><input type="number" id="wf-income" value="20000" min="0" step="any" inputmode="decimal"></div>
+      <p class="tool-hint" id="wf-error" role="alert" style="color: var(--bad); display: none;"></p>
+      <p class="tool-hint" style="margin:6px 0 0;">For people who usually live in England, Wales or Northern Ireland. Your partner's income doesn't count towards the £35,000.</p>
+      <div class="result-box split-aside" aria-live="polite">
+        <div class="result-hero">
+          <div class="value" id="wf-amount">£200</div>
+          <div class="label" id="wf-label">Winter Fuel Payment, winter 2026 to 2027</div>
+        </div>
+        <hr class="divider">
+        <div class="result-grid">
+          <div class="result-row"><span class="r-label">Your age group</span><span class="r-value" id="wf-band">Born 28 September 1946 to 27 June 1960</span></div>
+          <div class="result-row"><span class="r-label">HMRC</span><span class="r-value" id="wf-hmrc">Nothing to pay back</span></div>
+          <div class="result-row highlight"><span class="r-label">You keep</span><span class="r-value" id="wf-keep">£200</span></div>
+        </div>
+        <p class="tool-hint" id="wf-note" style="margin:10px 0 0;"></p>
+      </div>
+    </main>
+    <p class="embed-foot">Free from <a href="https://lotsofcalcs.com/winter-fuel-payment-calculator/">Lots Of Calcs</a> — all calculations run in your browser.</p>
+  </div>
+  <script src="/winter-fuel-payment.js?v=480c514c"></script>
+</body>
+</html>
