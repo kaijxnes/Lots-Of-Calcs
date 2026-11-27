@@ -65,6 +65,7 @@ const RULES = [
   ["/dividend-tax-calculator/", () => [["/salary-vs-dividends/", "Salary vs dividends"], ["/savings-tax-calculator/", "Tax on savings interest"], ["/capital-gains-tax-calculator/", "Capital gains tax"]]],
   ["/child-benefit-tax-charge-calculator/", () => [["/pension-tax-relief-calculator/", "Cut it with pension contributions"], ["/salary-sacrifice-calculator/", "Salary sacrifice"], ["/marriage-allowance-calculator/", "Marriage Allowance"]]],
   [/^\/state-pension-age-calculator\/(.+\/)?$/, () => [["/pension-drawdown-calculator/", "How long a pension pot lasts"], ["/pension-tax-relief-calculator/", "Pension tax relief"], ["/isa-vs-pension/", "ISA or pension?"]]],
+  ["/lifetime-isa-calculator/", () => [["/stamp-duty-calculator/", "Stamp duty for first-time buyers"], ["/mortgage-affordability/", "How much can I borrow?"], ["/isa-vs-pension/", "ISA or pension?"]]],
   ["/compound-interest/", () => [["/savings-goal/", "Plan a savings goal"], ["/savings-tax-calculator/", "Tax on the interest"], ["/isa-vs-pension/", "ISA or pension?"]]],
   ["/savings-goal/", () => [["/compound-interest/", "Compound interest"], ["/savings-tax-calculator/", "Tax on savings interest"], ["/emergency-fund-calculator/", "Emergency fund"]]]
 ];

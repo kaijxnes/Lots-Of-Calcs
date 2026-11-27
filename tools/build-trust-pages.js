@@ -51,6 +51,7 @@ const CHECKS = [
   ["Tax-Free Childcare", "", a("https://www.gov.uk/tax-free-childcare", "GOV.UK"), when(J("data/uk/tax-free-childcare.json").lastChecked), "/childcare-help-calculator/"],
   ["Statutory Paternity Pay and Shared Parental Pay", "", a("https://www.gov.uk/paternity-pay-leave/pay", "GOV.UK"), when(J("data/uk/paternity-pay.json").lastChecked), "/paternity-pay-calculator/"],
   ["Car tax (vehicle excise duty) rates", "", a("https://www.gov.uk/vehicle-tax-rate-tables", "GOV.UK"), when(J("data/uk/vehicle-tax.json").lastChecked), "/car-tax-calculator/"],
+  ["Lifetime ISA rules", "", a("https://www.gov.uk/lifetime-isa", "GOV.UK"), when(J("data/uk/lifetime-isa.json").lastChecked), "/lifetime-isa-calculator/"],
   ["Tax on savings interest (UK and 7 other countries)", "", a("https://www.gov.uk/apply-tax-free-interest-on-savings", "GOV.UK and each country's tax authority"), when(J("data/uk/savings-tax.json").lastChecked), "/savings-tax-calculator/"],
   ["Salary sacrifice and pension tax relief rules", "", a("https://www.gov.uk/tax-on-your-private-pension/pension-tax-relief", "GOV.UK"), when(oldest([J("data/uk/salary-sacrifice.json").lastChecked, J("data/uk/pension-tax-relief.json").lastChecked])), "/pension-tax-relief-calculator/"],
   ["Stamp duty, LBTT and LTT", "", "GOV.UK, Revenue Scotland and the Welsh Government", when(J("data/property/uk-stamp-duty.json").lastChecked), "/stamp-duty-calculator/"],
