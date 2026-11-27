@@ -1,0 +1,353 @@
+{
+  "about": "UK vehicle tax (VED) rates for cars, transcribed by script from GOV.UK's Vehicle tax rates guide (tables) with its rules quoted, for tools/build-vehicle-tax-pages.js. Rates change each 1 April.",
+  "from": "2026-04-01",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "expensiveThreshold": 40000,
+  "expensiveThresholdElectric": 50000,
+  "expensiveYears": 5,
+  "sources": [
+    {
+      "title": "Vehicle tax rates: vehicles registered on or after 1 April 2017",
+      "url": "https://www.gov.uk/vehicle-tax-rate-tables"
+    },
+    {
+      "title": "Vehicle tax rates: cars registered on or after 1 March 2001",
+      "url": "https://www.gov.uk/vehicle-tax-rate-tables/rates-for-cars-registered-on-or-after-1-march-2001"
+    },
+    {
+      "title": "Vehicle tax rates: cars registered before 1 March 2001",
+      "url": "https://www.gov.uk/vehicle-tax-rate-tables/rates-for-cars-and-light-goods-vehicles-registered-before-1-march-2001"
+    }
+  ],
+  "rules": {
+    "firstYear": {
+      "quote": "You need to pay tax when the vehicle is first registered, this covers the vehicle for 12 months.",
+      "source": 0
+    },
+    "rde2": {
+      "quote": "You have to pay a higher rate for diesel cars that do not meet the Real Driving Emissions 2 ( RDE2 ) standard for nitrogen oxide emissions.",
+      "source": 0
+    },
+    "expensive": {
+      "quote": "You have to pay an extra £440 a year if you have any of the following: a car or motorhome with a list price of more than £40,000 an electric car or motorhome with a list price of more than £50,000 This also applies to electric vehicles registered between 1 April 2025 and 31 March 2026. You do not have to pay this if both of the following apply: you have a zero emission vehicle the vehicle was registered before 1 April 2025",
+      "source": 0
+    },
+    "listPrice": {
+      "quote": "The list price is the published price of the vehicle before it’s registered for the first time. It’s the price before any discounts are applied.",
+      "source": 0
+    },
+    "fiveYears": {
+      "quote": "You only have to pay this rate for 5 years (from the second time the vehicle is taxed).",
+      "source": 0
+    },
+    "alternative": {
+      "quote": "Alternative fuel vehicles include hybrids, bioethanol and liquid petroleum gas.",
+      "source": 0
+    },
+    "band2001": {
+      "quote": "The rate of vehicle tax is based on fuel type and CO2 emissions.",
+      "source": 1
+    },
+    "pre2001": {
+      "quote": "The rate of vehicle tax is based on engine size.",
+      "source": 2
+    }
+  },
+  "firstYear": [
+    {
+      "co2": [
+        0,
+        0
+      ],
+      "standard": 10.0,
+      "diesel": 10.0
+    },
+    {
+      "co2": [
+        1,
+        50
+      ],
+      "standard": 115.0,
+      "diesel": 135.0
+    },
+    {
+      "co2": [
+        51,
+        75
+      ],
+      "standard": 135.0,
+      "diesel": 280.0
+    },
+    {
+      "co2": [
+        76,
+        90
+      ],
+      "standard": 280.0,
+      "diesel": 365.0
+    },
+    {
+      "co2": [
+        91,
+        100
+      ],
+      "standard": 365.0,
+      "diesel": 405.0
+    },
+    {
+      "co2": [
+        101,
+        110
+      ],
+      "standard": 405.0,
+      "diesel": 455.0
+    },
+    {
+      "co2": [
+        111,
+        130
+      ],
+      "standard": 455.0,
+      "diesel": 560.0
+    },
+    {
+      "co2": [
+        131,
+        150
+      ],
+      "standard": 560.0,
+      "diesel": 1410.0
+    },
+    {
+      "co2": [
+        151,
+        170
+      ],
+      "standard": 1410.0,
+      "diesel": 2270.0
+    },
+    {
+      "co2": [
+        171,
+        190
+      ],
+      "standard": 2270.0,
+      "diesel": 3420.0
+    },
+    {
+      "co2": [
+        191,
+        225
+      ],
+      "standard": 3420.0,
+      "diesel": 4850.0
+    },
+    {
+      "co2": [
+        226,
+        255
+      ],
+      "standard": 4850.0,
+      "diesel": 5690.0
+    },
+    {
+      "co2": [
+        256,
+        null
+      ],
+      "standard": 5690.0,
+      "diesel": 5690.0
+    }
+  ],
+  "standard": {
+    "year": 200.0,
+    "yearDD": 200.0,
+    "monthlyDD": 210.0,
+    "six": 110.0,
+    "sixDD": 105.0
+  },
+  "expensive": {
+    "year": 640.0,
+    "yearDD": 640.0,
+    "monthlyDD": 672.0,
+    "six": 352.0,
+    "sixDD": 336.0
+  },
+  "bands2001": [
+    {
+      "band": "A",
+      "co2": [
+        0,
+        100
+      ],
+      "year": 20.0,
+      "yearDD": 20.0,
+      "monthlyDD": 21.0,
+      "six": null,
+      "sixDD": null
+    },
+    {
+      "band": "B",
+      "co2": [
+        101,
+        110
+      ],
+      "year": 20.0,
+      "yearDD": 20.0,
+      "monthlyDD": 21.0,
+      "six": null,
+      "sixDD": null
+    },
+    {
+      "band": "C",
+      "co2": [
+        111,
+        120
+      ],
+      "year": 35.0,
+      "yearDD": 35.0,
+      "monthlyDD": 36.75,
+      "six": null,
+      "sixDD": null
+    },
+    {
+      "band": "D",
+      "co2": [
+        121,
+        130
+      ],
+      "year": 170.0,
+      "yearDD": 170.0,
+      "monthlyDD": 178.5,
+      "six": 93.5,
+      "sixDD": 89.25
+    },
+    {
+      "band": "E",
+      "co2": [
+        131,
+        140
+      ],
+      "year": 200.0,
+      "yearDD": 200.0,
+      "monthlyDD": 210.0,
+      "six": 110.0,
+      "sixDD": 105.0
+    },
+    {
+      "band": "F",
+      "co2": [
+        141,
+        150
+      ],
+      "year": 225.0,
+      "yearDD": 225.0,
+      "monthlyDD": 236.25,
+      "six": 123.75,
+      "sixDD": 118.13
+    },
+    {
+      "band": "G",
+      "co2": [
+        151,
+        165
+      ],
+      "year": 275.0,
+      "yearDD": 275.0,
+      "monthlyDD": 288.75,
+      "six": 151.25,
+      "sixDD": 144.38
+    },
+    {
+      "band": "H",
+      "co2": [
+        166,
+        175
+      ],
+      "year": 325.0,
+      "yearDD": 325.0,
+      "monthlyDD": 341.25,
+      "six": 178.75,
+      "sixDD": 170.63
+    },
+    {
+      "band": "I",
+      "co2": [
+        176,
+        185
+      ],
+      "year": 360.0,
+      "yearDD": 360.0,
+      "monthlyDD": 378.0,
+      "six": 198.0,
+      "sixDD": 189.0
+    },
+    {
+      "band": "J",
+      "co2": [
+        186,
+        200
+      ],
+      "year": 410.0,
+      "yearDD": 410.0,
+      "monthlyDD": 430.5,
+      "six": 225.5,
+      "sixDD": 215.25
+    },
+    {
+      "band": "K",
+      "co2": [
+        201,
+        225
+      ],
+      "year": 445.0,
+      "yearDD": 445.0,
+      "monthlyDD": 467.25,
+      "six": 244.75,
+      "sixDD": 233.63
+    },
+    {
+      "band": "L",
+      "co2": [
+        226,
+        255
+      ],
+      "year": 760.0,
+      "yearDD": 760.0,
+      "monthlyDD": 798.0,
+      "six": 418.0,
+      "sixDD": 399.0
+    },
+    {
+      "band": "M",
+      "co2": [
+        256,
+        null
+      ],
+      "year": 790.0,
+      "yearDD": 790.0,
+      "monthlyDD": 829.5,
+      "six": 434.5,
+      "sixDD": 414.75
+    }
+  ],
+  "pre2001": [
+    {
+      "cc": "Not over 1549",
+      "year": 230.0,
+      "yearDD": 230.0,
+      "monthlyDD": 241.5,
+      "six": 126.5,
+      "sixDD": 120.75
+    },
+    {
+      "cc": "Over 1549",
+      "year": 375.0,
+      "yearDD": 375.0,
+      "monthlyDD": 393.75,
+      "six": 206.25,
+      "sixDD": 196.88
+    }
+  ]
+}
