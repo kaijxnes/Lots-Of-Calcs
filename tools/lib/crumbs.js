@@ -76,8 +76,8 @@ function crumbs(html) {
   const extra = back ? back[1] : (html.match(/<nav class="crumbs([^"]*)"/) || [, ""])[1];
   const nav = `<nav class="crumbs${extra}" aria-label="Breadcrumb">` + t.map(([name, item], i) =>
     i === t.length - 1 ? `<span aria-current="page">${esc(name)}</span>` : `<a href="${esc(path(item))}">${esc(name)}</a><span class="crumb-sep" aria-hidden="true">›</span>`).join("") + "</nav>";
-  if (back) return html.replace(BACK, nav);
-  if (NAV.test(html)) return html.replace(NAV, nav);
+  if (back) return html.replace(BACK, () => nav);
+  if (NAV.test(html)) return html.replace(NAV, () => nav);
   return html;
 }
 
