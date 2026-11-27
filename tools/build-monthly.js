@@ -21,7 +21,8 @@
    - related.js refreshes the related-calculator blocks on hand-written pages,
      the homepage's category counts and "See all N" cards (from each hub's
      own list) and the 404 page, so new calculators are counted once their
-     cards are in.
+     cards are in. next-steps.js puts "next step" links in each main result
+     box on hand-written pages (generated pages get them in site.write).
    - build-search-index.js and build-embeds.js read finished pages.
    - apply-icons.js turns emoji icons into line icons, adds breadcrumbs and
      tags every asset link with a content hash, so it runs after every page
@@ -46,7 +47,7 @@ const STEPS = [
   ["build-small-calcs.js"], ["build-uk-calcs.js"], ["build-currency-pages.js"],
   ["build-comparison-pages.js"], ["build-take-home-index.js"], ["build-guides.js"], ["build-trust-pages.js"],
   ["build-timezone-pages.js"], ["build-time-pages.js"], ["build-due-date-pages.js"],
-  ["build-popular.js"], ["related.js"], ["build-search-index.js"], ["build-embeds.js"],
+  ["build-popular.js"], ["related.js"], ["next-steps.js"], ["build-search-index.js"], ["build-embeds.js"],
   ["apply-icons.js"], ["build-sitemap-index.js"], ["sync-faq-ld.js", "--check"]
 ];
 
