@@ -36,6 +36,7 @@ const TAGS = {
   "/child-maintenance-calculator/": "UK",
   "/state-pension-forecast-calculator/": "UK",
   "/pension-withdrawal-tax-calculator/": "UK",
+  "/student-maintenance-loan-calculator/": "England",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
@@ -60,7 +61,7 @@ const TAGS = {
   "/30-percent-ruling-calculator/": "NL",
   "/beckham-law-calculator/": "Spain"
 };
-const NAMES = { UK: "United Kingdom", US: "United States", Canada: "Canada", NL: "Netherlands", Spain: "Spain" };
+const NAMES = { UK: "United Kingdom", US: "United States", Canada: "Canada", NL: "Netherlands", Spain: "Spain", England: "England" };
 const span = (href) => (TAGS[href] ? `<span class="card-tag" title="For ${/^(United|Netherlands)/.test(NAMES[TAGS[href]]) ? "the " : ""}${NAMES[TAGS[href]]}">${TAGS[href]}</span>` : "");
 
 /* Rewrites every hub card in an HTML string to carry its tag (or none) */

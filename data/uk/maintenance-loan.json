@@ -1,0 +1,103 @@
+{
+  "note": "Maintenance Loan for full-time students from England starting a course from 1 August 2016, for the 2026 to 2027 academic year, not entitled to benefits, full (not final) year. Each income assessment is rounded down to the pound, as the worked table shows.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "year": "2026 to 2027",
+  "threshold": 25000,
+  "dependantAllowance": 1130,
+  "options": {
+    "away": {
+      "label": "Living away from home, outside London",
+      "max": 10830,
+      "per": 6.47,
+      "floorPct": 46.6,
+      "maxAssessment": 5782
+    },
+    "london": {
+      "label": "Living away from home, in London",
+      "max": 14135,
+      "per": 6.36,
+      "floorPct": 49.8,
+      "maxAssessment": 7096
+    },
+    "home": {
+      "label": "Living with your parents",
+      "max": 9118,
+      "per": 6.54,
+      "floorPct": 44,
+      "maxAssessment": 5105
+    }
+  },
+  "examples": [
+    [
+      30000,
+      10058,
+      13349,
+      8354
+    ],
+    [
+      35000,
+      9285,
+      12563,
+      7589
+    ],
+    [
+      40000,
+      8512,
+      11777,
+      6825
+    ],
+    [
+      42875,
+      8068,
+      11325,
+      6385
+    ],
+    [
+      45000,
+      7739,
+      10991,
+      6060
+    ]
+  ],
+  "rules": {
+    "max": {
+      "quote": "The maximum amount you can get depends on where you live. | 2025 to 2026 academic year | 2026 to 2027 academic year | Living with your parents | Up to £8,877 | Up to £9,118 | Living away from your parents, outside London | Up to £10,544 | Up to £10,830 | Living away from your parents, in London | Up to £13,762 | Up to £14,135 |",
+      "source": "https://www.gov.uk/student-finance/new-fulltime-students"
+    },
+    "paid": {
+      "quote": "The loan is paid directly into your bank account at the start of each term. You have to pay the loan back.",
+      "source": "https://www.gov.uk/student-finance/new-fulltime-students"
+    },
+    "changing": {
+      "quote": "Student finance is changing. If your course starts on or after 1 January 2027",
+      "source": "https://www.gov.uk/student-finance/new-fulltime-students"
+    },
+    "residual": {
+      "quote": "5.6 Dependent students starting a full-time course on or after 1 August 2016 If you’re starting a course on or after 1 August 2016, you’ll be able to apply for a higher amount of Maintenance Loan, as Maintenance Grants are no longer available for new students. Assessing your income We’ll work out your parents’ residual income (which includes the income of your parent’s partner, if they have one) by taking their gross income (before tax and National Insurance) and taking off allowances for the following: payments into private pension schemes, additional voluntary contributions and employment-related costs £1,130 for any child other than you who is totally or mainly financially dependent on them £1,130 if your parent is also a student",
+      "source": "https://www.gov.uk/government/publications/student-finance-how-youre-assessed-and-paid/student-finance-how-youre-assessed-and-paid-2026-to-2027"
+    },
+    "taper": {
+      "quote": "Students living with parents no contribution for total income of up to £25,000 Maintenance Loan is reduced by £1 for every £6.54 of the total income over £25,000, until 44% of the full Maintenance Loan remains. Students living away from home and studying in London no contribution for total income of up to £25,000 Maintenance Loan is reduced by £1 for every £6.36 of the total income over £25,000, until 49.8% of the full Maintenance Loan remains. Students living away from home and studying outside London no contribution for total income of up to £25,000 Maintenance Loan is reduced by £1 for every £6.47 of the total income over £25,000, until 46.6% of the full Maintenance Loan remains.",
+      "source": "https://www.gov.uk/government/publications/student-finance-how-youre-assessed-and-paid/student-finance-how-youre-assessed-and-paid-2026-to-2027"
+    },
+    "minimum": {
+      "quote": "Students not entitled to benefits | Full year | | Final year | | Support covered | Household residual income | Income assessment | Household residual income | Income assessment | Full rate Maintenance Loan or maximum rate final year Maintenance Loan | Up to £25,000 | £0 | Up to £25,000 | £0 | 49.8% / 49%* Maintenance Loan – student living away from home and studying in London | £70,131 | £7,096 | £67,508 | £6,683 | 46.6% / 45.8%* Maintenance Loan – student living away from home and studying outside London | £62,410 | £5,782 | £60,907 | £5,549 | 44% / 43%* Maintenance Loan – student living with parents | £58,347 | £5,105 |",
+      "source": "https://www.gov.uk/government/publications/student-finance-how-youre-assessed-and-paid/student-finance-how-youre-assessed-and-paid-2026-to-2027"
+    },
+    "table": {
+      "quote": "Maintenance Loan entitlement Household income | Maintenance Loan – living away from home and studying outside London | Maintenance Loan – living away from home and studying in London | Maintenance Loan – living with parents | £25,000 | £10,830 | £14,135 | £9,118 | £30,000 | £10,058 | £13,349 | £8,354 | £35,000 | £9,285 | £12,563 | £7,589 | £40,000 | £8,512 | £11,777 | £6,825 | £42,875 | £8,068 | £11,325 | £6,385 | £45,000 | £7,739 | £10,991 | £6,060 |",
+      "source": "https://www.gov.uk/government/publications/student-finance-how-youre-assessed-and-paid/student-finance-how-youre-assessed-and-paid-2026-to-2027"
+    }
+  },
+  "sources": [
+    {
+      "title": "Student finance: new full-time students",
+      "url": "https://www.gov.uk/student-finance/new-fulltime-students"
+    },
+    {
+      "title": "Student finance: how you're assessed and paid 2026 to 2027",
+      "url": "https://www.gov.uk/government/publications/student-finance-how-youre-assessed-and-paid/student-finance-how-youre-assessed-and-paid-2026-to-2027"
+    }
+  ]
+}
