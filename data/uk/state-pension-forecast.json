@@ -1,0 +1,91 @@
+{
+  "note": "New State Pension forecast from qualifying years. The reduced rate in section 3(2) of the Pensions Act 2014 is an image on legislation.gov.uk reading: 1/35 × the person's number of qualifying years.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "taxYear": "2026/27",
+  "fullWeekly": 241.3,
+  "fullYears": 35,
+  "minYears": 10,
+  "class3Weekly": 18.4,
+  "payBackYears": 6,
+  "rules": {
+    "fullRate": {
+      "quote": "The full rate of new State Pension is £241.30 a week.",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "tenYears": {
+      "quote": "You’ll need 10 qualifying years on your National Insurance record to get any new State Pension.",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "thirtyFive": {
+      "quote": "If your National Insurance record started after April 2016 you will need 35 qualifying years to get the full rate of new State Pension.",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "contractedOut": {
+      "quote": "If you were contracted out, you will usually need more than 35 qualifying years to get the full rate of new State Pension.",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "eachYear": {
+      "quote": "Each qualifying year after 6 April 2016 added to your National Insurance record increases your State Pension amount, up to the full rate ( £241.30 a week).",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "workAfter": {
+      "quote": "If you do, you’ll stop paying National Insurance",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "credits": {
+      "quote": "A qualifying year is one in which you were: working and made National Insurance contributions getting National Insurance credits for example if you were unemployed, ill or a parent or carer paying voluntary National Insurance contributions",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "different": {
+      "quote": "Your amount could be different depending on: if you were contracted out before 2016 the number of National Insurance qualifying years you have if you paid into the Additional State Pension before 2016",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "abroad": {
+      "quote": "You could still be eligible if you made contributions to the state pensions in: the European Economic Area ( EEA ) – this includes any country in the EU as well as Norway, Iceland and Liechtenstein Switzerland any country that has a social security agreement with the UK",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "paid": {
+      "quote": "The new State Pension is usually paid into your account every 4 weeks.",
+      "source": "https://www.gov.uk/new-state-pension"
+    },
+    "full35": {
+      "quote": "A person is entitled to a state pension payable at the full rate if— (a) the person has reached pensionable age, and (b) the person has 35 or more qualifying years.",
+      "source": "https://www.legislation.gov.uk/ukpga/2014/19/section/2"
+    },
+    "reduced": {
+      "quote": "The reduced rate of the state pension for a person is the following proportion of the full rate",
+      "source": "https://www.legislation.gov.uk/ukpga/2014/19/section/3"
+    },
+    "class3": {
+      "quote": "The rates for the 2026 to 2027 tax year are: £3.65 a week for Class 2 £18.40 a week for Class 3",
+      "source": "https://www.gov.uk/voluntary-national-insurance-contributions"
+    },
+    "sixYears": {
+      "quote": "You can only pay voluntary contributions for the past 6 years. The deadline is 5 April each year.",
+      "source": "https://www.gov.uk/voluntary-national-insurance-contributions"
+    },
+    "notAlways": {
+      "quote": "Voluntary contributions do not always increase your State Pension, for example if you were contracted out",
+      "source": "https://www.gov.uk/voluntary-national-insurance-contributions"
+    }
+  },
+  "sources": [
+    {
+      "title": "The new State Pension",
+      "url": "https://www.gov.uk/new-state-pension"
+    },
+    {
+      "title": "Pensions Act 2014, section 2",
+      "url": "https://www.legislation.gov.uk/ukpga/2014/19/section/2"
+    },
+    {
+      "title": "Pensions Act 2014, section 3",
+      "url": "https://www.legislation.gov.uk/ukpga/2014/19/section/3"
+    },
+    {
+      "title": "Voluntary National Insurance",
+      "url": "https://www.gov.uk/voluntary-national-insurance-contributions"
+    }
+  ]
+}
