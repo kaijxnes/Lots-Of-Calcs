@@ -1,0 +1,82 @@
+{
+  "note": "How a termination payment is taxed when you leave a job, from GOV.UK and HMRC's employer guide CWG2. Income Tax and National Insurance use the UK tax file.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "taxFreeLimit": 30000,
+  "rules": {
+    "earnings": {
+      "quote": "You’ll pay tax and National Insurance on: unpaid wages holiday pay bonuses payments you get from your employer for agreeing to enter into a restrictive covenant any payments you receive instead of working during your notice period - this may be payment in lieu of notice (PILON) or be part of any severance pay",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "notTaxed": {
+      "quote": "You will not pay tax and National Insurance on: contributions your employer makes to a registered pension scheme as part of your termination payment - you’ll pay tax on any employer contributions that go above the Annual Allowance legal costs related to the settlement that your employer pays directly to your solicitor a termination payment you get because of an injury, illness or disability that prevents you from being able to continue to do your job",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "taxFree": {
+      "quote": "You do not usually pay tax on the first combined £30,000 of: statutory redundancy pay additional severance or enhanced redundancy payments your employer gives you non-cash benefits, for example company property you keep after your employment ends",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "over": {
+      "quote": "You’ll pay tax on any amount over a combined total of £30,000.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "notice": {
+      "quote": "You’ll pay tax and National Insurance on the part of your termination payment equivalent to what you’d have earned if you were working. This may apply to: lump sum payments in lieu of notice (PILON) pay you’re given while on ‘gardening leave’ (where you remain on the payroll but you’re asked not to work) part of any severance, enhanced redundancy or non-cash benefits you get known as Post-Employment Notice Pay (PENP)",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "penpCap": {
+      "quote": "If the amount of PENP is more than the total of any severance, enhanced redundancy or non-cash benefits you receive, you will only pay tax on the amount you actually get.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "example1": {
+      "quote": "Example 1 You are entitled to statutory redundancy pay of £10,000. PENP does not apply to statutory redundancy pay, so you will not pay tax or National Insurance on this. Your employer adds a severance payment of £5,000. The total you’re entitled to is £15,000. You did not need to work your 4-week notice. As you earn £500 per week, this means you would have earned £2,000 in taxable wages. You’ll pay tax and National Insurance on £2,000 of your severance payment. You do not pay tax on the remaining £13,000 of your total payment as it is under £30,000.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "example2": {
+      "quote": "Example 2 You’re entitled to statutory redundancy pay of £10,000. PENP does not apply to statutory redundancy pay, so you will not pay tax or National Insurance on this. Your employer adds a severance payment of £3000. The total you’re entitled to is £13,000. You did not need to work your 4-week notice. As you earn £1,000 per week, this means you would have earned £4,000 in taxable wages, making your PENP £4,000. You’ll pay tax and National Insurance on the full £3,000 of your severance payment. You do not pay tax on the remaining £10,000 of your total payment as it is under £30,000.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "abroad": {
+      "quote": "You may be able to get part of your termination payment tax free, if you’re: not resident in the UK for tax purposes (a non-resident) for the whole of the tax year in which your employment terminates someone who works at sea (a ‘seafarer’) a serving member of the armed forces - ask your employer how the payment will be taxed",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "payslip": {
+      "quote": "Any tax and National Insurance due on your termination payment will be taken automatically by your employer in your final payslip.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "p45": {
+      "quote": "If you get your termination payment after you have got your P45, your employer will use an ‘0T’ tax code. Tax will be deducted on the assumption that you have used up your personal allowance for the current tax year.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "contact": {
+      "quote": "If you think that you’ve paid too much tax or you think that your termination payment has not been taxed in the right way, contact HMRC.",
+      "source": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    "redundancyNI": {
+      "quote": "Due under statutory redundancy payment rules and paid from your non-statutory scheme to compensate for loss of employment by reason of redundancy. Redundancy has a special legal meaning. Broadly, there must be a reduced need for employees which causes the termination of the employment. This would not include, for example, a payment in lieu of notice provided for by such a scheme. The redundancy may be paid indirect. For example, an employee leaves as a result of a reduced need for employees elsewhere in the business. Include in gross pay for National Insurance contributions purposes Include in gross pay for PAYE purposes No, but Class 1A National Insurance contributions are payable on amounts over £30,000 only.",
+      "source": "https://www.gov.uk/government/publications/cwg2-further-guide-to-paye-and-national-insurance-contributions/2026-to-2027-employer-further-guide-to-paye-and-national-insurance-contributions"
+    },
+    "afterLeavingTax": {
+      "quote": "after the employee leaves, you should: include the taxable amount in gross pay on the employee’s payroll record for the tax week or month number in which you make payment enter code 0T as the amended code on the employee’s payroll record include the details, set the ‘Payment after leaving’ indicator and show the original date of leaving on the FPS when you make the final payment operate PAYE by using code 0T (on a week 1 or month 1 basis)",
+      "source": "https://www.gov.uk/government/publications/cwg2-further-guide-to-paye-and-national-insurance-contributions/2026-to-2027-employer-further-guide-to-paye-and-national-insurance-contributions"
+    },
+    "afterLeavingNI": {
+      "quote": "after the employee has left, work out National Insurance contributions based on a weekly earnings period unless it’s a final payment of salary or wage where the usual earnings period, category letter and rates and thresholds at the time of payment should be used",
+      "source": "https://www.gov.uk/government/publications/cwg2-further-guide-to-paye-and-national-insurance-contributions/2026-to-2027-employer-further-guide-to-paye-and-national-insurance-contributions"
+    },
+    "whenLeavingNI": {
+      "quote": "when the employee leaves, work out National Insurance contributions based on the regular earnings period for the employment",
+      "source": "https://www.gov.uk/government/publications/cwg2-further-guide-to-paye-and-national-insurance-contributions/2026-to-2027-employer-further-guide-to-paye-and-national-insurance-contributions"
+    }
+  },
+  "sources": [
+    {
+      "title": "Termination payments and tax when you leave a job",
+      "url": "https://www.gov.uk/termination-payments-and-tax-when-you-leave-a-job"
+    },
+    {
+      "title": "CWG2: further guide to PAYE and National Insurance contributions (2026 to 2027)",
+      "url": "https://www.gov.uk/government/publications/cwg2-further-guide-to-paye-and-national-insurance-contributions/2026-to-2027-employer-further-guide-to-paye-and-national-insurance-contributions"
+    }
+  ]
+}

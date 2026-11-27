@@ -44,6 +44,7 @@ const TAGS = {
   "/pension-credit-calculator/": "UK",
   "/rent-a-room-calculator/": "UK",
   "/side-hustle-tax-calculator/": "UK",
+  "/redundancy-tax-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
