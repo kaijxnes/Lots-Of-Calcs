@@ -1,0 +1,103 @@
+{
+  "note": "Council Tax discounts and the Disabled Band Reduction Scheme in England and Wales, from GOV.UK; band proportions from the Local Government Finance Act 1992 s5.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "single": 25,
+  "allDisregarded": 50,
+  "bandAReduction": 17,
+  "ratios": {
+    "england": [
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      15,
+      18
+    ],
+    "wales": [
+      6,
+      7,
+      8,
+      9,
+      11,
+      13,
+      15,
+      18,
+      21
+    ]
+  },
+  "rules": {
+    "full": {
+      "quote": "A full Council Tax bill is based on at least 2 adults living in a home.",
+      "source": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    "disregarded": {
+      "quote": "You’re disregarded if you’re: under 18 years old on certain apprentice schemes 18 or 19 years old and in full-time education a full-time student at college or university under 25 years old and get funding from the Education and Skills Funding Agency a student nurse a foreign language assistant registered with the British Council severely mentally impaired a live-in carer for someone who is not your partner, spouse, or child under 18 a diplomat",
+      "source": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    "apply": {
+      "quote": "You need to apply for a Council Tax discount or an exemption, even if you’re disregarded.",
+      "source": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    "half": {
+      "quote": "You’ll get 50% off your bill if everyone living in your household is disregarded.",
+      "source": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    "quarter": {
+      "quote": "You’ll get 25% off your bill if you pay Council Tax and either: you live on your own everyone else in your home is disregarded",
+      "source": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    "mistake": {
+      "quote": "If you get a Council Tax discount by mistake You must contact your local council. If you do not, you could get a fine.",
+      "source": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    "students": {
+      "quote": "Households where everyone’s a full-time student do not have to pay Council Tax.",
+      "source": "https://www.gov.uk/council-tax/discounts-for-full-time-students"
+    },
+    "band": {
+      "quote": "If you qualify, your bill will be reduced to the next lowest Council Tax band. For example, if your property is in Band D, you’ll pay the Band C rate. If your home is already in the lowest band (Band A), you’ll get a 17% discount on your Council Tax bill instead.",
+      "source": "https://www.gov.uk/council-tax/discounts-for-disabled-people"
+    },
+    "smiFull": {
+      "quote": "You’ll get a 100% discount if you qualify as severely mentally impaired and one of the following applies: you live on your own any other adults in your household either qualify as severely mentally impaired or are full-time students",
+      "source": "https://www.gov.uk/council-tax/discounts-for-disabled-people"
+    },
+    "smiHalf": {
+      "quote": "There’ll be a 50% discount on the council tax bill if everyone else in your household is ‘disregarded’.",
+      "source": "https://www.gov.uk/council-tax/discounts-for-disabled-people"
+    },
+    "instalments": {
+      "quote": "The cost is usually split into 10 monthly payments. Contact your local council immediately if you’re having trouble paying - they can help you, for example by spreading your payments over 12 months instead of 10.",
+      "source": "https://www.gov.uk/council-tax/paying-your-bill"
+    },
+    "ratio": {
+      "quote": "The amounts of council tax payable in respect of dwellings situated in the same billing authority’s area (or the same part of such an area) and listed in different valuation bands shall be in the proportion— 6: 7: 8: 9: 11: 13: 15: 18 where 6 is for dwellings listed in valuation band A, 7 is for dwellings listed in valuation band B, and so on.",
+      "source": "https://www.legislation.gov.uk/ukpga/1992/14/section/5"
+    },
+    "ratioWales": {
+      "quote": "For the purposes of the application of subsection (1) to dwellings situated in Wales, for the purposes of financial years beginning on or after 1st April 2005, for the proportion specified in that subsection there is substituted the following proportion: 6: 7: 8: 9: 11: 13: 15: 18: 21",
+      "source": "https://www.legislation.gov.uk/ukpga/1992/14/section/5"
+    }
+  },
+  "sources": [
+    {
+      "title": "Council Tax: who has to pay",
+      "url": "https://www.gov.uk/council-tax/who-has-to-pay"
+    },
+    {
+      "title": "Council Tax: discounts for disabled people",
+      "url": "https://www.gov.uk/council-tax/discounts-for-disabled-people"
+    },
+    {
+      "title": "Council Tax: discounts for full-time students",
+      "url": "https://www.gov.uk/council-tax/discounts-for-full-time-students"
+    },
+    {
+      "title": "Local Government Finance Act 1992, section 5",
+      "url": "https://www.legislation.gov.uk/ukpga/1992/14/section/5"
+    }
+  ]
+}
