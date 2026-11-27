@@ -101,6 +101,7 @@ const RULES = [
   ["/contractor-calculator/", () => [["/day-rate-calculator/", "Your day rate as a salary"], ["/salary-vs-dividends/", "Salary or dividends?"], ["/self-employed-tax-calculator/", "Self-employed tax"]]],
   [/^\/day-rate-calculator\//, () => [["/contractor-calculator/", "Take-home inside and outside IR35"], ["/employer-cost-calculator/", "What an employee costs"], ["/salary/", "An employee's take-home"]]],
   ["/payslip-checker/", () => [["/tax-code-checker/", "Check your tax code"], ["/tax-refund-calculator/", "Owed a tax refund?"], ["/salary/", "Your take-home for the year"]]],
+  ["/pension-credit-calculator/", () => [["/winter-fuel-payment-calculator/", "Winter Fuel Payment"], ["/state-pension-forecast-calculator/", "Your State Pension"], ["/guides/retiring/", "Retiring: money guide"]]],
   ["/premium-bonds-calculator/", () => [["/savings-tax-calculator/", "Tax on savings interest instead"], ["/compound-interest/", "What a fixed rate grows to"], ["/lifetime-isa-calculator/", "Lifetime ISA bonus"]]],
   ["/compound-interest/", () => [["/savings-goal/", "Plan a savings goal"], ["/savings-tax-calculator/", "Tax on the interest"], ["/isa-vs-pension/", "ISA or pension?"]]],
   ["/savings-goal/", () => [["/compound-interest/", "Compound interest"], ["/savings-tax-calculator/", "Tax on savings interest"], ["/emergency-fund-calculator/", "Emergency fund"]]]

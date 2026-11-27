@@ -41,6 +41,7 @@ const TAGS = {
   "/winter-fuel-payment-calculator/": "UK",
   "/day-rate-calculator/": "UK",
   "/payslip-checker/": "UK",
+  "/pension-credit-calculator/": "UK",
   "/salary-sacrifice-calculator/": "UK",
   "/pension-tax-relief-calculator/": "UK",
   "/isa-vs-pension/": "UK",
