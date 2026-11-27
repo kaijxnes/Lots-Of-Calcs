@@ -103,6 +103,7 @@ const RULES = [
   ["/payslip-checker/", () => [["/tax-code-checker/", "Check your tax code"], ["/tax-refund-calculator/", "Owed a tax refund?"], ["/salary/", "Your take-home for the year"]]],
   ["/pension-credit-calculator/", () => [["/winter-fuel-payment-calculator/", "Winter Fuel Payment"], ["/state-pension-forecast-calculator/", "Your State Pension"], ["/guides/retiring/", "Retiring: money guide"]]],
   ["/rent-a-room-calculator/", () => [["/guides/self-assessment-explained/", "Self Assessment explained"], ["/payments-on-account-calculator/", "Payments on account"], ["/buy-to-let-calculator/", "Letting a whole property"], ["/salary/", "Your take-home pay"]]],
+  ["/side-hustle-tax-calculator/", () => [["/self-employed-tax-calculator/", "Full self-employed tax"], ["/payments-on-account-calculator/", "Payments on account"], ["/guides/self-assessment-explained/", "Self Assessment explained"]]],
   ["/premium-bonds-calculator/", () => [["/savings-tax-calculator/", "Tax on savings interest instead"], ["/compound-interest/", "What a fixed rate grows to"], ["/lifetime-isa-calculator/", "Lifetime ISA bonus"]]],
   ["/compound-interest/", () => [["/savings-goal/", "Plan a savings goal"], ["/savings-tax-calculator/", "Tax on the interest"], ["/isa-vs-pension/", "ISA or pension?"]]],
   ["/savings-goal/", () => [["/compound-interest/", "Compound interest"], ["/savings-tax-calculator/", "Tax on savings interest"], ["/emergency-fund-calculator/", "Emergency fund"]]]
