@@ -89,6 +89,7 @@ const RELATED = {
   "/paternity-pay-calculator/": ["/maternity-pay-calculator/", "/childcare-help-calculator/", "/due-date-calculator/", "/salary/", "/universal-credit-calculator/", "/50-30-20-budget/"],
   "/car-tax-calculator/": ["/company-car-tax-calculator/", "/car-finance/", "/fuel-cost/", "/ev-charging-cost/", "/mileage-allowance-calculator/", "/running-cost/"],
   "/lifetime-isa-calculator/": ["/isa-vs-pension/", "/savings-goal/", "/compound-interest/", "/stamp-duty-calculator/", "/mortgage-affordability/", "/savings-tax-calculator/"],
+  "/child-maintenance-calculator/": ["/universal-credit-calculator/", "/salary/", "/childcare-help-calculator/", "/child-benefit-tax-charge-calculator/", "/50-30-20-budget/", "/net-to-gross-salary/"],
   "/premium-bonds-calculator/": ["/savings-tax-calculator/", "/compound-interest/", "/lifetime-isa-calculator/", "/savings-goal/", "/emergency-fund-calculator/", "/inflation/"],
   "/minimum-wage-calculator/": ["/salary/", "/hourly-to-salary/", "/pro-rata-salary-calculator/", "/net-to-gross-salary/", "/holiday-entitlement-calculator/", "/statutory-sick-pay-calculator/"],
   "/mileage-allowance-calculator/": ["/fuel-cost/", "/tax-refund-calculator/", "/tax-code-checker/", "/salary/", "/ev-charging-cost/", "/self-employed-tax-calculator/"],

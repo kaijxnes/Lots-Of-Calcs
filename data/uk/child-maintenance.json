@@ -1,0 +1,155 @@
+{
+  "note": "Child Maintenance Service (England, Wales and Scotland) weekly calculation. Figures quoted from GOV.UK and legislation.gov.uk; the reduced rate formula on legislation.gov.uk is an image reading F + (A × T).",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "flat": 7,
+  "nilBelow": 7,
+  "reducedFrom": 100,
+  "basicFrom": 200,
+  "cap": 3000,
+  "band1": 800,
+  "basicPct": [
+    12,
+    16,
+    19
+  ],
+  "abovePct": [
+    9,
+    12,
+    15
+  ],
+  "otherPct": [
+    11,
+    14,
+    16
+  ],
+  "reducedT": [
+    [
+      17.0,
+      14.1,
+      13.2,
+      12.4
+    ],
+    [
+      25.0,
+      21.2,
+      19.9,
+      18.9
+    ],
+    [
+      31.0,
+      26.4,
+      24.9,
+      23.8
+    ]
+  ],
+  "defaults": [
+    38,
+    51,
+    64
+  ],
+  "shared": [
+    {
+      "from": 52,
+      "to": 103,
+      "sevenths": 1
+    },
+    {
+      "from": 104,
+      "to": 155,
+      "sevenths": 2
+    },
+    {
+      "from": 156,
+      "to": 174,
+      "sevenths": 3
+    },
+    {
+      "from": 175,
+      "to": 365,
+      "sevenths": 3.5
+    }
+  ],
+  "halfExtra": 7,
+  "daysInYear": 365,
+  "rules": {
+    "rates": {
+      "quote": "Unknown or not provided | Default | £38 for 1 child, £51 for 2 children, £64 for 3 or more children | Below £7 | Nil | £0 | £7 to £100, or if the paying parent gets benefits | Flat | £7 | £100.01 to £199.99 | Reduced | Calculated using a formula | £200 to £3,000 | Basic | Calculated using a formula",
+      "source": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    "courts": {
+      "quote": "If the paying parent’s gross weekly income is more than £3,000, the receiving parent can apply to the courts for extra child maintenance.",
+      "source": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    "income": {
+      "quote": "The Child Maintenance Service will check for things that could change the gross income amount (for example, pension payments or other children they support).",
+      "source": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    "otherChildren": {
+      "quote": "The Child Maintenance Service will take into account the number of children the paying parent has to pay child maintenance for. This includes any other children living with them and any arrangements that have been made directly for other children.",
+      "source": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    "flatShared": {
+      "quote": "If the paying parent gets benefits and it’s agreed that the child stays overnight for 52 nights or more a year, they do not pay child maintenance for: the child that stays overnight any other children who live in the same household as that child If the paying parent does not get benefits, overnight stays will not affect the amount of child maintenance paid.",
+      "source": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    "sharedCare": {
+      "quote": "The number of agreed overnight stays affects how much the child maintenance payments will be reduced by. If the parents agree to at least 52 nights a year but cannot agree on the exact number of nights above this, the Child Maintenance Service will assume that shared care is only happening for 52 nights a year. The child maintenance payments cannot go below £7 a week. Number of agreed overnight stays each year | Reduction to child maintenance for each child | 52 to 103 nights | 14.29% | 104 to 155 nights | 28.57% | 156 to 174 nights | 42.86% | 175 nights or more | 50%, plus an extra £7 a week reduction",
+      "source": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    "basic": {
+      "quote": "the basic rate is the following percentage of the non-resident parent's gross weekly income— E+W+S 12% where the non-resident parent has one qualifying child; 16% where the non-resident parent has two qualifying children; 19% where the non-resident parent has three or more qualifying children. (2) If the gross weekly income of the non-resident parent exceeds £800, the basic rate is the aggregate of the amount found by applying sub-paragraph (1) in relation to the first £800 of that income and the following percentage of the remainder— 9% where the non-resident parent has one qualifying child; 12% where the non-resident parent has two qualifying children; 15% where the non-resident parent has three or more qualifying children. (3) If the non-resident parent also has one or more relevant other children, gross weekly income shall be treated for the purposes of sub-paragraphs (1) and (2) as reduced by the following percentage— 11% where the non-resident parent has one relevant other child; 14% where the non-resident parent has two relevant other children; 16% where the non-resident parent has three or more relevant other children.",
+      "source": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    "reducedWhen": {
+      "quote": "A reduced rate is payable if— E+W+S (a) neither a flat rate nor the nil rate applies; and (b) the non-resident parent’s gross weekly income is less than £200 but more than £100.",
+      "source": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    "flat": {
+      "quote": "a flat rate of £7 is payable if the nil rate does not apply and— E+W+S (a) the non-resident parent’s gross weekly income is £100 or less;",
+      "source": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    "nil": {
+      "quote": "The rate payable is nil if the non-resident parent— (a) is of a prescribed description; or (b) has a gross weekly income of below £7 .",
+      "source": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    "cap": {
+      "quote": "(3) Any amount of gross weekly income (calculated as above) over £3,000 is to be ignored for the purposes of this Schedule.",
+      "source": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    "sharedFractions": {
+      "quote": "The amount of that decrease for one child is set out in the following Table— Number of nights Fraction to subtract 52 to 103 One-seventh 104 to 155 Two-sevenths 156 to 174 Three-sevenths 175 or more One-half (5) If the person with care is caring for more than one qualifying child of the non-resident parent, the applicable decrease is the sum of the appropriate fractions in the Table divided by the number of such qualifying children. (6) If the applicable fraction is one-half in relation to any qualifying child in the care of the person with care, the total amount payable to the person with care is then to be further decreased by £7 for each such child. (7) If the application of the preceding provisions of this paragraph would decrease the weekly amount of child support maintenance (or the aggregate of all such amounts) payable by the non-resident parent to the person with care (or all of them) to less than £7 , he is instead liable to pay child support maintenance at the rate of £7 a week, apportioned (if appropriate) in accordance with paragraph 6.",
+      "source": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    "reduced": {
+      "quote": "The reduced rate is an amount calculated as follows— where— F is the flat rate liability applicable to the non-resident parent; A is the amount of the non-resident parent's gross weekly income between £100 and £200; and T is the percentage determined in accordance with the following Table— Number of relevant other children of the non-resident parent T (%) 1 qualifying child of the non-resident parent 0 17.0 1 14.1 2 13.2 3 or more 12.4 2 qualifying children of the non-resident parent 0 25.0 1 21.2 2 19.9 3 or more 18.9 3 or more qualifying children of the non-resident parent 0 31.0 1 26.4 2 24.9 3 or more 23.8",
+      "source": "https://www.legislation.gov.uk/uksi/2012/2677/regulation/43"
+    },
+    "weekly": {
+      "quote": "Historic income is determined by— (a) taking the HMRC figure last requested from HMRC in relation to the non-resident parent; (b) adjusting that figure where required in accordance with paragraph (3); and (c) dividing by 365 and multiplying by 7.",
+      "source": "https://www.legislation.gov.uk/uksi/2012/2677/regulation/35"
+    },
+    "pension": {
+      "quote": "(3) Where the non-resident parent has made relievable pension contributions during the tax year to which the HMRC figure relates and those contributions have not been deducted under net pay arrangements, the HMRC figure is, if the non-resident parent so requests and provides such information as the Secretary of State requires, to be adjusted by deducting the amount of those contributions.",
+      "source": "https://www.legislation.gov.uk/uksi/2012/2677/regulation/35"
+    }
+  },
+  "sources": [
+    {
+      "title": "How child maintenance is worked out",
+      "url": "https://www.gov.uk/how-child-maintenance-is-worked-out"
+    },
+    {
+      "title": "Child Support Act 1991, Schedule 1",
+      "url": "https://www.legislation.gov.uk/ukpga/1991/48/schedule/1"
+    },
+    {
+      "title": "Child Support Maintenance Calculation Regulations 2012, regulation 43",
+      "url": "https://www.legislation.gov.uk/uksi/2012/2677/regulation/43"
+    },
+    {
+      "title": "Child Support Maintenance Calculation Regulations 2012, regulation 35",
+      "url": "https://www.legislation.gov.uk/uksi/2012/2677/regulation/35"
+    }
+  ]
+}
