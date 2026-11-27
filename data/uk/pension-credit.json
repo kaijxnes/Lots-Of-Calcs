@@ -1,0 +1,92 @@
+{
+  "note": "Pension Credit (Guarantee Credit) for England, Scotland and Wales, from GOV.UK, with the deemed income from savings from the State Pension Credit Regulations 2002 reg 15(6). Rates change each April.",
+  "lastChecked": "2026-11-27",
+  "lastVerified": null,
+  "taxYear": "2026/27",
+  "single": 238,
+  "couple": 363.25,
+  "severe": 86.05,
+  "carer": 48.15,
+  "child": 69.98,
+  "childFirstBefore2017": 81.07,
+  "disabledChild": {
+    "lower": 37.93,
+    "higher": 118.46
+  },
+  "savingsCredit": {
+    "single": 17.96,
+    "couple": 20.1
+  },
+  "capital": {
+    "disregard": 10000,
+    "step": 500
+  },
+  "rules": {
+    "topUp": {
+      "quote": "Pension Credit tops up: your weekly income to £238 if you’re single your joint weekly income to £363.25 if you have a partner",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "severe": {
+      "quote": "You could get an extra £86.05 a week if you get any of the following: Attendance Allowance the middle or highest rate of the care component of Disability Living Allowance (DLA) the daily living component of Personal Independence Payment (PIP) Armed Forces Independence Payment",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "carer": {
+      "quote": "You could get an extra £48.15 a week if: you get Carer’s Allowance",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "child": {
+      "quote": "You’ll get £69.98 a week for each child or young person. This is increased to £81.07 a week for the first child if they were born before 6 April 2017.",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "disabledChild": {
+      "quote": "You could get an extra £37.93 a week if the child or young person gets: Disability Living Allowance (DLA) for children - lowest or middle rate of the care component or any rate of the mobility component Child Disability Payment - lowest or middle rate of the care component or any rate of the mobility component Scottish Adult Disability Living Allowance - lowest or middle rate of the care component or any rate of the mobility component Personal Independence Payment (PIP) - standard rate of the daily living component or any rate of the mobility component Adult Disability Payment - standard rate of the daily living component or any rate of the mobility component You could get an extra £118.46 a week",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "savingsCredit": {
+      "quote": "You could get the ‘Savings Credit’ part of Pension Credit if both of the following apply: you reached State Pension age before 6 April 2016 you saved some money for retirement, for example a personal or workplace pension You’ll get up to £17.96 Savings Credit a week if you’re single. If you have a partner, you’ll get up to £20.10 a week.",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "savings": {
+      "quote": "If you have £10,000 or less in savings and investments this will not affect your Pension Credit. If you have more than £10,000, every £500 over £10,000 counts as £1 income a week. For example, if you have £11,000 in savings, this counts as £2 income a week.",
+      "source": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    "income": {
+      "quote": "Your income includes: State Pension other pensions earnings from employment and self-employment most social security benefits, for example Carer’s Allowance",
+      "source": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    "notIncome": {
+      "quote": "Not all benefits are counted as income. For example, the following are not counted: Adult Disability Payment Attendance Allowance Child Benefit Christmas Bonus Council Tax Reduction Disability Living Allowance Housing Benefit Pension Age Disability Payment Personal Independence Payment Scottish Adult Disability Living Allowance social fund payments like Winter Fuel Payment",
+      "source": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    "eligible": {
+      "quote": "You must live in England, Scotland or Wales and have reached State Pension age to qualify for Pension Credit.",
+      "source": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    "partner": {
+      "quote": "You’ll be eligible if either: you and your partner have both reached State Pension age one of you is getting Housing Benefit for people over State Pension age",
+      "source": "https://www.gov.uk/pension-credit/eligibility"
+    },
+    "other": {
+      "quote": "If you get Pension Credit you’ll automatically get cold weather payments. You’ll also be eligible to: apply for a free TV licence if you’re aged 75 or over get help with NHS costs if you get the Guarantee Credit part of Pension Credit",
+      "source": "https://www.gov.uk/pension-credit/what-youll-get"
+    },
+    "backdate": {
+      "quote": "You can apply any time after you reach State Pension age but your application can only be backdated by 3 months.",
+      "source": "https://www.gov.uk/pension-credit/how-to-claim"
+    },
+    "tariff": {
+      "quote": "a claimant’s capital shall be deemed to yield a weekly income of— (a) £1 for each £500 in excess of £10,000; and (b) £1 for any excess which is not a complete £500.",
+      "source": "https://www.legislation.gov.uk/uksi/2002/1792/regulation/15"
+    }
+  },
+  "sources": [
+    {
+      "title": "Pension Credit",
+      "url": "https://www.gov.uk/pension-credit"
+    },
+    {
+      "title": "State Pension Credit Regulations 2002, regulation 15",
+      "url": "https://www.legislation.gov.uk/uksi/2002/1792/regulation/15"
+    }
+  ]
+}

@@ -97,6 +97,7 @@ const RELATED = {
   "/winter-fuel-payment-calculator/": ["/state-pension-forecast-calculator/", "/heating-cost/", "/state-pension-age-calculator/", "/carers-allowance-calculator/", "/household-bills/", "/pension-withdrawal-tax-calculator/"],
   "/day-rate-calculator/": ["/contractor-calculator/", "/salary/", "/employer-cost-calculator/", "/hourly-to-salary/", "/salary-vs-dividends/", "/working-days/"],
   "/payslip-checker/": ["/tax-code-checker/", "/salary/", "/tax-refund-calculator/", "/bonus-tax-calculator/", "/student-loan-calculator/", "/salary-sacrifice-calculator/"],
+  "/pension-credit-calculator/": ["/state-pension-forecast-calculator/", "/winter-fuel-payment-calculator/", "/state-pension-age-calculator/", "/carers-allowance-calculator/", "/pension-withdrawal-tax-calculator/", "/pension-drawdown-calculator/"],
   "/premium-bonds-calculator/": ["/savings-tax-calculator/", "/compound-interest/", "/lifetime-isa-calculator/", "/savings-goal/", "/emergency-fund-calculator/", "/inflation/"],
   "/minimum-wage-calculator/": ["/salary/", "/hourly-to-salary/", "/pro-rata-salary-calculator/", "/net-to-gross-salary/", "/holiday-entitlement-calculator/", "/statutory-sick-pay-calculator/"],
   "/mileage-allowance-calculator/": ["/fuel-cost/", "/tax-refund-calculator/", "/tax-code-checker/", "/salary/", "/ev-charging-cost/", "/self-employed-tax-calculator/"],
