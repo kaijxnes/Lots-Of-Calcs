@@ -14,6 +14,7 @@ const TAGS = {
   "/child-benefit-tax-charge-calculator/": "UK",
   "/marriage-allowance-calculator/": "UK",
   "/gift-aid-calculator/": "UK",
+  "/adoption-pay-calculator/": "UK",
   "/council-tax-discount-calculator/": "E&W",
   "/tax-code-checker/": "UK",
   "/tax-refund-calculator/": "UK",
