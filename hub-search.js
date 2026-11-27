@@ -6,8 +6,21 @@ const groups = [...document.querySelectorAll("[data-group]")].map((title) => ({
   grid: title.nextElementSibling,
 }));
 
+/* UK abbreviations people type, searched as the words the cards and page
+   titles actually use: "bik" finds the company car tax calculator */
+const ALIASES = {
+  bik: "company car", p11d: "company car", ssp: "sick pay", smp: "maternity", spp: "paternity", shpp: "paternity", spl: "paternity",
+  uc: "universal credit", tfc: "childcare", hicbc: "child benefit", ni: "national insurance", nic: "national insurance", nics: "national insurance",
+  paye: "tax code", sa: "self assessment", poa: "payments on account", cgt: "capital gains", iht: "inheritance", sdlt: "stamp duty",
+  lbtt: "stamp duty", ltt: "stamp duty", ir35: "contractor", amap: "mileage", nmw: "minimum wage", nlw: "minimum wage",
+  spa: "state pension age", pilon: "notice", p800: "tax refund", ltv: "mortgage", apr: "loan", ftb: "stamp duty"
+};
+function expand(q) {
+  return q.split(/\s+/).map((w) => ALIASES[w] || w).join(" ");
+}
+
 function filterCards() {
-  const query = searchInput.value.trim().toLowerCase();
+  const query = searchInput.value.trim().toLowerCase(), wide = expand(query);
   let anyVisible = false;
 
   /* Results should sit straight under the search box rather than below a row
@@ -23,7 +36,7 @@ function filterCards() {
        it, searching "everyday" would match its label and keep the group open */
     grid.querySelectorAll(".hub-card:not(.hub-more)").forEach((card) => {
       const text = card.textContent.toLowerCase();
-      const matches = query === "" || text.includes(query);
+      const matches = query === "" || text.includes(query) || (wide !== query && text.includes(wide));
       card.hidden = !matches;
       if (matches) groupHasVisible = true;
     });
@@ -56,7 +69,7 @@ searchInput.addEventListener("input", filterCards);
   }
   function esc(s) { return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c])); }
   function show() {
-    const q = norm(searchInput.value);
+    const raw = norm(searchInput.value), q = norm(expand(raw));
     if (q.length < 3) { box.hidden = true; return; }
     if (!index) { load().then(show); return; }
     const words = q.split(" ");

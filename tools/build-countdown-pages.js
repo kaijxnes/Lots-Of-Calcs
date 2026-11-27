@@ -88,7 +88,9 @@ function page(e) {
   const next = dates[0];
   const yr = next.getUTCFullYear();
   const url = SITE + `/days-until/${e.slug}/`;
-  const title = `How Many Days Until ${e.name} ${yr}? — Live Countdown`;
+  /* the event's name in title case for the <title> ("the Self Assessment Deadline"), dropping "Live Countdown" if it would run long */
+  const tn = e.name.replace(/(^| )([a-z]+)/g, (m, s, w) => (["the", "of", "and"].includes(w) ? m : s + w[0].toUpperCase() + w.slice(1)));
+  const title = site.fitTitle(`How Many Days Until ${tn} ${yr}? — Live Countdown`, `How Many Days Until ${tn} ${yr}?`);
   const desc = `${e.day} ${yr} is on ${long(next)}. A live countdown in days, hours and sleeps, plus the dates for the next few years.`;
   const q = [
     [`When is ${e.name} ${yr}?`, `${long(next)}. ${e.note}`],

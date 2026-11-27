@@ -230,7 +230,7 @@ function holiday() {
   const h = cfg.hol, r = U.holiday(cfg, 5);
   const table = [1, 2, 2.5, 3, 4, 4.5, 5, 6].map((d) => [d + (d === 1 ? " day" : " days"), (Math.round(U.holiday(cfg, d).full * 10) / 10) + " days"]);
   return shell({ path: "/holiday-entitlement-calculator/", id: "hl", name: "Holiday Entitlement Calculator",
-    title: "Holiday Entitlement Calculator — UK Statutory Leave for Part-Time and Irregular Hours",
+    title: "Holiday Entitlement Calculator UK — Part-Time and Irregular Hours",
     desc: `Work out UK statutory holiday: 5.6 weeks a year, up to 28 days — ${(Math.round(U.holiday(cfg, 3).full * 10) / 10)} days for a 3-day week. Part-year starters and leavers pro rata, and the ${h.irregularPct}% accrual for irregular hours.`,
     h1: "Holiday entitlement calculator", sub: "Your statutory paid holiday in the UK, for full-time, part-time, part-year and irregular-hours work.",
     form: pair(f("hl-days", "Days worked a week", 5, ' max="7"'), f("hl-months", "Months of the leave year you'll work", 12, ' max="12"')) + "\n" + f("hl-hours", "Irregular hours: hours worked in the pay period", "", ' placeholder="e.g. 80"'),
