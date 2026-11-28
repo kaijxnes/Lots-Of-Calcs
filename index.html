@@ -1029,6 +1029,11 @@
     <section class="hub-popular" id="hub-popular" aria-labelledby="hub-popular-label">
       <p class="cat-browse-label" id="hub-popular-label">Popular right now</p>
       <nav class="cat-tiles" aria-label="Popular calculators">
+        <a class="cat-tile" href="/payday/december-2026/" data-payday-to="2036">
+          <span class="cat-tile-icon" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=9957fb01#calendar"></use></svg></span>
+          <span class="cat-tile-name">Payday December 2026</span>
+          <span class="cat-tile-count">When you'll be paid</span>
+        </a>
         <a class="cat-tile" href="/days-until/christmas/">
           <span class="cat-tile-icon" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=9957fb01#tree-pine"></use></svg></span>
           <span class="cat-tile-name">Days until Christmas</span>
@@ -1074,12 +1079,8 @@
           <span class="cat-tile-name">Unit conversions</span>
           <span class="cat-tile-count">Height, weight, °C and °F</span>
         </a>
-        <a class="cat-tile" href="/tip/">
-          <span class="cat-tile-icon" aria-hidden="true"><svg class="ico" aria-hidden="true"><use href="/icons.svg?v=9957fb01#utensils"></use></svg></span>
-          <span class="cat-tile-name">Tip calculator</span>
-          <span class="cat-tile-count">Split the bill</span>
-        </a>
       </nav>
+      <script>(function () { var a = document.querySelector("[data-payday-to]"); if (!a) return; var M = ["January","February","March","April","May","June","July","August","September","October","November","December"], d = new Date(), y = d.getFullYear(), m = d.getMonth(); if (d.getDate() > 25) { m++; if (m > 11) { m = 0; y++; } } if (y > +a.getAttribute("data-payday-to")) return; a.href = "/payday/" + M[m].toLowerCase() + "-" + y + "/"; a.querySelector(".cat-tile-name").textContent = "Payday " + M[m] + " " + y; })();</script>
     </section>
     <!-- end popular -->
 
