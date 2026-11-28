@@ -48,14 +48,16 @@ const RULES = { cfg: CFG, cfgS: CFGS, R: { allowance: R.allowance, contactFrom: 
 /* Scotland, hand-checked for 2026/27: £3,000 less the £1,000 allowance on a £30,000 job is £2,000 in the 21% intermediate band = £420 */
 if (cfg.year === "2026/27" && SH.calc(UK, CFGS, R, { kind: "trading", gross: 3000, expenses: 200, salary: 30000 }).tax !== 420) throw new Error("side hustle: the Scottish hand-checked example no longer comes out");
 const rows = [500, 1000, 2000, 3000, 5000, 10000, 20000].map((g) => { const x = c({ gross: g, salary: 30000 }), y = c({ gross: g, salary: 60000 }); return [m0(g), m2(x.tax + x.ni), m2(x.keep), m2(y.tax + y.ni), m2(y.keep)]; });
-const tool = `    <main class="tool split" id="sh-tool" data-rules="${esc(JSON.stringify(RULES))}">
+function tool(G, E, S) {
+  const a = c({ gross: G, expenses: E, salary: S });
+  return `    <main class="tool split" id="sh-tool" data-rules="${esc(JSON.stringify(RULES))}">
       <div class="field-row">
         <div class="field"><label for="sh-kind">Income from</label><select id="sh-kind"><option value="trading" selected>Selling, freelancing or casual work (trading)</option><option value="property">Renting out property or land</option></select></div>
-        <div class="field"><label for="sh-gross">Gross income a year (before expenses)</label><input type="number" id="sh-gross" value="3000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="sh-gross">Gross income a year (before expenses)</label><input type="number" id="sh-gross" value="${G}" min="0" step="any" inputmode="decimal"></div>
       </div>
       <div class="field-row">
-        <div class="field"><label for="sh-expenses">Expenses a year</label><input type="number" id="sh-expenses" value="200" min="0" step="any" inputmode="decimal"></div>
-        <div class="field"><label for="sh-salary">Your salary or other income</label><input type="number" id="sh-salary" value="30000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="sh-expenses">Expenses a year</label><input type="number" id="sh-expenses" value="${E}" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="sh-salary">Your salary or other income</label><input type="number" id="sh-salary" value="${S}" min="0" step="any" inputmode="decimal"></div>
       </div>
       <div class="field"><label for="sh-region">Where you live</label><select id="sh-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="sh-error" role="alert" style="color: var(--bad); display: none;"></p>
@@ -76,6 +78,9 @@ const tool = `    <main class="tool split" id="sh-tool" data-rules="${esc(JSON.s
       </div>
     </main>
 `;
+}
+const AMOUNTS = [1000, 2000, 3000, 5000, 7500, 10000, 15000, 20000, 30000, 50000];
+const aurl = (n) => `${P}${n}/`;
 const body = `    <main class="tool">
       <h2 class="tool-section-title">Tax on side income on top of a job</h2>
 ${site.table(["Side income a year", "Tax and NI (£30,000 job)", "You keep", "Tax and NI (£60,000 job)", "You keep"], rows, 680)}      <p class="tool-hint" style="margin-top:8px;">Trading income with no expenses, using the £1,000 trading allowance, ${esc(cfg.year)}. Class 4 National Insurance is ${class4[1][1]}% on profits over ${m0(class4[1][0])}, so it only starts on bigger side incomes.</p>
@@ -100,12 +105,15 @@ const html = site.head({ title, desc, url: u, ld: [site.webPage(title, desc, u, 
       <p class="page-subtitle">The tax on income from selling, freelancing or renting on top of a job, with the ${m0(R.allowance)} allowance.</p>
     </header>
 
-${tool}
+${tool(3000, 200, 30000)}
 ${body}
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rules from HMRC: ${SRC}; Income Tax from the ${esc(cfg.year)} UK tax file and Class 4 from the self-employed tax file. Last checked ${site.niceDate(R.lastChecked)}.</p>
     </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Tax on side income by amount</div>
+    <p class="salary-links">${AMOUNTS.map((n) => `<a href="${aurl(n)}">Tax on ${m0(n)}</a>`).join(" ")}</p>
 
 ${related.block(P)}
 ${site.FOOTER}
@@ -116,5 +124,55 @@ ${site.FOOTER}
 </html>
 `;
 site.write("side-hustle-tax-calculator", html);
-site.sitemapBlock("side hustle pages", "tools/build-side-hustle-pages.js", [[P, "0.6"]]);
+
+/* ---------- one page per amount: "tax on £5,000 side income" ---------- */
+const JOBS = [[0, "No other job"], [20000, `${m0(20000)} job`], [30000, `${m0(30000)} job`], [50000, `${m0(50000)} job`], [80000, `${m0(80000)} job`]];
+const CS = (o) => SH.calc(UK, CFGS, R, Object.assign({ kind: "trading", expenses: 0, salary: 0 }, o));
+function amountPage(n) {
+  const url = SITE + aurl(n);
+  const rows = JOBS.map(([sal, label]) => { const t = c({ gross: n, salary: sal }), sc = CS({ gross: n, salary: sal }), pr = c({ kind: "property", gross: n, salary: sal }); return [label, m2(t.tax), m2(t.ni), m2(t.keep), m2(sc.tax + sc.ni), m2(pr.tax)]; });
+  const b = c({ gross: n, salary: 30000 }), e = c({ gross: n, expenses: Math.round(n * 0.3), salary: 30000 });
+  const tellT = n > R.contactFrom ? `register for Self Assessment by 5 October after the tax year ends` : `you don't need to tell HMRC`;
+  const title = site.fitTitle(`Tax on ${m0(n)} Side Hustle Income — How Much You Keep (${cfg.year})`, `Tax on ${m0(n)} Side Income (UK)`);
+  const desc = `Tax on ${m0(n)} of side hustle income: with a ${m0(30000)} job, ${m2(b.tax)} of Income Tax${b.ni ? ` and ${m2(b.ni)} Class 4 NI` : ""} after the ${m0(R.allowance)} trading allowance, so you keep ${m2(b.keep)} (${cfg.year}).`;
+  const q = [
+    [`How much tax do I pay on ${m0(n)} of side income?`, `With a ${m0(30000)} job and no expenses, ${m2(b.tax)} of Income Tax${b.ni ? ` and ${m2(b.ni)} of Class 4 National Insurance` : ""} after the ${m0(R.allowance)} trading allowance, so you keep ${m2(b.keep)} (${esc(cfg.year)}). With no other job, ${m2(c({ gross: n }).tax + c({ gross: n }).ni)}.`],
+    [`Do I need to tell HMRC about ${m0(n)} of side income?`, `For trading income of ${m0(n)}, ${tellT}.${n > R.contactFrom && n <= R.saFrom ? ` For property income over ${m0(R.contactFrom)} up to ${m0(R.saFrom)}, contact HMRC.` : ""}`],
+    [`Should I claim expenses or the ${m0(R.allowance)} allowance on ${m0(n)}?`, `Whichever is more: you can't have both. With ${m0(Math.round(n * 0.3))} of expenses on ${m0(n)}, claiming them leaves ${m2(e.profit)} taxable and ${m2(e.tax + e.ni)} of tax and NI on a ${m0(30000)} job.`],
+    [`Is ${m0(n)} of rental income taxed the same way?`, `Property income gets its own ${m0(R.allowance)} allowance and doesn't pay Class 4 National Insurance: ${m2(c({ kind: "property", gross: n, salary: 30000 }).tax)} of Income Tax on a ${m0(30000)} job. A room let in your own home can use the Rent a Room Scheme instead.`]
+  ];
+  const ld = [site.webPage(title, desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Side Hustle Tax Calculator", u], [m0(n), url]]), site.faqLd(q)];
+  const others = AMOUNTS.filter((x) => x !== n).map((x) => `<a href="${aurl(x)}">${m0(x)}</a>`).join(" ");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${P}">← Side hustle tax calculator</a>
+      <h1 class="page-title">Tax on ${m0(n)} of side hustle income</h1>
+      <p class="page-subtitle">With a ${m0(30000)} job: <strong>${m2(b.tax + b.ni)}</strong> of tax and NI, so you keep <strong>${m2(b.keep)}</strong> (${esc(cfg.year)}).</p>
+    </header>
+
+${tool(n, 0, 30000)}
+    <main class="tool">
+      <h2 class="tool-section-title">Tax on ${m0(n)} by your other income</h2>
+${site.table(["Other income", "Income Tax", "Class 4 NI", "You keep", "Tax and NI in Scotland", "Tax if it's rent"], rows, 720)}      <p class="tool-hint" style="margin-top:8px;">Trading income with no expenses, using the ${m0(R.allowance)} trading allowance (property: the ${m0(R.allowance)} property allowance, no Class 4), ${esc(cfg.year)}. Class 4 National Insurance is ${class4[1][1]}% on profits over ${m0(class4[1][0])}.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rules from HMRC: ${SRC}; Income Tax from the ${esc(cfg.year)} UK and Scottish tax files, Class 4 from the self-employed tax file. Last checked ${site.niceDate(R.lastChecked)}.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other amounts</div>
+    <p class="salary-links">${others}</p>
+
+${related.block(P)}
+${site.FOOTER}
+  </div>
+  <script src="/uk-calcs.js"></script>
+  <script src="/side-hustle.js"></script>
+</body>
+</html>
+`;
+}
+const urls = [[P, "0.6"]];
+AMOUNTS.forEach((n) => { site.write(`side-hustle-tax-calculator/${n}`, amountPage(n)); urls.push([aurl(n), "0.5"]); });
+site.sitemapBlock("side hustle pages", "tools/build-side-hustle-pages.js", urls);
 console.log(`built the side hustle tax calculator (${m0(3000)} on a ${m0(30000)} job: ${m2(a.tax)} tax)`);
