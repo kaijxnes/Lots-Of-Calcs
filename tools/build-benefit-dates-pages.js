@@ -12,7 +12,10 @@
    day before (Universal Credit always is); 4-weekly benefits are paid on a
    fixed weekday (the State Pension's set by the National Insurance number).
    Bank holidays are GOV.UK's, then the expected dates (tools/lib/uk-holidays.js),
-   labelled as such. Pages run from this year to four years ahead. */
+   labelled as such. Pages run from this year to ten years ahead.
+
+       /benefit-payment-dates/december-2026/    one month: every Universal Credit
+                                                date, and what bank holidays move */
 const fs = require("fs");
 const path = require("path");
 const site = require("./lib/site.js");
@@ -20,7 +23,7 @@ const { esc, SITE } = site;
 
 const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/benefit-payments.json"), "utf8"));
 const THIS_YEAR = +site.TODAY.slice(0, 4);
-const YEARS = []; for (let y = THIS_YEAR; y <= THIS_YEAR + 4; y++) YEARS.push(y);
+const YEARS = []; for (let y = THIS_YEAR; y <= THIS_YEAR + 10; y++) YEARS.push(y);
 const H = require("./lib/uk-holidays.js")(YEARS[YEARS.length - 1] + 1);
 const REG = { "england-and-wales": "England and Wales", scotland: "Scotland", "northern-ireland": "Northern Ireland" };
 
@@ -119,7 +122,7 @@ function yearPage(y) {
   const title = site.fitTitle(`Benefit Payment Dates ${y} — Bank Holiday Changes for UC & State Pension`, `Benefit Payment Dates ${y} — Bank Holiday Changes`);
   const desc = `When Universal Credit, the State Pension, PIP and other benefits are paid early in ${y} because of bank holidays, with every date that moves and the Christmas changes.`;
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Benefit payment dates", SITE + "/benefit-payment-dates/"], [String(y), url]]), site.faqLd(q)];
-  const other = YEARS.filter((x) => x !== y).map((x) => `<a href="/benefit-payment-dates/${x}/">${x}</a>`).concat(YEARS.map((x) => `<a href="/benefit-payment-dates/christmas-${x}/">Christmas ${x}</a>`)).join(" ");
+  const other = MONTHS.map((n, m) => `<a href="${murl(y, m)}">${n} ${y}</a>`).concat(YEARS.filter((x) => x !== y).map((x) => `<a href="/benefit-payment-dates/${x}/">${x}</a>`)).concat(YEARS.map((x) => `<a href="/benefit-payment-dates/christmas-${x}/">Christmas ${x}</a>`)).join(" ");
   return head({ url, title, desc, ld, h1: `Benefit payment dates ${y}`, sub: `When Universal Credit, the State Pension and other benefits are paid early in ${y} because a payment falls on a bank holiday.`, ahead: expectedYear(y) ? AHEAD(y) : "" }) + `
     <main class="tool">
       <h2 class="tool-section-title">The rule</h2>
@@ -184,6 +187,66 @@ ${site.table(["Due on", "", "Paid on (England, Wales, NI)", "In Scotland"], rows
     <p class="salary-links"><a href="/benefit-payment-dates/${y}/">All of ${y}</a> ${YEARS.filter((x) => x !== y).map((x) => `<a href="/benefit-payment-dates/christmas-${x}/">Christmas ${x}</a>`).join(" ")} <a href="/days-until/christmas/">Days until Christmas</a></p>`);
 }
 
+/* ---------- one page per month ---------- */
+const mslug = (m) => MONTHS[m].toLowerCase();
+const murl = (y, m) => `/benefit-payment-dates/${mslug(m)}-${y}/`;
+const hasM = (y, m) => YEARS.includes(y);
+const nextM = (y, m) => (m === 11 ? [y + 1, 0] : [y, m + 1]);
+const prevM = (y, m) => (m === 0 ? [y - 1, 11] : [y, m - 1]);
+const ord = (n) => n + (n % 10 === 1 && n !== 11 ? "st" : n % 10 === 2 && n !== 12 ? "nd" : n % 10 === 3 && n !== 13 ? "rd" : "th");
+function monthPage(y, m) {
+  const name = MONTHS[m], url = SITE + murl(y, m), days = new Date(Date.UTC(y, m + 1, 0)).getUTCDate();
+  const rows = [], early = [];
+  for (let d = 1; d <= days; d++) {
+    const t = Date.UTC(y, m, d), res = {};
+    Object.keys(REG).forEach((r) => { res[r] = before(t, r); });
+    const ew = res["england-and-wales"];
+    const cell = (v) => (v === t ? "On time" : v === ew ? long(v) : `<strong>${long(v)}</strong>`);
+    const h = BYDATE["england-and-wales"].get(iso(t)) || BYDATE.scotland.get(iso(t)) || BYDATE["northern-ireland"].get(iso(t));
+    rows.push([`${ord(d)} (${DAYS[dow(t)].slice(0, 3)})${h ? " — " + holName(h) : ""}`, ew === t ? "On time" : inY(ew, y), res.scotland === ew ? "Same" : (res.scotland === t ? "On time" : inY(res.scotland, y)), res["northern-ireland"] === ew ? "Same" : (res["northern-ireland"] === t ? "On time" : inY(res["northern-ireland"], y))]);
+    if (ew !== t) early.push([t, ew]);
+  }
+  const hols = holidaysIn(y).filter((h) => h.date.startsWith(`${y}-${String(m + 1).padStart(2, "0")}`) && dow(parse(h.date)) % 6 !== 0);
+  const holRows = hols.map((h) => [long(parse(h.date)), holName(h), where(h.regions), inY(before(parse(h.date), h.regions[0]), y)]);
+  const ewHols = hols.filter((h) => h.regions.includes("england-and-wales"));
+  /* group early UC dates by the day they're paid, for the headline */
+  const groups = new Map(); early.forEach(([t, p]) => { if (!groups.has(p)) groups.set(p, []); groups.get(p).push(new Date(t).getUTCDate()); });
+  const glines = [...groups.entries()].map(([p, ds]) => `due on the ${and(ds.map(ord))}: paid ${inY(p, y)}`);
+  const [ny, nm] = nextM(y, m), [py, pm] = prevM(y, m);
+  const title = site.fitTitle(`Universal Credit Payment Dates ${name} ${y} — Benefits Paid Early`, `Universal Credit Payment Dates ${name} ${y}`);
+  const desc = `When Universal Credit, the State Pension and other benefits are paid in ${name} ${y}: every Universal Credit date, and the ${ewHols.length ? "bank holidays" : "weekends"} that bring payments forward, for England and Wales, Scotland and Northern Ireland.`;
+  const q = [
+    [`When is Universal Credit paid in ${name} ${y}?`, `On your usual payment date, unless it's a weekend or bank holiday: then it's paid on the working day before. In ${name} ${y} (England and Wales): ${glines.join("; ")}.`],
+    [`Are benefits paid early in ${name} ${y}?`, ewHols.length ? `Yes, around ${and(ewHols.map((h) => `${h.title.replace(/ \(.*\)$/, "")} on ${long(parse(h.date))}`))}: a payment due that day is paid on ${and(ewHols.map((h) => inY(before(parse(h.date), "england-and-wales"), y)))}.` : `Only for weekends: there are no weekday bank holidays in ${name} ${y} in England and Wales, so a payment due on a Saturday or Sunday is paid on the Friday before.`],
+    [`When is the State Pension paid in ${name} ${y}?`, `Every 4 weeks on the weekday set by the last 2 digits of your National Insurance number (00 to 19 Monday, 20 to 39 Tuesday, 40 to 59 Wednesday, 60 to 79 Thursday, 80 to 99 Friday). ${ewHols.length ? `If your payment falls on ${and(ewHols.map((h) => long(parse(h.date))))}, you might be paid earlier.` : `No weekday in ${name} ${y} is a bank holiday in England and Wales, so it should arrive on your usual day.`}`],
+    ["Is Child Benefit paid early for bank holidays?", "It's usually paid every 4 weeks on a Monday or Tuesday, and GOV.UK says the weekend and bank holiday rule may be different for Child Benefit, so check your payment notice from HMRC."]
+  ];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Benefit payment dates", SITE + "/benefit-payment-dates/"], [`${name} ${y}`, url]]), site.faqLd(q)];
+  const nav = [hasM(py, pm) ? `<a href="${murl(py, pm)}">← ${MONTHS[pm]} ${py}</a>` : "", hasM(ny, nm) ? `<a href="${murl(ny, nm)}">${MONTHS[nm]} ${ny} →</a>` : ""].filter(Boolean).join(" ");
+  const months = MONTHS.map((n, i) => (i === m ? `<strong>${n}</strong>` : `<a href="${murl(y, i)}">${n}</a>`)).join(" ");
+  const payday = fs.existsSync(path.join(site.ROOT, "payday", `${mslug(m)}-${y}`, "index.html")) ? ` <a href="/payday/${mslug(m)}-${y}/">Payday ${name} ${y}</a>` : "";
+  const xmasLink = (m === 11 ? [y] : m === 0 ? [y - 1] : []).filter((x) => YEARS.includes(x)).map((x) => ` <a href="/benefit-payment-dates/christmas-${x}/">Christmas ${x} payment dates</a>`).join("");
+  return head({ url, title, desc, ld, h1: `Benefit payment dates ${name} ${y}`, sub: `When Universal Credit, the State Pension and other benefits are paid in ${name} ${y}, with payments due on a weekend or bank holiday paid on the working day before.`, ahead: expectedYear(y) ? AHEAD(y) : "" }) + `
+    <main class="tool">
+      <h2 class="tool-section-title">Paid early in ${name} ${y}</h2>
+      <p class="about-text">${glines.length ? "Universal Credit " + esc(glines.join("; ")) + "." : "Every Universal Credit date is paid on time."} (England and Wales.)</p>
+      <h2 class="tool-section-title" style="margin-top:18px;">Universal Credit: your payment date in ${name} ${y}</h2>
+      <p class="about-text">Universal Credit is paid on the same date every month. Find yours:</p>
+${site.table(["Usual date", "Paid (England and Wales)", "Scotland", "Northern Ireland"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">If your payment date is on a weekend or a bank holiday you'll usually be paid on the working day before. Your online account shows your own date.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">State Pension, PIP and other 4-weekly benefits</h2>
+      <p class="about-text">These are usually paid every 4 weeks on the same weekday, so they only move if that day is a bank holiday.${holRows.length ? "" : ` There are no weekday bank holidays in ${name} ${y}.`}</p>
+${holRows.length ? site.table(["Bank holiday", "Holiday", "Where", "A payment due that day is paid on"], holRows, 560) : ""}      <p class="about-text" style="margin-top:12px;">Your State Pension day depends on the last 2 digits of your National Insurance number:</p>
+${npTable()}    </main>
+` + tail(q, url, `    <p class="salary-links" style="margin-top:24px;">${nav}</p>
+    <div class="hub-group-title" style="margin-top:18px;">Other months in ${y}</div>
+    <p class="salary-links">${months}</p>
+    <div class="hub-group-title" style="margin-top:18px;">More dates</div>
+    <p class="salary-links"><a href="/benefit-payment-dates/${y}/">Benefit payment dates ${y}</a>${xmasLink}${payday} <a href="/universal-credit-calculator/">Universal Credit calculator</a></p>`);
+}
+
 function hub() {
   const url = SITE + "/benefit-payment-dates/";
   const title = "Benefit Payment Dates — Bank Holidays, Christmas & State Pension Days";
@@ -198,6 +261,8 @@ function hub() {
     <main class="tool">
       <h2 class="tool-section-title">Christmas and New Year</h2>
       <p class="salary-links">${YEARS.map((y) => `<a href="/benefit-payment-dates/christmas-${y}/">Christmas ${y}</a>`).join(" ")}</p>
+      <h2 class="tool-section-title" style="margin-top:20px;">Month by month</h2>
+${YEARS.map((y) => `      <p class="salary-links"><strong>${y}:</strong> ${MONTHS.map((n, m) => `<a href="${murl(y, m)}">${n}</a>`).join(" ")}</p>`).join("\n")}
       <h2 class="tool-section-title" style="margin-top:20px;">Every bank holiday, by year</h2>
       <p class="salary-links">${YEARS.map((y) => `<a href="/benefit-payment-dates/${y}/">${y}</a>`).join(" ")}</p>
       <p class="about-text" style="margin-top:14px;">The rule: if your payment date is on a weekend or a bank holiday, you'll usually be paid on the working day before. Your State Pension day depends on the last 2 digits of your National Insurance number:</p>
@@ -223,6 +288,7 @@ site.write("benefit-payment-dates", hub());
 YEARS.forEach((y) => {
   site.write(`benefit-payment-dates/${y}`, yearPage(y)); urls.push([`/benefit-payment-dates/${y}/`, "0.5"]);
   site.write(`benefit-payment-dates/christmas-${y}`, christmasPage(y)); urls.push([`/benefit-payment-dates/christmas-${y}/`, "0.6"]);
+  MONTHS.forEach((n, m) => { site.write(`benefit-payment-dates/${mslug(m)}-${y}`, monthPage(y, m)); urls.push([murl(y, m), "0.6"]); });
 });
 site.sitemapBlock("benefit payment dates", "tools/build-benefit-dates-pages.js", urls);
 console.log(`built benefit payment dates for ${YEARS.join(", ")} and their Christmases (GOV.UK bank holidays to ${H.lastPublished}, expected after)`);
