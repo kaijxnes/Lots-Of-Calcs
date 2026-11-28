@@ -66,10 +66,10 @@ const optionFields = Object.keys(OPTS).map((k) => {
   return `<div class="field"><label for="bt-opt-${k}">${esc(o.label)}</label>${field}</div>`;
 }).join("\n        ");
 
-const tool = `    <main class="tool split" id="bt-tool" data-taper="${esc(JSON.stringify(TAPER))}">
+const tool = (salary, bonus) => { const s = split(salary, bonus); return `    <main class="tool split" id="bt-tool" data-taper="${esc(JSON.stringify(TAPER))}">
       <div class="field-row">
-        <div class="field"><label for="bt-salary">Salary (a year, before tax)</label><input type="number" id="bt-salary" value="${ex.salary}" min="0" step="any" inputmode="decimal"></div>
-        <div class="field"><label for="bt-bonus">Bonus</label><input type="number" id="bt-bonus" value="${ex.bonus}" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="bt-salary">Salary (a year, before tax)</label><input type="number" id="bt-salary" value="${salary}" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="bt-bonus">Bonus</label><input type="number" id="bt-bonus" value="${bonus}" min="0" step="any" inputmode="decimal"></div>
       </div>
       <div class="field-row">
         <div class="field"><label for="bt-periods">You're paid</label><select id="bt-periods"><option value="12" selected>Monthly</option><option value="13">Every four weeks</option><option value="26">Every two weeks</option><option value="52">Weekly</option></select></div>
@@ -81,22 +81,22 @@ const tool = `    <main class="tool split" id="bt-tool" data-taper="${esc(JSON.s
       <p class="tool-hint" id="bt-error" role="alert" style="color: var(--bad); display: none;"></p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
-          <div class="value" id="bt-keep">${m2(ex.s.keep)}</div>
-          <div class="label" id="bt-label">of your ${m0(ex.bonus)} bonus is yours (${pct(ex.s)})</div>
+          <div class="value" id="bt-keep">${m2(s.keep)}</div>
+          <div class="label" id="bt-label">of your ${m0(bonus)} bonus is yours (${pct(s)})</div>
         </div>
         <hr class="divider">
         <div class="result-grid">
-          <div class="result-row"><span class="r-label">Income Tax</span><span class="r-value" id="bt-tax">${m2(ex.s.tax)}</span></div>
-          <div class="result-row"><span class="r-label">National Insurance</span><span class="r-value" id="bt-ni">${m2(ex.s.ni)}</span></div>
+          <div class="result-row"><span class="r-label">Income Tax</span><span class="r-value" id="bt-tax">${m2(s.tax)}</span></div>
+          <div class="result-row"><span class="r-label">National Insurance</span><span class="r-value" id="bt-ni">${m2(s.ni)}</span></div>
           <div class="result-row" id="bt-loan-row" style="display:none;"><span class="r-label">Student loan</span><span class="r-value" id="bt-loan">£0.00</span></div>
           <div class="result-row" id="bt-pension-row" style="display:none;"><span class="r-label">Pension</span><span class="r-value" id="bt-pension">£0.00</span></div>
-          <div class="result-row highlight"><span class="r-label">Taken from the bonus</span><span class="r-value" id="bt-rate">${(Math.round(ex.s.rate * 1000) / 10).toLocaleString("en-GB")}%</span></div>
+          <div class="result-row highlight"><span class="r-label">Taken from the bonus</span><span class="r-value" id="bt-rate">${(Math.round(s.rate * 1000) / 10).toLocaleString("en-GB")}%</span></div>
         </div>
         <p class="tool-hint" id="bt-note" style="margin:10px 0 0; display:none;"></p>
       </div>
       <p class="tool-hint" style="margin:6px 0 0;">Paid as a lump sum with your normal pay in one pay period. The pension percentage is taken from the bonus too, as it is from your salary, if you set one.</p>
     </main>
-`;
+`; };
 
 const body = `    <main class="tool">
       <h2 class="tool-section-title">How a bonus is taxed</h2>
@@ -133,7 +133,7 @@ const html = site.head({ title, desc, url, ld }) + `    <header class="site-head
       <p class="page-subtitle">How much of a bonus you keep after Income Tax, National Insurance and student loan.</p>
     </header>
 
-${tool}
+${tool(ex.salary, ex.bonus)}
 ${body}
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
@@ -149,5 +149,65 @@ ${site.FOOTER}
 </html>
 `;
 site.write("bonus-tax-calculator", html);
-site.sitemapBlock("bonus tax pages", "tools/build-bonus-pages.js", [[P, "0.6"]]);
+
+/* /bonus-tax-calculator/1000/: what's kept of one bonus amount at each salary,
+   in the rest of the UK and in Scotland */
+const AMOUNTS = [500, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 7500, 10000, 15000, 20000, 25000, 30000, 50000, 100000];
+const PAGE_SALARIES = [20000, 25000, 30000, 35000, 40000, 45000, 50000, 60000, 70000, 80000, 90000, 100000, 125000, 150000];
+const aurl = (n) => `${P}${n}/`;
+function amountPage(n) {
+  const u = SITE + aurl(n);
+  const at = (sal, region) => split(sal, n, region);
+  const tr = PAGE_SALARIES.map((sal) => { const e = at(sal, "gb"), sc = at(sal, "gb-sct"); return [m0(sal), m2(e.tax), m2(e.ni), `<strong>${m2(e.keep)}</strong>`, pct(e), m2(sc.keep)]; });
+  const b30 = at(30000, "gb"), b60 = at(60000, "gb"), b150 = at(150000, "gb");
+  const trapSal = PAGE_SALARIES.filter((sal) => sal < TAPER.to && sal + n > TAPER.from);
+  const trapAt = trapSal.length ? trapSal.reduce((best, sal) => at(sal, "gb").keep < at(best, "gb").keep ? sal : best) : null, trap = trapAt ? at(trapAt, "gb") : null;
+  const q = [
+    [`How much of a ${m0(n)} bonus will I keep?`, `It depends on your salary, because the bonus is taxed at your highest rate. In England, Wales and Northern Ireland you keep about ${m2(b30.keep)} on a ${m0(30000)} salary, ${m2(b60.keep)} on ${m0(60000)} and ${m2(b150.keep)} on ${m0(150000)} (${esc(YEAR)}, paid in one month, no student loan or pension).`],
+    [`How much tax is taken off a ${m0(n)} bonus?`, `On a ${m0(30000)} salary, ${m2(b30.tax)} Income Tax and ${m2(b30.ni)} National Insurance. On ${m0(60000)}, ${m2(b60.tax)} Income Tax and ${m2(b60.ni)} National Insurance.`],
+    ["Is a bonus taxed at a higher rate than salary?", "No. A bonus counts as earnings and is added to your pay, so it's taxed at the same rates. It comes on top of your salary, so it's taxed at your highest rate, and PAYE in the bonus month can take more than you'll owe by the end of the tax year."],
+    [`Do I pay National Insurance on a ${m0(n)} bonus?`, `Yes, worked out on the pay period it's paid in: ${NI_MAIN}% up to £4,189 in the month and ${NI_UPPER}% above that.`]
+  ];
+  const title = site.fitTitle(`${m0(n)} Bonus After Tax UK (${YEAR}) — How Much You Keep`, `${m0(n)} Bonus After Tax UK (${YEAR})`);
+  const desc = `How much of a ${m0(n)} bonus you keep after Income Tax and National Insurance at every salary from ${m0(PAGE_SALARIES[0])} to ${m0(PAGE_SALARIES[PAGE_SALARIES.length - 1])}: ${m2(b30.keep)} on ${m0(30000)}, ${m2(b60.keep)} on ${m0(60000)} (${YEAR}).`;
+  const ld = [site.webPage(title, desc, u, B.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Bonus Tax Calculator", url], [`${m0(n)} bonus`, u]]), site.faqLd(q)];
+  const near = AMOUNTS.filter((x) => x !== n).map((x) => `<a href="${aurl(x)}">${m0(x)} bonus after tax</a>`).join(" ");
+  return site.head({ title, desc, url: u, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${P}">← Bonus tax calculator</a>
+      <h1 class="page-title">${m0(n)} bonus after tax</h1>
+      <p class="page-subtitle">How much of a ${m0(n)} bonus you keep after Income Tax and National Insurance, ${esc(YEAR)}.</p>
+    </header>
+
+${tool(35000, n)}
+    <main class="tool">
+      <h2 class="tool-section-title">What you keep of ${m0(n)} at each salary</h2>
+${site.table(["Salary", "Income Tax", "National Insurance", "You keep", "Share kept", "Scotland: you keep"], tr, 640)}      <p class="tool-hint" style="margin-top:8px;">A ${m0(n)} bonus paid in one month with your normal pay, ${esc(YEAR)}, no student loan or pension. Income Tax is what the bonus adds over the whole tax year.</p>
+      <p class="about-text">A cash bonus is pay: it's added to your other pay and taxed through PAYE, at your highest Income Tax rate. National Insurance is worked out on the month it's paid in, so a bonus month is charged ${NI_UPPER}% on pay over £4,189 rather than ${NI_MAIN}%, and a one-off bonus usually costs less National Insurance than the same pay spread over the year.${trap ? ` Between ${m0(TAPER.from)} and ${m0(TAPER.to)} you also lose Personal Allowance, so part of a bonus is taxed at an effective 60%: on ${m0(trapAt)} you keep ${m2(trap.keep)} (${pct(trap)}). Paying the part over ${m0(TAPER.from)} into a pension keeps the allowance.` : ""} The <a href="${P}">bonus tax calculator</a> explains more, and handles weekly pay, student loans and pensions.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">An estimate, not advice. ${esc(YEAR)} rates from the UK and Scottish tax files; how bonuses are taxed from ${B.sources.map((_, i) => SRC(i)).join(", ")}.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other bonus amounts</div>
+    <p class="salary-links">${near}</p>
+
+${related.block(P)}
+${site.FOOTER}
+  </div>
+  <script src="/tax-engine.js"></script>
+  <script src="/bonus.js"></script>
+</body>
+</html>
+`;
+}
+AMOUNTS.forEach((n) => site.write(`bonus-tax-calculator/${n}`, amountPage(n)));
+site.prune("bonus-tax-calculator", /^\d+$/);
+site.hubBlock(P, "bonus amounts", "tools/build-bonus-pages.js", `    <main class="tool">
+      <h2 class="tool-section-title">Bonus after tax by amount</h2>
+      <p class="salary-links">${AMOUNTS.map((n) => `<a href="${aurl(n)}">${m0(n)} bonus</a>`).join(" ")}</p>
+    </main>
+`);
+site.sitemapBlock("bonus tax pages", "tools/build-bonus-pages.js", [[P, "0.6"]].concat(AMOUNTS.map((n) => [aurl(n), "0.5"])));
 console.log(`built the bonus tax calculator (${m0(ex.bonus)} on ${m0(ex.salary)}: keep ${m2(ex.s.keep)}; NI in one month ${m2(niEx.ni)} vs ${m2(niEx.evenNi)} spread)`);
