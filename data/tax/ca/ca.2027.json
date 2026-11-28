@@ -1,0 +1,343 @@
+{
+  "id": "ca",
+  "name": "Canada (federal)",
+  "appliesTo": "Federal income tax, CPP and EI, before provincial or territorial tax",
+  "kind": "country",
+  "country": "CA",
+  "parent": null,
+  "standalone": false,
+  "currency": "CAD",
+  "locale": "en-CA",
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "options": {},
+  "items": [
+    {
+      "id": "ca-cpp-earnings",
+      "label": "Pensionable earnings above the basic exemption",
+      "note": "CPP is paid on earnings between the $3,500 basic exemption and the 2027 YMPE of $76,700, so on at most $73,200.",
+      "value": {
+        "clamp": {
+          "sub": [
+            "gross",
+            3500
+          ]
+        },
+        "min": 0,
+        "max": 73200
+      }
+    },
+    {
+      "id": "ca-cpp2-earnings",
+      "label": "Earnings between the YMPE and YAMPE",
+      "value": {
+        "clamp": {
+          "sub": [
+            "gross",
+            76700
+          ]
+        },
+        "min": 0,
+        "max": 10700
+      }
+    },
+    {
+      "id": "ca-cpp",
+      "label": "Canada Pension Plan (CPP)",
+      "group": "social",
+      "note": "5.75% (4.75% base plus 1% first additional) of earnings above $3,500, up to $76,700: at most $4,209 in 2027.",
+      "charge": {
+        "pct": 5.75,
+        "of": "ca-cpp-earnings"
+      }
+    },
+    {
+      "id": "ca-cpp2",
+      "label": "Second additional CPP (CPP2)",
+      "group": "social",
+      "note": "4% of earnings between $76,700 and $87,400: at most $428 in 2027.",
+      "charge": {
+        "pct": 4,
+        "of": "ca-cpp2-earnings"
+      }
+    },
+    {
+      "id": "ca-ei",
+      "label": "Employment Insurance (EI)",
+      "group": "social",
+      "note": "1.64% of insurable earnings up to $70,800: at most $1,161.12 in 2027.",
+      "charge": {
+        "pct": 1.64,
+        "of": {
+          "min": [
+            "gross",
+            70800
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-cpp-base",
+      "label": "Base CPP contribution",
+      "note": "The 4.75% base part of CPP earns a tax credit; the enhanced parts are deducted from income instead.",
+      "value": {
+        "pct": 4.75,
+        "of": "ca-cpp-earnings"
+      }
+    },
+    {
+      "id": "ca-cpp-enhanced",
+      "label": "Enhanced CPP contributions (deductible)",
+      "value": {
+        "sum": [
+          {
+            "sub": [
+              "ca-cpp",
+              "ca-cpp-base"
+            ]
+          },
+          "ca-cpp2"
+        ]
+      }
+    },
+    {
+      "id": "ca-contributions-credit",
+      "label": "Contributions that earn a tax credit",
+      "value": {
+        "sum": [
+          "ca-cpp-base",
+          "ca-ei"
+        ]
+      }
+    },
+    {
+      "id": "ca-taxable",
+      "label": "Taxable income",
+      "show": true,
+      "note": "Salary less the enhanced (first and second additional) CPP contributions.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "gross",
+              "ca-cpp-enhanced"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-bpa",
+      "label": "Federal basic personal amount",
+      "show": true,
+      "note": "$16,879, falling to $15,214 as taxable income rises from $186,157 to $265,203.",
+      "value": {
+        "max": [
+          15214,
+          {
+            "taper": 16879,
+            "from": 186157,
+            "per": {
+              "div": [
+                1665,
+                79046
+              ]
+            },
+            "of": "ca-taxable"
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-federal-credits",
+      "label": "Federal non-refundable credits",
+      "note": "14% of the basic personal amount, the base CPP and EI contributions and the Canada employment amount ($1,540).",
+      "value": {
+        "pct": 14,
+        "of": {
+          "sum": [
+            "ca-bpa",
+            "ca-contributions-credit",
+            {
+              "min": [
+                "gross",
+                1540
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-federal-basic",
+      "label": "Basic federal tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    14
+                  ],
+                  [
+                    60044,
+                    20.5
+                  ],
+                  [
+                    120088,
+                    26
+                  ],
+                  [
+                    186157,
+                    29
+                  ],
+                  [
+                    265203,
+                    33
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-federal-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-income-tax",
+      "label": "Federal income tax",
+      "group": "tax",
+      "note": "14% to $60,044, 20.5% to $120,088, 26% to $186,157, 29% to $265,203 and 33% above, less the credits.",
+      "charge": {
+        "sum": [
+          "ca-federal-basic"
+        ]
+      }
+    }
+  ],
+  "assumptions": [
+    "Employment income from one job, all year, is the only income",
+    "Only the basic personal amount is claimed (TD1 claim code 1), as the CRA's payroll formulas assume",
+    "Worked out with the CRA's Payroll Deductions Formulas (T4127), so it matches tax withheld on a payslip; the return can differ"
+  ],
+  "notModelled": [
+    "RRSP, pension plan and union dues deductions",
+    "Credits other than the basic personal amount, CPP/EI and the Canada employment amount (e.g. spouse, dependants, tuition, medical)",
+    "The Canada Workers Benefit and other refundable credits and benefits",
+    "Provincial low-income tax reductions that are claimed on the return rather than through payroll"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 124th edition, effective January 1, 2027",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf"
+    },
+    {
+      "title": "T4127 124th edition (HTML): the formulas in chapter 4",
+      "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.1 rates, income thresholds and constants (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/rtsncmtrshldcnstnt-01-27e.csv"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.2 other rates and amounts (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/thrrtsmnts-01-27e.csv"
+    },
+    {
+      "title": "CRA: Adjustment of personal income tax and benefit amounts (2027 indexation 2.6%)",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/individuals/frequently-asked-questions-individuals/adjustment-personal-income-tax-benefit-amounts.html"
+    },
+    {
+      "title": "CRA: CPP contribution rates, maximums and exemptions",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/canada-pension-plan-cpp/cpp-contribution-rates-maximums-exemptions.html"
+    },
+    {
+      "title": "CRA: Second additional CPP contribution rates and maximums",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/calculating-deductions/making-deductions/second-additional-cpp-contribution-rates-maximums.html"
+    },
+    {
+      "title": "CRA: EI premium rates and maximums",
+      "url": "https://www.canada.ca/en/revenue-agency/services/tax/businesses/topics/payroll/payroll-deductions-contributions/employment-insurance-ei/ei-premium-rates-maximums.html"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "CRA T4127 January 2027 edition, its Table 8.1 / 8.2 CSV files, and the CRA CPP, CPP2, EI and indexation pages",
+      "note": "Read on 28 Nov 2026. The base CPP rate falls from 4.95% to 4.75% (total 5.75%) from 1 January 2027. Indexation 2.6% (also reproduced from Statistics Canada CPI under ITA s.117.1)."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Federal part only: independent implementation of T4127 (January 2027) steps 1 to 3.",
+      "expect": {
+        "ca-cpp": 1523.75,
+        "ca-cpp2": 0.0,
+        "ca-ei": 492.0,
+        "ca-taxable": 29735.0,
+        "ca-bpa": 16879.0,
+        "ca-income-tax": 1339.14
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Federal part only: independent implementation of T4127 (January 2027) steps 1 to 3.",
+      "expect": {
+        "ca-cpp": 3248.75,
+        "ca-cpp2": 0.0,
+        "ca-ei": 984.0,
+        "ca-taxable": 59435.0,
+        "ca-bpa": 16879.0,
+        "ca-income-tax": 5228.76
+      }
+    },
+    {
+      "gross": 80000,
+      "note": "Federal part only: independent implementation of T4127 (January 2027) steps 1 to 3.",
+      "expect": {
+        "ca-cpp": 4209.0,
+        "ca-cpp2": 132.0,
+        "ca-ei": 1161.12,
+        "ca-taxable": 79136.0,
+        "ca-bpa": 16879.0,
+        "ca-income-tax": 9092.02
+      }
+    },
+    {
+      "gross": 220000,
+      "note": "Federal part only: independent implementation of T4127 (January 2027) steps 1 to 3.",
+      "expect": {
+        "ca-cpp": 4209.0,
+        "ca-cpp2": 428.0,
+        "ca-ei": 1161.12,
+        "ca-taxable": 218840.0,
+        "ca-bpa": 16190.58,
+        "ca-income-tax": 44239.57
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Federal part only: independent implementation of T4127 (January 2027) steps 1 to 3.",
+      "expect": {
+        "ca-cpp": 4209.0,
+        "ca-cpp2": 428.0,
+        "ca-ei": 1161.12,
+        "ca-taxable": 298840.0,
+        "ca-bpa": 15214.0,
+        "ca-income-tax": 68921.77
+      }
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+{
+  "id": "ca-nt",
+  "name": "Northwest Territories",
+  "appliesTo": "Residents of Northwest Territories on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-nt-credits",
+      "label": "Northwest Territories non-refundable credits",
+      "note": "5.9% of the basic personal amount ($18,672) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 5.9,
+        "of": {
+          "sum": [
+            18672,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-nt-basic",
+      "label": "Basic Northwest Territories tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    5.9
+                  ],
+                  [
+                    54381,
+                    8.6
+                  ],
+                  [
+                    108765,
+                    12.2
+                  ],
+                  [
+                    176827,
+                    14.05
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-nt-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-nt-income-tax",
+      "label": "Northwest Territories income tax",
+      "group": "tax",
+      "note": "5.9% to $54,381, 8.6% to $108,765, 12.2% to $176,827, 14.05% above, less credits.",
+      "charge": {
+        "sum": [
+          "ca-nt-basic"
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 124th edition, effective January 1, 2027",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf"
+    },
+    {
+      "title": "T4127 124th edition (HTML): the formulas in chapter 4",
+      "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.1 rates, income thresholds and constants (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/rtsncmtrshldcnstnt-01-27e.csv"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.2 other rates and amounts (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/thrrtsmnts-01-27e.csv"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "CRA T4127 January 2027 edition and its Table 8.1 / 8.2 CSV files",
+      "note": "Bands, rates and basic amounts from the Table 8.1 and 8.2 CSV files; the province's formulas from chapter 4 of the HTML edition, read on 28 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1523.75,
+        "ca-ei": 492.0,
+        "ca-income-tax": 1339.14,
+        "ca-nt-income-tax": 549.42,
+        "net": 26095.69
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3248.75,
+        "ca-ei": 984.0,
+        "ca-income-tax": 5228.76,
+        "ca-nt-income-tax": 2325.08,
+        "net": 48213.41
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 13131.34,
+        "ca-nt-income-tax": 5656.66,
+        "net": 75413.88
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 38380.59,
+        "ca-nt-income-tax": 17906.6,
+        "net": 137914.69
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 68921.77,
+        "ca-nt-income-tax": 31956.6,
+        "net": 193323.51
+      }
+    }
+  ]
+}

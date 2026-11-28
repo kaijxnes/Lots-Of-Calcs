@@ -23,28 +23,16 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | us-az.2027 | 2.5%, federal standard deduction. Provisional: Arizona's 2027 conformity |
 | us-ny.2027, us-ny-nyc.2027 | 2027 rate cuts and recapture (S3009C §6, §8 d-6); PFL 0.452% up to $451.81 (DFS). NYC rates carried |
 | us-wa.2027 | Paid leave 1.2% × 70.7% employee share; WA Cares 0.58% |
+| ca.2027, ca-ab, ca-bc, ca-mb, ca-nb, ca-nl, ca-ns, ca-nt, ca-nu, ca-on, ca-pe, ca-sk, ca-yt (.2027) | CRA T4127 124th edition (January 2027) and its Table 8.1 / 8.2 CSVs: indexation 2.6%, base CPP 4.75% (5.75% total), YMPE $76,700, YAMPE $87,400, EI 1.64% to $70,800. BC brackets and credits frozen for 2027 to 2030; MB and PE not indexed; AB indexed at 2.0%; SK BPA +$500. Tests from an independent implementation of the T4127 formulas |
 | ie.2027 | Budget 2027: standard rate band €46,500 / €55,500, credits €2,125, USC 2% band to €30,300, PRSI 4.35% then 4.5% from October (KPMG). Provisional: PRSI credit |
 
-## To do (63)
+## To do (50)
 
 | File | Name | Where to check | Notes |
 |---|---|---|---|
 | at | Austria | [source](https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/) |  |
 | be | Belgium | [source](https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027) |  |
-| ca | Canada (federal) | [source](https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-26e.pdf) | CRA T4127 January 2027 edition: indexation, brackets, basic personal amount, CPP/CPP2 and EI 2027 rates and maximums. On 26 November 2026 the CRA had not yet posted 2027 indexation; news reports gave the 2027 CPP YMPE as $76,700 and YAMPE as $87,400 (confirm from the CRA) and the EI rate was not yet confirmed. canada.ca refuses automated requests from some environments: use payroll publications that quote it if so. |
-| ca-ab | Alberta | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-bc | British Columbia | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-mb | Manitoba | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-nb | New Brunswick | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-nl | Newfoundland and Labrador | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-ns | Nova Scotia | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-nt | Northwest Territories | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-nu | Nunavut | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-on | Ontario | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-pe | Prince Edward Island | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
 | ca-qc | Quebec | [source](https://www.revenuquebec.ca/documents/en/formulaires/tp/TP-1015.F-V(2026-01).pdf) | Revenu Québec TP-1015.F-V (2027-01), QPP and QPIP 2027 rates. |
-| ca-sk | Saskatchewan | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
-| ca-yt | Yukon | [source](https://www.canada.ca/en/revenue-agency/services/tax/individuals/tax-rates-brackets/current-year.html) |  |
 | ch | Switzerland (Zurich) | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
 | ch-be | Bern | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
 | ch-bs | Basel | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |

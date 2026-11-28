@@ -1,0 +1,217 @@
+{
+  "id": "ca-bc",
+  "name": "British Columbia",
+  "appliesTo": "Residents of British Columbia on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-bc-credits",
+      "label": "British Columbia non-refundable credits",
+      "note": "5.6% of the basic personal amount ($13,216) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 5.6,
+        "of": {
+          "sum": [
+            13216,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-bc-basic",
+      "label": "Basic British Columbia tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    5.6
+                  ],
+                  [
+                    50363,
+                    7.7
+                  ],
+                  [
+                    100728,
+                    10.5
+                  ],
+                  [
+                    115648,
+                    12.29
+                  ],
+                  [
+                    140430,
+                    14.7
+                  ],
+                  [
+                    190405,
+                    16.8
+                  ],
+                  [
+                    265545,
+                    20.5
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-bc-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-bc-reduction",
+      "label": "BC tax reduction",
+      "note": "Up to $690, reduced by 3.56% of taxable income over $25,570 (gone by $44,952).",
+      "value": {
+        "min": [
+          "ca-bc-basic",
+          {
+            "max": [
+              0,
+              {
+                "sub": [
+                  690,
+                  {
+                    "pct": 3.56,
+                    "of": {
+                      "max": [
+                        0,
+                        {
+                          "sub": [
+                            "ca-taxable",
+                            25570
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-bc-income-tax",
+      "label": "British Columbia income tax",
+      "group": "tax",
+      "note": "5.6% to $50,363, 7.7% to $100,728, 10.5% to $115,648, 12.29% to $140,430, 14.7% to $190,405, 16.8% to $265,545, 20.5% above, less credits and the BC tax reduction.",
+      "charge": {
+        "sub": [
+          "ca-bc-basic",
+          "ca-bc-reduction"
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 124th edition, effective January 1, 2027",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf"
+    },
+    {
+      "title": "T4127 124th edition (HTML): the formulas in chapter 4",
+      "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.1 rates, income thresholds and constants (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/rtsncmtrshldcnstnt-01-27e.csv"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.2 other rates and amounts (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/thrrtsmnts-01-27e.csv"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "CRA T4127 January 2027 edition and its Table 8.1 / 8.2 CSV files",
+      "note": "Bands, rates and basic amounts from the Table 8.1 and 8.2 CSV files; the province's formulas from chapter 4 of the HTML edition, read on 28 Nov 2026. BC has paused indexation of brackets and credits at 2026 levels for 2027 to 2030, so they are unchanged."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1523.75,
+        "ca-ei": 492.0,
+        "ca-income-tax": 1339.14,
+        "ca-bc-income-tax": 285.3,
+        "net": 26359.81
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3248.75,
+        "ca-ei": 984.0,
+        "ca-income-tax": 5228.76,
+        "ca-bc-income-tax": 2573.38,
+        "net": 47965.11
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 13131.34,
+        "ca-bc-income-tax": 5553.23,
+        "net": 75517.31
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 38380.59,
+        "ca-bc-income-tax": 19074.32,
+        "net": 136746.97
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 68921.77,
+        "ca-bc-income-tax": 37106.23,
+        "net": 188173.88
+      }
+    }
+  ],
+  "note": "BC raised its lowest rate from 5.06% to 5.60% and the tax reduction from $575 to $690 for 2026 (announced 17 Feb 2026). These are the full-year figures; payroll used prorated ones from July to catch up."
+}
