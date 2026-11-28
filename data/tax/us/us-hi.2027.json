@@ -1,0 +1,337 @@
+{
+  "id": "us-hi",
+  "name": "Hawaii",
+  "appliesTo": "Residents of Hawaii",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "hi-taxable",
+      "label": "Hawaii taxable income",
+      "show": true,
+      "note": "Standard deduction of $8,000 ($16,000 married), the same in 2027 as 2026 under Act 46 (2024), and a $1,144 personal exemption each.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              {
+                "status": {
+                  "single": 8000,
+                  "married": 16000
+                }
+              },
+              {
+                "mul": [
+                  1144,
+                  {
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "hi-income-tax",
+      "label": "Hawaii income tax",
+      "group": "tax",
+      "note": "1.4% to 13% (13% above $500,000, $1 million married, from 2027 under SB 3125), less the refundable food/excise tax credit of up to $220 per person, which runs out at $40,000 of income ($60,000 married).",
+      "mayBeNegative": true,
+      "charge": {
+        "sub": [
+          {
+            "brackets": {
+              "status": {
+                "single": [
+                  [
+                    0,
+                    1.4
+                  ],
+                  [
+                    14400,
+                    2.5
+                  ],
+                  [
+                    19200,
+                    5
+                  ],
+                  [
+                    24000,
+                    6.4
+                  ],
+                  [
+                    36000,
+                    6.8
+                  ],
+                  [
+                    48000,
+                    7.2
+                  ],
+                  [
+                    125000,
+                    7.6
+                  ],
+                  [
+                    175000,
+                    8.25
+                  ],
+                  [
+                    225000,
+                    9
+                  ],
+                  [
+                    275000,
+                    10
+                  ],
+                  [
+                    325000,
+                    11
+                  ],
+                  [
+                    500000,
+                    13
+                  ]
+                ],
+                "married": [
+                  [
+                    0,
+                    1.4
+                  ],
+                  [
+                    28800,
+                    2.5
+                  ],
+                  [
+                    38400,
+                    5
+                  ],
+                  [
+                    48000,
+                    6.4
+                  ],
+                  [
+                    72000,
+                    6.8
+                  ],
+                  [
+                    96000,
+                    7.2
+                  ],
+                  [
+                    250000,
+                    7.6
+                  ],
+                  [
+                    350000,
+                    8.25
+                  ],
+                  [
+                    450000,
+                    9
+                  ],
+                  [
+                    550000,
+                    10
+                  ],
+                  [
+                    650000,
+                    11
+                  ],
+                  [
+                    1000000,
+                    13
+                  ]
+                ]
+              }
+            },
+            "of": "hi-taxable"
+          },
+          {
+            "mul": [
+              {
+                "lookup": {
+                  "status": {
+                    "single": [
+                      [
+                        0,
+                        220
+                      ],
+                      [
+                        15000,
+                        200
+                      ],
+                      [
+                        20000,
+                        170
+                      ],
+                      [
+                        25000,
+                        140
+                      ],
+                      [
+                        30000,
+                        110
+                      ],
+                      [
+                        40000,
+                        0
+                      ]
+                    ],
+                    "married": [
+                      [
+                        0,
+                        220
+                      ],
+                      [
+                        15000,
+                        200
+                      ],
+                      [
+                        20000,
+                        170
+                      ],
+                      [
+                        25000,
+                        140
+                      ],
+                      [
+                        30000,
+                        110
+                      ],
+                      [
+                        40000,
+                        90
+                      ],
+                      [
+                        50000,
+                        70
+                      ],
+                      [
+                        60000,
+                        0
+                      ]
+                    ]
+                  }
+                },
+                "of": "us-wages"
+              },
+              {
+                "status": {
+                  "single": 1,
+                  "married": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Temporary Disability Insurance (up to 0.5% of wages, capped weekly — employers may pay it all)"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "SB 3125 CD1 (2026), section 2: HRS §235-51 tax tables for taxable years beginning after December 31, 2026",
+      "url": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3125_CD1_.HTM"
+    },
+    {
+      "title": "Hawaii Department of Taxation Announcement 2024-03: 2027 standard deduction the same as 2026",
+      "url": "https://files.hawaii.gov/tax/news/announce/ann24-03.pdf"
+    },
+    {
+      "title": "S.B. 3125 C.D. 1 (Act 24, SLH 2026) Section 2, amending HRS Section 235-51 (b) - restructured rate schedule with a 13% top bracket for taxable years beginning after December 31, 2026 (effective date in Section 9)",
+      "url": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3125_CD1_.HTM"
+    },
+    {
+      "title": "S.B. 3125 measure status (Act 24, SLH 2026)",
+      "url": "https://www.capitol.hawaii.gov/session/measure_indiv.aspx?billtype=SB&billnumber=3125"
+    },
+    {
+      "title": "2025 Hawaii N-11 Instructions Alternative Tax",
+      "url": "https://files.hawaii.gov/tax/forms/current/n11ins.pdf#page=33"
+    },
+    {
+      "title": "2025 Hawaii Form N-311 Instructions",
+      "url": "https://files.hawaii.gov/tax/forms/current/n311_i.pdf#page=1"
+    },
+    {
+      "title": "2025 Hawaii Tax Form Instruction Booklet line 23",
+      "url": "https://files.hawaii.gov/tax/forms/current/n11ins.pdf#page=20"
+    },
+    {
+      "title": "2025 Hawaii Tax Rate Schedules for Taxable Years Beginning After December 31, 2024",
+      "url": "https://dev1-tax.hawaii.gov/forms/d_25table-on/d_25table-on_p13/"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "SB 3125 CD1 and Announcement 2024-03, read 28 Nov 2026",
+      "note": "New 2027 tables (single): 1.4% to $14,400, 2.5% to $19,200, 5% to $24,000, 6.4% to $36,000, 6.8% to $48,000, 7.2% to $125,000, 7.6% to $175,000, 8.25% to $225,000, 9% to $275,000, 10% to $325,000, 11% to $500,000, 13% above; joint doubles the thresholds to $1,000,000. Section 9: Part I applies to taxable years beginning after December 31, 2026. The statute's tables use rounded base amounts (e.g. $202.00 for 1.4% of $14,400), so a bracket calculation can differ from the official table by under $1."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/hi",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://data.capitol.hawaii.gov/sessions/session2026/bills/SB3125_CD1_.HTM",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Hawaii items worked out by hand from the 2027 brackets (exact, not the statute's rounded base amounts) less the food/excise credit; net from the engine.",
+      "expect": {
+        "hi-taxable": 30856,
+        "hi-income-tax": 1000.38,
+        "net": 33387.62
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Hawaii items worked out by hand from the 2027 brackets (exact, not the statute's rounded base amounts) less the food/excise credit; net from the engine.",
+      "expect": {
+        "hi-taxable": 75856,
+        "hi-income-tax": 4151.23,
+        "net": 64756.77
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "Hawaii items worked out by hand from the 2027 brackets (exact, not the statute's rounded base amounts) less the food/excise credit; net from the engine.",
+      "expect": {
+        "hi-taxable": 131712,
+        "hi-income-tax": 6862.46,
+        "net": 116883.54
+      },
+      "options": {
+        "status": "married"
+      }
+    },
+    {
+      "gross": 600000,
+      "note": "Hawaii items worked out by hand from the 2027 brackets (exact, not the statute's rounded base amounts) less the food/excise credit; net from the engine.",
+      "expect": {
+        "hi-taxable": 590856,
+        "hi-income-tax": 56175.88,
+        "net": 347655.02
+      }
+    }
+  ]
+}

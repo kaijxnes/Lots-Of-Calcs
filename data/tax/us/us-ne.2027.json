@@ -1,0 +1,178 @@
+{
+  "id": "us-ne",
+  "name": "Nebraska",
+  "appliesTo": "Residents of Nebraska",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ne-taxable",
+      "label": "Nebraska taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              {
+                "status": {
+                  "single": 8850,
+                  "married": 17700
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ne-income-tax",
+      "label": "Nebraska income tax",
+      "group": "tax",
+      "note": "2.46%, 3.51%, then 3.99% from 2027 (the top two rates fall from 4.55% to 3.99% under LB 754), less the $176 personal exemption credit per person.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": {
+                  "status": {
+                    "single": [
+                      [
+                        0,
+                        2.46
+                      ],
+                      [
+                        4130,
+                        3.51
+                      ],
+                      [
+                        24760,
+                        3.99
+                      ]
+                    ],
+                    "married": [
+                      [
+                        0,
+                        2.46
+                      ],
+                      [
+                        8250,
+                        3.51
+                      ],
+                      [
+                        49530,
+                        3.99
+                      ]
+                    ]
+                  }
+                },
+                "of": "ne-taxable"
+              },
+              {
+                "mul": [
+                  176,
+                  {
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [
+    "Bracket thresholds, the standard deduction ($8,850 / $17,700) and the $176 exemption credit are carried from the 2026 file; Nebraska indexes them and publishes the 2027 amounts late in the year"
+  ],
+  "sources": [
+    {
+      "title": "Neb. Rev. Stat. §77-2715.03: rates three and four 3.99% for taxable years beginning on or after January 1, 2027",
+      "url": "https://nebraskalegislature.gov/laws/statutes.php?statute=77-2715.03"
+    },
+    {
+      "title": "2026 Nebraska Individual Estimated Income Tax Payment Vouchers (Form 1040N-ES), Additional Standard Deduction for Elderly and/or Blind",
+      "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf#page=5"
+    },
+    {
+      "title": "2026 Nebraska Individual Estimated Income Tax Payment Vouchers (Form 1040N-ES), Income Tax Worksheet line 5",
+      "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf#page=4"
+    },
+    {
+      "title": "2026 Nebraska Estimated Income Tax Rate Schedule (Form 1040N-ES), personal exemption credit",
+      "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf#page=6"
+    },
+    {
+      "title": "2025 Nebraska Individual Income Tax Booklet, Line 6",
+      "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf#page=13"
+    },
+    {
+      "title": "2025 Nebraska Individual Income Tax Booklet, Line 18",
+      "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf#page=14"
+    },
+    {
+      "title": "2025 Nebraska Individual Income Tax Booklet, Tax Table",
+      "url": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_Individual_Income_Tax_Booklet.pdf#page=49"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Neb. Rev. Stat. §77-2715.03, read 28 Nov 2026",
+      "note": "Rate three '(iii) 3.99% for taxable years beginning or deemed to begin on or after January 1, 2027' and rate four '(vi) 3.99%' from the same date. Bracket amounts are indexed each year (subsection 3); the Department of Revenue had not published the 2027 amounts."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ne",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://revenue.nebraska.gov/sites/default/files/doc/tax-forms/2025/f_1040N-ES.pdf#page=5",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "ne-taxable": 31150,
+        "ne-income-tax": 904.67,
+        "net": 33483.33
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "ne-taxable": 76150,
+        "ne-income-tax": 2700.17,
+        "net": 66207.83
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "ne-taxable": 132300,
+        "ne-income-tax": 4602.4,
+        "net": 119143.6
+      },
+      "options": {
+        "status": "married"
+      }
+    }
+  ]
+}

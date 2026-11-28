@@ -1,0 +1,262 @@
+{
+  "id": "us-nj",
+  "name": "New Jersey",
+  "appliesTo": "Residents of New Jersey",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "nj-taxable",
+      "label": "New Jersey taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              {
+                "status": {
+                  "single": 1000,
+                  "married": 2000
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "nj-income-tax",
+      "label": "New Jersey income tax",
+      "group": "tax",
+      "charge": {
+        "if": {
+          "lte": [
+            "us-wages",
+            {
+              "status": {
+                "single": 10000,
+                "married": 20000
+              }
+            }
+          ]
+        },
+        "then": 0,
+        "else": {
+          "brackets": {
+            "status": {
+              "single": [
+                [
+                  0,
+                  1.4
+                ],
+                [
+                  20000,
+                  1.75
+                ],
+                [
+                  35000,
+                  3.5
+                ],
+                [
+                  40000,
+                  5.525
+                ],
+                [
+                  75000,
+                  6.37
+                ],
+                [
+                  500000,
+                  8.97
+                ],
+                [
+                  1000000,
+                  10.75
+                ]
+              ],
+              "married": [
+                [
+                  0,
+                  1.4
+                ],
+                [
+                  20000,
+                  1.75
+                ],
+                [
+                  50000,
+                  2.45
+                ],
+                [
+                  70000,
+                  3.5
+                ],
+                [
+                  80000,
+                  5.525
+                ],
+                [
+                  150000,
+                  6.37
+                ],
+                [
+                  500000,
+                  8.97
+                ],
+                [
+                  1000000,
+                  10.75
+                ]
+              ]
+            }
+          },
+          "of": "nj-taxable"
+        }
+      }
+    },
+    {
+      "id": "nj-ui-wf",
+      "label": "Unemployment and workforce",
+      "group": "social",
+      "note": "0.3825% unemployment plus 0.0425% workforce development, on wages up to $46,400.",
+      "charge": {
+        "pct": 0.425,
+        "of": {
+          "min": [
+            "gross",
+            46400
+          ]
+        }
+      }
+    },
+    {
+      "id": "nj-tdi-fli",
+      "label": "Disability and family leave",
+      "group": "social",
+      "note": "0.24% temporary disability plus 0.24% family leave insurance, on wages up to $177,100.",
+      "charge": {
+        "pct": 0.48,
+        "of": {
+          "min": [
+            "gross",
+            177100
+          ]
+        }
+      }
+    }
+  ],
+  "notModelled": [
+    "Property tax deduction or credit"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "NJ Department of Labor: rate information — 2027 worker rates and taxable wage bases",
+      "url": "https://www.nj.gov/labor/ea/employer-services/rate-info/"
+    },
+    {
+      "title": "NJ Department of Labor — rate information (2026 worker rates: UI 0.3825%, DI 0.19%, WF 0.0425%, FLI 0.23%)",
+      "url": "https://www.nj.gov/labor/ea/employer-services/rate-info/index.shtml"
+    },
+    {
+      "title": "NJ Department of Labor — Temporary Disability and Family Leave for employers (2026 wage base $171,100)",
+      "url": "https://www.nj.gov/labor/myleavebenefits/employer/"
+    },
+    {
+      "title": "2025 NJ-1040 Instructions (Line 8)",
+      "url": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=8"
+    },
+    {
+      "title": "2025 NJ-1040 Instructions - Tax Rate Schedules",
+      "url": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=65"
+    },
+    {
+      "title": "P.L. 2023, c.75, Section 3(c) - Stay NJ Act",
+      "url": "https://pub.njleg.state.nj.us/Bills/2022/PL23/75_.PDF#page=3"
+    },
+    {
+      "title": "P.L. 2024, c.88 - Stay NJ Amendment",
+      "url": "https://pub.njleg.state.nj.us/Bills/2024/PL24/88_.PDF"
+    },
+    {
+      "title": "NJ Division of Taxation - Stay NJ Program",
+      "url": "https://www.nj.gov/treasury/taxation/staynj/index.shtml"
+    },
+    {
+      "title": "New Jersey Administrative Code 18:35-2.9 (a)",
+      "url": "https://www.law.cornell.edu/regulations/new-jersey/N-J-A-C-18-35-2-9"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "NJ Department of Labor rate information page, read 28 Nov 2026",
+      "note": "2027 worker rates: U.I. 0.003825, D.I. 0.0024, W.F./S.W.F. 0.000425, F.L.I. 0.0024; taxable wage base $46,400 (UI and WF/SWF) and $177,100 (TDI, FLI - workers only). Gross income tax brackets are set in statute and not indexed; the FY2027 budget did not change them."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/nj",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.nj.gov/treasury/taxation/pdf/current/1040i.pdf#page=8",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "nj-taxable": 39000,
+        "nj-income-tax": 682.5,
+        "nj-ui-wf": 170.0,
+        "nj-tdi-fli": 192.0,
+        "net": 33343.5
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "nj-taxable": 84000,
+        "nj-income-tax": 3224.55,
+        "nj-ui-wf": 197.2,
+        "nj-tdi-fli": 408.0,
+        "net": 65078.25
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "nj-taxable": 148000,
+        "nj-income-tax": 5402.0,
+        "nj-ui-wf": 197.2,
+        "nj-tdi-fli": 720.0,
+        "net": 117426.8
+      },
+      "options": {
+        "status": "married"
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "nj-taxable": 199000,
+        "nj-income-tax": 10550.05,
+        "nj-ui-wf": 197.2,
+        "nj-tdi-fli": 850.08,
+        "net": 137205.07
+      }
+    }
+  ]
+}

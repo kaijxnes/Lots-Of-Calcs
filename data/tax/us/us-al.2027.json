@@ -1,0 +1,210 @@
+{
+  "id": "us-al",
+  "name": "Alabama",
+  "appliesTo": "Residents of Alabama",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "al-deduction",
+      "label": "Alabama deduction",
+      "show": true,
+      "note": "The larger of the standard deduction — which shrinks above $25,500 of income to a floor of $2,500 ($5,000 married) — and itemizing, where Alabama lets employees deduct the Social Security and Medicare tax they pay.",
+      "value": {
+        "max": [
+          {
+            "max": [
+              {
+                "status": {
+                  "single": 2500,
+                  "married": 5000
+                }
+              },
+              {
+                "taper": {
+                  "status": {
+                    "single": 3000,
+                    "married": 8500
+                  }
+                },
+                "of": "us-wages",
+                "from": 25500,
+                "step": 500,
+                "perStep": {
+                  "status": {
+                    "single": 25,
+                    "married": 175
+                  }
+                },
+                "stepMode": "floor"
+              }
+            ]
+          },
+          {
+            "sum": [
+              "us-social-security",
+              "us-medicare",
+              "us-additional-medicare"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "al-taxable",
+      "label": "Alabama taxable income",
+      "show": true,
+      "note": "Alabama lets you deduct the federal income tax you pay, plus a $1,500 personal exemption ($3,000 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              "al-deduction",
+              "us-income-tax",
+              {
+                "mul": [
+                  1500,
+                  {
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "al-income-tax",
+      "label": "Alabama income tax",
+      "group": "tax",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [
+              [
+                0,
+                2
+              ],
+              [
+                500,
+                4
+              ],
+              [
+                3000,
+                5
+              ]
+            ],
+            "married": [
+              [
+                0,
+                2
+              ],
+              [
+                1000,
+                4
+              ],
+              [
+                6000,
+                5
+              ]
+            ]
+          }
+        },
+        "of": "al-taxable"
+      }
+    }
+  ],
+  "notModelled": [
+    "Local occupational taxes (Birmingham, Bessemer and others charge about 1%)",
+    "Other Alabama itemized deductions (mortgage interest, property tax, charity), which would only add to the FICA deduction"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "2025 Alabama Income Tax Instructions",
+      "url": "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=9"
+    },
+    {
+      "title": "2025 Alabama Income Tax Instructions",
+      "url": "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=10"
+    },
+    {
+      "title": "2025 Alabama Income Tax Instructions",
+      "url": "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=6"
+    },
+    {
+      "title": "2025 Alabama Income Tax Instructions",
+      "url": "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=25"
+    },
+    {
+      "title": "2024 Schedule A (Form 1040)",
+      "url": "https://www.revenue.alabama.gov/wp-content/uploads/2025/01/24f40schabdc_blk.pdf#page=20"
+    },
+    {
+      "title": "2024 Alabama Income Tax Instructions",
+      "url": "https://www.revenue.alabama.gov/wp-content/uploads/2025/01/24f40bk.pdf#page=9"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Check for 2027 changes, 28 Nov 2026",
+      "note": "Alabama's brackets, standard deduction chart and personal exemption are fixed in statute and not indexed. No law changing them for 2027 was found (searches of the 2026 session and ADOR guidance). The 2026 figures therefore carry into 2027."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/al",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=9",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Alabama items worked out by hand (deduction chart, federal tax deduction, exemption, 2/4/5% brackets) using the engine's 2027 federal tax and FICA; net from the engine.",
+      "expect": {
+        "al-deduction": 3060.0,
+        "al-taxable": 32888.0,
+        "al-income-tax": 1604.4,
+        "net": 32783.6
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Alabama items worked out by hand (deduction chart, federal tax deduction, exemption, 2/4/5% brackets) using the engine's 2027 federal tax and FICA; net from the engine.",
+      "expect": {
+        "al-deduction": 6502.5,
+        "al-taxable": 67408.0,
+        "al-income-tax": 3330.4,
+        "net": 65577.6
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "Alabama items worked out by hand (deduction chart, federal tax deduction, exemption, 2/4/5% brackets) using the engine's 2027 federal tax and FICA; net from the engine.",
+      "expect": {
+        "al-deduction": 11475.0,
+        "al-taxable": 120746.0,
+        "al-income-tax": 5957.3,
+        "net": 117788.7
+      },
+      "options": {
+        "status": "married"
+      }
+    }
+  ]
+}
