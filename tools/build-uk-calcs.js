@@ -28,10 +28,10 @@ const pair = (a, b) => `      <div class="field-row">\n${a}\n${b}\n      </div>`
 
 function shell(o) {
   const url = SITE + o.path;
-  const ld = [site.webPage(o.title, o.desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], [o.name, url]]),
+  const ld = [site.webPage(o.title, o.desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"]].concat(o.crumbs || [[o.name, url]])),
     { "@context": "https://schema.org", "@type": "WebApplication", name: o.name, url, applicationCategory: "FinanceApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(o.q)];
   return site.head({ title: o.title, desc: o.desc, url, ld }) + `    <header class="site-header">
-      <a class="back-link" href="/">← All calculators</a>
+      <a class="back-link" href="${o.back ? o.back[0] : "/"}">← ${o.back ? esc(o.back[1]) : "All calculators"}</a>
       <h1 class="page-title">${esc(o.h1)}</h1>
       <p class="page-subtitle">${o.sub}</p>
     </header>
@@ -51,7 +51,7 @@ ${o.more || ""}    <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(o.q)}    </main>
 
-${related.block(o.path)}
+${related.block(o.related || o.path)}
 ${site.FOOTER}
   </div>
   <script src="/uk-calcs.js"></script>
@@ -189,16 +189,54 @@ function iht() {
 }
 
 /* ---------- maternity ---------- */
+const MP_SALARIES = [15000, 18000, 20000, 22000, 25000, 28000, 30000, 32000, 35000, 38000, 40000, 45000, 50000, 55000, 60000, 70000, 80000, 100000];
+const mpurl = (sal) => `/maternity-pay-calculator/${sal}/`;
+const mpForm = (awe, sal) => pair(f("mp-awe", "Average weekly earnings (before tax)", awe), `        <div class="field"><label for="mp-salary">Or annual salary</label><input type="number" id="mp-salary"${sal ? ` value="${sal}"` : ""} placeholder="e.g. 31200" min="0" step="any" inputmode="decimal"></div>`);
+const mpResults = (r) => [row("Weeks 1–6 (90%)", "mp-first", g2(r.first) + " a week"), row("Weeks 7–39", "mp-rest", g2(r.rest) + " a week"), row("Total SMP", "mp-total", g2(r.total), "highlight"), row("Eligible?", "mp-elig", r.eligible ? "Yes, if you meet the service conditions" : "No")].join("\n");
+const mpHint = (s) => `Before tax and National Insurance, which come off SMP as they do from pay. To qualify you must earn on average at least £${s.lowerEarningsLimit} a week and have worked for your employer continuously for at least 26 weeks into the 15th week before the baby is due. Your employer may pay more (enhanced maternity pay).`;
+/* hand-checked: £30,000 is £576.92 a week; 90% is £519.23 for 6 weeks (£3,115.38), then £194.32 for 33 weeks (£6,412.56): £9,527.94 */
+{ const r = U.smp(cfg, 30000 / 52); if (cfg.sp.smpWeekly === 194.32 && Math.round(r.total * 100) !== 952794) throw new Error("maternity: the hand-checked £30,000 example no longer comes out"); }
+
+function maternitySalary(sal) {
+  const s = cfg.sp, awe = sal / 52, r = U.smp(cfg, awe), path = mpurl(sal), cross = s.smpWeekly / 0.9;
+  const normal = sal * s.smpWeeks / 52, share = r.total / normal * 100;
+  const near = MP_SALARIES.map((x) => { const y = U.smp(cfg, x / 52); return [x === sal ? `<strong>${g0(x)}</strong>` : `<a href="${mpurl(x)}">${g0(x)}</a>`, g2(y.first), g2(y.rest), g2(y.total)]; });
+  const capped = r.rest < r.first;
+  return shell({ path, id: "mp", name: "Maternity Pay Calculator", related: "/maternity-pay-calculator/",
+    crumbs: [["Maternity Pay Calculator", SITE + "/maternity-pay-calculator/"], [`${g0(sal)} salary`, SITE + path]], back: ["/maternity-pay-calculator/", "Maternity pay calculator"],
+    title: site.fitTitle(`Maternity Pay on ${g0(sal)} a Year (${Y}) — SMP Week by Week`, `Maternity Pay on ${g0(sal)} (${Y})`),
+    desc: `Statutory Maternity Pay on a ${g0(sal)} salary: ${g2(r.first)} a week for 6 weeks, then ${g2(r.rest)} a week for 33 weeks, ${g2(r.total)} in total before tax (${Y}).`,
+    h1: `Maternity pay on ${g0(sal)} a year`, sub: `Statutory Maternity Pay week by week on a ${g0(sal)} salary, ${Y}.`,
+    form: mpForm(Math.round(awe * 100) / 100, sal), results: mpResults(r), hint: mpHint(s), sources: src(s.source, "Maternity pay"),
+    more: `    <main class="tool">
+      <h2 class="tool-section-title">Statutory Maternity Pay on ${g0(sal)}</h2>
+      <p class="about-text">A ${g0(sal)} salary is about <strong>${g2(awe)} a week</strong> (salary ÷ 52). For the first 6 weeks you get 90% of that, <strong>${g2(r.first)} a week</strong> (${g2(r.first * 6)} in all). For the next 33 weeks you get ${capped ? `the ${g2(s.smpWeekly)} weekly rate, because 90% of your pay is more than that` : `90% of your pay, ${g2(r.rest)}, because it's less than the ${g2(s.smpWeekly)} weekly rate`}: ${g2(r.rest * 33)}. That's <strong>${g2(r.total)}</strong> over ${s.smpWeeks} weeks, before tax and National Insurance: about ${Math.round(share)}% of the ${g2(normal)} your salary would pay over the same ${s.smpWeeks} weeks.</p>
+      <p class="about-text">Your employer may pay more under a company maternity scheme. Your actual average weekly earnings come from your pay in the 8 weeks (if paid weekly) or 2 months (if paid monthly) up to the last payday before the 15th week before the baby is due, so overtime or a pay rise then can change them. Above about ${g0(cross * 52)} a year (${g2(cross)} a week), weeks 7 to 39 are paid at the ${g2(s.smpWeekly)} rate.</p>
+${site.table(["Salary", "Weeks 1–6 (a week)", "Weeks 7–39 (a week)", `Total over ${s.smpWeeks} weeks`], near, 520)}      <p class="tool-hint" style="margin-top:8px;">Before tax and National Insurance, ${Y}, average weekly earnings of the salary ÷ 52. Adopting? See the <a href="/adoption-pay-calculator/">adoption pay calculator</a>; partners, the <a href="/paternity-pay-calculator/">paternity pay calculator</a>.</p>
+    </main>
+
+`,
+    q: [
+      [`How much maternity pay will I get on ${g0(sal)}?`, `About ${g2(r.first)} a week for the first 6 weeks, then ${g2(r.rest)} a week for 33 weeks: ${g2(r.total)} in total before tax (${Y}).`],
+      [`How much maternity pay a month on ${g0(sal)}?`, `For the first 6 weeks it's the same as about ${g2(r.first * 52 / 12)} a month, then about ${g2(r.rest * 52 / 12)} a month for weeks 7 to 39 (the weekly amounts × 52 ÷ 12), before tax.`],
+      ["Is maternity pay taxed?", "Yes — tax and National Insurance are deducted from SMP in the usual way."],
+      ["Can my employer pay more than SMP?", "Yes. Your employer may pay more under a company maternity scheme (enhanced maternity pay)."]
+    ] });
+}
+
 function maternity() {
   const awe = 600, r = U.smp(cfg, awe), s = cfg.sp;
   return shell({ path: "/maternity-pay-calculator/", id: "mp", name: "Maternity Pay Calculator",
     title: `Maternity Pay Calculator ${Y} — Statutory Maternity Pay (SMP)`,
     desc: `Work out Statutory Maternity Pay: 90% of your average weekly earnings for 6 weeks, then £${s.smpWeekly} a week (or 90% if lower) for 33 weeks. On ${g0(awe)} a week, SMP totals ${g0(r.total)} over ${s.smpWeeks} weeks.`,
     h1: "Maternity pay calculator", sub: "Statutory Maternity Pay week by week, from your average weekly earnings.",
-    form: pair(f("mp-awe", "Average weekly earnings (before tax)", awe), `        <div class="field"><label for="mp-salary">Or annual salary</label><input type="number" id="mp-salary" placeholder="e.g. 31200" min="0" step="any" inputmode="decimal"></div>`),
-    results: [row("Weeks 1–6 (90%)", "mp-first", g2(r.first) + " a week"), row("Weeks 7–39", "mp-rest", g2(r.rest) + " a week"), row("Total SMP", "mp-total", g2(r.total), "highlight"), row("Eligible?", "mp-elig", r.eligible ? "Yes, if you meet the service conditions" : "No")].join("\n"),
-    hint: `Before tax and National Insurance, which come off SMP as they do from pay. To qualify you must earn on average at least £${s.lowerEarningsLimit} a week and have worked for your employer continuously for at least 26 weeks into the 15th week before the baby is due. Your employer may pay more (enhanced maternity pay).`,
-    sources: src(s.source, "Maternity pay"),
+    form: mpForm(awe), results: mpResults(r), hint: mpHint(s), sources: src(s.source, "Maternity pay"),
+    more: `    <main class="tool">
+      <h2 class="tool-section-title">Maternity pay by salary</h2>
+      <p class="salary-links">${MP_SALARIES.map((x) => `<a href="${mpurl(x)}">Maternity pay on ${g0(x)}</a>`).join(" ")}</p>
+    </main>
+
+`,
     q: [
       ["How much is Statutory Maternity Pay?", `90% of your average weekly earnings (before tax) for the first 6 weeks, then £${s.smpWeekly} or 90% of your average weekly earnings, whichever is lower, for the next 33 weeks.`],
       ["How are average weekly earnings worked out?", "From your pay in the 8 weeks (if paid weekly) or 2 months (if paid monthly) up to the last payday before the 15th week before the baby is due. Entering an annual salary here divides it by 52 as an estimate."],
@@ -294,4 +332,7 @@ function btlTax(price, rentM, interest, costs, other) {
 
 const PAGES = [["dividend-tax-calculator", dividends], ["salary-vs-dividends", salaryVsDividends], ["contractor-calculator", contractor], ["capital-gains-tax-calculator", cgt], ["inheritance-tax-calculator", iht], ["maternity-pay-calculator", maternity], ["redundancy-pay-calculator", redundancy], ["holiday-entitlement-calculator", holiday], ["pension-drawdown-calculator", drawdown], ["buy-to-let-calculator", btl]];
 PAGES.forEach(([dir, fn]) => site.write(dir, fn()));
+MP_SALARIES.forEach((sal) => site.write(mpurl(sal).replace(/^\/|\/$/g, ""), maternitySalary(sal)));
+site.prune("maternity-pay-calculator", /^\d+$/);
+site.sitemapBlock("maternity pay by salary", "tools/build-uk-calcs.js", MP_SALARIES.map((sal) => [mpurl(sal), "0.5"]));
 console.log(`built ${PAGES.length} UK calculators on ${Y} rates`);
