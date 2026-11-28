@@ -13,7 +13,8 @@
       pages), JSON-LD that parses, and no duplicate titles.
    3. Links: tools/check-links.js --internal.
    4. Calculators: each calculator page is opened in headless Chromium at
-      phone width (Playwright). It fails on a script error, a result showing
+      phone and desktop width (Playwright). It fails on a script error, a
+      missing local file, a box with no label, a result showing
       NaN, undefined, Infinity or [object, or a page wider than the screen,
       as loaded, after the first number box is changed and with it empty.
       Skipped with a warning if Playwright isn't installed.
@@ -120,17 +121,22 @@ async function checkCalculators() {
     return;
   }
   const pages = calculatorPages();
-  process.stdout.write(`calculators: ${pages.length} pages in a browser at phone width ... `);
+  process.stdout.write(`calculators: ${pages.length} pages in a browser at phone and desktop width ... `);
   const server = await serve(), base = `http://127.0.0.1:${server.address().port}`;
   const browser = await chromium.launch();
-  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 } });
-  await ctx.addInitScript(() => { try { localStorage.setItem("loc-analytics-consent", "denied"); } catch (e) { /* storage blocked */ } });
-  /* nothing leaves the machine: block anything that isn't the local server */
-  await ctx.route((u) => !u.href.startsWith(base), (r) => r.abort());
+  const context = async (width, height) => {
+    const ctx = await browser.newContext({ viewport: { width, height } });
+    await ctx.addInitScript(() => { try { localStorage.setItem("loc-analytics-consent", "denied"); } catch (e) { /* storage blocked */ } });
+    /* nothing leaves the machine: block anything that isn't the local server */
+    await ctx.route((u) => !u.href.startsWith(base), (r) => r.abort());
+    return ctx;
+  };
+  const phone = await context(390, 844), desktop = await context(1280, 900);
   let bad = 0;
-  const one = async (u) => {
+  const one = async (u, ctx, label) => {
     const pg = await ctx.newPage(), errs = [];
-    pg.on("pageerror", (e) => errs.push(e.message));
+    pg.on("pageerror", (e) => errs.push("script error: " + e.message));
+    pg.on("response", (r) => { if (r.status() >= 400 && r.url().startsWith(base)) errs.push(`missing file ${r.url().slice(base.length)} (${r.status()})`); });
     try {
       await pg.goto(base + u, { waitUntil: "load", timeout: 30000 });
       const look = () => pg.evaluate(() => {
@@ -142,6 +148,11 @@ async function checkCalculators() {
       let r = await look();
       if (r.m) problems.push("as loaded: " + r.m);
       if (r.wide > 1) problems.push(`page is ${r.wide}px wider than the screen`);
+      /* every box someone can type in or choose from has a name a screen reader can read */
+      const unlabelled = await pg.evaluate(() => [...document.querySelectorAll("main input:not([type=hidden]), main select, main textarea")]
+        .filter((e) => e.offsetParent !== null && !e.getAttribute("aria-label") && !e.getAttribute("aria-labelledby") && !e.closest("label") && !(e.id && document.querySelector(`label[for="${CSS.escape(e.id)}"]`)))
+        .map((e) => e.id || e.name || e.outerHTML.slice(0, 60)));
+      if (unlabelled.length) problems.push("no label for " + unlabelled.slice(0, 5).join(", "));
       /* change the first visible number box and look again */
       const box = await pg.$("main input[type=number]:visible, main input[inputmode=decimal]:visible, main input[inputmode=numeric]:visible");
       if (box) {
@@ -157,13 +168,13 @@ async function checkCalculators() {
         r = await look();
         if (r.m) problems.push("with the first number box empty: " + r.m);
       }
-      errs.forEach((e) => problems.push("script error: " + e));
-      if (problems.length) { bad++; fail("calculators", `${u}: ${problems.join("; ")}`); }
-    } catch (e) { bad++; fail("calculators", `${u}: couldn't load (${e.message.split("\n")[0]})`); }
+      problems.push(...new Set(errs));
+      if (problems.length) { bad++; fail("calculators", `${u} (${label}): ${problems.join("; ")}`); }
+    } catch (e) { bad++; fail("calculators", `${u} (${label}): couldn't load (${e.message.split("\n")[0]})`); }
     await pg.close();
   };
-  const queue = pages.slice();
-  await Promise.all(Array.from({ length: 4 }, async () => { while (queue.length) await one(queue.shift()); }));
+  const queue = pages.map((u) => [u, phone, "phone"]).concat(pages.map((u) => [u, desktop, "desktop"]));
+  await Promise.all(Array.from({ length: 6 }, async () => { while (queue.length) await one(...queue.shift()); }));
   await browser.close(); server.close();
   console.log(bad ? `${bad} with problems (${secs()})` : `ok (${secs()})`);
 }
