@@ -395,7 +395,7 @@ function monthPayPage(y, m) {
   const months = W.MONTHS.map((n, i) => (i === m ? `<strong>${n}</strong>` : `<a href="${purl(y, i)}">${n}</a>`)).join(" ");
   const nav = [hasPay(py, pm) ? `<a href="${purl(py, pm)}">← Payday ${W.MONTHS[pm]} ${py}</a>` : "", hasPay(ny, nm) ? `<a href="${purl(ny, nm)}">Payday ${W.MONTHS[nm]} ${ny} →</a>` : ""].filter(Boolean).join(" ");
   const abroad = [["us", "US"], ["canada", "Canada"], ["australia", "Australia"], ["new-zealand", "New Zealand"], ["ireland", "Ireland"]].filter(([c]) => fs.existsSync(path.join(site.ROOT, "payday-calendar", c, String(y), "index.html")))
-    .map(([c, n]) => `<a href="/payday-calendar/${c}/${y}/">${n} payday calendar ${y}</a>`).join(" ");
+    .map(([c, n]) => { const mp = `/payday-calendar/${c}/${y}/${name.toLowerCase()}/`; return fs.existsSync(path.join(site.ROOT, mp, "index.html")) ? `<a href="${mp}">Payday ${name} ${y} in ${n}</a>` : `<a href="/payday-calendar/${c}/${y}/">${n} payday calendar ${y}</a>`; }).join(" ");
   const more = [`<a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`, `<a href="${BASE}${y}/${mslug(m)}/">Working days in ${name} ${y}</a>`]
     .concat(m >= 10 && XMAS_YEARS.includes(y) ? [`<a href="${XMAS(y)}">Christmas payday ${y}</a>`] : [])
     .concat(fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", `${mslug(m)}-${y}`, "index.html")) ? [`<a href="/benefit-payment-dates/${mslug(m)}-${y}/">Benefit payment dates ${name} ${y}</a>`] : fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? [`<a href="/benefit-payment-dates/${y}/">Benefit payment dates ${y}</a>`] : [])

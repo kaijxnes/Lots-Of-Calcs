@@ -181,7 +181,7 @@ const COUNTRIES = {
     extra: ""
   },
   ireland: {
-    name: "Ireland", long: "Ireland", slug: "ireland", years: ieYears, hol: ieHolidays, cur: "€",
+    name: "Ireland", long: "Ireland", slug: "ireland", years: ieYears, hol: ieHolidays, cur: "€", months: true,
     rules: [["Last working day", lastDay], ["Last Friday", lastFriday], ["28th", (y, m) => utc(y, m, 28)], ["25th", (y, m) => utc(y, m, 25)], ["20th", (y, m) => utc(y, m, 20)], ["15th", (y, m) => utc(y, m, 15)]],
     holWord: "public holidays", dayWord: "working day",
     src: `Public holidays from the <a href="${IE.source.url}" rel="nofollow noopener" target="_blank">Workplace Relations Commission</a>; one that falls on a weekend has no substitute day.`,
@@ -192,12 +192,75 @@ const COUNTRIES = {
 
 const BASE = "/payday-calendar/";
 const purl = (c, y) => `${BASE}${c.slug}/${y}/`;
+const murl = (c, y, m) => `${BASE}${c.slug}/${y}/${MONTHS[m].toLowerCase()}/`;
+
+/* One month's paydays for a country with "months: true" (Ireland, where
+   monthly pay is common): /payday-calendar/ireland/2026/december/ */
+function monthPage(c, y, m) {
+  const url = SITE + murl(c, y, m), N = MONTHS[m];
+  const closedIn = (yy) => new Set(c.hol(yy).map((h) => h.closed).filter(Boolean));
+  const closed = closedIn(y), paid = (rule) => onOrBefore(rule[1](y, m), closed);
+  const isLast = (rule) => rule[0] === "Last business day" || rule[0] === "Last working day";
+  const lastW = c.rules[0], first = paid(lastW);
+  const rows = c.rules.map((rule) => { const due = rule[1](y, m), got = paid(rule), early = got !== due && !isLast(rule); return [rule[0], dm(due), early ? `<strong>${dm(got)}</strong>` : dm(got)]; });
+  const earlyOnes = c.rules.filter((rule) => !isLast(rule) && paid(rule) !== rule[1](y, m));
+  const why = (rule) => { const due = rule[1](y, m), h = c.hol(y).find((x) => x.closed === due); return h ? `${long(due)} is ${h.name}` : `${new Date(due).getUTCDate()} ${N} is a ${DAYS[dow(due)]}`; };
+  const name = (rule) => rule[0] === "Last Friday" ? "last Friday" : rule[0].replace(/^Last/, "last");
+  const hols = c.hol(y).filter((h) => new Date(h.t).getUTCMonth() === m || (h.closed && new Date(h.closed).getUTCMonth() === m));
+  const holRows = hols.map((h) => [esc(h.name), long(h.t), h.closed ? (h.closed === h.t ? "Yes" : `Moved to ${long(h.closed)}`) : `Falls on a ${dow(h.t) === 6 ? "Saturday" : "Sunday"}: no substitute day`]);
+  const fridays = []; for (let d = utc(y, m, 1); new Date(d).getUTCMonth() === m; d += DAY) if (dow(d) === 5) fridays.push(d);
+  const friHol = fridays.filter((d) => closed.has(d));
+  const ny = m === 11 ? y + 1 : y, nm = (m + 1) % 12, next = onOrBefore(lastW[1](ny, nm), closedIn(ny)), gap = Math.round((next - first) / DAY);
+  const q = [
+    [`When is payday in ${N} ${y}?`, `If you're paid on the last ${c.dayWord} of the month, ${long(first)} ${y}; ` + c.rules.slice(1).map((r) => `on the ${name(r)}, ${long(paid(r))}`).join("; ") + ` (${c.name}).`],
+    [`Is payday early in ${N} ${y}?`, earlyOnes.length ? `Yes for some pay dates: ${and(earlyOnes.map((r) => `the ${name(r)} is paid on ${long(paid(r))} because ${why(r)}`))}.` : `No: none of the usual pay dates falls on a weekend or ${c.holWord.replace(/s$/, "")} in ${N} ${y}.`],
+    [`What if payday falls on a weekend or ${c.holWord.replace(/s$/, "")}?`, c.note],
+    [`How long is it from ${N}'s payday to the next one?`, `${gap} days, if you're paid on the last ${c.dayWord}: ${long(first)} to ${long(next)} ${ny}.`]
+  ];
+  const title = site.fitTitle(`Payday ${N} ${y} (${c.name}) — When You'll Get Paid`, `Payday ${N} ${y} ${c.name}`);
+  const desc = `Payday ${N} ${y} in ${c.long}: ${long(first)} if you're paid on the last ${c.dayWord}` + (earlyOnes.length ? `, ${long(paid(earlyOnes[0]))} on the ${name(earlyOnes[0])}` : "") + `, with ${c.holWord} and weekends.`;
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Payday calendars", SITE + BASE], [`${c.name} ${y}`, SITE + purl(c, y)], [N, url]]), site.faqLd(q)];
+  const pm = m === 0 ? [y - 1, 11] : [y, m - 1], nmL = [ny, nm];
+  const nav = [pm, nmL].filter(([yy]) => c.years.includes(yy)).map(([yy, mm]) => `<a href="${murl(c, yy, mm)}">${MONTHS[mm]} ${yy}</a>`).join(" ");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${purl(c, y)}">← ${esc(c.name)} payday calendar ${y}</a>
+      <h1 class="page-title">Payday ${N} ${y}: ${esc(c.name)}</h1>
+      <p class="page-subtitle">When you'll be paid in ${N} ${y} in ${esc(c.long)}, with paydays that fall on a weekend or ${c.holWord.replace(/s$/, "")} moved to the ${c.dayWord} before.</p>
+    </header>
+
+    <main class="tool">
+      <div class="result-box" style="margin-bottom:14px;"><div class="result-hero"><div class="value">${long(first)}</div><div class="label">payday in ${N} ${y} if you're paid on the last ${c.dayWord}</div></div></div>
+      <h2 class="tool-section-title">If you're paid on the…</h2>
+${site.table(["Pay date", "Due", "Paid"], rows, 360)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than the usual day because it falls on a weekend or ${c.holWord.replace(/s$/, "")}. ${esc(c.note)}</p>
+      <p class="about-text">The next payday, on the last ${c.dayWord} of ${MONTHS[nm]}, is ${long(next)} ${ny}: ${gap} days after ${N}'s.</p>
+      <h2 class="tool-section-title" style="margin-top:18px;">Paid weekly or fortnightly on a Friday</h2>
+      <p class="about-text">${N} ${y} has ${fridays.length} Fridays: ${and(fridays.map((d) => long(d)))}.${friHol.length ? " " + friHol.map((d) => `${long(d)} is a ${c.holWord.replace(/s$/, "")}, so pay usually comes on ${long(onOrBefore(d, closed))}.`).join(" ") : ""} Fortnightly pay comes on every other one, depending on your pay cycle.</p>
+    </main>
+${holRows.length ? `
+    <main class="tool">
+      <h2 class="tool-section-title">${esc(c.name)} ${c.holWord} in ${N} ${y}</h2>
+${site.table(["Holiday", "Date", "Day off"], holRows, 420)}      <p class="tool-hint" style="margin-top:8px;">${c.src}</p>
+    </main>
+` : ""}
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other months</div>
+    <p class="salary-links">${nav} <a href="${purl(c, y)}">All of ${y}</a></p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
 
 function countryPage(c, y) {
   const url = SITE + purl(c, y);
   const hol = c.hol(y), closed = new Set(hol.map((h) => h.closed).filter(Boolean));
   const paid = (rule, m) => onOrBefore(rule[1](y, m), closed);
-  const rows = MONTHS.map((n, m) => [n].concat(c.rules.map((rule) => {
+  const rows = MONTHS.map((n, m) => [c.months ? `<a href="${murl(c, y, m)}">${n}</a>` : n].concat(c.rules.map((rule) => {
     const due = rule[1](y, m), got = paid(rule, m);
     const early = got !== due && !(rule[0].startsWith("Last") && (rule[0] === "Last business day" || rule[0] === "Last working day"));
     return early ? `<strong>${dm(got)}</strong>` : dm(got);
@@ -287,6 +350,9 @@ ${site.FOOTER}
 
 const urls = [[BASE, "0.5"]];
 site.write("payday-calendar", hub());
-Object.values(COUNTRIES).forEach((c) => c.years.forEach((y) => { site.write(`payday-calendar/${c.slug}/${y}`, countryPage(c, y)); urls.push([purl(c, y), "0.5"]); }));
+Object.values(COUNTRIES).forEach((c) => c.years.forEach((y) => {
+  site.write(`payday-calendar/${c.slug}/${y}`, countryPage(c, y)); urls.push([purl(c, y), "0.5"]);
+  if (c.months) MONTHS.forEach((n, m) => { site.write(`payday-calendar/${c.slug}/${y}/${n.toLowerCase()}`, monthPage(c, y, m)); urls.push([murl(c, y, m), "0.5"]); });
+}));
 site.sitemapBlock("payday calendars", "tools/build-payday-pages.js", urls);
 console.log(`built the payday calendar hub and ${urls.length - 1} country pages (${Object.values(COUNTRIES).map((c) => `${c.name} ${c.years[0]}–${c.years[c.years.length - 1]}`).join(", ")})`);
