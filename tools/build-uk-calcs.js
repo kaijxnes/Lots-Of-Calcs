@@ -78,12 +78,48 @@ function dividends() {
       <h2 class="tool-section-title">How dividends are taxed (${Y})</h2>
       <p class="about-text">Dividends are added on top of your other income. The first £${d.allowance} is tax-free (the dividend allowance), but it still uses up part of your tax band. The rest is taxed at <strong>${d.basic}%</strong> in the basic rate band, <strong>${d.higher}%</strong> in the higher rate band and <strong>${d.additional}%</strong> above £125,140. Any personal allowance your salary doesn't use covers dividends first.</p>
       <h2 class="tool-section-title" style="margin-top:20px;">Tax on dividends with a ${g0(sal)} salary</h2>
-${site.table(["Dividends", "Dividend tax", "You keep"], table, 300)}    </main>
+${site.table(["Dividends", "Dividend tax", "You keep"], table, 300)}      <p class="salary-links" style="margin-top:14px;">${DV_AMOUNTS.map((n) => `<a href="${dvurl(n)}">Tax on ${g0(n)} of dividends</a>`).join(" ")}</p>
+    </main>
 
 `,
     q: [
       ["How much tax do I pay on dividends?", `For ${Y}: nothing on the first £${d.allowance}, then ${d.basic}% on dividends that fall in the basic rate band, ${d.higher}% in the higher rate band and ${d.additional}% in the additional rate band. Where they fall depends on your other income, because dividends are counted last.`],
       [`Did dividend tax go up in April 2026?`, `Yes: the basic and higher dividend rates rose by 2 percentage points from 6 April 2026, from 8.75% and 33.75% to ${d.basic}% and ${d.higher}%. The additional rate stayed at ${d.additional}%.`],
+      ["Do I pay National Insurance on dividends?", "No. Dividends are subject to income tax only, which is why company directors often take a small salary and the rest as dividends."],
+      ["Do I need to tell HMRC about dividends?", "Dividends within the £500 allowance need no action. Above it, HMRC can usually collect tax on up to £10,000 through your tax code; above £10,000 you need to file a Self Assessment tax return."]
+    ] });
+}
+
+/* dividend tax by amount: /dividend-tax-calculator/10000/ */
+const DV_AMOUNTS = [1000, 2000, 5000, 10000, 15000, 20000, 25000, 30000, 40000, 50000, 75000, 100000];
+const dvurl = (n) => `/dividend-tax-calculator/${n}/`;
+/* hand-checked: £12,570 salary and £50,000 of dividends: £500 allowance, then 37,200 x 10.75% = 3,999 and 12,300 x 35.75% = 4,397.25: £8,396.25 */
+if (cfg.div.basic === 10.75 && cfg.div.higher === 35.75 && cfg.div.allowance === 500 && cfg.basicBand === 37700 && Math.round(U.incomeTax(cfg, 12570, 50000).divTax * 100) !== 839625) throw new Error("dividends: the hand-checked £50,000 example no longer comes out");
+function dividendAmount(n) {
+  const d = cfg.div, path = dvurl(n);
+  const extra = (other) => Math.round((U.incomeTax(cfg, other, n).total - U.incomeTax(cfg, other, 0).total) * 100) / 100;
+  const OTHER = [[0, "No other income"], [12570, "£12,570 (a director's salary at the Personal Allowance)"], [20000], [30000], [40000], [50000], [60000], [80000], [100000], [150000]];
+  const rows = OTHER.map(([o, label]) => { const x = extra(o); return [label || g0(o), g2(x), g2(n - x), (n ? x / n * 100 : 0).toFixed(1) + "%"]; });
+  const dir = extra(12570), none = extra(0), mid = extra(30000), hi = extra(60000);
+  const taper = OTHER.some(([o]) => o < cfg.paTaperFrom + 2 * cfg.pa && o + n > cfg.paTaperFrom);
+  return shell({ path, id: "dv", name: "Dividend Tax Calculator", related: "/dividend-tax-calculator/",
+    crumbs: [["Dividend Tax Calculator", SITE + "/dividend-tax-calculator/"], [`${g0(n)} of dividends`, SITE + path]], back: ["/dividend-tax-calculator/", "Dividend tax calculator"],
+    title: site.fitTitle(`Tax on ${g0(n)} of Dividends (${Y}) — UK Dividend Tax`, `Tax on ${g0(n)} Dividends UK (${Y})`),
+    desc: `UK tax on ${g0(n)} of dividends in ${Y}: ${g2(none)} with no other income, ${g2(dir)} on a £12,570 director's salary and ${g2(mid)} with a ${g0(30000)} salary. Rates ${d.basic}%, ${d.higher}% and ${d.additional}% after the £${d.allowance} allowance.`,
+    h1: `Tax on ${g0(n)} of dividends`, sub: `UK dividend tax on ${g0(n)} for ${Y}, on top of your salary or other income.`,
+    form: pair(f("dv-other", "Salary and other income (before tax)", 12570), f("dv-div", "Dividends", n)),
+    results: (() => { const r = U.incomeTax(cfg, 12570, n); return [row("Dividend tax", "dv-tax", g0(r.divTax), "highlight"), row("Dividends after tax", "dv-keep", g0(n - r.divTax)), row("Tax on your other income", "dv-ns", g0(r.nsTax)), row("Effective rate on dividends", "dv-rate", (r.divTax / n * 100).toFixed(1) + "%")].join("\n"); })(),
+    hint: "England, Wales and Northern Ireland income tax bands (dividends are taxed the same in Scotland, but Scottish wages use different bands). Income tax only — no National Insurance is due on dividends.",
+    sources: src(d.source, "tax on dividends"),
+    more: `    <main class="tool">
+      <h2 class="tool-section-title">Tax on ${g0(n)} of dividends by other income (${Y})</h2>
+${site.table(["Salary and other income", "Extra tax", "You keep", "Effective rate"], rows, 520)}      <p class="tool-hint" style="margin-top:8px;">The extra Income Tax the dividends add, England, Wales and Northern Ireland bands${taper ? `, including Personal Allowance lost over ${g0(cfg.paTaperFrom)}` : ""}.</p>
+      <p class="about-text">Dividends are added on top of your other income. The first £${d.allowance} is tax-free (the dividend allowance), but it still uses up part of your tax band. The rest is taxed at <strong>${d.basic}%</strong> in the basic rate band, <strong>${d.higher}%</strong> in the higher rate band and <strong>${d.additional}%</strong> above £125,140. Any personal allowance your other income doesn't use covers dividends first, so with no other income ${g0(Math.min(n, cfg.pa + d.allowance))} of the ${g0(n)} is tax-free.</p>
+    </main>
+
+`,
+    q: [
+      [`How much tax do I pay on ${g0(n)} of dividends?`, `It depends on your other income, because dividends are counted last. In ${Y}: ${g2(none)} with no other income, ${g2(dir)} on a £12,570 salary, ${g2(mid)} on ${g0(30000)} and ${g2(hi)} on ${g0(60000)}.`],
       ["Do I pay National Insurance on dividends?", "No. Dividends are subject to income tax only, which is why company directors often take a small salary and the rest as dividends."],
       ["Do I need to tell HMRC about dividends?", "Dividends within the £500 allowance need no action. Above it, HMRC can usually collect tax on up to £10,000 through your tax code; above £10,000 you need to file a Self Assessment tax return."]
     ] });
@@ -334,5 +370,8 @@ const PAGES = [["dividend-tax-calculator", dividends], ["salary-vs-dividends", s
 PAGES.forEach(([dir, fn]) => site.write(dir, fn()));
 MP_SALARIES.forEach((sal) => site.write(mpurl(sal).replace(/^\/|\/$/g, ""), maternitySalary(sal)));
 site.prune("maternity-pay-calculator", /^\d+$/);
+DV_AMOUNTS.forEach((n) => site.write(dvurl(n).replace(/^\/|\/$/g, ""), dividendAmount(n)));
+site.prune("dividend-tax-calculator", /^\d+$/);
+site.sitemapBlock("dividend tax by amount", "tools/build-uk-calcs.js", DV_AMOUNTS.map((n) => [dvurl(n), "0.5"]));
 site.sitemapBlock("maternity pay by salary", "tools/build-uk-calcs.js", MP_SALARIES.map((sal) => [mpurl(sal), "0.5"]));
 console.log(`built ${PAGES.length} UK calculators on ${Y} rates`);
