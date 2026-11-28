@@ -11,8 +11,13 @@
    data/holidays/gov-uk-bank-holidays.json (re-download it from
    https://www.gov.uk/bank-holidays.json and re-run; the monthly check does).
    Pages are made for each full year it covers from last year on, and for
-   the years after it up to four years ahead, from the expected dates
-   (tools/lib/uk-bank-holiday-rules.js), marked as expected. */
+   the years after it up to ten years ahead, from the expected dates
+   (tools/lib/uk-bank-holiday-rules.js), marked as expected.
+
+   Also one page per month from this year on, for "payday November 2026":
+
+       /payday/                          every month, this year to ten ahead
+       /payday/november-2026/            when you're paid that month */
 const fs = require("fs");
 const path = require("path");
 const site = require("./lib/site.js");
@@ -49,7 +54,7 @@ REG.forEach((r) => PUBLISHED.forEach((y) => {
 }));
 function inYearOf(r, y) { return HOL[r].filter((h) => h.date.startsWith(y + "-")); }
 const LAST_PUBLISHED = PUBLISHED[PUBLISHED.length - 1];
-const AHEAD_TO = THIS_YEAR + 4;
+const AHEAD_TO = THIS_YEAR + 10;
 for (let y = LAST_PUBLISHED + 1; y <= AHEAD_TO; y++) REG.forEach((r) => {
   HOL[r] = HOL[r].filter((h) => !h.date.startsWith(y + "-")).concat(RULES_UK.expected(r, y).map((h) => ({ ...h, expected: true })));
 });
@@ -100,7 +105,7 @@ function paydayPage(y) {
   const moved = W.MONTHS.map((n, m) => paid(RULES[3], y, m, r) !== RULES[3][1](y, m)).filter(Boolean).length;
   const title = site.fitTitle(`Payday Calendar ${y} — UK Pay Dates When Payday Falls on a Weekend`, `Payday Calendar ${y} — UK Pay Dates for Weekends & Holidays`);
   const desc = `When you'll be paid in each month of ${y} if payday is the last working day, the last Friday, or the 15th, 20th, 25th or 28th — moved to the working day before for weekends and bank holidays.`;
-  const rows = W.MONTHS.map((n, m) => [`<a href="${BASE}${y}/${mslug(m)}/">${n}</a>`].concat(RULES.map((rule) => {
+  const rows = W.MONTHS.map((n, m) => [y >= THIS_YEAR ? `<a href="${PBASE}${mslug(m)}-${y}/">${n}</a>` : `<a href="${BASE}${y}/${mslug(m)}/">${n}</a>`].concat(RULES.map((rule) => {
     const due = rule[1](y, m), got = paid(rule, y, m, r);
     return got === due || rule[0] === "Last working day" || rule[0] === "Last Friday" && isWorking(due, r) ? dm(got) : `<strong>${dm(got)}</strong>`;
   })));
@@ -330,7 +335,7 @@ ${aheadNote(y)}    </header>
 
     <main class="tool">
 ${site.table(["", "Working days", "Bank holidays", "First working day", "Last working day"], REG.map((r) => [W.REGIONS[r], `<strong>${c[r].working}</strong>`, String(c[r].holidays.length), dm(firstWorking(y, m, r)), dm(lastWorking(y, m, r))]), 520)}${holRows.length ? `      <h2 class="tool-section-title" style="margin-top:22px;">Bank holidays in ${name} ${y}</h2>
-${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: <a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>${fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? `; benefits and pensions: <a href="/benefit-payment-dates/${y}/">benefit payment dates ${y}</a>` : ""}. ${src(y)}</p>
+${site.table(["Date", "Bank holiday", "Eng &amp; Wales", "Scot", "NI"], holRows, 520)}` : ""}      <p class="tool-hint" style="margin-top:12px;">Monday to Friday, less bank holidays: ${(ew.working * 7.5).toLocaleString("en-GB")} hours on a 7.5-hour day. When you'll be paid: ${PAY_YEARS.includes(y) ? `<a href="${purl(y, m)}">payday ${name} ${y}</a>, the ` : ""}<a href="${BASE}${y}/payday-calendar/">payday calendar ${y}</a>${fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? `; benefits and pensions: <a href="/benefit-payment-dates/${y}/">benefit payment dates ${y}</a>` : ""}. ${src(y)}</p>
     </main>
 
 ${tool(W.first(y, m), W.lastDay(y, m), "england-and-wales", false)}
@@ -345,6 +350,130 @@ ${site.FOOTER}
   </div>
   <script src="/bank-holidays.js"></script>
   <script src="/working-days.js"></script>
+</body>
+</html>
+`;
+}
+
+/* ---------- one page per month: "payday November 2026" ---------- */
+const PAY_YEARS = YEARS.filter((y) => y >= THIS_YEAR);
+const PBASE = "/payday/";
+const purl = (y, m) => `${PBASE}${mslug(m)}-${y}/`;
+const hasPay = (y, m) => PAY_YEARS.includes(y) && m >= 0 && m <= 11;
+const nextOf = (y, m) => (m === 11 ? [y + 1, 0] : [y, m + 1]);
+const prevOf = (y, m) => (m === 0 ? [y - 1, 11] : [y, m - 1]);
+const noYear = (iso) => W.long(iso).replace(/ \d{4}$/, "");
+function fridays(y, m) { const out = []; let iso = W.first(y, m); while (iso <= W.lastDay(y, m)) { if (new Date(W.parse(iso)).getUTCDay() === 5) out.push(iso); iso = step(iso, 1); } return out; }
+function monthPayPage(y, m) {
+  const name = W.MONTHS[m], url = SITE + purl(y, m), r = "england-and-wales";
+  const rows = RULES.map((rule) => {
+    const due = rule[1](y, m), got = REG.map((x) => paid(rule, y, m, x));
+    const early = (iso) => iso !== due && !(rule[0] === "Last working day");
+    return [rule[0], dm(due)].concat(got.map((g) => (early(g) ? `<strong>${dm(g)}</strong>` : dm(g))));
+  });
+  const lw = paid(RULES[0], y, m, r), lf = paid(RULES[1], y, m, r), p25 = paid(RULES[3], y, m, r), p15 = paid(RULES[5], y, m, r), p28 = paid(RULES[2], y, m, r), p20 = paid(RULES[4], y, m, r);
+  const moved = RULES.filter((rule) => rule[0] !== "Last working day" && paid(rule, y, m, r) !== rule[1](y, m));
+  const regDiff = RULES.some((rule) => REG.some((x) => paid(rule, y, m, x) !== paid(rule, y, m, r)));
+  const fri = fridays(y, m).map((f) => [f, onOrBefore(f, r)]);
+  const friMoved = fri.filter(([f, g]) => f !== g);
+  const hols = [...new Set(REG.flatMap((x) => monthCount(x, y, m).holidays.map((h) => h.date)))].sort().map((d) => {
+    const h = REG.map((x) => monthCount(x, y, m).holidays.find((z) => z.date === d));
+    return [esc(short(d)), holTitle(h.find(Boolean)), REG.filter((x, i) => h[i]).map((x) => W.REGIONS[x]).join(", ")];
+  });
+  const [ny, nm] = nextOf(y, m), [py, pm] = prevOf(y, m);
+  const nextLw = YEARS.includes(ny) ? paid(RULES[0], ny, nm, r) : null;
+  const gap = nextLw ? daysBetween(lw, nextLw) : null;
+  const title = site.fitTitle(`Payday ${name} ${y} — When You'll Get Paid (UK Pay Dates)`, `Payday ${name} ${y} — When You'll Get Paid (UK)`);
+  const desc = `Payday ${name} ${y}: ${noYear(lw)} on the last working day, ${noYear(lf)} on the last Friday, ${noYear(p25)} on the 25th. Every UK pay date, moved for weekends and bank holidays.`;
+  const q = [
+    [`When is payday in ${name} ${y}?`, `If you're paid on the last working day of the month, ${W.long(lw)}. On the last Friday, ${W.long(lf)}; on the 28th, ${W.long(p28)}; the 25th, ${W.long(p25)}; the 20th, ${W.long(p20)}; the 15th, ${W.long(p15)} (England and Wales).`],
+    [`Is payday early in ${name} ${y}?`, moved.length ? `Yes for some pay dates: ${andList(moved.map((rule) => `the ${rule[0].toLowerCase()} is paid on ${noYear(paid(rule, y, m, r))} because ${noYear(rule[1](y, m))} is ${new Date(W.parse(rule[1](y, m))).getUTCDay() % 6 === 0 ? "a weekend" : "a bank holiday"}`))}.` : `No: every common pay date (the 15th, 20th, 25th and 28th, and the last Friday) is a working day in ${name} ${y}, so you're paid on the usual day.`],
+    [`What if payday falls on a weekend or bank holiday?`, PAY_NOTE],
+    ...(nextLw ? [[`When is the next payday after ${name} ${y}?`, `If you're paid on the last working day, ${W.long(nextLw)}: ${gap} days after ${name}'s.`]] : [])
+  ];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Payday dates", SITE + PBASE], [`${name} ${y}`, url]]), site.faqLd(q)];
+  const months = W.MONTHS.map((n, i) => (i === m ? `<strong>${n}</strong>` : `<a href="${purl(y, i)}">${n}</a>`)).join(" ");
+  const nav = [hasPay(py, pm) ? `<a href="${purl(py, pm)}">← Payday ${W.MONTHS[pm]} ${py}</a>` : "", hasPay(ny, nm) ? `<a href="${purl(ny, nm)}">Payday ${W.MONTHS[nm]} ${ny} →</a>` : ""].filter(Boolean).join(" ");
+  const abroad = [["us", "US"], ["canada", "Canada"], ["australia", "Australia"], ["new-zealand", "New Zealand"], ["ireland", "Ireland"]].filter(([c]) => fs.existsSync(path.join(site.ROOT, "payday-calendar", c, String(y), "index.html")))
+    .map(([c, n]) => `<a href="/payday-calendar/${c}/${y}/">${n} payday calendar ${y}</a>`).join(" ");
+  const more = [`<a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`, `<a href="${BASE}${y}/${mslug(m)}/">Working days in ${name} ${y}</a>`]
+    .concat(m >= 10 && XMAS_YEARS.includes(y) ? [`<a href="${XMAS(y)}">Christmas payday ${y}</a>`] : [])
+    .concat(fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? [`<a href="/benefit-payment-dates/${y}/">Benefit payment dates ${y}</a>`] : [])
+    .concat([`<a href="${PBASE}">Every month's payday</a>`, `<a href="/salary/">Take-home pay calculator</a>`]).join(" ");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${PBASE}">← Payday dates</a>
+      <h1 class="page-title">Payday ${name} ${y}</h1>
+      <p class="page-subtitle">When you'll be paid in ${name} ${y}, with paydays that fall on a weekend or bank holiday moved to the working day before.</p>
+${aheadNote(y)}    </header>
+
+    <main class="tool">
+      <div class="result-box" style="margin-top:0;">
+        <div class="result-hero">
+          <div class="value">${noYear(lw)}</div>
+          <div class="label">payday in ${name} ${y} if you're paid on the last working day (England and Wales)</div>
+        </div>
+      </div>
+      <h2 class="tool-section-title" style="margin-top:18px;">If you're paid on the…</h2>
+${site.table(["Pay date", "Due", "England &amp; Wales", "Scotland", "Northern Ireland"], rows, 560)}      <p class="tool-hint" style="margin-top:12px;">Bold dates are earlier than the usual day because it falls on a weekend or bank holiday.${regDiff ? " Scotland and Northern Ireland have different bank holidays, so their dates can differ." : ""} ${esc(PAY_NOTE)}</p>
+${gap ? `      <p class="tool-hint">The next payday, on the last working day of ${W.MONTHS[nm]}, is ${W.long(nextLw)}: <strong>${gap} days</strong> after ${name}'s.</p>
+` : ""}    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Paid weekly or fortnightly on a Friday</h2>
+      <p class="about-text">${name} ${y} has ${fri.length} Fridays: ${andList(fri.map(([f]) => noYear(f)))}.${friMoved.length ? ` ${andList(friMoved.map(([f, g]) => `${noYear(f)} is a bank holiday, so pay usually comes on ${noYear(g)}`))}.` : " None of them is a bank holiday."} Fortnightly pay comes on every other one, depending on your pay cycle.</p>
+${hols.length ? `      <h2 class="tool-section-title" style="margin-top:18px;">Bank holidays in ${name} ${y}</h2>
+${site.table(["Date", "Bank holiday", "Where"], hols, 520)}` : `      <p class="tool-hint">There are no bank holidays in ${name} ${y}.</p>
+`}      <p class="tool-hint" style="margin-top:8px;">${src(y)}</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}    </main>
+
+    <p class="salary-links" style="margin-top:24px;">${nav}</p>
+    <div class="hub-group-title" style="margin-top:18px;">Payday in other months of ${y}</div>
+    <p class="salary-links">${months}</p>
+    <div class="hub-group-title" style="margin-top:18px;">More pay dates</div>
+    <p class="salary-links">${more}${abroad ? " " + abroad : ""}</p>
+
+${site.FOOTER}
+  </div>
+</body>
+</html>
+`;
+}
+function payHub() {
+  const url = SITE + PBASE, r = "england-and-wales";
+  const ty = +site.TODAY.slice(0, 4), tm = +site.TODAY.slice(5, 7) - 1;
+  const first = PAY_YEARS[0], last = PAY_YEARS[PAY_YEARS.length - 1];
+  const title = site.fitTitle(`Payday Dates ${first} to ${last} — When You'll Get Paid Each Month (UK)`, `Payday Dates ${first}–${last} — Every Month (UK)`);
+  const desc = `When you'll be paid in every month from ${first} to ${last}: the last working day, the last Friday and the 15th, 20th, 25th and 28th, moved for weekends and UK bank holidays.`;
+  const now = hasPay(ty, tm) ? [ty, tm] : [first, 0], [ny, nm] = nextOf(...now);
+  const q = [
+    [`When is payday this month?`, `In ${W.MONTHS[now[1]]} ${now[0]}, payday on the last working day is ${W.long(paid(RULES[0], now[0], now[1], r))} (England and Wales). Each month's page has every pay date.`],
+    [`What if payday falls on a weekend or bank holiday?`, PAY_NOTE]
+  ];
+  const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Payday dates", url]]), site.faqLd(q)];
+  const grid = PAY_YEARS.map((y) => `      <h2 class="tool-section-title" style="margin-top:18px;">${y}${isExpected(y) ? " (expected bank holidays)" : ""}</h2>
+${site.table(["Month", "Last working day", "Last Friday", "25th", "15th"], W.MONTHS.map((n, m) => [`<a href="${purl(y, m)}">Payday ${n} ${y}</a>`, dm(paid(RULES[0], y, m, r)), dm(paid(RULES[1], y, m, r)), dm(paid(RULES[3], y, m, r)), dm(paid(RULES[5], y, m, r))]), 560)}`).join("");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${BASE}">← Working days calculator</a>
+      <h1 class="page-title">Payday dates</h1>
+      <p class="page-subtitle">When you'll be paid each month from ${first} to ${last}, with paydays that fall on a weekend or bank holiday moved to the working day before.</p>
+    </header>
+
+    <main class="tool">
+      <p class="about-text">This month: <a href="${purl(...now)}"><strong>Payday ${W.MONTHS[now[1]]} ${now[0]}</strong></a> — ${W.long(paid(RULES[0], now[0], now[1], r))} on the last working day. Next: <a href="${purl(ny, nm)}">Payday ${W.MONTHS[nm]} ${ny}</a>.</p>
+${grid}      <p class="tool-hint" style="margin-top:12px;">England and Wales bank holidays; each month's page also has Scotland and Northern Ireland. ${esc(PAY_NOTE)} Years GOV.UK hasn't published yet use the expected bank holidays.</p>
+      <p class="salary-links" style="margin-top:12px;">${PAY_YEARS.map((y) => `<a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`).join(" ")} <a href="/payday-calendar/">Other countries</a></p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}    </main>
+
+${site.FOOTER}
+  </div>
 </body>
 </html>
 `;
@@ -366,7 +495,7 @@ function hub() {
   ];
   const ld = [site.webPage(title, desc, url), site.breadcrumb([["Home", SITE + "/"], ["Working Days", url]]),
     { "@context": "https://schema.org", "@type": "WebApplication", name: "Working Days Calculator", url, applicationCategory: "BusinessApplication", operatingSystem: "Any", offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" } }, site.faqLd(q)];
-  const years = YEARS.map((y) => `<a href="${BASE}${y}/">Bank holidays and working days ${y}</a> <a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`).join(" ") + ' <a href="/payday-calendar/">Payday calendars for other countries</a> <a href="/tax-week-calendar/">UK tax week calendar</a>';
+  const years = YEARS.map((y) => `<a href="${BASE}${y}/">Bank holidays and working days ${y}</a> <a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`).join(" ") + ' <a href="/payday/">Payday dates every month</a> <a href="/payday-calendar/">Payday calendars for other countries</a> <a href="/tax-week-calendar/">UK tax week calendar</a>';
   const nextY = YEARS.find((y) => y > THIS_YEAR) || THIS_YEAR;
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="/">← All calculators</a>
@@ -424,5 +553,7 @@ YEARS.forEach((y) => {
   if (XMAS_YEARS.includes(y)) { site.write(`working-days/${y}/christmas-payday`, christmasPage(y)); urls.push([XMAS(y), "0.6"]); }
   W.MONTHS.forEach((n, m) => { site.write(`working-days/${y}/${mslug(m)}`, monthPage(y, m)); urls.push([`${BASE}${y}/${mslug(m)}/`, "0.5"]); });
 });
+site.write("payday", payHub()); urls.push([PBASE, "0.7"]);
+PAY_YEARS.forEach((y) => W.MONTHS.forEach((n, m) => { site.write(`payday/${mslug(m)}-${y}`, monthPayPage(y, m)); urls.push([purl(y, m), "0.6"]); }));
 site.sitemapBlock("working days pages", "tools/build-working-days-pages.js", urls);
 console.log(`built ${urls.length + 1} working days pages for ${YEARS.join(", ")} (bank holidays to ${RANGE[1]})`);
