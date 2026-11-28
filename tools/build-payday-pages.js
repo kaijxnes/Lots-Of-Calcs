@@ -73,6 +73,11 @@ usYears.forEach((y) => {
   });
   if (usHol[y].length !== 11) throw new Error(`US ${y}: expected 11 holidays`);
 });
+/* Beyond the Federal Reserve's list (five years ahead), the same rules give the
+   expected dates; those years are marked as expected. */
+const usPublished = usYears[usYears.length - 1];
+const usRuleHol = (y) => Object.entries(US_RULES).map(([name, f]) => { const t = f(y); return { name, t, closed: dow(t) === 6 ? null : dow(t) === 0 ? t + DAY : t }; }).sort((a, b) => a.t - b.t);
+const AHEAD_YEARS = 10;
 
 /* ----------------------------------------------------------- Ireland */
 const IE = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/holidays/ie-public-holidays.json"), "utf8"));
@@ -88,7 +93,7 @@ Object.entries(IE.check).forEach(([y, dates]) => {
   const got = ieHolidays(+y).map((h) => iso(h.t)).sort().join(",");
   if (got !== dates.slice().sort().join(",")) throw new Error(`Ireland ${y}: the rules give ${got}, the WRC lists ${dates.join(",")}`);
 });
-const ieYears = []; for (let y = THIS_YEAR; y <= THIS_YEAR + 4; y++) ieYears.push(y);
+const ieYears = []; for (let y = THIS_YEAR; y <= THIS_YEAR + AHEAD_YEARS; y++) ieYears.push(y);
 
 /* A holiday on a weekend moves to the next weekday that isn't already a
    holiday, taken in date order (so Christmas on a Saturday and Boxing Day
@@ -103,7 +108,7 @@ function observe(list) {
   });
   return out.sort((a, b) => a.t - b.t);
 }
-const years5 = () => { const a = []; for (let y = THIS_YEAR; y <= THIS_YEAR + 4; y++) a.push(y); return a; };
+const yearsAhead = () => { const a = []; for (let y = THIS_YEAR; y <= THIS_YEAR + AHEAD_YEARS; y++) a.push(y); return a; };
 /* the dates a country's own list gives must come out of the rules */
 function verify(label, data, fn, mode) {
   Object.entries(data.check).forEach(([y, dates]) => {
@@ -128,7 +133,7 @@ const nzHolidays = (y) => observe([["New Year's Day", utc(y, 0, 1), 1], ["Day af
   ["Good Friday", easter(y) - 2 * DAY, 0], ["Easter Monday", easter(y) + DAY, 0], ["Anzac Day", utc(y, 3, 25), 1], ["King's Birthday", nthDow(y, 5, 1, 1), 0],
   ["Matariki", parse(NZ.matariki[y]), 0], ["Labour Day", nthDow(y, 9, 1, 4), 0], ["Christmas Day", utc(y, 11, 25), 1], ["Boxing Day", utc(y, 11, 26), 1]]);
 const nzPublished = verify("New Zealand", NZ, nzHolidays);
-const nzYears = years5().filter((y) => NZ.matariki[y]);
+const nzYears = yearsAhead().filter((y) => NZ.matariki[y]);
 
 /* --------------------------------------------------------- Australia */
 const AU = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/holidays/au-national-holidays.json"), "utf8"));
@@ -144,7 +149,7 @@ const lastFriday = (y, m) => lastDow(y, m, 5);
 
 const COUNTRIES = {
   us: {
-    name: "US", long: "the US", slug: "us", years: usYears, hol: (y) => usHol[y], cur: "$",
+    name: "US", long: "the US", slug: "us", years: yearsAhead().filter((y) => y >= usYears[0]), published: usPublished, hol: (y) => usHol[y] || usRuleHol(y), cur: "$",
     rules: [["Last business day", lastDay], ["15th", (y, m) => utc(y, m, 15)], ["Last Friday", lastFriday], ["25th", (y, m) => utc(y, m, 25)]],
     semi: true, holWord: "bank holidays", dayWord: "business day",
     src: `Bank holidays from the <a href="${US.source.url}" rel="nofollow noopener" target="_blank">Federal Reserve</a> (when a holiday falls on a Saturday, banks open the Friday before; on a Sunday, they close the Monday after).`,
@@ -152,7 +157,7 @@ const COUNTRIES = {
     extra: 'Paid every other Friday? The <a href="/biweekly-pay-schedule/">biweekly pay schedule calculator</a> lists every payday for your start date.'
   },
   canada: {
-    name: "Canada", long: "Canada", slug: "canada", years: years5(), published: caPublished, hol: caHolidays, cur: "$",
+    name: "Canada", long: "Canada", slug: "canada", years: yearsAhead(), published: caPublished, hol: caHolidays, cur: "$",
     rules: [["Last business day", lastDay], ["15th", (y, m) => utc(y, m, 15)], ["Last Friday", lastFriday], ["25th", (y, m) => utc(y, m, 25)]],
     semi: true, holWord: "bank holidays", dayWord: "business day",
     src: `Bank holidays are the days <a href="${CA.source.url}" rel="nofollow noopener" target="_blank">Payments Canada</a> closes the systems that settle direct deposits; one on a weekend closes them the next weekday.`,
@@ -160,7 +165,7 @@ const COUNTRIES = {
     extra: 'Paid every other Friday? The <a href="/biweekly-pay-schedule/">biweekly pay schedule calculator</a> lists every payday for your start date.'
   },
   australia: {
-    name: "Australia", long: "Australia", slug: "australia", years: years5(), published: auPublished, hol: auHolidays, cur: "$",
+    name: "Australia", long: "Australia", slug: "australia", years: yearsAhead(), published: auPublished, hol: auHolidays, cur: "$",
     rules: [["Last business day", lastDay], ["15th", (y, m) => utc(y, m, 15)], ["Last Friday", lastFriday], ["25th", (y, m) => utc(y, m, 25)]],
     holWord: "public holidays", dayWord: "business day",
     src: `National public holidays observed in every state and territory, from the <a href="${AU.source.url}" rel="nofollow noopener" target="_blank">Reserve Bank of Australia</a>. State holidays (King's Birthday, Labour Day, Melbourne Cup and others) can move pay too.`,
@@ -269,6 +274,7 @@ function hub() {
     </header>
 
     <main class="tool">
+      <p class="about-text">UK paydays month by month: <a href="/payday/"><strong>payday dates for every month</strong></a>, from this month to ${ukYears[ukYears.length - 1]}.</p>
 ${row("United Kingdom", ukYears, (y) => `/working-days/${y}/payday-calendar/`)}${Object.values(COUNTRIES).map((c) => row(c.slug === "us" ? "United States" : c.name, c.years, (y) => purl(c, y))).join("")}      <p class="tool-hint" style="margin-top:12px;">UK dates follow GOV.UK's bank holidays (expected dates for years it hasn't published yet); US dates the Federal Reserve's; Canada's Payments Canada's closure days; Australia's the national public holidays the RBA lists; New Zealand's Employment New Zealand's; Ireland's the Workplace Relations Commission's. Years each country hasn't published yet use the usual rules and are marked as expected.</p>
     </main>
 
