@@ -31,7 +31,7 @@ const dayRows = [7, 6, 5, 4, 3, 2, 1].map((q) => { const r = SSP.calc(R, 1000, q
 const SRC = R.sources.map((s) => `<a href="${s.url}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>`).join(" and ");
 
 const P = "/statutory-sick-pay-calculator/", url = SITE + P;
-const tool = `    <main class="tool split" id="ssp-tool" data-rules="${esc(JSON.stringify({ weeklyRate: R.weeklyRate, earningsPct: R.earningsPct, maxWeeks: R.maxWeeks }))}">
+const tool = (ex) => `    <main class="tool split" id="ssp-tool" data-rules="${esc(JSON.stringify({ weeklyRate: R.weeklyRate, earningsPct: R.earningsPct, maxWeeks: R.maxWeeks }))}">
       <div class="field-row">
         <div class="field"><label for="ssp-pay">Your normal pay before tax</label><input type="number" id="ssp-pay" value="${ex.awe}" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="ssp-per">Per</label><select id="ssp-per"><option value="week" selected>Week</option><option value="month">Month</option><option value="year">Year</option></select></div>
@@ -90,7 +90,7 @@ const html = site.head({ title, desc, url, ld }) + `    <header class="site-head
       <p class="page-subtitle">How much SSP you'll get for time off sick: ${rateText} a week or ${R.earningsPct}% of your pay, whichever is lower.</p>
     </header>
 
-${tool}
+${tool(ex)}
 ${body}
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
@@ -105,5 +105,64 @@ ${site.FOOTER}
 </html>
 `;
 site.write("statutory-sick-pay-calculator", html);
-site.sitemapBlock("statutory sick pay pages", "tools/build-ssp-pages.js", [[P, "0.6"]]);
+
+/* /statutory-sick-pay-calculator/2-weeks/: SSP for one length of time off */
+const WEEKS = [1, 2, 3, 4, 6, 8, 10, 12, 16, 20, 24, 28].filter((w) => w <= R.maxWeeks);
+const wurl = (w) => `${P}${w}-week${w > 1 ? "s" : ""}/`;
+const wk = (w) => `${w} week${w > 1 ? "s" : ""}`;
+/* hand-checked: 2 weeks off, 5-day week, full rate: 10 days x £24.65 = £246.50 */
+if (R.weeklyRate === 123.25 && SSP.calc(R, 600, 5, 10, 0).total !== 246.5) throw new Error("ssp: the hand-checked 2-week example no longer comes out");
+function weeksPage(w) {
+  const u = SITE + wurl(w), full = SSP.calc(R, 1000, 5, w * 5, 0);
+  const ex2 = { awe: 600, q: 5, days: w * 5 }; ex2.r = SSP.calc(R, ex2.awe, ex2.q, ex2.days, 0);
+  const er = [100, 120, 140, Math.round(breakEven * 100) / 100, 400].map((a) => { const r = SSP.calc(R, a, 5, w * 5, 0); return [m2(a), m2(r.weekly), `<strong>${m2(r.total)}</strong>`]; });
+  const dr = [5, 4, 3, 2].map((q) => { const r = SSP.calc(R, 1000, q, w * q, 0); return [String(q), String(w * q), m2(r.daily), m2(r.total)]; });
+  const left = R.maxWeeks - w;
+  const q = [
+    [`How much SSP do I get for ${wk(w)} off sick?`, `${m2(full.total)} at the full rate of ${rateText} a week (${esc(R.taxYear)}), before tax and National Insurance. If you earn less than ${m2(breakEven)} a week, it's ${R.earningsPct}% of your average weekly earnings instead.`],
+    ["Do I get sick pay from the first day?", "SSP is paid for every full day you're off sick that you'd normally have worked, once you've been ill for at least one full working day. A day you started work and went home sick doesn't count."],
+    [`Do I need a fit note for ${wk(w)} off?`, w * 7 > 7 ? "Yes: you must give your employer a fit note if you're off work for more than 7 days in a row, including days you don't normally work." : "Not for 7 days or fewer in a row: a fit note is needed if you're off work for more than 7 days in a row, including days you don't normally work."],
+    [`How much SSP is left after ${wk(w)}?`, left > 0 ? `${wk(left)}: SSP lasts up to ${R.maxWeeks} weeks, counted across spells of sickness 8 weeks or less apart.` : `None: ${R.maxWeeks} weeks is the most SSP pays. You may be able to claim Universal Credit or Employment and Support Allowance, and your employer should give you form SSP1.`]
+  ];
+  const title = site.fitTitle(`Statutory Sick Pay for ${wk(w)} (${R.taxYear}) — How Much SSP`, `SSP for ${wk(w)} (${R.taxYear})`);
+  const desc = `How much Statutory Sick Pay you get for ${wk(w)} off sick: ${m2(full.total)} at the full rate of ${rateText} a week, or less if you earn under ${m2(breakEven)} a week (${R.taxYear}).`;
+  const ld = [site.webPage(title, desc, u, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Statutory Sick Pay Calculator", url], [wk(w), u]]), site.faqLd(q)];
+  return site.head({ title, desc, url: u, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${P}">← Statutory Sick Pay calculator</a>
+      <h1 class="page-title">Statutory Sick Pay for ${wk(w)}</h1>
+      <p class="page-subtitle">How much SSP you'll get for ${wk(w)} off sick, ${esc(R.taxYear)}.</p>
+    </header>
+
+${tool(ex2)}
+    <main class="tool">
+      <h2 class="tool-section-title">SSP for ${wk(w)} by earnings</h2>
+${site.table(["Average weekly earnings", "SSP a week", `SSP for ${wk(w)}`], er, 420)}      <p class="about-text" style="margin-top:14px;">SSP is ${rateText} a week or ${R.earningsPct}% of your average weekly earnings, whichever is lower, for up to ${R.maxWeeks} weeks. For ${wk(w)} off at the full rate that's <strong>${m2(full.total)}</strong> before tax and National Insurance, paid through payroll on your usual payday. ${left > 0 ? `That leaves ${wk(left)} of SSP if you're off again within 8 weeks.` : "That's the most SSP pays."} Your employer can pay more under a company sick pay scheme, but not less.</p>
+      <h2 class="tool-section-title" style="margin-top:18px;">By the days you work</h2>
+${site.table(["Days you work a week", "Days off sick", "SSP a day", `SSP for ${wk(w)}`], dr, 440)}      <p class="tool-hint" style="margin-top:8px;">At the full rate. The weekly amount is shared across the days you normally work, so the total for whole weeks is the same.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice: your employer works out the exact amount. Rules from ${SRC}. Last checked ${site.niceDate(R.lastChecked)}.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other lengths of time</div>
+    <p class="salary-links">${WEEKS.filter((x) => x !== w).map((x) => `<a href="${wurl(x)}">SSP for ${wk(x)}</a>`).join(" ")}</p>
+
+${related.block(P)}
+${site.FOOTER}
+  </div>
+  <script src="/ssp.js"></script>
+</body>
+</html>
+`;
+}
+WEEKS.forEach((w) => site.write(wurl(w).replace(/^\/|\/$/g, ""), weeksPage(w)));
+site.prune("statutory-sick-pay-calculator", /^\d+-weeks?$/);
+site.hubBlock(P, "ssp by weeks", "tools/build-ssp-pages.js", `    <main class="tool">
+      <h2 class="tool-section-title">SSP by length of time off</h2>
+      <p class="salary-links">${WEEKS.map((w) => `<a href="${wurl(w)}">SSP for ${wk(w)}</a>`).join(" ")}</p>
+    </main>
+`);
+site.sitemapBlock("statutory sick pay pages", "tools/build-ssp-pages.js", [[P, "0.6"]].concat(WEEKS.map((w) => [wurl(w), "0.5"])));
 console.log(`built the SSP calculator (${rateText} a week; ${ex.days} days on ${m0(ex.awe)} a week: ${m2(ex.r.total)})`);
