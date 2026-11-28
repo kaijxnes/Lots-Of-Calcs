@@ -1,0 +1,380 @@
+{
+  "id": "ca-on",
+  "name": "Ontario",
+  "appliesTo": "Residents of Ontario on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-on-credits",
+      "label": "Ontario non-refundable credits",
+      "note": "5.05% of the basic personal amount ($13,261) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 5.05,
+        "of": {
+          "sum": [
+            13261,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-on-basic",
+      "label": "Basic Ontario tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    5.05
+                  ],
+                  [
+                    55023,
+                    9.15
+                  ],
+                  [
+                    110049,
+                    11.16
+                  ],
+                  [
+                    150000,
+                    12.16
+                  ],
+                  [
+                    220000,
+                    13.16
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-on-credits"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-on-surtax",
+      "label": "Ontario surtax",
+      "note": "20% of basic Ontario tax over $5,940, plus 36% of basic Ontario tax over $7,603.",
+      "value": {
+        "sum": [
+          {
+            "pct": 20,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "ca-on-basic",
+                    5940
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "pct": 36,
+            "of": {
+              "max": [
+                0,
+                {
+                  "sub": [
+                    "ca-on-basic",
+                    7603
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-on-reduction",
+      "label": "Ontario tax reduction",
+      "note": "Twice the $306 basic reduction, less the tax: removes Ontario tax entirely for low incomes.",
+      "value": {
+        "max": [
+          0,
+          {
+            "min": [
+              {
+                "sum": [
+                  "ca-on-basic",
+                  "ca-on-surtax"
+                ]
+              },
+              {
+                "sub": [
+                  612,
+                  {
+                    "sum": [
+                      "ca-on-basic",
+                      "ca-on-surtax"
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-on-income-tax",
+      "label": "Ontario income tax",
+      "group": "tax",
+      "note": "5.05% to $55,023, 9.15% to $110,049, 11.16% to $150,000, 12.16% to $220,000, 13.16% above, less credits, plus the surtax, less the Ontario tax reduction.",
+      "charge": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "sum": [
+                  "ca-on-basic",
+                  "ca-on-surtax"
+                ]
+              },
+              "ca-on-reduction"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-on-health-premium",
+      "label": "Ontario Health Premium",
+      "group": "tax",
+      "note": "Up to $900 a year, rising in steps with taxable income over $20,000.",
+      "charge": {
+        "lookup": [
+          [
+            0,
+            0
+          ],
+          [
+            20000,
+            {
+              "min": [
+                300,
+                {
+                  "pct": 6,
+                  "of": {
+                    "sub": [
+                      "ca-taxable",
+                      20000
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          [
+            36000,
+            {
+              "min": [
+                450,
+                {
+                  "sum": [
+                    300,
+                    {
+                      "pct": 6,
+                      "of": {
+                        "sub": [
+                          "ca-taxable",
+                          36000
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          [
+            48000,
+            {
+              "min": [
+                600,
+                {
+                  "sum": [
+                    450,
+                    {
+                      "pct": 25,
+                      "of": {
+                        "sub": [
+                          "ca-taxable",
+                          48000
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          [
+            72000,
+            {
+              "min": [
+                750,
+                {
+                  "sum": [
+                    600,
+                    {
+                      "pct": 25,
+                      "of": {
+                        "sub": [
+                          "ca-taxable",
+                          72000
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          [
+            200000,
+            {
+              "min": [
+                900,
+                {
+                  "sum": [
+                    750,
+                    {
+                      "pct": 25,
+                      "of": {
+                        "sub": [
+                          "ca-taxable",
+                          200000
+                        ]
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        ],
+        "strict": true,
+        "of": "ca-taxable"
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI",
+    "The reduction for dependants (factor Y)",
+    "The Ontario Trillium Benefit and LIFT credit, claimed on the return"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 124th edition, effective January 1, 2027",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf"
+    },
+    {
+      "title": "T4127 124th edition (HTML): the formulas in chapter 4",
+      "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.1 rates, income thresholds and constants (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/rtsncmtrshldcnstnt-01-27e.csv"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.2 other rates and amounts (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/thrrtsmnts-01-27e.csv"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "CRA T4127 January 2027 edition and its Table 8.1 / 8.2 CSV files",
+      "note": "Bands, rates and basic amounts from the Table 8.1 and 8.2 CSV files; the province's formulas from chapter 4 of the HTML edition, read on 28 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1523.75,
+        "ca-ei": 492.0,
+        "ca-income-tax": 1339.14,
+        "ca-on-income-tax": 743.52,
+        "ca-on-health-premium": 300.0,
+        "net": 25601.59
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3248.75,
+        "ca-ei": 984.0,
+        "ca-income-tax": 5228.76,
+        "ca-on-income-tax": 2327.46,
+        "ca-on-health-premium": 600.0,
+        "net": 47611.03
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 13131.34,
+        "ca-on-income-tax": 5884.01,
+        "ca-on-health-premium": 750.0,
+        "net": 74436.53
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 38380.59,
+        "ca-on-income-tax": 23074.01,
+        "ca-on-health-premium": 750.0,
+        "net": 131997.28
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 68921.77,
+        "ca-on-income-tax": 43273.52,
+        "ca-on-health-premium": 900.0,
+        "net": 181106.59
+      }
+    }
+  ]
+}

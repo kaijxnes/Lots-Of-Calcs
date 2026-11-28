@@ -1,0 +1,199 @@
+{
+  "id": "ca-ab",
+  "name": "Alberta",
+  "appliesTo": "Residents of Alberta on 31 December",
+  "kind": "region",
+  "country": "CA",
+  "parent": "ca",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ca-ab-credits",
+      "label": "Alberta non-refundable credits",
+      "note": "8% of the basic personal amount ($23,225) and the base CPP and EI contributions.",
+      "value": {
+        "pct": 8,
+        "of": {
+          "sum": [
+            23225,
+            "ca-contributions-credit"
+          ]
+        }
+      }
+    },
+    {
+      "id": "ca-ab-supplemental",
+      "label": "Alberta supplemental credit",
+      "note": "A quarter of the non-refundable credits above $4,993.92.",
+      "value": {
+        "mul": [
+          0.25,
+          {
+            "max": [
+              0,
+              {
+                "sub": [
+                  "ca-ab-credits",
+                  4993.92
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-ab-basic",
+      "label": "Basic Alberta tax",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              {
+                "brackets": [
+                  [
+                    0,
+                    8
+                  ],
+                  [
+                    62424,
+                    10
+                  ],
+                  [
+                    157344,
+                    12
+                  ],
+                  [
+                    188813,
+                    13
+                  ],
+                  [
+                    251750,
+                    14
+                  ],
+                  [
+                    377625,
+                    15
+                  ]
+                ],
+                "of": "ca-taxable"
+              },
+              "ca-ab-credits",
+              "ca-ab-supplemental"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ca-ab-income-tax",
+      "label": "Alberta income tax",
+      "group": "tax",
+      "note": "8% to $62,424, 10% to $157,344, 12% to $188,813, 13% to $251,750, 14% to $377,625, 15% above, less credits and the supplemental credit.",
+      "charge": {
+        "sum": [
+          "ca-ab-basic"
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Provincial credits other than the basic personal amount and CPP/EI"
+  ],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "CRA Payroll Deductions Formulas (T4127), 124th edition, effective January 1, 2027",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf"
+    },
+    {
+      "title": "T4127 124th edition (HTML): the formulas in chapter 4",
+      "url": "https://www.canada.ca/en/revenue-agency/services/forms-publications/payroll/t4127-payroll-deductions-formulas/t4127-jan/t4127-jan-payroll-deductions-formulas-computer-programs.html"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.1 rates, income thresholds and constants (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/rtsncmtrshldcnstnt-01-27e.csv"
+    },
+    {
+      "title": "T4127 January 2027: Table 8.2 other rates and amounts (CSV)",
+      "url": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/thrrtsmnts-01-27e.csv"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "CRA T4127 January 2027 edition and its Table 8.1 / 8.2 CSV files",
+      "note": "Bands, rates and basic amounts from the Table 8.1 and 8.2 CSV files; the province's formulas from chapter 4 of the HTML edition, read on 28 Nov 2026."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.canada.ca/content/dam/cra-arc/formspubs/pub/t4127-jan/t4127-01-27e.pdf",
+  "tests": [
+    {
+      "gross": 30000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 29735.0,
+        "ca-cpp": 1523.75,
+        "ca-ei": 492.0,
+        "ca-income-tax": 1339.14,
+        "ca-ab-income-tax": 380.74,
+        "net": 26264.37
+      }
+    },
+    {
+      "gross": 60000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 59435.0,
+        "ca-cpp": 3248.75,
+        "ca-ei": 984.0,
+        "ca-income-tax": 5228.76,
+        "ca-ab-income-tax": 2603.38,
+        "net": 47935.11
+      }
+    },
+    {
+      "gross": 100000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 98840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 13131.34,
+        "ca-ab-income-tax": 6406.47,
+        "net": 74664.07
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 198840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 38380.59,
+        "ca-ab-income-tax": 17336.66,
+        "net": 138484.63
+      }
+    },
+    {
+      "gross": 300000,
+      "note": "Independent implementation of the T4127 (January 2027) annual formulas (steps 1 to 5).",
+      "expect": {
+        "ca-taxable": 298840.0,
+        "ca-cpp": 4209.0,
+        "ca-ei": 1161.12,
+        "ca-income-tax": 68921.77,
+        "ca-ab-income-tax": 30807.56,
+        "net": 194472.55
+      }
+    }
+  ]
+}
