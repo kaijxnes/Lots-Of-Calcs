@@ -35,7 +35,8 @@ const thanksgiving = nth(11, 4, 4);
 const mothersDayUK = shift(easter, -21);
 const fathersDay = nth(6, 0, 3);
 
-/* [url, label, from(year), to(year), priority, icon, hint] — the window is
+/* [url, label, from(year), to(year), priority, icon, hint] — the url can be a
+   function of today's date (worked out when the window is open); the window is
    inclusive and may cross New Year; priority 1 is a headline seasonal link, 2
    a lesser one. The icon is an emoji from tools/lib/icons.js; a countdown's
    hint is its date, worked out here, so it's null. */
@@ -47,7 +48,8 @@ const SEASONAL = [
   ["/days-until/halloween/", "Days until Halloween", md(10, 1), md(10, 31), 1, "⏳", null],
   ["/days-until/bonfire-night/", "Days until Bonfire Night", md(10, 20), md(11, 5), 2, "🔥", null],
   ["/days-until/new-year/", "Days until New Year", md(12, 1), md(12, 31), 2, "📆", null],
-  ["/benefit-payment-dates/", "Christmas benefit payment dates", md(12, 1), md(1, 4), 1, "📅", "Paid early for bank holidays"],
+  [() => `/benefit-payment-dates/${MONTHS[TODAY.getUTCMonth()].toLowerCase()}-${TODAY.getUTCFullYear()}/`, "Christmas benefit payment dates", md(12, 1), md(1, 4), 1, "📅", "Paid early for bank holidays"],
+  ["/bonus-tax-calculator/", "Christmas bonus tax", md(11, 20), md(12, 24), 2, "🎁", "What you'll keep"],
   ["/self-employed-tax-calculator/", "Self-employed tax", md(12, 1), md(1, 31), 1, "🧾", "Tax and NI on profits"],
   ["/days-until/self-assessment-deadline/", "Self Assessment deadline", md(1, 1), md(1, 31), 1, "⏳", null],
   ["/payments-on-account-calculator/", "Payments on account", md(1, 1), md(1, 31), 1, "📆", "Due 31 January and 31 July"],
@@ -113,14 +115,14 @@ function pick() {
   const pm = paydayMonth(TODAY), pu = paydayUrl(pm);
   if (!fs.existsSync(path.join(site.ROOT, pu, "index.html"))) throw new Error("no payday page at " + pu);
   seen.add(pu); out.push([pu, `Payday ${MONTHS[pm[1]]} ${pm[0]}`, "📅", "When you'll be paid", true]);
-  SEASONAL.map(([u, t, f, to, pr, ic, hint]) => [u, t, closes(f, to), pr, ic, hint]).filter((x) => x[2]).sort((a, b) => a[3] - b[3] || a[2] - b[2])
+  SEASONAL.map(([u, t, f, to, pr, ic, hint]) => [typeof u === "function" ? u() : u, t, closes(f, to), pr, ic, hint]).filter((x) => x[2]).sort((a, b) => a[3] - b[3] || a[2] - b[2])
     .forEach(([u, t, end, pr, ic, hint]) => { if (out.length < MAX_SEASONAL + 1 && !seen.has(u)) { seen.add(u); out.push([u, t, ic, hint || `${end.getUTCDate()} ${MONTHS[end.getUTCMonth()]}`]); } });
   REGULARS.forEach(([u, t, ic, hint]) => { if (out.length < TOTAL && !seen.has(u)) { seen.add(u); out.push([u, t, ic, hint]); } });
   return out;
 }
 
 /* every link must be a real page */
-[...SEASONAL, ...REGULARS].forEach(([u]) => { if (!fs.existsSync(path.join(site.ROOT, u, "index.html"))) throw new Error("no page at " + u); });
+[...SEASONAL, ...REGULARS].map(([u]) => typeof u === "function" ? u() : u).forEach((u) => { if (!fs.existsSync(path.join(site.ROOT, u, "index.html"))) throw new Error("no page at " + u); });
 
 const links = pick();
 const file = path.join(site.ROOT, "index.html");
