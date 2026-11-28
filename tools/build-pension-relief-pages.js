@@ -49,13 +49,13 @@ const ex = run(60000, 4000), np = run(60000, 5000, "netpay"), trap = run(110000,
 const SRC = R.sources.map((s) => `<a href="${s.url}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>`).join(" and ");
 
 const P = "/pension-tax-relief-calculator/", url = SITE + P;
-const tool = `    <main class="tool split" id="pt-tool" data-rules="${esc(JSON.stringify(R))}">
-      <div class="field"><label for="pt-income">Your taxable income for the year</label><input type="number" id="pt-income" value="60000" min="0" step="any" inputmode="decimal"><p class="tool-hint" style="margin:6px 0 0;">Salary, profits, rent and other income before tax. With a net pay pension, enter it before the contribution comes off.</p></div>
+const tool = (income, paid) => { const ex = run(income, paid); return `    <main class="tool split" id="pt-tool" data-rules="${esc(JSON.stringify(R))}">
+      <div class="field"><label for="pt-income">Your taxable income for the year</label><input type="number" id="pt-income" value="${income}" min="0" step="any" inputmode="decimal"><p class="tool-hint" style="margin:6px 0 0;">Salary, profits, rent and other income before tax. With a net pay pension, enter it before the contribution comes off.</p></div>
       <div class="field-row">
         <div class="field"><label for="pt-type">Pension type</label><select id="pt-type"><option value="ras" selected>Relief at source (personal pensions, SIPPs, many workplace)</option><option value="netpay">Net pay (taken from pay before tax)</option></select></div>
         <div class="field"><label for="pt-where">Where you live</label><select id="pt-where"><option value="gb" selected>England, Wales or Northern Ireland</option><option value="gb-sct">Scotland</option></select></div>
       </div>
-      <div class="field"><label for="pt-paid" id="pt-paid-label">What you pay in a year (before the top-up)</label><input type="number" id="pt-paid" value="4000" min="0" step="any" inputmode="decimal"></div>
+      <div class="field"><label for="pt-paid" id="pt-paid-label">What you pay in a year (before the top-up)</label><input type="number" id="pt-paid" value="${paid}" min="0" step="any" inputmode="decimal"></div>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="pt-relief">${m2(ex.relief)}</div>
@@ -72,7 +72,7 @@ const tool = `    <main class="tool split" id="pt-tool" data-rules="${esc(JSON.s
         <p class="tool-hint" id="pt-note" style="margin:10px 0 0;"></p>
       </div>
     </main>
-`;
+`; };
 
 const body = `    <main class="tool">
       <h2 class="tool-section-title">How pension tax relief works</h2>
@@ -117,7 +117,7 @@ const html = site.head({ title, desc, url, ld }) + `    <header class="site-head
       <p class="page-subtitle">The tax relief on what you pay into a pension in ${YEAR}: what your provider adds, what you can <strong>claim back</strong> as a higher rate taxpayer, and what it really costs you.</p>
     </header>
 
-${tool}
+${tool(60000, 4000)}
 ${body}
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
@@ -133,5 +133,65 @@ ${site.FOOTER}
 </html>
 `;
 site.write("pension-tax-relief-calculator", html);
-site.sitemapBlock("pension relief pages", "tools/build-pension-relief-pages.js", [[P, "0.6"]]);
+
+/* /pension-tax-relief-calculator/10000/: the relief on one amount paid in
+   (relief at source), at each income */
+const PAID = [1000, 2000, R.noEarningsNet, 3000, 4000, 5000, 6000, 8000, 10000, 12000, 15000, 20000, 30000, 40000];
+const purl = (n) => `${P}${n}/`;
+function paidPage(n) {
+  const u = SITE + purl(n), gross = n / (1 - R.basicRelief / 100);
+  const INC = [0, 25000, 45000, 55000, 60000, 70000, 80000, 100000, 110000, 125000, 150000];
+  const tr = INC.map((inc) => { const r = run(inc, n), s = run(inc, n, "ras", SCT); return [inc ? m0(inc) : "No earnings", m2(r.gross), m2(r.topUp), m2(r.claim), `<strong>${m2(r.cost)}</strong>`, Math.round(r.rate) + "%", m2(s.relief)]; });
+  const b = run(30000, n), h = run(60000, n), a = run(150000, n), tp = run(110000, n);
+  const over = INC.filter((inc) => gross > Math.max(inc, R.noEarningsGross)).map((inc) => inc ? `on ${m0(inc)}` : "with no earnings");
+  const isNoEarn = n === R.noEarningsNet;
+  const q = [
+    [`How much tax relief do I get on ${m0(n)} paid into a pension?`, `Your provider adds ${m2(b.topUp)}, making ${m2(gross)}. A higher rate taxpayer on ${m0(60000)} claims another ${m2(h.claim)} back, so it costs ${m2(h.cost)}; on ${m0(150000)} you claim ${m2(a.claim)} (${YEAR}, England, Wales and Northern Ireland).`],
+    [`How do I claim higher rate relief on ${m0(n)}?`, "Through your Self Assessment tax return, or if you don't file one, by contacting HMRC (who may adjust your tax code). It's only needed for relief at source pensions; net pay pensions give it through payroll."],
+    ["Can I pay this much in?", `You get relief on contributions up to 100% of your earnings for the year, or ${m0(R.noEarningsGross)} gross (${m0(R.noEarningsNet)} paid in) if that's more, and the annual allowance is ${m0(R.annualAllowance)} including your employer's contributions.`]
+  ];
+  const title = site.fitTitle(`Tax Relief on ${m0(n)} Pension Contribution (${YEAR})`, `Pension Tax Relief on ${m0(n)} (${YEAR})`);
+  const desc = `Tax relief on ${m0(n)} paid into a pension in ${YEAR}: your provider adds ${m2(b.topUp)} (${m2(gross)} in total), and a higher rate taxpayer claims ${m2(h.claim)} back, so it costs ${m2(h.cost)}.`;
+  const ld = [site.webPage(title, desc, u, gb.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Pension Tax Relief Calculator", url], [`${m0(n)} paid in`, u]]), site.faqLd(q)];
+  return site.head({ title, desc, url: u, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${P}">← Pension tax relief calculator</a>
+      <h1 class="page-title">Tax relief on ${m0(n)} paid into a pension</h1>
+      <p class="page-subtitle">What your provider adds to ${m0(n)}, what you can claim back, and what it really costs you, ${YEAR}.</p>
+    </header>
+
+${tool(60000, n)}
+    <main class="tool">
+      <h2 class="tool-section-title">${m0(n)} paid in, by income</h2>
+${site.table(["Income", "Into pension", "Provider adds", "You claim", "Cost to you", "Relief", "Scotland: relief"], tr, 640)}      <p class="tool-hint" style="margin-top:8px;">A relief at source pension (personal pensions, SIPPs and many workplace schemes), ${YEAR} income tax bands, England, Wales and Northern Ireland unless shown.</p>
+      <p class="about-text">You pay ${m0(n)} from your take-home pay and the provider adds basic rate relief, so <strong>${m2(gross)}</strong> goes into your pension. If you pay ${B[1][1]}% or ${B[2][1]}% tax, you claim the rest through Self Assessment: an extra ${B[1][1] - R.basicRelief}% on the slice of income taxed at ${B[1][1]}% and ${B[2][1] - R.basicRelief}% on any taxed at ${B[2][1]}%. Between ${m0(100000)} and ${m0(125140)} contributions also win back Personal Allowance: on ${m0(110000)}, ${m0(n)} costs you ${m2(tp.cost)}.${over.length ? ` Relief only covers contributions up to 100% of your earnings, or ${m0(R.noEarningsGross)} gross if that's more, so ${over.length > 1 ? over.slice(0, -1).join(", ") + " and " + over[over.length - 1] : over[0]} the provider adds less.` : ""}${isNoEarn ? ` ${m0(R.noEarningsNet)} is the most you can pay in with relief if you have no earnings: it becomes ${m0(R.noEarningsGross)}.` : ""} With a net pay scheme the relief comes through payroll instead; the <a href="${P}">pension tax relief calculator</a> works that out.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. ${YEAR} income tax bands as on the <a href="/salary/">salary calculator</a>; rules from ${SRC}.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other amounts</div>
+    <p class="salary-links">${PAID.filter((x) => x !== n).map((x) => `<a href="${purl(x)}">Relief on ${m0(x)}</a>`).join(" ")}</p>
+
+${related.block(P)}
+${site.FOOTER}
+  </div>
+  <script src="/tax-engine.js"></script>
+  <script src="/pension-relief.js"></script>
+</body>
+</html>
+`;
+}
+/* hand-checked: £8,000 paid in is £10,000 gross; on £60,000 only £9,730 of income is over the £50,270 higher rate threshold,
+   so the extra 20% is claimed on £9,730 (£1,946), costing £6,054 */
+{ const r = run(60000, 8000); if (R.basicRelief === 20 && B[1][1] === 40 && higherAt === 50270 && (Math.round(r.gross) !== 10000 || Math.round(r.claim) !== 1946 || Math.round(r.cost) !== 6054)) throw new Error("pension relief: the hand-checked £8,000 example no longer comes out"); }
+PAID.forEach((n) => site.write(purl(n).replace(/^\/|\/$/g, ""), paidPage(n)));
+site.prune("pension-tax-relief-calculator", /^\d+$/);
+site.hubBlock(P, "relief by amount", "tools/build-pension-relief-pages.js", `    <main class="tool">
+      <h2 class="tool-section-title">Tax relief by amount paid in</h2>
+      <p class="salary-links">${PAID.map((n) => `<a href="${purl(n)}">Relief on ${m0(n)}</a>`).join(" ")}</p>
+    </main>
+`);
+site.sitemapBlock("pension relief pages", "tools/build-pension-relief-pages.js", [[P, "0.6"]].concat(PAID.map((n) => [purl(n), "0.5"])));
 console.log(`built the pension tax relief calculator (${YEAR}; £4,000 on £60,000 gets ${m0(ex.relief)})`);
