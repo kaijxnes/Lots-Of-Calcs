@@ -54,27 +54,30 @@ const RULES = { cfg: CFG, cfgS: CFGS, R: { taxFreeLimit: R.taxFreeLimit } };
 { const s = TP.calc(UK, CFGS, R, Object.assign({ afterP45: true }, hc)); if (cfg.year === "2026/27" && (s.paye !== 2207.38 || s.year !== 1300)) throw new Error("termination pay: the Scottish hand-checked example no longer comes out"); }
 const MONTHS = ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"];
 const D0 = { statutory: 10000, severance: 5000, weeks: 0, weekly: 700, earnings: 1500, salary: 36000, month: 6 };
-const def = TP.calc(UK, cfg, R, { statutory: D0.statutory, severance: D0.severance, noticePay: 0, earnings: D0.earnings, salary: D0.salary, month: D0.month });
+const AMOUNTS = [30000, 35000, 40000, 45000, 50000, 60000, 70000, 75000, 80000, 90000, 100000, 125000, 150000, 200000];
+const aurl = (n) => `${P}${n}/`;
 const rows = [20000, 30000, 40000, 50000, 75000, 100000].map((t) => {
   const a = TP.calc(UK, cfg, R, { statutory: 0, severance: t, salary: 36000, month: 6 }), b = TP.calc(UK, cfg, R, { statutory: 0, severance: t, salary: 60000, month: 6 });
-  return [m0(t), m0(a.free), m0(a.over), m2(a.year), m2(b.year)];
+  return [AMOUNTS.includes(t) ? `<a href="${aurl(t)}">${m0(t)}</a>` : m0(t), m0(a.free), m0(a.over), m2(a.year), m2(b.year)];
 });
 const field = (id, label, value, extra) => `<div class="field"><label for="${id}">${label}</label><input type="number" id="${id}" value="${value}" min="0" step="any" inputmode="decimal"${extra || ""}></div>`;
-const tool = `    <main class="tool split" id="tp-tool" data-rules="${esc(JSON.stringify(RULES))}">
+function tool(D) {
+  const def = TP.calc(UK, cfg, R, { statutory: D.statutory, severance: D.severance, noticePay: D.weeks * D.weekly, earnings: D.earnings, salary: D.salary, month: D.month });
+  return `    <main class="tool split" id="tp-tool" data-rules="${esc(JSON.stringify(RULES))}">
       <div class="field-row">
-        ${field("tp-statutory", "Statutory redundancy pay", D0.statutory)}
-        ${field("tp-severance", "Enhanced redundancy, severance or settlement pay", D0.severance)}
+        ${field("tp-statutory", "Statutory redundancy pay", D.statutory)}
+        ${field("tp-severance", "Enhanced redundancy, severance or settlement pay", D.severance)}
       </div>
       <div class="field-row">
-        ${field("tp-earnings", "Holiday pay, unpaid wages, bonus or pay in lieu of notice", D0.earnings)}
-        ${field("tp-salary", "Your salary a year", D0.salary)}
+        ${field("tp-earnings", "Holiday pay, unpaid wages, bonus or pay in lieu of notice", D.earnings)}
+        ${field("tp-salary", "Your salary a year", D.salary)}
       </div>
       <div class="field-row">
-        ${field("tp-weeks", "Weeks of notice you won't work and aren't paid for separately", D0.weeks)}
-        ${field("tp-weekly", "Your weekly pay", D0.weekly)}
+        ${field("tp-weeks", "Weeks of notice you won't work and aren't paid for separately", D.weeks)}
+        ${field("tp-weekly", "Your weekly pay", D.weekly)}
       </div>
       <div class="field-row">
-        <div class="field"><label for="tp-month">Month you leave</label><select id="tp-month">${MONTHS.map((n, i) => `<option value="${i + 1}"${i + 1 === D0.month ? " selected" : ""}>${n}</option>`).join("")}</select></div>
+        <div class="field"><label for="tp-month">Month you leave</label><select id="tp-month">${MONTHS.map((n, i) => `<option value="${i + 1}"${i + 1 === D.month ? " selected" : ""}>${n}</option>`).join("")}</select></div>
         <div class="field"><label style="margin-top:26px;"><input type="checkbox" id="tp-p45" style="width:auto; margin-right:8px;">Paid after I get my P45</label></div>
       </div>
       <div class="field"><label for="tp-region">Where you live</label><select id="tp-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
@@ -98,6 +101,8 @@ const tool = `    <main class="tool split" id="tp-tool" data-rules="${esc(JSON.s
       </div>
     </main>
 `;
+}
+const def = TP.calc(UK, cfg, R, { statutory: D0.statutory, severance: D0.severance, noticePay: 0, earnings: D0.earnings, salary: D0.salary, month: D0.month });
 const body = `    <main class="tool">
       <h2 class="tool-section-title">Tax on a redundancy or settlement payment</h2>
 ${site.table(["Severance pay", "Tax-free", "Taxed", "Tax (£36,000 salary)", "Tax (£60,000 salary)"], rows, 640)}      <p class="tool-hint" style="margin-top:8px;">Income Tax on a one-off payment with no notice pay, paid with your final pay when leaving in September, ${esc(cfg.year)}, with no more income that tax year. No employee National Insurance on the part over ${m0(R.taxFreeLimit)}.</p>
@@ -127,12 +132,15 @@ const html = site.head({ title, desc, url: u, ld: [site.webPage(title, desc, u, 
       <p class="page-subtitle">The tax on redundancy, severance or settlement pay, with the ${m0(R.taxFreeLimit)} tax-free limit, notice pay and holiday pay.</p>
     </header>
 
-${tool}
+${tool(D0)}
 ${body}
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rules from ${SRC}; Income Tax and National Insurance from the ${esc(cfg.year)} UK tax file. Last checked ${site.niceDate(R.lastChecked)}.</p>
     </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Tax on redundancy pay by amount</div>
+    <p class="salary-links">${AMOUNTS.map((n) => `<a href="${aurl(n)}">Tax on ${m0(n)}</a>`).join(" ")}</p>
 
 ${related.block(P)}
 ${site.FOOTER}
@@ -143,5 +151,58 @@ ${site.FOOTER}
 </html>
 `;
 site.write("redundancy-tax-calculator", html);
-site.sitemapBlock("redundancy tax pages", "tools/build-termination-pay-pages.js", [[P, "0.6"]]);
+
+/* ---------- one page per amount: "tax on £50,000 redundancy" ---------- */
+const SALARIES = [25000, 35000, 50000, 70000, 100000];
+function amountPage(n) {
+  const url = SITE + aurl(n);
+  const c = (o) => TP.calc(UK, cfg, R, Object.assign({ statutory: 0, severance: n, earnings: 0, month: 6 }, o));
+  const cs = (o) => TP.calc(UK, CFGS, R, Object.assign({ statutory: 0, severance: n, earnings: 0, month: 6 }, o));
+  const base = c({ salary: 35000 }), p45 = c({ salary: 35000, afterP45: true }), sc = cs({ salary: 35000 });
+  const rows = SALARIES.map((sal) => { const a = c({ salary: sal }), b = c({ salary: sal, afterP45: true }), z = cs({ salary: sal }); return [m0(sal), m2(a.year), m2(a.paye), m2(b.paye), m2(z.year)]; });
+  const months = [[1, "April"], [6, "September"], [10, "January"], [12, "March"]].map(([mo, nm]) => { const a = c({ salary: 35000, month: mo }); return [`Leaving in ${nm}`, m2(a.year), m2(a.paye), m2(n - a.year)]; });
+  const title = site.fitTitle(`Tax on ${m0(n)} Redundancy Pay — How Much You Keep (${cfg.year})`, `Tax on ${m0(n)} Redundancy Pay (UK)`);
+  const desc = n <= R.taxFreeLimit ? `${m0(n)} of redundancy or severance pay is within the ${m0(R.taxFreeLimit)} tax-free limit, so no Income Tax or National Insurance, unless part of it is notice pay or holiday pay (${cfg.year}).` : `On ${m0(n)} of redundancy pay, ${m0(R.taxFreeLimit)} is tax-free and ${m0(n - R.taxFreeLimit)} is taxed: about ${m0(base.year)} of Income Tax on a ${m0(35000)} salary, with no National Insurance (${cfg.year}).`;
+  const q = [
+    [`How much tax will I pay on ${m0(n)} redundancy pay?`, n <= R.taxFreeLimit ? `None, if it's all statutory redundancy pay, severance or enhanced redundancy: the first ${m0(R.taxFreeLimit)} is tax-free. Any holiday pay, unpaid wages or pay in lieu of notice in it is taxed as normal pay.` : `${m0(R.taxFreeLimit)} is tax-free and ${m0(n - R.taxFreeLimit)} is taxed. On a ${m0(35000)} salary, leaving in September with no more income that tax year, that's about ${m2(base.year)} of Income Tax (${esc(cfg.year)}), so you keep ${m2(n - base.year)}.`],
+    [`How much tax is taken off ${m0(n)} redundancy pay?`, n <= R.taxFreeLimit ? "Nothing, as long as it's all within the tax-free limit." : `Paid with your final salary, PAYE takes about ${m2(base.paye)}. If it's paid after your P45, your employer uses an 0T code on a month 1 basis and about ${m2(p45.paye)} comes off. If you think you've paid too much tax, contact HMRC.`],
+    [`Do I pay National Insurance on ${m0(n)} redundancy pay?`, `No: there's no employee National Insurance on redundancy or severance pay, even over ${m0(R.taxFreeLimit)}. Your employer pays Class 1A National Insurance on the part over ${m0(R.taxFreeLimit)}.`],
+    [`Is ${m0(n)} redundancy pay taxed more in Scotland?`, n <= R.taxFreeLimit ? "No: the tax-free limit is the same across the UK." : `It's taxed at Scottish rates: about ${m2(sc.year)} on a ${m0(35000)} salary, leaving in September (${esc(cfg.year)}).`]
+  ];
+  const ld = [site.webPage(title, desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Redundancy Tax Calculator", u], [m0(n), url]]), site.faqLd(q)];
+  const others = AMOUNTS.filter((x) => x !== n).map((x) => `<a href="${aurl(x)}">${m0(x)}</a>`).join(" ");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${P}">← Redundancy tax calculator</a>
+      <h1 class="page-title">Tax on ${m0(n)} redundancy pay</h1>
+      <p class="page-subtitle">${n <= R.taxFreeLimit ? `All of it within the <strong>${m0(R.taxFreeLimit)}</strong> tax-free limit.` : `<strong>${m0(R.taxFreeLimit)}</strong> tax-free, <strong>${m0(n - R.taxFreeLimit)}</strong> taxed: about <strong>${m0(base.year)}</strong> of tax on a ${m0(35000)} salary (${esc(cfg.year)}).`}</p>
+    </header>
+
+${tool({ statutory: 0, severance: n, weeks: 0, weekly: 700, earnings: 0, salary: 35000, month: 6 })}
+    <main class="tool">
+      <h2 class="tool-section-title">Tax on ${m0(n)} by salary</h2>
+${site.table(["Your salary", "Tax for the year", "Taken off with final pay", "Taken off after your P45 (0T)", "Tax for the year in Scotland"], rows, 680)}      <p class="tool-hint" style="margin-top:8px;">${m0(n)} of redundancy or severance pay with no notice pay or holiday pay in it, leaving in September with no more income that tax year (${esc(cfg.year)}). The tax for the year is what you owe; PAYE can take more. If you think you've paid too much tax, contact HMRC.</p>
+      <h2 class="tool-section-title" style="margin-top:18px;">When you leave makes a difference</h2>
+${site.table(["", "Tax for the year", "Taken off with final pay", "You keep after the year's tax"], months, 560)}      <p class="tool-hint" style="margin-top:8px;">On a ${m0(35000)} salary. Leaving earlier in the tax year means less salary that year, so more of the payment can fall in the basic rate band.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rules from ${SRC}; Income Tax from the ${esc(cfg.year)} UK and Scottish tax files. Last checked ${site.niceDate(R.lastChecked)}.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other amounts</div>
+    <p class="salary-links">${others}</p>
+
+${related.block(P)}
+${site.FOOTER}
+  </div>
+  <script src="/uk-calcs.js"></script>
+  <script src="/termination-pay.js"></script>
+</body>
+</html>
+`;
+}
+const urls = [[P, "0.6"]];
+AMOUNTS.forEach((n) => { site.write(`redundancy-tax-calculator/${n}`, amountPage(n)); urls.push([aurl(n), "0.5"]); });
+site.sitemapBlock("redundancy tax pages", "tools/build-termination-pay-pages.js", urls);
 console.log(`built the redundancy tax calculator (${m0(10000)} statutory + ${m0(5000)} severance + ${m0(1500)} holiday pay: ${m2(def.paye)} tax)`);

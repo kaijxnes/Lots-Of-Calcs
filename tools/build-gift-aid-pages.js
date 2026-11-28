@@ -48,10 +48,12 @@ const RULES = { cfg: CFG, cfgS: CFGS, R: { top: R.top, maxTimesTax: R.maxTimesTa
 if (cfg.year === "2026/27" && (GA.calc(UK, CFGS, R, { donation: 100, income: 60000 }).back !== 27.5 || GA.calc(UK, CFGS, R, { donation: 100, income: 40000 }).back !== 1.25)) throw new Error("gift aid: the Scottish hand-checked examples no longer come out");
 const def = c(100, 60000);
 const rows = [30000, 60000, 110000, 150000].map((i) => { const a = c(100, i), b = c(1000, i); return [m0(i), m2(a.back), m2(a.cost), m2(b.back), m2(b.cost)]; });
-const tool = `    <main class="tool split" id="ga-tool" data-rules="${esc(JSON.stringify(RULES))}">
+function tool(D, I) {
+  const def = c(D, I);
+  return `    <main class="tool split" id="ga-tool" data-rules="${esc(JSON.stringify(RULES))}">
       <div class="field-row">
-        <div class="field"><label for="ga-donation">Donations this tax year</label><input type="number" id="ga-donation" value="100" min="0" step="any" inputmode="decimal"></div>
-        <div class="field"><label for="ga-income">Your taxable income a year</label><input type="number" id="ga-income" value="60000" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ga-donation">Donations this tax year</label><input type="number" id="ga-donation" value="${D}" min="0" step="any" inputmode="decimal"></div>
+        <div class="field"><label for="ga-income">Your taxable income a year</label><input type="number" id="ga-income" value="${I}" min="0" step="any" inputmode="decimal"></div>
       </div>
       <div class="field"><label for="ga-region">Where you live</label><select id="ga-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="ga-error" role="alert" style="color: var(--bad); display: none;"></p>
@@ -71,6 +73,9 @@ const tool = `    <main class="tool split" id="ga-tool" data-rules="${esc(JSON.s
       </div>
     </main>
 `;
+}
+const AMOUNTS = [10, 20, 25, 50, 100, 200, 250, 500, 1000, 2000, 5000, 10000];
+const aurl = (n) => `${P}${n}/`;
 const body = `    <main class="tool">
       <h2 class="tool-section-title">What you can claim back</h2>
 ${site.table(["Taxable income", "Back on £100", "Real cost of £100", "Back on £1,000", "Real cost of £1,000"], rows, 620)}      <p class="tool-hint" style="margin-top:8px;">${esc(cfg.year)} rates, England, Wales and Northern Ireland. The charity gets ${m0(125)} or ${m0(1250)} either way.</p>
@@ -97,12 +102,15 @@ const html = site.head({ title, desc, url: u, ld: [site.webPage(title, desc, u, 
       <p class="page-subtitle">What a charity gets with Gift Aid, and how much higher rate taxpayers can claim back.</p>
     </header>
 
-${tool}
+${tool(100, 60000)}
 ${body}
     <main class="tool">
       <h2 class="tool-section-title">Frequently asked questions</h2>
 ${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rules from ${SRC}; Income Tax from the ${esc(cfg.year)} UK tax file. Last checked ${site.niceDate(R.lastChecked)}.</p>
     </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Gift Aid by amount</div>
+    <p class="salary-links">${AMOUNTS.map((n) => `<a href="${aurl(n)}">Gift Aid on ${m0(n)}</a>`).join(" ")}</p>
 
 ${related.block(P)}
 ${site.FOOTER}
@@ -113,5 +121,55 @@ ${site.FOOTER}
 </html>
 `;
 site.write("gift-aid-calculator", html);
-site.sitemapBlock("gift aid pages", "tools/build-gift-aid-pages.js", [[P, "0.6"]]);
+
+/* ---------- one page per amount: "Gift Aid on £1,000" ---------- */
+const PAYERS = [["Basic rate (20%)", "England, Wales or NI", 30000, cfg], ["Higher rate (40%)", "England, Wales or NI", 60000, cfg], ["Additional rate (45%)", "England, Wales or NI", 150000, cfg],
+  ["Intermediate rate (21%)", "Scotland", 40000, CFGS], ["Higher rate (42%)", "Scotland", 60000, CFGS], ["Advanced rate (45%)", "Scotland", 90000, CFGS], ["Top rate (48%)", "Scotland", 150000, CFGS]];
+function amountPage(n) {
+  const url = SITE + aurl(n), gross = n * (1 + R.top / 100);
+  const res = PAYERS.map(([rate, where, inc, conf]) => [rate, where, inc, GA.calc(UK, conf, R, { donation: n, income: inc })]);
+  const rows = res.map(([rate, where, inc, r]) => [rate, where, m0(inc), m2(r.back), m2(r.cost)]);
+  const hi = res[1][3], ad = res[2][3];
+  const title = site.fitTitle(`Gift Aid on ${m0(n)} — What the Charity Gets and What You Claim Back`, `Gift Aid on ${m0(n)} — Charity Gets ${m2(gross)}`);
+  const desc = `Gift Aid on a ${m0(n)} donation: the charity gets ${m2(gross)}. A 40% taxpayer can claim back ${m2(hi.back)} and a 45% taxpayer ${m2(ad.back)}, so the gift really costs ${m2(hi.cost)} or ${m2(ad.cost)} (${cfg.year}).`;
+  const q = [
+    [`How much is Gift Aid on ${m0(n)}?`, `${m2(gross - n)}: the charity claims ${R.top}p for every £1, so your ${m0(n)} is worth ${m2(gross)} to it. It doesn't cost you anything extra.`],
+    [`How much can I claim back on a ${m0(n)} donation?`, `A higher rate (40%) taxpayer can claim back ${m2(hi.back)} and an additional rate (45%) taxpayer ${m2(ad.back)}, on a Self Assessment tax return or by asking HMRC to change their tax code. Basic rate taxpayers don't get anything back: the charity gets the relief.`],
+    [`What does a ${m0(n)} donation really cost a higher rate taxpayer?`, `${m2(hi.cost)} after claiming back ${m2(hi.back)} (${esc(cfg.year)}), for a gift worth ${m2(gross)} to the charity.`],
+    ["Do I pay enough tax for Gift Aid?", `Your donations qualify as long as they're not more than ${R.maxTimesTax} times the tax you've paid in the tax year. For ${m0(n)}, that means paying at least ${m2(n / R.maxTimesTax)} of Income Tax or Capital Gains Tax.`]
+  ];
+  const ld = [site.webPage(title, desc, url, R.lastChecked), site.breadcrumb([["Home", SITE + "/"], ["Gift Aid Calculator", u], [m0(n), url]]), site.faqLd(q)];
+  const others = AMOUNTS.filter((x) => x !== n).map((x) => `<a href="${aurl(x)}">${m0(x)}</a>`).join(" ");
+  return site.head({ title, desc, url, ld }) + `    <header class="site-header">
+      <a class="back-link" href="${P}">← Gift Aid calculator</a>
+      <h1 class="page-title">Gift Aid on ${m0(n)}</h1>
+      <p class="page-subtitle">The charity gets <strong>${m2(gross)}</strong>; a higher rate taxpayer can claim back <strong>${m2(hi.back)}</strong> (${esc(cfg.year)}).</p>
+    </header>
+
+${tool(n, 60000)}
+    <main class="tool">
+      <h2 class="tool-section-title">What you can claim back on ${m0(n)}</h2>
+${site.table(["Your top rate", "Where", "Example income", "You claim back", "Real cost to you"], rows, 640)}      <p class="tool-hint" style="margin-top:8px;">The charity gets ${m2(gross)} in every case. Worked out with the basic rate limit and the limits above it extended by the grossed-up gift (in Scotland, the Scottish basic rate limit and those above it), ${esc(cfg.year)} rates. Above ${m0(cfg.paTaperFrom)} of income the gift can also win back Personal Allowance, so you can get more back than shown.</p>
+    </main>
+
+    <main class="tool">
+      <h2 class="tool-section-title">Frequently asked questions</h2>
+${site.faqHtml(q)}      <p class="tool-hint" style="margin-top:12px;">A guide, not advice. Rules from ${SRC}; Income Tax from the ${esc(cfg.year)} UK and Scottish tax files. Last checked ${site.niceDate(R.lastChecked)}.</p>
+    </main>
+
+    <div class="hub-group-title" style="margin-top:28px;">Other amounts</div>
+    <p class="salary-links">${others}</p>
+
+${related.block(P)}
+${site.FOOTER}
+  </div>
+  <script src="/uk-calcs.js"></script>
+  <script src="/gift-aid.js"></script>
+</body>
+</html>
+`;
+}
+const urls = [[P, "0.6"]];
+AMOUNTS.forEach((n) => { site.write(`gift-aid-calculator/${n}`, amountPage(n)); urls.push([aurl(n), "0.5"]); });
+site.sitemapBlock("gift aid pages", "tools/build-gift-aid-pages.js", urls);
 console.log(`built the Gift Aid calculator (${m0(100)} at 40%: ${m2(def.back)} back)`);
