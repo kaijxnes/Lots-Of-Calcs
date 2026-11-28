@@ -292,8 +292,50 @@ function redundancy() {
     results: [row("Weeks' pay due", "rd-weeks", String(r.weeks)), row("Week's pay used", "rd-week", g2(r.weekPay)), row("Statutory redundancy pay", "rd-total", g0(r.total), "highlight")].join("\n"),
     hint: `Half a week's pay for each full year you were under 22, a week's pay for each year aged 22 to 40, and a week and a half for each year aged 41 or older; the last ${d.maxYears} years count, weekly pay is capped at £${d.weekCap} and the total at £${d.maxTotal.toLocaleString("en-GB")} (redundancies from ${new Date(d.from).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}). You need ${d.minYears} years' service. Your contract may give more.`,
     sources: src(d.source, "Redundancy pay"),
+    more: `    <main class="tool">
+      <h2 class="tool-section-title">Redundancy pay by years of service</h2>
+      <p class="salary-links">${RD_YEARS.map((y) => `<a href="${rdurl(y)}">${y} years' service</a>`).join(" ")}</p>
+    </main>
+
+`,
     q: [
       ["How much statutory redundancy pay will I get?", `It depends on your age, length of service and weekly pay: half a week's pay for each full year under 22, one week for each year from 22 to 40, and one and a half weeks for each year from 41. Weekly pay is capped at £${d.weekCap}, service at ${d.maxYears} years, and the total at £${d.maxTotal.toLocaleString("en-GB")}.`],
+      ["Do I qualify for redundancy pay?", `You need to be an employee with at least ${d.minYears} years' continuous service with the employer.`],
+      ["Is redundancy pay taxed?", "Statutory and contractual redundancy pay are usually tax-free up to a limit, but pay in lieu of notice and holiday pay are taxed as earnings. HMRC's guidance on termination payments has the details."]
+    ] });
+}
+
+/* redundancy pay by years of service: /redundancy-pay-calculator/10-years/ */
+const RD_YEARS = []; for (let y = cfg.red.minYears; y <= cfg.red.maxYears; y++) RD_YEARS.push(y);
+const rdurl = (y) => `/redundancy-pay-calculator/${y}-years/`;
+/* hand-checked: aged 45, 10 years: ages 44 to 41 at 1.5 weeks (6), 40 to 35 at 1 week (6) = 12 weeks x £700 = £8,400 */
+{ const r = U.redundancy(cfg, 45, 10, 700); if (r.weeks !== 12 || (cfg.red.weekCap >= 700 && r.total !== 8400)) throw new Error("redundancy: the hand-checked example no longer comes out"); }
+function redundancyYears(years) {
+  const d = cfg.red, path = rdurl(years);
+  const AGES = [20, 25, 30, 35, 40, 45, 50, 55, 60, 65].filter((a) => a >= years + 16);
+  const PAYS = [300, 500, 700, d.weekCap];
+  const rows = AGES.map((a) => { const w = U.redundancy(cfg, a, years, 1).weeks; return [String(a), String(w)].concat(PAYS.map((p) => g0(U.redundancy(cfg, a, years, p).total))); });
+  const lo = U.redundancy(cfg, AGES[0], years, d.weekCap), hi = U.redundancy(cfg, AGES[AGES.length - 1], years, d.weekCap);
+  const ex = U.redundancy(cfg, Math.max(45, years + 16), years, 600), exAge = Math.max(45, years + 16);
+  return shell({ path, id: "rd", name: "Redundancy Pay Calculator", related: "/redundancy-pay-calculator/",
+    crumbs: [["Redundancy Pay Calculator", SITE + "/redundancy-pay-calculator/"], [`${years} years' service`, SITE + path]], back: ["/redundancy-pay-calculator/", "Redundancy pay calculator"],
+    title: site.fitTitle(`Redundancy Pay for ${years} Years' Service (${Y}) — UK Statutory`, `Redundancy Pay for ${years} Years' Service`),
+    desc: `Statutory redundancy pay after ${years} years' service in ${Y}: ${lo.weeks} to ${hi.weeks} weeks' pay depending on your age, up to ${g0(hi.total)} with weekly pay capped at £${d.weekCap}. Aged ${exAge} on £600 a week: ${g0(ex.total)}.`,
+    h1: `Redundancy pay for ${years} years' service`, sub: `Statutory redundancy pay after ${years} full years with your employer, by age and weekly pay.`,
+    form: pair(f("rd-age", "Your age now", exAge, ' step="1"'), f("rd-years", "Full years worked for this employer", years, ' step="1"')) + "\n" + f("rd-weekly", "Weekly pay before tax", 600),
+    results: [row("Weeks' pay due", "rd-weeks", String(ex.weeks)), row("Week's pay used", "rd-week", g2(ex.weekPay)), row("Statutory redundancy pay", "rd-total", g0(ex.total), "highlight")].join("\n"),
+    hint: `Half a week's pay for each full year you were under 22, a week's pay for each year aged 22 to 40, and a week and a half for each year aged 41 or older; the last ${d.maxYears} years count, weekly pay is capped at £${d.weekCap} and the total at £${d.maxTotal.toLocaleString("en-GB")} (redundancies from ${new Date(d.from).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}). You need ${d.minYears} years' service. Your contract may give more.`,
+    sources: src(d.source, "Redundancy pay"),
+    more: `    <main class="tool">
+      <h2 class="tool-section-title">Redundancy pay after ${years} years, by age and weekly pay</h2>
+${site.table(["Age now", "Weeks' pay", "£300 a week", "£500 a week", "£700 a week", `£${d.weekCap}+ a week`], rows, 560)}      <p class="tool-hint" style="margin-top:8px;">Statutory redundancy pay, ${Y}, for redundancies from ${new Date(d.from).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}. Weekly pay is before tax and capped at £${d.weekCap}.</p>
+      <p class="about-text">Each of your ${years} full years counts by the age you were during it: half a week's pay under 22, a week from 22 to 40, and a week and a half from 41. So ${years} years is between ${lo.weeks} and ${hi.weeks} weeks' pay. The first £30,000 of redundancy pay is usually tax-free: the <a href="/redundancy-tax-calculator/">redundancy tax calculator</a> works out what you keep, and the <a href="/guides/being-made-redundant/">being made redundant guide</a> covers the rest.</p>
+      <p class="salary-links">${RD_YEARS.filter((y) => y !== years).map((y) => `<a href="${rdurl(y)}">${y} years</a>`).join(" ")}</p>
+    </main>
+
+`,
+    q: [
+      [`How much redundancy pay do I get for ${years} years' service?`, `Between ${lo.weeks} and ${hi.weeks} weeks' pay, depending on your age, with weekly pay capped at £${d.weekCap}: up to ${g0(hi.total)}. Aged ${exAge} on £600 a week, it's ${ex.weeks} weeks: ${g0(ex.total)}.`],
       ["Do I qualify for redundancy pay?", `You need to be an employee with at least ${d.minYears} years' continuous service with the employer.`],
       ["Is redundancy pay taxed?", "Statutory and contractual redundancy pay are usually tax-free up to a limit, but pay in lieu of notice and holiday pay are taxed as earnings. HMRC's guidance on termination payments has the details."]
     ] });
@@ -372,6 +414,9 @@ MP_SALARIES.forEach((sal) => site.write(mpurl(sal).replace(/^\/|\/$/g, ""), mate
 site.prune("maternity-pay-calculator", /^\d+$/);
 DV_AMOUNTS.forEach((n) => site.write(dvurl(n).replace(/^\/|\/$/g, ""), dividendAmount(n)));
 site.prune("dividend-tax-calculator", /^\d+$/);
+RD_YEARS.forEach((y) => site.write(rdurl(y).replace(/^\/|\/$/g, ""), redundancyYears(y)));
+site.prune("redundancy-pay-calculator", /^\d+-years$/);
+site.sitemapBlock("redundancy pay by years", "tools/build-uk-calcs.js", RD_YEARS.map((y) => [rdurl(y), "0.5"]));
 site.sitemapBlock("dividend tax by amount", "tools/build-uk-calcs.js", DV_AMOUNTS.map((n) => [dvurl(n), "0.5"]));
 site.sitemapBlock("maternity pay by salary", "tools/build-uk-calcs.js", MP_SALARIES.map((sal) => [mpurl(sal), "0.5"]));
 console.log(`built ${PAGES.length} UK calculators on ${Y} rates`);
