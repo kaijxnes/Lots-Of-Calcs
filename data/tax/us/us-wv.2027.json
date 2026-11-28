@@ -1,0 +1,155 @@
+{
+  "id": "us-wv",
+  "name": "West Virginia",
+  "appliesTo": "Residents of West Virginia",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "wv-taxable",
+      "label": "West Virginia taxable income",
+      "show": true,
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              {
+                "mul": [
+                  2000,
+                  {
+                    "status": {
+                      "single": 1,
+                      "married": 2
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "wv-income-tax",
+      "label": "West Virginia income tax",
+      "group": "tax",
+      "note": "The 2026 rates (SB 392), which stay in force for 2027 unless a further cut is certified under §11-21-4h.",
+      "charge": {
+        "brackets": [
+          [
+            0,
+            2.11
+          ],
+          [
+            10000,
+            2.81
+          ],
+          [
+            25000,
+            3.16
+          ],
+          [
+            40000,
+            4.22
+          ],
+          [
+            60000,
+            4.58
+          ]
+        ],
+        "of": "wv-taxable"
+      }
+    }
+  ],
+  "notModelled": [
+    "Low-income family tax credit"
+  ],
+  "provisional": [
+    "Rates: the 2026 rates, unless the Secretary of Revenue and State Auditor certify a further cut under §11-21-4h for 2027 (none found by 28 Nov 2026)"
+  ],
+  "sources": [
+    {
+      "title": "West Virginia Tax Division — 2026 income tax rate cut",
+      "url": "https://tax.wv.gov/Individuals/Pages/PersonalIncomeTaxReductionBill.aspx"
+    },
+    {
+      "title": "West Virginia Senate Bill 392 (2026), §11-21-4j(a)",
+      "url": "https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Family Tax Credit Tables",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=14"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=26"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Senior Citizens Tax Credit Worksheet",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=36"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Tax Rate Schedules",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=37"
+    },
+    {
+      "title": "West Virginia Personal Income Tax Forms And Instructions 2025, Schedule M Instructions LINE 34",
+      "url": "https://tax.wv.gov/Documents/PIT/2025/it140.PersonalIncomeTaxFormsAndInstructions.2025.pdf#page=28"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Check for 2027 changes, 28 Nov 2026",
+      "note": "SB 392 (2026) set 2.11% to 4.58% from 2026 (W. Va. Code §11-21-4j). §11-21-4h allows a further cut from 1 January 2027 of up to 10% if excess revenue is certified after 15 August; no certification or Tax Commissioner notice was found. The $2,000 exemption is fixed in statute."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/wv",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "wv-taxable": 38000,
+        "wv-income-tax": 1043.3,
+        "net": 33344.7
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "wv-taxable": 83000,
+        "wv-income-tax": 3003.9,
+        "net": 65904.1
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "wv-taxable": 146000,
+        "wv-income-tax": 5889.3,
+        "net": 117856.7
+      },
+      "options": {
+        "status": "married"
+      }
+    }
+  ]
+}
