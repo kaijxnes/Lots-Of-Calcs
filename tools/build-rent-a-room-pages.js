@@ -17,7 +17,7 @@ const site = require("./lib/site.js");
 const related = require("./related.js");
 const UK = require("../uk-calcs.js");
 const RR = require("../rent-a-room.js");
-const { cfg } = require("./lib/uk-config.js")();
+const { cfg, scot } = require("./lib/uk-config.js")();
 const { esc, SITE } = site;
 
 const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/rent-a-room.json"), "utf8"));
@@ -36,7 +36,10 @@ if (!low.under || low.due !== 0 || shared.under || shared.best !== "B" || shared
 const P = "/rent-a-room-calculator/", u = SITE + P;
 const SRC = R.sources.map((s) => `<a href="${s.url}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>`).join(" and ");
 const CFG = { pa: cfg.pa, paTaperFrom: cfg.paTaperFrom, paTaper: cfg.paTaper, basicBand: cfg.basicBand, addlFrom: cfg.addlFrom, rates: cfg.rates, div: cfg.div };
-const RULES = { cfg: CFG, R: { limit: R.limit, shared: R.shared } };
+const CFGS = Object.assign({}, CFG, { edges: scot.edges, rates: scot.rates });
+const RULES = { cfg: CFG, cfgS: CFGS, R: { limit: R.limit, shared: R.shared } };
+/* Scotland, hand-checked for 2026/27: on £30,000 the £1,600 (A) and £3,100 (B) sit in the 21% band: £336 and £651 */
+{ const s = RR.calc(UK, CFGS, R, { receipts: 10600, expenses: 9000, other: 30000 }); if (cfg.year === "2026/27" && (s.taxA !== 336 || s.taxB !== 651)) throw new Error("rent a room: the Scottish hand-checked example no longer comes out"); }
 const def = RR.calc(UK, cfg, R, { receipts: 150 * 52, expenses: 0, other: 30000 });
 const weeks = [100, 125, 144, 150, 175, 200, 250].map((w) => { const r = RR.calc(UK, cfg, R, { receipts: w * 52, expenses: 0, other: 30000 }), h = RR.calc(UK, cfg, R, { receipts: w * 52, expenses: 0, other: 60000 }); return [m0(w), m0(w * 52), r.under ? "Tax-free" : m2(r.due), h.under ? "Tax-free" : m2(h.due)]; });
 const tool = `    <main class="tool split" id="rr-tool" data-rules="${esc(JSON.stringify(RULES))}">
@@ -50,8 +53,9 @@ const tool = `    <main class="tool split" id="rr-tool" data-rules="${esc(JSON.s
         <div class="field"><label for="rr-other">Your other income this tax year</label><input type="number" id="rr-other" value="30000" min="0" step="any" inputmode="decimal"></div>
       </div>
       <div class="field"><label><input type="checkbox" id="rr-shared" style="width:auto; margin-right:8px;">Someone else (such as a joint owner) also gets income from letting in this home</label></div>
+      <div class="field"><label for="rr-region">Where you live</label><select id="rr-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="rr-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">For a furnished room in your only or main home. Tax at England, Wales and Northern Ireland rates (${esc(cfg.year)}); Scottish rates differ.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">For a furnished room in your only or main home. Income Tax at ${esc(cfg.year)} rates, with Scottish rates if you live in Scotland.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="rr-due">${m2(def.due)}</div>

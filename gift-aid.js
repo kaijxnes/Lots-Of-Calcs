@@ -5,7 +5,8 @@
        grossed up by a quarter;
      - your basic rate limit and higher rate limit are extended by the
        grossed-up gift (Income Tax Act 2007 s414), so less of your income is
-       taxed at 40% or 45%;
+       taxed at 40% or 45%; in Scotland, the Scottish basic rate limit and
+       every limit above it (a Scottish config has cfg.edges);
      - your adjusted net income is reduced by the grossed-up gift, which can
        restore Personal Allowance lost over £100,000;
      - donations qualify if they're not more than 4 times the tax you paid
@@ -22,6 +23,9 @@ var GiftAid = (function () {
     var wide = {};
     Object.keys(cfg).forEach(function (k) { wide[k] = cfg[k]; });
     wide.basicBand = cfg.basicBand + gross; wide.addlFrom = cfg.addlFrom + gross; wide.paTaperFrom = cfg.paTaperFrom + gross;
+    /* Scotland (s414(2)(b)): the upper limit of the Scottish basic rate and the
+       limits of every rate above it move up; the starter band doesn't */
+    if (cfg.edges) wide.edges = cfg.edges.map(function (e, i) { return i >= 2 ? e + gross : e; });
     var before = UK.incomeTax(cfg, income, 0).nsTax, after = UK.incomeTax(wide, income, 0).nsTax, back = p2(before - after);
     return { donation: p2(d), gross: p2(gross), extra: p2(gross - d), back: back, cost: p2(d - back), tax: p2(before), qualifies: d <= R.maxTimesTax * before + 1e-9, maxDonation: p2(R.maxTimesTax * before) };
   }
@@ -40,6 +44,7 @@ if (typeof module !== "undefined" && module.exports) {
     var money = function (v) { return "£" + v.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
     var OUT = ["ga-gross", "ga-extra", "ga-back", "ga-cost"];
     function run() {
+      cfg = $("ga-region").value === "scot" ? D.cfgS : D.cfg;
       var err = $("ga-error"), d = num("ga-donation"), inc = num("ga-income");
       var bad = [d, inc].some(function (v) { return !(v >= 0) || v > 1e9; }) ? "Enter amounts of 0 or more." : "";
       err.textContent = bad; err.style.display = bad ? "block" : "none";
@@ -53,6 +58,7 @@ if (typeof module !== "undefined" && module.exports) {
         r.back > 0 ? "Claim the " + money(r.back) + " back on your Self Assessment tax return, or ask HMRC to change your tax code." : "As a basic rate taxpayer there's nothing extra to claim back: the charity gets the tax relief.";
     }
     ["ga-donation", "ga-income"].forEach(function (id) { $(id).addEventListener("input", run); });
+    $("ga-region").addEventListener("change", run);
     run();
   })();
 }

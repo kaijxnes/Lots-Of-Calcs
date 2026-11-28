@@ -38,6 +38,7 @@ if (typeof module !== "undefined" && module.exports) {
     var PER = { week: 52, month: 12, year: 1 };
     var OUT = ["rr-due", "rr-receipts", "rr-limit", "rr-a", "rr-b", "rr-keep"];
     function run() {
+      cfg = $("rr-region").value === "scot" ? D.cfgS : D.cfg;
       var err = $("rr-error"), rent = num("rr-rent"), extra = num("rr-extra"), exp = num("rr-expenses"), other = num("rr-other"), per = PER[$("rr-per").value];
       var bad = [rent, extra, exp, other].some(function (v) { return !(v >= 0) || v > 1e8; }) ? "Enter amounts of 0 or more." : "";
       err.textContent = bad; err.style.display = bad ? "block" : "none";
@@ -55,6 +56,7 @@ if (typeof module !== "undefined" && module.exports) {
     }
     ["rr-rent", "rr-extra", "rr-expenses", "rr-other"].forEach(function (id) { $(id).addEventListener("input", run); });
     ["rr-per", "rr-shared"].forEach(function (id) { $(id).addEventListener("change", run); });
+    $("rr-region").addEventListener("change", run);
     run();
   })();
 }

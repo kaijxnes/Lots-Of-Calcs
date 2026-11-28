@@ -128,7 +128,7 @@
       <p class="page-subtitle"><strong>£2,500</strong> tax-free, about <strong>£0</strong> tax with no other income (2026/27).</p>
     </header>
 
-    <section class="tool split" id="pw-tool" data-rules="{&quot;cfg&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[20,40,45],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;}},&quot;R&quot;:{&quot;taxFreePct&quot;:25,&quot;lumpSumAllowance&quot;:268275}}">
+    <section class="tool split" id="pw-tool" data-rules="{&quot;cfg&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[20,40,45],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;}},&quot;cfgS&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[19,20,21,42,45,48],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;},&quot;edges&quot;:[0,3967,16956,31092,62430,125140]},&quot;R&quot;:{&quot;taxFreePct&quot;:25,&quot;lumpSumAllowance&quot;:268275}}">
       <div class="field-row">
         <div class="field"><label for="pw-amount">Amount you're taking out</label><input type="number" id="pw-amount" value="10000" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="pw-type">Taking it from</label><select id="pw-type"><option value="fresh" selected>A pot you haven't touched (25% tax-free)</option><option value="taxable">Drawdown, after your tax-free cash (all taxable)</option></select></div>
@@ -137,8 +137,9 @@
         <div class="field"><label for="pw-other">Other taxable income this tax year (wages, State Pension, other pensions)</label><input type="number" id="pw-other" value="0" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="pw-used">Lump sum allowance already used</label><input type="number" id="pw-used" value="0" min="0" step="any" inputmode="decimal"></div>
       </div>
+      <div class="field"><label for="pw-region">Where you live</label><select id="pw-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="pw-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">England, Wales and Northern Ireland Income Tax rates (2026/27). If you live in Scotland, Scottish Income Tax rates apply instead.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">Income Tax at 2026/27 rates, with Scottish rates if you live in Scotland.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="pw-net">£10,000.00</div>
@@ -233,7 +234,7 @@
       <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
     </footer>
   </div>
-  <script src="/uk-calcs.js?v=1173e01a"></script>
-  <script src="/pension-withdrawal.js?v=a74bac01"></script>
+  <script src="/uk-calcs.js?v=ffb157b0"></script>
+  <script src="/pension-withdrawal.js?v=26ad3ba5"></script>
 </body>
 </html>
