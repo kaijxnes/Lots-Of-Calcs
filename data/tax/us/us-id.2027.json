@@ -1,0 +1,164 @@
+{
+  "id": "us-id",
+  "name": "Idaho",
+  "appliesTo": "Residents of Idaho",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "id-taxable",
+      "label": "Idaho taxable income",
+      "show": true,
+      "note": "Idaho uses the federal standard deduction.",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              "us-standard-deduction"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "id-income-tax",
+      "label": "Idaho income tax",
+      "group": "tax",
+      "note": "5.3% above the first $4,811 ($9,622 married), less the $155 grocery credit per person, which is refundable.",
+      "mayBeNegative": true,
+      "charge": {
+        "sub": [
+          {
+            "brackets": {
+              "status": {
+                "single": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    4811,
+                    5.3
+                  ]
+                ],
+                "married": [
+                  [
+                    0,
+                    0
+                  ],
+                  [
+                    9622,
+                    5.3
+                  ]
+                ]
+              }
+            },
+            "of": "id-taxable"
+          },
+          {
+            "mul": [
+              155,
+              {
+                "status": {
+                  "single": 1,
+                  "married": 2
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "notModelled": [
+    "Permanent building fund tax ($10)"
+  ],
+  "provisional": [
+    "The $4,811 / $9,622 zero-rate band is the 2025 amount; Idaho indexes it and publishes the 2027 amount with its withholding tables"
+  ],
+  "sources": [
+    {
+      "title": "Idaho Legislature: H0589 (2026), which would have raised the rate from 2027, was introduced and printed but went no further",
+      "url": "https://legislature.idaho.gov/sessioninfo/2026/legislation/H0589/"
+    },
+    {
+      "title": "Idaho Individual Income Tax Instructions Packet 2025",
+      "url": "https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf#page=4"
+    },
+    {
+      "title": "House Bill 40 (2025)",
+      "url": "https://legislature.idaho.gov/sessioninfo/2025/legislation/H0040/"
+    },
+    {
+      "title": "House Bill 40 (2025) Bill Text",
+      "url": "https://legislature.idaho.gov/wp-content/uploads/sessioninfo/2025/legislation/H0040.pdf#page=6"
+    },
+    {
+      "title": "Idaho Statutes 63-3024B (3)",
+      "url": "https://legislature.idaho.gov/statutesrules/idstat/title63/t63ch30/sect63-3024b/"
+    },
+    {
+      "title": "Idaho State Tax Comission - Individual Income Tax Rate Schedule",
+      "url": "https://tax.idaho.gov/taxes/income-tax/individual-income/individual-income-tax-rate-schedule/"
+    },
+    {
+      "title": "IDAPA 35.01.01.075 - Tax on individuals, estates, and trusts",
+      "url": "https://files.dfm.idaho.gov/dfm-admin-website/rules/current/35/350101.pdf#page=17"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Check for 2027 changes, 28 Nov 2026",
+      "note": "Idaho's 5.3% rate (HB 40, 2025) and $155 grocery credit (HB 231, 2025) continue; the one 2026 rate bill (H0589) did not pass. Idaho uses the federal standard deduction, so the 2027 federal amount applies."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/id",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf#page=4",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Idaho items worked out by hand on the engine's 2027 federal standard deduction; net from the engine.",
+      "expect": {
+        "id-taxable": 23400.0,
+        "id-income-tax": 830.22,
+        "net": 33557.78
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Idaho items worked out by hand on the engine's 2027 federal standard deduction; net from the engine.",
+      "expect": {
+        "id-taxable": 68400.0,
+        "id-income-tax": 3215.22,
+        "net": 65692.78
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "Idaho items worked out by hand on the engine's 2027 federal standard deduction; net from the engine.",
+      "expect": {
+        "id-taxable": 116800.0,
+        "id-income-tax": 5370.43,
+        "net": 118375.57
+      },
+      "options": {
+        "status": "married"
+      }
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "id": "us-mt",
+  "name": "Montana",
+  "appliesTo": "Residents of Montana",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "mt-income-tax",
+      "label": "Montana income tax",
+      "group": "tax",
+      "note": "Starts from federal taxable income: 4.7% up to $65,000 ($130,000 married) and 5.4% above, from 2027 under HB 337.",
+      "charge": {
+        "brackets": {
+          "status": {
+            "single": [
+              [
+                0,
+                4.7
+              ],
+              [
+                65000,
+                5.4
+              ]
+            ],
+            "married": [
+              [
+                0,
+                4.7
+              ],
+              [
+                130000,
+                5.4
+              ]
+            ]
+          }
+        },
+        "of": "us-taxable"
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [],
+  "sources": [
+    {
+      "title": "Montana DOR: HB337, 2026–2027 Montana Individual Income Tax Changes (tax year 2027 brackets)",
+      "url": "https://revenue.mt.gov/news/recent-news/HB-337"
+    },
+    {
+      "title": "Montana Department of Revenue — HB 337 (2026 rates 4.7% and 5.65%)",
+      "url": "https://revenue.mt.gov/news/recent-news/HB-337"
+    },
+    {
+      "title": "2025 Montana Tax Tables and Deductions",
+      "url": "https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025"
+    },
+    {
+      "title": "Montana Code Annotated 2023, TITLE 15, CHAPTER 30, Part 23, 15-30-2337 (11)",
+      "url": "https://mca.legmt.gov/bills/mca/title_0150/chapter_0300/part_0230/section_0370/0150-0300-0230-0370.html"
+    },
+    {
+      "title": "2021 Montana Code Annotated, Title 15, Chapter 30, Part 23, 15-30-2337 (11)",
+      "url": "https://law.justia.com/codes/montana/2021/title-15/chapter-30/part-23/section-15-30-2337/"
+    },
+    {
+      "title": "2022 Form of Montana Individual Income Tax Return, Page 10, Line 17",
+      "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2022_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10"
+    },
+    {
+      "title": "2021 Form of Montana Individual Income Tax Return, Page 10, Line 17",
+      "url": "https://revenue.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2021_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10"
+    },
+    {
+      "title": "2023 Form of Montana Individual Income Tax Return, Page 10, Line 17",
+      "url": "https://revenuefiles.mt.gov/files/Forms/Montana-Individual-Income-Tax-Return-Form-2/2023_Montana_Individual_Income_Tax_Return_Form_2.pdf#page=10"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Montana DOR HB337 page, read 28 Nov 2026",
+      "note": "'Tax Year 2027 – Montana Individual Income Tax Rates': 4.7% on taxable income $0 to $130,000 (married filing jointly), $97,500 (head of household), $65,000 (single); 5.4% above."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/mt",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "Montana tax worked out by hand on the engine's 2027 federal taxable income (4.7% / 5.4%); net from the engine.",
+      "expect": {
+        "mt-income-tax": 1099.8,
+        "net": 33288.2
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "Montana tax worked out by hand on the engine's 2027 federal taxable income (4.7% / 5.4%); net from the engine.",
+      "expect": {
+        "mt-income-tax": 3238.6,
+        "net": 65669.4
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "Montana tax worked out by hand on the engine's 2027 federal taxable income (4.7% / 5.4%); net from the engine.",
+      "expect": {
+        "mt-income-tax": 5489.6,
+        "net": 118256.4
+      },
+      "options": {
+        "status": "married"
+      }
+    },
+    {
+      "gross": 200000,
+      "note": "Montana tax worked out by hand on the engine's 2027 federal taxable income (4.7% / 5.4%); net from the engine.",
+      "expect": {
+        "mt-income-tax": 9448.6,
+        "net": 139353.8
+      }
+    }
+  ]
+}

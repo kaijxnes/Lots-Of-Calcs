@@ -1,0 +1,170 @@
+{
+  "id": "us-ks",
+  "name": "Kansas",
+  "appliesTo": "Residents of Kansas",
+  "kind": "state",
+  "country": "US",
+  "parent": "us",
+  "standalone": true,
+  "taxYear": {
+    "label": "2027",
+    "start": "2027-01-01",
+    "end": "2027-12-31"
+  },
+  "items": [
+    {
+      "id": "ks-taxable",
+      "label": "Kansas taxable income",
+      "show": true,
+      "note": "Standard deduction of $3,605 ($8,240 married) and exemption of $9,160 ($18,320 married).",
+      "value": {
+        "max": [
+          0,
+          {
+            "sub": [
+              "us-wages",
+              {
+                "status": {
+                  "single": 3605,
+                  "married": 8240
+                }
+              },
+              {
+                "status": {
+                  "single": 9160,
+                  "married": 18320
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "ks-income-tax",
+      "label": "Kansas income tax",
+      "group": "tax",
+      "charge": {
+        "if": {
+          "lte": [
+            "us-wages",
+            {
+              "status": {
+                "single": 12765,
+                "married": 26560
+              }
+            }
+          ]
+        },
+        "then": 0,
+        "else": {
+          "brackets": {
+            "status": {
+              "single": [
+                [
+                  0,
+                  5.2
+                ],
+                [
+                  23000,
+                  5.58
+                ]
+              ],
+              "married": [
+                [
+                  0,
+                  5.2
+                ],
+                [
+                  46000,
+                  5.58
+                ]
+              ]
+            }
+          },
+          "of": "ks-taxable"
+        }
+      }
+    }
+  ],
+  "notModelled": [],
+  "provisional": [
+    "Standard deduction and exemption amounts are carried from 2026; KDOR's 2026 legislative summary lists no change to them"
+  ],
+  "sources": [
+    {
+      "title": "Kansas Department of Revenue: 2026 legislative changes",
+      "url": "https://ksrevenue.gov/pdf/2026LegChanges.pdf"
+    },
+    {
+      "title": "2025 Form K-40 instructions",
+      "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=2"
+    },
+    {
+      "title": "2025 Form K-40 instructions - Line 4, Worksheet",
+      "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=6"
+    },
+    {
+      "title": "K.S.A. 2024 HB 2231 79-32,121 (b)(1)",
+      "url": "https://kslegislature.gov/b2025_26/bills/download/?apn=b2025_26/year1/ready_for_publication/hb_2231/hb2231_01_0000.pdf#page=1"
+    },
+    {
+      "title": "2025 Form K-40 instructions",
+      "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=3"
+    },
+    {
+      "title": "2025 Form K-40 instructions",
+      "url": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=34"
+    },
+    {
+      "title": "2022 Form K-40 instructions",
+      "url": "https://www.ksrevenue.gov/pdf/ip22.pdf#page=6"
+    }
+  ],
+  "obtainedFrom": [
+    {
+      "title": "Kansas DOR 2026 legislative changes, read 28 Nov 2026",
+      "note": "The 2026 Legislature's individual income tax changes are credits and a health care sharing ministry subtraction from 2027 (not modelled); rates, the standard deduction and exemptions are unchanged."
+    },
+    {
+      "title": "PolicyEngine US parameters and formulas",
+      "url": "https://github.com/PolicyEngine/policyengine-us/tree/f4f67443e7931d1dfe3f1d67eaf159d72a2f1976/policyengine_us/parameters/gov/states/ks",
+      "note": "Rules transcribed from PolicyEngine, which cites each value to statute or the state revenue department."
+    }
+  ],
+  "lastVerified": null,
+  "lastChecked": "2026-11-28",
+  "verifyAt": "https://www.ksrevenue.gov/pdf/ip25.pdf#page=2",
+  "tests": [
+    {
+      "gross": 40000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "ks-taxable": 27235,
+        "ks-income-tax": 1432.31,
+        "net": 32955.69
+      }
+    },
+    {
+      "gross": 85000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "ks-taxable": 72235,
+        "ks-income-tax": 3943.31,
+        "net": 64964.69
+      }
+    },
+    {
+      "gross": 150000,
+      "note": "State items worked out by hand from the 2027 figures; net from the engine (federal 2027 file).",
+      "expect": {
+        "ks-taxable": 123440,
+        "ks-income-tax": 6713.15,
+        "net": 117032.85
+      },
+      "options": {
+        "status": "married"
+      }
+    }
+  ]
+}

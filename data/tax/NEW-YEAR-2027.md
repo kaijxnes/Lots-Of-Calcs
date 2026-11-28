@@ -31,9 +31,13 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | us-va.2027 | Standard deduction $9,200 / $18,400 (HB 30, Virginia Tax summary 26-82); rates and exemption statutory |
 | us-hi.2027 | SB 3125 (2026) 2027 tables: 2.5% and 5% second and third rates, 13% over $500,000 ($1M joint); standard deduction unchanged (Announcement 2024-03) |
 | us-ne.2027 | Top rates 3.99% (Neb. Rev. Stat. 77-2715.03). Provisional: indexed bracket amounts, standard deduction and credit carried from 2026 |
+| us-mt.2027 | HB 337 fully in force: 4.7% to $65,000 ($130,000 married), 5.4% above (Montana DOR) |
+| us-wv.2027 | 2026 rates (SB 392). Provisional: a further cut only if certified under §11-21-4h (none found) |
+| us-id.2027 | 5.3% and $155 grocery credit continue; H0589 (rate rise) did not pass. Provisional: indexed zero-rate band |
+| us-ks.2027 | KDOR 2026 legislative changes: no change to rates, deduction or exemptions. Provisional: deduction and exemption carried |
 | ie.2027 | Budget 2027: standard rate band €46,500 / €55,500, credits €2,125, USC 2% band to €30,300, PRSI 4.35% then 4.5% from October (KPMG). Provisional: PRSI credit |
 
-## To do (43)
+## To do (39)
 
 | File | Name | Where to check | Notes |
 |---|---|---|---|
@@ -62,15 +66,12 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | us-dc | District of Columbia | [source](https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=20) |  |
 | us-de | Delaware | [source](https://revenuefiles.delaware.gov/2025/PITForms_Instructions/Instructions/PIT-RES_Instructions_2025-01.pdf#page=8) |  |
 | us-ga | Georgia | [source](https://www.legis.ga.gov/api/legislation/document/20252026/249080#page=3) | HB 463 (2026) cuts the rate by 0.125 a year from 2027 (to 4.865%) and raises the standard deduction by $375 / $750 (to $15,375 / $30,750), each delayed a year if the Office of Planning and Budget reports by 1 December that a revenue condition is not met. Read that report or the Georgia DOR 2027 withholding tables. |
-| us-id | Idaho | [source](https://tax.idaho.gov/wp-content/uploads/forms/EIN00046/EIN00046_03-02-2026.pdf#page=4) |  |
-| us-ks | Kansas | [source](https://www.ksrevenue.gov/pdf/ip25.pdf#page=2) |  |
-| us-la | Louisiana | [source](https://www.bls.gov/news.release/archives/cpi_01132026.htm) |  |
+| us-la | Louisiana | [source](https://www.bls.gov/news.release/archives/cpi_01132026.htm) | The standard deduction is CPI-indexed and LDR publishes it in a Revenue Information Bulletin early in the year (2026: RIB 26-019). A 2026 House bill might cut the 3% rate from 2027, possibly tied to a constitutional amendment: check whether it was enacted. |
 | us-ma | Massachusetts | [source](https://www.mass.gov/doc/2025-form-1-instructions/download#page=3) | PFML 2027 contribution rate; the 4% surtax threshold is indexed. The state's site blocks automated requests: ask the owner to read it. |
 | us-md | Maryland | [source](https://www.marylandcomptroller.gov/content/dam/mdcomp/tax/instructions/2025/resident-booklet.pdf#page=22) |  |
 | us-me | Maine | [source](https://www.irs.gov/pub/irs-drop/rp-25-32.pdf#page=18) | Brackets are indexed; PFML 2027. The state's site blocks automated requests: ask the owner to read it. |
 | us-mn | Minnesota | [source](https://www.revenue.state.mn.us/sites/default/files/2026-07/m1mt-25.pdf#page=1) |  |
-| us-mo | Missouri | [source](https://dor.mo.gov/forms/MO-1040ES_2026.pdf#page=2) |  |
-| us-mt | Montana | [source](https://revenue.mt.gov/taxes/tax-tables-and-deductions/2025) |  |
+| us-mo | Missouri | [source](https://dor.mo.gov/forms/MO-1040ES_2026.pdf#page=2) | Top-rate cuts depend on revenue triggers; DOR's 2027 withholding formula (form 4282_2027) was not out on 28 Nov 2026. |
 | us-nd | North Dakota | [source](https://www.tax.nd.gov/sites/www/files/documents/forms/individual/2025-iit/28709-form-nd-1es-2026.pdf#page=2) |  |
 | us-nm | New Mexico | [source](https://klvg4oyd4j.execute-api.us-west-2.amazonaws.com/prod/PublicFiles/34821a9573ca43e7b06dfad20f5183fd/0558a902-6362-47ca-8e3b-7cca3bc69b9d/2025%20PIT%20Packet_Final.pdf#page=49) |  |
 | us-ok | Oklahoma | [source](https://oklahoma.gov/content/dam/ok/en/tax/documents/forms/individuals/current/511-Pkt.pdf#page=10) | HB 2764 (2025): a further 0.25 point cut from 2027 only if the State Board of Equalization certifies the revenue trigger (December 2026 meeting, final February certification). Wait for that decision or the OTC's 2027 withholding tables. |
@@ -79,4 +80,3 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | us-sc | South Carolina | [source](https://www.scstatehouse.gov/sess126_2025-2026/bills/4216) | H.4216 (signed 30 March 2026) fixes 1.99% / 5.21% for 2026; from 2027 the top rate falls only if revenue grows at least 5%, set by the BEA by 15 February. Use SCDOR's 2027 withholding tables (usually December) or the BEA determination. |
 | us-vt | Vermont | [source](https://legislature.vermont.gov/Documents/2026/Docs/ACTS/ACT169/ACT169%20As%20Enacted.pdf#page=9) |  |
 | us-wi | Wisconsin | [source](https://www.revenue.wi.gov/TaxForms2026/2026-Form1-ES-Inst.pdf#page=2) |  |
-| us-wv | West Virginia | [source](https://www.wvlegislature.gov/Bill_Text_HTML/2026_SESSIONS/RS/bills/sb392%20sub1%20enr.pdf#page=6) |  |
