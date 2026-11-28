@@ -24,9 +24,10 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | us-ny.2027, us-ny-nyc.2027 | 2027 rate cuts and recapture (S3009C §6, §8 d-6); PFL 0.452% up to $451.81 (DFS). NYC rates carried |
 | us-wa.2027 | Paid leave 1.2% × 70.7% employee share; WA Cares 0.58% |
 | ca.2027, ca-ab, ca-bc, ca-mb, ca-nb, ca-nl, ca-ns, ca-nt, ca-nu, ca-on, ca-pe, ca-sk, ca-yt (.2027) | CRA T4127 124th edition (January 2027) and its Table 8.1 / 8.2 CSVs: indexation 2.6%, base CPP 4.75% (5.75% total), YMPE $76,700, YAMPE $87,400, EI 1.64% to $70,800. BC brackets and credits frozen for 2027 to 2030; MB and PE not indexed; AB indexed at 2.0%; SK BPA +$500. Tests from an independent implementation of the T4127 formulas |
+| us-ca.2027 | SDI 1.4% (EDD). Provisional: brackets, standard deduction and exemption credit are FTB's 2026 figures, as EDD's 2027 withholding schedules use; the 2026 file now has FTB's published 2026 figures |
 | ie.2027 | Budget 2027: standard rate band €46,500 / €55,500, credits €2,125, USC 2% band to €30,300, PRSI 4.35% then 4.5% from October (KPMG). Provisional: PRSI credit |
 
-## To do (50)
+## To do (49)
 
 | File | Name | Where to check | Notes |
 |---|---|---|---|
@@ -52,7 +53,6 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | se | Sweden | [source](https://app.skatteverket.se/rakna-skatt-client-skut-skatteutrakning/) |  |
 | us-al | Alabama | [source](https://www.revenue.alabama.gov/wp-content/uploads/2026/01/25f40bk.pdf#page=9) |  |
 | us-ar | Arkansas | [source](https://arkleg.state.ar.us/Bills/Detail?id=hb1001&ddBienniumSession=2025%2F2026S1) |  |
-| us-ca | California | [source](https://www.ftb.ca.gov/forms/2025/2025-540-p.pdf#page=1) | Brackets and the SDI rate change each year: FTB 2027 rate schedules or withholding tables, and EDD's 2027 SDI rate. |
 | us-co | Colorado | [source](https://tax.colorado.gov/sites/tax/files/documents/Book104_2025.pdf#page=11) | FAMLI 2027 rate; the income tax rate can change under TABOR. The state's site blocks automated requests: ask the owner to read it. |
 | us-ct | Connecticut | [source](https://portal.ct.gov/-/media/drs/forms/2025/income/2025-ct-1040-instructions_1225.pdf#page=23) |  |
 | us-dc | District of Columbia | [source](https://otr.cfo.dc.gov/sites/default/files/dc/sites/otr/publication/attachments/2025_D40_Book_082026_v1.pdf#page=20) |  |

@@ -9,7 +9,7 @@ The biggest audiences are listed first, in bold. "Checked" is the monthly compar
 | **United Kingdom** | [gb](gb.md) | 2026/27 | 33 | 2026-11-10 | — |
 | **Scotland** | [gb-sct](gb-sct.md) | 2026/27 | 9 | 2026-11-10 | — |
 | **United States (federal)** | [us](us.md) | 2026 | 43 | 2026-11-25 | — |
-| **California** | [us-ca](us-ca.md) | 2026 | 33 | 2026-11-25 | — |
+| **California** | [us-ca](us-ca.md) | 2026 | 34 | 2026-11-28 | — |
 | **Texas** | [us-tx](us-tx.md) | 2026 | 3 | 2026-11-25 | — |
 | **New York** | [us-ny](us-ny.md) | 2026 | 66 | 2026-11-25 | — |
 | **New York City** | [us-ny-nyc](us-ny-nyc.md) | 2026 | 19 | 2026-11-25 | — |
