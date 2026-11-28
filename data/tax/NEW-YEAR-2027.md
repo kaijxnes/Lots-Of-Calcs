@@ -4,6 +4,8 @@ Calendar-year tax years start on 1 January 2027. A file goes live on its start d
 
 The monthly update (2 December, 2 January) works down the to-do list. Make each file from published figures only, with hand-checked tests, and move it to Done. Leave out figures that aren't published yet; a file that has to carry an unconfirmed figure lists it under `provisional`.
 
+Tip (28 Nov 2026): canada.ca and some state sites refuse curl from the build environment, but the WebFetch tool could read them, including the CRA's T4127 CSV files (Table 8.1 rates and constants, Table 8.2 basic amounts). Use WebFetch for official pages before falling back to secondary sources.
+
 ## Done
 
 | File | Notes |
@@ -41,7 +43,7 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 
 | File | Name | Where to check | Notes |
 |---|---|---|---|
-| at | Austria | [source](https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/) |  |
+| at | Austria | [source](https://onlinerechner.haude.at/BMF-Brutto-Netto-Rechner/) | Known on 28 Nov 2026 (secondary: EY Austria, Moore; RIS was down): Inflationsanpassungsverordnung 2027 (BGBl. II 260/2026), +2.27%: 0% to €13,846, 20% to €22,491, 30% to €37,285, 40% to €71,960, 48% to €107,236, 50% to €1m, 55% above; Verkehrsabsetzbetrag €508, Zuschlag €823 (€20,209–€30,945); AVAB €626 / €847 / +€280. SV: Höchstbeitragsgrundlage €7,410 a month, €14,820 Sonderzahlungen (KPMG; includes the extra €150). Budgetbegleitgesetz 2027-2028 phases out the reduced AlV employee rate for low pay, with transition rules for existing jobs (USP) - model that before making the file; Familienbonus split rules change for children under 4. |
 | be | Belgium | [source](https://knowledge.plutus.be/belastingen-en-bijdragen/fiscale-kerncijfers/aanslagjaar-2027) |  |
 | ca-qc | Quebec | [source](https://www.revenuquebec.ca/documents/en/formulaires/tp/TP-1015.F-V(2026-01).pdf) | Revenu Québec TP-1015.F-V (2027-01), QPP and QPIP 2027 rates. |
 | ch | Switzerland (Zurich) | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
@@ -49,7 +51,7 @@ The monthly update (2 December, 2 January) works down the to-do list. Make each 
 | ch-bs | Basel | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
 | ch-vd | Lausanne | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
 | ch-zg | Zug | [source](https://swisstaxcalculator.estv.admin.ch/#/home) |  |
-| de | Germany | [source](https://www.bmf-steuerrechner.de/) | BMF Programmablaufplan 2027 for the wage tax; 2027 social insurance ceilings (Beitragsbemessungsgrenzen), contribution rates and the average Zusatzbeitrag. Not yet confirmed on 26 November 2026. |
+| de | Germany | [source](https://www.bmf-steuerrechner.de/) | Sozialversicherungsrechengrößen 2027 passed the Bundesrat on 20 Nov 2026: BBG RV/AV €8,850 a month (€106,200), KV/PV €6,375 a month (€76,500), per secondary reports. The 2027 income tax tariff (Grundfreibetrag €12,564 in the Einkommensteuerreformgesetz 2027 draft) was not yet law on 28 Nov 2026; until it is, check BMF's 2027 Programmablaufplan. |
 | dk | Denmark | [source](https://skat.dk/hjaelp/bundskat-mellemskat-topskat-og-toptopskat) |  |
 | es | Spain | [source](https://sede.agenciatributaria.gob.es/Sede/irpf.html) |  |
 | fi | Finland | [source](https://vero.fi/syventavat-vero-ohjeet/ohje-hakusivu/49038/verotettavan-tulon-laskeminen-henkiloverotuksessa9/) |  |
