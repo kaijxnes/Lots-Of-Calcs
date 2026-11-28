@@ -71908,6 +71908,12 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://lotsofcalcs.com/guides/being-made-redundant/</loc>
+    <lastmod>2026-11-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://lotsofcalcs.com/guides/retiring/</loc>
     <lastmod>2026-11-27</lastmod>
     <changefreq>monthly</changefreq>
@@ -71916,6 +71922,12 @@
   <url>
     <loc>https://lotsofcalcs.com/guides/universal-credit-explained/</loc>
     <lastmod>2026-11-27</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://lotsofcalcs.com/guides/tax-relief-on-giving-to-charity/</loc>
+    <lastmod>2026-11-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>

@@ -16,6 +16,8 @@
        /guides/your-first-job/                   tax code, tax and NI, pension, minimum wage, holiday
        /guides/universal-credit-explained/       amounts, children, taper, savings, benefit cap
        /guides/retiring/                         State Pension age and amount, pension tax, Winter Fuel
+       /guides/being-made-redundant/             redundancy pay, the £30,000 tax-free amount, PENP, 0T
+       /guides/tax-relief-on-giving-to-charity/  Gift Aid, higher rate relief, adjusted net income, wills
 
        node tools/build-guides.js
 
@@ -686,6 +688,136 @@ function leavingAJob() {
     foot: `From GOV.UK's <a href="${N.sources[0].url}" rel="nofollow noopener" target="_blank">notice</a>, <a href="${N.sources[3].url}" rel="nofollow noopener" target="_blank">notice pay</a>, <a href="${N.sources[5].url}" rel="nofollow noopener" target="_blank">holiday when leaving</a>, <a href="${RD.source}" rel="nofollow noopener" target="_blank">redundancy pay</a> and <a href="${TR.sources[0].url}" rel="nofollow noopener" target="_blank">tax refund</a> pages, as stored in the site's data files. A guide, not advice.` };
 }
 
+/* ============================================ having a baby */
+function havingABaby() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const R = J("data/uk/rates-2026-27.json"), S = R.statutoryPay, PP = J("data/uk/paternity-pay.json"), CB = J("data/uk/child-benefit.json"), UC = J("data/uk/universal-credit.json"), T = J("data/uk/tax-free-childcare.json");
+  const Pat = require("../paternity-pay.js"), YEAR = PP.taxYear;
+  if (S.smpWeekly !== PP.weeklyRate) throw new Error("having a baby guide: the maternity and paternity rates in the data files differ");
+  const awe = 30000 / 52, smp = Pat.smp(PP, awe, PP.smpWeeks), first6 = Math.round(awe * PP.earningsPct / 100 * 100) / 100, sh = Pat.shareable(PP, 22, 22);
+  const cbYear = (CB.rates.eldest + CB.rates.additional) * CB.rates.weeksInYear;
+  const body = section("maternity", "Maternity pay", p(`Statutory Maternity Pay is paid for up to ${PP.smpWeeks} weeks: <strong>90% of your average weekly earnings for the first 6 weeks</strong>, then <strong>${m2(S.smpWeekly)} a week</strong> or 90%, whichever is lower, for the other 33 (${YEAR}). You need average earnings of at least £${S.lowerEarningsLimit} a week. On ${m0(30000)} a year (${m2(awe)} a week) that's ${m2(first6)} a week for 6 weeks and ${m2(S.smpWeekly)} after: <strong>${m2(smp)}</strong> in all, before tax. Your employer may pay more under a company scheme. The <a href="/maternity-pay-calculator/">maternity pay calculator</a> works it out for your pay.`)) +
+    section("paternity", "Paternity pay and leave", p(`Your partner can take up to ${PP.paternityWeeks} weeks of Paternity Leave, together or as two separate weeks, any time from the birth until 52 weeks after it. Statutory Paternity Pay is ${m2(PP.weeklyRate)} a week or ${PP.earningsPct}% of average weekly earnings, whichever is lower, for those weeks: up to ${m2(PP.weeklyRate * PP.paternityWeeks)}. They need 26 weeks with their employer by the 15th week before the due date and average earnings of at least £${PP.minAverageWeekly} a week. Tax and National Insurance come off.`)) +
+    section("shared", "Shared Parental Leave and Pay", p(`You can share up to <strong>${PP.sharedLeaveMax} weeks of leave</strong> and <strong>${PP.sharedPayMax} weeks of pay</strong> between you in the first year, by ending maternity leave and pay early. Shared Parental Pay is the same ${m2(PP.weeklyRate)} a week or 90% of earnings, whichever is lower. GOV.UK's example: after 22 weeks of maternity leave and pay, you can share ${sh.leave} weeks of leave and ${sh.pay} weeks of pay. You give your employer 8 weeks' notice. The <a href="/paternity-pay-calculator/">paternity pay calculator</a> shows what's left to share.`)) +
+    section("childbenefit", "Child Benefit", p(`Child Benefit is <strong>${m2(CB.rates.eldest)} a week</strong> for the eldest or only child and ${m2(CB.rates.additional)} for each other child: ${m0(cbYear)} a year for two children. If either parent's adjusted net income is over ${m0(CB.charge.threshold)}, the High Income Child Benefit Charge takes back 1% for every ${m0(CB.charge.step)} above it, all of it from ${m0(CB.charge.full)}; the <a href="/child-benefit-tax-charge-calculator/">Child Benefit charge calculator</a> works it out.`)) +
+    section("uc", "Universal Credit", p(`If you get Universal Credit, it adds <strong>${m2(UC.child)} a month</strong> for each child (${YEAR}); the 2-child limit ended on 6 April 2026, so that's every child. Having a child also gives you a work allowance, so you can earn ${m0(UC.workAllowance.withoutHousing)} a month (${m0(UC.workAllowance.withHousing)} with help for housing) before it starts to reduce by 55p for each £1. The <a href="/universal-credit-calculator/">Universal Credit calculator</a> estimates it.`)) +
+    section("childcare", "Help with childcare", p(`When you go back to work, there are two main ways to get help with childcare costs, and you can't have both. <strong>Tax-Free Childcare</strong> adds £${T.topUpPer} for every £${T.payIn} you pay in, up to ${m0(T.maxYear)} a year per child (${m0(T.maxYearDisabled)} if disabled), if you each earn at least ${m2(T.minEarnQuarter["21+"])} over 3 months and neither has income over ${m0(T.incomeLimit)}. <strong>Universal Credit</strong> pays back up to ${UC.childcarePct}% of costs, up to ${m2(UC.childcareMax.one)} a month for one child, but as part of an award that shrinks as you earn more. The <a href="/childcare-help-calculator/">childcare help calculator</a> shows which gives you more.`));
+  const q = [
+    ["How much is maternity pay?", `90% of your average weekly earnings for the first 6 weeks, then ${m2(S.smpWeekly)} a week or 90% (whichever is lower) for 33 weeks (${YEAR}). On ${m0(30000)} a year that's ${m2(smp)} in total before tax.`],
+    ["How much is paternity pay?", `${m2(PP.weeklyRate)} a week or ${PP.earningsPct}% of average weekly earnings, whichever is lower, for up to ${PP.paternityWeeks} weeks.`],
+    ["How much Child Benefit do you get for a baby?", `${m2(CB.rates.eldest)} a week for an eldest or only child and ${m2(CB.rates.additional)} for each other child.`],
+    ["Can we share parental leave?", `Yes: up to ${PP.sharedLeaveMax} weeks of leave and ${PP.sharedPayMax} weeks of pay, by ending maternity leave and pay early. After 22 weeks of maternity leave, that's ${sh.leave} weeks of leave and ${sh.pay} of pay to share.`],
+    ["Does Universal Credit go up when you have a baby?", `Yes, by ${m2(UC.child)} a month for each child (${YEAR}), and you get a work allowance. The 2-child limit ended on 6 April 2026.`]
+  ];
+  return { path: "/guides/money-when-you-have-a-baby/", crumb: "Money When You Have a Baby", blurb: `Maternity and paternity pay, shared parental leave, Child Benefit, Universal Credit and childcare help, with ${YEAR} figures.`,
+    title: site.fitTitle(`Money When You Have a Baby — Maternity Pay, Child Benefit and More (${YEAR})`, "Money When You Have a Baby"), modified: PP.lastChecked,
+    desc: `What you can get when you have a baby in ${YEAR}: maternity pay (90% for 6 weeks, then ${m2(S.smpWeekly)} a week), paternity pay, shared parental leave, Child Benefit, Universal Credit and childcare help.`,
+    h1: "Money when you have a baby", sub: `The pay, benefits and childcare help you can get, with ${esc(YEAR)} figures.`,
+    sections: [["maternity", "Maternity pay"], ["paternity", "Paternity pay"], ["shared", "Shared parental leave"], ["childbenefit", "Child Benefit"], ["uc", "Universal Credit"], ["childcare", "Childcare"]],
+    tools: [["/maternity-pay-calculator/", "Maternity pay"], ["/paternity-pay-calculator/", "Paternity pay"], ["/child-benefit-tax-charge-calculator/", "Child Benefit charge"], ["/childcare-help-calculator/", "Childcare help"], ["/universal-credit-calculator/", "Universal Credit"]],
+    body, q, callouts: ["/maternity-pay-calculator/", "/paternity-pay-calculator/", "/childcare-help-calculator/"],
+    foot: `From GOV.UK's <a href="${S.source}" rel="nofollow noopener" target="_blank">maternity pay</a>, <a href="${PP.sources[0].url}" rel="nofollow noopener" target="_blank">paternity pay</a>, <a href="${PP.sources[3].url}" rel="nofollow noopener" target="_blank">Shared Parental Leave and Pay</a>, <a href="${CB.rates.source.url}" rel="nofollow noopener" target="_blank">Child Benefit</a>, <a href="${UC.sources[0].url}" rel="nofollow noopener" target="_blank">Universal Credit</a> and <a href="${T.sources[0].url}" rel="nofollow noopener" target="_blank">Tax-Free Childcare</a> pages, as stored in the site's data files. A guide, not advice.` };
+}
+
+/* ============================================ leaving a job */
+function leavingAJob() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const N = J("data/uk/notice-period.json"), R = J("data/uk/rates-2026-27.json"), RD = R.redundancy, TR = J("data/uk/tax-refunds.json");
+  const NP = require("../notice-period.js"), YEAR = R.taxYear;
+  const wk = (y) => NP.statutory(N, "employer", { months: y * 12, years: y });
+  const body = section("notice", "Notice", p(`If you resign, you must give at least a week's notice once you've been in the job for more than a month, or more if your contract says so. If your employer ends your job, they must give at least the notice in your contract or the statutory minimum, whichever is longer: a week from one month's service, then a week for each complete year from 2 years, up to ${N.employer.maxWeeks} weeks (${wk(5)} weeks after 5 years). Notice usually runs from the start of the day after it's given. The <a href="/notice-period-calculator/">notice period calculator</a> gives your last day.`)) +
+    section("pay", "Pay during your notice", p(`You'll usually get your normal pay rate during your notice, and bonuses and commission unless your contract says otherwise. Your employer can ask you not to come in (garden leave) on the same pay and benefits, or pay you in lieu of notice if your contract allows it or you agree; tax and National Insurance come off that payment.`)) +
+    section("holiday", "Holiday you haven't taken", p(`During your notice you may be able to take whatever's left of your statutory holiday. Leaving is the only time you can be paid instead of taking statutory leave, and your employer must pay for statutory leave you haven't taken, even if you're dismissed for gross misconduct. If you've taken more than you'd built up, your employer can only take money from your final pay if you agreed to that in writing beforehand. The <a href="/holiday-entitlement-calculator/">holiday entitlement calculator</a> works out what you've built up.`)) +
+    section("redundancy", "Redundancy pay", p(`With at least ${RD.minYears} years' service, statutory redundancy pay is half a week's pay for each full year you were under 22, a week's pay for each full year from 22 to 40, and a week and a half for each full year from 41. Weekly pay is capped at <strong>${m0(RD.weekCap)}</strong> and service at ${RD.maxYears} years, so the most is <strong>${m0(RD.maxTotal)}</strong> (for redundancies from 6 April 2026). The <a href="/redundancy-pay-calculator/">redundancy pay calculator</a> works it out.`)) +
+    section("tax", "Tax after you leave", p(`If you've paid too much or too little tax by the end of the tax year (5 April), HMRC sends a tax calculation letter (P800) or a Simple Assessment letter between June and the end of November. If you're put on an emergency tax code at a new job, tax is worked out as if you're paid that amount every week or month of the year, and if you've paid too much you can get a refund. The <a href="/tax-refund-calculator/">tax refund calculator</a> estimates what you might be owed.`));
+  const q = [
+    ["How much notice do I have to give?", "At least a week once you've been in the job for more than a month, or more if your contract says so."],
+    ["How much notice does my employer have to give?", `At least your contract's notice or the statutory minimum, whichever is longer: a week from one month's service, then a week per complete year from 2 years, up to ${N.employer.maxWeeks} weeks.`],
+    ["Do I get paid for holiday I haven't taken when I leave?", "Yes. Your employer must pay for statutory leave you haven't taken, even if you're dismissed for gross misconduct. You may also be able to take it during your notice."],
+    ["How much is statutory redundancy pay?", `It depends on your age and years of service, with weekly pay capped at ${m0(RD.weekCap)} and service at ${RD.maxYears} years: at most ${m0(RD.maxTotal)}. You need at least ${RD.minYears} years' service.`],
+    ["Is pay in lieu of notice taxed?", "Yes: tax and National Insurance are deducted from it."]
+  ];
+  return { path: "/guides/leaving-a-job/", crumb: "Leaving a Job", blurb: "Notice, pay during your notice, holiday you haven't taken, redundancy pay and sorting out your tax.",
+    title: site.fitTitle("Leaving a Job — Notice, Holiday Pay, Redundancy and Tax", "Leaving a Job: Money Checklist"), modified: N.lastChecked,
+    desc: `Leaving a job in the UK: how much notice to give or get, pay during your notice, being paid for holiday you haven't taken, redundancy pay (up to ${m0(RD.maxTotal)}) and tax refunds.`,
+    h1: "Leaving a job: notice, holiday pay and redundancy", sub: "What you're owed and what to check when you leave, from GOV.UK's rules.",
+    sections: [["notice", "Notice"], ["pay", "Pay during notice"], ["holiday", "Untaken holiday"], ["redundancy", "Redundancy pay"], ["tax", "Tax"]],
+    tools: [["/notice-period-calculator/", "Notice period"], ["/holiday-entitlement-calculator/", "Holiday entitlement"], ["/redundancy-pay-calculator/", "Redundancy pay"], ["/tax-refund-calculator/", "Tax refund"]],
+    body, q, callouts: ["/notice-period-calculator/", "/redundancy-pay-calculator/"],
+    foot: `From GOV.UK's <a href="${N.sources[0].url}" rel="nofollow noopener" target="_blank">notice</a>, <a href="${N.sources[3].url}" rel="nofollow noopener" target="_blank">notice pay</a>, <a href="${N.sources[5].url}" rel="nofollow noopener" target="_blank">holiday when leaving</a>, <a href="${RD.source}" rel="nofollow noopener" target="_blank">redundancy pay</a> and <a href="${TR.sources[0].url}" rel="nofollow noopener" target="_blank">tax refund</a> pages, as stored in the site's data files. A guide, not advice.` };
+}
+
+/* ============================================ being made redundant */
+function redundancy() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const T = J("data/uk/termination-pay.json"), R = J("data/uk/rates-2026-27.json"), RD = R.redundancy, TR = J("data/uk/tax-refunds.json");
+  const UKC = require("../uk-calcs.js"), TP = require("../termination-pay.js"), { cfg } = require("./lib/uk-config.js")(), YEAR = cfg.year;
+  const Q = (k) => esc(T.rules[k].quote);
+  /* worked example: £15,000 statutory, £25,000 severance, £2,000 holiday pay, £40,000 salary, leaving in December (tax month 9) */
+  const ex = { statutory: 15000, severance: 25000, earnings: 2000, salary: 40000, month: 9 };
+  const fin = TP.calc(UKC, cfg, T, ex), p45 = TP.calc(UKC, cfg, T, Object.assign({ afterP45: true }, ex));
+  if (fin.free !== T.taxFreeLimit || fin.over !== 10000 || fin.earnings !== 2000) throw new Error("redundancy guide: the worked example no longer splits as written");
+  const body = section("pay", "Statutory redundancy pay", p(`With at least ${RD.minYears} years' service, statutory redundancy pay is half a week's pay for each full year you were under 22, a week's pay for each full year from 22 to 40, and a week and a half for each full year from 41. Weekly pay is capped at <strong>${m0(RD.weekCap)}</strong> and service at ${RD.maxYears} years, so the most is <strong>${m0(RD.maxTotal)}</strong> (for redundancies from 6 April 2026). Your employer can pay more than this as enhanced redundancy or a severance payment. The <a href="/redundancy-pay-calculator/">redundancy pay calculator</a> works out the statutory amount.`)) +
+    section("taxfree", "The £30,000 tax-free amount", p(`${Q("taxFree")}. ${Q("over")} That part pays Income Tax but not employee National Insurance.`) +
+      p(`<strong>Taxed as normal pay:</strong> ${Q("earnings")}. <strong>Not taxed at all:</strong> ${Q("notTaxed")}.`)) +
+    section("notice", "Notice you don't work", p(`${Q("notice")}. ${Q("penpCap")} Statutory redundancy pay is never Post-Employment Notice Pay. GOV.UK's example: ${m0(10000)} of statutory redundancy pay and ${m0(5000)} of severance, with 4 weeks' notice not worked at ${m0(500)} a week, means tax and National Insurance on ${m0(2000)} of the severance, and the other ${m0(13000)} is tax-free.`)) +
+    section("example", "A worked example", p(`Say you earn ${m0(ex.salary)} a year and leave in December with ${m0(ex.statutory)} of statutory redundancy pay, ${m0(ex.severance)} of severance and ${m0(ex.earnings)} of holiday pay, having worked your notice. ${m0(fin.free)} is tax-free, the other ${m0(fin.over)} of redundancy and severance pays Income Tax only, and the ${m0(ex.earnings)} holiday pay pays tax and National Insurance like wages. Paid with your final pay, about <strong>${m2(fin.paye)}</strong> tax and ${m2(fin.ni)} National Insurance come off, leaving ${m2(fin.net)} (${esc(YEAR)}, England, Wales and Northern Ireland). The <a href="/redundancy-tax-calculator/">redundancy tax calculator</a> works out your own, including Scottish rates.`)) +
+    section("p45", "Paid after your P45", p(`${Q("payslip")} ${Q("p45")} So the same payment made after your P45 has about <strong>${m2(p45.paye)}</strong> tax taken off instead of ${m2(fin.paye)}. If you've no more income in the tax year, the tax due on it for the year is only about ${m2(p45.year)}, so either way you'd have paid too much. ${Q("contact")}`) +
+      p(`If you've paid too much or too little tax by the end of the tax year (5 April), HMRC sends a tax calculation letter (P800) or a Simple Assessment letter. The <a href="/tax-refund-calculator/">tax refund calculator</a> estimates what you might be owed, and the <a href="/guides/leaving-a-job/">leaving a job guide</a> covers notice and holiday pay.`));
+  const q = [
+    ["Is redundancy pay taxed?", `The first ${m0(T.taxFreeLimit)} of statutory redundancy pay, severance and non-cash benefits combined is usually tax-free. Anything over that pays Income Tax but not employee National Insurance. Holiday pay, unpaid wages, bonuses and pay in lieu of notice are taxed as normal pay.`],
+    ["How much statutory redundancy pay will I get?", `It depends on your age, weekly pay (capped at ${m0(RD.weekCap)}) and years of service (up to ${RD.maxYears}), so the most is ${m0(RD.maxTotal)}. You need at least ${RD.minYears} years' service.`],
+    ["Is pay in lieu of notice tax-free?", "No. Pay in lieu of notice, and the part of severance equal to the pay for notice you didn't work (Post-Employment Notice Pay), pays tax and National Insurance."],
+    ["Why was so much tax taken off my redundancy pay?", "If it's paid after you've got your P45, your employer uses the 0T tax code, which assumes you've used up your Personal Allowance. If you think you've paid too much tax, contact HMRC."],
+    ["Do I pay National Insurance on redundancy pay?", `Not on statutory redundancy pay or severance (other than notice pay), even above ${m0(T.taxFreeLimit)}. You do on holiday pay, unpaid wages, bonuses and pay for notice.`]
+  ];
+  return { path: "/guides/being-made-redundant/", crumb: "Being Made Redundant", blurb: `Statutory redundancy pay, the ${m0(T.taxFreeLimit)} tax-free amount, notice pay, and why so much tax can come off after your P45.`,
+    title: site.fitTitle(`Being Made Redundant — Redundancy Pay and Tax (${YEAR})`, "Being Made Redundant: Pay and Tax"), modified: T.lastChecked,
+    desc: `Being made redundant in the UK: statutory redundancy pay (up to ${m0(RD.maxTotal)}), the first ${m0(T.taxFreeLimit)} tax-free, which payments are taxed as pay, notice pay (PENP), the 0T code after your P45 and getting tax back.`,
+    h1: "Being made redundant: money and tax", sub: `What you're owed, what's tax-free and what comes off, from GOV.UK's rules.`,
+    sections: [["pay", "Redundancy pay"], ["taxfree", "The £30,000 tax-free amount"], ["notice", "Notice you don't work"], ["example", "A worked example"], ["p45", "Paid after your P45"]],
+    tools: [["/redundancy-pay-calculator/", "Redundancy pay"], ["/redundancy-tax-calculator/", "Redundancy tax"], ["/notice-period-calculator/", "Notice period"], ["/holiday-entitlement-calculator/", "Holiday entitlement"], ["/tax-refund-calculator/", "Tax refund"]],
+    body, q, callouts: ["/redundancy-tax-calculator/", "/redundancy-pay-calculator/"],
+    foot: `From GOV.UK's <a href="${T.sources[0].url}" rel="nofollow noopener" target="_blank">termination payments</a>, <a href="${RD.source}" rel="nofollow noopener" target="_blank">redundancy pay</a> and <a href="${TR.sources[0].url}" rel="nofollow noopener" target="_blank">tax overpayments</a> pages and HMRC's <a href="${T.sources[1].url}" rel="nofollow noopener" target="_blank">CWG2</a>, as stored in the site's data files; tax worked out with the ${esc(YEAR)} UK tax file. A guide, not advice.` };
+}
+
+/* ============================================ giving to charity */
+function charityGiving() {
+  const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
+  const G = J("data/uk/gift-aid.json"), R = J("data/uk/rates-2026-27.json"), CB = J("data/uk/child-benefit.json").charge, IHT = R.inheritanceTax;
+  const UKC = require("../uk-calcs.js"), GA = require("../gift-aid.js"), { cfg, scot } = require("./lib/uk-config.js")(), YEAR = cfg.year;
+  const Q = (k) => esc(G.rules[k].quote);
+  const gross = (d) => d * (1 + G.top / 100);
+  const hi = GA.calc(UKC, cfg, G, { donation: 1000, income: 60000 }), basic = GA.calc(UKC, cfg, G, { donation: 1000, income: 35000 });
+  const sc = GA.calc(UKC, scot, G, { donation: 1000, income: 60000 }), taper = GA.calc(UKC, cfg, G, { donation: 8000, income: 110000 });
+  const scTaxable = 60000 - cfg.pa, scRate = scot.rates[scot.edges.filter((e) => e < scTaxable).length - 1];
+  if (Math.round(sc.back * 100) !== Math.round(gross(1000) * (scRate - 20))) throw new Error("charity guide: the Scottish example rate doesn't match");
+  if (hi.back !== 250 || basic.back !== 0 || gross(1000) !== 1250) throw new Error("charity guide: a worked example no longer comes out");
+  const body = section("giftaid", "How Gift Aid works", p(`${Q("extra")} The charity claims back the basic rate tax you've paid on the gift, so ${m0(1000)} you give is worth ${m0(gross(1000))} to them. You need to make a Gift Aid declaration for the charity, which can cover current and future donations and all donations made in the last 4 years.`) +
+      p(`${Q("fourTimes")} ${Q("payMore")} The <a href="/gift-aid-calculator/">Gift Aid calculator</a> checks your donation against this.`)) +
+    section("claim", "Claiming back higher rate tax", p(`${Q("example")} ${Q("higher")} ${Q("how").replace(/^Do this either: through your Self Assessment tax return by contacting/, "You can claim through your Self Assessment tax return or by contacting")}.`) +
+      p(`On an income of ${m0(60000)}, a ${m0(1000)} donation lets you claim back <strong>${m2(hi.back)}</strong>, so it costs you ${m2(hi.cost)}; in Scotland, where that income is taxed at ${scRate}%, it's ${m2(sc.back)}. On ${m0(35000)}, a basic rate taxpayer has nothing extra to claim: the charity gets the relief (${esc(YEAR)}).`)) +
+    section("income", "Gift Aid and your adjusted net income", p(`${Q("ani")} That can matter more than the higher rate relief. You lose £1 of Personal Allowance for every £2 of adjusted net income over ${m0(cfg.paTaperFrom)}, so a donation that brings it back down restores allowance as well: on ${m0(110000)}, giving ${m0(8000)} (${m0(gross(8000))} grossed up) gives you <strong>${m2(taper.back)}</strong> back, and the gift costs you ${m2(taper.cost)}.`) +
+      p(`The High Income Child Benefit Charge is also worked out on adjusted net income: 1% of the Child Benefit for every ${m0(CB.step)} over ${m0(CB.threshold)}, all of it at ${m0(CB.full)}. A Gift Aid donation brings your income down by its grossed-up amount, the same as a personal pension contribution. The <a href="/child-benefit-tax-charge-calculator/">Child Benefit charge calculator</a> shows what that saves.`)) +
+    section("payroll", "Giving straight from your pay", p(`If your employer or pension provider runs a Payroll Giving scheme, you get the tax relief as you give. ${Q("payroll")}.`)) +
+    section("will", "Leaving money to charity", p(`Inheritance Tax is charged at ${IHT.rate}% on the part of an estate above the threshold, or ${IHT.charityRate}% if 10% or more of the estate goes to charity. The <a href="/inheritance-tax-calculator/">Inheritance Tax calculator</a> works out the tax on an estate.`));
+  const q = [
+    ["How much does Gift Aid add?", `25p for every £1 you give, so ${m0(100)} becomes ${m0(125)} for the charity at no extra cost to you.`],
+    ["Can higher rate taxpayers claim Gift Aid back?", `Yes. You claim back the difference between the higher rate and the basic rate on the grossed-up gift, through your Self Assessment tax return or by asking HMRC to change your tax code. A ${m0(1000)} gift on ${m0(60000)} gives you ${m2(hi.back)} back (${YEAR}).`],
+    ["Is there a limit on Gift Aid?", "Your donations qualify as long as they're not more than 4 times the tax you paid in that tax year (6 April to 5 April). If the charity gets back more tax than you've paid, HMRC may ask you to pay the difference."],
+    ["Does Gift Aid reduce my adjusted net income?", `Yes, by the grossed-up amount: take £1.25 off for every £1 you give. That can restore Personal Allowance lost over ${m0(cfg.paTaperFrom)} and reduce the High Income Child Benefit Charge.`],
+    ["Does Gift Aid work in Scotland?", "Yes, and you claim higher rate relief the same way. The Scottish basic rate limit and every limit above it are extended by the grossed-up gift."]
+  ];
+  return { path: "/guides/tax-relief-on-giving-to-charity/", crumb: "Giving to Charity", blurb: `Gift Aid, claiming back higher rate tax, how donations restore your Personal Allowance and cut the Child Benefit charge, payroll giving and gifts in a will.`,
+    title: site.fitTitle(`Tax Relief on Giving to Charity — Gift Aid Explained (${YEAR})`, "Tax Relief on Giving to Charity"), modified: G.lastChecked,
+    desc: `Tax relief on charity donations in the UK: Gift Aid adds 25p per £1, higher and additional rate taxpayers claim the rest back, donations reduce adjusted net income (Personal Allowance and Child Benefit charge), payroll giving and Inheritance Tax.`,
+    h1: "Tax relief on giving to charity", sub: `How Gift Aid works, what you can claim back and how giving can lower the tax on the rest of your income.`,
+    sections: [["giftaid", "How Gift Aid works"], ["claim", "Higher rate relief"], ["income", "Adjusted net income"], ["payroll", "Payroll giving"], ["will", "Leaving money to charity"]],
+    tools: [["/gift-aid-calculator/", "Gift Aid"], ["/child-benefit-tax-charge-calculator/", "Child Benefit charge"], ["/salary/", "Salary"], ["/inheritance-tax-calculator/", "Inheritance Tax"]],
+    body, q, callouts: ["/gift-aid-calculator/"],
+    foot: `From GOV.UK's <a href="${G.sources[0].url}" rel="nofollow noopener" target="_blank">Gift Aid</a>, <a href="${G.rules.payroll.source}" rel="nofollow noopener" target="_blank">payroll giving</a>, <a href="${G.sources[1].url}" rel="nofollow noopener" target="_blank">adjusted net income</a> and <a href="${IHT.source}" rel="nofollow noopener" target="_blank">Inheritance Tax</a> pages and the <a href="${G.sources[2].url}" rel="nofollow noopener" target="_blank">Income Tax Act 2007 s414</a>, as stored in the site's data files; tax worked out with the ${esc(YEAR)} UK tax files. A guide, not advice.` };
+}
+
 /* ============================================ your first job */
 function firstJob() {
   const J = (f) => JSON.parse(fs.readFileSync(path.join(site.ROOT, f), "utf8"));
@@ -789,7 +921,7 @@ function retiring() {
     foot: `From GOV.UK's <a href="${F.sources[0].url}" rel="nofollow noopener" target="_blank">new State Pension</a>, <a href="${A.sources[0].url}" rel="nofollow noopener" target="_blank">State Pension age timetable</a>, <a href="${W.sources[0].url}" rel="nofollow noopener" target="_blank">tax on your pension</a> and <a href="${WF.sources[0].url}" rel="nofollow noopener" target="_blank">Winter Fuel Payment</a> pages and the Pensions Act 2014, as stored in the site's data files; tax worked out with the ${esc(YEAR)} UK tax file. A guide, not advice.` };
 }
 
-const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), firstJob(), havingABaby(), leavingAJob(), retiring(), universalCredit(), usBrackets2027(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
+const GUIDES = [incomeTax(), nationalInsurance(), taxCodeChanges(), taxYearEnd(), firstJob(), havingABaby(), leavingAJob(), redundancy(), retiring(), universalCredit(), charityGiving(), usBrackets2027(), selfAssessment(), studentLoans(), isaPension(), changes2027(), mortgage(), betting()];
 GUIDES.forEach((g) => g.tools.concat(g.callouts.map((u) => [u])).forEach(([u]) => { if (!exists(u)) throw new Error(g.path + ": no page at " + u); }));
 
 const urls = [];
