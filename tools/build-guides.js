@@ -398,7 +398,7 @@ function changes2027() {
     desc: "Every UK tax change from 6 April 2027: 24% savings and property income tax, the Pension Tax Allowance, £250.70 State Pension, £3,000 trading allowance and £13.21 minimum wage, with examples.",
     h1: "UK tax changes from April 2027", sub: "What's different in the <strong>2027/28 tax year</strong>, which starts on 6 April 2027, from the Budget on 28 October 2026 — with what it means in pounds.",
     sections: [["glance", "At a glance"], ["savings", "Savings and property income"], ["pensions", "Pensioners"], ["selfemployed", "Side income and the self-employed"], ["gains", "Selling a business or shares"], ["work", "Pay, benefits and employers"], ["other", "Bills and later changes"]],
-    tools: [["/salary/", "Take-home pay"], ["/savings/", "Savings"], ["/self-employed-tax-calculator/", "Self-employed tax"], ["/capital-gains-tax-calculator/", "Capital gains"], ["/tax-week-calendar/2027-28/", "Tax weeks 2027/28"]],
+    tools: [["/salary/", "Take-home pay"], ["/salary/2027-28/", "Take-home pay 2027/28"], ["/savings/", "Savings"], ["/self-employed-tax-calculator/", "Self-employed tax"], ["/capital-gains-tax-calculator/", "Capital gains"], ["/tax-week-calendar/2027-28/", "Tax weeks 2027/28"]],
     body, q, callouts: ["/capital-gains-tax-calculator/", "/inheritance-tax-calculator/", "/isa-vs-pension/"],
     foot: `Figures from ${src(S.ootlar)} and ${src(S.annex)}, ${src(S.dwp)}, ${src(S.nmw)} and ${src(S.slc)}, read 26 November 2026. Measures in Finance Bill 2026-27 still need to pass Parliament. A guide, not tax advice.` };
 }
