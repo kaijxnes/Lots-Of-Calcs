@@ -398,7 +398,7 @@ function monthPayPage(y, m) {
     .map(([c, n]) => `<a href="/payday-calendar/${c}/${y}/">${n} payday calendar ${y}</a>`).join(" ");
   const more = [`<a href="${BASE}${y}/payday-calendar/">Payday calendar ${y}</a>`, `<a href="${BASE}${y}/${mslug(m)}/">Working days in ${name} ${y}</a>`]
     .concat(m >= 10 && XMAS_YEARS.includes(y) ? [`<a href="${XMAS(y)}">Christmas payday ${y}</a>`] : [])
-    .concat(fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? [`<a href="/benefit-payment-dates/${y}/">Benefit payment dates ${y}</a>`] : [])
+    .concat(fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", `${mslug(m)}-${y}`, "index.html")) ? [`<a href="/benefit-payment-dates/${mslug(m)}-${y}/">Benefit payment dates ${name} ${y}</a>`] : fs.existsSync(path.join(site.ROOT, "benefit-payment-dates", String(y), "index.html")) ? [`<a href="/benefit-payment-dates/${y}/">Benefit payment dates ${y}</a>`] : [])
     .concat([`<a href="${PBASE}">Every month's payday</a>`, `<a href="/salary/">Take-home pay calculator</a>`]).join(" ");
   return site.head({ title, desc, url, ld }) + `    <header class="site-header">
       <a class="back-link" href="${PBASE}">← Payday dates</a>
