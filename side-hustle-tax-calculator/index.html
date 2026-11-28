@@ -141,7 +141,7 @@
       <p class="page-subtitle">The tax on income from selling, freelancing or renting on top of a job, with the £1,000 allowance.</p>
     </header>
 
-    <section class="tool split" id="sh-tool" data-rules="{&quot;cfg&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[20,40,45],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;}},&quot;R&quot;:{&quot;allowance&quot;:1000,&quot;contactFrom&quot;:1000,&quot;saFrom&quot;:2500,&quot;class4&quot;:[[0,0],[12570,6],[50270,2]]}}">
+    <section class="tool split" id="sh-tool" data-rules="{&quot;cfg&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[20,40,45],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;}},&quot;cfgS&quot;:{&quot;pa&quot;:12570,&quot;paTaperFrom&quot;:100000,&quot;paTaper&quot;:0.5,&quot;basicBand&quot;:37700,&quot;addlFrom&quot;:125140,&quot;rates&quot;:[19,20,21,42,45,48],&quot;div&quot;:{&quot;allowance&quot;:500,&quot;basic&quot;:10.75,&quot;higher&quot;:35.75,&quot;additional&quot;:39.35,&quot;source&quot;:&quot;https://www.gov.uk/tax-on-dividends&quot;,&quot;note&quot;:&quot;'This table shows the rates from 6 April 2026 to 5 April 2027': 10.75%, 35.75%, 39.35%; dividend allowance £500 (2025/26: 8.75%, 33.75%, 39.35%).&quot;},&quot;edges&quot;:[0,3967,16956,31092,62430,125140]},&quot;R&quot;:{&quot;allowance&quot;:1000,&quot;contactFrom&quot;:1000,&quot;saFrom&quot;:2500,&quot;class4&quot;:[[0,0],[12570,6],[50270,2]]}}">
       <div class="field-row">
         <div class="field"><label for="sh-kind">Income from</label><select id="sh-kind"><option value="trading" selected>Selling, freelancing or casual work (trading)</option><option value="property">Renting out property or land</option></select></div>
         <div class="field"><label for="sh-gross">Gross income a year (before expenses)</label><input type="number" id="sh-gross" value="3000" min="0" step="any" inputmode="decimal"></div>
@@ -150,8 +150,9 @@
         <div class="field"><label for="sh-expenses">Expenses a year</label><input type="number" id="sh-expenses" value="200" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="sh-salary">Your salary or other income</label><input type="number" id="sh-salary" value="30000" min="0" step="any" inputmode="decimal"></div>
       </div>
+      <div class="field"><label for="sh-region">Where you live</label><select id="sh-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="sh-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">England, Wales and Northern Ireland rates (2026/27); Scottish Income Tax rates differ. A room let in your own home goes in the <a href="/rent-a-room-calculator/">Rent a Room calculator</a> instead.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">Income Tax at 2026/27 rates, with Scottish rates if you live in Scotland; National Insurance is the same everywhere. A room let in your own home goes in the <a href="/rent-a-room-calculator/">Rent a Room calculator</a> instead.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="sh-keep">£2,400.00</div>
@@ -269,7 +270,7 @@
       <p><a href="/about/">About this site</a> · <a href="/how-we-check/">How we check our figures</a></p>
     </footer>
   </div>
-  <script src="/uk-calcs.js?v=1173e01a"></script>
-  <script src="/side-hustle.js?v=204d00c4"></script>
+  <script src="/uk-calcs.js?v=ffb157b0"></script>
+  <script src="/side-hustle.js?v=d2b4a0d8"></script>
 </body>
 </html>

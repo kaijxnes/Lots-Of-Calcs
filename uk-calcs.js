@@ -21,7 +21,11 @@ const UKCalcs = (function () {
     return tax;
   }
   function allowance(cfg, total) { return Math.max(0, cfg.pa - Math.max(0, total - cfg.paTaperFrom) * cfg.paTaper); }
-  const edges = (cfg) => [0, cfg.basicBand, cfg.addlFrom];
+  /* rUK: [0, basic, additional]; a Scottish config (tools/lib/uk-config.js
+     scot) carries its own six band edges and rates in cfg.edges / cfg.rates.
+     Dividends always use the UK-wide bands, even for Scottish taxpayers. */
+  const edges = (cfg) => cfg.edges || [0, cfg.basicBand, cfg.addlFrom];
+  const divEdges = (cfg) => [0, cfg.basicBand, cfg.addlFrom];
 
   /* income tax on wages/other income plus dividends (dividends on top) */
   function incomeTax(cfg, other, div) {
@@ -30,7 +34,7 @@ const UKCalcs = (function () {
     const nsTaxable = Math.max(0, other - pa), leftPA = Math.max(0, pa - other), divTaxable = Math.max(0, div - leftPA);
     const nsTax = bandTax(0, nsTaxable, edges(cfg), cfg.rates);
     const free = Math.min(divTaxable, cfg.div.allowance);
-    const divTax = bandTax(nsTaxable + free, divTaxable - free, edges(cfg), [cfg.div.basic, cfg.div.higher, cfg.div.additional]);
+    const divTax = bandTax(nsTaxable + free, divTaxable - free, divEdges(cfg), [cfg.div.basic, cfg.div.higher, cfg.div.additional]);
     return { pa, nsTaxable, divTaxable, nsTax, divTax, total: nsTax + divTax };
   }
   function employeeNI(cfg, pay) {

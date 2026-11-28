@@ -28,7 +28,7 @@ var PensionWithdrawal = (function () {
   }
   /* tax on one month's pay on a month 1 (non-cumulative) basis, allowance not tapered */
   function monthOne(cfg, pay) {
-    return p2(bands(Math.max(0, pay - cfg.pa / 12), [0, cfg.basicBand / 12, cfg.addlFrom / 12], cfg.rates));
+    return p2(bands(Math.max(0, pay - cfg.pa / 12), (cfg.edges || [0, cfg.basicBand, cfg.addlFrom]).map(function (e) { return e / 12; }), cfg.rates));
   }
   /* o: amount, fresh (25% tax-free), other (other taxable income this tax year), used (lump sum allowance used) */
   function calc(UK, cfg, R, o) {
@@ -62,6 +62,7 @@ if (typeof module !== "undefined" && module.exports) {
     var money = function (v) { return "£" + v.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
     var OUT = ["pw-net", "pw-free", "pw-taxable", "pw-due", "pw-emergency", "pw-first", "pw-refund", "pw-spread"];
     function run() {
+      cfg = $("pw-region").value === "scot" ? D.cfgS : D.cfg;
       var err = $("pw-error"), amount = num("pw-amount"), other = num("pw-other"), used = num("pw-used"), fresh = $("pw-type").value === "fresh";
       var bad = !(amount > 0) || amount > 1e9 ? "Enter the amount you're taking out." : !(other >= 0) || other > 1e9 ? "Enter your other taxable income this tax year, or 0." : !(used >= 0) || used > 1e9 ? "Enter the lump sum allowance you've used, or 0." : "";
       err.textContent = bad; err.style.display = bad ? "block" : "none";
@@ -81,6 +82,7 @@ if (typeof module !== "undefined" && module.exports) {
     }
     ["pw-amount", "pw-other", "pw-used"].forEach(function (id) { $(id).addEventListener("input", run); });
     $("pw-type").addEventListener("change", run);
+    $("pw-region").addEventListener("change", run);
     run();
   })();
 }

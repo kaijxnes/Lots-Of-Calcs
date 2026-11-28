@@ -19,7 +19,7 @@ const site = require("./lib/site.js");
 const related = require("./related.js");
 const UK = require("../uk-calcs.js");
 const TP = require("../termination-pay.js");
-const { cfg } = require("./lib/uk-config.js")();
+const { cfg, scot } = require("./lib/uk-config.js")();
 const { esc, SITE } = site;
 
 const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/termination-pay.json"), "utf8"));
@@ -47,7 +47,11 @@ if (cfg.year === "2026/27" && (h1.over !== 5000 || h1.year !== 1300 || h1.paye !
 const P = "/redundancy-tax-calculator/", u = SITE + P;
 const SRC = R.sources.map((s) => `<a href="${s.url}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>`).join(" and ");
 const CFG = { pa: cfg.pa, paTaperFrom: cfg.paTaperFrom, paTaper: cfg.paTaper, basicBand: cfg.basicBand, addlFrom: cfg.addlFrom, rates: cfg.rates, div: cfg.div, niPT: cfg.niPT, niUEL: cfg.niUEL, niMain: cfg.niMain, niUpper: cfg.niUpper };
-const RULES = { cfg: CFG, R: { taxFreeLimit: R.taxFreeLimit } };
+const CFGS = Object.assign({}, CFG, { edges: scot.edges, rates: scot.rates });
+const RULES = { cfg: CFG, cfgS: CFGS, R: { taxFreeLimit: R.taxFreeLimit } };
+/* Scotland, hand-checked for 2026/27: the same £6,500 after the P45 on S0T month 1 (bands ÷ 12): £330.58 × 19% + £1,082.42 × 20%
+   + £1,178 × 21% + £2,611.50 × 42% + £1,297.50 × 45% = £2,207.38; tax for the year £1,300 (all in the 20% band) */
+{ const s = TP.calc(UK, CFGS, R, Object.assign({ afterP45: true }, hc)); if (cfg.year === "2026/27" && (s.paye !== 2207.38 || s.year !== 1300)) throw new Error("termination pay: the Scottish hand-checked example no longer comes out"); }
 const MONTHS = ["April", "May", "June", "July", "August", "September", "October", "November", "December", "January", "February", "March"];
 const D0 = { statutory: 10000, severance: 5000, weeks: 0, weekly: 700, earnings: 1500, salary: 36000, month: 6 };
 const def = TP.calc(UK, cfg, R, { statutory: D0.statutory, severance: D0.severance, noticePay: 0, earnings: D0.earnings, salary: D0.salary, month: D0.month });
@@ -73,8 +77,9 @@ const tool = `    <main class="tool split" id="tp-tool" data-rules="${esc(JSON.s
         <div class="field"><label for="tp-month">Month you leave</label><select id="tp-month">${MONTHS.map((n, i) => `<option value="${i + 1}"${i + 1 === D0.month ? " selected" : ""}>${n}</option>`).join("")}</select></div>
         <div class="field"><label style="margin-top:26px;"><input type="checkbox" id="tp-p45" style="width:auto; margin-right:8px;">Paid after I get my P45</label></div>
       </div>
+      <div class="field"><label for="tp-region">Where you live</label><select id="tp-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="tp-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">England, Wales and Northern Ireland rates (${esc(cfg.year)}), paid monthly with a 1257L tax code; Scottish Income Tax rates differ. Leave out employer pension contributions and legal fees paid to your solicitor: they're not taxed. The <a href="/redundancy-pay-calculator/">redundancy pay calculator</a> works out the statutory amount.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">${esc(cfg.year)} rates, paid monthly with a 1257L tax code (S1257L and S0T in Scotland, with Scottish rates). Leave out employer pension contributions and legal fees paid to your solicitor: they're not taxed. The <a href="/redundancy-pay-calculator/">redundancy pay calculator</a> works out the statutory amount.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="tp-net">${m2(def.net)}</div>

@@ -19,7 +19,7 @@ const related = require("./related.js");
 const UK = require("../uk-calcs.js");
 const SH = require("../side-hustle.js");
 const registry = require("./tax/registry.js");
-const { cfg } = require("./lib/uk-config.js")();
+const { cfg, scot } = require("./lib/uk-config.js")();
 const { esc, SITE } = site;
 
 const R0 = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/side-hustle.json"), "utf8"));
@@ -43,7 +43,10 @@ if (cfg.year === "2026/27" && (!a.useAllowance || a.profit !== 2000 || a.tax !==
 const P = "/side-hustle-tax-calculator/", u = SITE + P;
 const SRC = R.sources.map((s) => `<a href="${s.url}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>`).join("");
 const CFG = { pa: cfg.pa, paTaperFrom: cfg.paTaperFrom, paTaper: cfg.paTaper, basicBand: cfg.basicBand, addlFrom: cfg.addlFrom, rates: cfg.rates, div: cfg.div };
-const RULES = { cfg: CFG, R: { allowance: R.allowance, contactFrom: R.contactFrom, saFrom: R.saFrom, class4 } };
+const CFGS = Object.assign({}, CFG, { edges: scot.edges, rates: scot.rates });
+const RULES = { cfg: CFG, cfgS: CFGS, R: { allowance: R.allowance, contactFrom: R.contactFrom, saFrom: R.saFrom, class4 } };
+/* Scotland, hand-checked for 2026/27: £3,000 less the £1,000 allowance on a £30,000 job is £2,000 in the 21% intermediate band = £420 */
+if (cfg.year === "2026/27" && SH.calc(UK, CFGS, R, { kind: "trading", gross: 3000, expenses: 200, salary: 30000 }).tax !== 420) throw new Error("side hustle: the Scottish hand-checked example no longer comes out");
 const rows = [500, 1000, 2000, 3000, 5000, 10000, 20000].map((g) => { const x = c({ gross: g, salary: 30000 }), y = c({ gross: g, salary: 60000 }); return [m0(g), m2(x.tax + x.ni), m2(x.keep), m2(y.tax + y.ni), m2(y.keep)]; });
 const tool = `    <main class="tool split" id="sh-tool" data-rules="${esc(JSON.stringify(RULES))}">
       <div class="field-row">
@@ -54,8 +57,9 @@ const tool = `    <main class="tool split" id="sh-tool" data-rules="${esc(JSON.s
         <div class="field"><label for="sh-expenses">Expenses a year</label><input type="number" id="sh-expenses" value="200" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="sh-salary">Your salary or other income</label><input type="number" id="sh-salary" value="30000" min="0" step="any" inputmode="decimal"></div>
       </div>
+      <div class="field"><label for="sh-region">Where you live</label><select id="sh-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="sh-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">England, Wales and Northern Ireland rates (${esc(cfg.year)}); Scottish Income Tax rates differ. A room let in your own home goes in the <a href="/rent-a-room-calculator/">Rent a Room calculator</a> instead.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">Income Tax at ${esc(cfg.year)} rates, with Scottish rates if you live in Scotland; National Insurance is the same everywhere. A room let in your own home goes in the <a href="/rent-a-room-calculator/">Rent a Room calculator</a> instead.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="sh-keep">${m2(a.keep)}</div>

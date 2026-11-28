@@ -19,7 +19,7 @@ const site = require("./lib/site.js");
 const related = require("./related.js");
 const UK = require("../uk-calcs.js");
 const GA = require("../gift-aid.js");
-const { cfg } = require("./lib/uk-config.js")();
+const { cfg, scot } = require("./lib/uk-config.js")();
 const { esc, SITE } = site;
 
 const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/gift-aid.json"), "utf8"));
@@ -41,7 +41,11 @@ if (cfg.year === "2026/27" && (c(1000, 51000).back !== 146 || c(8000, 110000).ba
 const P = "/gift-aid-calculator/", u = SITE + P;
 const SRC = R.sources.map((s) => `<a href="${s.url}" rel="nofollow noopener" target="_blank">${esc(s.title)}</a>`).join(", ");
 const CFG = { pa: cfg.pa, paTaperFrom: cfg.paTaperFrom, paTaper: cfg.paTaper, basicBand: cfg.basicBand, addlFrom: cfg.addlFrom, rates: cfg.rates, div: cfg.div };
-const RULES = { cfg: CFG, R: { top: R.top, maxTimesTax: R.maxTimesTax } };
+const CFGS = Object.assign({}, CFG, { edges: scot.edges, rates: scot.rates });
+const RULES = { cfg: CFG, cfgS: CFGS, R: { top: R.top, maxTimesTax: R.maxTimesTax } };
+/* Scotland, hand-checked for 2026/27 (s414: the Scottish basic rate limit and the limits above it move up by £125):
+   £100 on £60,000 (42% band): £125 × (42% − 20%) = £27.50; on £40,000 (21% band): £125 × 1% = £1.25 */
+if (cfg.year === "2026/27" && (GA.calc(UK, CFGS, R, { donation: 100, income: 60000 }).back !== 27.5 || GA.calc(UK, CFGS, R, { donation: 100, income: 40000 }).back !== 1.25)) throw new Error("gift aid: the Scottish hand-checked examples no longer come out");
 const def = c(100, 60000);
 const rows = [30000, 60000, 110000, 150000].map((i) => { const a = c(100, i), b = c(1000, i); return [m0(i), m2(a.back), m2(a.cost), m2(b.back), m2(b.cost)]; });
 const tool = `    <main class="tool split" id="ga-tool" data-rules="${esc(JSON.stringify(RULES))}">
@@ -49,8 +53,9 @@ const tool = `    <main class="tool split" id="ga-tool" data-rules="${esc(JSON.s
         <div class="field"><label for="ga-donation">Donations this tax year</label><input type="number" id="ga-donation" value="100" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="ga-income">Your taxable income a year</label><input type="number" id="ga-income" value="60000" min="0" step="any" inputmode="decimal"></div>
       </div>
+      <div class="field"><label for="ga-region">Where you live</label><select id="ga-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="ga-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">What you actually give, before Gift Aid. England, Wales and Northern Ireland rates (${esc(cfg.year)}); in Scotland your Scottish rate bands are extended the same way.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">What you actually give, before Gift Aid. ${esc(cfg.year)} rates. In Scotland the Scottish rate bands above the basic rate are extended by the grossed-up gift instead, so a 42% or 45% taxpayer gets more back.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="ga-gross">${m2(def.gross)}</div>

@@ -20,6 +20,13 @@ function ukConfig() {
     sp: R.statutoryPay, red: R.redundancy, hol: R.holiday, pen: R.pensions, ll: R.landlords
   };
   ["pa", "paTaperFrom", "basicBand", "addlFrom", "niPT", "niUEL", "niMain", "niUpper"].forEach((k) => { if (!(cfg[k] > 0)) throw new Error("uk-config: couldn't read " + k); });
-  return { cfg, R, gb };
+  /* Scotland: the same allowance, NI and other rates, with the Scottish
+     Income Tax bands from the gb-sct file in force (edges are taxable income) */
+  const sctDoc = registry.currentFiles(registry.readAll())["gb-sct"].doc;
+  if (sctDoc.taxYear.label !== gb.taxYear.label) throw new Error(`Scottish tax file is ${sctDoc.taxYear.label} but the UK file is ${gb.taxYear.label}`);
+  const sb = sctDoc.items.find((x) => x.id === "gb-income-tax").charge.brackets;
+  const scot = Object.assign({}, cfg, { edges: sb.map((b) => b[0]), rates: sb.map((b) => b[1]), bandNames: sb.map((b) => b[2]) });
+  if (scot.edges.length !== 6 || scot.edges[0] !== 0) throw new Error("uk-config: unexpected Scottish bands");
+  return { cfg, R, gb, scot };
 }
 module.exports = ukConfig;

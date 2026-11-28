@@ -29,12 +29,13 @@ var TerminationPay = (function () {
     return tax;
   }
   /* PAYE to date in tax month m on a cumulative code with the full allowance (1257L) */
+  var edgesOf = function (cfg) { return cfg.edges || [0, cfg.basicBand, cfg.addlFrom]; };
   function cumulative(cfg, pay, m) {
     var f = m / 12;
-    return bands(Math.max(0, pay - cfg.pa * f), [0, cfg.basicBand * f, cfg.addlFrom * f], cfg.rates);
+    return bands(Math.max(0, pay - cfg.pa * f), edgesOf(cfg).map(function (e) { return e * f; }), cfg.rates);
   }
   /* PAYE on one month's payment on 0T, month 1 basis: no allowance */
-  function zeroT(cfg, pay) { return bands(pay, [0, cfg.basicBand / 12, cfg.addlFrom / 12], cfg.rates); }
+  function zeroT(cfg, pay) { return bands(pay, edgesOf(cfg).map(function (e) { return e / 12; }), cfg.rates); }
   /* employee NI in one earnings period of 1/n of a year */
   function periodNI(UK, cfg, pay, n) { return UK.employeeNI(cfg, pay * n) / n; }
   /* split the payment: o.statutory, o.severance (enhanced redundancy, severance and
@@ -70,6 +71,7 @@ if (typeof module !== "undefined" && module.exports) {
     var money = function (v) { return "£" + v.toLocaleString("en-GB", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
     var OUT = ["tp-net", "tp-free", "tp-earn", "tp-over", "tp-paye", "tp-ni", "tp-year"];
     function run() {
+      cfg = $("tp-region").value === "scot" ? D.cfgS : D.cfg;
       var err = $("tp-error"), v = { statutory: num("tp-statutory"), severance: num("tp-severance"), weeks: num("tp-weeks"), weekly: num("tp-weekly"), earnings: num("tp-earnings"), salary: num("tp-salary") };
       var bad = Object.keys(v).some(function (k) { return !(v[k] >= 0) || v[k] > 1e8; }) ? "Enter amounts of 0 or more." : v.weeks > 520 ? "Enter the weeks of notice you didn't work (up to 520)." : "";
       err.textContent = bad; err.style.display = bad ? "block" : "none";
@@ -88,6 +90,7 @@ if (typeof module !== "undefined" && module.exports) {
     }
     ["tp-statutory", "tp-severance", "tp-weeks", "tp-weekly", "tp-earnings", "tp-salary"].forEach(function (id) { $(id).addEventListener("input", run); });
     ["tp-month", "tp-p45"].forEach(function (id) { $(id).addEventListener("change", run); });
+    $("tp-region").addEventListener("change", run);
     run();
   })();
 }

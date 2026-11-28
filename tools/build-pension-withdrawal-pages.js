@@ -20,7 +20,7 @@ const site = require("./lib/site.js");
 const related = require("./related.js");
 const UK = require("../uk-calcs.js");
 const PW = require("../pension-withdrawal.js");
-const { cfg, R: RATES } = require("./lib/uk-config.js")();
+const { cfg, scot, R: RATES } = require("./lib/uk-config.js")();
 const { esc, SITE } = site;
 
 const R = JSON.parse(fs.readFileSync(path.join(site.ROOT, "data/uk/pension-withdrawal.json"), "utf8"));
@@ -46,7 +46,10 @@ const aurl = (n) => `${BASE}${n}/`;
 const SP = Math.round(RATES.pensions.statePensionWeekly * 52 * 100) / 100;
 const SRC = R.sources.map((x) => `<a href="${x.url}" rel="nofollow noopener" target="_blank">${esc(x.title)}</a>`).join(", ");
 const CFG = { pa: cfg.pa, paTaperFrom: cfg.paTaperFrom, paTaper: cfg.paTaper, basicBand: cfg.basicBand, addlFrom: cfg.addlFrom, rates: cfg.rates, div: cfg.div };
-const RULES = { cfg: CFG, R: { taxFreePct: R.taxFreePct, lumpSumAllowance: R.lumpSumAllowance } };
+const CFGS = Object.assign({}, CFG, { edges: scot.edges, rates: scot.rates });
+const RULES = { cfg: CFG, cfgS: CFGS, R: { taxFreePct: R.taxFreePct, lumpSumAllowance: R.lumpSumAllowance } };
+/* Scotland, hand-checked for 2026/27: £20,000 from a fresh pot with no other income: £15,000 taxable, £2,430 over the allowance at 19% = £461.70 */
+if (cfg.year === "2026/27" && PW.calc(UK, CFGS, R, { amount: 20000, fresh: true, other: 0, used: 0 }).due !== 461.7) throw new Error("pension withdrawal: the Scottish hand-checked example no longer comes out");
 const OTHERS = [[0, "No other income"], [SP, `Full new State Pension (${m0(SP)})`], [20000, `${m0(20000)} of other income`], [30000, `${m0(30000)} of other income`], [50000, `${m0(50000)} of other income`]];
 
 function tool(amount) {
@@ -60,8 +63,9 @@ function tool(amount) {
         <div class="field"><label for="pw-other">Other taxable income this tax year (wages, State Pension, other pensions)</label><input type="number" id="pw-other" value="0" min="0" step="any" inputmode="decimal"></div>
         <div class="field"><label for="pw-used">Lump sum allowance already used</label><input type="number" id="pw-used" value="0" min="0" step="any" inputmode="decimal"></div>
       </div>
+      <div class="field"><label for="pw-region">Where you live</label><select id="pw-region"><option value="ruk" selected>England, Wales or Northern Ireland</option><option value="scot">Scotland (Scottish Income Tax)</option></select></div>
       <p class="tool-hint" id="pw-error" role="alert" style="color: var(--bad); display: none;"></p>
-      <p class="tool-hint" style="margin:6px 0 0;">England, Wales and Northern Ireland Income Tax rates (${esc(cfg.year)}). If you live in Scotland, Scottish Income Tax rates apply instead.</p>
+      <p class="tool-hint" style="margin:6px 0 0;">Income Tax at ${esc(cfg.year)} rates, with Scottish rates if you live in Scotland.</p>
       <div class="result-box split-aside" aria-live="polite">
         <div class="result-hero">
           <div class="value" id="pw-net">${m2(r.net)}</div>

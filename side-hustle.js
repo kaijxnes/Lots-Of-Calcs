@@ -49,6 +49,7 @@ if (typeof module !== "undefined" && module.exports) {
     };
     var OUT = ["sh-keep", "sh-deduct", "sh-profit", "sh-tax", "sh-ni", "sh-tell"];
     function run() {
+      cfg = $("sh-region").value === "scot" ? D.cfgS : D.cfg;
       var err = $("sh-error"), kind = $("sh-kind").value, gross = num("sh-gross"), exp = num("sh-expenses"), sal = num("sh-salary");
       $("sh-ni-row").style.display = kind === "trading" ? "" : "none";
       var bad = [gross, exp, sal].some(function (v) { return !(v >= 0) || v > 1e8; }) ? "Enter amounts of 0 or more." : "";
@@ -65,6 +66,7 @@ if (typeof module !== "undefined" && module.exports) {
     }
     ["sh-gross", "sh-expenses", "sh-salary"].forEach(function (id) { $(id).addEventListener("input", run); });
     $("sh-kind").addEventListener("change", run);
+    $("sh-region").addEventListener("change", run);
     run();
   })();
 }
